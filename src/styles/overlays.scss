@@ -1,0 +1,23 @@
+:root,
+.v-theme--light,
+.v-theme--dark {
+  // --v-activated-opacity: 0 !important; // 活动时透明
+  --swiper-theme-color: rgb(
+    var(--v-theme-primary)
+  ) !important; // swiper主题色跟随主题
+}
+
+html {
+  height: 100%;
+  width: 100%;
+  overflow-y: hidden !important;
+}
+
+// 去除一些控件的背景色
+html .v-list,
+html .v-app-bar.v-toolbar,
+html .v-navigation-drawer,
+html .v-card--flat {
+  background: rgba(var(--v-theme-background));
+}
+

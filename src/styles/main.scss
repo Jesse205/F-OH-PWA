@@ -1,0 +1,27 @@
+.noActivatedOverlay {
+  --v-activated-opacity: 0 !important; // 活动时透明
+}
+
+.noActivatedTransparency {
+  opacity: 1 !important;
+}
+
+.prependIconPrimaryItem {
+  .v-list-item__prepend {
+    .v-icon {
+      color: rgb(var(--v-theme-primary));
+      opacity: 1;
+    }
+  }
+}
+
+.centerSpace {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
