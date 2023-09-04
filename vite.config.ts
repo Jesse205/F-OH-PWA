@@ -8,7 +8,7 @@ import { defineConfig } from 'vite'
 import { fileURLToPath, URL } from 'node:url'
 
 // Manifest
-import manifest from './manifest.json'
+import manifest from './manifest'
 
 // https://vitejs.dev/config/
 export default defineConfig({

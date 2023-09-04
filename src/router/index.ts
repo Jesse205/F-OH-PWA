@@ -4,15 +4,14 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 const EL_SCROLL = '.v-main .mainContent'
 
 declare module 'vue-router' {
+
   interface RouteMeta {
     transition?: string
     savedPosition: ScrollToOptions
   }
-}
-
-declare module 'vue-router' {
   interface HistoryState {
     scroll: ScrollToOptions
+    [index: string]: ScrollToOptions;
   }
 }
 

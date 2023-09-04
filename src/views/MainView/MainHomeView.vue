@@ -2,7 +2,7 @@
 import { Ref, onMounted, ref, computed } from 'vue';
 import { useHomeTitle } from '@/events/title'
 import HomeBanner from './components/HomeBanner.vue'
-import { Banners } from '@/ts/interfaces/banner.interfaces'
+import { Banners } from '@/ts/interfaces/home.interfaces'
 import { useI18n } from 'vue-i18n'
 import { URL_HOME, URL_API } from '@/data/constants'
 import IMAGE_BANNER1 from '@/assets/images/main_banner_1.png'

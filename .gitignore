@@ -3,6 +3,7 @@ node_modules
 /dist
 /public/api
 /dev-dist
+/.tsconfig.tsbuildinfo
 
 # local env files
 .env.local
