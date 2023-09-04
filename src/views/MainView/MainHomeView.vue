@@ -16,7 +16,7 @@ const { t } = useI18n()
 useHomeTitle(t('home.name'))
 
 const loaded = ref(false)
-const errorText: Ref<string | null> = ref(null)
+const errMsg: Ref<string | null> = ref(null)
 const banners: Banners = {
   data: [
     {
@@ -44,7 +44,7 @@ onMounted(() => {
     })
     .catch((reason) => {
       console.error('Can\'t load data:', reason)
-      errorText.value = reason.toString()
+      errMsg.value = reason.toString()
     })
     .finally(() => {
       loaded.value = true
@@ -54,13 +54,15 @@ onMounted(() => {
 </script>
 
 <template>
-  <v-container>
+  <v-container class="py-0">
     <!-- Alerts -->
-    <v-alert v-if="errorText" title="Load error" :text="errorText" type="error" variant="tonal" />
-    <!-- MainLayout -->
-    <!-- 轮播图 -->
-    <HomeBanner :banners="banners" :base-url="URL_API" />
-    <v-list v-if="homeData?.showAnnouncement" border rounded="lg" class="prependIconPrimaryItem">
+    <v-alert class="my-4" v-if="errMsg" title="Load error" :text="errMsg" type="error" variant="tonal" />
+  </v-container>
+  <!-- MainLayout -->
+  <!-- 轮播图 -->
+  <HomeBanner class="my-4" :banners="banners" :base-url="URL_API" />
+  <v-container class="py-0">
+    <v-list class="my-4" v-if="homeData?.showAnnouncement" border rounded="lg">
       <!-- 公告 -->
       <v-list-subheader>{{ $t('announcement.name') }}</v-list-subheader>
       <v-list-item class="announcementContent" v-text="homeData.announcement"></v-list-item>
