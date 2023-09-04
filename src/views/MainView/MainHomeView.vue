@@ -54,15 +54,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <!-- Alerts -->
-  <v-container v-if="errorText">
-    <v-alert v-if="errorText" title="Loading error" :text="errorText" type="error" variant="tonal" />
-  </v-container>
-  <!-- MainLayout -->
-  <!-- 轮播图 -->
-  <HomeBanner :banners="banners" :base-url="URL_API" />
-  <v-container v-if="homeData">
-    <v-list v-if="homeData.showAnnouncement" border rounded="lg" class="prependIconPrimaryItem">
+  <v-container>
+    <!-- Alerts -->
+    <v-alert v-if="errorText" title="Load error" :text="errorText" type="error" variant="tonal" />
+    <!-- MainLayout -->
+    <!-- 轮播图 -->
+    <HomeBanner :banners="banners" :base-url="URL_API" />
+    <v-list v-if="homeData?.showAnnouncement" border rounded="lg" class="prependIconPrimaryItem">
       <!-- 公告 -->
       <v-list-subheader>{{ $t('announcement.name') }}</v-list-subheader>
       <v-list-item class="announcementContent" v-text="homeData.announcement"></v-list-item>

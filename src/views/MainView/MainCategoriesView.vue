@@ -29,13 +29,11 @@ const errMsg = computed(() => {
 </script>
 
 <template>
-  <!-- Alerts -->
-  <v-container v-if="errMsg">
-    <v-alert v-if="errMsg" title="Loading error" :text="errMsg" type="error" variant="tonal" />
-  </v-container>
-  <!-- MainLayout -->
-  <v-container v-if="appStore.data" class="py-2">
-    <v-list class="my-2" border rounded="lg">
+  <v-container class="py-0">
+    <!-- Alerts -->
+    <v-alert class="my-4" v-if="errMsg" title="Load error" :text="errMsg" type="error" variant="tonal" />
+    <!-- MainLayout -->
+    <v-list class="my-4" border rounded="lg">
       <!-- <v-list-subheader>{{ group.name }}</v-list-subheader> -->
       <ProjectItem v-for="item in appStore.data" :key="item.id" :item="item" :to="`/app/${item.id}`" />
     </v-list>

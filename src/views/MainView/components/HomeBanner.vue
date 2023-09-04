@@ -42,30 +42,24 @@ const newBanners = computed(() => {
 </script>
 
 <template>
-  <v-container class="container">
-    <swiper :slides-per-view="slidesPerView" :space-between="16" :pagination="{
-      clickable: true,
-    }" :modules="[Pagination]">
-      <swiper-slide v-for="item in newBanners?.data" :key="item.image">
-        <component :is="item.src?'a':'div'" :href="item.src" target="_blank">
-          <v-img class="rounded-lg border" :aspect-ratio="banners?.ratio" :src="item.image" cover />
-        </component>
-      </swiper-slide>
-    </swiper>
-  </v-container>
+  <swiper class="swiper" :slides-per-view="slidesPerView" :space-between="16" :pagination="{
+    clickable: true,
+  }" :modules="[Pagination]">
+    <swiper-slide v-for="item in newBanners?.data" :key="item.image">
+      <component :is="item.src?'a':'div'" :href="item.src" target="_blank">
+        <v-img class="rounded-lg border" :aspect-ratio="banners?.ratio" :src="item.image" cover />
+      </component>
+    </swiper-slide>
+  </swiper>
 </template>
 
 <style scoped lang="scss">
-.container {
-  padding: 0;
+.swiper {
+  padding: 16px 0;
+  position: relative;
 
-  >* {
+  :deep(.swiper-pagination) {
     padding: 16px;
-    position: relative;
-
-    :deep(.swiper-pagination) {
-      padding: 16px;
-    }
   }
 }
 </style>

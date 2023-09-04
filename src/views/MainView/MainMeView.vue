@@ -10,7 +10,7 @@ useHomeTitle(t('me.name'))
 </script>
 
 <template>
-  <v-container class="py-2">
+  <v-container class="py-0">
     <!-- <div class="py-2">
       <v-list-item rounded="lg" lines="two" :title="userStore.nameShow" :subtitle="userStore.email" link
         @click="userStore.loginState ? $router.push({ name: 'User' }) : userStore.login()"
@@ -24,21 +24,17 @@ useHomeTitle(t('me.name'))
     </div> -->
 
     <!-- 用户面板 -->
-    <div class="py-2 list-item-primaryIcon">
-      <v-list border rounded="lg" class="prependIconPrimaryItem">
-        <v-list-item title="我的关注" link prepend-icon="mdi-apps" append-icon="mdi-chevron-right" disabled />
-      </v-list>
-    </div>
+    <v-list class="my-4 prependIconPrimaryItem" border rounded="lg">
+      <v-list-item title="我的关注" link prepend-icon="mdi-apps" append-icon="mdi-chevron-right" disabled />
+    </v-list>
 
     <!-- 软件面板 -->
-    <div class="py-2 list-item-primaryIcon">
-      <v-list border rounded="lg" color="primary" class="prependIconPrimaryItem">
-        <v-list-item :title="$t('settings.name')" prepend-icon="mdi-cog-outline" append-icon="mdi-chevron-right"
-          :to="{ name: 'Settings' }" />
-        <v-list-item :title="$t('about.name')" link prepend-icon="mdi-information-outline" append-icon="mdi-chevron-right"
-          :to="{ name: 'About' }" />
-      </v-list>
-    </div>
+    <v-list class="my-4 prependIconPrimaryItem" border rounded="lg" color="primary">
+      <v-list-item :title="$t('settings.name')" prepend-icon="mdi-cog-outline" append-icon="mdi-chevron-right"
+        :to="{ name: 'Settings' }" />
+      <v-list-item :title="$t('about.name')" link prepend-icon="mdi-information-outline" append-icon="mdi-chevron-right"
+        :to="{ name: 'About' }" />
+    </v-list>
   </v-container>
 </template>
 
