@@ -33,7 +33,7 @@ const errMsg = computed(() => {
     <!-- Alerts -->
     <v-alert class="my-4" v-if="errMsg" title="Load error" :text="errMsg" type="error" variant="tonal" />
     <!-- MainLayout -->
-    <v-list class="my-4" border rounded="lg">
+    <v-list v-if="appStore.data" class="my-4" border rounded="lg">
       <!-- <v-list-subheader>{{ group.name }}</v-list-subheader> -->
       <ProjectItem v-for="item in appStore.data" :key="item.id" :item="item" :to="`/app/${item.id}`" />
     </v-list>

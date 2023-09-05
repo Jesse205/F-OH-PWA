@@ -15,6 +15,7 @@ import { registerPlugins } from '@/plugins'
 
 // Styles
 import '@/styles/main.scss'
+import '@/styles/overlays.scss'
 
 const app = createApp(App)
 

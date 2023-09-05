@@ -41,9 +41,9 @@ usePwa()
   </div>
 </template>
 
-<style lang="scss">
-@import "@/styles/overlays.scss";
+<style lang="scss" scoped>
 
+//设置绝对位置，方便设置动画，屏蔽了浏览器本身的文档滚动。因此需要在每个页面都添加滚动布局。
 .layout {
   position: absolute;
   width: 100%;
@@ -51,4 +51,11 @@ usePwa()
   overflow: hidden;
 }
 
+// 防止移动端出现滚动条
+.root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+}
 </style>
