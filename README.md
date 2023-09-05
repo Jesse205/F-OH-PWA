@@ -29,15 +29,13 @@ yarn
 
 ### Compile and hotload for development
 
-```bash
-yarn dev
-```
+1. Clone <http://gogs.444404.xyz/ohos-dev/F-OH-Data> and start a server on `5500` port.
+2. Open a terminal in this project and execute `yarn dev`.
 
 ### Compile and streamline for production
 
-```bash
-yarn build
-```
+1. Set up the `.env.production` file.
+2. Open a terminal in the project and run `yarn build`.
 
 ## Lint and fixing files
 

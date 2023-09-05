@@ -29,15 +29,13 @@ yarn
 
 ### 为开发编译和热加载
 
-```bash
-yarn dev
-```
+1. 克隆 <http://gogs.444404.xyz/ohos-dev/F-OH-Data> 并启动一个 `5500` 端口的服务器。
+2. 在该项目打开终端，执行 `yarn dev` 。
 
 ### 为生产编译和精简
 
-```bash
-yarn build
-```
+1. 设置 `.env.production` 文件
+2. 在该项目打开终端，执行 `yarn build` 。
 
 ### 衬垫和修复文件
 
