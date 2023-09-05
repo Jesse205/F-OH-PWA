@@ -128,7 +128,8 @@ const isTitleAppName = computed(() => scrollY.value > appNamePositionYBottom.val
         {{ $t('packageName.name') }}: {{ appInfo?.packageName || $t('unknown.name') }}<br />
         {{ $t('developer.name') }}: {{ appInfo?.vender || $t('unknown.name') }}<br />
         {{ $t('release.name') }}: {{ appInfo?.releaseTime || $t('unknown.name') }}<br />
-        {{ $t('id.name') }}: {{ appInfo?.id || $t('unknown.name') }}<br />
+        <!-- 存在ID为0的情况，因此不能通过 || 直接判断是否获取到ID -->
+        {{ $t('id.name') }}: {{ appInfo ? appInfo.id : $t('unknown.name') }}<br />
       </div>
     </v-container>
   </app-main>
