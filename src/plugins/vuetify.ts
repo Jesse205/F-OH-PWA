@@ -22,14 +22,14 @@ export default createVuetify({
     themes: {
       light: {
         colors: {
-          primary: '#00a6f9',
+          primary: '#007DFF',
           secondary: '#81bd0a',
           surface: '#FFFFFF',
         },
       },
       dark: {
         colors: {
-          primary: '#00a6f9',
+          primary: '#006CDE',
           secondary: '#81bd0a',
         },
       },
