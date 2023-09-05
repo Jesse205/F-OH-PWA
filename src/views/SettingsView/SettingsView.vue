@@ -25,7 +25,7 @@ const version = __VERSION__
         <v-list-subheader>{{ $t('app.name') }}</v-list-subheader>
         <!-- 关于 -->
         <v-list-item prepend-icon="mdi-information-outline" :title="$t('about.name')" :subtitle="version"
-          :to="{ name: 'About' }">
+          :to="{ name: 'About' }" append-icon="mdi-chevron-right">
         </v-list-item>
       </v-list>
     </v-container>
