@@ -1,41 +1,51 @@
 # F-OH PWA
 
-F-OH 是一个 OpenHarmony 平台上 FOSS（Free and Open Source Software，自由开源软件）的应用中心，并提供下载安装支持.
+F-OH is an application center for FOSS (Free and Open Source Software) on the OpenHarmony platform with download and installation support.
 
-F-OH PWA 是基于[粼光商店 Demo](https://gitee.com/sparkling-store/webv3demo) 的一个浏览器版本的 F-OH。
+F-OH PWA is a browser-based version of F-OH based on the [Sparkling Store Demo](https://gitee.com/sparkling-store/webv3demo).
 
-## 系列项目
+[![License](https://img.shields.io/github/license/Jesse205/F-OH-PWA)](./LICENSE)
 
-- [F-OH](https://gitee.com/ohos-dev/f-oh)：F-OH OpenHarmony 移动端
-- [F-OH Data](http://gogs.444404.xyz/ohos-dev/F-OH-Data)：F-OH 所有应用程序的元数据，开发者在这里PR提交自己的应用
-- [F-OH Server](https://gitee.com/ohos-dev/f-oh-server)：F-OH 服务器，提供接口服务、平台管理等（待开发）
-- [F-OH Website](https://gitee.com/ohos-dev/f-oh-website)：F-OH 网站，包含文档、博客、精选应用等（待开发）`
+[![QQ group (开鸿派): 752399947](https://img.shields.io/badge/QQ_group:_开鸿派-752399947-0099FF?logo=tencentqq)](https://qm.qq.com/q/jWeBdnvPz2)
 
-## 项目设置
+[![Gitee repository](https://img.shields.io/badge/Gitee-repository-C71D23?logo=gitee)](https://gitee.com/Jesse205/F-OH-PWA)
+[![Github repository](https://img.shields.io/badge/Github-repository-0969DA?logo=github)](https://github.com/Jesse205/F-OH-PWA)
+
+[中文](./README.zh.md) |
+**English**
+
+## Series of projects
+
+- [F-OH](https://gitee.com/ohos-dev/f-oh): F-OH OpenHarmony Mobile
+- [F-OH Data](http://gogs.444404.xyz/ohos-dev/F-OH-Data): metadata for all F-OH apps, where developers PR submit their apps
+- [F-OH Server](https://gitee.com/ohos-dev/f-oh-server): F-OH server, providing interface services, platform management, etc. (to be developed)
+- [F-OH Website](https://gitee.com/ohos-dev/f-oh-website): F-OH website, including documents, blogs, selected applications, etc. (to be developed)
+
+## Project setup
 
 ```bash
 yarn
 ```
 
-### 为开发编译和热加载
+### Compile and hotload for development
 
 ```bash
 yarn dev
 ```
 
-### 为生产编译和精简
+### Compile and streamline for production
 
 ```bash
 yarn build
 ```
 
-### 衬垫和修复文件
+## Lint and fixing files
 
 ```bash
 yarn lint
 ```
 
-## 许可证
+## License
 
 ``` txt
 Copyright (C) 2023 Jesse205

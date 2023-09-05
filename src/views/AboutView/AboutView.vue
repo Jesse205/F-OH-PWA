@@ -32,7 +32,6 @@ const developers: DeveloperItem[] = [
 const { mobile, mdAndUp } = useDisplay()
 
 const URL_SOURCE = 'https://gitee.com/Jesse205/F-OH-PWA'
-const URL_QQ_GROUP = 'http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=BoKACHnmIJSGs22g-1Rcr04bwYXIzPeh&authKey=MW41hwVsRvPyJSf4vXQZuNBBAiPVednlMsjB7VOqDPYzhrzqiiuZbPcVFetCVBkJ&noverify=0&group_code=752399947'
 
 </script>
 
@@ -64,7 +63,7 @@ const URL_QQ_GROUP = 'http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=BoKACHnmIJSGs22g
         <v-list-subheader>{{ $t('communicate.name') }}</v-list-subheader>
         <!-- QQ 群 -->
         <v-list-item prepend-icon="mdi-account-group-outline" :title="$t('communicate.qqGroup')" subtitle="752399947"
-          :href="URL_QQ_GROUP" target="_blank" />
+          href="https://qm.qq.com/q/jWeBdnvPz2" target="_blank" />
         <v-divider></v-divider>
         <!-- 相关链接 -->
         <v-list-subheader>{{ $t('link.related') }}</v-list-subheader>
