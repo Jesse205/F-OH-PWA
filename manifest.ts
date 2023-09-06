@@ -4,7 +4,7 @@ export default <Partial<ManifestOptions>>{
   name: 'F-OH PWA',
   short_name: 'F-OH',
   description: 'F-OH 的第三方 PWA 版本',
-  orientation: 'any',
+  orientation: 'natural',
   icons: [
     {
       src: '/icons/android-chrome-192x192.png',
@@ -42,5 +42,43 @@ export default <Partial<ManifestOptions>>{
     }
   ],
   theme_color: '#00a6f9',
-  display: 'standalone'
+  display: 'standalone',
+  display_override: [
+    'standalone',
+    'minimal-ui',
+    'browser',
+    'window-controls-overlay'
+  ],
+  screenshots: [
+    {
+      src: '/screenshots/Snipaste_2023-09-06_21-32-26.webp',
+      sizes: '502x776',
+      type: 'image/webp'
+    },
+    {
+      src: '/screenshots/Snipaste_2023-09-06_21-32-39.webp',
+      sizes: '502x776',
+      type: 'image/webp'
+    },
+    {
+      src: '/screenshots/Snipaste_2023-09-06_21-32-50.webp',
+      sizes: '502x776',
+      type: 'image/webp'
+    },
+    {
+      src: '/screenshots/Snipaste_2023-09-06_21-33-22.webp',
+      sizes: '986x607',
+      type: 'image/webp'
+    },
+    {
+      src: '/screenshots/Snipaste_2023-09-06_21-33-28.webp',
+      sizes: '986x607',
+      type: 'image/webp'
+    },
+    {
+      src: '/screenshots/Snipaste_2023-09-06_21-33-35.webp',
+      sizes: '986x607',
+      type: 'image/webp'
+    },
+  ]
 }

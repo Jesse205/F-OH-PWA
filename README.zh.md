@@ -1,5 +1,7 @@
 # F-OH PWA
 
+![LOGO](./public/icons/android-chrome-192x192.png)
+
 F-OH 是一个 OpenHarmony 平台上 FOSS（Free and Open Source Software，自由开源软件）的应用中心，并提供下载安装支持。
 
 F-OH PWA 是基于[粼光商店 Demo](https://gitee.com/sparkling-store/webv3demo) 的一个浏览器版本的 F-OH。
@@ -13,6 +15,19 @@ F-OH PWA 是基于[粼光商店 Demo](https://gitee.com/sparkling-store/webv3dem
 
 **中文** |
 [English](./README.md)
+
+## 屏幕截图
+
+<div style="display: flex; overflow: scroll;">
+<img src="./public/screenshots/Snipaste_2023-09-06_21-32-26.webp" height=500 style="max-width: none;"/>
+<img src="./public/screenshots/Snipaste_2023-09-06_21-32-39.webp" height=500 style="max-width: none;"/>
+<img src="./public/screenshots/Snipaste_2023-09-06_21-32-50.webp" height=500 style="max-width: none;"/>
+</div>
+<div style="display: flex; overflow: scroll; align-items: flex-start;">
+<img src="./public/screenshots/Snipaste_2023-09-06_21-33-22.webp" height=500 style="max-width: none;"/>
+<img src="./public/screenshots/Snipaste_2023-09-06_21-33-28.webp" height=500 style="max-width: none;"/>
+<img src="./public/screenshots/Snipaste_2023-09-06_21-33-35.webp" height=500 style="max-width: none;"/>
+</div>
 
 ## 系列项目
 
