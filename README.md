@@ -18,16 +18,13 @@ F-OH PWA is a browser-based version of F-OH based on the [Sparkling Store Demo](
 
 ## Screenshots
 
-<div style="display: flex; overflow: scroll;">
-<img src="./public/screenshots/Snipaste_2023-09-06_21-32-26.webp" height=500 style="max-width: none;"/>
-<img src="./public/screenshots/Snipaste_2023-09-06_21-32-39.webp" height=500 style="max-width: none;"/>
-<img src="./public/screenshots/Snipaste_2023-09-06_21-32-50.webp" height=500 style="max-width: none;"/>
-</div>
-<div style="display: flex; overflow: scroll; align-items: flex-start;">
-<img src="./public/screenshots/Snipaste_2023-09-06_21-33-22.webp" height=500 style="max-width: none;"/>
-<img src="./public/screenshots/Snipaste_2023-09-06_21-33-28.webp" height=500 style="max-width: none;"/>
-<img src="./public/screenshots/Snipaste_2023-09-06_21-33-35.webp" height=500 style="max-width: none;"/>
-</div>
+<img src="./public/screenshots/Snipaste_2023-09-06_21-32-26.webp" width=200 />
+<img src="./public/screenshots/Snipaste_2023-09-06_21-32-39.webp" width=200 />
+<img src="./public/screenshots/Snipaste_2023-09-06_21-32-50.webp" width=200 />
+
+<img src="./public/screenshots/Snipaste_2023-09-06_21-33-22.webp" width=200 />
+<img src="./public/screenshots/Snipaste_2023-09-06_21-33-28.webp" width=200 />
+<img src="./public/screenshots/Snipaste_2023-09-06_21-33-35.webp" width=200 />
 
 ## Series of projects
 
