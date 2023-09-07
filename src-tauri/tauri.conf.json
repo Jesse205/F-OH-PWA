@@ -65,7 +65,7 @@
         "height": 600,
         "resizable": true,
         "title": "F-OH Tauri",
-        "width": 800
+        "width": 960
       }
     ]
   }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onActivated } from 'vue'
 import { useTitle } from "@/events/title"
 import { useRoute } from 'vue-router'
 import { useAppsStore } from '@/store/apps'
@@ -7,9 +7,10 @@ import { getServerCompletePath } from '@/util/url'
 import { URL_API } from '@/data/constants'
 import { onMounted } from 'vue'
 import AppMain from '@/components/AppMain.vue'
-import { useScroll } from '@vueuse/core'
+import { useScroll, useTitle as useVueUseTitle } from '@vueuse/core';
+import { useI18n } from 'vue-i18n'
 
-useTitle('应用浏览')
+const { t } = useI18n()
 
 const route = useRoute()
 
@@ -62,6 +63,15 @@ const { y: scrollY } = useScroll(mainScrollElement)
 
 //如果标题被遮拦就在应用栏内显示标题
 const isTitleAppName = computed(() => scrollY.value > appNamePositionYBottom.value)
+
+const title = computed(() => {
+  if (appInfo.value)
+    return `${appInfo.value.name} - ${t('app.view')}`
+  else
+    return t('app.view')
+})
+
+useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
 
 </script>
 
