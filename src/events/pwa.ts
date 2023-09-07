@@ -5,6 +5,9 @@ interface BeforeInstallPrompt extends Event {
   userChoice: Promise<any>
 }
 
+/**
+ * 这个只能在 APP 组件使用，否则 `onBeforeInstallPrompt` 不会执行
+ */
 export function usePwa() {
   const installBtnVisible = ref(false)
   let deferredPrompt: BeforeInstallPrompt | null = null

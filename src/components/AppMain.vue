@@ -25,7 +25,7 @@ defineExpose({
 
 // 区域滚动
 .v-main>.mainScroll {
-  overflow-y: auto;
+  overflow-y: scroll; // auto 极端情况会导致布局闪烁
   height: 100%;
   transform: translateZ(0); // 用于开启硬件加速
 }

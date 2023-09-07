@@ -1,8 +1,8 @@
 [package]
 name = "app"
 version = "0.1.0"
-description = "A Tauri App"
-authors = ["you"]
+description = "F-OH PWA version packaged with Tarui"
+authors = ["Jesse205"]
 license = ""
 repository = ""
 default-run = "app"

@@ -38,19 +38,30 @@ F-OH PWA is a browser-based version of F-OH based on the [Sparkling Store Demo](
 
 ## Project setup
 
-```bash
-yarn
-```
+1. Install NodeJS v19
+2. Install Yarn
+3. Set up the Tauri environment according to [Tauri prep](https://tauri.app/zh-cn/v1/guides/getting-started/prerequisites).
+   - Windows: Microsoft Visual Studio C++ Builder, WebView2, Rust.
+   - macOS: CLang and macOS development dependencies, Rust.
+   - Linux: system dependencies, Rust.
+4. Run `yarn install`
 
-### Compile and hotload for development
+> **TIP**\
+> F-OH PWA is temporarily unavailable because the server does not have SSL and has cross-domain issues, please use F-OH Tauri.
 
-1. Clone <http://gogs.444404.xyz/ohos-dev/F-OH-Data> and start a server on `5500` port.
-2. Open a terminal in this project and execute `yarn dev`.
+### Compiling and hotloading for development
 
-### Compile and streamline for production
+1. Clone <http://gogs.444404.xyz/ohos-dev/F-OH-Data> and start a server on port `5500`.
+2. Open a terminal in the project and run commands according to the following rules.
+   - Web and PWA applications: run `yarn dev`.
+   - Windows Tauri software: run `yarn tauri dev`.
+
+### Compiling and streamlining for production
 
 1. Set up the `.env.production` file.
-2. Open a terminal in the project and run `yarn build`.
+2. Open a terminal in the project and run commands according to the following rules.
+   - Web and PWA applications: run `yarn build`.
+   - Windows Tauri software: Run `yarn tauri build`.
 
 ## Lint and fixing files
 

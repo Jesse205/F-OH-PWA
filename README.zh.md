@@ -40,23 +40,26 @@ F-OH PWA 是基于[粼光商店 Demo](https://gitee.com/sparkling-store/webv3dem
 
 1. 安装 NodeJS v19
 2. 安装 Yarn
-3. 按照 [Tauri 的预先准备](https://tauri.app/zh-cn/v1/guides/getting-started/prerequisites)设置 Tauri 环境
-   - Windows: Microsoft Visual Studio C++ 生成工具、WebView2、Rust
-   - macOS: CLang 和 macOS 开发依赖项、Rust
-   - Linux: 系统依赖、Rust
+3. 按照 [Tauri 的预先准备](https://tauri.app/zh-cn/v1/guides/getting-started/prerequisites)设置 Tauri 环境。
+   - Windows: Microsoft Visual Studio C++ 生成工具、WebView2、Rust。
+   - macOS: CLang 和 macOS 开发依赖项、Rust。
+   - Linux: 系统依赖、Rust。
 4. 运行 `yarn install`
+
+> **TIP**\
+> 因服务器没有 SSL 并且有跨域问题， F-OH PWA 暂时无法使用，请使用 F-OH Tauri。
 
 ### 为开发编译和热加载
 
 1. 克隆 <http://gogs.444404.xyz/ohos-dev/F-OH-Data> 并启动一个 `5500` 端口的服务器。
-2. 在该项目打开终端，按照以下规则运行命令
+2. 在该项目打开终端，按照以下规则运行命令。
    - 网页与 PWA 应用：运行 `yarn dev` 。
    - Windows Tauri 软件：运行 `yarn tauri dev` 。
 
 ### 为生产编译和精简
 
-1. 设置 `.env.production` 文件
-2. 在该项目打开终端，执行 `yarn build` 。
+1. 设置 `.env.production` 文件。
+2. 在该项目打开终端，按照以下规则运行命令。
    - 网页与 PWA 应用：运行 `yarn build` 。
    - Windows Tauri 软件：运行 `yarn tauri build` 。
 
