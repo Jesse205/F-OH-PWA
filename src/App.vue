@@ -1,10 +1,12 @@
 <script lang="ts" setup>
-import { usePreferredDark } from '@vueuse/core'
+import { usePreferredDark, useTitle } from '@vueuse/core'
 import { useTheme } from 'vuetify'
 import { watch, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { usePwa } from '@/events/pwa';
 import { isTauri } from '@/util/app';
+import { getCurrent } from '@tauri-apps/api/window'
+import { useI18n } from 'vue-i18n';
 
 // Theme
 const theme = useTheme()
@@ -17,8 +19,9 @@ watch(preferredDark, (isDark) => {
 })
 
 const route = useRoute()
-
+//路由名称
 const routeName = ref('')
+
 watch(route, () => {
   routeName.value = route.path.match('/[^/]+')?.[0] || ''
 })
@@ -28,6 +31,19 @@ usePwa()
 
 // Tauri
 console.log('isTauri', isTauri())
+
+// I18n
+const { t } = useI18n()
+
+// 标题
+const title = useTitle(t('appName'), { observe: true })
+
+if (isTauri()) {
+  // 绑定 Tauri 窗口标题
+  watch(title, (newTitle) => {
+    getCurrent().setTitle(newTitle || t('appName'))
+  }, { immediate: true })
+}
 
 </script>
 
@@ -46,7 +62,6 @@ console.log('isTauri', isTauri())
 </template>
 
 <style lang="scss" scoped>
-
 //设置绝对位置，方便设置动画，屏蔽了浏览器本身的文档滚动。因此需要在每个页面都添加滚动布局。
 .layout {
   position: absolute;
