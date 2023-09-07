@@ -19,7 +19,7 @@
     },
     "bundle": {
       "active": true,
-      "category": "DeveloperTool",
+      "category": "Utility",
       "copyright": "Copyright (C) 2023 Jesse205",
       "deb": {
         "depends": []
@@ -33,7 +33,7 @@
         "icons/icon.ico"
       ],
       "identifier": "io.gitee.jesse205.foh.tauri",
-      "longDescription": "",
+      "longDescription": "F-OH PWA version packaged with Tarui",
       "macOS": {
         "entitlements": null,
         "exceptionDomain": "",
@@ -43,30 +43,35 @@
       },
       "resources": [],
       "shortDescription": "",
-      "targets": "all",
+      "targets": ["msi"],
       "windows": {
         "certificateThumbprint": null,
         "digestAlgorithm": "sha256",
         "timestampUrl": "",
         "webviewInstallMode": {
           "type": "downloadBootstrapper"
+        },
+        "wix": {
+          "language": ["zh-CN", "en-US"]
+        },
+        "nsis": {
+          "languages": ["SimpChinese", "English"],
+          "displayLanguageSelector": true,
+          "license": "../LICENSE",
+          "installMode": "both",
+          "installerIcon": "icons/icon.ico"
         }
       }
     },
     "security": {
-      "csp": null
+      "csp": null,
+      "dangerousDisableAssetCspModification": true
     },
     "updater": {
       "active": false
     },
     "windows": [
-      {
-        "fullscreen": false,
-        "height": 600,
-        "resizable": true,
-        "title": "F-OH Tauri",
-        "width": 960
-      }
+      
     ]
   }
 }

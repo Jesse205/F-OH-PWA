@@ -40,7 +40,7 @@ F-OH PWA is a browser-based version of F-OH based on the [Sparkling Store Demo](
 
 1. Install NodeJS v19
 2. Install Yarn
-3. Set up the Tauri environment according to [Tauri prep](https://tauri.app/zh-cn/v1/guides/getting-started/prerequisites).
+3. Set up the Tauri environment according to [Tauri prep](https://tauri.app/v1/guides/getting-started/prerequisites/).
    - Windows: Microsoft Visual Studio C++ Builder, WebView2, Rust.
    - macOS: CLang and macOS development dependencies, Rust.
    - Linux: system dependencies, Rust.
