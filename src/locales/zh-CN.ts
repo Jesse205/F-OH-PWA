@@ -1,5 +1,5 @@
 export default {
-  appName: 'F-OH PWA',
+  appName: 'F-OH',
   settings: {
     name: '设置'
   },

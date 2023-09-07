@@ -59,7 +59,7 @@
           "displayLanguageSelector": true,
           "license": "../LICENSE",
           "installMode": "both",
-          "installerIcon": "icons/icon.ico"
+          "installerIcon": "./icons/icon.ico"
         }
       }
     },
@@ -70,8 +70,6 @@
     "updater": {
       "active": false
     },
-    "windows": [
-      
-    ]
+    "windows": []
   }
 }
