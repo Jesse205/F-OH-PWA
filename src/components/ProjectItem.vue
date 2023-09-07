@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { AppInfo } from '@/ts/interfaces/app.interfaces'
 import { URL_API } from '@/data/constants'
-import { getCompletePath } from "@/util/url"
-import { computed } from 'vue';
+import { getServerCompletePath } from "@/util/url"
+import { computed } from 'vue'
 
 const props = defineProps<{
   item: AppInfo
 }>()
 
 const iconCompletePath = computed(() => {
-  return getCompletePath(props.item.icon, URL_API)
+  return getServerCompletePath(props.item.icon, URL_API)
 })
 
 </script>

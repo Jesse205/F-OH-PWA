@@ -6,7 +6,7 @@ import { http } from '@tauri-apps/api'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-export const useAppStore = defineStore('app', () => {
+export const useAppsStore = defineStore('apps', () => {
   const loading = ref(false)
   const data = ref<AppInfo[] | null>(null)
   const errMsg = ref<string | null>(null)

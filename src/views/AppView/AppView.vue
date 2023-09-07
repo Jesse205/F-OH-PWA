@@ -1,36 +1,35 @@
 <script setup lang="ts">
-import { ref, onActivated, computed, watch } from 'vue';
-import { onBeforeRouteLeave, onBeforeRouteUpdate } from "vue-router"
+import { ref, computed } from 'vue'
 import { useTitle } from "@/events/title"
-import { useRoute } from 'vue-router';
-import { useAppStore } from '@/store/app';
-import { getCompletePath } from '@/util/url';
-import { URL_API } from '@/data/constants';
-import { onMounted } from 'vue';
-import AppMain from '@/components/AppMain.vue';
-import { useScroll } from '@vueuse/core';
+import { useRoute } from 'vue-router'
+import { useAppsStore } from '@/store/apps'
+import { getServerCompletePath } from '@/util/url'
+import { URL_API } from '@/data/constants'
+import { onMounted } from 'vue'
+import AppMain from '@/components/AppMain.vue'
+import { useScroll } from '@vueuse/core'
 
 useTitle('应用浏览')
 
 const route = useRoute()
 
-const appStore = useAppStore()
+const appsStore = useAppsStore()
 
 const appInfo = computed(() => {
-  return appStore.data?.find((item) => {
+  return appsStore.data?.find((item) => {
     return item.id === +route.params.id
   })
 })
 
 const appIconUrl = computed(() => {
   if (appInfo.value)
-    return getCompletePath(appInfo.value.icon, URL_API)
+    return getServerCompletePath(appInfo.value.icon, URL_API)
   return null
 })
 
 const appDownloadUrl = computed(() => {
   if (appInfo.value)
-    return getCompletePath(appInfo.value.hapUrl, URL_API)
+    return getServerCompletePath(appInfo.value.hapUrl, URL_API)
   return null
 })
 
@@ -43,7 +42,7 @@ const appTags = computed(() => {
 
 //确保数据已经获取到或者正在获取中
 onMounted(() => {
-  appStore.ensureData()
+  appsStore.ensureData()
 })
 
 const mainElement = ref()
@@ -77,7 +76,7 @@ const isTitleAppName = computed(() => scrollY.value > appNamePositionYBottom.val
     </v-app-bar-title>
   </v-app-bar>
   <app-main ref="mainElement">
-    <v-progress-linear v-show="appStore.loading" color="primary" class="progress" indeterminate></v-progress-linear>
+    <v-progress-linear v-show="appsStore.loading" color="primary" class="progress" indeterminate />
     <v-container class="container py-2">
       <!-- 顶部介绍 -->
       <div class="header py-2">
