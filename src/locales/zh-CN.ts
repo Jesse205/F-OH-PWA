@@ -28,6 +28,9 @@ export default {
     version: '应用版本',
     view: '应用浏览',
   },
+  tauri: {
+    version: 'Tauri 版本',
+  },
   project: {
     showcase: {
       name: '项目展示',

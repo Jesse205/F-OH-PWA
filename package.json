@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@mdi/font": "7.2.96",
+    "@tauri-apps/api": "^1.4.0",
     "@vueuse/core": "^10.4.1",
     "core-js": "^3.32.1",
     "lodash": "^4.17.21",
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "@babel/types": "^7.22.11",
+    "@tauri-apps/cli": "^1.4.0",
     "@types/lodash": "^4.14.197",
     "@types/node": "^20.5.7",
     "@types/webfontloader": "^1.6.35",

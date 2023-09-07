@@ -4,6 +4,7 @@ import { useTheme } from 'vuetify'
 import { watch, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { usePwa } from '@/events/pwa';
+import { isTauri } from '@/util/app';
 
 // Theme
 const theme = useTheme()
@@ -22,8 +23,11 @@ watch(route, () => {
   routeName.value = route.path.match('/[^/]+')?.[0] || ''
 })
 
+// PWA
 usePwa()
 
+// Tauri
+console.log('isTauri', isTauri())
 
 </script>
 

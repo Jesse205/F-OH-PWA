@@ -11,5 +11,5 @@
 export function getCompletePath(url: string, base: string) {
   if (url.search('://') > -1)
     return url
-  return `${base}/${url}`
+  return `${base}${url.endsWith('/') ? '' : '/'}${url.startsWith('/') ? url.slice(1) : url}`
 }

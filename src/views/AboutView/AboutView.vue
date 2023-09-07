@@ -4,6 +4,9 @@ import AppCard from './components/AppCard.vue'
 import AppMain from '@/components/AppMain.vue'
 import { useI18n } from 'vue-i18n';
 import { useTitle } from '@/events/title';
+import { getTauriVersion } from '@tauri-apps/api/app';
+import { ref } from 'vue';
+import { isTauri } from '@/util/app';
 
 const { t } = useI18n()
 useTitle(t('about.name'))
@@ -33,6 +36,15 @@ const { mobile, mdAndUp } = useDisplay()
 
 const URL_SOURCE = 'https://gitee.com/Jesse205/F-OH-PWA'
 
+const tauriVersion = ref()
+
+if (isTauri()) {
+  getTauriVersion().then((version) => {
+    tauriVersion.value = version
+  })
+}
+
+
 </script>
 
 <template>
@@ -51,6 +63,9 @@ const URL_SOURCE = 'https://gitee.com/Jesse205/F-OH-PWA'
         <v-list-subheader>{{ $t('app.about') }}</v-list-subheader>
         <!-- 应用版本 -->
         <v-list-item prepend-icon="mdi-information-outline" :title="$t('app.version')" :subtitle="version" />
+        <!-- Tauri 版本 -->
+        <v-list-item v-if="tauriVersion" prepend-icon="mdi-information-outline" :title="$t('tauri.version')"
+          :subtitle="tauriVersion" />
         <v-divider></v-divider>
         <!-- 开发者信息 -->
         <v-list-subheader>{{ $t('develop.message') }}</v-list-subheader>

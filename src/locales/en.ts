@@ -27,6 +27,9 @@ export default {
     version: 'App version',
     view: 'App view',
   },
+  tauri: {
+    version: 'Tauri version',
+  },
   project: {
     showcase: {
       name: 'Project Showcase',
