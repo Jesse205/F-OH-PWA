@@ -18,13 +18,16 @@ F-OH PWA 是基于[粼光商店 Demo](https://gitee.com/sparkling-store/webv3dem
 
 ## 屏幕截图
 
+<div>
 <img src="./public/screenshots/Snipaste_2023-09-06_21-32-26.webp" width=200 />
 <img src="./public/screenshots/Snipaste_2023-09-06_21-32-39.webp" width=200 />
 <img src="./public/screenshots/Snipaste_2023-09-06_21-32-50.webp" width=200 />
-
+</div>
+<div>
 <img src="./public/screenshots/Snipaste_2023-09-06_21-33-22.webp" width=200 />
 <img src="./public/screenshots/Snipaste_2023-09-06_21-33-28.webp" width=200 />
 <img src="./public/screenshots/Snipaste_2023-09-06_21-33-35.webp" width=200 />
+</div>
 
 ## 系列项目
 
