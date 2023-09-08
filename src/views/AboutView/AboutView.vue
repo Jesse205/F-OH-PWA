@@ -4,14 +4,16 @@ import AppCard from './components/AppCard.vue'
 import AppMain from '@/components/AppMain.vue'
 import { useI18n } from 'vue-i18n';
 import { useTitle } from '@/events/title';
-import { getTauriVersion } from '@tauri-apps/api/app';
+import { getTauriVersion, getVersion } from '@tauri-apps/api/app';
 import { ref } from 'vue';
 import { isTauri } from '@/util/app';
+import { v } from '@tauri-apps/api/event-41a9edf5';
 
 const { t } = useI18n()
 useTitle(t('about.name'))
 
-const version = __VERSION__
+const appVersion = ref(__VERSION__)
+
 interface DeveloperItem {
   avatar?: string
   title: string
@@ -42,7 +44,11 @@ if (isTauri()) {
   getTauriVersion().then((version) => {
     tauriVersion.value = version
   })
+  getVersion().then((version) => {
+    appVersion.value = version
+  })
 }
+
 
 
 </script>
@@ -62,7 +68,7 @@ if (isTauri()) {
         <!-- 关于应用 -->
         <v-list-subheader>{{ $t('app.about') }}</v-list-subheader>
         <!-- 应用版本 -->
-        <v-list-item prepend-icon="mdi-information-outline" :title="$t('app.version')" :subtitle="version" />
+        <v-list-item prepend-icon="mdi-information-outline" :title="$t('app.version')" :subtitle="appVersion" />
         <!-- Tauri 版本 -->
         <v-list-item v-if="tauriVersion" prepend-icon="mdi-information-outline" :title="$t('tauri.version')"
           :subtitle="tauriVersion" />
