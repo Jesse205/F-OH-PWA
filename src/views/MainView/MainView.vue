@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inject, ref } from 'vue'
+import { inject, ref, watch } from 'vue';
 import { useDisplay } from 'vuetify'
 import { useHomeStore } from '@/store/home'
 import { useI18n } from 'vue-i18n';
@@ -7,7 +7,6 @@ import AppMain from '@/components/AppMain.vue'
 
 const { t } = useI18n()
 const homeStore = useHomeStore()
-const drawer = ref(true)
 
 interface Page {
   title: string
@@ -45,7 +44,7 @@ const pages: Page[] = [
   },
 ]
 
-const { mobile } = useDisplay()
+const { xs, smAndDown } = useDisplay()
 
 // PWA
 const installBtnVisible = inject('installBtnVisible')
@@ -55,9 +54,9 @@ const onInstallBtnClick = inject('onInstallBtnClick') as () => void
 
 <template>
   <!-- 侧滑栏 -->
-  <v-navigation-drawer v-if="!mobile" v-model="drawer" permanent>
-    <v-list lines="two">
-      <v-list-item prepend-avatar="@/assets/images/icon.svg" :title="$t('appName')" subtitle="" />
+  <v-navigation-drawer v-if="!xs" permanent :rail="smAndDown">
+    <v-list>
+      <v-list-item prepend-avatar="@/assets/images/icon.svg" :title="$t('appName')" />
     </v-list>
     <v-divider />
     <v-list density="compact" nav color="primary">
@@ -69,7 +68,7 @@ const onInstallBtnClick = inject('onInstallBtnClick') as () => void
 
   <!-- 应用栏 -->
   <v-app-bar flat border="b">
-    <v-app-bar-nav-icon v-if="!mobile" @click.stop="drawer = !drawer" />
+    <!-- <v-app-bar-nav-icon v-if="!mobile" @click.stop="drawer = !drawer" /> -->
     <v-app-bar-title>{{ homeStore.fragmentTitle }}</v-app-bar-title>
     <v-spacer />
     <v-tooltip location="bottom">
@@ -100,7 +99,7 @@ const onInstallBtnClick = inject('onInstallBtnClick') as () => void
   </app-main>
 
   <!-- 底部导航栏 -->
-  <v-bottom-navigation v-if="mobile" grow color="primary" mandatory border="t" :elevation="0"
+  <v-bottom-navigation v-if="xs" grow color="primary" mandatory border="t" :elevation="0"
     selected-class="noActivatedTransparency">
     <v-btn v-for="item in pages" :key="item.name" :to="{ name: item.name }" :disabled="item.disabled" replace>
       <v-icon>{{ $route.name === item.name ? item.activeIcon : item.icon }}</v-icon>
