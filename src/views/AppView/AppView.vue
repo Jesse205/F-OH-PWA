@@ -206,7 +206,7 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
   flex-wrap: wrap;
   margin: -4px;
 
-  * {
+  >* {
     padding: 4px;
   }
 }

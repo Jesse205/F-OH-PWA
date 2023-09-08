@@ -16,7 +16,7 @@ fn main() {
         .setup(move |app| {
             WindowBuilder::new(
                 app,
-                "main",
+                "main".to_string(),
                 if cfg!(dev) {
                     Default::default()
                 } else {
