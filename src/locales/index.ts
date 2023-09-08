@@ -44,5 +44,4 @@ if (isTauri()) { // Tauri
   ZH_CN.appName = APP_NAME_DEFAULT
 }
 
-// i18n.global.setLocaleMessage(locales[0],)
 export default i18n

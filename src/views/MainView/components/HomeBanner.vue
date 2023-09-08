@@ -42,7 +42,7 @@ const newBanners = computed(() => {
 </script>
 
 <template>
-  <v-container class="container">
+  <v-container class="container" @dragstart.stop>
     <swiper class="swiper" :slides-per-view="slidesPerView" :space-between="16" :pagination="{
       clickable: true,
     }" :modules="[Pagination]">

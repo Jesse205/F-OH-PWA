@@ -7,7 +7,6 @@ import { useTitle } from '@/events/title';
 import { getTauriVersion, getVersion } from '@tauri-apps/api/app';
 import { ref } from 'vue';
 import { isTauri } from '@/util/app';
-import { v } from '@tauri-apps/api/event-41a9edf5';
 
 const { t } = useI18n()
 useTitle(t('about.name'))
@@ -49,13 +48,11 @@ if (isTauri()) {
   })
 }
 
-
-
 </script>
 
 <template>
   <v-app-bar flat border="b">
-    <v-btn icon="mdi-arrow-left" @click.stop="$router.back" />
+    <v-btn v-if="$router.options.history.state.back" icon="mdi-arrow-left" @click.stop="$router.back" />
     <v-app-bar-title>{{ $t('about.name') }}</v-app-bar-title>
   </v-app-bar>
   <v-navigation-drawer v-if="!mobile" permanent :width="(mdAndUp ? 200 : 156) + 32">
@@ -84,7 +81,7 @@ if (isTauri()) {
         <v-list-subheader>{{ $t('communicate.name') }}</v-list-subheader>
         <!-- QQ 群 -->
         <v-list-item prepend-icon="mdi-account-group-outline" :title="$t('communicate.qqGroup')" subtitle="752399947"
-          href="https://qm.qq.com/q/jWeBdnvPz2" target="_blank" />
+          href="https://qm.qq.com/q/jWeBdnvPz2" target="_blank" append-icon="mdi-open-in-new" />
         <v-divider></v-divider>
         <!-- 相关链接 -->
         <v-list-subheader>{{ $t('link.related') }}</v-list-subheader>

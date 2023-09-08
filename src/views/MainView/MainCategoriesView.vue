@@ -4,6 +4,7 @@ import { onMounted, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import ProjectItem from '@/components/ProjectItem.vue'
 import { useAppsStore } from '@/store/apps'
+import { isTauri } from '../../util/app';
 
 const { t } = useI18n()
 
@@ -23,6 +24,7 @@ const loaded = computed(() => {
 const errMsg = computed(() => {
   return appsStore.errMsg
 })
+
 
 </script>
 

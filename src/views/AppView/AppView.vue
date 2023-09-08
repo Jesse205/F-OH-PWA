@@ -77,7 +77,7 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
 
 <template>
   <v-app-bar flat border="b">
-    <v-btn icon="mdi-arrow-left" @click.stop="$router.back" />
+    <v-btn v-if="$router.options.history.state.back" icon="mdi-arrow-left" @click.stop="$router.back" />
     <v-app-bar-title class="appBarTitle">
       <transition :name="isTitleAppName ? 'scroll-x-reverse-transition' : 'scroll-x-transition'">
         <span class="appBarTitleItem" :key="'app-bar-title-span' + isTitleAppName">{{ isTitleAppName ? appInfo?.name :
@@ -98,7 +98,7 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
           <!-- 版本 -->
           <div class="text-subtitle-1">
             v{{ appInfo ? `${appInfo.version}` : $t('unknown.name') }}</div>
-          <div class="buttonGroup">
+          <div class="buttonGroup" @dragstart.stop>
             <v-btn variant="flat" :disabled="!appDownloadUrl" :href="appDownloadUrl || undefined" target="_blank">{{
               $t('download.name') }}</v-btn>
             <v-btn v-if="appInfo?.openSourceAddress" variant="text" :href="appInfo.openSourceAddress" target="_blank">{{
@@ -119,7 +119,7 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
         </div>
       </div>
       <!-- 开发者信息 -->
-      <div v-show="appInfo?.vender" class="py-2">
+      <div v-show="appInfo?.vender" class="py-2" @dragstart.stop>
         <div class="title">开发者</div>
         <v-list-item rounded="lg" lines="two" :title="appInfo?.vender" link append-icon="mdi-chevron-right"
           :href="`https://cn.bing.com/search?q=${appInfo?.vender}`" target="_blank">

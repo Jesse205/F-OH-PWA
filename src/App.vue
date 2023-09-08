@@ -1,12 +1,14 @@
 <script lang="ts" setup>
-import { usePreferredDark, useTitle } from '@vueuse/core'
+import { Position, usePreferredDark, useTitle } from '@vueuse/core'
 import { useTheme } from 'vuetify'
-import { watch, ref } from 'vue'
+import { watch, ref, onMounted, onBeforeUnmount, computed } from 'vue';
 import { useRoute } from 'vue-router'
 import { usePwa } from '@/events/pwa';
-import { isTauri } from '@/util/app';
+import { isTauri, openNewWindow, copyText } from '@/util/app';
 import { getCurrent } from '@tauri-apps/api/window'
 import { useI18n } from 'vue-i18n';
+import { reactive } from 'vue';
+import { nextTick } from 'vue';
 
 // Theme
 const theme = useTheme()
@@ -30,7 +32,8 @@ watch(route, () => {
 usePwa()
 
 // Tauri
-console.log('isTauri', isTauri())
+const tauriState = isTauri()
+console.log('isTauri', tauriState)
 
 // I18n
 const { t } = useI18n()
@@ -45,10 +48,72 @@ if (isTauri()) {
   }, { immediate: true })
 }
 
+interface ContextMenuConfig {
+  position: Position
+  url: string | null
+  externalUrl: string | null
+  state: boolean
+  time: number
+}
+
+const contextMenuConfig = reactive(<ContextMenuConfig>{
+  position: {
+    x: 0,
+    y: 0
+  },
+  url: null,
+  externalUrl: null,
+  state: false,
+  time: 0
+})
+
+/**
+ * 在 Tauri 中使用自定义右键菜单
+ * @param event
+ */
+function onContextMenu(event: MouseEvent) {
+  if (tauriState) {
+    event.preventDefault()
+    console.log('onContextMenu', `clientX=${event.clientX}, clientY=${event.clientY}`)
+    // 如果上一次没有关闭上下文菜单，就需要关闭一下，方式不会刷新定位
+    contextMenuConfig.state = false
+    nextTick(() => {
+      contextMenuConfig.state = !!(contextMenuConfig.url || contextMenuConfig.externalUrl)
+    })
+    contextMenuConfig.url = null
+    contextMenuConfig.externalUrl = null
+    for (let element: HTMLElement = event.target as HTMLElement; element.parentElement; element = element.parentElement) {
+      if (element instanceof HTMLAnchorElement && !contextMenuConfig.url) {
+        if (!element.target || element.target === '_self') {
+          contextMenuConfig.url = element.href
+        } else if (element.target === '_blank') {
+          contextMenuConfig.externalUrl = element.href
+        }
+      }
+    }
+    contextMenuConfig.position.x = event.clientX
+    contextMenuConfig.position.y = event.clientY
+    contextMenuConfig.time = Date.now()
+  }
+}
+
+onMounted(() => document.body.addEventListener('contextmenu', onContextMenu))
+
+onBeforeUnmount(() => document.body.removeEventListener('contextmenu', onContextMenu))
+
+/**
+ * 在 Tauri 中阻止拖动，如需允许拖动，请在组件上使用 `@dragstart.stop` 属性
+ * @param event
+ */
+function onDragStart(event: DragEvent) {
+  if (tauriState)
+    event.preventDefault()
+}
+
 </script>
 
 <template>
-  <div class="root">
+  <div class="root" @dragstart="onDragStart">
     <transition :name="route.meta.transition">
       <v-app class="layout" :key="routeName">
         <router-view v-slot="{ Component }">
@@ -59,6 +124,20 @@ if (isTauri()) {
       </v-app>
     </transition>
   </div>
+  <!-- Tauri 中上下文菜单 -->
+  <div class="contextMenuActiviter"
+    :style="{ left: contextMenuConfig.position.x + 'px', top: contextMenuConfig.position.y + 'px' }">
+  </div>
+  <v-menu v-model="contextMenuConfig.state" @contextmenu.stop.prevent @selectstart.prevent
+    activator=".contextMenuActiviter" transition="fade-transition" :key="contextMenuConfig.time">
+    <v-list>
+      <v-list-item v-if="contextMenuConfig.url" title="在新窗口中打开链接" @click="openNewWindow(contextMenuConfig.url)" />
+      <v-list-item v-if="contextMenuConfig.externalUrl" title="在浏览器中打开链接" :href="contextMenuConfig.externalUrl"
+        target="_blank" />
+      <v-list-item v-if="contextMenuConfig.externalUrl" title="复制链接"
+        @click="copyText(contextMenuConfig.externalUrl, (state) => { })" />
+    </v-list>
+  </v-menu>
 </template>
 
 <style lang="scss" scoped>
@@ -76,5 +155,11 @@ if (isTauri()) {
   width: 100%;
   overflow: hidden;
   position: absolute;
+}
+
+.contextMenuActiviter {
+  position: absolute;
+  width: 0;
+  height: 0;
 }
 </style>

@@ -10,6 +10,8 @@ declare module 'vue-router' {
     savedPosition: ScrollToOptions
   }
   interface HistoryState {
+    forward: string | null
+    back: string | null
     scroll: ScrollToOptions
     [index: string]: ScrollToOptions;
   }
