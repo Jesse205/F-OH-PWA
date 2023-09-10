@@ -115,13 +115,11 @@ function onDragStart(event: DragEvent) {
 <template>
   <div class="root" @dragstart="onDragStart">
     <transition :name="route.meta.transition">
-      <v-app class="layout" :key="routeName">
-        <router-view v-slot="{ Component }">
-          <keep-alive :max="10">
+        <v-app class="layout" :key="routeName">
+          <router-view v-slot="{ Component }">
             <component :is="Component" />
-          </keep-alive>
-        </router-view>
-      </v-app>
+          </router-view>
+        </v-app>
     </transition>
   </div>
   <!-- Tauri 中上下文菜单 -->
