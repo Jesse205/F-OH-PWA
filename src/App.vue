@@ -128,12 +128,13 @@ function onDragStart(event: DragEvent) {
   <div class="contextMenuActiviter"
     :style="{ left: contextMenuConfig.position.x + 'px', top: contextMenuConfig.position.y + 'px' }">
   </div>
-  <v-menu v-model="contextMenuConfig.state" @contextmenu.stop.prevent @selectstart.prevent
+  <v-menu class="menu" v-model="contextMenuConfig.state" @contextmenu.stop.prevent @selectstart.prevent
     activator=".contextMenuActiviter" transition="fade-transition" :key="contextMenuConfig.time">
     <v-list>
-      <v-list-item v-if="contextMenuConfig.url" :title="$t('openNewWindow.link')" @click="openNewWindow(contextMenuConfig.url)" />
-      <v-list-item v-if="contextMenuConfig.externalUrl" :title="$t('openNewWindow.linkInBrowser')" :href="contextMenuConfig.externalUrl"
-        target="_blank" />
+      <v-list-item v-if="contextMenuConfig.url" :title="$t('openNewWindow.link')"
+        @click="openNewWindow(contextMenuConfig.url)" />
+      <v-list-item v-if="contextMenuConfig.externalUrl" :title="$t('openNewWindow.linkInBrowser')"
+        :href="contextMenuConfig.externalUrl" target="_blank" />
       <v-list-item v-if="contextMenuConfig.externalUrl" :title="$t('copy.link')"
         @click="copyText(contextMenuConfig.externalUrl, (state) => { })" />
     </v-list>
