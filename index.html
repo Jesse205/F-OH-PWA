@@ -29,6 +29,13 @@
       }
     }
   </style>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/f-oh-web/sw.js', { scope: '/f-oh-web/' })
+      })
+    }
+  </script>
 </head>
 
 <body>

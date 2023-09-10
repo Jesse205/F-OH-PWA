@@ -6,8 +6,8 @@ export default <Partial<ManifestOptions>>{
   description: 'F-OH 的第三方 PWA 版本',
   orientation: 'natural',
   prefer_related_applications: true,
-  id:'org.ohosdev.foh.pwa',
-  scope: '/f-oh-web/',
+  id: 'org.ohosdev.foh.pwa',
+  start_url: '/f-oh-web/',
   icons: [
     {
       src: '/icons/android-chrome-192x192.png',
