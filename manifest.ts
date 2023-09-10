@@ -1,5 +1,7 @@
 import { ManifestOptions } from "vite-plugin-pwa";
 
+const base = '/f-oh-web/'
+
 export default <Partial<ManifestOptions>>{
   name: 'F-OH PWA',
   short_name: 'F-OH',
@@ -7,38 +9,38 @@ export default <Partial<ManifestOptions>>{
   orientation: 'natural',
   prefer_related_applications: true,
   id: 'org.ohosdev.foh.pwa',
-  start_url: '/f-oh-web/',
+  start_url: base,
   icons: [
     {
-      src: '/icons/android-chrome-192x192.png',
+      src: `${base}icons/android-chrome-192x192.png`,
       sizes: '192x192',
       type: 'image/png'
     },
     {
-      src: '/icons/android-chrome-512x512.png',
+      src: `${base}icons/android-chrome-512x512.png`,
       sizes: '512x512',
       type: 'image/png'
     },
     {
-      src: '/icons/maskable_icon_x96.png',
+      src: `${base}icons/maskable_icon_x96.png`,
       sizes: '96x96',
       type: 'image/png',
       purpose: 'maskable'
     },
     {
-      src: '/icons/maskable_icon_x192.png',
+      src: `${base}icons/maskable_icon_x192.png`,
       sizes: '192x192',
       type: 'image/png',
       purpose: 'maskable'
     },
     {
-      src: '/icons/maskable_icon_x512.png',
+      src: `${base}icons/maskable_icon_x512.png`,
       sizes: '512x512',
       type: 'image/png',
       purpose: 'maskable'
     },
     {
-      src: '/icons/maskable_icon.png',
+      src: `${base}icons/maskable_icon.png`,
       sizes: '1024x1024',
       type: 'image/png',
       purpose: 'maskable'
@@ -54,32 +56,32 @@ export default <Partial<ManifestOptions>>{
   ],
   screenshots: [
     {
-      src: '/screenshots/Snipaste_2023-09-06_21-32-26.webp',
+      src: `${base}screenshots/Snipaste_2023-09-06_21-32-26.webp`,
       sizes: '502x776',
       type: 'image/webp'
     },
     {
-      src: '/screenshots/Snipaste_2023-09-06_21-32-39.webp',
+      src: `${base}screenshots/Snipaste_2023-09-06_21-32-39.webp`,
       sizes: '502x776',
       type: 'image/webp'
     },
     {
-      src: '/screenshots/Snipaste_2023-09-06_21-32-50.webp',
+      src: `${base}screenshots/Snipaste_2023-09-06_21-32-50.webp`,
       sizes: '502x776',
       type: 'image/webp'
     },
     {
-      src: '/screenshots/Snipaste_2023-09-06_21-33-22.webp',
+      src: `${base}screenshots/Snipaste_2023-09-06_21-33-22.webp`,
       sizes: '986x607',
       type: 'image/webp'
     },
     {
-      src: '/screenshots/Snipaste_2023-09-06_21-33-28.webp',
+      src: `${base}screenshots/Snipaste_2023-09-06_21-33-28.webp`,
       sizes: '986x607',
       type: 'image/webp'
     },
     {
-      src: '/screenshots/Snipaste_2023-09-06_21-33-35.webp',
+      src: `${base}screenshots/Snipaste_2023-09-06_21-33-35.webp`,
       sizes: '986x607',
       type: 'image/webp'
     },
