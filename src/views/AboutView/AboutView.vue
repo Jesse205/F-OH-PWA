@@ -35,7 +35,7 @@ const developers: DeveloperItem[] = [
 
 const { mobile, mdAndUp } = useDisplay()
 
-const URL_SOURCE = 'https://gitee.com/Jesse205/F-OH-PWA'
+const URL_SOURCE = 'https://gitee.com/ohos-dev/F-OH-PWA'
 
 const tauriVersion = ref()
 
