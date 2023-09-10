@@ -2,12 +2,14 @@
 import AppMain from '@/components/AppMain.vue'
 
 import { useTitle } from '@/events/title';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { isTauri } from '../../util/app';
+import { isTauri } from '@/util/app';
 import { getVersion } from '@tauri-apps/api/app';
+import { useLocaleSetting } from '@/events/settings';
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
+
 useTitle(t('settings.name'))
 
 const appVersion = ref(__VERSION__)
@@ -16,6 +18,14 @@ if (isTauri()) {
     appVersion.value = version
   })
 }
+
+const savedLocale = useLocaleSetting()
+const selectedLocales = ref([locale.value])
+watch(selectedLocales, (newLocales) => {
+  locale.value = newLocales[0]
+  savedLocale.value = newLocales[0]
+})
+
 </script>
 
 <template>
@@ -31,6 +41,15 @@ if (isTauri()) {
         <!-- 应用 -->
         <!-- <v-divider></v-divider> -->
         <v-list-subheader>{{ $t('app.name') }}</v-list-subheader>
+        <v-list-item prepend-icon="mdi-tablet-cellphone" class="noActivatedOverlay" :title="$t('locale.language')"
+          :subtitle="$i18n.locale" link>
+          <!-- origin="left" 修复小窗时定位错误 -->
+          <v-menu activator="parent" scrim="rgba(0,0,0,0)" origin="left">
+            <v-list select-strategy="single-leaf" v-model:selected="selectedLocales" mandatory>
+              <v-list-item v-for="item in $i18n.availableLocales" :key="item" :title="item" :value="item" />
+            </v-list>
+          </v-menu>
+        </v-list-item>
         <!-- 关于 -->
         <v-list-item prepend-icon="mdi-information-outline" :title="$t('about.name')" :subtitle="appVersion"
           :to="{ name: 'About' }" append-icon="mdi-chevron-right">

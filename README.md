@@ -10,7 +10,7 @@ F-OH PWA is a browser-based version of F-OH based on the [Sparkling Store Demo](
 
 [![QQ group (开鸿派): 752399947](https://img.shields.io/badge/QQ_group:_开鸿派-752399947-0099FF?logo=tencentqq)](https://qm.qq.com/q/jWeBdnvPz2)
 
-[![Gitee repository](https://img.shields.io/badge/Gitee-repository-C71D23?logo=gitee)](https://gitee.com/Jesse205/F-OH-PWA)
+[![Gitee repository](https://img.shields.io/badge/Gitee-repository-C71D23?logo=gitee)](https://gitee.com/ohos-dev/F-OH-PWA)
 [![Github repository](https://img.shields.io/badge/Github-repository-0969DA?logo=github)](https://github.com/Jesse205/F-OH-PWA)
 
 [中文](./README.zh.md) |
@@ -46,7 +46,7 @@ F-OH PWA is a browser-based version of F-OH based on the [Sparkling Store Demo](
    - Linux: system dependencies, Rust.
 4. Run `yarn install`
 
-> **TIP**\
+> **NOTE**\
 > F-OH PWA is temporarily unavailable because the server does not have SSL and has cross-domain issues, please use F-OH Tauri.
 
 ### Compiling and hotloading for development

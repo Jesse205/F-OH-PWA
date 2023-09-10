@@ -23,19 +23,19 @@ interface DeveloperItem {
 const developers: DeveloperItem[] = [
   {
     qq: 517858177,
-    title: "@westinyang",
-    summary: "F-OH 创始人",
+    title: t('developer.westinyang.name'),
+    summary: t('developer.westinyang.description'),
   },
   {
     qq: 2140125724,
-    title: "@Eddie",
-    summary: "PWA 应用开发者",
+    title: t('developer.eddie.name'),
+    summary: t('developer.eddie.description'),
   }
 ]
 
 const { mobile, mdAndUp } = useDisplay()
 
-const URL_SOURCE = 'https://gitee.com/Jesse205/F-OH-PWA'
+const URL_SOURCE = 'https://gitee.com/ohos-dev/F-OH-PWA'
 
 const tauriVersion = ref()
 
@@ -88,12 +88,12 @@ if (isTauri()) {
         <!-- 源代码 -->
         <v-list-item prepend-icon="mdi-code-tags" :title="$t('source.code')" :subtitle="URL_SOURCE" :href="URL_SOURCE"
           target="_blank" append-icon="mdi-open-in-new" />
-        <v-list-item prepend-icon="mdi-application-outline" title="F-OH"
-          subtitle="F-OH 是一个 OpenHarmony 平台上 FOSS（Free and Open Source Software，自由开源软件）的应用中心，并提供下载安装支持"
-          href="https://gitee.com/ohos-dev/f-oh" target="_blank" append-icon="mdi-open-in-new" />
-        <v-list-item prepend-icon="mdi-account-group-outline" title="OHOS Dev"
-          subtitle="OpenHarmony开发者社区（非官方阵地，为OpenHarmony的未来而创建，Peace & Love）" href="https://gitee.com/ohos-dev"
-          target="_blank" append-icon="mdi-open-in-new" />
+        <v-list-item prepend-icon="mdi-application-outline" :title="$t('link.foh.title')"
+          :subtitle="$t('link.foh.description')" href="https://gitee.com/ohos-dev/f-oh" target="_blank"
+          append-icon="mdi-open-in-new" />
+        <v-list-item prepend-icon="mdi-account-group-outline" :title="$t('link.organization.title')"
+          :subtitle="$t('link.organization.description')" href="https://gitee.com/ohos-dev" target="_blank"
+          append-icon="mdi-open-in-new" />
       </v-list>
     </v-container>
     <!-- </div> -->

@@ -32,7 +32,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "io.gitee.jesse205.foh.tauri",
+      "identifier": "org.ohosdev.foh.tauri",
       "longDescription": "F-OH PWA version packaged with Tarui",
       "macOS": {
         "entitlements": null,

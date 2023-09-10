@@ -5,7 +5,7 @@ import { watch, ref, onMounted, onBeforeUnmount, computed } from 'vue';
 import { useRoute } from 'vue-router'
 import { usePwa } from '@/events/pwa';
 import { isTauri, openNewWindow, copyText } from '@/util/app';
-import { getCurrent } from '@tauri-apps/api/window'
+import { appWindow, getCurrent } from '@tauri-apps/api/window'
 import { useI18n } from 'vue-i18n';
 import { reactive } from 'vue';
 import { nextTick } from 'vue';
@@ -117,9 +117,7 @@ function onDragStart(event: DragEvent) {
     <transition :name="route.meta.transition">
       <v-app class="layout" :key="routeName">
         <router-view v-slot="{ Component }">
-          <keep-alive :max="10">
-            <component :is="Component" />
-          </keep-alive>
+          <component :is="Component" />
         </router-view>
       </v-app>
     </transition>
@@ -128,13 +126,14 @@ function onDragStart(event: DragEvent) {
   <div class="contextMenuActiviter"
     :style="{ left: contextMenuConfig.position.x + 'px', top: contextMenuConfig.position.y + 'px' }">
   </div>
-  <v-menu v-model="contextMenuConfig.state" @contextmenu.stop.prevent @selectstart.prevent
+  <v-menu class="menu" v-model="contextMenuConfig.state" @contextmenu.stop.prevent @selectstart.prevent
     activator=".contextMenuActiviter" transition="fade-transition" :key="contextMenuConfig.time">
     <v-list>
-      <v-list-item v-if="contextMenuConfig.url" title="在新窗口中打开链接" @click="openNewWindow(contextMenuConfig.url)" />
-      <v-list-item v-if="contextMenuConfig.externalUrl" title="在浏览器中打开链接" :href="contextMenuConfig.externalUrl"
-        target="_blank" />
-      <v-list-item v-if="contextMenuConfig.externalUrl" title="复制链接"
+      <v-list-item v-if="contextMenuConfig.url" :title="$t('openNewWindow.link')"
+        @click="openNewWindow(contextMenuConfig.url)" />
+      <v-list-item v-if="contextMenuConfig.externalUrl" :title="$t('openNewWindow.linkInBrowser')"
+        :href="contextMenuConfig.externalUrl" target="_blank" />
+      <v-list-item v-if="contextMenuConfig.externalUrl" :title="$t('copy.link')"
         @click="copyText(contextMenuConfig.externalUrl, (state) => { })" />
     </v-list>
   </v-menu>

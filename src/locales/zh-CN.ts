@@ -5,7 +5,6 @@ export default {
   },
   about: {
     name: '关于',
-
   },
   home: {
     name: '首页'
@@ -60,7 +59,15 @@ export default {
     name: '包名'
   },
   developer: {
-    name: '开发者'
+    name: '开发者',
+    eddie: {
+      name: '{\'@\'}Eddie',
+      description: 'PWA 应用开发者'
+    },
+    westinyang: {
+      name: '{\'@\'}westinyang',
+      description: 'F-OH 创始人'
+    }
   },
   release: {
     name: '发行'
@@ -69,7 +76,15 @@ export default {
     name: '编号'
   },
   link: {
-    related: '相关链接'
+    related: '相关链接',
+    foh: {
+      title: 'F-OH',
+      description: 'F-OH 是一个 OpenHarmony 平台上 FOSS（Free and Open Source Software，自由开源软件）的应用中心，并提供下载安装支持'
+    },
+    organization: {
+      title: 'OHOS Dev',
+      description: 'OpenHarmony开发者社区（非官方阵地，为OpenHarmony的未来而创建，Peace & Love）'
+    }
   },
   details: {
     name: '详情信息'
@@ -79,5 +94,15 @@ export default {
   },
   unknown: {
     name: '未知'
+  },
+  openNewWindow: {
+    link: '在新窗口中打开链接',
+    linkInBrowser: '在浏览器中打开链接'
+  },
+  copy: {
+    link: '复制链接'
+  },
+  locale: {
+    language: '语言'
   }
 }

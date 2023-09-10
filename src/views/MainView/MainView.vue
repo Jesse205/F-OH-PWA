@@ -77,7 +77,7 @@ const onInstallBtnClick = inject('onInstallBtnClick') as () => void
       </template>
       <span>搜索应用</span>
     </v-tooltip>
-    <v-menu origin="overlap" width="192" location="bottom" scrim="rgba(0,0,0,0)">
+    <v-menu origin="top" width="192" location="top" scrim="transparent">
       <template v-slot:activator="{ props: menu }">
         <v-btn icon="mdi-dots-vertical" v-bind="menu" />
       </template>

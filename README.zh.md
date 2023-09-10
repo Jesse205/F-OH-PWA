@@ -10,7 +10,7 @@ F-OH PWA 是基于[粼光商店 Demo](https://gitee.com/sparkling-store/webv3dem
 
 [![QQ 群（开鸿派）: 752399947](https://img.shields.io/badge/QQ_群:_开鸿派-752399947-0099FF?logo=tencentqq)](https://qm.qq.com/q/jWeBdnvPz2)
 
-[![Gitee 仓库](https://img.shields.io/badge/Gitee-仓库-C71D23?logo=gitee)](https://gitee.com/Jesse205/F-OH-PWA)
+[![Gitee 仓库](https://img.shields.io/badge/Gitee-仓库-C71D23?logo=gitee)](https://gitee.com/ohos-dev/F-OH-PWA)
 [![Github 仓库](https://img.shields.io/badge/Github-仓库-0969DA?logo=github)](https://github.com/Jesse205/F-OH-PWA)
 
 **中文** |
@@ -46,7 +46,7 @@ F-OH PWA 是基于[粼光商店 Demo](https://gitee.com/sparkling-store/webv3dem
    - Linux: 系统依赖、Rust。
 4. 运行 `yarn install`
 
-> **TIP**\
+> **NOTE**\
 > 因服务器没有 SSL 并且有跨域问题， F-OH PWA 暂时无法使用，请使用 F-OH Tauri。
 
 ### 为开发编译和热加载

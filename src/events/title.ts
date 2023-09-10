@@ -4,9 +4,10 @@ import { useI18n } from 'vue-i18n'
 
 export function useTitle(title: string | Ref) {
   const { t } = useI18n()
-  const unwrappedTitle = toRef(title)
+  const wrappedTitle = toRef(title)
+  document.title = `${wrappedTitle.value} - ${t('appName')}`
   onActivated(() => {
-    document.title = `${unwrappedTitle.value} - ${t('appName')}`
+    document.title = `${wrappedTitle.value} - ${t('appName')}`
   })
 }
 

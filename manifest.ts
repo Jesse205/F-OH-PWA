@@ -5,6 +5,8 @@ export default <Partial<ManifestOptions>>{
   short_name: 'F-OH',
   description: 'F-OH 的第三方 PWA 版本',
   orientation: 'natural',
+  prefer_related_applications: true,
+  id:'org.ohosdev.foh.pwa',
   icons: [
     {
       src: '/icons/android-chrome-192x192.png',
@@ -80,5 +82,12 @@ export default <Partial<ManifestOptions>>{
       sizes: '986x607',
       type: 'image/webp'
     },
+  ],
+  related_applications: [
+    {
+      platform: 'f-oh',
+      url: 'https://gitee.com/ohos-dev/f-oh',
+      id: 'org.ohosdev.foh'
+    }
   ]
 }
