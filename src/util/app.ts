@@ -1,5 +1,6 @@
 import { WebviewWindow, WindowOptions } from "@tauri-apps/api/window"
 import { writeText } from '@tauri-apps/api/clipboard'
+import { useI18n } from 'vue-i18n';
 
 const WEBVIEW_OPTIONS_DEFAULT: WindowOptions = {
   center: true,

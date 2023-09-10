@@ -5,7 +5,7 @@ import { watch, ref, onMounted, onBeforeUnmount, computed } from 'vue';
 import { useRoute } from 'vue-router'
 import { usePwa } from '@/events/pwa';
 import { isTauri, openNewWindow, copyText } from '@/util/app';
-import { getCurrent } from '@tauri-apps/api/window'
+import { appWindow, getCurrent } from '@tauri-apps/api/window'
 import { useI18n } from 'vue-i18n';
 import { reactive } from 'vue';
 import { nextTick } from 'vue';
@@ -115,11 +115,11 @@ function onDragStart(event: DragEvent) {
 <template>
   <div class="root" @dragstart="onDragStart">
     <transition :name="route.meta.transition">
-        <v-app class="layout" :key="routeName">
-          <router-view v-slot="{ Component }">
-            <component :is="Component" />
-          </router-view>
-        </v-app>
+      <v-app class="layout" :key="routeName">
+        <router-view v-slot="{ Component }">
+          <component :is="Component" />
+        </router-view>
+      </v-app>
     </transition>
   </div>
   <!-- Tauri 中上下文菜单 -->
