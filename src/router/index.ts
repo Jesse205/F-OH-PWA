@@ -105,7 +105,6 @@ const router = createRouter({
 }) */
 
 router.afterEach((to, from) => {
-  console.log(to, from);
   if (from.path !== '/') {
     const name = history.state.forward ? 'scroll-x-transition' : 'scroll-x-reverse-transition'
     to.meta.transition = name
