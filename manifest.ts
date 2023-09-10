@@ -7,6 +7,7 @@ export default <Partial<ManifestOptions>>{
   orientation: 'natural',
   prefer_related_applications: true,
   id:'org.ohosdev.foh.pwa',
+  scope: '/f-oh-web/',
   icons: [
     {
       src: '/icons/android-chrome-192x192.png',
