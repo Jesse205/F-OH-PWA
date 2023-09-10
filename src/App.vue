@@ -131,10 +131,10 @@ function onDragStart(event: DragEvent) {
   <v-menu v-model="contextMenuConfig.state" @contextmenu.stop.prevent @selectstart.prevent
     activator=".contextMenuActiviter" transition="fade-transition" :key="contextMenuConfig.time">
     <v-list>
-      <v-list-item v-if="contextMenuConfig.url" title="在新窗口中打开链接" @click="openNewWindow(contextMenuConfig.url)" />
-      <v-list-item v-if="contextMenuConfig.externalUrl" title="在浏览器中打开链接" :href="contextMenuConfig.externalUrl"
+      <v-list-item v-if="contextMenuConfig.url" :title="$t('openNewWindow.link')" @click="openNewWindow(contextMenuConfig.url)" />
+      <v-list-item v-if="contextMenuConfig.externalUrl" :title="$t('openNewWindow.linkInBrowser')" :href="contextMenuConfig.externalUrl"
         target="_blank" />
-      <v-list-item v-if="contextMenuConfig.externalUrl" title="复制链接"
+      <v-list-item v-if="contextMenuConfig.externalUrl" :title="$t('copy.link')"
         @click="copyText(contextMenuConfig.externalUrl, (state) => { })" />
     </v-list>
   </v-menu>

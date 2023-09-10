@@ -78,5 +78,12 @@ export default {
   },
   unknown: {
     name: 'Unknown'
+  },
+  openNewWindow: {
+    link: 'Open link in new window',
+    linkInBrowser: 'Open link in browser'
+  },
+  copy: {
+    link: 'Copy link'
   }
 }

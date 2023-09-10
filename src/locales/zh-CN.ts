@@ -5,7 +5,6 @@ export default {
   },
   about: {
     name: '关于',
-
   },
   home: {
     name: '首页'
@@ -79,5 +78,12 @@ export default {
   },
   unknown: {
     name: '未知'
+  },
+  openNewWindow: {
+    link: '在新窗口中打开链接',
+    linkInBrowser: '在浏览器中打开链接'
+  },
+  copy: {
+    link: '复制链接'
   }
 }
