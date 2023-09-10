@@ -46,7 +46,7 @@ F-OH PWA 是基于[粼光商店 Demo](https://gitee.com/sparkling-store/webv3dem
    - Linux: 系统依赖、Rust。
 4. 运行 `yarn install`
 
-> **TIP**\
+> **NOTE**\
 > 因服务器没有 SSL 并且有跨域问题， F-OH PWA 暂时无法使用，请使用 F-OH Tauri。
 
 ### 为开发编译和热加载

@@ -46,7 +46,7 @@ F-OH PWA is a browser-based version of F-OH based on the [Sparkling Store Demo](
    - Linux: system dependencies, Rust.
 4. Run `yarn install`
 
-> **TIP**\
+> **NOTE**\
 > F-OH PWA is temporarily unavailable because the server does not have SSL and has cross-domain issues, please use F-OH Tauri.
 
 ### Compiling and hotloading for development
