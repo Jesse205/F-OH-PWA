@@ -9,6 +9,8 @@ import { getName } from '@tauri-apps/api/app'
 import EN from '@/locales/en'
 import ZH_CN from '@/locales/zh-CN'
 import { isPwa, isTauri } from '@/util/app'
+import { useLocalStorage } from '@vueuse/core'
+import { useLocaleSetting } from '@/events/settings'
 
 const SUPPORT_LOCALES = ['en', 'zh-CN']
 
@@ -19,12 +21,13 @@ const APP_NAME_TAURI = 'F-OH Tauri'
 const i18n = createI18n({
   legacy: false,
   globalInjection: true,
-  locale: navigator.language,
+  locale: useLocaleSetting().value,
   fallbackLocale: 'en',
   messages: {
     en: EN,
     'zh-CN': ZH_CN
-  }
+  },
+
 })
 
 // 设置应用名

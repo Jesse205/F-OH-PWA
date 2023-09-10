@@ -59,7 +59,15 @@ export default {
     name: 'Package name'
   },
   developer: {
-    name: 'Developer'
+    name: 'Developer',
+    eddie: {
+      name: '{\'@\'}Eddie',
+      description: 'PWA Application Developer'
+    },
+    westinyang: {
+      name: '{\'@\'}westinyang',
+      description: 'F-OH Founder'
+    }
   },
   release: {
     name: 'Release'
@@ -68,7 +76,15 @@ export default {
     name: 'ID'
   },
   link: {
-    related: 'Related links'
+    related: 'Related links',
+    foh: {
+      title: 'F-OH',
+      description: 'F-OH is an application center for FOSS (Free and Open Source Software) on the OpenHarmony platform, with support for download and installation.'
+    },
+    organization: {
+      title: 'OHOS Dev',
+      description: 'OpenHarmony Developer Community (unofficial position created for the future of OpenHarmony, Peace & Love)'
+    }
   },
   details: {
     name: 'Details'
@@ -85,5 +101,8 @@ export default {
   },
   copy: {
     link: 'Copy link'
+  },
+  locale: {
+    language: 'Language'
   }
 }
