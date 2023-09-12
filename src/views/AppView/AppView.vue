@@ -16,11 +16,8 @@ const route = useRoute()
 
 const appsStore = useAppsStore()
 
-const appInfo = computed(() => {
-  return appsStore.data?.find((item) => {
-    return item.id === +route.params.id
-  })
-})
+// 查找当前应用信息
+const appInfo = computed(() => appsStore.data?.find((item) => item.id === +route.params.id))
 
 const appIconUrl = computed(() => {
   if (appInfo.value)
@@ -35,11 +32,7 @@ const appDownloadUrl = computed(() => {
 })
 
 //分割标签
-const appTags = computed(() => {
-  if (appInfo.value)
-    return appInfo.value.tags.split(/[, ，]+/)
-  return null
-})
+const appTags = computed(() => appInfo.value?.tags.split(/[, ，]+/))
 
 //确保数据已经获取到或者正在获取中
 onMounted(() => {
@@ -47,9 +40,7 @@ onMounted(() => {
 })
 
 const mainElement = ref()
-const mainScrollElement = computed(() => {
-  return mainElement.value?.mainScroll
-})
+const mainScrollElement = computed(() => mainElement.value?.mainScroll)
 const appNameElement = ref<HTMLElement>()
 const appNamePositionYBottom = computed(() => {
   if (appNameElement.value) {

@@ -20,20 +20,18 @@ interface DeveloperItem {
   qq?: number
 }
 
-const developers = computed<DeveloperItem[]>(() =>
-  <DeveloperItem[]>[
-    {
-      qq: 517858177,
-      title: t('developer.westinyang.name'),
-      summary: t('developer.westinyang.description'),
-    },
-    {
-      qq: 2140125724,
-      title: t('developer.eddie.name'),
-      summary: t('developer.eddie.description'),
-    }
-  ]
-)
+const developers = computed<DeveloperItem[]>(() => [
+  {
+    qq: 517858177,
+    title: t('developer.westinyang.name'),
+    summary: t('developer.westinyang.description'),
+  },
+  {
+    qq: 2140125724,
+    title: t('developer.eddie.name'),
+    summary: t('developer.eddie.description'),
+  }
+])
 
 const { mobile, mdAndUp } = useDisplay()
 

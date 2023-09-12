@@ -14,41 +14,34 @@ onMounted(() => {
   appsStore.ensureData()
 })
 
-const loaded = computed(() => {
-  return !appsStore.loading && appsStore.data
-})
+const loaded = computed(() => !appsStore.loading && appsStore.data)
 
-const errMsg = computed(() => {
-  return appsStore.errMsg
-})
+const errMsg = computed(() => appsStore.errMsg)
 
 interface AppTypes {
   title: MaybeRef<string>
   apps: AppInfo[]
 }
 
-
 const apps = reactive<AppInfo[]>([])
 const gameApps = reactive<AppInfo[]>([])
 // 未知的应用类型
 const otherApps = reactive<AppInfo[]>([])
 
-const appTypes = computed<AppTypes[]>(() => {
-  return <AppTypes[]>[
-    {
-      title: t('app.name'),
-      apps: apps
-    },
-    {
-      title: t('game.name'),
-      apps: gameApps
-    },
-    {
-      title: t('other.name'),
-      apps: otherApps
-    }
-  ]
-})
+const appTypes = computed<AppTypes[]>(() => [
+  {
+    title: t('app.name'),
+    apps: apps
+  },
+  {
+    title: t('game.name'),
+    apps: gameApps
+  },
+  {
+    title: t('other.name'),
+    apps: otherApps
+  }
+])
 
 // 将数据插入不同的分类列表中
 watch(computed(() => appsStore.data), (newData) => {
