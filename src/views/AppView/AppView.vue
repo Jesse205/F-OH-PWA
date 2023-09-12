@@ -133,12 +133,12 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
       <!-- 详情信息 -->
       <div class="py-2">
         <div class="title">{{ $t('details.name') }}</div>
-        {{ $t('version.name') }}: {{ appInfo?.version || $t('unknown.name') }}<br />
-        {{ $t('packageName.name') }}: {{ appInfo?.packageName || $t('unknown.name') }}<br />
-        {{ $t('developer.name') }}: {{ appInfo?.vender || $t('unknown.name') }}<br />
-        {{ $t('release.name') }}: {{ appInfo?.releaseTime || $t('unknown.name') }}<br />
+        {{ $t('version.name') }}: {{ appInfo?.version ?? $t('unknown.name') }}<br />
+        {{ $t('packageName.name') }}: {{ appInfo?.packageName ?? $t('unknown.name') }}<br />
+        {{ $t('developer.name') }}: {{ appInfo?.vender ?? $t('unknown.name') }}<br />
+        {{ $t('release.name') }}: {{ appInfo?.releaseTime ?? $t('unknown.name') }}<br />
         <!-- 存在ID为0的情况，因此不能通过 || 直接判断是否获取到ID -->
-        {{ $t('id.name') }}: {{ appInfo ? appInfo.id : $t('unknown.name') }}<br />
+        {{ $t('id.name') }}: {{ appInfo?.id ?? $t('unknown.name') }}<br />
       </div>
     </v-container>
   </app-main>
