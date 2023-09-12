@@ -136,7 +136,7 @@ watch(savedLocale, (newLocale) => {
   <v-menu class="menu" v-model="contextMenuConfig.state" @contextmenu.stop.prevent @selectstart.prevent
     activator=".contextMenuActiviter" transition="fade-transition" :key="contextMenuConfig.time">
     <v-list>
-      <v-list-item v-if="contextMenuConfig.url" :title="$t('openNewWindow.link')"
+      <v-list-item v-if="contextMenuConfig.url" :title="$t('openNewWindow.name')"
         @click="openNewWindow(contextMenuConfig.url)" />
       <v-list-item v-if="contextMenuConfig.externalUrl" :title="$t('openNewWindow.linkInBrowser')"
         :href="contextMenuConfig.externalUrl" target="_blank" />

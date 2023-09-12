@@ -96,7 +96,7 @@ export default {
     name: '未知'
   },
   openNewWindow: {
-    link: '在新窗口中打开链接',
+    name: '在新窗口中打开',
     linkInBrowser: '在浏览器中打开链接'
   },
   copy: {
