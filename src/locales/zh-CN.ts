@@ -104,5 +104,11 @@ export default {
   },
   locale: {
     language: '语言'
+  },
+  other: {
+    name: '其他'
+  },
+  game: {
+    name: '游戏'
   }
 }

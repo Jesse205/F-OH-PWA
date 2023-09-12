@@ -104,5 +104,11 @@ export default {
   },
   locale: {
     language: 'Language'
+  },
+  other: {
+    name: 'Other'
+  },
+  game: {
+    name: 'Game'
   }
 }
