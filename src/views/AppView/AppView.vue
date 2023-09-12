@@ -173,9 +173,12 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
     width: 100%;
     flex-wrap: nowrap;
 
+    .text-subtitle-2 {
+      opacity: var(--v-medium-emphasis-opacity)
+    }
+
     >.text-subtitle-2 {
       height: 1.75rem;
-      opacity: 0.87;
     }
 
     .buttonGroup {

@@ -21,8 +21,18 @@ const iconCompletePath = computed(() => {
         <v-img :src="iconCompletePath" />
       </v-avatar>
     </template>
-    <v-list-item-title>{{ item.name }} <span class="text-caption">v{{ item.version }}</span></v-list-item-title>
+    <v-list-item-title class="title">
+      {{ item.name }} <span class="text-caption">v{{ item.version }}</span>
+    </v-list-item-title>
     <v-list-item-subtitle>{{ item.desc }}</v-list-item-subtitle>
     <slot />
   </v-list-item>
 </template>
+
+<style lang="scss">
+.title {
+  .text-caption {
+    opacity: var(--v-high-emphasis-opacity)
+  }
+}
+</style>
