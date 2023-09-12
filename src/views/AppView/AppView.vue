@@ -116,24 +116,28 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
       <!-- 开发者信息 -->
       <div v-show="appInfo?.vender" class="py-2" @dragstart.stop>
         <div class="title">{{ $t('developer.name') }}</div>
-        <v-list-item rounded="lg" lines="two" :title="appInfo?.vender" link append-icon="mdi-chevron-right"
-          :href="`https://cn.bing.com/search?q=${appInfo?.vender}`" target="_blank">
-          <template v-slot:prepend>
-            <v-avatar class="border" size="40">
-              <v-img src="@/assets/images/icon.svg" />
-            </v-avatar>
-          </template>
-        </v-list-item>
+        <v-skeleton-loader type="list-item-avatar" color="transparent" boilerplate :loading="appsStore.loading">
+          <v-list-item rounded="lg" lines="two" :title="appInfo?.vender" link append-icon="mdi-chevron-right"
+            :href="`https://cn.bing.com/search?q=${appInfo?.vender}`" target="_blank" width="100%">
+            <template v-slot:prepend>
+              <v-avatar class="border" size="40">
+                <v-img src="@/assets/images/icon.svg" />
+              </v-avatar>
+            </template>
+          </v-list-item>
+        </v-skeleton-loader>
       </div>
       <!-- 详情信息 -->
       <div class="py-2">
         <div class="title">{{ $t('details.name') }}</div>
-        {{ $t('version.name') }}: {{ appInfo?.version ?? $t('unknown.name') }}<br />
-        {{ $t('packageName.name') }}: {{ appInfo?.packageName ?? $t('unknown.name') }}<br />
-        {{ $t('developer.name') }}: {{ appInfo?.vender ?? $t('unknown.name') }}<br />
-        {{ $t('release.name') }}: {{ appInfo?.releaseTime ?? $t('unknown.name') }}<br />
-        <!-- 存在ID为0的情况，因此不能通过 || 直接判断是否获取到ID -->
-        {{ $t('id.name') }}: {{ appInfo?.id ?? $t('unknown.name') }}<br />
+        <v-skeleton-loader type="text@4" color="transparent" boilerplate :loading="appsStore.loading">
+          {{ $t('version.name') }}: {{ appInfo?.version ?? $t('unknown.name') }}<br />
+          {{ $t('packageName.name') }}: {{ appInfo?.packageName ?? $t('unknown.name') }}<br />
+          {{ $t('developer.name') }}: {{ appInfo?.vender ?? $t('unknown.name') }}<br />
+          {{ $t('release.name') }}: {{ appInfo?.releaseTime ?? $t('unknown.name') }}<br />
+          <!-- 存在ID为0的情况，因此不能通过 || 直接判断是否获取到ID -->
+          {{ $t('id.name') }}: {{ appInfo?.id ?? $t('unknown.name') }}<br />
+        </v-skeleton-loader>
       </div>
     </v-container>
   </app-main>
