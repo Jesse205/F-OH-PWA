@@ -37,7 +37,7 @@ export default {
     }
   },
   develop: {
-    message: '开发信息'
+    messages: '开发信息'
   },
   install: {
     app: '安装应用'

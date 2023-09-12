@@ -71,7 +71,7 @@ if (isTauri()) {
           :subtitle="tauriVersion" />
         <v-divider></v-divider>
         <!-- 开发者信息 -->
-        <v-list-subheader>{{ $t('develop.message') }}</v-list-subheader>
+        <v-list-subheader>{{ $t('develop.messages') }}</v-list-subheader>
         <v-list-item v-for="item in developers" :key="item.title"
           :prepend-avatar="item.avatar || `https://q1.qlogo.cn/g?b=qq&nk=${item.qq}&s=100`" :title="item.title"
           :subtitle="item.summary">

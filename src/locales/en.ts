@@ -37,7 +37,7 @@ export default {
     }
   },
   develop: {
-    message: 'Develop message'
+    messages: 'Develop messages'
   },
   install: {
     app: 'Install app'
