@@ -40,7 +40,7 @@ watch(selectedLocales, (newLocales) => {
         <!-- 应用 -->
         <!-- <v-divider></v-divider> -->
         <v-list-subheader>{{ $t('app.name') }}</v-list-subheader>
-        <v-list-item prepend-icon="mdi-tablet-cellphone" class="noActivatedOverlay" :title="$t('locale.language')"
+        <v-list-item prepend-icon="mdi-translate" class="noActivatedOverlay" :title="$t('locale.language')"
           :subtitle="$i18n.locale" link>
           <!-- origin="left" 修复小窗时定位错误 -->
           <v-menu activator="parent" scrim="rgba(0,0,0,0)" origin="left">
