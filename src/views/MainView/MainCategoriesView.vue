@@ -8,9 +8,6 @@ import { isTauri } from '../../util/app';
 
 const { t } = useI18n()
 
-//Title
-useHomeTitle(t('category.name', 2))
-
 //Apps
 const appsStore = useAppsStore()
 onMounted(() => {

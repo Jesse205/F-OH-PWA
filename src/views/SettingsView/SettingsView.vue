@@ -2,7 +2,7 @@
 import AppMain from '@/components/AppMain.vue'
 
 import { useTitle } from '@/events/title';
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { isTauri } from '@/util/app';
 import { getVersion } from '@tauri-apps/api/app';
@@ -10,7 +10,7 @@ import { useLocaleSetting } from '@/events/settings';
 
 const { t, locale } = useI18n()
 
-useTitle(t('settings.name'))
+useTitle(computed(() => t('settings.name')))
 
 const appVersion = ref(__VERSION__)
 if (isTauri()) {
@@ -22,7 +22,6 @@ if (isTauri()) {
 const savedLocale = useLocaleSetting()
 const selectedLocales = ref([locale.value])
 watch(selectedLocales, (newLocales) => {
-  locale.value = newLocales[0]
   savedLocale.value = newLocales[0]
 })
 

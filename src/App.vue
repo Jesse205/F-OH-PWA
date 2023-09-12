@@ -9,6 +9,7 @@ import { appWindow, getCurrent } from '@tauri-apps/api/window'
 import { useI18n } from 'vue-i18n';
 import { reactive } from 'vue';
 import { nextTick } from 'vue';
+import { useLocaleSetting } from './events/settings';
 
 // Theme
 const theme = useTheme()
@@ -36,7 +37,7 @@ const tauriState = isTauri()
 console.log('isTauri', tauriState)
 
 // I18n
-const { t } = useI18n()
+const { t, locale } = useI18n()
 
 // 标题
 const title = useTitle(t('appName'), { observe: true })
@@ -109,6 +110,12 @@ function onDragStart(event: DragEvent) {
   if (tauriState)
     event.preventDefault()
 }
+
+// 语言切换
+const savedLocale = useLocaleSetting()
+watch(savedLocale, (newLocale) => {
+  locale.value = newLocale
+})
 
 </script>
 

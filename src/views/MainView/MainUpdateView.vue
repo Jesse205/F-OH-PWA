@@ -3,7 +3,7 @@ import { useHomeTitle } from '@/events/title'
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n()
-useHomeTitle(t('update.name'))
+
 </script>
 
 <template>

@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import AppMain from '@/components/AppMain.vue'
 import { useTitle } from '@/events/title';
+import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n()
-useTitle(t('upload.app'))
+useTitle(computed(() => t('upload.app')))
 
 </script>
 

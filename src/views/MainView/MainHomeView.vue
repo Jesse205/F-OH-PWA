@@ -14,9 +14,6 @@ import { http } from '@tauri-apps/api';
 
 const { t } = useI18n()
 
-//Title
-useHomeTitle(t('home.name'))
-
 const loaded = ref(false)
 const errMsg: Ref<string | null> = ref(null)
 const banners: Banners = {

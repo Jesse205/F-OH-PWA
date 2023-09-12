@@ -1,48 +1,67 @@
 <script setup lang="ts">
-import { inject, ref, watch } from 'vue';
+import { inject, ref, watch, MaybeRef, computed, watchEffect } from 'vue';
 import { useDisplay } from 'vuetify'
 import { useHomeStore } from '@/store/home'
 import { useI18n } from 'vue-i18n';
 import AppMain from '@/components/AppMain.vue'
+import { useRouter, useRoute } from 'vue-router';
+import { useHomeTitle } from '../../events/title';
 
 const { t } = useI18n()
 const homeStore = useHomeStore()
 
 interface Page {
-  title: string
+  title: MaybeRef
   icon: string
   activeIcon: string
   name: string
   disabled?: boolean
 }
 
-const pages: Page[] = [
-  {
-    title: t('home.name'),
-    icon: 'mdi-home-variant-outline',
-    activeIcon: 'mdi-home-variant',
-    name: 'Home',
-  },
-  {
-    title: t('category.name', 2),
-    icon: 'mdi-apps',
-    activeIcon: 'mdi-apps',
-    name: 'Categories',
-  },
-  {
-    title: t('update.name'),
-    icon: 'mdi-update',
-    activeIcon: 'mdi-update',
-    name: 'Update',
-    disabled: true,
-  },
-  {
-    title: t('me.name'),
-    icon: 'mdi-account-outline',
-    activeIcon: 'mdi-account',
-    name: 'Me',
-  },
-]
+const pages = computed(() => {
+  return [
+    {
+      title: t('home.name'),
+      icon: 'mdi-home-variant-outline',
+      activeIcon: 'mdi-home-variant',
+      name: 'Home',
+    },
+    {
+      title: t('category.name', 2),
+      icon: 'mdi-apps',
+      activeIcon: 'mdi-apps',
+      name: 'Categories',
+    },
+    {
+      title: t('update.name'),
+      icon: 'mdi-update',
+      activeIcon: 'mdi-update',
+      name: 'Update',
+      disabled: true,
+    },
+    {
+      title: t('me.name'),
+      icon: 'mdi-account-outline',
+      activeIcon: 'mdi-account',
+      name: 'Me',
+    },
+  ]
+})
+
+const route = useRoute()
+const homeTitle = ref('')
+useHomeTitle(homeTitle)
+
+watchEffect(() => {
+  for (const item of pages.value) {
+    if (item.name === route.name) {
+      homeTitle.value = item.title
+      break
+    }
+  }
+
+})
+
 
 const { xs, smAndDown } = useDisplay()
 
