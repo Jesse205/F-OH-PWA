@@ -15,12 +15,14 @@ const iconCompletePath = computed(() => {
 </script>
 
 <template>
-  <v-list-item lines="two" :title="item.name" :subtitle="item.desc" :to="`/app/${item.id}`">
+  <v-list-item lines="two" :to="`/app/${item.id}`">
     <template v-slot:prepend>
       <v-avatar class="elevation-1" rounded="lg" size="48">
         <v-img :src="iconCompletePath" />
       </v-avatar>
     </template>
+    <v-list-item-title>{{ item.name }} <span class="text-caption">v{{ item.version }}</span></v-list-item-title>
+    <v-list-item-subtitle>{{ item.desc }}</v-list-item-subtitle>
     <slot />
   </v-list-item>
 </template>

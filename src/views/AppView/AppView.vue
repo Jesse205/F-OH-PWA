@@ -91,13 +91,17 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
       <!-- 顶部介绍 -->
       <div class="header py-2">
         <!-- 图标 -->
-        <v-img class="elevation-1 rounded-lg" :src="appIconUrl || ''" width="96" height="96" />
+        <v-img class="elevation-1 rounded-lg" :src="appIconUrl || ''" width="96" height="96" @dragstart.stop />
         <div class="header-right ml-4">
-          <!-- 应用名 -->
-          <div class="text-h6" ref="appNameElement">{{ appInfo?.name }}</div>
-          <!-- 版本 -->
-          <div class="text-subtitle-1">
-            v{{ appInfo ? `${appInfo.version}` : $t('unknown.name') }}</div>
+          <!-- 应用名和版本 -->
+          <div class="appTitle">
+            <!-- 应用名 -->
+            <span class="text-h6" ref="appNameElement" :title="$t('app.name')">{{ appInfo?.name }}</span>
+            <span class="text-subtitle-2" :title="$t('version.name')">
+              v{{ appInfo ? `${appInfo.version}` : $t('unknown.name') }}</span>
+          </div>
+          <div class="text-subtitle-2" :title="$t('packageName.name')">
+            {{ appInfo?.packageName ?? $t('unknown.name') }}</div>
           <div class="buttonGroup" @dragstart.stop>
             <v-btn variant="flat" :disabled="!appDownloadUrl" :href="appDownloadUrl || undefined" target="_blank">{{
               $t('download.name') }}</v-btn>
@@ -120,7 +124,7 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
       </div>
       <!-- 开发者信息 -->
       <div v-show="appInfo?.vender" class="py-2" @dragstart.stop>
-        <div class="title">开发者</div>
+        <div class="title">{{ $t('developer.name') }}</div>
         <v-list-item rounded="lg" lines="two" :title="appInfo?.vender" link append-icon="mdi-chevron-right"
           :href="`https://cn.bing.com/search?q=${appInfo?.vender}`" target="_blank">
           <template v-slot:prepend>
@@ -170,27 +174,28 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
 .header {
   display: flex;
   width: 100%;
-  align-items: center;
-}
+  align-items: flex-start;
 
-.header-right {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
+  .header-right {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-wrap: nowrap;
 
-.header-right>.text-h6 {
-  height: 2rem
-}
+    >.text-subtitle-2 {
+      height: 1.75rem;
+      opacity: 0.87;
+    }
 
-.header-right>.text-subtitle-1 {
-  height: 1.75rem;
-  opacity: 0.62;
-}
+    .buttonGroup {
+      flex-wrap: wrap;
+      margin: -4px;
+      display: flex;
 
-.buttonGroup {
-  :deep(.v-btn):not(:last-child) {
-    margin-right: 8px;
+      >* {
+        margin: 4px;
+      }
+    }
   }
 }
 
