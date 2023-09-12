@@ -21,3 +21,7 @@ html .v-card--flat {
   background: rgba(var(--v-theme-background));
 }
 
+// 修复底部单词长度不同时按钮宽度不同
+.v-bottom-navigation--grow .v-bottom-navigation__content > .v-btn {
+  width: 0;
+}
