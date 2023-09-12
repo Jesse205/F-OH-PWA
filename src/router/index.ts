@@ -1,7 +1,8 @@
 // Composables
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { nextTick } from 'vue'
+import { HistoryState, createRouter, createWebHashHistory } from 'vue-router'
 
-const EL_SCROLL = '.v-main .mainContent'
+const EL_SCROLL = '.v-main .mainScroll'
 
 declare module 'vue-router' {
 
@@ -12,7 +13,12 @@ declare module 'vue-router' {
   interface HistoryState {
     forward: string | null
     back: string | null
+    current: string | null
     scroll: ScrollToOptions
+    //基于单个元素和路径的滚动配置
+    scroll2: {
+      [index: string]: ScrollToOptions;
+    } | null
     [index: string]: ScrollToOptions;
   }
 }
@@ -82,27 +88,27 @@ const history = createWebHashHistory(process.env.BASE_URL)
 const router = createRouter({
   history,
   routes,
-  //TODO: 实现页面切换保持位置不变
-  /* scrollBehavior(to, from, savedPosition) {
-    console.log('savedPosition', savedPosition);
-    console.log(document.querySelectorAll('.v-main .mainContent')[1]);
-
-    return {
-      el: document.querySelectorAll('.v-main .mainContent')[1],
-      top: history.state.forward ? savedPosition?.top : 0 || 0
-    }
-  }, */
-
 })
 
-/* router.beforeEach((to, from) => {
-  if (history.state.scroll) {
-
-    // history.state.scroll.top = document.querySelector(EL_SCROLL)?.scrollTop || 0
-    console.log('scroll', history.state.scroll);
+router.beforeEach((to, from) => {
+  // TODO: 使用更好的方法实现
+  const state = {
+    ...history.state,
+    scroll2: history.state.scroll2 ?? {}
+  } as HistoryState
+  // 当前有一个bug，通过导航按钮切换的页面无法监听,因为current可能不等于from
+  if (history.state.current === from.fullPath) {
+    state.scroll2![from.fullPath] = {
+      top: document.querySelector(EL_SCROLL)?.scrollTop || 0,
+      left: document.querySelector(EL_SCROLL)?.scrollLeft || 0
+    }
+    console.log('saving state', state)
+  } else {
+    console.log('history.state.current !== from.fullPath,cannot save state.')
   }
+  window.history.replaceState(state, document.title)
   return true
-}) */
+})
 
 router.afterEach((to, from) => {
   if (from.path !== '/') {
@@ -114,6 +120,18 @@ router.afterEach((to, from) => {
     to.meta.transition = name
     from.meta.transition = name
   }
+
+
+  nextTick(() => {
+    //有动画，所以要选择第最后一个元素
+    const state = window.history.state as HistoryState
+    if (state.scroll2 && state.current) {
+      const elements = document.querySelectorAll(EL_SCROLL)
+      elements[elements.length - 1]?.scrollTo(state.scroll2[state.current])
+    }
+  })
 })
+
+
 
 export default router
