@@ -20,9 +20,11 @@ if (isTauri()) {
 }
 
 const savedLocale = useLocaleSetting()
-const selectedLocales = ref([locale.value])
-watch(selectedLocales, (newLocales) => {
-  savedLocale.value = newLocales[0]
+const selectedLocales = computed({
+  get: () => [locale.value],
+  set: (newLocales) => {
+    savedLocale.value = newLocales[0]
+  }
 })
 
 </script>
