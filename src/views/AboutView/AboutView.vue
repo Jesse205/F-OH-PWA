@@ -5,7 +5,7 @@ import AppMain from '@/components/AppMain.vue'
 import { useI18n } from 'vue-i18n';
 import { useTitle } from '@/events/title';
 import { getTauriVersion, getVersion } from '@tauri-apps/api/app';
-import { computed, ref } from 'vue';
+import { ComputedRef, computed, ref } from 'vue';
 import { isTauri } from '@/util/app';
 
 const { t } = useI18n()
@@ -20,18 +20,20 @@ interface DeveloperItem {
   qq?: number
 }
 
-const developers: DeveloperItem[] = [
-  {
-    qq: 517858177,
-    title: t('developer.westinyang.name'),
-    summary: t('developer.westinyang.description'),
-  },
-  {
-    qq: 2140125724,
-    title: t('developer.eddie.name'),
-    summary: t('developer.eddie.description'),
-  }
-]
+const developers = computed<DeveloperItem[]>(() =>
+  <DeveloperItem[]>[
+    {
+      qq: 517858177,
+      title: t('developer.westinyang.name'),
+      summary: t('developer.westinyang.description'),
+    },
+    {
+      qq: 2140125724,
+      title: t('developer.eddie.name'),
+      summary: t('developer.eddie.description'),
+    }
+  ]
+)
 
 const { mobile, mdAndUp } = useDisplay()
 
