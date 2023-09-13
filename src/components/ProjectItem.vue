@@ -16,7 +16,7 @@ const iconCompletePath = computed(() => {
 <template>
   <v-list-item lines="two" :to="`/app/${item.id}`">
     <template v-slot:prepend>
-      <v-avatar class="border" rounded="lg" size="48">
+      <v-avatar class="icon border" rounded="lg" size="48">
         <v-img :src="iconCompletePath" />
       </v-avatar>
     </template>
@@ -33,5 +33,10 @@ const iconCompletePath = computed(() => {
   .text-caption {
     opacity: var(--v-medium-emphasis-opacity);
   }
+}
+
+.icon {
+  // TODO: 当 F-OH 支持自适应图标后移除这项
+  border-radius: 24% !important;
 }
 </style>

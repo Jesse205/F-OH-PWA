@@ -78,7 +78,7 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
       <!-- 顶部介绍 -->
       <div class="header py-2">
         <!-- 图标 -->
-        <v-img class="border rounded-lg" :src="appIconUrl || ''" width="96" height="96" @dragstart.stop />
+        <v-img class="appIcon border rounded-lg" :src="appIconUrl || ''" @dragstart.stop />
         <div class="header-right ml-4">
           <!-- 应用名和版本 -->
           <div class="appTitle">
@@ -202,6 +202,12 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
         margin: 4px;
       }
     }
+  }
+  .appIcon {
+    width: 96px;
+    height: 96px;
+    // TODO: 当 F-OH 支持自适应图标后移除这项
+    border-radius: 24% !important;
   }
 }
 
