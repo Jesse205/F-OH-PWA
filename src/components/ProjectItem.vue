@@ -16,7 +16,7 @@ const iconCompletePath = computed(() => {
 <template>
   <v-list-item lines="two" :to="`/app/${item.id}`">
     <template v-slot:prepend>
-      <v-avatar class="elevation-1" rounded="lg" size="48">
+      <v-avatar class="border" rounded="lg" size="48">
         <v-img :src="iconCompletePath" />
       </v-avatar>
     </template>

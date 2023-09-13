@@ -78,7 +78,7 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
       <!-- 顶部介绍 -->
       <div class="header py-2">
         <!-- 图标 -->
-        <v-img class="elevation-1 rounded-lg" :src="appIconUrl || ''" width="96" height="96" @dragstart.stop />
+        <v-img class="border rounded-lg" :src="appIconUrl || ''" width="96" height="96" @dragstart.stop />
         <div class="header-right ml-4">
           <!-- 应用名和版本 -->
           <div class="appTitle">
