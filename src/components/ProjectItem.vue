@@ -8,9 +8,7 @@ const props = defineProps<{
   item: AppInfo
 }>()
 
-const iconCompletePath = computed(() => {
-  return getServerCompletePath(props.item.icon, URL_API)
-})
+const iconCompletePath = computed(() => getServerCompletePath(props.item.icon, URL_API))
 </script>
 
 <template>

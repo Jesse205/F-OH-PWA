@@ -2,7 +2,7 @@
 import AppMain from '@/components/AppMain.vue'
 
 import { useTitle } from '@/events/title'
-import { computed, ref, watch } from 'vue'
+import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { isTauri } from '@/util/app'
 import { getVersion } from '@tauri-apps/api/app'

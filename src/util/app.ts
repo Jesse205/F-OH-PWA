@@ -1,6 +1,5 @@
 import { WebviewWindow, WindowOptions } from '@tauri-apps/api/window'
 import { writeText } from '@tauri-apps/api/clipboard'
-import { useI18n } from 'vue-i18n'
 
 const WEBVIEW_OPTIONS_DEFAULT: WindowOptions = {
   center: true,
@@ -17,7 +16,10 @@ const WEBVIEW_OPTIONS_DEFAULT: WindowOptions = {
 export function isTauri(): boolean {
   return !!(window as any).__TAURI__
 }
-
+/**
+ * 是否以 PWA 模式运行
+ * @returns `true` 为以 PWA 模式运行
+ */
 export function isPwa() {
   return ['fullscreen', 'standalone', 'minimal-ui'].some(
     displayMode => window.matchMedia(`(display-mode: ${displayMode})`).matches
@@ -34,6 +36,8 @@ export function openNewWindow(url: string) {
       ...WEBVIEW_OPTIONS_DEFAULT,
       url
     })
+  } else {
+    console.warn('不支持创建新窗口')
   }
 }
 
@@ -43,6 +47,8 @@ export function copyText(text: string, callback: (state: CopyTextState) => void)
   if (isTauri()) {
     writeText(text).then(() => callback('success'))
   } else {
+    // TODO: 使用原生 API
+    console.warn('不支持复制文本')
     callback('not_support')
   }
 }

@@ -7,10 +7,10 @@ export interface AppInfo {
   packageName: string
   version: string
   hapUrl: string
-  type: 'app' | 'game' | string
+  type: AppType
   tags: string
   openSourceAddress: string
   releaseTime: string
 }
 
-export type AppType = 'app'
+export type AppType = 'app' | 'game' | string

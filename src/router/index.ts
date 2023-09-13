@@ -103,7 +103,7 @@ router.beforeEach((to, from) => {
     }
     console.log('saving state', state)
   } else {
-    console.log('history.state.current !== from.fullPath, cannot save state.')
+    console.warn('history.state.current !== from.fullPath, cannot save state.')
   }
   window.history.replaceState(state, document.title)
   return true

@@ -5,7 +5,7 @@ import AppMain from '@/components/AppMain.vue'
 import { useI18n } from 'vue-i18n'
 import { useTitle } from '@/events/title'
 import { getTauriVersion, getVersion } from '@tauri-apps/api/app'
-import { ComputedRef, computed, ref } from 'vue'
+import { computed, ref } from 'vue'
 import { isTauri } from '@/util/app'
 
 const { t } = useI18n()
