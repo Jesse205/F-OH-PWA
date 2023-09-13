@@ -14,7 +14,8 @@ onMounted(() => {
   appsStore.ensureData()
 })
 
-const loaded = computed(() => !appsStore.loading && appsStore.data)
+const loading = computed(() => appsStore.loading)
+const loaded = computed(() => !loading.value && appsStore.data)
 
 const errMsg = computed(() => appsStore.errMsg)
 
@@ -86,7 +87,7 @@ watch(
     </template>
   </v-container>
   <!-- Loading -->
-  <div v-if="!loaded" class="centerSpace">
+  <div v-if="loading" class="centerSpace">
     <v-progress-circular indeterminate :size="40" :width="4" />
   </div>
 </template>
