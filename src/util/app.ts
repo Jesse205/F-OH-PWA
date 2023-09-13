@@ -5,7 +5,9 @@ import { useI18n } from 'vue-i18n'
 const WEBVIEW_OPTIONS_DEFAULT: WindowOptions = {
   center: true,
   width: 960,
-  height: 600
+  height: 600,
+  minWidth: 320,
+  minHeight: 480
 }
 
 /**
