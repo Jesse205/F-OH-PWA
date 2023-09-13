@@ -31,7 +31,7 @@ const iconCompletePath = computed(() => {
 <style lang="scss">
 .title {
   .text-caption {
-    opacity: var(--v-high-emphasis-opacity);
+    opacity: var(--v-medium-emphasis-opacity);
   }
 }
 </style>
