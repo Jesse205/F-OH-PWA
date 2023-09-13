@@ -8,6 +8,7 @@ import { onMounted } from 'vue'
 import AppMain from '@/components/AppMain.vue'
 import { useScroll, useTitle as useVueUseTitle } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
+import { getAppTags } from '../../util/apps'
 
 const { t } = useI18n()
 
@@ -19,18 +20,14 @@ const appsStore = useAppsStore()
 const appInfo = computed(() => appsStore.data?.find((item) => item.id === +route.params.id))
 const loading = computed(() => appsStore.loading)
 
-const appIconUrl = computed(() => {
-  if (appInfo.value) return getServerCompletePath(appInfo.value.icon, URL_API)
-  return null
-})
+//绝对路径图标链接
+const appIconUrl = computed(() => appInfo.value && getServerCompletePath(appInfo.value.icon, URL_API))
 
-const appDownloadUrl = computed(() => {
-  if (appInfo.value) return getServerCompletePath(appInfo.value.hapUrl, URL_API)
-  return null
-})
+// 绝对路径下载链接
+const appDownloadUrl = computed(() => appInfo.value && getServerCompletePath(appInfo.value.hapUrl, URL_API))
 
 //分割标签
-const appTags = computed(() => appInfo.value?.tags.split(/[, ，]+/))
+const appTags = computed(() => appInfo.value && getAppTags(appInfo.value))
 
 //确保数据已经获取到或者正在获取中
 onMounted(() => {
@@ -38,7 +35,7 @@ onMounted(() => {
 })
 
 const mainElement = ref()
-const mainScrollElement = computed(() => mainElement.value?.mainScroll)
+const mainScrollElement = computed<HTMLElement | null>(() => mainElement.value?.mainScroll)
 const appNameElement = ref<HTMLElement>()
 const appNamePositionYBottom = computed(() => {
   if (appNameElement.value) {
@@ -51,7 +48,7 @@ const appNamePositionYBottom = computed(() => {
 const { y: scrollY } = useScroll(mainScrollElement)
 
 //如果标题被遮拦就在应用栏内显示标题
-const isTitleAppName = computed(() => scrollY.value > appNamePositionYBottom.value)
+const isTitleShowName = computed(() => scrollY.value > appNamePositionYBottom.value)
 
 const title = computed(() => {
   if (appInfo.value) return `${appInfo.value.name} - ${t('app.view')}`
@@ -65,10 +62,10 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
   <v-app-bar flat border="b">
     <v-btn v-if="$router.options.history.state.back" icon="mdi-arrow-left" @click.stop="$router.back" />
     <v-app-bar-title class="appBarTitle">
-      <transition :name="isTitleAppName ? 'scroll-x-reverse-transition' : 'scroll-x-transition'">
-        <span class="appBarTitleItem" :key="'app-bar-title-span' + isTitleAppName">{{
-          isTitleAppName ? appInfo?.name : $t('app.view')
-        }}</span>
+      <transition :name="isTitleShowName ? 'scroll-x-reverse-transition' : 'scroll-x-transition'">
+        <span class="appBarTitleItem" :key="`app-bar-title-span-${isTitleShowName}`">
+          {{ isTitleShowName ? appInfo?.name : $t('app.view') }}
+        </span>
       </transition>
     </v-app-bar-title>
   </v-app-bar>
@@ -169,13 +166,12 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
       <!-- 详情信息 -->
       <div class="py-2">
         <h2 class="itemTitle">{{ $t('details.name') }}</h2>
-        <v-skeleton-loader v-if="loading" class="detailsSkeleton" type="text@4" color="transparent" />
+        <v-skeleton-loader v-if="loading" class="detailsSkeleton" type="text@5" color="transparent" />
         <template v-else>
           {{ $t('version.name') }}: {{ appInfo?.version ?? $t('unknown.name') }}<br />
           {{ $t('packageName.name') }}: {{ appInfo?.packageName ?? $t('unknown.name') }}<br />
           {{ $t('developer.name') }}: {{ appInfo?.vender ?? $t('unknown.name') }}<br />
           {{ $t('release.name') }}: {{ appInfo?.releaseTime ?? $t('unknown.name') }}<br />
-          <!-- 存在ID为0的情况，因此不能通过 || 直接判断是否获取到ID -->
           {{ $t('id.name') }}: {{ appInfo?.id ?? $t('unknown.name') }}<br />
         </template>
       </div>
