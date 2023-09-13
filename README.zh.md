@@ -32,9 +32,9 @@ F-OH PWA 是基于[粼光商店 Demo](https://gitee.com/sparkling-store/webv3dem
 ## 系列项目
 
 - [F-OH](https://gitee.com/ohos-dev/f-oh)：F-OH OpenHarmony 移动端
-- [F-OH Data](http://gogs.444404.xyz/ohos-dev/F-OH-Data)：F-OH 所有应用程序的元数据，开发者在这里PR提交自己的应用
+- [F-OH Data](http://170.178.208.105:3000/ohos-dev/F-OH-Data)：F-OH 所有应用程序的元数据，开发者在这里PR提交自己的应用
 - [F-OH Server](https://gitee.com/ohos-dev/f-oh-server)：F-OH 服务器，提供接口服务、平台管理等（待开发）
-- [F-OH Website](https://gitee.com/ohos-dev/f-oh-website)：F-OH 网站，包含文档、博客、精选应用等（待开发）`
+- [F-OH Website](https://gitee.com/ohos-dev/f-oh-website)：F-OH 网站，包含文档、博客、精选应用等（待开发）
 
 ## 项目设置
 

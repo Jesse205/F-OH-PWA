@@ -1,7 +1,3 @@
-/*export function getCompletePath(url: string, base?: string) {
-  return new URL(url, base).href
-}*/
-
 /**
  * 获取绝对 url
  * @param url
@@ -9,8 +5,7 @@
  * @returns
  */
 export function getCompletePath(url: string, base: string) {
-  if (url.search('://') > -1) return url
-  return `${base}${url.endsWith('/') ? '' : '/'}${url.startsWith('/') ? url.slice(1) : url}`
+  return new URL(url, base).href
 }
 
 /**
@@ -21,5 +16,5 @@ export function getCompletePath(url: string, base: string) {
  */
 export function getServerCompletePath(url: string, base: string) {
   if (url.search('://') > -1) return url
-  return `${base}${url.endsWith('/') ? '' : '/'}${url.startsWith('/') ? url.slice(1) : url}`
+  return `${base}${base.endsWith('/') ? '' : '/'}${url.startsWith('/') ? url.slice(1) : url}`
 }

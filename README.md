@@ -32,7 +32,7 @@ F-OH PWA is a browser-based version of F-OH based on the [Sparkling Store Demo](
 ## Series of projects
 
 - [F-OH](https://gitee.com/ohos-dev/f-oh): F-OH OpenHarmony Mobile
-- [F-OH Data](http://gogs.444404.xyz/ohos-dev/F-OH-Data): metadata for all F-OH apps, where developers PR submit their apps
+- [F-OH Data](http://170.178.208.105:3000/ohos-dev/F-OH-Data): metadata for all F-OH apps, where developers PR submit their apps
 - [F-OH Server](https://gitee.com/ohos-dev/f-oh-server): F-OH server, providing interface services, platform management, etc. (to be developed)
 - [F-OH Website](https://gitee.com/ohos-dev/f-oh-website): F-OH website, including documents, blogs, selected applications, etc. (to be developed)
 
