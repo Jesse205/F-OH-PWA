@@ -17,7 +17,7 @@ const route = useRoute()
 const appsStore = useAppsStore()
 
 // 查找当前应用信息
-const appInfo = computed(() => appsStore.data?.find(item => item.id === +route.params.id))
+const appInfo = computed(() => appsStore.data?.find((item) => item.id === +route.params.id))
 
 const appIconUrl = computed(() => {
   if (appInfo.value) return getServerCompletePath(appInfo.value.icon, URL_API)
@@ -92,10 +92,17 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
             {{ appInfo?.packageName ?? $t('unknown.name') }}
           </div>
           <div class="buttonGroup" @dragstart.stop>
-            <v-btn variant="flat" :disabled="!appDownloadUrl" :href="appDownloadUrl || undefined" target="_blank">{{
-              $t('download.name')
-            }}</v-btn>
-            <v-btn v-if="appInfo?.openSourceAddress" variant="text" :href="appInfo.openSourceAddress" target="_blank">{{
+            <!-- 下载按钮 -->
+            <v-btn
+              prepend-icon="mdi-download"
+              variant="flat"
+              :disabled="!appDownloadUrl"
+              :href="appDownloadUrl || undefined"
+              target="_blank"
+              >{{ $t('download.name') }}</v-btn
+            >
+            <!-- 源代码按钮 -->
+            <v-btn prepend-icon="mdi-source-branch" v-if="appInfo?.openSourceAddress" variant="text" :href="appInfo.openSourceAddress" target="_blank">{{
               $t('source.code')
             }}</v-btn>
           </div>
