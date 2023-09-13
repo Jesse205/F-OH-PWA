@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Position, usePreferredDark, useTitle } from '@vueuse/core'
 import { useTheme } from 'vuetify'
-import { watch, ref, onMounted, onBeforeUnmount, computed } from 'vue'
+import { watch, ref, onMounted, onBeforeUnmount } from 'vue'
 import { useRoute } from 'vue-router'
 import { usePwa } from '@/events/pwa'
 import { isTauri, openNewWindow, copyText } from '@/util/app'
@@ -9,7 +9,7 @@ import { getCurrent } from '@tauri-apps/api/window'
 import { useI18n } from 'vue-i18n'
 import { reactive } from 'vue'
 import { nextTick } from 'vue'
-import { useLocaleSetting } from './events/settings'
+import { useLocaleSetting } from '@/events/settings'
 
 // Theme
 const theme = useTheme()
@@ -17,7 +17,7 @@ const preferredDark = usePreferredDark()
 
 watch(
   preferredDark,
-  isDark => {
+  (isDark) => {
     theme.global.name.value = isDark ? 'dark' : 'light'
   },
   {
@@ -50,7 +50,7 @@ if (isTauri()) {
   // 绑定 Tauri 窗口标题
   watch(
     title,
-    newTitle => {
+    (newTitle) => {
       getCurrent().setTitle(newTitle || t('appName'))
     },
     { immediate: true }
@@ -121,7 +121,7 @@ function onDragStart(event: DragEvent) {
 
 // 语言切换
 const savedLocale = useLocaleSetting()
-watch(savedLocale, newLocale => {
+watch(savedLocale, (newLocale) => {
   locale.value = newLocale
 })
 </script>
@@ -165,7 +165,7 @@ watch(savedLocale, newLocale => {
       <v-list-item
         v-if="contextMenuConfig.externalUrl"
         :title="$t('copy.link')"
-        @click="copyText(contextMenuConfig.externalUrl, state => {})"
+        @click="copyText(contextMenuConfig.externalUrl, (state) => {})"
       />
     </v-list>
   </v-menu>

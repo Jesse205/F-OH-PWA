@@ -120,14 +120,16 @@ router.afterEach((to, from) => {
     from.meta.transition = name
   }
 
-  nextTick(() => {
-    //有动画，所以要选择第最后一个元素
-    const state = window.history.state as HistoryState
-    if (state.scroll2 && state.current) {
-      const elements = document.querySelectorAll(EL_SCROLL)
-      elements[elements.length - 1]?.scrollTo(state.scroll2[state.current])
-    }
-  })
+  const state = window.history.state as HistoryState
+  if (state.scroll2 && state.current) {
+    nextTick(() => {
+      //有动画，所以要选择第最后一个元素
+      if (state.scroll2 && state.current) {
+        const elements = document.querySelectorAll(EL_SCROLL)
+        elements[elements.length - 1]?.scrollTo(state.scroll2[state.current])
+      }
+    })
+  }
 })
 
 export default router
