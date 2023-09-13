@@ -1,6 +1,4 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <v-card class="app-card pa-1">
@@ -37,5 +35,4 @@
   padding: 4px;
   font-size: 0;
 }
-
 </style>

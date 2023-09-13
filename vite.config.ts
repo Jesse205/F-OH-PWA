@@ -20,8 +20,8 @@ export default defineConfig({
     vuetify({
       autoImport: true,
       styles: {
-        configFile: 'src/styles/settings.scss',
-      },
+        configFile: 'src/styles/settings.scss'
+      }
     }),
     VitePWA({
       registerType: 'autoUpdate',
@@ -41,22 +41,14 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js',
+      'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js'
     },
-    extensions: [
-      '.js',
-      '.json',
-      '.jsx',
-      '.mjs',
-      '.ts',
-      '.tsx',
-      '.vue',
-    ],
+    extensions: ['.js', '.json', '.jsx', '.mjs', '.ts', '.tsx', '.vue']
   },
   server: {
     port: 3000,
     // Tauri expects a fixed port, fail if that port is not available
-    strictPort: true,
+    strictPort: true
   },
   // to make use of `TAURI_PLATFORM`, `TAURI_ARCH`, `TAURI_FAMILY`,
   // `TAURI_PLATFORM_VERSION`, `TAURI_PLATFORM_TYPE` and `TAURI_DEBUG`
@@ -68,6 +60,6 @@ export default defineConfig({
     // don't minify for debug builds
     minify: !process.env.TAURI_DEBUG ? 'esbuild' : false,
     // 为调试构建生成源代码映射 (sourcemap)
-    sourcemap: !!process.env.TAURI_DEBUG,
-  },
+    sourcemap: !!process.env.TAURI_DEBUG
+  }
 })

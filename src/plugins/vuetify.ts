@@ -26,16 +26,16 @@ export default createVuetify({
         colors: {
           primary: '#007DFF',
           secondary: '#81bd0a',
-          surface: '#FFFFFF',
-        },
+          surface: '#FFFFFF'
+        }
       },
       dark: {
         colors: {
           primary: '#006CDE',
-          secondary: '#81bd0a',
-        },
-      },
-    },
+          secondary: '#81bd0a'
+        }
+      }
+    }
   },
   defaults: {
     VBottomNavigation: {
@@ -53,7 +53,7 @@ export default createVuetify({
       border: true,
       elevation: 0,
       rounded: 'lg',
-      flat: true,
+      flat: true
     },
     VTooltip: {
       transition: 'fade-transition'

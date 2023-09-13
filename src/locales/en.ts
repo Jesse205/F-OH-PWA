@@ -4,13 +4,13 @@ export default {
     name: 'Settings'
   },
   about: {
-    name: 'About',
+    name: 'About'
   },
   home: {
     name: 'Home'
   },
   category: {
-    name: 'Category | Categories',
+    name: 'Category | Categories'
   },
   update: {
     name: 'Update'
@@ -25,10 +25,10 @@ export default {
     name: 'Application',
     about: 'About application',
     version: 'App version',
-    view: 'App view',
+    view: 'App view'
   },
   tauri: {
-    version: 'Tauri version',
+    version: 'Tauri version'
   },
   project: {
     showcase: {
@@ -61,11 +61,11 @@ export default {
   developer: {
     name: 'Developer',
     eddie: {
-      name: '{\'@\'}Eddie',
+      name: "{'@'}Eddie",
       description: 'PWA Application Developer'
     },
     westinyang: {
-      name: '{\'@\'}westinyang',
+      name: "{'@'}westinyang",
       description: 'F-OH Founder'
     }
   },
@@ -79,11 +79,13 @@ export default {
     related: 'Related links',
     foh: {
       title: 'F-OH',
-      description: 'F-OH is an application center for FOSS (Free and Open Source Software) on the OpenHarmony platform, with support for download and installation.'
+      description:
+        'F-OH is an application center for FOSS (Free and Open Source Software) on the OpenHarmony platform, with support for download and installation.'
     },
     organization: {
       title: 'OHOS Dev',
-      description: 'OpenHarmony Developer Community (unofficial position created for the future of OpenHarmony, Peace & Love)'
+      description:
+        'OpenHarmony Developer Community (unofficial position created for the future of OpenHarmony, Peace & Love)'
     }
   },
   details: {

@@ -71,7 +71,7 @@ yarn lint
 
 ## License
 
-``` txt
+```txt
 Copyright (C) 2023 Jesse205
 
 This program is free software: you can redistribute it and/or modify

@@ -1,4 +1,4 @@
-import { onBeforeUnmount, onMounted, ref, provide } from "vue"
+import { onBeforeUnmount, onMounted, ref, provide } from 'vue'
 
 interface BeforeInstallPrompt extends Event {
   prompt: () => void
@@ -12,16 +12,15 @@ export function usePwa() {
   const installBtnVisible = ref(false)
   let deferredPrompt: BeforeInstallPrompt | null = null
   function onInstallBtnClick() {
-    if (!deferredPrompt)
-      return
+    if (!deferredPrompt) return
     installBtnVisible.value = false
     deferredPrompt.prompt()
-    deferredPrompt.userChoice.then((choiceResult) => {
+    deferredPrompt.userChoice.then(choiceResult => {
       if (choiceResult.outcome === 'accepted') {
-        console.log("User accepted the A2HS prompt");
+        console.log('User accepted the A2HS prompt')
         installBtnVisible.value = false
       } else {
-        console.log("User dismissed the A2HS prompt");
+        console.log('User dismissed the A2HS prompt')
         installBtnVisible.value = true
       }
     })
@@ -37,10 +36,10 @@ export function usePwa() {
   }
 
   onMounted(() => {
-    window.addEventListener("beforeinstallprompt", onBeforeInstallPrompt as () => Event)
+    window.addEventListener('beforeinstallprompt', onBeforeInstallPrompt as () => Event)
   })
 
   onBeforeUnmount(() => {
-    window.removeEventListener("beforeinstallprompt", onBeforeInstallPrompt as () => Event)
+    window.removeEventListener('beforeinstallprompt', onBeforeInstallPrompt as () => Event)
   })
 }

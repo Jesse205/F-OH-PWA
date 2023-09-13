@@ -1,11 +1,11 @@
-import { WebviewWindow, WindowOptions } from "@tauri-apps/api/window"
+import { WebviewWindow, WindowOptions } from '@tauri-apps/api/window'
 import { writeText } from '@tauri-apps/api/clipboard'
-import { useI18n } from 'vue-i18n';
+import { useI18n } from 'vue-i18n'
 
 const WEBVIEW_OPTIONS_DEFAULT: WindowOptions = {
   center: true,
   width: 960,
-  height: 600,
+  height: 600
 }
 
 /**
@@ -17,9 +17,9 @@ export function isTauri(): boolean {
 }
 
 export function isPwa() {
-  return ["fullscreen", "standalone", "minimal-ui"].some(
-    (displayMode) => window.matchMedia(`(display-mode: ${displayMode})`).matches
-  );
+  return ['fullscreen', 'standalone', 'minimal-ui'].some(
+    displayMode => window.matchMedia(`(display-mode: ${displayMode})`).matches
+  )
 }
 
 /**
@@ -30,7 +30,7 @@ export function openNewWindow(url: string) {
   if (isTauri()) {
     const webview = new WebviewWindow(`window-${Date.now()}`, {
       ...WEBVIEW_OPTIONS_DEFAULT,
-      url,
+      url
     })
   }
 }

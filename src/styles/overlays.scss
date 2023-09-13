@@ -2,9 +2,7 @@
 .v-theme--light,
 .v-theme--dark {
   // --v-activated-opacity: 0 !important; // 活动时透明
-  --swiper-theme-color: rgb(
-    var(--v-theme-primary)
-  ) !important; // swiper主题色跟随主题
+  --swiper-theme-color: rgb(var(--v-theme-primary)) !important; // swiper主题色跟随主题
 }
 
 html {

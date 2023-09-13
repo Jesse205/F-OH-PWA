@@ -6,5 +6,5 @@ export const useHomeStore = defineStore('home', {
   state: () => {
     const fragmentTitle = ref('')
     return { fragmentTitle }
-  },
+  }
 })

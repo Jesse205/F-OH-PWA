@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ref, computed, onActivated } from 'vue'
-import { useTitle } from "@/events/title"
+import { useTitle } from '@/events/title'
 import { useRoute } from 'vue-router'
 import { useAppsStore } from '@/store/apps'
 import { getServerCompletePath } from '@/util/url'
 import { URL_API } from '@/data/constants'
 import { onMounted } from 'vue'
 import AppMain from '@/components/AppMain.vue'
-import { useScroll, useTitle as useVueUseTitle } from '@vueuse/core';
+import { useScroll, useTitle as useVueUseTitle } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
@@ -17,17 +17,15 @@ const route = useRoute()
 const appsStore = useAppsStore()
 
 // 查找当前应用信息
-const appInfo = computed(() => appsStore.data?.find((item) => item.id === +route.params.id))
+const appInfo = computed(() => appsStore.data?.find(item => item.id === +route.params.id))
 
 const appIconUrl = computed(() => {
-  if (appInfo.value)
-    return getServerCompletePath(appInfo.value.icon, URL_API)
+  if (appInfo.value) return getServerCompletePath(appInfo.value.icon, URL_API)
   return null
 })
 
 const appDownloadUrl = computed(() => {
-  if (appInfo.value)
-    return getServerCompletePath(appInfo.value.hapUrl, URL_API)
+  if (appInfo.value) return getServerCompletePath(appInfo.value.hapUrl, URL_API)
   return null
 })
 
@@ -56,14 +54,11 @@ const { y: scrollY } = useScroll(mainScrollElement)
 const isTitleAppName = computed(() => scrollY.value > appNamePositionYBottom.value)
 
 const title = computed(() => {
-  if (appInfo.value)
-    return `${appInfo.value.name} - ${t('app.view')}`
-  else
-    return t('app.view')
+  if (appInfo.value) return `${appInfo.value.name} - ${t('app.view')}`
+  else return t('app.view')
 })
 
 useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
-
 </script>
 
 <template>
@@ -71,8 +66,9 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
     <v-btn v-if="$router.options.history.state.back" icon="mdi-arrow-left" @click.stop="$router.back" />
     <v-app-bar-title class="appBarTitle">
       <transition :name="isTitleAppName ? 'scroll-x-reverse-transition' : 'scroll-x-transition'">
-        <span class="appBarTitleItem" :key="'app-bar-title-span' + isTitleAppName">{{ isTitleAppName ? appInfo?.name :
-          $t('app.view') }}</span>
+        <span class="appBarTitleItem" :key="'app-bar-title-span' + isTitleAppName">{{
+          isTitleAppName ? appInfo?.name : $t('app.view')
+        }}</span>
       </transition>
     </v-app-bar-title>
   </v-app-bar>
@@ -89,15 +85,19 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
             <!-- 应用名 -->
             <span class="text-h6" ref="appNameElement" :title="$t('app.name')">{{ appInfo?.name }}</span>
             <span class="text-subtitle-2" :title="$t('version.name')">
-              v{{ appInfo ? `${appInfo.version}` : $t('unknown.name') }}</span>
+              v{{ appInfo ? `${appInfo.version}` : $t('unknown.name') }}</span
+            >
           </div>
           <div class="text-subtitle-2" :title="$t('packageName.name')">
-            {{ appInfo?.packageName ?? $t('unknown.name') }}</div>
+            {{ appInfo?.packageName ?? $t('unknown.name') }}
+          </div>
           <div class="buttonGroup" @dragstart.stop>
             <v-btn variant="flat" :disabled="!appDownloadUrl" :href="appDownloadUrl || undefined" target="_blank">{{
-              $t('download.name') }}</v-btn>
+              $t('download.name')
+            }}</v-btn>
             <v-btn v-if="appInfo?.openSourceAddress" variant="text" :href="appInfo.openSourceAddress" target="_blank">{{
-              $t('source.code') }}</v-btn>
+              $t('source.code')
+            }}</v-btn>
           </div>
         </div>
       </div>
@@ -117,8 +117,16 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
       <div v-show="appInfo?.vender" class="py-2" @dragstart.stop>
         <div class="title">{{ $t('developer.name') }}</div>
         <v-skeleton-loader type="list-item-avatar" color="transparent" boilerplate :loading="appsStore.loading">
-          <v-list-item rounded="lg" lines="two" :title="appInfo?.vender" link append-icon="mdi-chevron-right"
-            :href="`https://cn.bing.com/search?q=${appInfo?.vender}`" target="_blank" width="100%">
+          <v-list-item
+            rounded="lg"
+            lines="two"
+            :title="appInfo?.vender"
+            link
+            append-icon="mdi-chevron-right"
+            :href="`https://cn.bing.com/search?q=${appInfo?.vender}`"
+            target="_blank"
+            width="100%"
+          >
             <template v-slot:prepend>
               <v-avatar class="border" size="40">
                 <v-img src="@/assets/images/icon.svg" />
@@ -178,10 +186,10 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
     flex-wrap: nowrap;
 
     .text-subtitle-2 {
-      opacity: var(--v-medium-emphasis-opacity)
+      opacity: var(--v-medium-emphasis-opacity);
     }
 
-    >.text-subtitle-2 {
+    > .text-subtitle-2 {
       height: 1.75rem;
     }
 
@@ -190,7 +198,7 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
       margin: -4px;
       display: flex;
 
-      >* {
+      > * {
         margin: 4px;
       }
     }
@@ -209,7 +217,7 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
   flex-wrap: wrap;
   margin: -4px;
 
-  >* {
+  > * {
     padding: 4px;
   }
 }

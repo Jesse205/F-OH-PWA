@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { useHomeTitle } from '@/events/title'
-import { useI18n } from 'vue-i18n';
-import { computed } from 'vue';
+import { useI18n } from 'vue-i18n'
+import { computed } from 'vue'
 
 const { t } = useI18n()
-
 </script>
 
 <template>
@@ -28,10 +27,19 @@ const { t } = useI18n()
 
     <!-- 软件面板 -->
     <v-list class="my-4 prependIconPrimaryItem" border rounded="lg" color="primary">
-      <v-list-item :title="$t('settings.name')" prepend-icon="mdi-cog-outline" append-icon="mdi-chevron-right"
-        :to="{ name: 'Settings' }" />
-      <v-list-item :title="$t('about.name')" link prepend-icon="mdi-information-outline" append-icon="mdi-chevron-right"
-        :to="{ name: 'About' }" />
+      <v-list-item
+        :title="$t('settings.name')"
+        prepend-icon="mdi-cog-outline"
+        append-icon="mdi-chevron-right"
+        :to="{ name: 'Settings' }"
+      />
+      <v-list-item
+        :title="$t('about.name')"
+        link
+        prepend-icon="mdi-information-outline"
+        append-icon="mdi-chevron-right"
+        :to="{ name: 'About' }"
+      />
     </v-list>
   </v-container>
 </template>

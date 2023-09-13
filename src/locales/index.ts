@@ -25,22 +25,25 @@ const i18n = createI18n({
   messages: {
     en: EN,
     'zh-CN': ZH_CN
-  },
+  }
 })
 
 // 设置应用名
 
-if (isTauri()) { // Tauri
+if (isTauri()) {
+  // Tauri
   EN.appName = APP_NAME_TAURI
   ZH_CN.appName = APP_NAME_TAURI
-  getName().then((name) => {
+  getName().then(name => {
     EN.appName = name
     ZH_CN.appName = name
   })
-} else if (isPwa()) { // PWA
+} else if (isPwa()) {
+  // PWA
   EN.appName = APP_NAME_PWA
   ZH_CN.appName = APP_NAME_PWA
-} else {// 网页
+} else {
+  // 网页
   EN.appName = APP_NAME_DEFAULT
   ZH_CN.appName = APP_NAME_DEFAULT
 }

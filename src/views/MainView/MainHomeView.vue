@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Ref, onMounted, ref, computed } from 'vue';
+import { Ref, onMounted, ref, computed } from 'vue'
 import { useHomeTitle } from '@/events/title'
 import HomeBanner from './components/HomeBanner.vue'
 import { Banners } from '@/ts/interfaces/home.interfaces'
@@ -8,9 +8,9 @@ import { URL_HOME, URL_API } from '@/data/constants'
 import IMAGE_BANNER1 from '@/assets/images/main_banner_1.png'
 import IMAGE_BANNER2 from '@/assets/images/main_banner_2.png'
 import IMAGE_BANNER3 from '@/assets/images/main_banner_3.png'
-import { HomeData } from '@/ts/interfaces/home.interfaces';
-import { isTauri } from '@/util/app';
-import { http } from '@tauri-apps/api';
+import { HomeData } from '@/ts/interfaces/home.interfaces'
+import { isTauri } from '@/util/app'
+import { http } from '@tauri-apps/api'
 
 const { t } = useI18n()
 
@@ -36,15 +36,16 @@ const homeData = ref<HomeData | null>(null)
 onMounted(() => {
   loaded.value = false
   if (isTauri()) {
-    http.fetch(URL_HOME)
+    http
+      .fetch(URL_HOME)
       .then(response => {
         if (response.ok) {
           homeData.value = response.data as HomeData
           console.log('fetched home data', response.data)
         }
       })
-      .catch((reason) => {
-        console.error('Can\'t load data:', reason)
+      .catch(reason => {
+        console.error("Can't load data:", reason)
         errMsg.value = reason.toString()
       })
       .finally(() => {
@@ -57,8 +58,8 @@ onMounted(() => {
         console.log('fetched home data', data)
         homeData.value = data
       })
-      .catch((reason) => {
-        console.error('Can\'t load data:', reason)
+      .catch(reason => {
+        console.error("Can't load data:", reason)
         errMsg.value = reason.toString()
       })
       .finally(() => {
@@ -66,7 +67,6 @@ onMounted(() => {
       })
   }
 })
-
 </script>
 
 <template>
@@ -89,7 +89,6 @@ onMounted(() => {
     <v-progress-circular indeterminate :size="40" :width="4" />
   </div>
 </template>
-
 
 <style scoped>
 .announcementContent {

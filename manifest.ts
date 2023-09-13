@@ -1,4 +1,4 @@
-import { ManifestOptions } from "vite-plugin-pwa";
+import { ManifestOptions } from 'vite-plugin-pwa'
 
 const base = '/'
 
@@ -48,12 +48,7 @@ export default <Partial<ManifestOptions>>{
   ],
   theme_color: '#00a6f9',
   display: 'standalone',
-  display_override: [
-    'standalone',
-    'minimal-ui',
-    'browser',
-    'window-controls-overlay'
-  ],
+  display_override: ['standalone', 'minimal-ui', 'browser', 'window-controls-overlay'],
   screenshots: [
     {
       src: `${base}screenshots/Snipaste_2023-09-06_21-32-26.webp`,
@@ -84,7 +79,7 @@ export default <Partial<ManifestOptions>>{
       src: `${base}screenshots/Snipaste_2023-09-06_21-33-35.webp`,
       sizes: '986x607',
       type: 'image/webp'
-    },
+    }
   ],
   related_applications: [
     {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { AppInfo } from '@/ts/interfaces/app.interfaces'
 import { URL_API } from '@/data/constants'
-import { getServerCompletePath } from "@/util/url"
+import { getServerCompletePath } from '@/util/url'
 import { computed } from 'vue'
 
 const props = defineProps<{
@@ -11,7 +11,6 @@ const props = defineProps<{
 const iconCompletePath = computed(() => {
   return getServerCompletePath(props.item.icon, URL_API)
 })
-
 </script>
 
 <template>
@@ -32,7 +31,7 @@ const iconCompletePath = computed(() => {
 <style lang="scss">
 .title {
   .text-caption {
-    opacity: var(--v-high-emphasis-opacity)
+    opacity: var(--v-high-emphasis-opacity);
   }
 }
 </style>

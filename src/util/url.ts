@@ -9,8 +9,7 @@
  * @returns
  */
 export function getCompletePath(url: string, base: string) {
-  if (url.search('://') > -1)
-    return url
+  if (url.search('://') > -1) return url
   return `${base}${url.endsWith('/') ? '' : '/'}${url.startsWith('/') ? url.slice(1) : url}`
 }
 
@@ -21,7 +20,6 @@ export function getCompletePath(url: string, base: string) {
  * @returns
  */
 export function getServerCompletePath(url: string, base: string) {
-  if (url.search('://') > -1)
-    return url
+  if (url.search('://') > -1) return url
   return `${base}${url.endsWith('/') ? '' : '/'}${url.startsWith('/') ? url.slice(1) : url}`
 }

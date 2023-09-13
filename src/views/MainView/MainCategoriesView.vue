@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useHomeTitle } from '@/events/title'
-import { onMounted, computed, ref, watch, reactive, MaybeRef } from 'vue';
+import { onMounted, computed, ref, watch, reactive, MaybeRef } from 'vue'
 import { useI18n } from 'vue-i18n'
 import ProjectItem from '@/components/ProjectItem.vue'
 import { useAppsStore } from '@/store/apps'
@@ -44,28 +44,31 @@ const appTypes = computed<AppTypes[]>(() => [
 ])
 
 // 将数据插入不同的分类列表中
-watch(computed(() => appsStore.data), (newData) => {
-  if (newData) {
-    apps.length = 0
-    for (const item of newData) {
-      switch (item.type) {
-        case 'app': {
-          apps.push(item)
-          break
-        }
-        case 'game': {
-          gameApps.push(item)
-          break
-        }
-        default: {
-          otherApps.push(item)
-          break
+watch(
+  computed(() => appsStore.data),
+  newData => {
+    if (newData) {
+      apps.length = 0
+      for (const item of newData) {
+        switch (item.type) {
+          case 'app': {
+            apps.push(item)
+            break
+          }
+          case 'game': {
+            gameApps.push(item)
+            break
+          }
+          default: {
+            otherApps.push(item)
+            break
+          }
         }
       }
     }
-  }
-}, { immediate: true })
-
+  },
+  { immediate: true }
+)
 </script>
 
 <template>

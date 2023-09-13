@@ -20,15 +20,16 @@ export const useAppsStore = defineStore('apps', () => {
     console.log('isTauri', isTauri())
 
     if (isTauri()) {
-      http.fetch(URL_ALL_APP_LIST)
+      http
+        .fetch(URL_ALL_APP_LIST)
         .then(response => {
           if (response.ok) {
             data.value = response.data as AppInfo[]
             console.log('fetched apps', response.data)
           }
         })
-        .catch((reason) => {
-          console.error('Can\'t load data:', reason)
+        .catch(reason => {
+          console.error("Can't load data:", reason)
           errMsg.value = reason.toString()
         })
         .finally(() => {
@@ -41,8 +42,8 @@ export const useAppsStore = defineStore('apps', () => {
           data.value = newData
           console.log('fetched apps', newData)
         })
-        .catch((reason) => {
-          console.error('Can\'t load data:', reason)
+        .catch(reason => {
+          console.error("Can't load data:", reason)
           errMsg.value = reason.toString()
         })
         .finally(() => {

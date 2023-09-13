@@ -13,19 +13,10 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "lib": [
-      "esnext",
-      "dom",
-      "webworker"
-    ],
-    "types": [
-      "node",
-      "vuetify"
-    ],
+    "lib": ["esnext", "dom", "webworker"],
+    "types": ["node", "vuetify"],
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"]
     }
   },
   "include": [
@@ -36,5 +27,5 @@
     "src/**/*.vue",
     "vite.config.ts",
     "manifest.ts"
-  ],
+  ]
 }

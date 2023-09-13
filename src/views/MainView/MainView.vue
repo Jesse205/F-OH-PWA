@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { inject, ref, watch, MaybeRef, computed, watchEffect } from 'vue';
+import { inject, ref, MaybeRef, computed, watchEffect } from 'vue'
 import { useDisplay } from 'vuetify'
 import { useHomeStore } from '@/store/home'
-import { useI18n } from 'vue-i18n';
+import { useI18n } from 'vue-i18n'
 import AppMain from '@/components/AppMain.vue'
-import { useRouter, useRoute } from 'vue-router';
-import { useHomeTitle } from '../../events/title';
+import { useRoute } from 'vue-router'
+import { useHomeTitle } from '@/events/title'
+import { URL_UPLOAD } from '@/data/constants'
 
 const { t } = useI18n()
 const homeStore = useHomeStore()
@@ -18,33 +19,33 @@ interface Page {
   disabled?: boolean
 }
 
-const pages = computed(() => {
+const pages = computed<Page[]>(() => {
   return [
     {
       title: t('home.name'),
       icon: 'mdi-home-variant-outline',
       activeIcon: 'mdi-home-variant',
-      name: 'Home',
+      name: 'Home'
     },
     {
       title: t('category.name', 2),
       icon: 'mdi-apps',
       activeIcon: 'mdi-apps',
-      name: 'Categories',
+      name: 'Categories'
     },
     {
       title: t('update.name'),
       icon: 'mdi-update',
       activeIcon: 'mdi-update',
       name: 'Update',
-      disabled: true,
+      disabled: true
     },
     {
       title: t('me.name'),
       icon: 'mdi-account-outline',
       activeIcon: 'mdi-account',
-      name: 'Me',
-    },
+      name: 'Me'
+    }
   ]
 })
 
@@ -59,16 +60,13 @@ watchEffect(() => {
       break
     }
   }
-
 })
-
 
 const { xs, smAndDown } = useDisplay()
 
 // PWA
 const installBtnVisible = inject('installBtnVisible')
 const onInstallBtnClick = inject('onInstallBtnClick') as () => void
-
 </script>
 
 <template>
@@ -79,9 +77,16 @@ const onInstallBtnClick = inject('onInstallBtnClick') as () => void
     </v-list>
     <v-divider />
     <v-list density="compact" nav color="primary">
-      <v-list-item v-for="item in pages" :key="item.name" :to="{ name: item.name }" replace
-        :prepend-icon="$route.name === item.name ? item.activeIcon : item.icon" :title="item.title"
-        :disabled="item.disabled" rounded />
+      <v-list-item
+        v-for="item in pages"
+        :key="item.name"
+        :to="{ name: item.name }"
+        replace
+        :prepend-icon="$route.name === item.name ? item.activeIcon : item.icon"
+        :title="item.title"
+        :disabled="item.disabled"
+        rounded
+      />
     </v-list>
   </v-navigation-drawer>
 
@@ -102,7 +107,7 @@ const onInstallBtnClick = inject('onInstallBtnClick') as () => void
       </template>
       <v-list>
         <!-- TODO: 使用Upload页面 -->
-        <v-list-item :title="$t('upload.app')" href="http://gogs.444404.xyz/ohos-dev/F-OH-Data" target="_blank" />
+        <v-list-item :title="$t('upload.app')" :href="URL_UPLOAD" target="_blank" />
         <v-list-item v-if="installBtnVisible" :title="$t('install.app')" @click="onInstallBtnClick" />
       </v-list>
     </v-menu>
@@ -118,8 +123,15 @@ const onInstallBtnClick = inject('onInstallBtnClick') as () => void
   </app-main>
 
   <!-- 底部导航栏 -->
-  <v-bottom-navigation v-if="xs" grow color="primary" mandatory border="t" :elevation="0"
-    selected-class="noActivatedTransparency">
+  <v-bottom-navigation
+    v-if="xs"
+    grow
+    color="primary"
+    mandatory
+    border="t"
+    :elevation="0"
+    selected-class="noActivatedTransparency"
+  >
     <v-btn v-for="item in pages" :key="item.name" :to="{ name: item.name }" :disabled="item.disabled" replace>
       <v-icon>{{ $route.name === item.name ? item.activeIcon : item.icon }}</v-icon>
       {{ item.title }}

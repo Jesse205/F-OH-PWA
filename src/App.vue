@@ -1,25 +1,29 @@
 <script lang="ts" setup>
 import { Position, usePreferredDark, useTitle } from '@vueuse/core'
 import { useTheme } from 'vuetify'
-import { watch, ref, onMounted, onBeforeUnmount, computed } from 'vue';
+import { watch, ref, onMounted, onBeforeUnmount, computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { usePwa } from '@/events/pwa';
-import { isTauri, openNewWindow, copyText } from '@/util/app';
+import { usePwa } from '@/events/pwa'
+import { isTauri, openNewWindow, copyText } from '@/util/app'
 import { appWindow, getCurrent } from '@tauri-apps/api/window'
-import { useI18n } from 'vue-i18n';
-import { reactive } from 'vue';
-import { nextTick } from 'vue';
-import { useLocaleSetting } from './events/settings';
+import { useI18n } from 'vue-i18n'
+import { reactive } from 'vue'
+import { nextTick } from 'vue'
+import { useLocaleSetting } from './events/settings'
 
 // Theme
 const theme = useTheme()
 const preferredDark = usePreferredDark()
 
-watch(preferredDark, (isDark) => {
-  theme.global.name.value = isDark ? 'dark' : 'light'
-}, {
-  immediate: true
-})
+watch(
+  preferredDark,
+  isDark => {
+    theme.global.name.value = isDark ? 'dark' : 'light'
+  },
+  {
+    immediate: true
+  }
+)
 
 const route = useRoute()
 //路由名称
@@ -44,11 +48,16 @@ const title = useTitle(t('appName'), { observe: true })
 
 if (isTauri()) {
   // 绑定 Tauri 窗口标题
-  watch(title, (newTitle) => {
-    getCurrent().setTitle(newTitle || t('appName'))
-  }, { immediate: true })
+  watch(
+    title,
+    newTitle => {
+      getCurrent().setTitle(newTitle || t('appName'))
+    },
+    { immediate: true }
+  )
 }
 
+// 右键菜单
 interface ContextMenuConfig {
   position: Position
   url: string | null
@@ -57,7 +66,7 @@ interface ContextMenuConfig {
   time: number
 }
 
-const contextMenuConfig = reactive(<ContextMenuConfig>{
+const contextMenuConfig = reactive<ContextMenuConfig>({
   position: {
     x: 0,
     y: 0
@@ -83,7 +92,7 @@ function onContextMenu(event: MouseEvent) {
     })
     contextMenuConfig.url = null
     contextMenuConfig.externalUrl = null
-    for (let element: HTMLElement = event.target as HTMLElement; element.parentElement; element = element.parentElement) {
+    for (let element = event.target as HTMLElement; element.parentElement; element = element.parentElement) {
       if (element instanceof HTMLAnchorElement && !contextMenuConfig.url) {
         if (!element.target || element.target === '_self') {
           contextMenuConfig.url = element.href
@@ -107,16 +116,14 @@ onBeforeUnmount(() => document.body.removeEventListener('contextmenu', onContext
  * @param event
  */
 function onDragStart(event: DragEvent) {
-  if (tauriState)
-    event.preventDefault()
+  if (tauriState) event.preventDefault()
 }
 
 // 语言切换
 const savedLocale = useLocaleSetting()
-watch(savedLocale, (newLocale) => {
+watch(savedLocale, newLocale => {
   locale.value = newLocale
 })
-
 </script>
 
 <template>
@@ -130,18 +137,36 @@ watch(savedLocale, (newLocale) => {
     </transition>
   </div>
   <!-- Tauri 中上下文菜单 -->
-  <div class="contextMenuActiviter"
-    :style="{ left: contextMenuConfig.position.x + 'px', top: contextMenuConfig.position.y + 'px' }">
-  </div>
-  <v-menu class="menu" v-model="contextMenuConfig.state" @contextmenu.stop.prevent @selectstart.prevent
-    activator=".contextMenuActiviter" transition="fade-transition" :key="contextMenuConfig.time">
+  <div
+    class="contextMenuActiviter"
+    :style="{ left: contextMenuConfig.position.x + 'px', top: contextMenuConfig.position.y + 'px' }"
+  ></div>
+  <v-menu
+    class="menu"
+    v-model="contextMenuConfig.state"
+    @contextmenu.stop.prevent
+    @selectstart.prevent
+    activator=".contextMenuActiviter"
+    transition="fade-transition"
+    :key="contextMenuConfig.time"
+  >
     <v-list>
-      <v-list-item v-if="contextMenuConfig.url" :title="$t('openNewWindow.name')"
-        @click="openNewWindow(contextMenuConfig.url)" />
-      <v-list-item v-if="contextMenuConfig.externalUrl" :title="$t('openNewWindow.linkInBrowser')"
-        :href="contextMenuConfig.externalUrl" target="_blank" />
-      <v-list-item v-if="contextMenuConfig.externalUrl" :title="$t('copy.link')"
-        @click="copyText(contextMenuConfig.externalUrl, (state) => { })" />
+      <v-list-item
+        v-if="contextMenuConfig.url"
+        :title="$t('openNewWindow.name')"
+        @click="openNewWindow(contextMenuConfig.url)"
+      />
+      <v-list-item
+        v-if="contextMenuConfig.externalUrl"
+        :title="$t('openNewWindow.linkInBrowser')"
+        :href="contextMenuConfig.externalUrl"
+        target="_blank"
+      />
+      <v-list-item
+        v-if="contextMenuConfig.externalUrl"
+        :title="$t('copy.link')"
+        @click="copyText(contextMenuConfig.externalUrl, state => {})"
+      />
     </v-list>
   </v-menu>
 </template>

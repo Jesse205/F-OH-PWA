@@ -5,7 +5,6 @@ import { HistoryState, createRouter, createWebHashHistory } from 'vue-router'
 const EL_SCROLL = '.v-main .mainScroll'
 
 declare module 'vue-router' {
-
   interface RouteMeta {
     transition?: string
     savedPosition: ScrollToOptions
@@ -17,16 +16,16 @@ declare module 'vue-router' {
     scroll: ScrollToOptions
     //基于单个元素和路径的滚动配置
     scroll2: {
-      [index: string]: ScrollToOptions;
+      [index: string]: ScrollToOptions
     } | null
-    [index: string]: ScrollToOptions;
+    [index: string]: ScrollToOptions
   }
 }
 
 const routes = [
   {
     path: '/',
-    redirect: '/index',
+    redirect: '/index'
   },
   {
     path: '/index',
@@ -35,59 +34,59 @@ const routes = [
       {
         path: 'home',
         name: 'Home',
-        component: () => import('@/views/MainView/MainHomeView.vue'),
+        component: () => import('@/views/MainView/MainHomeView.vue')
       },
       {
         path: 'categories',
         name: 'Categories',
-        component: () => import('@/views/MainView/MainCategoriesView.vue'),
+        component: () => import('@/views/MainView/MainCategoriesView.vue')
       },
       {
         path: 'update',
         name: 'Update',
-        component: () => import('@/views/MainView/MainUpdateView.vue'),
+        component: () => import('@/views/MainView/MainUpdateView.vue')
       },
       {
         path: 'me',
         name: 'Me',
-        component: () => import('@/views/MainView/MainMeView.vue'),
+        component: () => import('@/views/MainView/MainMeView.vue')
       },
       {
         path: ':chapters*',
         redirect: { name: 'Home' }
-      },
+      }
     ]
   },
   {
     path: '/app/:id',
     name: 'App',
-    component: () => import('@/views/AppView/AppView.vue'),
+    component: () => import('@/views/AppView/AppView.vue')
   },
   {
     path: '/upload',
     name: 'Upload',
-    component: () => import('@/views/UploadView/UploadView.vue'),
+    component: () => import('@/views/UploadView/UploadView.vue')
   },
   {
     path: '/settings',
     name: 'Settings',
-    component: () => import('@/views/SettingsView/SettingsView.vue'),
+    component: () => import('@/views/SettingsView/SettingsView.vue')
   },
   {
     path: '/about',
     name: 'About',
-    component: () => import('@/views/AboutView/AboutView.vue'),
+    component: () => import('@/views/AboutView/AboutView.vue')
   },
   {
     path: '/:chapters*',
     redirect: { name: 'Home' }
-  },
+  }
 ]
 
 const history = createWebHashHistory(process.env.BASE_URL)
 const router = createRouter({
   history,
-  routes,
+  routes
 })
 
 router.beforeEach((to, from) => {
@@ -121,7 +120,6 @@ router.afterEach((to, from) => {
     from.meta.transition = name
   }
 
-
   nextTick(() => {
     //有动画，所以要选择第最后一个元素
     const state = window.history.state as HistoryState
@@ -131,7 +129,5 @@ router.afterEach((to, from) => {
     }
   })
 })
-
-
 
 export default router

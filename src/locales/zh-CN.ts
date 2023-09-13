@@ -4,7 +4,7 @@ export default {
     name: '设置'
   },
   about: {
-    name: '关于',
+    name: '关于'
   },
   home: {
     name: '首页'
@@ -25,10 +25,10 @@ export default {
     name: '应用',
     about: '关于应用',
     version: '应用版本',
-    view: '应用浏览',
+    view: '应用浏览'
   },
   tauri: {
-    version: 'Tauri 版本',
+    version: 'Tauri 版本'
   },
   project: {
     showcase: {
@@ -61,11 +61,11 @@ export default {
   developer: {
     name: '开发者',
     eddie: {
-      name: '{\'@\'}Eddie',
+      name: "{'@'}Eddie",
       description: 'PWA 应用开发者'
     },
     westinyang: {
-      name: '{\'@\'}westinyang',
+      name: "{'@'}westinyang",
       description: 'F-OH 创始人'
     }
   },
@@ -79,7 +79,8 @@ export default {
     related: '相关链接',
     foh: {
       title: 'F-OH',
-      description: 'F-OH 是一个 OpenHarmony 平台上 FOSS（Free and Open Source Software，自由开源软件）的应用中心，并提供下载安装支持'
+      description:
+        'F-OH 是一个 OpenHarmony 平台上 FOSS（Free and Open Source Software，自由开源软件）的应用中心，并提供下载安装支持'
     },
     organization: {
       title: 'OHOS Dev',
