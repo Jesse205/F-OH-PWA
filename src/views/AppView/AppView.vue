@@ -81,7 +81,7 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
           type="image"
           :loading="loading"
         >
-          <v-img class="border rounded-lg" :src="appIconUrl || ''" @dragstart.stop />
+          <v-img class="rounded-lg" :src="appIconUrl || ''" @dragstart.stop />
         </v-skeleton-loader>
         <div class="header-right ml-4">
           <!-- 应用名和版本 -->
