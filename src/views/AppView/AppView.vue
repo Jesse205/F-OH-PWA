@@ -136,7 +136,7 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
         </v-skeleton-loader>
       </div>
       <v-skeleton-loader v-if="loading" class="tagsSkeleton" type="chip@2" color="transparent" />
-      <div v-else class="tagsGroup">
+      <div v-else-if="appTags?.length" class="tagsGroup">
         <div class="tagItem" v-for="item in appTags">
           <v-chip variant="text" border>{{ item }}</v-chip>
         </div>
