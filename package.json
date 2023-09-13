@@ -39,6 +39,7 @@
     "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-vue": "^9.17.0",
+    "prettier": "3.0.3",
     "sass": "^1.66.1",
     "typescript": "*",
     "vite": "^4.4.9",
