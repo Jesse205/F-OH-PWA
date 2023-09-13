@@ -146,6 +146,7 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
         <h2 class="itemTitle">{{ $t('developer.name') }}</h2>
         <v-skeleton-loader type="avatar, text" color="transparent" :loading="loading">
           <v-list-item
+            prepend-avatar="@/assets/images/icon.svg"
             rounded="lg"
             lines="two"
             :title="appInfo?.vender"
@@ -154,13 +155,7 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
             :href="`https://cn.bing.com/search?q=${appInfo?.vender}`"
             target="_blank"
             width="100%"
-          >
-            <template v-slot:prepend>
-              <v-avatar class="border" size="40">
-                <v-img src="@/assets/images/icon.svg" />
-              </v-avatar>
-            </template>
-          </v-list-item>
+          />
         </v-skeleton-loader>
       </div>
       <!-- 详情信息 -->
