@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onActivated } from 'vue'
-import { useTitle } from '@/events/title'
+import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useAppsStore } from '@/store/apps'
 import { getServerCompletePath } from '@/util/url'
@@ -18,6 +17,7 @@ const appsStore = useAppsStore()
 
 // 查找当前应用信息
 const appInfo = computed(() => appsStore.data?.find((item) => item.id === +route.params.id))
+const loading = computed(() => appsStore.loading)
 
 const appIconUrl = computed(() => {
   if (appInfo.value) return getServerCompletePath(appInfo.value.icon, URL_API)
@@ -78,19 +78,29 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
       <!-- 顶部介绍 -->
       <div class="header py-2">
         <!-- 图标 -->
-        <v-img class="appIcon border rounded-lg" :src="appIconUrl || ''" @dragstart.stop />
+        <v-skeleton-loader
+          class="appIcon border rounded-lg"
+          :class="{ loading: loading }"
+          type="image"
+          :loading="loading"
+        >
+          <v-img class="border rounded-lg" :src="appIconUrl || ''" @dragstart.stop />
+        </v-skeleton-loader>
         <div class="header-right ml-4">
           <!-- 应用名和版本 -->
-          <div class="appTitle">
-            <!-- 应用名 -->
-            <span class="text-h6" ref="appNameElement" :title="$t('app.name')">{{ appInfo?.name }}</span>
-            <span class="text-subtitle-2" :title="$t('version.name')">
-              v{{ appInfo ? `${appInfo.version}` : $t('unknown.name') }}</span
-            >
-          </div>
-          <div class="text-subtitle-2" :title="$t('packageName.name')">
-            {{ appInfo?.packageName ?? $t('unknown.name') }}
-          </div>
+          <v-skeleton-loader v-if="loading" class="appInfoSkeleton" type="text@2" color="transparent" />
+          <template v-else>
+            <div class="appTitle">
+              <!-- 应用名 -->
+              <h1 class="text-h6" ref="appNameElement" :title="$t('app.name')">{{ appInfo?.name }}</h1>
+              <span class="text-subtitle-2" :title="$t('version.name')">
+                v{{ appInfo ? `${appInfo.version}` : $t('unknown.name') }}
+              </span>
+            </div>
+            <div class="packageName text-subtitle-2" :title="$t('packageName.name')">
+              {{ appInfo?.packageName ?? $t('unknown.name') }}
+            </div>
+          </template>
           <div class="buttonGroup" @dragstart.stop>
             <!-- 下载按钮 -->
             <v-btn
@@ -99,31 +109,45 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
               :disabled="!appDownloadUrl"
               :href="appDownloadUrl || undefined"
               target="_blank"
-              >{{ $t('download.name') }}</v-btn
-            >
+              >{{ $t('download.name') }}
+            </v-btn>
             <!-- 源代码按钮 -->
-            <v-btn prepend-icon="mdi-source-branch" v-if="appInfo?.openSourceAddress" variant="text" :href="appInfo.openSourceAddress" target="_blank">{{
-              $t('source.code')
-            }}</v-btn>
+            <v-btn
+              prepend-icon="mdi-source-branch"
+              v-if="appInfo?.openSourceAddress"
+              variant="text"
+              :href="appInfo.openSourceAddress"
+              target="_blank"
+              >{{ $t('source.code') }}
+            </v-btn>
           </div>
         </div>
       </div>
       <!-- 一句话介绍 -->
-      <div class="py-2">
-        <v-card v-show="appInfo?.desc" class="text-center summaryCard" variant="tonal" :border="false">
-          <v-card-text>{{ appInfo?.desc }}</v-card-text>
-          <v-icon icon="mdi-format-quote-open" />
-        </v-card>
+      <div class="py-2" v-show="appInfo?.desc || loading">
+        <v-skeleton-loader
+          class="summarySkeleton rounded-lg"
+          :class="{ loading: loading }"
+          type="sentences"
+          color="rgba(var(--v-theme-on-surface),0.06)"
+          :loading="loading"
+        >
+          <v-card class="text-center" variant="tonal" :border="false" tag="article">
+            <v-card-text>{{ appInfo?.desc }}</v-card-text>
+            <v-icon icon="mdi-format-quote-open" />
+          </v-card>
+        </v-skeleton-loader>
       </div>
-      <div class="tagsGroup">
-        <div v-for="item in appTags">
+      <v-skeleton-loader v-if="loading" class="tagsSkeleton" type="chip@2" color="transparent" />
+      <div v-else class="tagsGroup">
+        <div class="tagItem" v-for="item in appTags">
           <v-chip variant="text" border>{{ item }}</v-chip>
         </div>
       </div>
       <!-- 开发者信息 -->
-      <div v-show="appInfo?.vender" class="py-2" @dragstart.stop>
-        <div class="title">{{ $t('developer.name') }}</div>
-        <v-skeleton-loader type="list-item-avatar" color="transparent" boilerplate :loading="appsStore.loading">
+      <div v-show="appInfo?.vender || loading" class="py-2" @dragstart.stop>
+        <h2 class="itemTitle">{{ $t('developer.name') }}</h2>
+        <v-skeleton-loader type="avatar, text" color="transparent" :loading="loading">
           <v-list-item
             rounded="lg"
             lines="two"
@@ -144,15 +168,16 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
       </div>
       <!-- 详情信息 -->
       <div class="py-2">
-        <div class="title">{{ $t('details.name') }}</div>
-        <v-skeleton-loader type="text@4" color="transparent" boilerplate :loading="appsStore.loading">
+        <h2 class="itemTitle">{{ $t('details.name') }}</h2>
+        <v-skeleton-loader v-if="loading" class="detailsSkeleton" type="text@4" color="transparent" />
+        <template v-else>
           {{ $t('version.name') }}: {{ appInfo?.version ?? $t('unknown.name') }}<br />
           {{ $t('packageName.name') }}: {{ appInfo?.packageName ?? $t('unknown.name') }}<br />
           {{ $t('developer.name') }}: {{ appInfo?.vender ?? $t('unknown.name') }}<br />
           {{ $t('release.name') }}: {{ appInfo?.releaseTime ?? $t('unknown.name') }}<br />
           <!-- 存在ID为0的情况，因此不能通过 || 直接判断是否获取到ID -->
           {{ $t('id.name') }}: {{ appInfo?.id ?? $t('unknown.name') }}<br />
-        </v-skeleton-loader>
+        </template>
       </div>
     </v-container>
   </app-main>
@@ -185,18 +210,42 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
   display: flex;
   width: 100%;
   align-items: flex-start;
+  .appIcon {
+    width: 96px;
+    height: 96px;
+    overflow: hidden;
+    flex-shrink: 0;
+
+    :deep(.v-skeleton-loader__image) {
+      height: 100%;
+      width: 100%;
+    }
+    // TODO: 当 F-OH 支持自适应图标后移除这项
+    border-radius: 24% !important;
+  }
 
   .header-right {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: max-content;
     flex-wrap: nowrap;
+    overflow: hidden;
+
+    .appInfoSkeleton {
+      margin: -2px -16px;
+      overflow: hidden;
+    }
+    .appTitle {
+      > * {
+        display: inline;
+      }
+    }
 
     .text-subtitle-2 {
       opacity: var(--v-medium-emphasis-opacity);
     }
 
-    > .text-subtitle-2 {
+    .packageName {
       height: 1.75rem;
     }
 
@@ -210,33 +259,39 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
       }
     }
   }
-  .appIcon {
-    width: 96px;
-    height: 96px;
-    // TODO: 当 F-OH 支持自适应图标后移除这项
-    border-radius: 24% !important;
-  }
 }
 
-.title {
+.itemTitle {
   color: rgba(var(--v-theme-on-background));
   font-size: 1.125rem;
   margin-bottom: 8px;
   font-weight: 500;
 }
 
+//标签
+.tagsSkeleton {
+  margin: -4px;
+
+  :deep(.v-skeleton-loader__chip) {
+    margin: 4px;
+    max-width: 56px;
+    height: 30px;
+  }
+}
+
 .tagsGroup {
   display: flex;
   flex-wrap: wrap;
   margin: -4px;
-
-  > * {
+  .tagItem {
     padding: 4px;
   }
 }
 
-.summaryCard {
+.summarySkeleton {
   width: 100%;
+  max-width: 600px;
+  color: inherit !important;
 
   :deep(.v-card__underlay) {
     opacity: 0.06;
@@ -260,5 +315,12 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
   @media (min-width: 600px) {
     width: fit-content;
   }
+  &.loading {
+    width: 100%;
+  }
+}
+
+.detailsSkeleton {
+  margin: -16px;
 }
 </style>
