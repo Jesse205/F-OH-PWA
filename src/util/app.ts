@@ -20,10 +20,17 @@ export function isTauri(): boolean {
  * 是否以 PWA 模式运行
  * @returns `true` 为以 PWA 模式运行
  */
-export function isPwa() {
+export function isPwa(): boolean {
   return ['fullscreen', 'standalone', 'minimal-ui'].some(
-    displayMode => window.matchMedia(`(display-mode: ${displayMode})`).matches
+    (displayMode) => window.matchMedia(`(display-mode: ${displayMode})`).matches
   )
+}
+
+/**
+ * 判断是否以传统 APP 运行
+ */
+export function isLegacyApp(): boolean {
+  return isTauri()
 }
 
 /**

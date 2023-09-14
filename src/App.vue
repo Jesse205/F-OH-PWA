@@ -10,6 +10,7 @@ import { useI18n } from 'vue-i18n'
 import { reactive } from 'vue'
 import { nextTick } from 'vue'
 import { useLocaleSetting } from '@/events/settings'
+import { isLegacyApp } from './util/app';
 
 // Theme
 const theme = useTheme()
@@ -39,6 +40,7 @@ usePwa()
 // Tauri
 const tauriState = isTauri()
 console.log('isTauri', tauriState)
+console.log('isLegacyApp', isLegacyApp())
 
 // I18n
 const { t, locale } = useI18n()

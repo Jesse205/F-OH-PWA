@@ -32,7 +32,7 @@ F-OH PWA 是基于[粼光商店 Demo](https://gitee.com/sparkling-store/webv3dem
 ## 系列项目
 
 - [F-OH](https://gitee.com/ohos-dev/f-oh)：F-OH OpenHarmony 移动端
-- [F-OH Data](http://170.178.208.105:3000/ohos-dev/F-OH-Data)：F-OH 所有应用程序的元数据，开发者在这里PR提交自己的应用
+- [F-OH Data][F-OH-Data]：F-OH 所有应用程序的元数据，开发者在这里PR提交自己的应用
 - [F-OH Server](https://gitee.com/ohos-dev/f-oh-server)：F-OH 服务器，提供接口服务、平台管理等（待开发）
 - [F-OH Website](https://gitee.com/ohos-dev/f-oh-website)：F-OH 网站，包含文档、博客、精选应用等（待开发）
 
@@ -51,7 +51,7 @@ F-OH PWA 是基于[粼光商店 Demo](https://gitee.com/sparkling-store/webv3dem
 
 ### 为开发编译和热加载
 
-1. 克隆 <http://gogs.444404.xyz/ohos-dev/F-OH-Data> 并启动一个 `5500` 端口的服务器。
+1. 克隆 [F-OH Data][F-OH-Data] 并启动一个 `5500` 端口的服务器。
 2. 在该项目打开终端，按照以下规则运行命令。
    - 网页与 PWA 应用：运行 `yarn dev` 。
    - Windows Tauri 软件：运行 `yarn tauri dev` 。
@@ -60,8 +60,13 @@ F-OH PWA 是基于[粼光商店 Demo](https://gitee.com/sparkling-store/webv3dem
 
 1. 设置 `.env.production` 文件。
 2. 在该项目打开终端，按照以下规则运行命令。
-   - 网页与 PWA 应用：运行 `yarn build` 。
-   - Windows Tauri 软件：运行 `yarn tauri build` 。
+   - 网页与 PWA 应用：
+      1. 运行 `yarn build` 。
+      2. 拉取 [F-OH Data][F-OH-Data] 到 `dist/data` 。
+      3. 部署 `dist/*` 到服务器。
+   - Windows Tauri 软件：
+      1. 运行 `yarn tauri build` 。
+      2. 发布 `src-tauri\target\release\F-OH Tauri.exe` 与 `src-tauri\target\release\bundle\nsis\F-OH Tauri_<version>_x64-setup.exe`
 
 ### 约束和修复文件
 
@@ -87,3 +92,5 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ```
+
+[F-OH-Data]: http://170.178.208.105:3000/ohos-dev/F-OH-Data

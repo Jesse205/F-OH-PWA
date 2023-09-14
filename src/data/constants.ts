@@ -1,12 +1,13 @@
-import { getServerCompletePath } from '@/util/url';
+import { getServerCompletePath } from '@/util/url'
+import { isLegacyApp } from '@/util/app'
 
 //Urls
-const { VITE_URL_API, VITE_URL_UPLOAD } = import.meta.env
+const { VITE_URL_API, VITE_URL_API_LEGACY_APP, VITE_URL_UPLOAD } = import.meta.env
 
 /**
  * API 链接
  */
-export const URL_API = getServerCompletePath(VITE_URL_API, location.href)
+export const URL_API = getServerCompletePath(isLegacyApp() ? VITE_URL_API_LEGACY_APP : VITE_URL_API, location.href)
 
 /**
  * 首页配置

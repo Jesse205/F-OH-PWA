@@ -32,7 +32,7 @@ F-OH PWA is a browser-based version of F-OH based on the [Sparkling Store Demo](
 ## Series of projects
 
 - [F-OH](https://gitee.com/ohos-dev/f-oh): F-OH OpenHarmony Mobile
-- [F-OH Data](http://170.178.208.105:3000/ohos-dev/F-OH-Data): metadata for all F-OH apps, where developers PR submit their apps
+- [F-OH Data][F-OH-Data]: metadata for all F-OH apps, where developers PR submit their apps
 - [F-OH Server](https://gitee.com/ohos-dev/f-oh-server): F-OH server, providing interface services, platform management, etc. (to be developed)
 - [F-OH Website](https://gitee.com/ohos-dev/f-oh-website): F-OH website, including documents, blogs, selected applications, etc. (to be developed)
 
@@ -51,7 +51,7 @@ F-OH PWA is a browser-based version of F-OH based on the [Sparkling Store Demo](
 
 ### Compiling and hotloading for development
 
-1. Clone <http://gogs.444404.xyz/ohos-dev/F-OH-Data> and start a server on port `5500`.
+1. Clone [F-OH Data][F-OH-Data] and start a server on port `5500`.
 2. Open a terminal in the project and run commands according to the following rules.
    - Web and PWA applications: run `yarn dev`.
    - Windows Tauri software: run `yarn tauri dev`.
@@ -60,8 +60,13 @@ F-OH PWA is a browser-based version of F-OH based on the [Sparkling Store Demo](
 
 1. Set up the `.env.production` file.
 2. Open a terminal in the project and run commands according to the following rules.
-   - Web and PWA applications: run `yarn build`.
-   - Windows Tauri software: Run `yarn tauri build`.
+   - Web pages and PWA applications:
+      1. Run `yarn build`.
+      2. Pull [F-OH Data][F-OH-Data] into `dist/data`.
+      3. Deploy `dist/*` to the server.
+   - Windows Tauri software:
+      1. Run `yarn tauri build`.
+      2. Release `src-tauri\target\release\F-OH Tauri.exe` and `src-tauri\target\release\bundle\nsis\F-OH Tauri_<version>_x64-setup.exe`.
 
 ## Lint and fixing files
 
@@ -87,3 +92,5 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ```
+
+[F-OH-Data]: http://170.178.208.105:3000/ohos-dev/F-OH-Data
