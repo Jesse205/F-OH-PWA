@@ -2,7 +2,7 @@
 import { AppInfo } from '@/ts/interfaces/app.interfaces'
 import { URL_API } from '@/data/constants'
 import { getServerCompletePath } from '@/util/url'
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 
 const props = defineProps<{
   item: AppInfo
