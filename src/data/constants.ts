@@ -1,4 +1,4 @@
-import { getCompletePath } from '@/util/url'
+import { getCompletePath, getServerCompletePath } from '@/util/url'
 import { isLegacyApp } from '@/util/app'
 
 //Urls
@@ -12,12 +12,12 @@ export const URL_API = getCompletePath(isLegacyApp() ? VITE_URL_API_LEGACY_APP :
 /**
  * 首页配置
  */
-export const URL_HOME = `${URL_API}/homePageData.json`
+export const URL_HOME = getServerCompletePath('/homePageData.json', URL_API)
 
 /**
  * 所有应用
  */
-export const URL_ALL_APP_LIST = `${URL_API}/allAppList.json`
+export const URL_ALL_APP_LIST = getServerCompletePath('/allAppList.json', URL_API)
 
 /**
  * 应用上传
