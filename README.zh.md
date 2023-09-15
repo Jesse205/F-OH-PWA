@@ -85,8 +85,8 @@ yarn lint
 
 赞助可私信联系或扫描下方二维码（微信、支付宝）
 
-> NOTE\
->赞助费用请备注“F-OH”或私信告诉[@westinyang]，方便统计到[赞助列表][SponsorList]中。
+> **NOTE**\
+> 赞助费用请备注“F-OH”或私信告诉[@westinyang]，方便统计到[赞助列表][SponsorList]中。
 
 ![QRCode](https://gitee.com/ohos-dev/f-oh/raw/master/screenshot/wx+zfb.png)
 
