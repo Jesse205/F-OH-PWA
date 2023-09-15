@@ -1,8 +1,10 @@
 # F-OH PWA
 
-![LOGO](./public/icons/android-chrome-192x192.png)
+<img src="./src/assets/images/icon.svg" width=192 height=192 alt="Project logo" title="Project logo"/>
 
 F-OH is an application center for FOSS (Free and Open Source Software) on the OpenHarmony platform with download and installation support.
+
+F-OH PWA + BrowserCE, best practices for distributing open source hongmeng hap apps via web pages, might be a good choice for teams with internal distribution of test hap apps.
 
 F-OH PWA is a browser-based version of F-OH based on the [Sparkling Store Demo](https://gitee.com/sparkling-store/webv3demo).
 
@@ -29,6 +31,14 @@ F-OH PWA is a browser-based version of F-OH based on the [Sparkling Store Demo](
 <img src="./public/screenshots/Snipaste_2023-09-06_21-33-35.webp" width=30% />
 </div>
 
+## Download or launch
+
+- F-OH Tauri: [Gitee Releases](https://gitee.com/ohos-dev/F-OH-PWA/releases/latest)
+- F-OH Lite、F-OH PWA (Web): <http://170.178.208.105:5000/>
+
+> **NOTE**\
+> F-OH PWA is temporarily unavailable because the server does not have SSL and has cross-domain issues ([No security context to meet the minimum requirements to be a PWA][PWASecureContextRequirement]), please use F-OH Tauri or F-OH Lite (Web).
+
 ## Series of projects
 
 - [F-OH](https://gitee.com/ohos-dev/f-oh): F-OH OpenHarmony Mobile
@@ -45,9 +55,6 @@ F-OH PWA is a browser-based version of F-OH based on the [Sparkling Store Demo](
    - macOS: CLang and macOS development dependencies, Rust.
    - Linux: system dependencies, Rust.
 4. Run `yarn install`
-
-> **NOTE**\
-> F-OH PWA is temporarily unavailable because the server does not have SSL and has cross-domain issues, please use F-OH Tauri.
 
 ### Compiling and hotloading for development
 
@@ -74,6 +81,15 @@ F-OH PWA is a browser-based version of F-OH based on the [Sparkling Store Demo](
 yarn lint
 ```
 
+## Support Program
+
+Sponsorship can be contacted by private message or scanning the QR code below (WeChat, Alipay)
+
+> NOTE\
+>Please note "F-OH" or private message to [@westinyang (Gitee)][@westinyang] for sponsorship fee, so that it can be counted in [Sponsor List][SponsorList].
+
+![QRCode](https://gitee.com/ohos-dev/f-oh/raw/master/screenshot/wx+zfb.png)
+
 ## License
 
 ```txt
@@ -94,3 +110,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ```
 
 [F-OH-Data]: http://170.178.208.105:3000/ohos-dev/F-OH-Data
+[PWASecureContextRequirement]: https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Making_PWAs_installable#secure_context
+[SponsorList]: https://gitee.com/ohos-dev/f-oh#%E8%B5%9E%E5%8A%A9%E5%88%97%E8%A1%A8
+[@westinyang]: https://gitee.com/westinyang

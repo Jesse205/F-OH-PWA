@@ -1,10 +1,12 @@
 # F-OH PWA
 
-![LOGO](./public/icons/android-chrome-192x192.png)
+<img src="./src/assets/images/icon.svg" width=192 height=192 alt="项目图标" title="项目图标"/>
 
 F-OH 是一个 OpenHarmony 平台上 FOSS（Free and Open Source Software，自由开源软件）的应用中心，并提供下载安装支持。
 
 F-OH PWA 是基于[粼光商店 Demo](https://gitee.com/sparkling-store/webv3demo) 的一个浏览器版本的 F-OH。
+
+F-OH PWA + BrowserCE，通过网页分发开源鸿蒙 hap 应用的最佳实践，对于有内部分发测试 hap 应用的团队来说，也许是一个不错的选择。
 
 [![许可证](https://img.shields.io/github/license/Jesse205/F-OH-PWA?label=%E8%AE%B8%E5%8F%AF%E8%AF%81)](./LICENSE)
 
@@ -29,6 +31,14 @@ F-OH PWA 是基于[粼光商店 Demo](https://gitee.com/sparkling-store/webv3dem
 <img src="./public/screenshots/Snipaste_2023-09-06_21-33-35.webp" width=30% />
 </div>
 
+## 下载与访问
+
+- F-OH Tauri: [Gitee 发行版](https://gitee.com/ohos-dev/F-OH-PWA/releases/latest)
+- F-OH Lite、F-OH PWA (Web): <http://170.178.208.105:5000/>
+
+> **NOTE**\
+> 因服务器没有 SSL 并且有跨域问题， F-OH PWA 暂时无法使用（[无安全上下文，无法满足成为 PWA 的最低要求][PWASecureContextRequirement]），请使用 F-OH Tauri 或 F-OH Lite (Web)。
+
 ## 系列项目
 
 - [F-OH](https://gitee.com/ohos-dev/f-oh)：F-OH OpenHarmony 移动端
@@ -45,9 +55,6 @@ F-OH PWA 是基于[粼光商店 Demo](https://gitee.com/sparkling-store/webv3dem
    - macOS: CLang 和 macOS 开发依赖项、Rust。
    - Linux: 系统依赖、Rust。
 4. 运行 `yarn install`
-
-> **NOTE**\
-> 因服务器没有 SSL 并且有跨域问题， F-OH PWA 暂时无法使用，请使用 F-OH Tauri。
 
 ### 为开发编译和热加载
 
@@ -74,6 +81,15 @@ F-OH PWA 是基于[粼光商店 Demo](https://gitee.com/sparkling-store/webv3dem
 yarn lint
 ```
 
+## 支持项目
+
+赞助可私信联系或扫描下方二维码（微信、支付宝）
+
+> NOTE\
+>赞助费用请备注“F-OH”或私信告诉[@westinyang]，方便统计到[赞助列表][SponsorList]中。
+
+![QRCode](https://gitee.com/ohos-dev/f-oh/raw/master/screenshot/wx+zfb.png)
+
 ## 许可证
 
 ```txt
@@ -94,3 +110,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ```
 
 [F-OH-Data]: http://170.178.208.105:3000/ohos-dev/F-OH-Data
+[PWASecureContextRequirement]: https://developer.mozilla.org/zh-CN/docs/Web/Progressive_web_apps/Guides/Making_PWAs_installable#%E5%AE%89%E5%85%A8%E4%B8%8A%E4%B8%8B%E6%96%87
+[SponsorList]: https://gitee.com/ohos-dev/f-oh#%E8%B5%9E%E5%8A%A9%E5%88%97%E8%A1%A8
+[@westinyang]: https://gitee.com/westinyang
