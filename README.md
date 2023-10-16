@@ -90,6 +90,8 @@ Sponsorship can be contacted by private message or scanning the QR code below (W
 
 ![QRCode](https://gitee.com/ohos-dev/f-oh/raw/master/screenshot/wx+zfb.png)
 
+<small><small><small><small><small><small>For this project, you can go to the [Hello Tool donation page](https://jesse205.github.io/hellotool/donation.html) to support Jesse205</small></small></small></small></small></small>
+
 ## License
 
 ```txt

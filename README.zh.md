@@ -83,12 +83,14 @@ yarn lint
 
 ## 支持项目
 
-赞助可私信联系或扫描下方二维码（微信、支付宝）
+赞助可私信联系[@westinyang]或扫描下方二维码（微信、支付宝）
 
 > **NOTE**\
 > 赞助费用请备注“F-OH”或私信告诉[@westinyang]，方便统计到[赞助列表][SponsorList]中。
 
 ![QRCode](https://gitee.com/ohos-dev/f-oh/raw/master/screenshot/wx+zfb.png)
+
+<small><small><small><small><small><small>对于本项目，您可以进入[哈兔 Box 捐赠页面](https://jesse205.github.io/hellotool/donation.html)支持杰西 205</small></small></small></small></small></small>
 
 ## 许可证
 
