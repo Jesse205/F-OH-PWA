@@ -97,7 +97,7 @@ router.beforeEach((to, from) => {
     ...history.state,
     scroll2: scrollState2
   } as HistoryState
-  // 当前有一个bug，通过导航按钮切换的页面无法监听,因为current可能不等于from。这可能导致滚动状态无法被保存
+  // 当前有一个bug，通过导航按钮切换的页面无法监听,因为current可能不等于from。这可能导致滚动状态无法被保存。此处使用内存泄漏掩盖部分bug
 
   const scrollData = {
     top: document.querySelector(EL_SCROLL)?.scrollTop ?? 0,
