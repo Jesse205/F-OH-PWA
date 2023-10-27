@@ -89,21 +89,25 @@ const router = createRouter({
   routes
 })
 
+const scrollState2 = history.state.scroll2 ?? {}
+
 router.beforeEach((to, from) => {
   // TODO: 使用更好的方法实现
   const state = {
     ...history.state,
-    scroll2: history.state.scroll2 ?? {}
+    scroll2: scrollState2
   } as HistoryState
-  // 当前有一个bug，通过导航按钮切换的页面无法监听,因为current可能不等于from
-  if (history.state.current === from.fullPath) {
-    state.scroll2![from.fullPath] = {
-      top: document.querySelector(EL_SCROLL)?.scrollTop || 0,
-      left: document.querySelector(EL_SCROLL)?.scrollLeft || 0
-    }
-    console.log('saving state', state)
-  } else {
-    console.warn('history.state.current !== from.fullPath, cannot save state.')
+  // 当前有一个bug，通过导航按钮切换的页面无法监听,因为current可能不等于from。这可能导致滚动状态无法被保存
+
+  const scrollData = {
+    top: document.querySelector(EL_SCROLL)?.scrollTop ?? 0,
+    left: document.querySelector(EL_SCROLL)?.scrollLeft ?? 0
+  }
+  scrollState2[from.fullPath] = scrollData
+  console.log('Saving scrollData:', scrollData)
+  console.log('Saving state', state)
+  if (history.state.current !== from.fullPath) {
+    console.warn('history.state.current !== from.fullPath, state maybe not to be saved.')
   }
   window.history.replaceState(state, document.title)
   return true
