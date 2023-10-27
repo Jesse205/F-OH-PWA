@@ -40,10 +40,10 @@ const URL_SOURCE = 'https://gitee.com/ohos-dev/F-OH-PWA'
 const tauriVersion = ref()
 
 if (isTauri()) {
-  getTauriVersion().then(version => {
+  getTauriVersion().then((version) => {
     tauriVersion.value = version
   })
-  getVersion().then(version => {
+  getVersion().then((version) => {
     appVersion.value = version
   })
 }
@@ -81,8 +81,13 @@ if (isTauri()) {
           :prepend-avatar="item.avatar || `https://q1.qlogo.cn/g?b=qq&nk=${item.qq}&s=100`"
           :title="item.title"
           :subtitle="item.summary"
-        >
-        </v-list-item>
+        />
+        <v-list-item
+          prepend-icon="mdi-gift-outline"
+          :title="$t('donate.name')"
+          :to="{ name: 'Donate' }"
+          append-icon="mdi-chevron-right"
+        />
         <v-divider></v-divider>
         <!-- 交流讨论 -->
         <v-list-subheader>{{ $t('communicate.name') }}</v-list-subheader>

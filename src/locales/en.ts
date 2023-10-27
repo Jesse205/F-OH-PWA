@@ -67,6 +67,9 @@ export default {
     westinyang: {
       name: "{'@'}westinyang",
       description: 'F-OH Founder'
+    },
+    jesse205: {
+      name: "{'@'}Jesse205"
     }
   },
   release: {
@@ -112,5 +115,13 @@ export default {
   },
   game: {
     name: 'Game'
+  },
+  appNames: {
+    wechat: 'WeChat',
+    qq: 'QQ',
+    alipay: 'Alipay'
+  },
+  donate: {
+    name: 'Donate'
   }
 }

@@ -25,6 +25,7 @@
     "src/**/*.interfaces.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
+    "src/**/*.webp",
     "vite.config.ts",
     "manifest.ts"
   ]

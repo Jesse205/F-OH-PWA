@@ -111,5 +111,13 @@ export default {
   },
   game: {
     name: '游戏'
+  },
+  appNames: {
+    wechat: '微信',
+    qq: 'QQ',
+    alipay: '支付宝'
+  },
+  donate: {
+    name: '捐赠'
   }
 }

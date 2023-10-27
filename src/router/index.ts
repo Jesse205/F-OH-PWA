@@ -73,6 +73,11 @@ const routes = [
     component: () => import('@/views/SettingsView/SettingsView.vue')
   },
   {
+    path: '/donate',
+    name: 'Donate',
+    component: () => import('@/views/DonateView/DonateView.vue')
+  },
+  {
     path: '/about',
     name: 'About',
     component: () => import('@/views/AboutView/AboutView.vue')
