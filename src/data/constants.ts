@@ -17,12 +17,12 @@ export const URL_API_GOGS = VITE_URL_API_GOGS
 /**
  * 首页配置
  */
-export const URL_HOME = getServerCompletePath('/homePageData.json', URL_API)
+export const URL_API_HOME = getServerCompletePath('/homePageData.json', URL_API)
 
 /**
  * 所有应用
  */
-export const URL_ALL_APP_LIST = getServerCompletePath('/allAppList.json', URL_API)
+export const URL_API_ALL_APP_LIST = getServerCompletePath('/allAppList.json', URL_API)
 
 
 

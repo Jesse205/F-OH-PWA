@@ -4,7 +4,7 @@ import { useHomeTitle } from '@/events/title'
 import HomeBanner from './components/HomeBanner.vue'
 import { Banners } from '@/ts/interfaces/home.interfaces'
 import { useI18n } from 'vue-i18n'
-import { URL_HOME, URL_API } from '@/data/constants'
+import { URL_API_HOME, URL_API } from '@/data/constants'
 import IMAGE_BANNER1 from '@/assets/images/main_banner_1.png'
 import IMAGE_BANNER2 from '@/assets/images/main_banner_2.png'
 import IMAGE_BANNER3 from '@/assets/images/main_banner_3.png'
@@ -37,7 +37,7 @@ onMounted(() => {
   loaded.value = false
   if (isTauri()) {
     http
-      .fetch(URL_HOME)
+      .fetch(URL_API_HOME)
       .then(response => {
         if (response.ok) {
           homeData.value = response.data as HomeData
@@ -52,7 +52,7 @@ onMounted(() => {
         loaded.value = true
       })
   } else {
-    fetch(URL_HOME)
+    fetch(URL_API_HOME)
       .then(response => response.json())
       .then(data => {
         console.log('fetched home data', data)

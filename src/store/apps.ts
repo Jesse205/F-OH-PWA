@@ -1,5 +1,5 @@
 // Utilities
-import { URL_ALL_APP_LIST } from '@/data/constants'
+import { URL_API_ALL_APP_LIST } from '@/data/constants'
 import { AppInfo } from '@/ts/interfaces/app.interfaces'
 import { isTauri } from '@/util/app'
 import { http } from '@tauri-apps/api'
@@ -21,7 +21,7 @@ export const useAppsStore = defineStore('apps', () => {
 
     if (isTauri()) {
       http
-        .fetch(URL_ALL_APP_LIST)
+        .fetch(URL_API_ALL_APP_LIST)
         .then(response => {
           if (response.ok) {
             data.value = response.data as AppInfo[]
@@ -36,7 +36,7 @@ export const useAppsStore = defineStore('apps', () => {
           loading.value = false
         })
     } else {
-      fetch(URL_ALL_APP_LIST)
+      fetch(URL_API_ALL_APP_LIST)
         .then(response => response.json())
         .then(newData => {
           data.value = newData
