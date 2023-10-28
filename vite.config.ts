@@ -48,7 +48,14 @@ export default defineConfig({
   server: {
     port: 3000,
     // Tauri expects a fixed port, fail if that port is not available
-    strictPort: true
+    strictPort: true,
+    proxy:{
+      '/api/gogs': {
+        target: 'http://170.178.208.105:3000/api',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/gogs/, '')
+      }
+    }
   },
   // to make use of `TAURI_PLATFORM`, `TAURI_ARCH`, `TAURI_FAMILY`,
   // `TAURI_PLATFORM_VERSION`, `TAURI_PLATFORM_TYPE` and `TAURI_DEBUG`

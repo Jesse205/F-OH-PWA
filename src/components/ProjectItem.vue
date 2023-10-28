@@ -6,13 +6,14 @@ import { computed, watch } from 'vue'
 
 const props = defineProps<{
   item: AppInfo
+  to: boolean | string | object
 }>()
 
 const iconCompletePath = computed(() => getServerCompletePath(props.item.icon, URL_API))
 </script>
 
 <template>
-  <v-list-item lines="two" :to="`/app/${item.id}`">
+  <v-list-item lines="two" :to="to === false ? undefined : `/app/${item.id}`">
     <template v-slot:prepend>
       <v-avatar class="icon border" rounded="lg" size="48">
         <v-img :src="iconCompletePath" />

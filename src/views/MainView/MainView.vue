@@ -107,7 +107,7 @@ const onInstallBtnClick = inject('onInstallBtnClick') as () => void
       </template>
       <v-list>
         <!-- TODO: 使用Upload页面 -->
-        <v-list-item :title="$t('upload.app')" :to="{ name: 'Upload' }" />
+        <!-- <v-list-item :title="$t('upload.app')" :to="{ name: 'Upload' }" /> -->
         <v-list-item :title="$t('upload.app')" :href="URL_UPLOAD" target="_blank" />
         <v-list-item v-if="installBtnVisible" :title="$t('install.app')" @click="onInstallBtnClick" />
       </v-list>

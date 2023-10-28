@@ -5,6 +5,11 @@ import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { URL_UPLOAD, URL_API_GOGS } from '@/data/constants'
 import { useLocalStorage } from '@vueuse/core'
+import { AppInfo } from '@/ts/interfaces/app.interfaces'
+import { GOGS_CONTENT_FILE } from '@/ts/interfaces/gogs.interfaces'
+import { Base64 } from 'js-base64'
+import ProjectItem from '@/components/ProjectItem.vue'
+import { toJsonIfOk } from '@/util/respons'
 
 const { t } = useI18n()
 
@@ -15,22 +20,28 @@ const tokenVisible = ref(false)
 const tokenRules = {
   required: (value: string) => !!value || '必须填写此项'
 }
+const apps = ref<AppInfo[] | null>([])
 
-const headers: HeadersInit = {}
-
-watch(token, (newToken) => {
-  // headers.Authorization = `token ${newToken}`
-})
+const loading = ref(false)
+const errMsg = ref<string | null>(null)
 
 function fetchAllApps(event: Event) {
-  event.preventDefault()
-  fetch(`${URL_API_GOGS}/repos/ohos-dev/F-OH-Data/contents/allAppList.json?ref=master&token=${token.value}`, {})
-    .then((res) => res.json())
-    .then((data) => {
+  loading.value = true
+  fetch(`${URL_API_GOGS}/repos/ohos-dev/F-OH-Data/contents/allAppList.json?ref=master&token=${token.value}`)
+    .then(toJsonIfOk)
+    .then((data: GOGS_CONTENT_FILE) => {
       console.log('success', data)
+      if (data.encoding === 'base64') {
+        apps.value = JSON.parse(Base64.decode(data.content))
+      }
+      errMsg.value = null
     })
-    .catch((err) => {
-      console.error('error', err)
+    .catch((reason) => {
+      console.error('error', reason)
+      errMsg.value = reason.toString()
+    })
+    .finally(() => {
+      loading.value = false
     })
 }
 </script>
@@ -49,24 +60,39 @@ function fetchAllApps(event: Event) {
     </v-menu>
   </v-app-bar>
   <app-main>
-    <v-container>
-      <v-text-field
-        v-model="token"
-        label="令牌"
-        variant="outlined"
-        :type="tokenVisible ? 'text' : 'password'"
-        prepend-inner-icon="mdi-key"
-        :append-inner-icon="tokenVisible ? 'mdi-eye-off-outline' : 'mdi-eye-outline'"
-        @click:append-inner="tokenVisible = !tokenVisible"
-        active
-        :rules="[tokenRules.required]"
-      >
-        <template v-slot:append="{ isValid }">
-          <v-btn @click="fetchAllApps" :disabled="!isValid.value">获取列表</v-btn>
-        </template>
-      </v-text-field>
-
-      该功能正在开发，敬请期待。请选择菜单内应用上传进入 F-OH Data 手动上传文件
+    <v-container class="py-0">
+      <form>
+        <v-text-field
+          v-model="token"
+          class="mt-4"
+          label="令牌"
+          variant="outlined"
+          :type="tokenVisible ? 'text' : 'password'"
+          prepend-inner-icon="mdi-key"
+          :append-inner-icon="tokenVisible ? 'mdi-eye-off-outline' : 'mdi-eye-outline'"
+          @click:append-inner="tokenVisible = !tokenVisible"
+          active
+          :rules="[tokenRules.required]"
+          hint="请进入“用户设置 > 授权应用”获取令牌"
+          persistent-hint
+        >
+          <template v-slot:append="{ isValid }">
+            <v-btn @click="fetchAllApps" :disabled="!isValid.value">获取列表</v-btn>
+          </template>
+        </v-text-field>
+        <v-alert class="my-4" v-if="errMsg" title="Load error" :text="errMsg" type="error" variant="tonal" />
+        <v-alert
+          class="my-4"
+          title="该功能正在开发，敬请期待"
+          text="请选择菜单内应用上传进入 F-OH Data 手动上传文件"
+          type="info"
+          variant="tonal"
+        />
+        <v-list v-if="apps?.length" class="my-4" border rounded="lg">
+          <v-list-subheader>所有应用</v-list-subheader>
+          <ProjectItem v-for="item in apps" :key="item.id" :item="item" :to="false" />
+        </v-list>
+      </form>
     </v-container>
   </app-main>
 </template>
