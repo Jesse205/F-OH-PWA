@@ -63,6 +63,10 @@ export default createVuetify({
     },
     VProgressCircular: {
       color: 'primary'
+    },
+    VTextField: {
+      color: 'primary',
+      rounded: false
     }
   },
   components: {
