@@ -1,10 +1,7 @@
 // Utilities
 import { URL_API_ALL_APP_LIST } from '@/data/constants'
 import { AppInfo } from '@/ts/interfaces/app.interfaces'
-import { isTauri } from '@/util/app'
 import { autoFetchJson } from '@/util/fetch'
-import { toJsonIfOk } from '@/util/respons'
-import { http } from '@tauri-apps/api'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 

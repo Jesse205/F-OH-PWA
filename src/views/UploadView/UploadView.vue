@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AppMain from '@/components/AppMain.vue'
 import { useTitle } from '@/events/title'
-import { computed, ref, watch } from 'vue'
+import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { URL_UPLOAD, URL_API_GOGS } from '@/data/constants'
 import { useLocalStorage } from '@vueuse/core'
@@ -9,8 +9,7 @@ import { AppInfo } from '@/ts/interfaces/app.interfaces'
 import { GOGS_CONTENT_FILE } from '@/ts/interfaces/gogs.interfaces'
 import { Base64 } from 'js-base64'
 import ProjectItem from '@/components/ProjectItem.vue'
-import { toJsonIfOk } from '@/util/respons'
-
+import { toJsonIfOk } from '@/util/fetch'
 const { t } = useI18n()
 
 useTitle(computed(() => t('upload.app')))
