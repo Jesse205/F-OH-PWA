@@ -119,5 +119,8 @@ export default {
   },
   donate: {
     name: '捐赠'
+  },
+  manager: {
+    apps: '应用管理'
   }
 }

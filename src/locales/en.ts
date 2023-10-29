@@ -123,5 +123,8 @@ export default {
   },
   donate: {
     name: 'Donate'
+  },
+  manager: {
+    apps: 'Apps manager'
   }
 }

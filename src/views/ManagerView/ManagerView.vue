@@ -48,13 +48,13 @@ function fetchAllApps(event: Event) {
 <template>
   <v-app-bar flat border="b">
     <v-btn icon="mdi-arrow-left" @click.stop="$router.back" />
-    <v-app-bar-title>{{ $t('upload.app') }}</v-app-bar-title>
+    <v-app-bar-title>{{ $t('manager.apps') }}</v-app-bar-title>
     <v-menu origin="top" width="192" location="top" scrim="transparent">
       <template v-slot:activator="{ props: menu }">
         <v-btn icon="mdi-dots-vertical" v-bind="menu" />
       </template>
       <v-list>
-        <v-list-item :title="$t('upload.app')" :href="URL_UPLOAD" target="_blank" />
+        <v-list-item title="F-OH Data" :href="URL_UPLOAD" target="_blank" />
       </v-list>
     </v-menu>
   </v-app-bar>

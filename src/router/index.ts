@@ -63,9 +63,9 @@ const routes = [
     component: () => import('@/views/AppView/AppView.vue')
   },
   {
-    path: '/upload',
-    name: 'Upload',
-    component: () => import('@/views/UploadView/UploadView.vue')
+    path: '/manager',
+    name: 'Manager',
+    component: () => import('@/views/ManagerView/ManagerView.vue')
   },
   {
     path: '/settings',
