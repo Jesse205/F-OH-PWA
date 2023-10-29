@@ -140,7 +140,7 @@ watch(savedLocale, (newLocale) => {
   </div>
   <!-- Tauri 中上下文菜单 -->
   <div
-    class="contextMenuActiviter"
+    class="contextMenuActivator"
     :style="{ left: contextMenuConfig.position.x + 'px', top: contextMenuConfig.position.y + 'px' }"
   ></div>
   <v-menu
@@ -148,7 +148,7 @@ watch(savedLocale, (newLocale) => {
     v-model="contextMenuConfig.state"
     @contextmenu.stop.prevent
     @selectstart.prevent
-    activator=".contextMenuActiviter"
+    activator=".contextMenuActivator"
     transition="fade-transition"
     :key="contextMenuConfig.time"
   >
@@ -190,7 +190,7 @@ watch(savedLocale, (newLocale) => {
   position: absolute;
 }
 
-.contextMenuActiviter {
+.contextMenuActivator {
   position: absolute;
   width: 0;
   height: 0;
