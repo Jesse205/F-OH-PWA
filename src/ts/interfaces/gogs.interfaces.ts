@@ -1,4 +1,4 @@
-export interface GOGS_CONTENT_FILE {
+export interface GogsContentFile {
   type: 'file'
   encoding: 'base64' | string
   size: number
@@ -17,7 +17,7 @@ export interface GOGS_CONTENT_FILE {
   }
 }
 
-export interface GOGS_CONTENT_DIRECTORY {
+export interface GogsContentDirectory {
   type: 'dir'
   size: 0
   name: string
@@ -34,4 +34,13 @@ export interface GOGS_CONTENT_DIRECTORY {
   }
 }
 
-export type GOGS_CONTENT_LIST = (GOGS_CONTENT_FILE | GOGS_CONTENT_DIRECTORY)[]
+export type GogsContentList = (GogsContentFile | GogsContentDirectory)[]
+
+export interface FileChanges {
+  [index: number]: string
+}
+
+export interface EditFileWork {
+  file: string
+  changes: FileChanges
+}

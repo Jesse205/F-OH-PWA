@@ -7,14 +7,14 @@ interface FetchOptions {
   method: HttpVerb
 }
 
-export async function autoFetchJson(url: string, options?: FetchOptions) {
+export async function autoFetchJson<T = any>(url: string, options?: FetchOptions): Promise<T> {
   if (!isTauri()) {
     const reponse = await fetch(url, options)
     return await toJsonIfOk(reponse)
   } else {
     const reponse = await http.fetch(url, options)
     if (!reponse.ok) throw reponse.status
-    return reponse.data
+    return reponse.data as T
   }
 }
 

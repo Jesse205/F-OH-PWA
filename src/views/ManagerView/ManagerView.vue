@@ -5,11 +5,13 @@ import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { URL_UPLOAD, URL_API_GOGS } from '@/data/constants'
 import { AppInfo } from '@/ts/interfaces/app.interfaces'
-import { GOGS_CONTENT_FILE } from '@/ts/interfaces/gogs.interfaces'
+import { EditFileWork, GogsContentFile } from '@/ts/interfaces/gogs.interfaces'
 import { Base64 } from 'js-base64'
 import ProjectItem from '@/components/ProjectItem.vue'
 import { toJsonIfOk } from '@/util/fetch'
-import { useToken } from '@/events/settings';
+import { useToken } from '@/events/settings'
+import * as gogs from '@/util/gogs'
+
 const { t } = useI18n()
 
 useTitle(computed(() => t('manager.apps')))
@@ -30,16 +32,19 @@ watch(appsRaw, (newAppsRaw) => {
   apps.value = newAppsRaw !== null ? JSON.parse(Base64.decode(newAppsRaw)) : null
 })
 
+const workList: EditFileWork[] = []
+
 const loaded = computed(() => apps.value !== null)
 
 const loading = ref(false)
 const errMsg = ref<string | null>(null)
 
 function fetchAllApps() {
+  if (token.value === null) return
   loading.value = true
-  fetch(`${URL_API_GOGS}/repos/ohos-dev/F-OH-Data/contents/allAppList.json?ref=master&token=${token.value}`)
-    .then(toJsonIfOk)
-    .then((data: GOGS_CONTENT_FILE) => {
+  gogs
+    .getFileContent('ohos-dev', 'F-OH-Data', 'allAppList.json', { token: token.value })
+    .then((data) => {
       console.log('success', data)
       if (data.encoding === 'base64') {
         appsRaw.value = data.content
@@ -71,6 +76,10 @@ function handelAddApp(event: Event) {
     pushSnackBar('请先获取应用列表')
     return
   }
+}
+
+function handelPush(event: Event) {
+  event.preventDefault()
 }
 </script>
 
@@ -105,7 +114,7 @@ function handelAddApp(event: Event) {
           persistent-hint
         >
           <template v-slot:append="{ isValid }">
-            <v-btn @click="fetchAllApps" :disabled="!isValid.value">获取列表</v-btn>
+            <v-btn @click="handelFetchApps" :disabled="!isValid.value">获取列表</v-btn>
           </template>
         </v-text-field>
         <v-alert class="my-4" v-if="errMsg" title="Load error" :text="errMsg" type="error" variant="tonal" />
@@ -124,13 +133,19 @@ function handelAddApp(event: Event) {
     </v-container>
   </app-main>
   <v-snackbar v-model="snackbarVisible" :key="snackbar ?? undefined">{{ snackbar }}</v-snackbar>
-  <v-btn icon="mdi-plus" class="floating-btn" @click="handelAddApp" />
+  <div class="floating-btns">
+    <v-btn class="btn" icon="mdi-check" @click="handelPush" />
+    <v-btn class="btn" icon="mdi-plus" @click="handelAddApp" />
+  </div>
 </template>
 
-<style scoped>
-.floating-btn {
+<style scoped lang="scss">
+.floating-btns {
   position: fixed;
   bottom: 16px;
   right: 16px;
+  .btn:not(:last-child) {
+    margin-right: 16px;
+  }
 }
 </style>
