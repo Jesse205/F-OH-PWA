@@ -11,6 +11,7 @@ import IMAGE_BANNER3 from '@/assets/images/main_banner_3.png'
 import { HomeData } from '@/ts/interfaces/home.interfaces'
 import { isTauri } from '@/util/app'
 import { http } from '@tauri-apps/api'
+import { autoFetchJson } from '@/util/fetch'
 
 const { t } = useI18n()
 
@@ -35,37 +36,19 @@ const homeData = ref<HomeData | null>(null)
 
 onMounted(() => {
   loaded.value = false
-  if (isTauri()) {
-    http
-      .fetch(URL_API_HOME)
-      .then(response => {
-        if (response.ok) {
-          homeData.value = response.data as HomeData
-          console.log('fetched home data', response.data)
-        }
-      })
-      .catch(reason => {
-        console.error("Can't load data:", reason)
-        errMsg.value = reason.toString()
-      })
-      .finally(() => {
-        loaded.value = true
-      })
-  } else {
-    fetch(URL_API_HOME)
-      .then(response => response.json())
-      .then(data => {
-        console.log('fetched home data', data)
-        homeData.value = data
-      })
-      .catch(reason => {
-        console.error("Can't load data:", reason)
-        errMsg.value = reason.toString()
-      })
-      .finally(() => {
-        loaded.value = true
-      })
-  }
+
+  autoFetchJson(URL_API_HOME)
+    .then((data) => {
+      homeData.value = data as HomeData
+      console.log('fetched home data', data)
+    })
+    .catch((reason) => {
+      console.error("Can't load data:", reason)
+      errMsg.value = reason.toString()
+    })
+    .finally(() => {
+      loaded.value = true
+    })
 })
 </script>
 
