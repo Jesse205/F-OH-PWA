@@ -7,47 +7,12 @@ import AppMain from '@/components/AppMain.vue'
 import { useRoute } from 'vue-router'
 import { useHomeTitle } from '@/events/title'
 import { URL_UPLOAD } from '@/data/constants'
+import { useHomeNavigation } from '@/events/navigation'
 
 const { t } = useI18n()
 const homeStore = useHomeStore()
 
-interface Page {
-  title: MaybeRef
-  icon: string
-  activeIcon: string
-  name: string
-  disabled?: boolean
-}
-
-const pages = computed<Page[]>(() => {
-  return [
-    {
-      title: t('home.name'),
-      icon: 'mdi-home-variant-outline',
-      activeIcon: 'mdi-home-variant',
-      name: 'Home'
-    },
-    {
-      title: t('category.name', 2),
-      icon: 'mdi-apps',
-      activeIcon: 'mdi-apps',
-      name: 'Categories'
-    },
-    {
-      title: t('update.name'),
-      icon: 'mdi-update',
-      activeIcon: 'mdi-update',
-      name: 'Update',
-      disabled: true
-    },
-    {
-      title: t('me.name'),
-      icon: 'mdi-account-outline',
-      activeIcon: 'mdi-account',
-      name: 'Me'
-    }
-  ]
-})
+const { pages } = useHomeNavigation()
 
 const route = useRoute()
 const homeTitle = ref('')

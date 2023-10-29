@@ -10,7 +10,7 @@ import { useI18n } from 'vue-i18n'
 import { reactive } from 'vue'
 import { nextTick } from 'vue'
 import { useLocaleSetting } from '@/events/settings'
-import { isLegacyApp } from './util/app';
+import { isLegacyApp } from '@/util/app'
 
 // Theme
 const theme = useTheme()

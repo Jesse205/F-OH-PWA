@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { Ref, onMounted, ref, computed } from 'vue'
-import { useHomeTitle } from '@/events/title'
+import { Ref, onMounted, ref } from 'vue'
 import HomeBanner from './components/HomeBanner.vue'
 import { Banners } from '@/ts/interfaces/home.interfaces'
 import { useI18n } from 'vue-i18n'
@@ -9,8 +8,6 @@ import IMAGE_BANNER1 from '@/assets/images/main_banner_1.png'
 import IMAGE_BANNER2 from '@/assets/images/main_banner_2.png'
 import IMAGE_BANNER3 from '@/assets/images/main_banner_3.png'
 import { HomeData } from '@/ts/interfaces/home.interfaces'
-import { isTauri } from '@/util/app'
-import { http } from '@tauri-apps/api'
 import { autoFetchJson } from '@/util/fetch'
 
 const { t } = useI18n()
