@@ -122,5 +122,17 @@ export default {
   },
   manager: {
     apps: '应用管理'
+  },
+  close: {
+    name: '关闭'
+  },
+  ok: {
+    name: '确定'
+  },
+  no: {
+    name: '取消'
+  },
+  token: {
+    name: '令牌'
   }
 }

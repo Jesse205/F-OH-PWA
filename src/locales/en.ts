@@ -126,5 +126,17 @@ export default {
   },
   manager: {
     apps: 'Apps manager'
+  },
+  close: {
+    name: 'Close'
+  },
+  ok: {
+    name: 'OK'
+  },
+  no: {
+    name: 'No'
+  },
+  token: {
+    name: 'Token'
   }
 }

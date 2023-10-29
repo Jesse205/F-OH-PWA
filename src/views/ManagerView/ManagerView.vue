@@ -1,37 +1,48 @@
 <script setup lang="ts">
 import AppMain from '@/components/AppMain.vue'
 import { useTitle } from '@/events/title'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { URL_UPLOAD, URL_API_GOGS } from '@/data/constants'
-import { useLocalStorage } from '@vueuse/core'
 import { AppInfo } from '@/ts/interfaces/app.interfaces'
 import { GOGS_CONTENT_FILE } from '@/ts/interfaces/gogs.interfaces'
 import { Base64 } from 'js-base64'
 import ProjectItem from '@/components/ProjectItem.vue'
 import { toJsonIfOk } from '@/util/fetch'
+import { useToken } from '@/events/settings';
 const { t } = useI18n()
 
-useTitle(computed(() => t('upload.app')))
+useTitle(computed(() => t('manager.apps')))
 
-const token = useLocalStorage('token', null)
+const snackbarVisible = ref(false)
+const snackbar = ref<string | null>(null)
+
+const token = useToken()
 const tokenVisible = ref(false)
 const tokenRules = {
   required: (value: string) => !!value || '必须填写此项'
 }
-const apps = ref<AppInfo[] | null>([])
+
+const appsRaw = ref<string | null>(null)
+const apps = ref<AppInfo[] | null>(null)
+
+watch(appsRaw, (newAppsRaw) => {
+  apps.value = newAppsRaw !== null ? JSON.parse(Base64.decode(newAppsRaw)) : null
+})
+
+const loaded = computed(() => apps.value !== null)
 
 const loading = ref(false)
 const errMsg = ref<string | null>(null)
 
-function fetchAllApps(event: Event) {
+function fetchAllApps() {
   loading.value = true
   fetch(`${URL_API_GOGS}/repos/ohos-dev/F-OH-Data/contents/allAppList.json?ref=master&token=${token.value}`)
     .then(toJsonIfOk)
     .then((data: GOGS_CONTENT_FILE) => {
       console.log('success', data)
       if (data.encoding === 'base64') {
-        apps.value = JSON.parse(Base64.decode(data.content))
+        appsRaw.value = data.content
       }
       errMsg.value = null
     })
@@ -42,6 +53,24 @@ function fetchAllApps(event: Event) {
     .finally(() => {
       loading.value = false
     })
+}
+
+function pushSnackBar(text: string) {
+  snackbarVisible.value = true
+  snackbar.value = text
+}
+
+function handelFetchApps(event: Event) {
+  event.preventDefault()
+  fetchAllApps()
+}
+
+function handelAddApp(event: Event) {
+  event.preventDefault()
+  if (!loaded.value) {
+    pushSnackBar('请先获取应用列表')
+    return
+  }
 }
 </script>
 
@@ -64,10 +93,10 @@ function fetchAllApps(event: Event) {
         <v-text-field
           v-model="token"
           class="mt-4"
-          label="令牌"
+          :label="$t('token.name')"
           variant="outlined"
           :type="tokenVisible ? 'text' : 'password'"
-          prepend-inner-icon="mdi-key"
+          prepend-inner-icon="mdi-key-outline"
           :append-inner-icon="tokenVisible ? 'mdi-eye-off-outline' : 'mdi-eye-outline'"
           @click:append-inner="tokenVisible = !tokenVisible"
           active
@@ -94,6 +123,14 @@ function fetchAllApps(event: Event) {
       </form>
     </v-container>
   </app-main>
+  <v-snackbar v-model="snackbarVisible" :key="snackbar ?? undefined">{{ snackbar }}</v-snackbar>
+  <v-btn icon="mdi-plus" class="floating-btn" @click="handelAddApp" />
 </template>
 
-<style scoped></style>
+<style scoped>
+.floating-btn {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+}
+</style>

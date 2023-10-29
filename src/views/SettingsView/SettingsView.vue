@@ -2,11 +2,13 @@
 import AppMain from '@/components/AppMain.vue'
 
 import { useTitle } from '@/events/title'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { isTauri } from '@/util/app'
 import { getVersion } from '@tauri-apps/api/app'
 import { useLocaleSetting } from '@/events/settings'
+import { useToken } from '../../events/settings'
+import DialogListItem from '@/components/DialogListItem.vue'
 
 const { t, locale } = useI18n()
 
@@ -14,7 +16,7 @@ useTitle(computed(() => t('settings.name')))
 
 const appVersion = ref(__VERSION__)
 if (isTauri()) {
-  getVersion().then(version => {
+  getVersion().then((version) => {
     appVersion.value = version
   })
 }
@@ -22,10 +24,12 @@ if (isTauri()) {
 const savedLocale = useLocaleSetting()
 const selectedLocales = computed({
   get: () => [locale.value],
-  set: newLocales => {
+  set: (newLocales) => {
     savedLocale.value = newLocales[0]
   }
 })
+
+const token = useToken()
 </script>
 
 <template>
@@ -55,6 +59,15 @@ const selectedLocales = computed({
             </v-list>
           </v-menu>
         </v-list-item>
+
+        <dialog-list-item
+          v-model="token"
+          prepend-icon="mdi-key-outline"
+          class="noActivatedOverlay"
+          :title="$t('token.name')"
+          hint="请进入“用户设置 > 授权应用”获取令牌"
+        />
+
         <!-- 关于 -->
         <v-list-item
           prepend-icon="mdi-information-outline"

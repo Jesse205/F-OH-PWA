@@ -23,6 +23,13 @@ const { t } = useI18n()
     <!-- 用户面板 -->
     <v-list class="my-4 prependIconPrimaryItem" border rounded="lg">
       <v-list-item title="我的关注" link prepend-icon="mdi-apps" append-icon="mdi-chevron-right" disabled />
+      <v-list-item
+        :title="$t('manager.apps')"
+        link
+        prepend-icon="mdi-apps"
+        append-icon="mdi-chevron-right"
+        :to="{ name: 'Manager' }"
+      />
     </v-list>
 
     <!-- 软件面板 -->
