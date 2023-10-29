@@ -29,6 +29,7 @@ const { t } = useI18n()
         prepend-icon="mdi-apps"
         append-icon="mdi-chevron-right"
         :to="{ name: 'Manager' }"
+        disabled
       />
     </v-list>
 

@@ -25,8 +25,13 @@ const tokenRules = {
   required: (value: string) => !!value || '必须填写此项'
 }
 
+const appsOriginRaw = ref<string | null>(null)
 const appsRaw = ref<string | null>(null)
 const apps = ref<AppInfo[] | null>(null)
+
+watch(appsOriginRaw, (newAppsRaw) => {
+  appsRaw.value = newAppsRaw
+})
 
 watch(appsRaw, (newAppsRaw) => {
   apps.value = newAppsRaw !== null ? JSON.parse(Base64.decode(newAppsRaw)) : null
@@ -47,7 +52,7 @@ function fetchAllApps() {
     .then((data) => {
       console.log('success', data)
       if (data.encoding === 'base64') {
-        appsRaw.value = data.content
+        appsOriginRaw.value = data.content
       }
       errMsg.value = null
     })
@@ -97,7 +102,7 @@ function handelPush(event: Event) {
     </v-menu>
   </v-app-bar>
   <app-main>
-    <v-container class="py-0">
+    <v-container class="pt-0 pb-16">
       <form>
         <v-text-field
           v-model="token"
@@ -134,8 +139,8 @@ function handelPush(event: Event) {
   </app-main>
   <v-snackbar v-model="snackbarVisible" :key="snackbar ?? undefined">{{ snackbar }}</v-snackbar>
   <div class="floating-btns">
-    <v-btn class="btn" icon="mdi-check" @click="handelPush" />
-    <v-btn class="btn" icon="mdi-plus" @click="handelAddApp" />
+    <v-btn v-show="loaded && workList.length > 0" class="btn" icon="mdi-check" @click="handelPush" />
+    <v-btn v-show="loaded" class="btn" icon="mdi-plus" @click="handelAddApp" />
   </div>
 </template>
 
