@@ -47,7 +47,7 @@ const appTypes = computed<AppTypes[]>(() => [
 // 将数据插入不同的分类列表中
 watch(
   computed(() => appsStore.data),
-  newData => {
+  (newData) => {
     if (newData) {
       apps.length = 0
       for (const item of newData) {
@@ -73,7 +73,7 @@ watch(
 </script>
 
 <template>
-  <v-container class="py-0">
+  <v-container class="container py-0">
     <!-- Alerts -->
     <v-alert class="my-4" v-if="errMsg" title="Load error" :text="errMsg" type="error" variant="tonal" />
     <!-- MainLayout -->
@@ -81,7 +81,15 @@ watch(
       <template v-for="appType in appTypes">
         <v-list v-if="appType.apps && appType.apps.length" class="my-4" border rounded="lg">
           <v-list-subheader>{{ appType.title }}</v-list-subheader>
-          <ProjectItem v-for="item in appType.apps" :key="item.id" :item="item" :to="`/app/${item.id}`" />
+          <div class="project-items">
+            <ProjectItem
+              v-for="item in appType.apps"
+              :key="item.id"
+              class="project-item"
+              :item="item"
+              :to="`/app/${item.id}`"
+            />
+          </div>
         </v-list>
       </template>
     </template>
@@ -92,4 +100,19 @@ watch(
   </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.project-items {
+  display: flex;
+  flex-wrap: wrap;
+  .project-item {
+    width: 100%;
+    @media (min-width: 1280px) {
+      width: 50%;
+    }
+    /*@media (min-width: 1600px) {
+      width: 33%;
+    }*/
+  }
+}
+
+</style>
