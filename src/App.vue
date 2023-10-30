@@ -139,19 +139,21 @@ watch(savedLocale, (newLocale) => {
     </transition>
   </div>
   <!-- Tauri 中上下文菜单 -->
-  <div
-    class="contextMenuActivator"
-    :style="{ left: contextMenuConfig.position.x + 'px', top: contextMenuConfig.position.y + 'px' }"
-  ></div>
   <v-menu
     class="menu"
     v-model="contextMenuConfig.state"
     @contextmenu.stop.prevent
     @selectstart.prevent
-    activator=".contextMenuActivator"
     transition="fade-transition"
     :key="contextMenuConfig.time"
   >
+    <template v-slot:activator="{ props }">
+      <div
+        v-bind="props"
+        class="contextMenuActivator"
+        :style="{ left: contextMenuConfig.position.x + 'px', top: contextMenuConfig.position.y + 'px' }"
+      ></div>
+    </template>
     <v-list>
       <v-list-item
         v-if="contextMenuConfig.url"
