@@ -131,7 +131,9 @@ function onDragStart(event: DragEvent) {
 const { pages } = useHomeNavigation()
 const { xs, smAndDown } = useDisplay()
 
-const activePagePosition = computed(() => pages.value.findIndex((page) => page.name === route.name))
+const activePagePosition = computed(() =>
+  route.name ? pages.value.findIndex((page) => page.name === route.name) : null
+)
 </script>
 
 <template>
@@ -160,7 +162,7 @@ const activePagePosition = computed(() => pages.value.findIndex((page) => page.n
           rounded
         />
       </v-list>
-      <template v-if="activePagePosition === -1">
+      <template v-if="activePagePosition === -1 && activePagePosition !== null">
         <v-divider />
         <v-list density="compact" nav color="primary">
           <v-list-item prepend-icon="mdi-circle-outline" :title="clearTitle" rounded active />

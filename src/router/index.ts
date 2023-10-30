@@ -25,7 +25,7 @@ declare module 'vue-router' {
 const routes = <Readonly<RouteRecordRaw[]>>[
   {
     path: '/',
-    redirect: '/index'
+    redirect: { name: 'Home' }
   },
   {
     path: '/index',
