@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Position, usePreferredDark, useTitle } from '@vueuse/core'
 import { useDisplay, useTheme } from 'vuetify'
-import { watch, ref, onMounted, onBeforeUnmount } from 'vue'
+import { watch, ref, onMounted, onBeforeUnmount, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { usePwa } from '@/events/pwa'
 import { isTauri, openNewWindow, copyText } from '@/util/app'
@@ -58,11 +58,16 @@ if (isTauri()) {
   watch(
     title,
     (newTitle) => {
-      getCurrent().setTitle(newTitle || t('appName'))
+      getCurrent().setTitle(newTitle ?? t('appName'))
     },
     { immediate: true }
   )
 }
+
+const clearTitle = computed(() => {
+  console.log(title.value?.match(/(.+) -[^-]$/));
+  return title.value?.match(/(.+) -/)?.[1]
+})
 
 // 右键菜单
 interface ContextMenuConfig {
@@ -126,9 +131,10 @@ function onDragStart(event: DragEvent) {
   if (tauriState) event.preventDefault()
 }
 
-
 const { pages } = useHomeNavigation()
 const { xs, smAndDown } = useDisplay()
+
+const activePagePosition = computed(() => pages.value.findIndex((page) => page.name === route.name))
 </script>
 
 <template>
@@ -141,15 +147,21 @@ const { xs, smAndDown } = useDisplay()
       <v-divider />
       <v-list density="compact" nav color="primary">
         <v-list-item
-          v-for="item in pages"
+          v-for="(item, index) in pages"
           :key="item.name"
           :to="{ name: item.name }"
-          :prepend-icon="$route.name === item.name ? item.activeIcon : item.icon"
+          :prepend-icon="activePagePosition === index ? item.activeIcon : item.icon"
           :title="item.title"
           :disabled="item.disabled"
           rounded
         />
       </v-list>
+      <template v-if="activePagePosition === -1">
+        <v-divider />
+        <v-list density="compact" nav color="primary">
+          <v-list-item prepend-icon="" :title="clearTitle" rounded active />
+        </v-list>
+      </template>
     </v-navigation-drawer>
     <v-main>
       <div class="main">

@@ -1,6 +1,6 @@
 // Composables
 import { nextTick } from 'vue'
-import { HistoryState, createRouter, createWebHashHistory } from 'vue-router'
+import { HistoryState, RouteRecordRaw, createRouter, createWebHashHistory } from 'vue-router'
 
 const EL_SCROLL = '.v-main .mainScroll'
 
@@ -22,7 +22,7 @@ declare module 'vue-router' {
   }
 }
 
-const routes = [
+const routes = <Readonly<RouteRecordRaw[]>>[
   {
     path: '/',
     redirect: '/index'
