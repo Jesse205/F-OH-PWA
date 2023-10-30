@@ -1,4 +1,4 @@
-import { WebviewWindow, WindowOptions } from '@tauri-apps/api/window'
+import { WebviewWindow, WindowOptions, getCurrent } from '@tauri-apps/api/window'
 import { writeText } from '@tauri-apps/api/clipboard'
 
 const WEBVIEW_OPTIONS_DEFAULT: WindowOptions = {
@@ -59,3 +59,10 @@ export function copyText(text: string, callback: (state: CopyTextState) => void)
     callback('not_support')
   }
 }
+
+/*export function closeWindow() {
+  if (isTauri()) {
+    getCurrent().close()
+  } else window.close()
+}
+*/

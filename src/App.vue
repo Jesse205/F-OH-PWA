@@ -53,7 +53,7 @@ watch(savedLocale, (newLocale) => {
 // 标题
 const title = useTitle(t('appName'), { observe: true })
 
-if (isTauri()) {
+if (tauriState) {
   // 绑定 Tauri 窗口标题
   watch(
     title,
@@ -136,6 +136,13 @@ const activePagePosition = computed(() => pages.value.findIndex((page) => page.n
 
 <template>
   <v-app class="root" @dragstart="onDragStart">
+    <!--<v-system-bar v-if="tauriState" window color="background">
+      <span>{{ title }}</span>
+      <v-spacer />
+      <v-btn icon="mdi-window-minimize" variant="text" color="" />
+      <v-btn icon="mdi-window-maximize" variant="text" color="" />
+      <v-btn icon="mdi-window-close" variant="text" color="" @click="closeWindow" />
+    </v-system-bar>-->
     <!-- 侧滑栏 -->
     <v-navigation-drawer v-if="!xs" permanent :rail="smAndDown">
       <v-list>
