@@ -156,7 +156,7 @@ const activePagePosition = computed(() => pages.value.findIndex((page) => page.n
       <template v-if="activePagePosition === -1">
         <v-divider />
         <v-list density="compact" nav color="primary">
-          <v-list-item prepend-icon="" :title="clearTitle" rounded active />
+          <v-list-item prepend-icon="mdi-circle-outline" :title="clearTitle" rounded active />
         </v-list>
       </template>
     </v-navigation-drawer>
