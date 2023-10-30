@@ -115,7 +115,8 @@ export default {
   appNames: {
     wechat: '微信',
     qq: 'QQ',
-    alipay: '支付宝'
+    alipay: '支付宝',
+    alipay_kickback: '支付宝红包'
   },
   donate: {
     name: '捐赠'

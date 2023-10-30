@@ -19,7 +19,7 @@ const adTabValue = ref<'add' | 'develop'>('add')
   <app-main>
     <v-container class="container">
       <v-card class="card" :class="{ loading: persion.error }" v-for="persion in data">
-        <v-tabs v-model="persion.selected">
+        <v-tabs v-model="persion.selected" class="border-b">
           <v-tab v-for="(platform, index) in persion.platforms" :value="index" :color="platform.color">{{
             platform.name
           }}</v-tab>
@@ -30,7 +30,7 @@ const adTabValue = ref<'add' | 'develop'>('add')
             {{ persion.errorMsg }}
           </div>
         </v-img>
-        <v-card-item>
+        <v-card-item class="border-t">
           <div>
             <div class="text-h6 mb-1">{{ persion.name }}</div>
             <div class="text-caption">{{ persion.summary }}</div>
