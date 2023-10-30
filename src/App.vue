@@ -45,6 +45,10 @@ console.log('isLegacyApp', isLegacyApp())
 
 // I18n
 const { t, locale } = useI18n()
+const savedLocale = useLocaleSetting()
+watch(savedLocale, (newLocale) => {
+  locale.value = newLocale
+})
 
 // 标题
 const title = useTitle(t('appName'), { observe: true })
@@ -122,11 +126,6 @@ function onDragStart(event: DragEvent) {
   if (tauriState) event.preventDefault()
 }
 
-// 语言切换
-const savedLocale = useLocaleSetting()
-watch(savedLocale, (newLocale) => {
-  locale.value = newLocale
-})
 
 const { pages } = useHomeNavigation()
 const { xs, smAndDown } = useDisplay()
@@ -156,9 +155,9 @@ const { xs, smAndDown } = useDisplay()
       <div class="main">
         <router-view v-slot="{ Component }">
           <transition :name="route.meta.transition">
-          <v-layout class="layout" :key="routeName">
-            <component :is="Component" />
-          </v-layout>
+            <v-layout class="layout" :key="routeName">
+              <component :is="Component" />
+            </v-layout>
           </transition>
         </router-view>
       </div>
