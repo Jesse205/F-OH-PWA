@@ -64,10 +64,7 @@ if (isTauri()) {
   )
 }
 
-const clearTitle = computed(() => {
-  console.log(title.value?.match(/(.+) -[^-]$/));
-  return title.value?.match(/(.+) -/)?.[1]
-})
+const clearTitle = computed(() => title.value?.match(/(.+) -/)?.[1])
 
 // 右键菜单
 interface ContextMenuConfig {
@@ -174,43 +171,42 @@ const activePagePosition = computed(() => pages.value.findIndex((page) => page.n
         </router-view>
       </div>
     </v-main>
+    <!-- Tauri 中上下文菜单 -->
+    <v-menu
+      class="menu"
+      v-model="contextMenuConfig.state"
+      @contextmenu.stop.prevent
+      @selectstart.prevent
+      transition="fade-transition"
+      :key="contextMenuConfig.time"
+    >
+      <template v-slot:activator="{ props }">
+        <div
+          v-bind="props"
+          class="contextMenuActivator"
+          :style="{ left: contextMenuConfig.position.x + 'px', top: contextMenuConfig.position.y + 'px' }"
+        ></div>
+      </template>
+      <v-list>
+        <v-list-item
+          v-if="contextMenuConfig.url"
+          :title="$t('openNewWindow.name')"
+          @click="openNewWindow(contextMenuConfig.url)"
+        />
+        <v-list-item
+          v-if="contextMenuConfig.externalUrl"
+          :title="$t('openNewWindow.linkInBrowser')"
+          :href="contextMenuConfig.externalUrl"
+          target="_blank"
+        />
+        <v-list-item
+          v-if="contextMenuConfig.externalUrl"
+          :title="$t('copy.link')"
+          @click="copyText(contextMenuConfig.externalUrl, (state) => {})"
+        />
+      </v-list>
+    </v-menu>
   </v-app>
-
-  <!-- Tauri 中上下文菜单 -->
-  <v-menu
-    class="menu"
-    v-model="contextMenuConfig.state"
-    @contextmenu.stop.prevent
-    @selectstart.prevent
-    transition="fade-transition"
-    :key="contextMenuConfig.time"
-  >
-    <template v-slot:activator="{ props }">
-      <div
-        v-bind="props"
-        class="contextMenuActivator"
-        :style="{ left: contextMenuConfig.position.x + 'px', top: contextMenuConfig.position.y + 'px' }"
-      ></div>
-    </template>
-    <v-list>
-      <v-list-item
-        v-if="contextMenuConfig.url"
-        :title="$t('openNewWindow.name')"
-        @click="openNewWindow(contextMenuConfig.url)"
-      />
-      <v-list-item
-        v-if="contextMenuConfig.externalUrl"
-        :title="$t('openNewWindow.linkInBrowser')"
-        :href="contextMenuConfig.externalUrl"
-        target="_blank"
-      />
-      <v-list-item
-        v-if="contextMenuConfig.externalUrl"
-        :title="$t('copy.link')"
-        @click="copyText(contextMenuConfig.externalUrl, (state) => {})"
-      />
-    </v-list>
-  </v-menu>
 </template>
 
 <style lang="scss" scoped>
