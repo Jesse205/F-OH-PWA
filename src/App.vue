@@ -129,15 +129,16 @@ watch(savedLocale, (newLocale) => {
 </script>
 
 <template>
-  <div class="root" @dragstart="onDragStart">
-    <transition :name="route.meta.transition">
-      <v-app class="layout" :key="routeName">
-        <router-view v-slot="{ Component }">
+  <v-app class="root" @dragstart="onDragStart">
+    <router-view v-slot="{ Component }">
+      <transition :name="route.meta.transition">
+        <v-layout class="layout" :key="routeName">
           <component :is="Component" />
-        </router-view>
-      </v-app>
-    </transition>
-  </div>
+        </v-layout>
+      </transition>
+    </router-view>
+  </v-app>
+
   <!-- Tauri 中上下文菜单 -->
   <v-menu
     class="menu"
@@ -178,7 +179,7 @@ watch(savedLocale, (newLocale) => {
 <style lang="scss" scoped>
 //设置绝对位置，方便设置动画，屏蔽了浏览器本身的文档滚动。因此需要在每个页面都添加滚动布局。
 .layout {
-  position: absolute;
+  position: absolute !important;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -190,6 +191,9 @@ watch(savedLocale, (newLocale) => {
   width: 100%;
   overflow: hidden;
   position: absolute;
+  :deep(.v-application__wrap) {
+    display: block;
+  }
 }
 
 .contextMenuActivator {
