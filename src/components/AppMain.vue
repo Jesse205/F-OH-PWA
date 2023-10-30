@@ -16,11 +16,6 @@ defineExpose({
 </template>
 
 <style scoped lang="scss">
-.v-main {
-  position: fixed;
-  height: 100%;
-  width: 100%;
-}
 
 // 区域滚动
 .v-main > .mainScroll {

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { Position, usePreferredDark, useTitle } from '@vueuse/core'
-import { useTheme } from 'vuetify'
+import { useDisplay, useTheme } from 'vuetify'
 import { watch, ref, onMounted, onBeforeUnmount } from 'vue'
 import { useRoute } from 'vue-router'
 import { usePwa } from '@/events/pwa'
@@ -11,6 +11,7 @@ import { reactive } from 'vue'
 import { nextTick } from 'vue'
 import { useLocaleSetting } from '@/events/settings'
 import { isLegacyApp } from '@/util/app'
+import { useHomeNavigation } from '@/events/navigation'
 
 // Theme
 const theme = useTheme()
@@ -126,17 +127,42 @@ const savedLocale = useLocaleSetting()
 watch(savedLocale, (newLocale) => {
   locale.value = newLocale
 })
+
+const { pages } = useHomeNavigation()
+const { xs, smAndDown } = useDisplay()
 </script>
 
 <template>
   <v-app class="root" @dragstart="onDragStart">
-    <router-view v-slot="{ Component }">
-      <transition :name="route.meta.transition">
-        <v-layout class="layout" :key="routeName">
-          <component :is="Component" />
-        </v-layout>
-      </transition>
-    </router-view>
+    <!-- 侧滑栏 -->
+    <v-navigation-drawer v-if="!xs" permanent :rail="smAndDown">
+      <v-list>
+        <v-list-item prepend-avatar="@/assets/images/icon.svg" :title="$t('appName')" />
+      </v-list>
+      <v-divider />
+      <v-list density="compact" nav color="primary">
+        <v-list-item
+          v-for="item in pages"
+          :key="item.name"
+          :to="{ name: item.name }"
+          :prepend-icon="$route.name === item.name ? item.activeIcon : item.icon"
+          :title="item.title"
+          :disabled="item.disabled"
+          rounded
+        />
+      </v-list>
+    </v-navigation-drawer>
+    <v-main>
+      <div class="main">
+        <router-view v-slot="{ Component }">
+          <transition :name="route.meta.transition">
+          <v-layout class="layout" :key="routeName">
+            <component :is="Component" />
+          </v-layout>
+          </transition>
+        </router-view>
+      </div>
+    </v-main>
   </v-app>
 
   <!-- Tauri 中上下文菜单 -->
@@ -182,7 +208,6 @@ watch(savedLocale, (newLocale) => {
   position: absolute !important;
   width: 100%;
   height: 100%;
-  overflow: hidden;
 }
 
 // 防止移动端出现滚动条
@@ -190,10 +215,12 @@ watch(savedLocale, (newLocale) => {
   height: 100%;
   width: 100%;
   overflow: hidden;
-  position: absolute;
-  :deep(.v-application__wrap) {
-    display: block;
-  }
+  // position: absolute;
+}
+.main {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .contextMenuActivator {
