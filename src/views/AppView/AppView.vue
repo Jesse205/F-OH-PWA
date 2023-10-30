@@ -6,9 +6,10 @@ import { getServerCompletePath } from '@/util/url'
 import { URL_API } from '@/data/constants'
 import { onMounted } from 'vue'
 import AppMain from '@/components/AppMain.vue'
-import { useScroll, useTitle as useVueUseTitle } from '@vueuse/core'
+import { useScroll } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
-import { getAppTags } from '../../util/apps'
+import { getAppTags } from '@/util/apps'
+import { useTitle } from '@/events/title'
 
 const { t } = useI18n()
 
@@ -50,20 +51,18 @@ const { y: scrollY } = useScroll(mainScrollElement)
 //如果标题被遮拦就在应用栏内显示标题
 const isTitleShowName = computed(() => scrollY.value > appNamePositionYBottom.value)
 
-const title = computed(() => {
-  if (appInfo.value) return `${appInfo.value.name} - ${t('app.view')}`
-  else return t('app.view')
-})
+const title = computed(() => appInfo.value ? `${appInfo.value.name} - ${t('app.view')}` : t('app.view'))
 
-useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
+useTitle(title)
 </script>
 
 <template>
-  <v-app-bar flat border="b">
+  <v-app-bar class="app-bar" flat border="b">
     <v-btn v-if="$router.options.history.state.back" icon="mdi-arrow-left" @click.stop="$router.back" />
-    <v-app-bar-title class="appBarTitle">
+    <!-- 多标题动画展示 -->
+    <v-app-bar-title class="title">
       <transition :name="isTitleShowName ? 'scroll-x-reverse-transition' : 'scroll-x-transition'">
-        <span class="appBarTitleItem" :key="`app-bar-title-span-${isTitleShowName}`">
+        <span class="title-item" :key="isTitleShowName.toString()">
           {{ isTitleShowName ? appInfo?.name : $t('app.view') }}
         </span>
       </transition>
@@ -72,7 +71,7 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
   <app-main ref="mainElement">
     <v-progress-linear v-show="appsStore.loading" color="primary" class="progress" indeterminate />
     <v-container class="container py-2">
-      <!-- 顶部介绍 -->
+      <!-- #region 顶部概览 -->
       <div class="header py-2">
         <!-- 图标 -->
         <v-skeleton-loader
@@ -81,7 +80,7 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
           type="image"
           :loading="loading"
         >
-          <v-img class="rounded-lg" :src="appIconUrl || ''" @dragstart.stop />
+          <v-img class="rounded-lg" :src="appIconUrl ?? ''" @dragstart.stop />
         </v-skeleton-loader>
         <div class="header-right ml-4">
           <!-- 应用名和版本 -->
@@ -120,7 +119,9 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
           </div>
         </div>
       </div>
-      <!-- 一句话介绍 -->
+      <!-- #endregion -->
+
+      <!-- #region 一句话介绍 -->
       <div class="py-2" v-show="appInfo?.desc || loading">
         <v-skeleton-loader
           class="summarySkeleton rounded-lg"
@@ -135,13 +136,18 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
           </v-card>
         </v-skeleton-loader>
       </div>
+      <!-- #endregion -->
+
+      <!-- #region 应用标签 -->
       <v-skeleton-loader v-if="loading" class="tagsSkeleton" type="chip@2" color="transparent" />
       <div v-else-if="appTags?.length" class="tagsGroup">
         <div class="tagItem" v-for="item in appTags">
           <v-chip variant="text" border>{{ item }}</v-chip>
         </div>
       </div>
-      <!-- 开发者信息 -->
+      <!-- #endregion -->
+
+      <!-- #region 开发者信息 -->
       <div v-show="appInfo?.vender || loading" class="py-2" @dragstart.stop>
         <h2 class="itemTitle">{{ $t('developer.name') }}</h2>
         <v-skeleton-loader type="avatar, text" color="transparent" :loading="loading">
@@ -158,7 +164,9 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
           />
         </v-skeleton-loader>
       </div>
-      <!-- 详情信息 -->
+      <!-- #endregion -->
+
+      <!-- #region 详情信息 -->
       <div class="py-2">
         <h2 class="itemTitle">{{ $t('details.name') }}</h2>
         <v-skeleton-loader v-if="loading" class="detailsSkeleton" type="text@5" color="transparent" />
@@ -170,25 +178,27 @@ useVueUseTitle(title, { titleTemplate: `%s - ${t('appName')}` })
           {{ $t('id.name') }}: {{ appInfo?.id ?? $t('unknown.name') }}<br />
         </template>
       </div>
+      <!-- #endregion  -->
     </v-container>
   </app-main>
 </template>
 
 <style scoped lang="scss">
-.appBarTitle {
-  position: relative;
-  top: 0;
-  bottom: 0;
-  height: 100%;
-  // min-height: 1.75rem; // aka line height
-
-  .appBarTitleItem {
-    position: absolute;
-    left: 0;
+.app-bar {
+  .title {
+    position: relative;
     top: 0;
     bottom: 0;
-    display: flex;
-    align-items: center;
+    height: 100%;
+
+    .title-item {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+    }
   }
 }
 
