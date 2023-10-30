@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import AppMain from '@/components/AppMain.vue'
-import { ComputedRef } from 'vue'
 import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useDonate } from '@/data/donate'
 import ICON from '@/assets/images/icon.svg'
+import { useTitle } from '@/events/title'
+
+const { t } = useI18n()
+useTitle(computed(() => t('donate.name')))
 
 const data = useDonate()
 
