@@ -28,9 +28,8 @@ function applyValue() {
 <template>
   <v-list-item link>
     <v-dialog v-model="dialogVisible" width="420" activator="parent" transition="fade-transition">
-      <v-card>
-        <v-card-title>{{ $t('token.name') }} </v-card-title>
-        <v-card-text class="py-0">
+      <v-card :title="$t('token.name')">
+        <v-card-text>
           <v-text-field
             v-model="editValue"
             variant="outlined"
