@@ -9,6 +9,7 @@ F-OH PWA + BrowserCE, best practices for distributing open source hongmeng hap a
 F-OH PWA is a browser-based version of F-OH based on the [Sparkling Store Demo](https://gitee.com/sparkling-store/webv3demo).
 
 [![License](https://img.shields.io/github/license/Jesse205/F-OH-PWA)](./LICENSE)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/953dd570-c06c-4f52-a688-c2789adaa8cb/deploy-status)](https://app.netlify.com/sites/f-oh-pwa-jesse205/deploys)
 
 [![QQ group (开鸿派): 752399947](https://img.shields.io/badge/QQ_group:_开鸿派-752399947-0099FF?logo=tencentqq)](https://qm.qq.com/q/jWeBdnvPz2)
 
