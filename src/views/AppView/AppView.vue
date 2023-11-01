@@ -76,10 +76,10 @@ useTitle(title)
           class="summarySkeleton rounded-lg"
           :class="{ loading: loading }"
           type="sentences"
-          color="rgba(var(--v-theme-on-surface),0.06)"
+          color="rgba(var(--v-theme-on-surface), 0.06)"
           :loading="loading"
         >
-          <v-card class="text-center" variant="tonal" :border="false" tag="article">
+          <v-card class="text-center" variant="tonal" flat :border="false" tag="article">
             <v-card-text>{{ appInfo?.desc }}</v-card-text>
             <v-icon icon="mdi-format-quote-open" />
           </v-card>
@@ -181,7 +181,7 @@ useTitle(title)
   color: inherit !important;
 
   :deep(.v-card__underlay) {
-    opacity: 0.06;
+    opacity: 0;
   }
 
   :deep(.v-card-text) {

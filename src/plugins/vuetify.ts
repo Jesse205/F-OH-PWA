@@ -55,9 +55,8 @@ export default createVuetify({
     },
     VCard: {
       border: true,
-      elevation: 0,
       rounded: 'lg',
-      flat: true
+      variant: 'outlined'
     },
     VTooltip: {
       transition: 'fade-transition'
@@ -80,6 +79,13 @@ export default createVuetify({
     },
     VNavigationDrawer: {
       color: 'background'
+    },
+    VDialog: {
+      VCard: {
+        color: 'surface',
+        variant: 'elevated',
+        border: false,
+      }
     }
   },
   components: {
