@@ -35,10 +35,12 @@ F-OH PWA is a browser-based version of F-OH based on the [Sparkling Store Demo](
 ## Download or launch
 
 - F-OH Tauri: [Gitee Releases](https://gitee.com/ohos-dev/F-OH-PWA/releases/latest)
-- F-OH Lite、F-OH PWA (Web): <http://170.178.208.105:5000/>
+- F-OH Lite、F-OH PWA (Web):
+  - Release: <http://170.178.208.105:5000/>
+  - Development: <https://f-oh-pwa-jesse205.netlify.app/#/index/home>
 
-> **NOTE**\
-> F-OH PWA is temporarily unavailable because the server does not have SSL and has cross-domain issues ([No security context to meet the minimum requirements to be a PWA][PWASecureContextRequirement]), please use F-OH Tauri or F-OH Lite (Web).
+> **Note**\
+> ~~F-OH PWA is temporarily unavailable because the server does not have SSL and has cross-domain issues ([No security context to meet the minimum requirements to be a PWA][PWASecureContextRequirement]), please use F-OH Tauri or F-OH Lite (Web).~~ If you want to use use the PWA, use the development version deployed on Netlify.
 
 ## Series of projects
 
@@ -91,7 +93,7 @@ Sponsorship can be contacted by private message or scanning the QR code below (W
 
 ![QRCode](https://gitee.com/ohos-dev/f-oh/raw/master/screenshot/wx+zfb.png)
 
-<small><small><small><small><small><small>For this project, you can go to the [Hello Tool donation page](https://jesse205.github.io/hellotool/donation.html) to support Jesse205</small></small></small></small></small></small>
+For this project, you can go to the [Hello Tool donation page](https://jesse205.github.io/hellotool/donation.html) to support Jesse205
 
 ## License
 

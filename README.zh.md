@@ -35,10 +35,12 @@ F-OH PWA + BrowserCE，通过网页分发开源鸿蒙 hap 应用的最佳实践�
 ## 下载与访问
 
 - F-OH Tauri: [Gitee 发行版](https://gitee.com/ohos-dev/F-OH-PWA/releases/latest)
-- F-OH Lite、F-OH PWA (Web): <http://170.178.208.105:5000/>
+- F-OH Lite、F-OH PWA (Web)：
+  - 正式版：<http://170.178.208.105:5000/>
+  - 开发版：<https://f-oh-pwa-jesse205.netlify.app/#/index/home>
 
-> **NOTE**\
-> 因服务器没有 SSL 并且有跨域问题， F-OH PWA 暂时无法使用（[无安全上下文，无法满足成为 PWA 的最低要求][PWASecureContextRequirement]），请使用 F-OH Tauri 或 F-OH Lite (Web)。
+> **Note**\
+> ~~因服务器没有 SSL 并且有跨域问题， F-OH PWA 暂时无法使用（[无安全上下文，无法满足成为 PWA 的最低要求][PWASecureContextRequirement]），请使用 F-OH Tauri 或 F-OH Lite (Web)。~~ 如需使用 PWA，请使用部署在 Netlify 上的开发版。
 
 ## 系列项目
 
@@ -91,7 +93,7 @@ yarn lint
 
 ![QRCode](https://gitee.com/ohos-dev/f-oh/raw/master/screenshot/wx+zfb.png)
 
-<small><small><small><small><small><small>对于本项目，您可以进入[哈兔 Box 捐赠页面](https://jesse205.github.io/hellotool/donation.html)支持杰西 205</small></small></small></small></small></small>
+对于本项目，您可以进入[哈兔 Box 捐赠页面](https://jesse205.github.io/hellotool/donation.html)支持杰西 205
 
 ## 许可证
 
