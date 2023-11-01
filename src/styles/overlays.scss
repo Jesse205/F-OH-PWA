@@ -30,6 +30,6 @@ html {
     stroke: none;
   }
   .v-main {
-    transition-property: none;
+    transition-property: width, height, margin, padding;
   }
 }
