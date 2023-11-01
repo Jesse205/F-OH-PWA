@@ -1,10 +1,13 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useGlobalAppName } from '@/events/title'
+const appName = useGlobalAppName()
+</script>
 
 <template>
   <v-card class="app-card pa-1">
     <div class="app-item">
       <v-img class="app-icon ma-1" src="@/assets/images/icon.svg" />
-      <span class="text-subtitle-1 ma-1">{{ $t('appName') }}</span>
+      <span class="text-subtitle-1 ma-1">{{ appName }}</span>
     </div>
   </v-card>
 </template>

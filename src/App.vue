@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { Position, usePreferredDark, useTitle } from '@vueuse/core'
 import { useDisplay, useTheme } from 'vuetify'
-import { watch, ref, onMounted, onBeforeUnmount, computed, unref } from 'vue'
+import { watch, ref, onMounted, onBeforeUnmount, computed, unref, provide } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { usePwa } from '@/events/pwa'
-import { isTauri, openNewWindow, copyText } from '@/util/app'
+import { isTauri, openNewWindow, copyText, isPwa } from '@/util/app'
 import { getCurrent } from '@tauri-apps/api/window'
 import { useI18n } from 'vue-i18n'
 import { reactive } from 'vue'
@@ -12,6 +12,10 @@ import { nextTick } from 'vue'
 import { useLocaleSetting } from '@/events/settings'
 import { isLegacyApp } from '@/util/app'
 import { useHomeNavigation } from '@/events/navigation'
+import { getName } from '@tauri-apps/api/app'
+import { APP_NAME_TAURI, APP_NAME_PWA, APP_NAME_DEFAULT } from './locales'
+import { useDisplayMode } from './events/pwa'
+import { isPwaDisplayMode } from './util/pwa'
 
 // Theme
 const theme = useTheme()
@@ -28,7 +32,6 @@ watch(
 )
 
 const route = useRoute()
-const router = useRouter()
 //路由名称
 const routeName = ref('')
 
@@ -51,21 +54,51 @@ watch(savedLocale, (newLocale) => {
   locale.value = newLocale
 })
 
-// 标题
-const title = useTitle(t('appName'), { observe: true })
+// 应用标题，动态切换不同标题
+const appName = ref<string>(t('appName'))
+provide('appName', appName)
+
+//监控 PWA 与普通模式变换
+const displayMode = useDisplayMode()
+provide('displayMode', displayMode)
+
+watch(
+  displayMode,
+  (newDisplayMode) => {
+    if (tauriState) return
+    if (isPwaDisplayMode(newDisplayMode)) appName.value = APP_NAME_PWA
+    else appName.value = APP_NAME_DEFAULT
+  },
+  { immediate: true }
+)
 
 if (tauriState) {
-  // 绑定 Tauri 窗口标题
+  appName.value = APP_NAME_TAURI
+  getName().then((name) => {
+    appName.value = name
+  })
+}
+
+/**
+ * 标题，带有后缀
+ */
+const title = useTitle(null, { observe: true })
+
+/**
+ * 标题，无后缀
+ */
+const clearTitle = computed(() => title.value?.match(/(.+) -/)?.[1] ?? title.value ?? null)
+
+// 绑定 Tauri 窗口标题
+if (tauriState) {
   watch(
     title,
     (newTitle) => {
-      getCurrent().setTitle(newTitle ?? t('appName'))
+      getCurrent().setTitle(newTitle ?? appName.value)
     },
     { immediate: true }
   )
 }
-
-const clearTitle = computed(() => title.value?.match(/(.+) -/)?.[1])
 
 // 右键菜单
 interface ContextMenuConfig {
@@ -145,7 +178,7 @@ const { xs, smAndDown } = useDisplay()
     <!-- 侧滑栏 -->
     <v-navigation-drawer v-if="!xs" permanent :rail="smAndDown">
       <v-list>
-        <v-list-item prepend-avatar="@/assets/images/icon.svg" :title="$t('appName')" />
+        <v-list-item prepend-avatar="@/assets/images/icon.svg" :title="appName" />
       </v-list>
       <v-divider />
       <v-list density="compact" nav color="primary">
@@ -165,7 +198,14 @@ const { xs, smAndDown } = useDisplay()
       </transition>
       <transition name="slide-y-transition">
         <v-list v-if="!isInMainView" density="compact" nav color="primary">
-          <v-list-item prepend-icon="mdi-circle-outline" :key="route.path" :title="clearTitle" rounded active link />
+          <v-list-item
+            prepend-icon="mdi-circle-outline"
+            :key="route.path"
+            :title="clearTitle ?? ''"
+            rounded
+            active
+            link
+          />
         </v-list>
       </transition>
     </v-navigation-drawer>

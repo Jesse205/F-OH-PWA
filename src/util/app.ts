@@ -16,6 +16,7 @@ const WEBVIEW_OPTIONS_DEFAULT: WindowOptions = {
 export function isTauri(): boolean {
   return !!(window as any).__TAURI__
 }
+
 /**
  * 是否以 PWA 模式运行
  * @returns `true` 为以 PWA 模式运行
