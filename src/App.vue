@@ -217,6 +217,10 @@ const { xs, smAndDown } = useDisplay()
             </v-layout>
           </transition>
         </router-view>
+        <div v-if="!routeName" class="splash">
+          <v-img class="logo" src="@/assets/images/icon.svg" />
+          <span>{{ appName }}</span>
+        </div>
       </div>
     </v-main>
     <!-- Tauri 中上下文菜单 -->
@@ -279,6 +283,21 @@ const { xs, smAndDown } = useDisplay()
   position: relative;
   width: 100%;
   height: 100%;
+}
+.splash {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  .logo {
+    width: 72px;
+    height: 72px;
+    margin-bottom: 16px;
+    flex: none;
+  }
 }
 
 .contextMenuActivator {
