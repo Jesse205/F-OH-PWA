@@ -39,12 +39,16 @@ export default createVuetify({
   },
   defaults: {
     VBottomNavigation: {
+      bgColor: 'background',
       VBtn: {
         variant: 'plain'
       }
     },
     VMenu: {
-      minWidth: 196
+      minWidth: 196,
+      VList: {
+        bgColor: 'surface'
+      }
     },
     VCheckboxBtn: {
       color: 'primary'
@@ -67,6 +71,15 @@ export default createVuetify({
     VTextField: {
       color: 'primary',
       rounded: false
+    },
+    VList: {
+      bgColor: 'transparent'
+    },
+    VToolbar: {
+      color: 'background'
+    },
+    VNavigationDrawer: {
+      color: 'background'
     }
   },
   components: {
