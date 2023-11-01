@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inject, ref, watchEffect } from 'vue'
+import { inject, ref, unref, watchEffect } from 'vue'
 import { useDisplay } from 'vuetify'
 import AppMain from '@/components/AppMain.vue'
 import { useRoute } from 'vue-router'
@@ -18,7 +18,7 @@ useTitle(homeTitle)
 watchEffect(() => {
   for (const item of pages.value) {
     if (item.name === route.name) {
-      homeTitle.value = item.title
+      homeTitle.value = unref(item.title)
       break
     }
   }

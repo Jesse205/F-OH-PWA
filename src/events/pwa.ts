@@ -15,7 +15,7 @@ export function usePwa() {
     if (!deferredPrompt) return
     installBtnVisible.value = false
     deferredPrompt.prompt()
-    deferredPrompt.userChoice.then(choiceResult => {
+    deferredPrompt.userChoice.then((choiceResult) => {
       if (choiceResult.outcome === 'accepted') {
         console.log('User accepted the A2HS prompt')
         installBtnVisible.value = false
@@ -36,10 +36,10 @@ export function usePwa() {
   }
 
   onMounted(() => {
-    window.addEventListener('beforeinstallprompt', onBeforeInstallPrompt as () => Event)
+    window.addEventListener('beforeinstallprompt', onBeforeInstallPrompt as EventListener)
   })
 
   onBeforeUnmount(() => {
-    window.removeEventListener('beforeinstallprompt', onBeforeInstallPrompt as () => Event)
+    window.removeEventListener('beforeinstallprompt', onBeforeInstallPrompt as EventListener)
   })
 }
