@@ -90,7 +90,7 @@ function handelPush(event: Event) {
 
 <template>
   <v-app-bar flat border="b">
-    <v-btn icon="mdi-arrow-left" @click.stop="$router.back" />
+    <v-btn v-if="$router.options.history.state.back" icon="mdi-arrow-left" @click.stop="$router.back" />
     <v-app-bar-title>{{ $t('manager.apps') }}</v-app-bar-title>
     <v-menu origin="top" width="192" location="top" scrim="transparent">
       <template v-slot:activator="{ props: menu }">

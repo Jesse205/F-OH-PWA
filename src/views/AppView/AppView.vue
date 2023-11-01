@@ -10,6 +10,7 @@ import { getAppTags } from '@/util/apps'
 import { useTitle } from '@/events/title'
 import AppOverview from './components/AppOverview.vue'
 import AppDetails from './components/AppDetails.vue'
+import BackButton from '@/components/BackButton.vue'
 
 const { t } = useI18n()
 
@@ -54,7 +55,7 @@ useTitle(title)
 
 <template>
   <v-app-bar class="app-bar" flat border="b">
-    <v-btn v-if="$router.options.history.state.back" icon="mdi-arrow-left" @click.stop="$router.back" />
+    <back-button />
     <!-- 多标题动画展示 -->
     <v-app-bar-title class="title">
       <transition :name="isTitleShowName ? 'scroll-x-reverse-transition' : 'scroll-x-transition'">

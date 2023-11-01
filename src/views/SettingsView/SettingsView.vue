@@ -9,6 +9,7 @@ import { getVersion } from '@tauri-apps/api/app'
 import { useLocaleSetting } from '@/events/settings'
 import { useToken } from '../../events/settings'
 import DialogListItem from '@/components/DialogListItem.vue'
+import BackButton from '@/components/BackButton.vue'
 
 const { t, locale } = useI18n()
 
@@ -34,7 +35,7 @@ const token = useToken()
 
 <template>
   <v-app-bar flat border="b">
-    <v-btn v-if="$router.options.history.state.back" icon="mdi-arrow-left" @click.stop="$router.back" />
+    <back-button />
     <v-app-bar-title>{{ $t('settings.name') }}</v-app-bar-title>
   </v-app-bar>
   <app-main>

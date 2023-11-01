@@ -5,6 +5,7 @@ import { useI18n } from 'vue-i18n'
 import { useDonate } from '@/data/donate'
 import ICON from '@/assets/images/icon.svg'
 import { useTitle } from '@/events/title'
+import BackButton from '@/components/BackButton.vue'
 
 const { t } = useI18n()
 useTitle(computed(() => t('donate.name')))
@@ -16,7 +17,7 @@ const adTabValue = ref<'add' | 'develop'>('add')
 
 <template>
   <v-app-bar flat border="b">
-    <v-btn v-if="$router.options.history.state.back" icon="mdi-arrow-left" @click.stop="$router.back" />
+    <back-button />
     <v-app-bar-title>{{ $t('donate.name') }}</v-app-bar-title>
   </v-app-bar>
   <app-main>

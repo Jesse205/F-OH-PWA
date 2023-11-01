@@ -7,6 +7,7 @@ import { useTitle } from '@/events/title'
 import { getTauriVersion, getVersion } from '@tauri-apps/api/app'
 import { computed, ref } from 'vue'
 import { isTauri } from '@/util/app'
+import BackButton from '@/components/BackButton.vue'
 
 const { t } = useI18n()
 useTitle(computed(() => t('about.name')))
@@ -51,7 +52,7 @@ if (isTauri()) {
 
 <template>
   <v-app-bar flat border="b">
-    <v-btn v-if="$router.options.history.state.back" icon="mdi-arrow-left" @click.stop="$router.back" />
+    <back-button />
     <v-app-bar-title>{{ $t('about.name') }}</v-app-bar-title>
   </v-app-bar>
   <v-navigation-drawer v-if="mdAndUp" permanent :width="200 + 32">

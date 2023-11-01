@@ -6,6 +6,7 @@ import { useRoute } from 'vue-router'
 import { useHomeTitle } from '@/events/title'
 import { URL_UPLOAD } from '@/data/constants'
 import { useHomeNavigation } from '@/events/navigation'
+import BackButton from '@/components/BackButton.vue'
 
 const { pages } = useHomeNavigation()
 
@@ -32,6 +33,7 @@ const onInstallBtnClick = inject('onInstallBtnClick') as () => void
 <template>
   <!-- 应用栏 -->
   <v-app-bar flat border="b">
+    <back-button />
     <!-- <v-app-bar-nav-icon v-if="!mobile" @click.stop="drawer = !drawer" /> -->
     <v-app-bar-title>{{ homeTitle }}</v-app-bar-title>
     <v-spacer />
