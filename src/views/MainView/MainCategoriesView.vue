@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { useHomeTitle } from '@/events/title'
-import { onMounted, computed, ref, watch, reactive, MaybeRef } from 'vue'
+import { onMounted, computed,  watch, reactive, MaybeRef } from 'vue'
 import { useI18n } from 'vue-i18n'
 import ProjectItem from '@/components/ProjectItem.vue'
 import { useAppsStore } from '@/store/apps'

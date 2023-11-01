@@ -3,7 +3,7 @@ import { inject, ref, watchEffect } from 'vue'
 import { useDisplay } from 'vuetify'
 import AppMain from '@/components/AppMain.vue'
 import { useRoute } from 'vue-router'
-import { useHomeTitle } from '@/events/title'
+import { useTitle } from '@/events/title'
 import { URL_UPLOAD } from '@/data/constants'
 import { useHomeNavigation } from '@/events/navigation'
 import BackButton from '@/components/BackButton.vue'
@@ -11,8 +11,9 @@ import BackButton from '@/components/BackButton.vue'
 const { pages } = useHomeNavigation()
 
 const route = useRoute()
-const homeTitle = ref('')
-useHomeTitle(homeTitle)
+const homeTitle = ref<string | null>(null)
+
+useTitle(homeTitle)
 
 watchEffect(() => {
   for (const item of pages.value) {
@@ -26,8 +27,8 @@ watchEffect(() => {
 const { xs } = useDisplay()
 
 // PWA
-const installBtnVisible = inject('installBtnVisible')
-const onInstallBtnClick = inject('onInstallBtnClick') as () => void
+const installBtnVisible = inject<boolean>('installBtnVisible')
+const onInstallBtnClick = inject<() => void>('onInstallBtnClick')
 </script>
 
 <template>
