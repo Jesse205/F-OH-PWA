@@ -19,6 +19,6 @@ export async function autoFetchJson<T = any>(url: string, options?: FetchOptions
 }
 
 export function toJsonIfOk<T = any>(res: Response): Promise<T> {
-  if (!res.ok) throw res.statusText || 'Unknown error'
+  if (!res.ok) throw `${res.status}: ${res.statusText || 'Unknown error'}`
   return res.json()
 }
