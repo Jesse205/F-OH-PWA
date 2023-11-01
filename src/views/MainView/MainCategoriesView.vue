@@ -108,9 +108,9 @@ watch(
     @media (min-width: 1280px) {
       width: 50%;
     }
-    /*@media (min-width: 1600px) {
+    @media (min-width: 1920px) {
       width: 33%;
-    }*/
+    }
   }
 }
 
