@@ -16,9 +16,9 @@ export const useAppsStore = defineStore('apps', () => {
   function fetchData() {
     loading.value = true
     errMsg.value = null
-    autoFetchJson(URL_API_ALL_APP_LIST)
+    autoFetchJson<AppInfo[]>(URL_API_ALL_APP_LIST)
       .then((newData) => {
-        data.value = newData as AppInfo[]
+        data.value = newData
         console.log('fetched apps', newData)
         errMsg.value = null
       })

@@ -22,4 +22,12 @@ html {
   .v-bottom-navigation--grow .v-bottom-navigation__content > .v-btn {
     width: 0;
   }
+  .v-progress-circular--indeterminate .v-progress-circular__overlay {
+    animation:
+      progress-circular-dash 1.5s ease-in-out infinite,
+      progress-circular-rotate 15s linear infinite;
+  }
+  .v-progress-circular__underlay {
+    stroke: none;
+  }
 }
