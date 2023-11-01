@@ -10,15 +10,15 @@ interface FetchOptions {
 export async function autoFetchJson<T = any>(url: string, options?: FetchOptions): Promise<T> {
   if (!isTauri()) {
     const reponse = await fetch(url, options)
-    return await toJsonIfOk(reponse)
+    return await toJsonIfOk<T>(reponse)
   } else {
-    const reponse = await http.fetch(url, options)
+    const reponse = await http.fetch<T>(url, options)
     if (!reponse.ok) throw reponse.status
-    return reponse.data as T
+    return reponse.data
   }
 }
 
-export function toJsonIfOk(res: Response): Promise<any> {
-  if (!res.ok) throw res.statusText
+export function toJsonIfOk<T = any>(res: Response): Promise<T> {
+  if (!res.ok) throw res.statusText || 'Unknown error'
   return res.json()
 }
