@@ -17,10 +17,11 @@ import { APP_NAME_TAURI, APP_NAME_PWA, APP_NAME_DEFAULT } from './locales'
 import { useDisplayMode } from './events/pwa'
 import { isPwaDisplayMode } from './util/pwa'
 
-// Theme
+// 主题
 const theme = useTheme()
 const preferredDark = usePreferredDark()
 
+// 自动设置为浏览器的主题
 watch(
   preferredDark,
   (isDark) => {
@@ -32,12 +33,9 @@ watch(
 )
 
 const route = useRoute()
-//路由名称
-const routeName = ref('')
 
-watch(route, () => {
-  routeName.value = route.path.match('/[^/]+')?.[0] || ''
-})
+//路由名称
+const routeName = computed(() => route.path.match('/[^/]+')?.[0] ?? '')
 
 // PWA
 usePwa()
@@ -58,13 +56,14 @@ watch(savedLocale, (newLocale) => {
 const appName = ref<string>(t('appName'))
 provide('appName', appName)
 
-//监控 PWA 与普通模式变换
+//监控显示模式变换
 const displayMode = useDisplayMode()
 provide('displayMode', displayMode)
 
 watch(
   displayMode,
   (newDisplayMode) => {
+    // Tauri 中使用另外提供的应用名
     if (tauriState) return
     if (isPwaDisplayMode(newDisplayMode)) appName.value = APP_NAME_PWA
     else appName.value = APP_NAME_DEFAULT
@@ -72,6 +71,7 @@ watch(
   { immediate: true }
 )
 
+// Tauri 中就用真实的应用名
 if (tauriState) {
   appName.value = APP_NAME_TAURI
   getName().then((name) => {
@@ -151,7 +151,6 @@ function onContextMenu(event: MouseEvent) {
 }
 
 onMounted(() => document.body.addEventListener('contextmenu', onContextMenu))
-
 onBeforeUnmount(() => document.body.removeEventListener('contextmenu', onContextMenu))
 
 /**
@@ -237,17 +236,20 @@ const { xs, smAndDown } = useDisplay()
         ></div>
       </template>
       <v-list>
+        <!-- 新窗口中打开 -->
         <v-list-item
           v-if="contextMenuConfig.url"
           :title="$t('openNewWindow.name')"
           @click="openNewWindow(contextMenuConfig.url)"
         />
+        <!-- 浏览器中打开 -->
         <v-list-item
           v-if="contextMenuConfig.externalUrl"
           :title="$t('openNewWindow.linkInBrowser')"
           :href="contextMenuConfig.externalUrl"
           target="_blank"
         />
+        <!-- 复制链接 -->
         <v-list-item
           v-if="contextMenuConfig.externalUrl"
           :title="$t('copy.link')"
