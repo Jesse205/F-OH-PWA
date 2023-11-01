@@ -14,7 +14,7 @@ onMounted(() => {
 })
 
 const loading = computed(() => homeStore.loading)
-const loaded = computed(() => !loading.value && homeStore.data)
+// const loaded = computed(() => !loading.value && homeStore.data)
 const errMsg = computed(() => homeStore.errMsg)
 
 const banners: Banners = {
@@ -49,7 +49,7 @@ const banners: Banners = {
     </v-list>
   </v-container>
   <!-- Loading -->
-  <div v-if="!loaded" class="centerSpace">
+  <div v-if="loading" class="centerSpace">
     <v-progress-circular indeterminate :size="40" :width="4" />
   </div>
 </template>
