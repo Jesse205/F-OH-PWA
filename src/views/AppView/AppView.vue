@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useAppsStore } from '@/store/apps'
-import { getServerCompletePath } from '@/util/url'
-import { URL_API } from '@/data/constants'
 import { onMounted } from 'vue'
 import AppMain from '@/components/AppMain.vue'
 import { useScroll } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
 import { getAppTags } from '@/util/apps'
 import { useTitle } from '@/events/title'
+import AppOverview from './components/AppOverview.vue'
+import AppDetails from './components/AppDetails.vue'
 
 const { t } = useI18n()
 
@@ -21,12 +21,6 @@ const appsStore = useAppsStore()
 const appInfo = computed(() => appsStore.data?.find((item) => item.id === +route.params.id))
 const loading = computed(() => appsStore.loading)
 
-//绝对路径图标链接
-const appIconUrl = computed(() => appInfo.value && getServerCompletePath(appInfo.value.icon, URL_API))
-
-// 绝对路径下载链接
-const appDownloadUrl = computed(() => appInfo.value && getServerCompletePath(appInfo.value.hapUrl, URL_API))
-
 //分割标签
 const appTags = computed(() => appInfo.value && getAppTags(appInfo.value))
 
@@ -35,14 +29,16 @@ onMounted(() => {
   appsStore.ensureData()
 })
 
-const mainElement = ref()
-const mainScrollElement = computed<HTMLElement | null>(() => mainElement.value?.mainScroll)
-const appNameElement = ref<HTMLElement>()
+const mainElement = ref<InstanceType<typeof AppMain>>()
+const mainScrollElement = computed<HTMLElement | null>(() => mainElement.value?.mainScroll ?? null)
+
+const AppOverviewElement = ref<InstanceType<typeof AppOverview>>()
+
+const appNameElement = computed(() => AppOverviewElement.value?.appNameElement)
+
 const appNamePositionYBottom = computed(() => {
-  if (appNameElement.value) {
-    return appNameElement.value.offsetTop + appNameElement.value.offsetHeight
-  }
-  return 0
+  const element = appNameElement.value
+  return element ? element.offsetTop + element.offsetHeight : 0
 })
 
 // 页面滚动
@@ -51,7 +47,7 @@ const { y: scrollY } = useScroll(mainScrollElement)
 //如果标题被遮拦就在应用栏内显示标题
 const isTitleShowName = computed(() => scrollY.value > appNamePositionYBottom.value)
 
-const title = computed(() => appInfo.value ? `${appInfo.value.name} - ${t('app.view')}` : t('app.view'))
+const title = computed(() => (appInfo.value ? `${appInfo.value.name} - ${t('app.view')}` : t('app.view')))
 
 useTitle(title)
 </script>
@@ -71,55 +67,7 @@ useTitle(title)
   <app-main ref="mainElement">
     <v-progress-linear v-show="appsStore.loading" color="primary" class="progress" indeterminate />
     <v-container class="container py-2">
-      <!-- #region 顶部概览 -->
-      <div class="header py-2">
-        <!-- 图标 -->
-        <v-skeleton-loader
-          class="appIcon border rounded-lg"
-          :class="{ loading: loading }"
-          type="image"
-          :loading="loading"
-        >
-          <v-img class="rounded-lg" :src="appIconUrl ?? ''" @dragstart.stop />
-        </v-skeleton-loader>
-        <div class="header-right ml-4">
-          <!-- 应用名和版本 -->
-          <v-skeleton-loader v-if="loading" class="appInfoSkeleton" type="text@2" color="transparent" />
-          <template v-else>
-            <div class="appTitle">
-              <!-- 应用名 -->
-              <h1 class="text-h6" ref="appNameElement" :title="$t('app.name')">{{ appInfo?.name }}</h1>
-              <span class="text-subtitle-2" :title="$t('version.name')">
-                v{{ appInfo ? `${appInfo.version}` : $t('unknown.name') }}
-              </span>
-            </div>
-            <div class="packageName text-subtitle-2" :title="$t('packageName.name')">
-              {{ appInfo?.packageName ?? $t('unknown.name') }}
-            </div>
-          </template>
-          <div class="buttonGroup" @dragstart.stop>
-            <!-- 下载按钮 -->
-            <v-btn
-              prepend-icon="mdi-download"
-              variant="flat"
-              :disabled="!appDownloadUrl"
-              :href="appDownloadUrl || undefined"
-              target="_blank"
-              >{{ $t('download.name') }}
-            </v-btn>
-            <!-- 源代码按钮 -->
-            <v-btn
-              prepend-icon="mdi-source-branch"
-              v-if="appInfo?.openSourceAddress"
-              variant="text"
-              :href="appInfo.openSourceAddress"
-              target="_blank"
-              >{{ $t('source.code') }}
-            </v-btn>
-          </div>
-        </div>
-      </div>
-      <!-- #endregion -->
+      <AppOverview ref="AppOverviewElement" :app-info="appInfo" :loading="loading" class="py-2" />
 
       <!-- #region 一句话介绍 -->
       <div class="py-2" v-show="appInfo?.desc || loading">
@@ -166,19 +114,11 @@ useTitle(title)
       </div>
       <!-- #endregion -->
 
-      <!-- #region 详情信息 -->
+      <!-- 详情信息 -->
       <div class="py-2">
         <h2 class="itemTitle">{{ $t('details.name') }}</h2>
-        <v-skeleton-loader v-if="loading" class="detailsSkeleton" type="text@5" color="transparent" />
-        <template v-else>
-          {{ $t('version.name') }}: {{ appInfo?.version ?? $t('unknown.name') }}<br />
-          {{ $t('packageName.name') }}: {{ appInfo?.packageName ?? $t('unknown.name') }}<br />
-          {{ $t('developer.name') }}: {{ appInfo?.vender ?? $t('unknown.name') }}<br />
-          {{ $t('release.name') }}: {{ appInfo?.releaseTime ?? $t('unknown.name') }}<br />
-          {{ $t('id.name') }}: {{ appInfo?.id ?? $t('unknown.name') }}<br />
-        </template>
+        <AppDetails :loading="loading" :app-info="appInfo" :title-class="['itemTitle']" />
       </div>
-      <!-- #endregion  -->
     </v-container>
   </app-main>
 </template>
@@ -205,61 +145,6 @@ useTitle(title)
 .progress {
   position: absolute;
   top: initial !important;
-}
-
-.header {
-  display: flex;
-  width: 100%;
-  align-items: flex-start;
-  .appIcon {
-    width: 96px;
-    height: 96px;
-    overflow: hidden;
-    flex-shrink: 0;
-
-    :deep(.v-skeleton-loader__image) {
-      height: 100%;
-      width: 100%;
-    }
-    // TODO: 当 F-OH 支持自适应图标后移除这项
-    border-radius: 24% !important;
-  }
-
-  .header-right {
-    display: flex;
-    flex-direction: column;
-    width: max-content;
-    flex-wrap: nowrap;
-    overflow: hidden;
-
-    .appInfoSkeleton {
-      margin: -2px -16px;
-      overflow: hidden;
-    }
-    .appTitle {
-      > * {
-        display: inline;
-      }
-    }
-
-    .text-subtitle-2 {
-      opacity: var(--v-medium-emphasis-opacity);
-    }
-
-    .packageName {
-      height: 1.75rem;
-    }
-
-    .buttonGroup {
-      flex-wrap: wrap;
-      margin: -4px;
-      display: flex;
-
-      > * {
-        margin: 4px;
-      }
-    }
-  }
 }
 
 .itemTitle {
