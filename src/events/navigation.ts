@@ -1,5 +1,6 @@
 import { MaybeRef, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useRoute, useRouter } from 'vue-router'
 
 interface NavPage {
   title: MaybeRef<string>
@@ -11,6 +12,8 @@ interface NavPage {
 
 export function useHomeNavigation() {
   const { t } = useI18n()
+  const route = useRoute()
+  const router = useRouter()
 
   const pages = computed<NavPage[]>(() => {
     return [
@@ -41,5 +44,15 @@ export function useHomeNavigation() {
       }
     ]
   })
-  return { pages }
+  const activePagePosition = computed(() =>
+    route.name ? pages.value.findIndex((page) => page.name === route.name) : null
+  )
+
+  const isInMainView = computed(() => activePagePosition.value !== -1)
+
+  const isBackOtherPage = computed<boolean>(() => {
+    route.path //确保路由刷新时重新调用该函数
+    return !!(router.options.history.state.back && router.options.history.state.back !== '/index/home')
+  })
+  return { pages, activePagePosition, isInMainView, isBackOtherPage }
 }

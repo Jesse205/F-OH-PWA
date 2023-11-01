@@ -2,13 +2,13 @@
 import { computed, inject, ref, unref, watchEffect } from 'vue'
 import { useDisplay } from 'vuetify'
 import AppMain from '@/components/AppMain.vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useTitle } from '@/events/title'
 import { URL_UPLOAD } from '@/data/constants'
 import { useHomeNavigation } from '@/events/navigation'
 import BackButton from '@/components/BackButton.vue'
 
-const { pages } = useHomeNavigation()
+const { pages, activePagePosition, isBackOtherPage, isInMainView } = useHomeNavigation()
 
 const route = useRoute()
 const homeTitle = ref<string | null>(null)
@@ -29,12 +29,6 @@ const { xs } = useDisplay()
 // PWA
 const installBtnVisible = inject<boolean>('installBtnVisible')
 const onInstallBtnClick = inject<() => void>('onInstallBtnClick')
-
-const activePagePosition = computed(() =>
-  route.name ? pages.value.findIndex((page) => page.name === route.name) : null
-)
-
-const isInMainView = computed(() => activePagePosition.value !== -1)
 </script>
 
 <template>
@@ -87,7 +81,7 @@ const isInMainView = computed(() => activePagePosition.value !== -1)
       :key="item.name"
       :to="{ name: item.name }"
       :disabled="item.disabled"
-      :replace="isInMainView && activePagePosition !== 0"
+      :replace="isInMainView && (activePagePosition !== 0 || isBackOtherPage)"
     >
       <v-icon>{{ $route.name === item.name ? item.activeIcon : item.icon }}</v-icon>
       {{ item.title }}

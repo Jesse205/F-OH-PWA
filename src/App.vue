@@ -129,19 +129,9 @@ function onDragStart(event: DragEvent) {
   if (tauriState) event.preventDefault()
 }
 
-const { pages } = useHomeNavigation()
+const { pages, activePagePosition, isBackOtherPage, isInMainView } = useHomeNavigation()
 const { xs, smAndDown } = useDisplay()
 
-const activePagePosition = computed(() =>
-  route.name ? pages.value.findIndex((page) => page.name === route.name) : null
-)
-
-const isInMainView = computed(() => activePagePosition.value !== -1)
-
-const isBackOtherPage = computed<boolean>(() => {
-  route.path //确保路由刷新时重新调用该函数
-  return !!(router.options.history.state.back && router.options.history.state.back !== '/index/home')
-})
 </script>
 
 <template>
@@ -168,7 +158,7 @@ const isBackOtherPage = computed<boolean>(() => {
           :title="unref(item.title)"
           :disabled="item.disabled"
           rounded
-          :replace="(isInMainView && activePagePosition !== 0) || isBackOtherPage"
+          :replace="isInMainView && (activePagePosition !== 0 || isBackOtherPage)"
         />
       </v-list>
       <template v-if="!isInMainView">
