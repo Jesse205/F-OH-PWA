@@ -1,3 +1,4 @@
 [[redirects]]
 from = "/data/*"
 to = "http://170.178.208.105:3000/raw/master/:splat"
+status = 200
