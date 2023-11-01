@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inject, ref, unref, watchEffect } from 'vue'
+import { computed, inject, ref, unref, watchEffect } from 'vue'
 import { useDisplay } from 'vuetify'
 import AppMain from '@/components/AppMain.vue'
 import { useRoute } from 'vue-router'
@@ -29,13 +29,19 @@ const { xs } = useDisplay()
 // PWA
 const installBtnVisible = inject<boolean>('installBtnVisible')
 const onInstallBtnClick = inject<() => void>('onInstallBtnClick')
+
+const activePagePosition = computed(() =>
+  route.name ? pages.value.findIndex((page) => page.name === route.name) : null
+)
+
+const isInMainView = computed(() => activePagePosition.value !== -1)
 </script>
 
 <template>
   <!-- 应用栏 -->
   <v-app-bar flat border="b">
-    <back-button />
-    <!-- <v-app-bar-nav-icon v-if="!mobile" @click.stop="drawer = !drawer" /> -->
+    <!-- 仅在非手机中显示返回按钮 -->
+    <back-button v-if="!xs" />
     <v-app-bar-title>{{ homeTitle }}</v-app-bar-title>
     <v-spacer />
     <v-tooltip location="bottom">
@@ -76,7 +82,13 @@ const onInstallBtnClick = inject<() => void>('onInstallBtnClick')
     :elevation="0"
     selected-class="noActivatedTransparency"
   >
-    <v-btn v-for="item in pages" :key="item.name" :to="{ name: item.name }" :disabled="item.disabled" replace>
+    <v-btn
+      v-for="item in pages"
+      :key="item.name"
+      :to="{ name: item.name }"
+      :disabled="item.disabled"
+      :replace="isInMainView && activePagePosition !== 0"
+    >
       <v-icon>{{ $route.name === item.name ? item.activeIcon : item.icon }}</v-icon>
       {{ item.title }}
     </v-btn>

@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { Position, usePreferredDark, useTitle } from '@vueuse/core'
 import { useDisplay, useTheme } from 'vuetify'
-import { watch, ref, onMounted, onBeforeUnmount, computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { watch, ref, onMounted, onBeforeUnmount, computed, unref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { usePwa } from '@/events/pwa'
 import { isTauri, openNewWindow, copyText } from '@/util/app'
 import { getCurrent } from '@tauri-apps/api/window'
@@ -28,6 +28,7 @@ watch(
 )
 
 const route = useRoute()
+const router = useRouter()
 //路由名称
 const routeName = ref('')
 
@@ -134,6 +135,13 @@ const { xs, smAndDown } = useDisplay()
 const activePagePosition = computed(() =>
   route.name ? pages.value.findIndex((page) => page.name === route.name) : null
 )
+
+const isInMainView = computed(() => activePagePosition.value !== -1)
+
+const isBackOtherPage = computed<boolean>(() => {
+  route.path //确保路由刷新时重新调用该函数
+  return !!(router.options.history.state.back && router.options.history.state.back !== '/index/home')
+})
 </script>
 
 <template>
@@ -157,12 +165,13 @@ const activePagePosition = computed(() =>
           :key="item.name"
           :to="{ name: item.name }"
           :prepend-icon="activePagePosition === index ? item.activeIcon : item.icon"
-          :title="item.title"
+          :title="unref(item.title)"
           :disabled="item.disabled"
           rounded
+          :replace="(isInMainView && activePagePosition !== 0) || isBackOtherPage"
         />
       </v-list>
-      <template v-if="activePagePosition === -1 && activePagePosition !== null">
+      <template v-if="!isInMainView">
         <v-divider />
         <v-list density="compact" nav color="primary">
           <v-list-item prepend-icon="mdi-circle-outline" :title="clearTitle" rounded active />

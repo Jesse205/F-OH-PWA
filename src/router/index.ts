@@ -97,6 +97,12 @@ const router = createRouter({
 const scrollState2 = history.state.scroll2 ?? {}
 
 router.beforeEach((to, from) => {
+  // 用户在主页点击首页时自动返回，防止有重复的历史记录。
+  if (to.path === '/index/home' && to.path === history.state.back) {
+    history.go(-1)
+    console.warn(`backing to ${to.path} because history.state.back=${history.state.back}, state may lost.`)
+    return false
+  }
   // TODO: 使用更好的方法实现
   const state = {
     ...history.state,
