@@ -131,7 +131,6 @@ function onDragStart(event: DragEvent) {
 
 const { pages, activePagePosition, isBackOtherPage, isInMainView } = useHomeNavigation()
 const { xs, smAndDown } = useDisplay()
-
 </script>
 
 <template>
@@ -161,12 +160,14 @@ const { xs, smAndDown } = useDisplay()
           :replace="isInMainView && (activePagePosition !== 0 || isBackOtherPage)"
         />
       </v-list>
-      <template v-if="!isInMainView">
-        <v-divider />
-        <v-list density="compact" nav color="primary">
-          <v-list-item prepend-icon="mdi-circle-outline" :title="clearTitle" rounded active />
+      <transition name="fade-transition">
+        <v-divider v-if="!isInMainView" />
+      </transition>
+      <transition name="slide-y-transition">
+        <v-list v-if="!isInMainView" density="compact" nav color="primary">
+          <v-list-item prepend-icon="mdi-circle-outline" :key="route.path" :title="clearTitle" rounded active link />
         </v-list>
-      </template>
+      </transition>
     </v-navigation-drawer>
     <v-main>
       <div class="main">
