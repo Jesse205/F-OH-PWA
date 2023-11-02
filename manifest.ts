@@ -6,7 +6,7 @@ export default <Partial<ManifestOptions>>{
   name: 'F-OH PWA',
   short_name: 'F-OH',
   description: 'F-OH 的第三方 PWA 版本',
-  orientation: 'natural',
+  // orientation: 'natural',
   prefer_related_applications: true,
   id: 'org.ohosdev.foh.pwa',
   start_url: base,
