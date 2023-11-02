@@ -218,7 +218,7 @@ const { xs, smAndDown } = useDisplay()
           </transition>
         </router-view>
         <div v-if="!routeName" class="splash">
-          <v-img class="logo" src="@/assets/images/icon.svg" />
+          <img class="logo" src="@/assets/images/icon.svg" />
           <span>{{ appName }}</span>
         </div>
       </div>
