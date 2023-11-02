@@ -64,7 +64,7 @@ F-OH PWA is a browser-based version of F-OH based on the [Sparkling Store Demo](
 1. Clone [F-OH Data][F-OH-Data] and start a server on port `5500`.
 2. Open a terminal in the project and run commands according to the following rules.
    - Web and PWA applications: run `yarn dev`.
-   - Windows Tauri software: run `yarn tauri dev`.
+   - Windows Tauri software: run `yarn dev:tauri`.
 
 ### Compiling and streamlining for production
 
@@ -75,7 +75,7 @@ F-OH PWA is a browser-based version of F-OH based on the [Sparkling Store Demo](
       2. Pull [F-OH Data][F-OH-Data] into `dist/data`.
       3. Deploy `dist/*` to the server.
    - Windows Tauri software:
-      1. Run `yarn tauri build`.
+      1. Run `yarn build:tauri`.
       2. Release `src-tauri\target\release\F-OH Tauri.exe` and `src-tauri\target\release\bundle\nsis\F-OH Tauri_<version>_x64-setup.exe`.
 
 ## Lint and fixing files

@@ -64,7 +64,7 @@ F-OH PWA + BrowserCE，通过网页分发开源鸿蒙 hap 应用的最佳实践�
 1. 克隆 [F-OH Data][F-OH-Data] 并启动一个 `5500` 端口的服务器。
 2. 在该项目打开终端，按照以下规则运行命令。
    - 网页与 PWA 应用：运行 `yarn dev` 。
-   - Windows Tauri 软件：运行 `yarn tauri dev` 。
+   - Windows Tauri 软件：运行 `yarn dev:tauri` 。
 
 ### 为生产编译和精简
 
@@ -75,7 +75,7 @@ F-OH PWA + BrowserCE，通过网页分发开源鸿蒙 hap 应用的最佳实践�
       2. 拉取 [F-OH Data][F-OH-Data] 到 `dist/data` 。
       3. 部署 `dist/*` 到服务器。
    - Windows Tauri 软件：
-      1. 运行 `yarn tauri build` 。
+      1. 运行 `yarn build:tauri` 。
       2. 发布 `src-tauri\target\release\F-OH Tauri.exe` 与 `src-tauri\target\release\bundle\nsis\F-OH Tauri_<version>_x64-setup.exe`
 
 ### 约束和修复文件
