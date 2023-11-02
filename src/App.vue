@@ -128,7 +128,7 @@ function onContextMenu(event: MouseEvent) {
   if (tauriState) {
     event.preventDefault()
     console.log('onContextMenu', `clientX=${event.clientX}, clientY=${event.clientY}`)
-    // 如果上一次没有关闭上下文菜单，就需要关闭一下，方式不会刷新定位
+    // 如果上一次没有关闭上下文菜单，就需要关闭一下，防止不会刷新定位
     contextMenuConfig.state = false
     nextTick(() => {
       contextMenuConfig.state = !!(contextMenuConfig.url || contextMenuConfig.externalUrl)
@@ -217,10 +217,12 @@ const { xs, smAndDown } = useDisplay()
             </v-layout>
           </transition>
         </router-view>
-        <div v-if="!routeName" class="splash">
-          <img class="logo" src="@/assets/images/icon.svg" />
-          <span>{{ appName }}</span>
-        </div>
+        <transition ame="fade-transition">
+          <div v-if="!routeName" class="splash">
+            <img class="logo" src="@/assets/images/icon.svg" />
+            <span>{{ appName }}</span>
+          </div>
+        </transition>
       </div>
     </v-main>
     <!-- Tauri 中上下文菜单 -->
