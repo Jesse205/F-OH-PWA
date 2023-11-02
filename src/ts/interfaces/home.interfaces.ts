@@ -1,5 +1,5 @@
 export interface HomeData {
-  announcement: string
+  announcement?: string
   showAnnouncement: boolean
 }
 

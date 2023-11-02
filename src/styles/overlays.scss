@@ -32,4 +32,11 @@ html {
   .v-main {
     transition-property: width, height, margin, padding;
   }
+
+  code,
+  kbd,
+  pre,
+  samp {
+    font-family: "JetBrains Mono", "JetBrains Mono Online", monospace, monospace;
+  }
 }

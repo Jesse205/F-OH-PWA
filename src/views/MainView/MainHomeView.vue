@@ -45,7 +45,7 @@ const banners: Banners = {
     <v-list class="my-4" border rounded="lg">
       <!-- 公告 -->
       <v-list-subheader>{{ $t('announcement.name') }}</v-list-subheader>
-      <v-list-item class="announcementContent" v-text="homeStore.data.announcement"></v-list-item>
+      <v-list-item class="announcementContent" v-html="homeStore.announcementHtml"></v-list-item>
     </v-list>
   </v-container>
   <!-- Loading -->
@@ -54,9 +54,28 @@ const banners: Banners = {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .announcementContent {
-  white-space: pre-line;
+  /* white-space: pre-line; */
   display: block;
+  margin-top: -0.5rem;
+  margin-bottom: -0.5rem;
+  & > :deep(*) {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  :deep(ul),
+  :deep(ol) {
+    padding-left: 1rem;
+  }
+  :deep(code) {
+    background-color: rgb(var(--v-theme-code));
+    color: rgb(var(--v-theme-on-code));
+    border-radius: 4px;
+    line-height: 2;
+    font-size: 0.8em;
+    font-weight: normal;
+    padding: 0.2em 0.4em;
+  }
 }
 </style>
