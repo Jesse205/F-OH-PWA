@@ -32,7 +32,7 @@ F-OH PWA is a browser-based version of F-OH based on the [Sparkling Store Demo](
 <img src="./public/screenshots/Snipaste_2023-09-06_21-33-35.webp" width=30% />
 </div>
 
-## Download or launch
+## Download or Launch
 
 The F-OH PWA offers a choice between **standalone software** and **web access**.
 
@@ -45,7 +45,7 @@ The F-OH PWA offers a choice between **standalone software** and **web access**.
 > **Note**\
 > ~~F-OH PWA is temporarily unavailable because the server does not have SSL and has cross-domain issues ([No security context to meet the minimum requirements to be a PWA][PWASecureContextRequirement]), please use F-OH Tauri or F-OH Lite (Web).~~ If you want to use use the PWA, use the development version deployed on Netlify.
 
-### PWA installation
+### PWA Installation
 
 A **progressive web app** (PWA) is an app that's built using web platform technologies, but that provides a user experience like that of a platform-specific app. (From [MDN](https://developer.mozilla.org/zh-CN/docs/Web/Progressive_web_apps))
 
@@ -53,14 +53,14 @@ Some browsers support installing this website to the desktop by clicking "Instal
 
 ![Chrome Installation Diagram](./docs/images/pwa/install_en.png)
 
-## Series of projects
+## Series of Projects
 
 - [F-OH](https://gitee.com/ohos-dev/f-oh): F-OH OpenHarmony Mobile
 - [F-OH Data][F-OH-Data]: metadata for all F-OH apps, where developers PR submit their apps
 - [F-OH Server](https://gitee.com/ohos-dev/f-oh-server): F-OH server, providing interface services, platform management, etc. (to be developed)
 - [F-OH Website](https://gitee.com/ohos-dev/f-oh-website): F-OH website, including documents, blogs, selected applications, etc. (to be developed)
 
-## Project setup
+## Project Setup
 
 1. Install NodeJS v19
 2. Install Yarn
@@ -70,14 +70,14 @@ Some browsers support installing this website to the desktop by clicking "Instal
    - Linux: system dependencies, Rust.
 4. Run `yarn install`
 
-### Compiling and hotloading for development
+### Compiling and Hotloading for Development
 
 1. Clone [F-OH Data][F-OH-Data] and start a server on port `5500`.
 2. Open a terminal in the project and run commands according to the following rules.
    - Web and PWA applications: run `yarn dev`.
    - Windows Tauri software: run `yarn dev:tauri`.
 
-### Compiling and streamlining for production
+### Compiling and Streamlining for Production
 
 1. Set up the `.env.production` file.
 2. Open a terminal in the project and run commands according to the following rules.
@@ -89,7 +89,7 @@ Some browsers support installing this website to the desktop by clicking "Instal
       1. Run `yarn build:tauri`.
       2. Release `src-tauri\target\release\F-OH Tauri.exe` and `src-tauri\target\release\bundle\nsis\F-OH Tauri_<version>_x64-setup.exe`.
 
-## Lint and fixing files
+## Lint and Fixing Files
 
 ```bash
 yarn lint
