@@ -36,9 +36,9 @@ F-OH PWA is a browser-based version of F-OH based on the [Sparkling Store Demo](
 
 The F-OH PWA offers a choice between **standalone software** and **web access**.
 
-- **F-OH Tauri** ![software](https://img.shields.io/badge/-software-00a6f9):
+- **F-OH Tauri** ![SOFTWARE](https://img.shields.io/badge/-SOFTWARE-00a6f9): ~~Deep system integration, near-native experience~~, no automatic updates, available offline, fast loading.
   - [Gitee Releases](https://gitee.com/ohos-dev/F-OH-PWA/releases/latest)
-- **F-OH Lite**、**F-OH PWA** ![web](https://img.shields.io/badge/-web-81bd0a):
+- **F-OH Lite**、**F-OH PWA** ![WEBSITE](https://img.shields.io/badge/-WEBSITE-81bd0a): Click-and-go, automatic update, no download required.
   - Release: <http://170.178.208.105:5000/>
   - Development: <https://f-oh-pwa-jesse205.netlify.app/#/index/home>
 
