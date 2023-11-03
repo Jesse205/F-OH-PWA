@@ -10,15 +10,12 @@
         fill: url(#b);
       }
     </style>
-    <linearGradient id="b" data-name="未命名的渐变 29" x1=".5" y1="280" x2="959.5" y2="280" gradientUnits="userSpaceOnUse">
+    <linearGradient id="b" data-name="未命名的渐变 29" x1="0" y1="280" x2="960" y2="280" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#00a6f9"/>
       <stop offset="1" stop-color="#81bd0a"/>
     </linearGradient>
   </defs>
-  <g>
-    <rect class="f" x=".5" y=".5" width="959" height="559"/>
-    <path d="M959,1V559H1V1H959m1-1H0V560H960V0h0Z"/>
-  </g>
+  <rect class="f" width="960" height="560"/>
   <g>
     <g id="c" data-name="顶部">
       <path class="e" d="M198.05,130.04c49.9,0,90.5,40.6,90.5,90.5s-40.6,90.5-90.5,90.5-90.5-40.6-90.5-90.5,40.6-90.5,90.5-90.5m0-18c-59.92,0-108.5,48.58-108.5,108.5s48.58,108.5,108.5,108.5,108.5-48.58,108.5-108.5-48.58-108.5-108.5-108.5h0Z"/>
