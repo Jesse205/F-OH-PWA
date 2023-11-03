@@ -25,6 +25,13 @@ export function isLegacyApp(): boolean {
 }
 
 /**
+ * 判断当前域名是否采用了重定向 API，用于在用户直接访问资源时还原原链接。
+ */
+export function isRedirectApiHost(): boolean {
+  return location.hostname.endsWith('.netlify.app')
+}
+
+/**
  * 打开新窗口
  * @param url 要打开的链接
  */

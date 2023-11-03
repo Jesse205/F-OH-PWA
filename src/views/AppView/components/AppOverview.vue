@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { URL_API } from '@/data/constants'
+import { URL_API, URL_API_LEGACY } from '@/data/constants'
 import { AppInfo } from '@/ts/interfaces/app.interfaces'
 import { getServerCompletePath } from '@/util/url'
 import { computed, ref } from 'vue'
+import { isRedirectApiHost } from '@/util/app'
 const props = defineProps<{
   loading: boolean
   appInfo?: AppInfo
@@ -12,7 +13,10 @@ const props = defineProps<{
 const appIconUrl = computed(() => props.appInfo && getServerCompletePath(props.appInfo.icon, URL_API))
 
 // 绝对路径下载链接
-const appDownloadUrl = computed(() => props.appInfo && getServerCompletePath(props.appInfo.hapUrl, URL_API))
+const appDownloadUrl = computed(() => {
+  if (props.appInfo) return getServerCompletePath(props.appInfo.hapUrl, isRedirectApiHost() ? URL_API_LEGACY : URL_API)
+  return null
+})
 
 const appNameElement = ref<HTMLElement>()
 
