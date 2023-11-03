@@ -17,7 +17,7 @@ F-OH PWA is a browser-based version of F-OH based on the [Sparkling Store Demo](
 [![Github repository](https://img.shields.io/badge/Github-repository-0969DA?logo=github)](https://github.com/Jesse205/F-OH-PWA)
 
 [中文](./README.zh.md) |
-**English**
+**English** | <small>More translations are welcome!</small>
 
 ## Screenshots
 
@@ -34,13 +34,24 @@ F-OH PWA is a browser-based version of F-OH based on the [Sparkling Store Demo](
 
 ## Download or launch
 
-- F-OH Tauri: [Gitee Releases](https://gitee.com/ohos-dev/F-OH-PWA/releases/latest)
-- F-OH Lite、F-OH PWA (Web):
+The F-OH PWA offers a choice between **standalone software** and **web access**.
+
+- **F-OH Tauri** ![software](https://img.shields.io/badge/-software-00a6f9):
+  - [Gitee Releases](https://gitee.com/ohos-dev/F-OH-PWA/releases/latest)
+- **F-OH Lite**、**F-OH PWA** ![web](https://img.shields.io/badge/-web-81bd0a):
   - Release: <http://170.178.208.105:5000/>
   - Development: <https://f-oh-pwa-jesse205.netlify.app/#/index/home>
 
 > **Note**\
 > ~~F-OH PWA is temporarily unavailable because the server does not have SSL and has cross-domain issues ([No security context to meet the minimum requirements to be a PWA][PWASecureContextRequirement]), please use F-OH Tauri or F-OH Lite (Web).~~ If you want to use use the PWA, use the development version deployed on Netlify.
+
+### PWA installation
+
+A **progressive web app** (PWA) is an app that's built using web platform technologies, but that provides a user experience like that of a platform-specific app. (From [MDN](https://developer.mozilla.org/zh-CN/docs/Web/Progressive_web_apps))
+
+Some browsers support installing this website to the desktop by clicking "Install Application". After installation, the application name will change from `F-OH Lite` to `F-OH PWA`.
+
+![Chrome Installation Diagram](./docs/images/pwa/install_en.png)
 
 ## Series of projects
 
@@ -93,7 +104,7 @@ Sponsorship can be contacted by private message or scanning the QR code below (W
 
 ![QRCode](https://gitee.com/ohos-dev/f-oh/raw/master/screenshot/wx+zfb.png)
 
-For this project, you can go to the [Hello Tool donation page](https://jesse205.github.io/hellotool/donation.html) to support Jesse205
+For this project, you can go to the [Hello Tool donation page](https://jesse205.github.io/hellotool/donation.html) to support Jesse205.
 
 ## License
 

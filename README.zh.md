@@ -17,7 +17,7 @@ F-OH PWA + BrowserCE，通过网页分发开源鸿蒙 hap 应用的最佳实践�
 [![Github 仓库](https://img.shields.io/badge/Github-仓库-0969DA?logo=github)](https://github.com/Jesse205/F-OH-PWA)
 
 **中文** |
-[English](./README.md)
+[English](./README.md) | <small>期待你的翻译！</small>
 
 ## 屏幕截图
 
@@ -34,13 +34,24 @@ F-OH PWA + BrowserCE，通过网页分发开源鸿蒙 hap 应用的最佳实践�
 
 ## 下载与访问
 
-- F-OH Tauri: [Gitee 发行版](https://gitee.com/ohos-dev/F-OH-PWA/releases/latest)
-- F-OH Lite、F-OH PWA (Web)：
+F-OH PWA 提供 **独立软件** 与 **网页访问** 两种方式供用户选择性。
+
+- **F-OH Tauri** ![独立软件](https://img.shields.io/badge/-独立软件-00a6f9)：~~系统深度集成，近乎原生的体验~~，不自动更新，离线可用，加载快速。
+  - [Gitee 发行版](https://gitee.com/ohos-dev/F-OH-PWA/releases/latest)
+- **F-OH Lite**、**F-OH PWA** ![网页访问](https://img.shields.io/badge/-网页访问-81bd0a) ：点击即用，自动更新，无需下载。
   - 正式版：<http://170.178.208.105:5000/>
   - 开发版：<https://f-oh-pwa-jesse205.netlify.app/#/index/home>
 
 > **Note**\
 > ~~因服务器没有 SSL 并且有跨域问题， F-OH PWA 暂时无法使用（[无安全上下文，无法满足成为 PWA 的最低要求][PWASecureContextRequirement]），请使用 F-OH Tauri 或 F-OH Lite (Web)。~~ 如需使用 PWA，请使用部署在 Netlify 上的开发版。
+
+### PWA 安装
+
+**渐进式 Web 应用**（Progressive Web App，PWA）是一个使用 web 平台技术构建的应用程序，但它提供的用户体验就像一个特定平台的应用程序。（来自 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/Progressive_web_apps)）
+
+部分浏览器支持安装该网站到桌面，只需点击“安装应用”。安装后应用名会由 `F-OH Lite` 变为 `F-OH PWA`。
+
+![Chrome 安装应用示意图](./docs/images/pwa/install.png)
 
 ## 系列项目
 
@@ -93,7 +104,7 @@ yarn lint
 
 ![QRCode](https://gitee.com/ohos-dev/f-oh/raw/master/screenshot/wx+zfb.png)
 
-对于本项目，您可以进入[哈兔 Box 捐赠页面](https://jesse205.github.io/hellotool/donation.html)支持杰西 205
+对于本项目，您可以进入[哈兔 Box 捐赠页面](https://jesse205.github.io/hellotool/donation.html)支持杰西 205。
 
 ## 许可证
 
