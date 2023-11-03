@@ -4,14 +4,15 @@
 
 F-OH is an application center for FOSS (Free and Open Source Software) on the OpenHarmony platform with download and installation support.
 
-F-OH PWA + BrowserCE, best practices for distributing open source hongmeng hap apps via web pages, might be a good choice for teams with internal distribution of test hap apps.
-
 F-OH PWA is a browser-based version of F-OH based on the [Sparkling Store Demo](https://gitee.com/sparkling-store/webv3demo).
+
+F-OH PWA + BrowserCE, best practices for distributing open source hongmeng hap apps via web pages, might be a good choice for teams with internal distribution of test hap apps.
 
 [![License](https://img.shields.io/github/license/Jesse205/F-OH-PWA)](./LICENSE)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/953dd570-c06c-4f52-a688-c2789adaa8cb/deploy-status)](https://app.netlify.com/sites/f-oh-pwa-jesse205/deploys)
 
 [![QQ group (开鸿派): 752399947](https://img.shields.io/badge/QQ_group:_开鸿派-752399947-0099FF?logo=tencentqq)](https://qm.qq.com/q/jWeBdnvPz2)
+[![@Jesse205: jesse205@qq.com](https://img.shields.io/badge/@Jesse205-jesse205@qq.com-0099FF)](https://qm.qq.com/q/jWeBdnvPz2)
 
 [![Gitee repository](https://img.shields.io/badge/Gitee-repository-C71D23?logo=gitee)](https://gitee.com/ohos-dev/F-OH-PWA)
 [![Github repository](https://img.shields.io/badge/Github-repository-0969DA?logo=github)](https://github.com/Jesse205/F-OH-PWA)
