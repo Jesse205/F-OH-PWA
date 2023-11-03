@@ -1,6 +1,7 @@
 # F-OH PWA
 
-<img src="./src/assets/images/icon.svg" width=192 height=192 alt="Project logo" title="Project logo"/>
+<!-- <img src="./src/assets/images/icon.svg" width=192 height=192 alt="Project logo" title="Project logo"/> -->
+![BANNER](./docs/images/banner.svg)
 
 F-OH is an application center for FOSS (Free and Open Source Software) on the OpenHarmony platform with download and installation support.
 

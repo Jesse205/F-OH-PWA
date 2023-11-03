@@ -1,6 +1,7 @@
 # F-OH PWA
 
-<img src="./src/assets/images/icon.svg" width=192 height=192 alt="项目图标" title="项目图标"/>
+<!-- <img src="./src/assets/images/icon.svg" width=192 height=192 alt="项目图标" title="项目图标"/> -->
+![BANNER](./docs/images/banner.svg)
 
 F-OH 是一个 OpenHarmony 平台上 FOSS（Free and Open Source Software，自由开源软件）的应用中心，并提供下载安装支持。
 
