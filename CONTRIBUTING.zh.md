@@ -24,3 +24,11 @@
 网站内所有翻译存放在 [`/src/locales/`](./src/locales/) 目录下，以简体中文（[`zh-CN.ts`](./src/locales/zh-CN.ts)）为主。
 
 一旦新增一门语言后，须在 [`index.ts`](./src/locales/index.ts) 中注册该语言。
+
+## 更换服务器
+
+服务器链接写死在以下文件，更换时需要全部替换。
+
+- [`.env`](./.env)：服务器地址
+- [`vite.config.ts`](./vite.config.ts)：vite 开发时转发，用于解决跨域问题
+- [`netlify.toml`](./netlify.toml)：netlify转发，用于解决跨域问题
