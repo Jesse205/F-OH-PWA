@@ -42,7 +42,7 @@ F-OH PWA 提供 **独立软件** 与 **网页访问** 两种方式供用户选�
   - [Gitee 发行版](https://gitee.com/ohos-dev/F-OH-PWA/releases/latest)
 - **F-OH Lite**、**F-OH PWA** ![网页访问](https://img.shields.io/badge/-网页访问-81bd0a) ：点击即用，自动更新，无需下载。
   - 正式版：<http://170.178.208.105:5000/>
-  - 开发版：<https://f-oh-pwa-jesse205.netlify.app/#/index/home>
+  - 开发版：<https://f-oh-pwa-jesse205.netlify.app/>
 
 > **Note**\
 > ~~因服务器没有 SSL 并且有跨域问题， F-OH PWA 暂时无法使用（[无安全上下文，无法满足成为 PWA 的最低要求][PWASecureContextRequirement]），请使用 F-OH Tauri 或 F-OH Lite (Web)。~~ 如需使用 PWA，请使用部署在 Netlify 上的开发版。

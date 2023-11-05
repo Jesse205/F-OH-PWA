@@ -42,7 +42,7 @@ The F-OH PWA offers a choice between **standalone software** and **web access**.
   - [Gitee Releases](https://gitee.com/ohos-dev/F-OH-PWA/releases/latest)
 - **F-OH Lite**、**F-OH PWA** ![WEBSITE](https://img.shields.io/badge/-WEBSITE-81bd0a): Click-and-go, automatic update, no download required.
   - Release: <http://170.178.208.105:5000/>
-  - Development: <https://f-oh-pwa-jesse205.netlify.app/#/index/home>
+  - Development: <https://f-oh-pwa-jesse205.netlify.app/>
 
 > **Note**\
 > ~~F-OH PWA is temporarily unavailable because the server does not have SSL and has cross-domain issues ([No security context to meet the minimum requirements to be a PWA][PWASecureContextRequirement]), please use F-OH Tauri or F-OH Lite (Web).~~ If you want to use use the PWA, use the development version deployed on Netlify.
