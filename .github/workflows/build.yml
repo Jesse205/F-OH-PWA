@@ -59,6 +59,7 @@ jobs:
             src-tauri/target/release/bundle/deb/*.deb
             src-tauri/target/release/bundle/nsis/*-setup.exe
   website:
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
