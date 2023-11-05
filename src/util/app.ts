@@ -1,5 +1,6 @@
 import { WebviewWindow, WindowOptions, getCurrent } from '@tauri-apps/api/window'
 import { writeText } from '@tauri-apps/api/clipboard'
+import { getName } from '@tauri-apps/api/app'
 
 const WEBVIEW_OPTIONS_DEFAULT: WindowOptions = {
   center: true,
@@ -35,9 +36,10 @@ export function isRedirectApiHost(): boolean {
  * 打开新窗口
  * @param url 要打开的链接
  */
-export function openNewWindow(url: string) {
+export async function openNewWindow(url: string) {
   if (isTauri()) {
-    const webview = new WebviewWindow(`window-${Date.now()}`, {
+    new WebviewWindow(`window-${Date.now()}`, {
+      title: await getName(),
       ...WEBVIEW_OPTIONS_DEFAULT,
       url
     })
