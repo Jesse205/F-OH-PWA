@@ -51,7 +51,7 @@ export default defineConfig({
     strictPort: true,
     proxy:{
       '/api/gogs': {
-        target: 'http://170.178.208.105:3000/api',
+        target: 'http://74.48.94.162:3000/api',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api\/gogs/, '')
       }
