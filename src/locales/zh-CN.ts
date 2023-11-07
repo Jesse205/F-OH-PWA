@@ -139,5 +139,11 @@ export default {
   },
   more: {
     info: '更多信息'
+  },
+  share: {
+    name: '分享'
+  },
+  back: {
+    name: '返回'
   }
 }

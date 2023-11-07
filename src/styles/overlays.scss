@@ -39,4 +39,7 @@ html {
   samp {
     font-family: "JetBrains Mono", "JetBrains Mono Online", monospace, monospace;
   }
+  .v-tooltip > .v-overlay__content {
+    background: rgba(var(--v-theme-surface-variant), 0.8);
+  }
 }

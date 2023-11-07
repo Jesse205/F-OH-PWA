@@ -84,7 +84,18 @@ function shareApp() {
         </span>
       </transition>
     </v-app-bar-title>
-    <v-btn v-if="isShareSupported" :disabled="!appInfo" icon="mdi-share-variant-outline" @click="shareApp" />
+    <v-tooltip v-if="isShareSupported" location="bottom">
+      <template v-slot:activator="{ props }">
+        <v-btn
+          :disabled="!appInfo"
+          icon="mdi-share-variant-outline"
+          @click="shareApp"
+          v-bind="props"
+          :aria-label="$t('share.name')"
+        />
+      </template>
+      <span>{{ $t('share.name') }}</span>
+    </v-tooltip>
   </v-app-bar>
   <app-main ref="mainElement">
     <v-progress-linear v-show="appsStore.loading" color="primary" class="progress" indeterminate />
@@ -218,5 +229,4 @@ function shareApp() {
     width: 100%;
   }
 }
-
 </style>

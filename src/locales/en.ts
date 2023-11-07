@@ -143,5 +143,11 @@ export default {
   },
   more: {
     info: 'More info'
+  },
+  share: {
+    name: 'Share'
+  },
+  back: {
+    name: 'Back'
   }
 }

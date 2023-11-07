@@ -13,9 +13,24 @@ const isBtnShowing = computed(() => {
 </script>
 
 <template>
-  <transition name="slide-x-transition">
+  <v-tooltip location="bottom">
+    <template v-slot:activator="{ props }">
+      <transition name="slide-x-transition">
+        <v-btn
+          class="btn"
+          v-show="isBtnShowing"
+          icon="mdi-arrow-left"
+          @click.stop="$router.back"
+          v-bind="props"
+          :aria-label="$t('back.name')"
+        />
+      </transition>
+    </template>
+    <span>{{ $t('back.name') }}</span>
+  </v-tooltip>
+  <!--<transition name="slide-x-transition">
     <v-btn class="btn" v-show="isBtnShowing" icon="mdi-arrow-left" @click.stop="$router.back" />
-  </transition>
+  </transition>-->
 </template>
 
 <style scoped lang="scss">
