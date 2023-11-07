@@ -55,6 +55,9 @@ F-OH PWA 提供 **独立软件** 与 **网页访问** 两种方式供用户选�
 
 ![Chrome 安装应用示意图](./docs/images/pwa/install.png)
 
+> **Note**
+> 有关使用 PWA 的更多信息，请参见[在 Microsoft Edge 中使用渐进式 Web 应用](https://learn.microsoft.com/zh-cn/microsoft-edge/progressive-web-apps-chromium/ux)。
+
 ## 系列项目
 
 - [F-OH](https://gitee.com/ohos-dev/f-oh)：F-OH OpenHarmony 移动端
