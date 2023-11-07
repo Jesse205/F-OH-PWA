@@ -3,11 +3,10 @@
  *
  * 框架文档: https://vue-i18n.intlify.dev/
  */
-import { createI18n } from 'vue-i18n'
+import { Locale, createI18n } from 'vue-i18n'
 
 import EN from '@/locales/en'
 import ZH_CN from '@/locales/zh-CN'
-import { useLocaleSetting } from '@/events/settings'
 
 export const APP_NAME_DEFAULT = 'F-OH Lite'
 export const APP_NAME_PWA = 'F-OH PWA'
@@ -16,8 +15,9 @@ export const APP_NAME_TAURI = 'F-OH Tauri'
 const i18n = createI18n({
   legacy: false,
   globalInjection: true,
-  locale: useLocaleSetting().value,
-  fallbackLocale: 'en',
+  // 这里使用钩子竟然也行，不知道是怎么跑起来的。
+  locale: localStorage.getItem('locale') ?? navigator.language,
+  fallbackLocale: navigator.languages as Locale[],
   messages: {
     en: EN,
     'zh-CN': ZH_CN
