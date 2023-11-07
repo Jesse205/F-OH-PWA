@@ -16,6 +16,7 @@ import { getName } from '@tauri-apps/api/app'
 import { APP_NAME_TAURI, APP_NAME_PWA, APP_NAME_DEFAULT } from './locales'
 import { useDisplayMode } from './events/pwa'
 import { isPwaDisplayMode } from './util/pwa'
+import NavigationDrawer from './components/app/NavigationDrawer.vue'
 
 // 主题
 const theme = useTheme()
@@ -83,11 +84,6 @@ if (tauriState) {
  * 标题，带有后缀
  */
 const title = useTitle(null, { observe: true })
-
-/**
- * 标题，无后缀
- */
-const clearTitle = computed(() => title.value?.match(/(.+) -/)?.[1] ?? title.value ?? null)
 
 // 绑定 Tauri 窗口标题
 if (tauriState) {
@@ -160,9 +156,6 @@ onBeforeUnmount(() => document.body.removeEventListener('contextmenu', onContext
 function onDragStart(event: DragEvent) {
   if (tauriState) event.preventDefault()
 }
-
-const { pages, activePagePosition, isBackOtherPage, isInMainView } = useHomeNavigation()
-const { xs, smAndDown } = useDisplay()
 </script>
 
 <template>
@@ -170,44 +163,11 @@ const { xs, smAndDown } = useDisplay()
     <!--<v-system-bar v-if="tauriState" window color="background">
       <span>{{ title }}</span>
       <v-spacer />
-      <v-btn icon="mdi-window-minimize" variant="text" color="" />
-      <v-btn icon="mdi-window-maximize" variant="text" color="" />
-      <v-btn icon="mdi-window-close" variant="text" color="" @click="closeWindow" />
+      <v-btn icon="mdi-window-minimize" density="comfortable" variant="text" color="" />
+      <v-btn icon="mdi-window-maximize" density="comfortable" variant="text" color="" />
+      <v-btn icon="mdi-window-close" density="comfortable" variant="text" color="" />
     </v-system-bar>-->
-    <!-- 侧滑栏 -->
-    <v-navigation-drawer v-if="!xs" permanent :rail="smAndDown">
-      <v-list>
-        <v-list-item prepend-avatar="@/assets/images/icon.svg" :title="appName" />
-      </v-list>
-      <v-divider />
-      <v-list density="compact" nav color="primary">
-        <v-list-item
-          v-for="(item, index) in pages"
-          :key="item.name"
-          :to="{ name: item.name }"
-          :prepend-icon="activePagePosition === index ? item.activeIcon : item.icon"
-          :title="unref(item.title)"
-          :disabled="item.disabled"
-          rounded
-          :replace="isInMainView && (activePagePosition !== 0 || isBackOtherPage)"
-        />
-      </v-list>
-      <transition name="fade-transition">
-        <v-divider v-if="!isInMainView" />
-      </transition>
-      <transition name="slide-y-transition">
-        <v-list v-if="!isInMainView" density="compact" nav color="primary">
-          <v-list-item
-            prepend-icon="mdi-circle-outline"
-            :key="route.path"
-            :title="clearTitle ?? ''"
-            rounded
-            active
-            link
-          />
-        </v-list>
-      </transition>
-    </v-navigation-drawer>
+    <navigation-drawer />
     <v-main>
       <div class="main">
         <router-view v-slot="{ Component }">
