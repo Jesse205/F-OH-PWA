@@ -88,11 +88,11 @@ function shareApp() {
   </v-app-bar>
   <app-main ref="mainElement">
     <v-progress-linear v-show="appsStore.loading" color="primary" class="progress" indeterminate />
-    <v-container class="container py-2">
-      <AppOverview ref="AppOverviewElement" :app-info="appInfo" :loading="loading" class="py-2" />
+    <v-container class="container py-0">
+      <AppOverview ref="AppOverviewElement" :app-info="appInfo" :loading="loading" class="my-4" />
 
       <!-- #region 一句话介绍 -->
-      <div class="py-2" v-show="appInfo?.desc || loading">
+      <div class="my-4" v-show="appInfo?.desc || loading">
         <v-skeleton-loader
           class="summarySkeleton rounded-lg"
           :class="{ loading: loading }"
@@ -109,7 +109,7 @@ function shareApp() {
       <!-- #endregion -->
 
       <!-- #region 应用标签 -->
-      <v-skeleton-loader v-if="loading" class="tagsSkeleton" type="chip@2" color="transparent" />
+      <v-skeleton-loader v-if="loading" class="tagsSkeleton" type="chip@3" color="transparent" />
       <div v-else-if="appTags?.length" class="tagsGroup">
         <div class="tagItem" v-for="item in appTags">
           <v-chip variant="text" border>{{ item }}</v-chip>
@@ -118,12 +118,11 @@ function shareApp() {
       <!-- #endregion -->
 
       <!-- #region 开发者信息 -->
-      <div v-show="appInfo?.vender || loading" class="py-2" @dragstart.stop>
-        <h2 class="itemTitle">{{ $t('developer.name') }}</h2>
+      <v-list v-show="appInfo?.vender || loading" class="my-4" border rounded="lg" @dragstart.stop>
+        <v-list-subheader>{{ $t('developer.name') }}</v-list-subheader>
         <v-skeleton-loader type="avatar, text" color="transparent" :loading="loading">
           <v-list-item
             prepend-avatar="@/assets/images/icon.svg"
-            rounded="lg"
             lines="two"
             :title="appInfo?.vender"
             link
@@ -133,14 +132,11 @@ function shareApp() {
             width="100%"
           />
         </v-skeleton-loader>
-      </div>
+      </v-list>
       <!-- #endregion -->
 
       <!-- 详情信息 -->
-      <div class="py-2">
-        <h2 class="itemTitle">{{ $t('details.name') }}</h2>
-        <AppDetails :loading="loading" :app-info="appInfo" :title-class="['itemTitle']" />
-      </div>
+      <AppDetails :loading="loading" :app-info="appInfo" :title-class="['itemTitle']" />
     </v-container>
   </app-main>
 </template>
@@ -169,16 +165,10 @@ function shareApp() {
   top: initial !important;
 }
 
-.itemTitle {
-  color: rgba(var(--v-theme-on-background));
-  font-size: 1.125rem;
-  margin-bottom: 8px;
-  font-weight: 500;
-}
-
 //标签
 .tagsSkeleton {
   margin: -4px;
+  margin-top: -12px;
 
   :deep(.v-skeleton-loader__chip) {
     margin: 4px;
@@ -191,6 +181,7 @@ function shareApp() {
   display: flex;
   flex-wrap: wrap;
   margin: -4px;
+  margin-top: -12px;
   .tagItem {
     padding: 4px;
   }
@@ -228,7 +219,4 @@ function shareApp() {
   }
 }
 
-.detailsSkeleton {
-  margin: -16px;
-}
 </style>
