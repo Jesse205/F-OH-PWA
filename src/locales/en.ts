@@ -73,7 +73,8 @@ export default {
     }
   },
   release: {
-    name: 'Release'
+    name: 'Release',
+    date: 'Release date'
   },
   id: {
     name: 'ID'
@@ -139,5 +140,8 @@ export default {
   },
   token: {
     name: 'Token'
+  },
+  more: {
+    info: 'More info'
   }
 }

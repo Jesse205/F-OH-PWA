@@ -8,18 +8,31 @@ defineProps<{
 </script>
 
 <template>
-  <v-list class="my-4" border rounded="lg">
-    <v-list-subheader>{{ $t('details.name') }}</v-list-subheader>
-    <v-skeleton-loader class="" type="text@5" color="transparent" :loading="loading">
-      <v-list-item>
-        {{ $t('version.name') }}: {{ appInfo?.version ?? $t('unknown.name') }}<br />
-        {{ $t('packageName.name') }}: {{ appInfo?.packageName ?? $t('unknown.name') }}<br />
-        {{ $t('developer.name') }}: {{ appInfo?.vender ?? $t('unknown.name') }}<br />
-        {{ $t('release.name') }}: {{ appInfo?.releaseTime ?? $t('unknown.name') }}<br />
-        {{ $t('id.name') }}: {{ appInfo?.id ?? $t('unknown.name') }}<br />
-      </v-list-item>
+  <v-list class="my-4" border rounded="lg" lines="two">
+    <v-list-subheader>{{ $t('more.info') }}</v-list-subheader>
+    <v-skeleton-loader class="skeleton-more" type="list-item-avatar-two-line@2" color="transparent" :loading="loading">
+      <v-list-item
+        prepend-icon="mdi-clock-outline"
+        :title="$t('release.date')"
+        :subtitle="appInfo?.releaseTime ?? $t('unknown.name')"
+        width="100%"
+      />
+      <v-list-item
+        prepend-icon="mdi-identifier"
+        :title="$t('id.name')"
+        :subtitle="appInfo?.id ?? $t('unknown.name')"
+        width="100%"
+      />
     </v-skeleton-loader>
   </v-list>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.skeleton-more:deep(.v-skeleton-loader__avatar) {
+  width: 24px;
+  min-width: 24px;
+  height: 24px;
+  min-height: 24px;
+  margin-right: 32px;
+}
+</style>

@@ -70,7 +70,8 @@ export default {
     }
   },
   release: {
-    name: '发行'
+    name: '发行',
+    date: '发行日期'
   },
   id: {
     name: '编号'
@@ -135,5 +136,8 @@ export default {
   },
   token: {
     name: '令牌'
+  },
+  more: {
+    info: '更多信息'
   }
 }
