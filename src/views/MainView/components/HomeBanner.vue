@@ -50,7 +50,7 @@ const newBanners = computed(() => {
       }"
       :modules="[Pagination]"
     >
-      <swiper-slide v-for="item in newBanners?.data" :key="item.image">
+      <swiper-slide v-for="item in newBanners?.data" :key="item.image" role="banner">
         <component :is="item.src ? 'a' : 'div'" :href="item.src" target="_blank">
           <v-img class="rounded-lg border" :aspect-ratio="banners?.ratio" :src="item.image" cover />
         </component>
