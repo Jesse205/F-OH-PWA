@@ -41,8 +41,8 @@ usePwa()
 
 // Tauri
 const tauriState = isTauri()
-console.log('isTauri', tauriState)
-console.log('isLegacyApp', isLegacyApp())
+console.debug('isTauri', tauriState)
+console.debug('isLegacyApp', isLegacyApp())
 
 // I18n
 const { t, locale } = useI18n()

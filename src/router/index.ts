@@ -115,8 +115,8 @@ router.beforeEach((to, from) => {
     left: document.querySelector(EL_SCROLL)?.scrollLeft ?? 0
   }
   scrollState2[from.fullPath] = scrollData
-  console.log('Saving scrollData:', scrollData)
-  console.log('Saving state', state)
+  console.debug('Saving scrollData:', scrollData)
+  console.debug('Saving state', state)
   if (history.state.current !== from.fullPath) {
     console.warn('history.state.current !== from.fullPath, state maybe not to be saved.')
   }
