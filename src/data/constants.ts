@@ -1,8 +1,10 @@
 import { getCompletePath, getServerCompletePath } from '@/util/url'
 import { isLegacyApp } from '@/util/app'
 
-// Urls
-const { VITE_URL_API, VITE_URL_API_LEGACY, VITE_URL_UPLOAD, VITE_URL_API_GOGS } = import.meta.env
+// env
+const { VITE_URL_API, VITE_URL_API_LEGACY, VITE_URL_UPLOAD, VITE_URL_API_GOGS, VITE_HOST_WEB } = import.meta.env
+
+export const HOST_WEB = VITE_HOST_WEB
 
 /**
  * F-OH 的 API 地址，自动判断当前运行环境。

@@ -1,4 +1,6 @@
 interface ImportMetaEnv extends Readonly<Record<string, string>> {
+  VITE_HOST_WEB: string
+  VITE_HOST_SERVER: string
   /**
    * 浏览器环境使用的 F-OH API，用于解决跨域等问题
    */

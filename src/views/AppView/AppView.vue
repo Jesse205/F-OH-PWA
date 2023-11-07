@@ -1,16 +1,18 @@
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
+import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useAppsStore } from '@/store/apps'
 import { onMounted } from 'vue'
 import AppMain from '@/components/AppMain.vue'
-import { useScroll } from '@vueuse/core'
+import { useScroll, useShare } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
 import { getAppTags } from '@/util/apps'
 import { useTitle } from '@/events/title'
 import AppOverview from './components/AppOverview.vue'
 import AppDetails from './components/AppDetails.vue'
 import BackButton from '@/components/BackButton.vue'
+import { isLegacyApp } from '@/util/app'
+import { HOST_WEB } from '@/data/constants'
 
 const { t } = useI18n()
 
@@ -31,10 +33,9 @@ onMounted(() => {
 })
 
 const mainElement = ref<InstanceType<typeof AppMain>>()
-const mainScrollElement = computed<HTMLElement | null>(() => mainElement.value?.mainScroll ?? null)
-
 const AppOverviewElement = ref<InstanceType<typeof AppOverview>>()
 
+const mainScrollElement = computed<HTMLElement | null>(() => mainElement.value?.mainScroll ?? null)
 const appNameElement = computed(() => AppOverviewElement.value?.appNameElement)
 
 const appNamePositionYBottom = computed(() => {
@@ -51,6 +52,25 @@ const isTitleShowName = computed(() => scrollY.value > appNamePositionYBottom.va
 const title = computed(() => (appInfo.value ? `${appInfo.value.name} - ${t('app.view')}` : t('app.view')))
 
 useTitle(title)
+
+// 分享
+const { share, isSupported: isShareSupported } = useShare()
+
+function getAppShareUrl(): URL {
+  const url = new URL(location.href)
+  if (isLegacyApp()) {
+    url.hostname = HOST_WEB
+    url.protocol = 'https'
+    url.port = ''
+  }
+  return url
+}
+function shareApp() {
+  share({
+    title: document.head.title,
+    url: getAppShareUrl().href
+  })
+}
 </script>
 
 <template>
@@ -64,6 +84,7 @@ useTitle(title)
         </span>
       </transition>
     </v-app-bar-title>
+    <v-btn v-if="isShareSupported" :disabled="!appInfo" icon="mdi-share-variant-outline" @click="shareApp" />
   </v-app-bar>
   <app-main ref="mainElement">
     <v-progress-linear v-show="appsStore.loading" color="primary" class="progress" indeterminate />
