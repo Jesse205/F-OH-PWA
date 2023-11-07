@@ -16,7 +16,7 @@ const i18n = createI18n({
   legacy: false,
   globalInjection: true,
   // 这里使用钩子竟然也行，不知道是怎么跑起来的。
-  locale: localStorage.getItem('locale') ?? navigator.language,
+  // locale: localStorage.getItem('locale') ?? navigator.language,
   fallbackLocale: navigator.languages as Locale[],
   messages: {
     en: EN,

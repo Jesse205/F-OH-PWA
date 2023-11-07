@@ -47,9 +47,14 @@ console.debug('isLegacyApp', isLegacyApp())
 // I18n
 const { t, locale } = useI18n()
 const savedLocale = useLocaleSetting()
-watch(savedLocale, (newLocale) => {
-  locale.value = newLocale
-})
+watch(
+  savedLocale,
+  (newLocale) => {
+    locale.value = newLocale
+    document.documentElement.setAttribute('lang', newLocale)
+  },
+  { immediate: true }
+)
 
 // 应用标题，动态切换不同标题
 const appName = ref<string>(t('appName'))
@@ -81,7 +86,7 @@ if (tauriState) {
 /**
  * 标题，带有后缀
  */
-const title = useTitle(null, { observe: true })
+const title = useTitle(appName.value, { observe: true })
 
 // 绑定 Tauri 窗口标题
 if (tauriState) {
@@ -93,6 +98,14 @@ if (tauriState) {
     { immediate: true }
   )
 }
+
+watch(
+  title,
+  (newTitle) => {
+    console.debug('NewTitle', newTitle)
+  },
+  { immediate: true }
+)
 
 /**
  * 在 Tauri 中阻止拖动，如需允许拖动，请在组件上使用 `@dragstart.stop` 属性
