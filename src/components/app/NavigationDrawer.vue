@@ -16,7 +16,7 @@ const title = useTitle(null, { observe: true })
 /**
  * 标题，无后缀
  */
-const clearTitle = computed(() => title.value?.match(`(.+) - ${appName.value}`)?.[1] ?? title.value ?? 'Unknown')
+const clearTitle = computed(() => title.value?.match(`^(.+) - ${appName.value}$`)?.[1] ?? title.value ?? 'Unknown')
 
 const { pages, activePagePosition, isBackOtherPage, isInMainView } = useHomeNavigation()
 const { xs, smAndDown } = useDisplay()
