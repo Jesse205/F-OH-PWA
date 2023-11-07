@@ -40,7 +40,7 @@ const token = useToken()
   </v-app-bar>
   <app-main>
     <v-container class="container">
-      <v-list lines="two" active-class="noActivatedOverlay">
+      <v-list active-class="noActivatedOverlay">
         <!-- 项目展示 -->
         <!-- <v-list-subheader>{{ $t('project.showcase.name') }}</v-list-subheader> -->
         <!-- 应用 -->
@@ -52,6 +52,7 @@ const token = useToken()
           :title="$t('locale.language')"
           :subtitle="$i18n.locale"
           link
+          lines="two"
         >
           <!-- origin="left" 修复小窗时定位错误 -->
           <v-menu activator="parent" scrim="rgba(0,0,0,0)" origin="left">
@@ -67,6 +68,7 @@ const token = useToken()
           class="noActivatedOverlay"
           :title="$t('token.name')"
           hint="请进入“用户设置 > 授权应用”获取令牌"
+          lines="one"
         />
 
         <!-- 关于 -->
@@ -76,6 +78,7 @@ const token = useToken()
           :subtitle="appVersion"
           :to="{ name: 'About' }"
           append-icon="mdi-chevron-right"
+          lines="two"
         >
         </v-list-item>
       </v-list>

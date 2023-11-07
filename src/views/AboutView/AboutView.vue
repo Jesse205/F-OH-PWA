@@ -88,6 +88,7 @@ if (isTauri) {
           :title="$t('donate.name')"
           :to="{ name: 'Donate' }"
           append-icon="mdi-chevron-right"
+          lines="one"
         />
         <v-divider></v-divider>
         <!-- 交流讨论 -->
