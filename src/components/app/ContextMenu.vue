@@ -21,7 +21,7 @@ const config: ContextMenuConfig = reactive<ContextMenuConfig>({
   state: false,
   time: 0
 })
-const tauriState = isTauri()
+const tauriState = isTauri
 
 /**
  * 在 Tauri 中使用自定义右键菜单

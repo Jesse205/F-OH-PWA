@@ -16,7 +16,7 @@ const { t, locale } = useI18n()
 useTitle(computed(() => t('settings.name')))
 
 const appVersion = ref(__VERSION__)
-if (isTauri()) {
+if (isTauri) {
   getVersion().then((version) => {
     appVersion.value = version
   })

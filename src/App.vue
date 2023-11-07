@@ -40,8 +40,7 @@ const routeName = computed(() => route.path.match('/[^/]+')?.[0] ?? '')
 usePwa()
 
 // Tauri
-const tauriState = isTauri()
-console.debug('isTauri', tauriState)
+console.debug('isTauri', isTauri)
 console.debug('isLegacyApp', isLegacyApp())
 
 // I18n
@@ -68,7 +67,7 @@ watch(
   displayMode,
   (newDisplayMode) => {
     // Tauri 中使用另外提供的应用名
-    if (tauriState) return
+    if (isTauri) return
     if (isPwaDisplayMode(newDisplayMode)) appName.value = APP_NAME_PWA
     else appName.value = APP_NAME_DEFAULT
   },
@@ -76,7 +75,7 @@ watch(
 )
 
 // Tauri 中就用真实的应用名
-if (tauriState) {
+if (isTauri) {
   appName.value = APP_NAME_TAURI
   getName().then((name) => {
     appName.value = name
@@ -89,7 +88,7 @@ if (tauriState) {
 const title = useTitle(appName.value, { observe: true })
 
 // 绑定 Tauri 窗口标题
-if (tauriState) {
+if (isTauri) {
   watch(
     title,
     (newTitle) => {
@@ -112,7 +111,7 @@ watch(
  * @param event
  */
 function onDragStart(event: DragEvent) {
-  if (tauriState) event.preventDefault()
+  if (isTauri) event.preventDefault()
 }
 </script>
 

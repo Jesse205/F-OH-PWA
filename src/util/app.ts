@@ -12,17 +12,14 @@ const WEBVIEW_OPTIONS_DEFAULT: WindowOptions = {
 
 /**
  * 判断当前环境是否是 Tauri
- * @returns 当前环境是否是 Tauri
  */
-export function isTauri(): boolean {
-  return !!(window as any).__TAURI__
-}
+export const isTauri = !!(window as any).__TAURI__
 
 /**
  * 判断是否以传统 APP 运行
  */
 export function isLegacyApp(): boolean {
-  return isTauri()
+  return isTauri
 }
 
 /**
@@ -37,7 +34,7 @@ export function isRedirectApiHost(): boolean {
  * @param url 要打开的链接
  */
 export async function openNewWindow(url: string) {
-  if (isTauri()) {
+  if (isTauri) {
     new WebviewWindow(`window-${Date.now()}`, {
       title: await getName(),
       ...WEBVIEW_OPTIONS_DEFAULT,
@@ -51,7 +48,7 @@ export async function openNewWindow(url: string) {
 export type CopyTextState = 'success' | 'not_support' | 'unknown_error'
 
 export function copyText(text: string, callback: (state: CopyTextState) => void) {
-  if (isTauri()) {
+  if (isTauri) {
     writeText(text).then(() => callback('success'))
   } else {
     // TODO: 使用原生 API

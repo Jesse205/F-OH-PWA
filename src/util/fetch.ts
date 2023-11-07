@@ -8,7 +8,7 @@ interface FetchOptions {
 }
 
 export async function autoFetchJson<T = any>(url: string, options?: FetchOptions): Promise<T> {
-  if (!isTauri()) {
+  if (!isTauri) {
     const reponse = await fetch(url, options)
     return await toJsonIfOk<T>(reponse)
   } else {

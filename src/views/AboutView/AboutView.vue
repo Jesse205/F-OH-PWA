@@ -40,7 +40,7 @@ const URL_SOURCE = 'https://gitee.com/ohos-dev/F-OH-PWA'
 
 const tauriVersion = ref()
 
-if (isTauri()) {
+if (isTauri) {
   getTauriVersion().then((version) => {
     tauriVersion.value = version
   })
