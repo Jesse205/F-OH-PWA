@@ -17,10 +17,11 @@ defineProps<{
         :subtitle="appInfo?.releaseTime ?? $t('unknown.name')"
         width="100%"
       />
+      <!-- subtitle 必须为字符串，否则不会添加到对应的元素内 -->
       <v-list-item
         prepend-icon="mdi-identifier"
         :title="$t('id.name')"
-        :subtitle="appInfo?.id ?? $t('unknown.name')"
+        :subtitle="`${appInfo?.id ?? $t('unknown.name')}`"
         width="100%"
       />
     </v-skeleton-loader>
