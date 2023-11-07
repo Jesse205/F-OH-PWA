@@ -1,22 +1,20 @@
 <script lang="ts" setup>
-import { Position, usePreferredDark, useTitle } from '@vueuse/core'
-import { useDisplay, useTheme } from 'vuetify'
-import { watch, ref, onMounted, onBeforeUnmount, computed, unref, provide } from 'vue'
+import { usePreferredDark, useTitle } from '@vueuse/core'
+import { useTheme } from 'vuetify'
+import { watch, ref, computed, provide } from 'vue'
 import { useRoute } from 'vue-router'
 import { usePwa } from '@/events/pwa'
-import { isTauri, openNewWindow, copyText } from '@/util/app'
+import { isTauri } from '@/util/app'
 import { getCurrent } from '@tauri-apps/api/window'
 import { useI18n } from 'vue-i18n'
-import { reactive } from 'vue'
-import { nextTick } from 'vue'
 import { useLocaleSetting } from '@/events/settings'
 import { isLegacyApp } from '@/util/app'
-import { useHomeNavigation } from '@/events/navigation'
 import { getName } from '@tauri-apps/api/app'
 import { APP_NAME_TAURI, APP_NAME_PWA, APP_NAME_DEFAULT } from './locales'
 import { useDisplayMode } from './events/pwa'
 import { isPwaDisplayMode } from './util/pwa'
 import NavigationDrawer from './components/app/NavigationDrawer.vue'
+import ContextMenu from './components/app/ContextMenu.vue'
 
 // 主题
 const theme = useTheme()
@@ -96,59 +94,6 @@ if (tauriState) {
   )
 }
 
-// 右键菜单
-interface ContextMenuConfig {
-  position: Position
-  url: string | null
-  externalUrl: string | null
-  state: boolean
-  time: number
-}
-
-const contextMenuConfig = reactive<ContextMenuConfig>({
-  position: {
-    x: 0,
-    y: 0
-  },
-  url: null,
-  externalUrl: null,
-  state: false,
-  time: 0
-})
-
-/**
- * 在 Tauri 中使用自定义右键菜单
- * @param event
- */
-function onContextMenu(event: MouseEvent) {
-  if (tauriState) {
-    event.preventDefault()
-    console.log('onContextMenu', `clientX=${event.clientX}, clientY=${event.clientY}`)
-    // 如果上一次没有关闭上下文菜单，就需要关闭一下，防止不会刷新定位
-    contextMenuConfig.state = false
-    nextTick(() => {
-      contextMenuConfig.state = !!(contextMenuConfig.url || contextMenuConfig.externalUrl)
-    })
-    contextMenuConfig.url = null
-    contextMenuConfig.externalUrl = null
-    for (let element = event.target as HTMLElement; element.parentElement; element = element.parentElement) {
-      if (element instanceof HTMLAnchorElement && !contextMenuConfig.url) {
-        if (!element.target || element.target === '_self') {
-          contextMenuConfig.url = element.href
-        } else if (element.target === '_blank') {
-          contextMenuConfig.externalUrl = element.href
-        }
-      }
-    }
-    contextMenuConfig.position.x = event.clientX
-    contextMenuConfig.position.y = event.clientY
-    contextMenuConfig.time = Date.now()
-  }
-}
-
-onMounted(() => document.body.addEventListener('contextmenu', onContextMenu))
-onBeforeUnmount(() => document.body.removeEventListener('contextmenu', onContextMenu))
-
 /**
  * 在 Tauri 中阻止拖动，如需允许拖动，请在组件上使用 `@dragstart.stop` 属性
  * @param event
@@ -185,44 +130,7 @@ function onDragStart(event: DragEvent) {
         </transition>
       </div>
     </v-main>
-    <!-- Tauri 中上下文菜单 -->
-    <v-menu
-      class="menu"
-      v-model="contextMenuConfig.state"
-      @contextmenu.stop.prevent
-      @selectstart.prevent
-      transition="fade-transition"
-      :key="contextMenuConfig.time"
-    >
-      <template v-slot:activator="{ props }">
-        <div
-          v-bind="props"
-          class="contextMenuActivator"
-          :style="{ left: contextMenuConfig.position.x + 'px', top: contextMenuConfig.position.y + 'px' }"
-        ></div>
-      </template>
-      <v-list>
-        <!-- 新窗口中打开 -->
-        <v-list-item
-          v-if="contextMenuConfig.url"
-          :title="$t('openNewWindow.name')"
-          @click="openNewWindow(contextMenuConfig.url)"
-        />
-        <!-- 浏览器中打开 -->
-        <v-list-item
-          v-if="contextMenuConfig.externalUrl"
-          :title="$t('openNewWindow.linkInBrowser')"
-          :href="contextMenuConfig.externalUrl"
-          target="_blank"
-        />
-        <!-- 复制链接 -->
-        <v-list-item
-          v-if="contextMenuConfig.externalUrl"
-          :title="$t('copy.link')"
-          @click="copyText(contextMenuConfig.externalUrl, (state) => {})"
-        />
-      </v-list>
-    </v-menu>
+    <ContextMenu />
   </v-app>
 </template>
 
@@ -260,11 +168,5 @@ function onDragStart(event: DragEvent) {
     margin-bottom: 16px;
     flex: none;
   }
-}
-
-.contextMenuActivator {
-  position: absolute;
-  width: 0;
-  height: 0;
 }
 </style>
