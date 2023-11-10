@@ -12,8 +12,6 @@ import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import { md2 } from 'vuetify/blueprints'
 
-import { VSkeletonLoader } from 'vuetify/labs/VSkeletonLoader'
-
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 export default createVuetify({
   blueprint: md2,
@@ -87,8 +85,5 @@ export default createVuetify({
         border: false,
       }
     }
-  },
-  components: {
-    VSkeletonLoader
   }
 })
