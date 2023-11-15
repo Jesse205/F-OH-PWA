@@ -201,33 +201,8 @@ function shareApp() {
   width: 100%;
   max-width: 600px;
   color: inherit !important;
-
-  :deep(.v-card__underlay) {
-    opacity: 0;
-  }
-
-  :deep(.v-card-text) {
-    font-size: 1rem;
-    min-height: 52px;
-    padding-left: 48px;
-    padding-right: 48px;
-  }
-
-  :deep(.v-icon) {
-    position: absolute;
-    left: 14px;
-    top: 10px;
-    font-size: 32px;
-    opacity: 0.3;
-  }
-
-  @media (min-width: 600px) {
-    width: fit-content;
-  }
-  &.loading {
-    width: 100%;
-  }
 }
+
 .summaryCard {
   text-align: center;
 
