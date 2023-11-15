@@ -105,17 +105,16 @@ function shareApp() {
       <!-- #region 一句话介绍 -->
       <div class="my-4" v-show="appInfo?.desc || loading">
         <v-skeleton-loader
+          v-if="loading"
           class="summarySkeleton rounded-lg"
           :class="{ loading: loading }"
           type="sentences"
-          color="rgba(var(--v-theme-on-surface), 0.06)"
-          :loading="loading"
-        >
-          <v-card class="text-center" variant="tonal" flat :border="false" tag="article">
-            <v-card-text>{{ appInfo?.desc }}</v-card-text>
-            <v-icon icon="mdi-format-quote-open" />
-          </v-card>
-        </v-skeleton-loader>
+          color="rgba(var(--v-theme-on-surface), 0.12)"
+        />
+        <v-card v-else class="summaryCard" variant="tonal" flat :border="false" tag="article">
+          <v-card-text>{{ appInfo?.desc }}</v-card-text>
+          <v-icon class="icon" icon="mdi-format-quote-open" />
+        </v-card>
       </div>
       <!-- #endregion -->
 
@@ -227,6 +226,28 @@ function shareApp() {
   }
   &.loading {
     width: 100%;
+  }
+}
+.summaryCard {
+  text-align: center;
+
+  :deep(.v-card-text) {
+    font-size: 1rem;
+    min-height: 52px;
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+
+  .icon {
+    position: absolute;
+    left: 14px;
+    top: 10px;
+    font-size: 32px;
+    opacity: 0.3;
+  }
+
+  @media (min-width: 600px) {
+    width: fit-content;
   }
 }
 </style>
