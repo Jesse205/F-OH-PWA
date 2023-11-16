@@ -29,6 +29,7 @@
 
 .harmony {
   --v-border-opacity: 0.2;
+  --harmony-blur-radius: 20px;
   .v-list {
     border-radius: 16px;
     .v-list-item {
@@ -38,9 +39,6 @@
   .v-list--nav {
     padding-inline: 8px !important;
   }
-  .v-menu > .v-overlay__content > .v-list {
-    border-radius: 16px;
-  }
   .v-card {
     border-radius: 16px;
   }
@@ -48,9 +46,16 @@
     border-right-width: 0;
   }
   .v-menu {
-    > .v-overlay__content > .v-list {
-      box-shadow: 0px 10px 50px rgba(0, 0, 31, 15%);
+    > .v-overlay__content {
+      border-radius: 20px;
+      backdrop-filter: blur(var(--harmony-blur-radius));
+      > .v-list {
+        border-radius: 16px;
+        box-shadow: 0px 10px 50px rgba(0, 0, 31, 15%);
+        background-color: rgba(var(--v-theme-surface), 0.9) !important;
+      }
     }
+
     .slide-y-transition-enter-active,
     .slide-y-transition-leave-active {
       transition-duration: 0.1s !important;
@@ -76,8 +81,11 @@
   }
 
   .v-dialog > .v-overlay__content {
+    backdrop-filter: blur(var(--harmony-blur-radius));
+    border-radius: 20px;
     > .v-card {
       border-radius: 20px;
+      background-color: rgba(var(--v-theme-surface), 0.9) !important;
       .v-card-actions {
         padding: 4px 12px 12px 12px;
         .v-btn {

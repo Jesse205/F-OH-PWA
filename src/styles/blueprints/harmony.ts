@@ -101,7 +101,7 @@ export const harmony: Blueprint = {
       color: 'primary'
     },
     VList: {
-      bgColor: 'surface',
+      // bgColor: 'surface',
       class: ['pa-1']
     },
     VListItem: {},
