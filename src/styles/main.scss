@@ -91,4 +91,13 @@
       bottom: 0;
     }
   }
+
+  .v-tabs {
+    padding: 4px 4px 0px 4px;
+    .v-tab {
+      height: 100%;
+      border-top-left-radius: 14px;
+      border-top-right-radius: 14px;
+    }
+  }
 }
