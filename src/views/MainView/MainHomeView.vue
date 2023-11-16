@@ -42,7 +42,7 @@ const banners: Banners = {
   <!-- 轮播图 -->
   <HomeBanner class="my-4" :banners="banners" :base-url="URL_API" />
   <v-container class="py-0" v-if="homeStore.data?.showAnnouncement">
-    <v-list class="my-4" border rounded="lg">
+    <v-list class="my-4">
       <!-- 公告 -->
       <v-list-subheader>{{ $t('announcement.name') }}</v-list-subheader>
       <v-list-item class="announcementContent" v-html="homeStore.announcementHtml"></v-list-item>
@@ -58,12 +58,16 @@ const banners: Banners = {
 .announcementContent {
   /* white-space: pre-line; */
   display: block;
-  margin-top: -0.5rem;
-  margin-bottom: -0.5rem;
-  & > :deep(*) {
+  /*margin-top: -0.5rem;
+  margin-bottom: -0.5rem;*/
+
+  >:not(:first) {
     margin-top: 0.5rem;
+  }
+  >:not(:last-child) {
     margin-bottom: 0.5rem;
   }
+
   :deep(ul),
   :deep(ol) {
     padding-left: 1rem;

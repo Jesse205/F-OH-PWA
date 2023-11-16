@@ -33,7 +33,7 @@ const onInstallBtnClick = inject<() => void>('onInstallBtnClick')
 
 <template>
   <!-- 应用栏 -->
-  <v-app-bar flat border="b">
+  <v-app-bar>
     <!-- 仅在非手机中显示返回按钮 -->
     <back-button v-if="!xs" />
     <v-app-bar-title>{{ homeTitle }}</v-app-bar-title>
@@ -44,7 +44,7 @@ const onInstallBtnClick = inject<() => void>('onInstallBtnClick')
       </template>
       <span>搜索应用</span>
     </v-tooltip>
-    <v-menu origin="top" width="192" location="top" scrim="transparent">
+    <v-menu origin="bottom" width="172" location="top" scrim="transparent">
       <template v-slot:activator="{ props: menu }">
         <v-btn icon="mdi-dots-vertical" v-bind="menu" />
       </template>
@@ -72,7 +72,6 @@ const onInstallBtnClick = inject<() => void>('onInstallBtnClick')
     grow
     color="primary"
     mandatory
-    border="t"
     :elevation="0"
     selected-class="noActivatedTransparency"
   >

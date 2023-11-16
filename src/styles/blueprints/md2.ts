@@ -1,31 +1,21 @@
-/**
- * plugins/vuetify.ts
- *
- * Framework documentation: https://vuetifyjs.com`
- */
+// Icons
+import { mdi } from 'vuetify/iconsets/mdi'
 
-// Styles
-import '@mdi/font/css/materialdesignicons.css'
-import 'vuetify/styles'
+// Types
+import type { Blueprint } from 'vuetify'
 
-// Composables
-import { createVuetify } from 'vuetify'
-import { harmony } from '@/styles/blueprints'
+import { md2 as vuetifyMd2 } from 'vuetify/blueprints'
 
-
-// https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
-export default createVuetify({
-  blueprint: harmony,
-  display: {
-    mobileBreakpoint: 'md'
-  },
- /* theme: {
+export const md2: Blueprint = {
+  ...vuetifyMd2,
+   theme: {
     themes: {
       light: {
         colors: {
           primary: '#007DFF',
           secondary: '#81bd0a',
-          surface: '#FFFFFF'
+          surface: '#FFFFFF',
+          error: '#B00020',
         }
       },
       dark: {
@@ -35,8 +25,47 @@ export default createVuetify({
         }
       }
     }
-  },*/
-  /*defaults: {
+  },
+  defaults: {
+    ...vuetifyMd2.defaults,
+    VAutocomplete: {
+      variant: 'outlined',
+    },
+    VBanner: {
+      color: 'primary',
+    },
+    VBtn: {
+      color: 'primary',
+    },
+    VCheckbox: {
+      color: 'secondary',
+    },
+    VCombobox: {
+      variant: 'filled',
+    },
+    VSelect: {
+      variant: 'filled',
+    },
+    VSlider: {
+      color: 'primary',
+    },
+    VTabs: {
+      color: 'primary',
+    },
+    VTextarea: {
+      variant: 'outlined',
+    },
+    VTextField: {
+      variant: 'outlined',
+      color: 'primary',
+      rounded: false
+    },
+    VToolbar: {
+      VBtn: {
+        color: null,
+      },
+      color: 'background'
+    },
     VBottomNavigation: {
       bgColor: 'background',
       VBtn: {
@@ -66,15 +95,8 @@ export default createVuetify({
     VProgressCircular: {
       color: 'primary'
     },
-    VTextField: {
-      color: 'primary',
-      rounded: false
-    },
     VList: {
       bgColor: 'transparent'
-    },
-    VToolbar: {
-      color: 'background'
     },
     VNavigationDrawer: {
       color: 'background'
@@ -85,6 +107,7 @@ export default createVuetify({
         variant: 'elevated',
         border: false,
       }
-    }
-  }*/
-})
+    },
+  },
+
+}

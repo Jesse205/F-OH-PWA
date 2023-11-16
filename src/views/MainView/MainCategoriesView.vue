@@ -78,7 +78,7 @@ watch(
     <!-- MainLayout -->
     <template v-if="loaded">
       <template v-for="appType in appTypes">
-        <v-list v-if="appType.apps && appType.apps.length" class="my-4" border rounded="lg">
+        <v-list v-if="appType.apps && appType.apps.length" class="my-4">
           <v-list-subheader>{{ appType.title }}</v-list-subheader>
           <div class="project-items">
             <ProjectItem

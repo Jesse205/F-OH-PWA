@@ -32,7 +32,6 @@ function applyValue() {
         <v-card-text>
           <v-text-field
             v-model="editValue"
-            variant="outlined"
             active
             :hint="hint"
             persistent-hint
@@ -40,7 +39,7 @@ function applyValue() {
           />
         </v-card-text>
         <v-card-actions>
-          <v-spacer></v-spacer>
+          <!-- <v-spacer></v-spacer> -->
           <v-btn variant="text" @click="dialogVisible = false"> {{ $t('no.name') }} </v-btn>
           <v-btn variant="text" @click="applyValue">
             {{ $t('ok.name') }}

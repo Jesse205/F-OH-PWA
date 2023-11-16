@@ -51,7 +51,7 @@ if (isTauri) {
 </script>
 
 <template>
-  <v-app-bar flat border="b">
+  <v-app-bar>
     <back-button />
     <v-app-bar-title>{{ $t('about.name') }}</v-app-bar-title>
   </v-app-bar>
@@ -61,7 +61,7 @@ if (isTauri) {
   <app-main>
     <v-container class="container">
       <AppCard v-if="!mdAndUp" />
-      <v-list lines="two" active-class="noActivatedOverlay">
+      <v-list class="ma-4" lines="two" active-class="noActivatedOverlay">
         <!-- 关于应用 -->
         <v-list-subheader>{{ $t('app.about') }}</v-list-subheader>
         <!-- 应用版本 -->
@@ -73,7 +73,9 @@ if (isTauri) {
           :title="$t('tauri.version')"
           :subtitle="tauriVersion"
         />
-        <v-divider></v-divider>
+      </v-list>
+      <v-list class="ma-4" lines="two" active-class="noActivatedOverlay">
+        <!-- <v-divider></v-divider> -->
         <!-- 开发者信息 -->
         <v-list-subheader>{{ $t('develop.messages') }}</v-list-subheader>
         <v-list-item
@@ -90,7 +92,10 @@ if (isTauri) {
           append-icon="mdi-chevron-right"
           lines="one"
         />
-        <v-divider></v-divider>
+      </v-list>
+      <v-list class="ma-4" lines="two" active-class="noActivatedOverlay">
+        <!-- <v-divider></v-divider> -->
+
         <!-- 交流讨论 -->
         <v-list-subheader>{{ $t('communicate.name') }}</v-list-subheader>
         <!-- QQ 群 -->
@@ -102,7 +107,9 @@ if (isTauri) {
           target="_blank"
           append-icon="mdi-open-in-new"
         />
-        <v-divider></v-divider>
+      </v-list>
+      <v-list class="ma-4" lines="two" active-class="noActivatedOverlay">
+        <!-- <v-divider></v-divider> -->
         <!-- 相关链接 -->
         <v-list-subheader>{{ $t('link.related') }}</v-list-subheader>
         <!-- 源代码 -->

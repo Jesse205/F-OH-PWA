@@ -18,7 +18,7 @@ const { t } = useI18n()
     </div> -->
 
     <!-- 用户面板 -->
-    <v-list class="my-4 prependIconPrimaryItem" border rounded="lg">
+    <v-list class="my-4 prependIconPrimaryItem">
       <v-list-item title="我的关注" link prepend-icon="mdi-apps" append-icon="mdi-chevron-right" disabled />
       <v-list-item
         :title="$t('manager.apps')"
@@ -31,7 +31,7 @@ const { t } = useI18n()
     </v-list>
 
     <!-- 软件面板 -->
-    <v-list class="my-4 prependIconPrimaryItem" border rounded="lg" color="primary">
+    <v-list class="my-4 prependIconPrimaryItem" color="primary">
       <v-list-item
         :title="$t('settings.name')"
         prepend-icon="mdi-cog-outline"

@@ -74,7 +74,7 @@ function shareApp() {
 </script>
 
 <template>
-  <v-app-bar class="app-bar" flat border="b">
+  <v-app-bar class="app-bar">
     <back-button />
     <!-- 多标题动画展示 -->
     <v-app-bar-title class="title">
@@ -106,7 +106,7 @@ function shareApp() {
       <div class="my-4" v-show="appInfo?.desc || loading">
         <v-skeleton-loader
           v-if="loading"
-          class="summarySkeleton rounded-lg"
+          class="summarySkeleton"
           :class="{ loading: loading }"
           type="sentences"
           color="rgba(var(--v-theme-on-surface), 0.12)"
@@ -122,13 +122,13 @@ function shareApp() {
       <v-skeleton-loader v-if="loading" class="tagsSkeleton" type="chip@3" color="transparent" />
       <div v-else-if="appTags?.length" class="tagsGroup">
         <div class="tagItem" v-for="item in appTags">
-          <v-chip variant="text" border>{{ item }}</v-chip>
+          <v-chip border>{{ item }}</v-chip>
         </div>
       </div>
       <!-- #endregion -->
 
       <!-- #region 开发者信息 -->
-      <v-list v-show="appInfo?.vender || loading" class="my-4" border rounded="lg" @dragstart.stop>
+      <v-list v-show="appInfo?.vender || loading" class="my-4" @dragstart.stop>
         <v-list-subheader>{{ $t('developer.name') }}</v-list-subheader>
         <v-skeleton-loader type="avatar, text" color="transparent" :loading="loading">
           <v-list-item
@@ -201,6 +201,7 @@ function shareApp() {
   width: 100%;
   max-width: 600px;
   color: inherit !important;
+  border-radius: 16px;
 }
 
 .summaryCard {

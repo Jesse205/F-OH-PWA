@@ -34,13 +34,13 @@ const token = useToken()
 </script>
 
 <template>
-  <v-app-bar flat border="b">
+  <v-app-bar>
     <back-button />
     <v-app-bar-title>{{ $t('settings.name') }}</v-app-bar-title>
   </v-app-bar>
   <app-main>
     <v-container class="container">
-      <v-list active-class="noActivatedOverlay">
+      <v-list class="ma-4" active-class="noActivatedOverlay">
         <!-- 项目展示 -->
         <!-- <v-list-subheader>{{ $t('project.showcase.name') }}</v-list-subheader> -->
         <!-- 应用 -->
