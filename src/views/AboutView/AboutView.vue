@@ -51,7 +51,7 @@ if (isTauri) {
 </script>
 
 <template>
-  <v-app-bar flat border="b">
+  <v-app-bar>
     <back-button />
     <v-app-bar-title>{{ $t('about.name') }}</v-app-bar-title>
   </v-app-bar>
@@ -61,7 +61,7 @@ if (isTauri) {
   <app-main>
     <v-container class="container">
       <AppCard v-if="!mdAndUp" />
-      <v-list lines="two" active-class="noActivatedOverlay">
+      <v-list lines="two" active-class="noActivatedOverlay" :border="false" :rounded="false">
         <!-- 关于应用 -->
         <v-list-subheader>{{ $t('app.about') }}</v-list-subheader>
         <!-- 应用版本 -->

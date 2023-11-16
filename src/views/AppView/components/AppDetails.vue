@@ -8,7 +8,7 @@ defineProps<{
 </script>
 
 <template>
-  <v-list class="my-4" border rounded="lg" lines="two">
+  <v-list class="my-4" lines="two">
     <v-list-subheader>{{ $t('more.info') }}</v-list-subheader>
     <v-skeleton-loader class="skeleton-more" type="list-item-avatar-two-line@2" color="transparent" :loading="loading">
       <v-list-item

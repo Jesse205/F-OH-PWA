@@ -16,7 +16,7 @@ const adTabValue = ref<'add' | 'develop'>('add')
 </script>
 
 <template>
-  <v-app-bar flat border="b">
+  <v-app-bar>
     <back-button />
     <v-app-bar-title>{{ $t('donate.name') }}</v-app-bar-title>
   </v-app-bar>

@@ -89,7 +89,7 @@ function handelPush(event: Event) {
 </script>
 
 <template>
-  <v-app-bar flat border="b">
+  <v-app-bar>
     <v-btn v-if="$router.options.history.state.back" icon="mdi-arrow-left" @click.stop="$router.back" />
     <v-app-bar-title>{{ $t('manager.apps') }}</v-app-bar-title>
     <v-menu origin="top" width="192" location="top" scrim="transparent">
@@ -108,7 +108,6 @@ function handelPush(event: Event) {
           v-model="token"
           class="mt-4"
           :label="$t('token.name')"
-          variant="outlined"
           :type="tokenVisible ? 'text' : 'password'"
           prepend-inner-icon="mdi-key-outline"
           :append-inner-icon="tokenVisible ? 'mdi-eye-off-outline' : 'mdi-eye-outline'"

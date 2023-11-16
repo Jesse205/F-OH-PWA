@@ -32,7 +32,6 @@ function applyValue() {
         <v-card-text>
           <v-text-field
             v-model="editValue"
-            variant="outlined"
             active
             :hint="hint"
             persistent-hint

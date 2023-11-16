@@ -33,7 +33,7 @@ const onInstallBtnClick = inject<() => void>('onInstallBtnClick')
 
 <template>
   <!-- 应用栏 -->
-  <v-app-bar flat border="b">
+  <v-app-bar>
     <!-- 仅在非手机中显示返回按钮 -->
     <back-button v-if="!xs" />
     <v-app-bar-title>{{ homeTitle }}</v-app-bar-title>

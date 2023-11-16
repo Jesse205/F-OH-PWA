@@ -74,7 +74,7 @@ function shareApp() {
 </script>
 
 <template>
-  <v-app-bar class="app-bar" flat border="b">
+  <v-app-bar class="app-bar">
     <back-button />
     <!-- 多标题动画展示 -->
     <v-app-bar-title class="title">
@@ -128,7 +128,7 @@ function shareApp() {
       <!-- #endregion -->
 
       <!-- #region 开发者信息 -->
-      <v-list v-show="appInfo?.vender || loading" class="my-4" border rounded="lg" @dragstart.stop>
+      <v-list v-show="appInfo?.vender || loading" class="my-4" @dragstart.stop>
         <v-list-subheader>{{ $t('developer.name') }}</v-list-subheader>
         <v-skeleton-loader type="avatar, text" color="transparent" :loading="loading">
           <v-list-item

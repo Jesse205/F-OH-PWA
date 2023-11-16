@@ -37,7 +37,6 @@ const { xs, smAndDown } = useDisplay()
         :prepend-icon="activePagePosition === index ? item.activeIcon : item.icon"
         :title="unref(item.title)"
         :disabled="item.disabled"
-        rounded
         :replace="isInMainView && (activePagePosition !== 0 || isBackOtherPage)"
       />
     </v-list>
@@ -50,7 +49,6 @@ const { xs, smAndDown } = useDisplay()
           prepend-icon="mdi-circle-outline"
           :key="$route.path"
           :title="clearTitle ?? ''"
-          rounded
           active
           link
         />
