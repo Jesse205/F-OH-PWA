@@ -49,7 +49,9 @@ export default createVuetify({
     VMenu: {
       minWidth: 196,
       VList: {
-        bgColor: 'surface'
+        bgColor: 'surface',
+        border: false,
+        rounded: false,
       }
     },
     VCheckboxBtn: {
