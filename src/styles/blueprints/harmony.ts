@@ -113,6 +113,9 @@ export const harmony: Blueprint = {
         color: 'surface',
         variant: 'elevated'
       }
+    },
+    VOverlay: {
+      scrim: 'argb(0, 0, 0, 0.3)'
     }
   }
 }

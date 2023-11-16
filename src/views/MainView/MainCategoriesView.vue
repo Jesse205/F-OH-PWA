@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, computed,  watch, reactive, MaybeRef } from 'vue'
+import { onMounted, computed, watch, reactive, MaybeRef } from 'vue'
 import { useI18n } from 'vue-i18n'
 import ProjectItem from '@/components/ProjectItem.vue'
 import { useAppsStore } from '@/store/apps'
@@ -103,15 +103,21 @@ watch(
 .project-items {
   display: flex;
   flex-wrap: wrap;
+
   .project-item {
     width: 100%;
     @media (min-width: 1280px) {
       width: 50%;
+      &:nth-last-child(2)::before {
+        border-bottom-width: 0;
+      }
     }
     @media (min-width: 1920px) {
       width: 33%;
+      &:nth-last-child(3)::before {
+        border-bottom-width: 0;
+      }
     }
   }
 }
-
 </style>
