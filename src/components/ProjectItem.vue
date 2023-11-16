@@ -13,7 +13,7 @@ const iconCompletePath = computed(() => getServerCompletePath(props.item.icon, U
 </script>
 
 <template>
-  <v-list-item lines="two" :to="to === false ? undefined : `/app/${item.id}`">
+  <v-list-item class="project-list-item" lines="two" :to="to === false ? undefined : `/app/${item.id}`">
     <template v-slot:prepend>
       <v-avatar class="icon border" rounded="lg" size="48">
         <v-img :src="iconCompletePath" />
@@ -27,15 +27,19 @@ const iconCompletePath = computed(() => getServerCompletePath(props.item.icon, U
   </v-list-item>
 </template>
 
-<style lang="scss">
-.title {
-  .text-caption {
-    opacity: var(--v-medium-emphasis-opacity);
+<style scoped lang="scss">
+.project-list-item {
+  &::before {
+    left: 80px !important;
   }
-}
-
-.icon {
-  // TODO: 当 F-OH 支持自适应图标后移除这项
-  border-radius: 24% !important;
+  .title {
+    .text-caption {
+      opacity: var(--v-medium-emphasis-opacity);
+    }
+  }
+  .icon {
+    // TODO: 当 F-OH 支持自适应图标后移除这项
+    border-radius: 24% !important;
+  }
 }
 </style>
