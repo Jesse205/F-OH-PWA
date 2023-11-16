@@ -58,13 +58,11 @@ const banners: Banners = {
 .announcementContent {
   /* white-space: pre-line; */
   display: block;
-  /*margin-top: -0.5rem;
-  margin-bottom: -0.5rem;*/
 
-  >:not(:first) {
+  > :not(:first-child) {
     margin-top: 0.5rem;
   }
-  >:not(:last-child) {
+  > :not(:last-child) {
     margin-bottom: 0.5rem;
   }
 

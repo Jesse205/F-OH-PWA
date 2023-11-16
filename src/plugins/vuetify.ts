@@ -36,7 +36,12 @@ export default createVuetify({
       }
     }
   },*/
-  /*defaults: {
+  /*
+  defaults: {
+    VAppBar: {
+      flat: true,
+      border: 'b'
+    },
     VBottomNavigation: {
       bgColor: 'background',
       VBtn: {
@@ -46,7 +51,9 @@ export default createVuetify({
     VMenu: {
       minWidth: 196,
       VList: {
-        bgColor: 'surface'
+        bgColor: 'surface',
+        border: false,
+        rounded: false,
       }
     },
     VCheckboxBtn: {
@@ -68,22 +75,38 @@ export default createVuetify({
     },
     VTextField: {
       color: 'primary',
-      rounded: false
+      rounded: false,
+      variant: 'outlined'
+    },
+    VCombobox: {
+      variant: 'outlined'
+    },
+    VSelect: {
+      variant: 'outlined'
     },
     VList: {
-      bgColor: 'transparent'
+      bgColor: 'transparent',
+      border: true,
+      rounded: 'lg'
     },
     VToolbar: {
       color: 'background'
     },
     VNavigationDrawer: {
-      color: 'background'
+      color: 'background',
+      VList: {
+        border: false,
+        rounded: false,
+        VListItem: {
+          rounded: true
+        }
+      }
     },
     VDialog: {
       VCard: {
         color: 'surface',
         variant: 'elevated',
-        border: false,
+        border: false
       }
     }
   }*/

@@ -108,7 +108,6 @@ function handelPush(event: Event) {
           v-model="token"
           class="mt-4"
           :label="$t('token.name')"
-          variant="outlined"
           :type="tokenVisible ? 'text' : 'password'"
           prepend-inner-icon="mdi-key-outline"
           :append-inner-icon="tokenVisible ? 'mdi-eye-off-outline' : 'mdi-eye-outline'"
