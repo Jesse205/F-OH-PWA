@@ -58,10 +58,10 @@
     > .v-list-item:before {
       content: "";
       position: absolute;
-      top: 0;
+      top: -0.25px;
       left: 16px;
       right: 16px;
-      height: 1px;
+      height: 0px;
       // 用边框解决0.5px导致的渲染问题
       border-bottom: 0.5px solid rgba(var(--v-border-color), var(--v-border-opacity));
       width: calc(100% - 32px);
