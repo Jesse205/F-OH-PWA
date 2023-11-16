@@ -63,7 +63,7 @@ export const harmony: Blueprint = {
     },
     VTextField: {
       variant: 'underlined',
-      color: 'primary',
+      // color: 'primary',
       rounded: false
     },
     VToolbar: {

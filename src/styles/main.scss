@@ -70,4 +70,15 @@
       border-bottom-width: 0;
     }
   }
+  .v-dialog > .v-overlay__content > .v-card {
+    border-radius: 20px;
+    .v-card-actions {
+      padding: 4px 12px 12px 12px;
+      .v-btn {
+        width: 0;
+        flex: 1;
+        margin: 4px;
+      }
+    }
+  }
 }
