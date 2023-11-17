@@ -29,9 +29,8 @@ const iconCompletePath = computed(() => getServerCompletePath(props.item.icon, U
 
 <style scoped lang="scss">
 .project-list-item {
-  &::before {
-    left: 80px !important;
-  }
+  --list-item-padding-left: 80px;
+
   .title {
     .text-caption {
       opacity: var(--v-medium-emphasis-opacity);

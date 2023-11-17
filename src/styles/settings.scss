@@ -8,3 +8,9 @@
 // @use 'vuetify/settings' with (
 //   $color-pack: false
 // );
+@use "vuetify/settings" with (
+//   $button-height: 40px,
+  $list-border-radius: 16px,
+);
+
+@use "vuetify";

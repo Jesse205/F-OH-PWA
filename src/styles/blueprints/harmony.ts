@@ -82,7 +82,7 @@ export const harmony: Blueprint = {
       minWidth: 172,
       transition: 'slide-y-transition',
       VList: {
-        bgColor: 'surface'
+        // bgColor: 'surface'
       }
     },
     VCheckboxBtn: {
@@ -101,12 +101,17 @@ export const harmony: Blueprint = {
       color: 'primary'
     },
     VList: {
-      // bgColor: 'surface',
+      rounded: true,
       class: ['pa-1']
     },
-    VListItem: {},
+    VListItem: {
+      rounded: true,
+    },
     VNavigationDrawer: {
-      color: 'background'
+      color: 'background',
+      VList: {
+        bgColor: 'background'
+      }
     },
     VDialog: {
       VCard: {
