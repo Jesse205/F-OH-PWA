@@ -1,10 +1,6 @@
-<h1 align="center">
-<p>
-<img src="./src/assets/images/icon.svg" width=192 height=192 alt="项目图标" title="项目图标" />
-</p>
-<p>F-OH PWA</p>
-</h1>
 <div align="center">
+<img src="./src/assets/images/icon.svg" width=192 height=192 alt="项目图标" title="项目图标" />
+<h1>F-OH PWA</h1>
 
 **中文**
 | [English](./README.md)
