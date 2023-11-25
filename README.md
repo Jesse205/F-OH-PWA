@@ -6,8 +6,8 @@
 | **English**
 | <small>More translations are welcome!</small>
 
-[![Gitee 仓库](https://img.shields.io/badge/Gitee-仓库-C71D23?logo=gitee)](https://gitee.com/Jesse205/F-OH-PWA)
-[![GitHub 仓库](https://img.shields.io/badge/GitHub-仓库-0969DA?logo=github)](https://github.com/Jesse205/F-OH-PWA)
+[![Gitee repository](https://img.shields.io/badge/Gitee-repository-C71D23?logo=gitee)](https://gitee.com/Jesse205/F-OH-PWA)
+[![Github repository](https://img.shields.io/badge/Github-repository-0969DA?logo=github)](https://github.com/Jesse205/F-OH-PWA)
 </div>
 
 > Font: HarmonyOS Sans
@@ -113,6 +113,10 @@ Sponsorship can be contacted by private message or scanning the QR code below (W
 ![QRCode](https://gitee.com/ohos-dev/f-oh/raw/master/screenshot/wx+zfb.png)
 
 For this project, you can go to the [Hello Tool donation page](https://jesse205.github.io/hellotool/donation.html) to support Jesse205.
+
+## Contributing
+
+Please read [`CONTRIBUTING.zh.md`] (. /CONTRIBUTING.zh.md).
 
 ## License
 

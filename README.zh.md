@@ -103,6 +103,10 @@ F-OH PWA 提供 **独立软件** 与 **网页访问** 两种方式供用户选�
 yarn lint
 ```
 
+## 贡献项目
+
+请阅读 [`CONTRIBUTING.zh.md`](./CONTRIBUTING.zh.md)。
+
 ## 支持项目
 
 赞助可私信联系[@westinyang]或扫描下方二维码（微信、支付宝）
