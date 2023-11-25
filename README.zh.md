@@ -1,7 +1,18 @@
-# F-OH PWA
+<h1 align="center">
+<p>
+<img src="./src/assets/images/icon.svg" width=192 height=192 alt="项目图标" title="项目图标" />
+</p>
+<p>F-OH PWA</p>
+</h1>
+<div align="center">
 
-<!-- <img src="./src/assets/images/icon.svg" width=192 height=192 alt="项目图标" title="项目图标"/> -->
-![BANNER](./docs/images/banner.svg)
+**中文**
+| [English](./README.md)
+| <small>期待你的翻译！</small>
+
+[![Gitee 仓库](https://img.shields.io/badge/Gitee-仓库-C71D23?logo=gitee)](https://gitee.com/ohos-dev/F-OH-PWA)
+[![Github 仓库](https://img.shields.io/badge/Github-仓库-0969DA?logo=github)](https://github.com/Jesse205/F-OH-PWA)
+</div>
 
 > 字体：HarmonyOS Sans
 
@@ -16,12 +27,6 @@ F-OH PWA + BrowserCE，通过网页分发开源鸿蒙 hap 应用的最佳实践�
 
 [![QQ 群（开鸿派）: 752399947](https://img.shields.io/badge/QQ_群:_开鸿派-752399947-0099FF?logo=tencentqq)](https://qm.qq.com/q/jWeBdnvPz2)
 [![@Jesse205: jesse205@qq.com](https://img.shields.io/badge/@Jesse205-jesse205@qq.com-0099FF)](https://qm.qq.com/q/jWeBdnvPz2)
-
-[![Gitee 仓库](https://img.shields.io/badge/Gitee-仓库-C71D23?logo=gitee)](https://gitee.com/ohos-dev/F-OH-PWA)
-[![Github 仓库](https://img.shields.io/badge/Github-仓库-0969DA?logo=github)](https://github.com/Jesse205/F-OH-PWA)
-
-**中文** |
-[English](./README.md) | <small>期待你的翻译！</small>
 
 ## 屏幕截图
 

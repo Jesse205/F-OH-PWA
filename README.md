@@ -1,9 +1,20 @@
-# F-OH PWA
+<h1 align="center">
+<p>
+<img src="./src/assets/images/icon.svg" width=192 height=192 alt="Project logo" title="Project logo"/>
+</p>
+<p>F-OH PWA</p>
+</h1>
+<div align="center">
 
-<!-- <img src="./src/assets/images/icon.svg" width=192 height=192 alt="Project logo" title="Project logo"/> -->
-![BANNER](./docs/images/banner.svg)
+[中文](./README.zh.md)
+| **English**
+| <small>More translations are welcome!</small>
 
-HarmonyOS Sans
+[![Gitee 仓库](https://img.shields.io/badge/Gitee-仓库-C71D23?logo=gitee)](https://gitee.com/ohos-dev/F-OH-PWA)
+[![Github 仓库](https://img.shields.io/badge/Github-仓库-0969DA?logo=github)](https://github.com/Jesse205/F-OH-PWA)
+</div>
+
+> Font: HarmonyOS Sans
 
 F-OH is an application center for FOSS (Free and Open Source Software) on the OpenHarmony platform with download and installation support.
 
@@ -16,12 +27,6 @@ F-OH PWA + BrowserCE, best practices for distributing open source hongmeng hap a
 
 [![QQ group (开鸿派): 752399947](https://img.shields.io/badge/QQ_group:_开鸿派-752399947-0099FF?logo=tencentqq)](https://qm.qq.com/q/jWeBdnvPz2)
 [![@Jesse205: jesse205@qq.com](https://img.shields.io/badge/@Jesse205-jesse205@qq.com-0099FF)](https://qm.qq.com/q/jWeBdnvPz2)
-
-[![Gitee repository](https://img.shields.io/badge/Gitee-repository-C71D23?logo=gitee)](https://gitee.com/ohos-dev/F-OH-PWA)
-[![Github repository](https://img.shields.io/badge/Github-repository-0969DA?logo=github)](https://github.com/Jesse205/F-OH-PWA)
-
-[中文](./README.zh.md) |
-**English** | <small>More translations are welcome!</small>
 
 ## Screenshots
 
