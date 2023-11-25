@@ -107,7 +107,7 @@ yarn lint
 
 Sponsorship can be contacted by private message or scanning the QR code below (WeChat, Alipay)
 
-> [!TIP]\
+> [!NOTE]\
 > Please note "F-OH" or private message to [@westinyang (Gitee)][@westinyang] for sponsorship fee, so that it can be counted in [Sponsor List][SponsorList].
 
 ![QRCode](https://gitee.com/ohos-dev/f-oh/raw/master/screenshot/wx+zfb.png)
