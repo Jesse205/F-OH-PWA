@@ -10,8 +10,8 @@
 | **English**
 | <small>More translations are welcome!</small>
 
-[![Gitee 仓库](https://img.shields.io/badge/Gitee-仓库-C71D23?logo=gitee)](https://gitee.com/ohos-dev/F-OH-PWA)
-[![Github 仓库](https://img.shields.io/badge/Github-仓库-0969DA?logo=github)](https://github.com/Jesse205/F-OH-PWA)
+[![Gitee 仓库](https://img.shields.io/badge/Gitee-仓库-C71D23?logo=gitee)](https://gitee.com/Jesse205/F-OH-PWA)
+[![GitHub 仓库](https://img.shields.io/badge/GitHub-仓库-0969DA?logo=github)](https://github.com/Jesse205/F-OH-PWA)
 </div>
 
 > Font: HarmonyOS Sans
