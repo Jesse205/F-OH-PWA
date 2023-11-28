@@ -30,6 +30,10 @@ export function isRedirectApiHost(): boolean {
   return location.hostname.endsWith('.netlify.app')
 }
 
+export function isWebHistorySupported(): boolean {
+  return location.hostname.endsWith('.netlify.app')
+}
+
 /**
  * 打开新窗口
  * @param url 要打开的链接

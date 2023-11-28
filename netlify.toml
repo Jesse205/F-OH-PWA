@@ -2,3 +2,9 @@
 from = "/data/*"
 to = "http://74.48.94.162:3000/ohos-dev/F-OH-Data/raw/master/:splat"
 status = 200
+force = true
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
