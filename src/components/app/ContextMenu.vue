@@ -87,7 +87,7 @@ onBeforeUnmount(() => document.body.removeEventListener('contextmenu', onContext
       <v-list-item
         v-if="config.externalUrl"
         :title="$t('copy.link')"
-        @click="copyText(config.externalUrl, (state) => {})"
+        @click="copyText(config.externalUrl)"
       />
     </v-list>
   </v-menu>

@@ -3,9 +3,11 @@ import { computed, unref } from 'vue'
 import { useDisplay } from 'vuetify'
 import { useHomeNavigation } from '@/events/navigation'
 import { useTitle } from '@vueuse/core'
-import { useGlobalAppName } from '@/events/title'
+import { useAppStore } from '../../store/app'
 
-const appName = useGlobalAppName()
+// const appName = useGlobalAppName()
+
+const appStore = useAppStore()
 
 /**
  * 标题，带有后缀
@@ -15,7 +17,7 @@ const title = useTitle(null, { observe: true })
 /**
  * 标题，无后缀
  */
-const clearTitle = computed(() => title.value?.match(`^(.+) - ${appName.value}$`)?.[1] ?? title.value ?? 'Unknown')
+const clearTitle = computed(() => title.value?.match(`^(.+) - ${appStore.appName}$`)?.[1] ?? title.value ?? 'Unknown')
 
 const { pages, activePagePosition, isBackOtherPage, isInMainView } = useHomeNavigation()
 const { xs, smAndDown } = useDisplay()
@@ -25,7 +27,7 @@ const { xs, smAndDown } = useDisplay()
   <!-- 侧滑栏 -->
   <v-navigation-drawer v-if="!xs" permanent :rail="smAndDown">
     <v-list>
-      <v-list-item prepend-avatar="@/assets/images/icon.svg" :title="appName" />
+      <v-list-item prepend-avatar="@/assets/images/icon.svg" :title="appStore.appName" />
     </v-list>
     <v-divider />
     <v-list density="compact" nav color="primary">

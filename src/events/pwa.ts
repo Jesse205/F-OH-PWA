@@ -1,7 +1,7 @@
 import type { DisplayModeType } from '@/util/pwa'
 import { useMediaQuery } from '@vueuse/core'
-import type { Ref } from 'vue';
-import { onBeforeUnmount, onMounted, ref, provide, computed, inject } from 'vue'
+import type { ComputedRef } from 'vue'
+import { onBeforeUnmount, onMounted, ref, provide, computed } from 'vue'
 
 interface BeforeInstallPrompt extends Event {
   prompt: () => void
@@ -51,9 +51,9 @@ export function usePwa() {
 }
 
 /**
- * 获取显示模式值。
+ * 获取显示模式，常用于判断是否处于PWA模式
  */
-export function useDisplayMode() {
+export function useDisplayMode(): ComputedRef<DisplayModeType> {
   const isFullscreen = useMediaQuery('(display-mode: fullscreen)')
   const isStandalone = useMediaQuery('(display-mode: standalone)')
   const isMinimalUi = useMediaQuery('(display-mode: minimal-ui)')
@@ -65,11 +65,4 @@ export function useDisplayMode() {
     if (isWindowControlsOverlay.value) return 'window-controls-overlay'
     return 'browser'
   })
-}
-
-/**
- * 获取从 `App.vue` 中提供的显示模式值。
- */
-export function useGlobalDisplayMode() {
-  return inject<Ref<DisplayModeType>>('displayMode')!
 }

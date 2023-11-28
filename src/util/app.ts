@@ -14,7 +14,7 @@ const WEBVIEW_OPTIONS_DEFAULT: WindowOptions = {
 /**
  * 判断当前环境是否是 Tauri
  */
-export const isTauri = !!(window as any).__TAURI__
+export const isTauri = Boolean((window as any).__TAURI__)
 
 /**
  * 判断是否以传统 APP 运行
@@ -36,8 +36,8 @@ export function isRedirectApiHost(): boolean {
  */
 export async function openNewWindow(url: string) {
   if (isTauri) {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const window = new WebviewWindow(`window-${Date.now()}`, {
+    // eslint-disable-next-line no-new
+    new WebviewWindow(`window-${Date.now()}`, {
       title: await getName(),
       ...WEBVIEW_OPTIONS_DEFAULT,
       url,
@@ -49,13 +49,14 @@ export async function openNewWindow(url: string) {
 
 export type CopyTextState = 'success' | 'not_support' | 'unknown_error'
 
-export function copyText(text: string, callback: (state: CopyTextState) => void) {
+export async function copyText(text: string): Promise<CopyTextState> {
   if (isTauri) {
-    writeText(text).then(() => callback('success'))
+    await writeText(text)
+    return 'success'
   } else {
     // TODO: 使用原生 API
     console.warn('不支持复制文本')
-    callback('not_support')
+    return 'not_support'
   }
 }
 

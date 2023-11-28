@@ -33,10 +33,10 @@ onMounted(() => {
 })
 
 const mainElement = ref<InstanceType<typeof AppMain>>()
-const AppOverviewElement = ref<InstanceType<typeof AppOverview>>()
+const appOverviewElement = ref<InstanceType<typeof AppOverview>>()
 
 const mainScrollElement = computed<HTMLElement | null>(() => mainElement.value?.mainScroll ?? null)
-const appNameElement = computed(() => AppOverviewElement.value?.appNameElement)
+const appNameElement = computed(() => appOverviewElement.value?.appNameElement)
 
 const appNamePositionYBottom = computed(() => {
   const element = appNameElement.value
@@ -100,7 +100,7 @@ function shareApp() {
   <app-main ref="mainElement">
     <v-progress-linear v-show="appsStore.loading" color="primary" class="progress" indeterminate />
     <v-container class="container py-0">
-      <AppOverview ref="AppOverviewElement" :app-info="appInfo" :loading="loading" class="my-4" />
+      <AppOverview ref="appOverviewElement" :app-info="appInfo" :loading="loading" class="my-4" />
 
       <!-- #region 一句话介绍 -->
       <div v-show="appInfo?.desc || loading" class="my-4">

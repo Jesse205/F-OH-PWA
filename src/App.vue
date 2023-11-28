@@ -1,20 +1,16 @@
 <script lang="ts" setup>
-import { usePreferredDark, useTitle } from '@vueuse/core'
+import { usePreferredDark } from '@vueuse/core'
 import { useTheme } from 'vuetify'
-import { watch, ref, computed, provide, unref } from 'vue'
+import { watch, computed, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 import { usePwa } from '@/events/pwa'
 import { isTauri } from '@/util/app'
-import { getCurrent } from '@tauri-apps/api/window'
 import { useI18n } from 'vue-i18n'
 import { useLocaleSetting } from '@/events/settings'
 import { isLegacyApp } from '@/util/app'
-import { getName } from '@tauri-apps/api/app'
-import { APP_NAME_TAURI, APP_NAME_PWA, APP_NAME_DEFAULT } from './locales'
-import { useDisplayMode } from './events/pwa'
-import { isPwaDisplayMode } from './util/pwa'
 import NavigationDrawer from './components/app/NavigationDrawer.vue'
 import ContextMenu from './components/app/ContextMenu.vue'
+import { useAppStore } from './store/app'
 
 // 主题
 const theme = useTheme()
@@ -43,8 +39,10 @@ usePwa()
 console.debug('isTauri', isTauri)
 console.debug('isLegacyApp', isLegacyApp())
 
+const appStore = useAppStore()
+
 // I18n
-const { t, locale } = useI18n()
+const { locale } = useI18n()
 const savedLocale = useLocaleSetting()
 watch(
   savedLocale,
@@ -55,56 +53,10 @@ watch(
   { immediate: true },
 )
 
-// 应用标题，动态切换不同标题
-const appName = ref<string>(t('appName'))
-provide('appName', appName)
-
-// 监控显示模式变换
-const displayMode = useDisplayMode()
-provide('displayMode', displayMode)
-
-watch(
-  displayMode,
-  (newDisplayMode) => {
-    // Tauri 中使用另外提供的应用名
-    if (isTauri) return
-    if (isPwaDisplayMode(newDisplayMode)) appName.value = APP_NAME_PWA
-    else appName.value = APP_NAME_DEFAULT
-  },
-  { immediate: true },
-)
-
-// Tauri 中就用真实的应用名
-if (isTauri) {
-  appName.value = APP_NAME_TAURI
-  getName().then((name) => {
-    appName.value = name
-  })
-}
-
-/**
- * 标题，带有后缀
- */
-const title = useTitle(unref(appName), { observe: true })
-
-// 绑定 Tauri 窗口标题
-if (isTauri) {
-  watch(
-    title,
-    (newTitle) => {
-      getCurrent().setTitle(newTitle ?? appName.value)
-    },
-    { immediate: true },
-  )
-}
-
-watch(
-  title,
-  (newTitle) => {
-    console.debug('NewTitle', newTitle)
-  },
-  { immediate: true },
-)
+// 将store中的标题应用到网页
+watchEffect(() => {
+  document.title = appStore.title ? `${appStore.title} - ${appStore.appName}` : appStore.appName
+})
 
 /**
  * 在 Tauri 中阻止拖动，如需允许拖动，请在组件上使用 `@dragstart.stop` 属性
@@ -128,7 +80,7 @@ function onDragStart(event: DragEvent) {
     <v-main>
       <div class="main">
         <router-view v-slot="{ Component }">
-          <transition :name="(route.meta.transition as string)">
+          <transition :name="route.meta.transition as string">
             <v-layout :key="routeName" class="layout">
               <component :is="Component" />
             </v-layout>
@@ -137,7 +89,7 @@ function onDragStart(event: DragEvent) {
         <transition ame="fade-transition">
           <div v-if="!routeName" class="splash">
             <img class="logo" src="@/assets/images/icon.svg" />
-            <span>{{ appName }}</span>
+            <span>{{ appStore.appName }}</span>
           </div>
         </transition>
       </div>
@@ -159,7 +111,6 @@ function onDragStart(event: DragEvent) {
   height: 100%;
   width: 100%;
   overflow: hidden;
-  // position: absolute;
 }
 .main {
   position: relative;

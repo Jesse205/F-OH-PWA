@@ -36,6 +36,9 @@ function newShowdownConverter() {
   return converter
 }
 
+/**
+ * 首页数据
+ */
 export const useHomeStore = defineStore('home', () => {
   const loading = ref(false)
   const data = ref<HomeData | null>(null)

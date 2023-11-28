@@ -5,6 +5,9 @@ import { autoFetchJson } from '@/util/fetch'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
+/**
+ * 应用市场所有应用数据
+ */
 export const useAppsStore = defineStore('apps', () => {
   const loading = ref(false)
   const data = ref<AppInfo[] | null>(null)

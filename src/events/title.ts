@@ -1,43 +1,27 @@
+import { useAppStore } from '@/store/app'
 import type { MaybeRef, Ref } from 'vue'
-import { inject, onActivated, onDeactivated, ref, toRef, watchEffect, computed } from 'vue'
-import { useGlobalDisplayMode } from './pwa'
-import { isPwaDisplayMode } from '@/util/pwa'
+import { onActivated, onDeactivated, ref, toRef, watchEffect } from 'vue'
 
-export function useTitle(title: MaybeRef<string | null>, actived: Ref<boolean> = ref(true)) {
-  const wrappedTitle = toRef(title)
+/**
+ * 当组件挂载时，自动设置标题为 `title`。
+ *
+ * 注意：当组件停用时，该方法不会还原原先的标题！
+ * @param actived 当前激活状态，默认为 `ref(true)`
+ */
+export function useTitle(title: MaybeRef<string | null>, actived: Ref<boolean> = ref(true)): Ref<string | null> {
+  const wrappedTitle: Ref<string | null> = toRef(title)
+  const appStore = useAppStore()
   onActivated(() => {
     actived.value = true
   })
   onDeactivated(() => {
     actived.value = false
   })
-  const appName = useGlobalAppName()
-  const clearTitleMode = useClearTitleMode()
+
   watchEffect(() => {
     if (actived.value) {
-      if (wrappedTitle.value && !clearTitleMode.value) document.title = `${wrappedTitle.value} - ${appName.value}`
-      else if (wrappedTitle.value && clearTitleMode.value) document.title = wrappedTitle.value ?? ''
-      else document.title = appName.value
+      appStore.title = wrappedTitle.value
     }
   })
-}
-
-/**
- * 获取在 `App.vue` 中提供的应用名。
- */
-export function useGlobalAppName() {
-  return inject<Ref<string>>('appName')!
-}
-
-/**
- * 获取是否使用纯净的标题，剔除应用名。
- *
- * 在 Chromium 系列浏览器，Windows 系统，且为 PWA 模式下才生效。
- */
-function useClearTitleMode() {
-  const displayMode = useGlobalDisplayMode()
-  const { userAgent } = navigator
-  return computed(() => {
-    return !!(userAgent.includes('Chrome') && userAgent.includes('Windows') && isPwaDisplayMode(displayMode.value))
-  })
+  return wrappedTitle
 }
