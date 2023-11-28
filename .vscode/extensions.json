@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "ms-vscode.vscode-typescript-next",
+        "standard.vscode-standard",
+        "lokalise.i18n-ally"
+    ]
+}

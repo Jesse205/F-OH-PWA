@@ -1,0 +1,18 @@
+{
+    "markdownlint.config": {
+        "MD033": false,
+        "MD041": false
+    },
+    "todo-tree.tree.disableCompactFolders": true,
+    "cSpell.words": [
+        "btns",
+        "gogs",
+        "ohos",
+        "Tauri",
+        "vueuse"
+    ],
+    "i18n-ally.localesPaths": [
+        "src/locales"
+    ],
+    "i18n-ally.keystyle": "nested"
+}

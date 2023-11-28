@@ -1,5 +1,5 @@
 import { useDisplayMode } from '@/events/pwa'
-import { APP_NAME_DEFAULT, APP_NAME_PWA, APP_NAME_TAURI } from '@/locales'
+import { APP_NAME_DEFAULT, APP_NAME_PWA, APP_NAME_TAURI } from '@/locales2'
 import { isTauri } from '@/util/app'
 import { isPwaDisplayMode } from '@/util/pwa'
 import { getName } from '@tauri-apps/api/app'

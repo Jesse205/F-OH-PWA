@@ -6,8 +6,8 @@
 import type { Locale} from 'vue-i18n';
 import { createI18n } from 'vue-i18n'
 
-import EN from '@/locales/en'
-import ZH_CN from '@/locales/zh-CN'
+import EN from '@/locales/en.json'
+import ZH_CN from '@/locales/zh-CN.json'
 
 export const APP_NAME_DEFAULT = 'F-OH Lite'
 export const APP_NAME_PWA = 'F-OH PWA'
