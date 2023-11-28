@@ -2,16 +2,18 @@
 <img src="./src/assets/images/icon.svg" width=192 height=192 alt="项目图标" title="项目图标" />
 <h1>F-OH PWA</h1>
 
+[![Gitee 仓库](https://img.shields.io/badge/Gitee-仓库-C71D23?logo=gitee)](https://gitee.com/Jesse205/F-OH-PWA)
+[![GitHub 仓库](https://img.shields.io/badge/GitHub-仓库-0969DA?logo=github)](https://github.com/Jesse205/F-OH-PWA)
+
+![PWA](https://img.shields.io/badge/PWA-html-%235A0FC8?logo=pwa)
+![Windows](https://img.shields.io/badge/Windows-exe-%232863C5?logo=windows)
+![Linux](https://img.shields.io/badge/Linux-deb-%23FCC624?logo=linux)
+
 **中文**
 | [English](./README.md)
 | <small>期待你的翻译！</small>
 
-[![Gitee 仓库](https://img.shields.io/badge/Gitee-仓库-C71D23?logo=gitee)](https://gitee.com/Jesse205/F-OH-PWA)
-[![GitHub 仓库](https://img.shields.io/badge/GitHub-仓库-0969DA?logo=github)](https://github.com/Jesse205/F-OH-PWA)
-
 </div>
-
-> 字体：HarmonyOS Sans
 
 F-OH 是一个 OpenHarmony 平台上 FOSS（Free and Open Source Software，自由开源软件）的应用中心，并提供下载安装支持。
 

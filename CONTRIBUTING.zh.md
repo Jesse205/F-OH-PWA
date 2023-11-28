@@ -2,7 +2,7 @@
 
 ## 翻译
 
-本项目主要语言为简体中文，你可以根据简体中文翻译为其他语言。如果你不会简体中文，可以参考官方的英文文档。
+本项目主要语言为*简体中文*，你可以根据*简体中文*翻译为其他语言。如果你不会*简体中文*，可以参考官方的英文文档。
 
 > [!TIP]\
 > 翻译后请在语言选择器中添加新的语言。
@@ -38,9 +38,22 @@
 
 ## 代码规范
 
+本项目使用 Prettier 与 ESLint 规范代码。
+
 - JavaScript、TypeScript（`.vue`、`.js`、`.ts`）：
   - [eslint-config-alloy](https://github.com/AlloyTeam/eslint-config-alloy) ([规范](https://alloyteam.github.io/eslint-config-alloy/))
 - Markdown：
   - [Markdown lint tool](https://github.com/markdownlint/markdownlint)（[规范](https://github.com/DavidAnson/markdownlint/blob/main/doc/md001.md)）
 
-一些规则已被修改，详见 [`prettier.config.js`](./prettier.config.js)。
+一些规则已被修改，详见 [`prettier.config.js`](./prettier.config.js) 与 [`.eslintrc.cjs`](./.eslintrc.cjs)。
+
+## 依赖更新
+
+一般情况下，依赖需要全部保持最新，除非有特殊情况。
+
+不更新的依赖：
+
+| 依赖                               | 原因          |
+| ---------------------------------- | ------------- |
+| `@typescript-eslint/eslint-plugin` | lint 无法使用 |
+| `@typescript-eslint/parser`        | lint 无法使用 |
