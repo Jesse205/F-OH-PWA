@@ -3,12 +3,11 @@ import AppMain from '@/components/AppMain.vue'
 import { useTitle } from '@/events/title'
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { URL_UPLOAD, URL_API_GOGS } from '@/data/constants'
-import { AppInfo } from '@/ts/interfaces/app.interfaces'
-import { EditFileWork, GogsContentFile } from '@/ts/interfaces/gogs.interfaces'
+import { URL_UPLOAD } from '@/data/constants'
+import type { AppInfo } from '@/ts/interfaces/app.interfaces'
+import type { EditFileWork} from '@/ts/interfaces/gogs.interfaces';
 import { Base64 } from 'js-base64'
 import ProjectItem from '@/components/ProjectItem.vue'
-import { toJsonIfOk } from '@/util/fetch'
 import { useToken } from '@/events/settings'
 import * as gogs from '@/util/gogs'
 
@@ -22,7 +21,7 @@ const snackbar = ref<string | null>(null)
 const token = useToken()
 const tokenVisible = ref(false)
 const tokenRules = {
-  required: (value: string) => !!value || '必须填写此项'
+  required: (value: string) => !!value || '必须填写此项',
 }
 
 const appsOriginRaw = ref<string | null>(null)
@@ -111,17 +110,17 @@ function handelPush(event: Event) {
           :type="tokenVisible ? 'text' : 'password'"
           prepend-inner-icon="mdi-key-outline"
           :append-inner-icon="tokenVisible ? 'mdi-eye-off-outline' : 'mdi-eye-outline'"
-          @click:append-inner="tokenVisible = !tokenVisible"
           active
           :rules="[tokenRules.required]"
           hint="请进入“用户设置 > 授权应用”获取令牌"
           persistent-hint
+          @click:append-inner="tokenVisible = !tokenVisible"
         >
           <template v-slot:append="{ isValid }">
-            <v-btn @click="handelFetchApps" :disabled="!isValid.value">获取列表</v-btn>
+            <v-btn :disabled="!isValid.value" @click="handelFetchApps">获取列表</v-btn>
           </template>
         </v-text-field>
-        <v-alert class="my-4" v-if="errMsg" title="Load error" :text="errMsg" type="error" variant="tonal" />
+        <v-alert v-if="errMsg" class="my-4" title="Load error" :text="errMsg" type="error" variant="tonal" />
         <v-alert
           class="my-4"
           title="该功能正在开发，敬请期待"
@@ -136,7 +135,7 @@ function handelPush(event: Event) {
       </form>
     </v-container>
   </app-main>
-  <v-snackbar v-model="snackbarVisible" :key="snackbar ?? undefined">{{ snackbar }}</v-snackbar>
+  <v-snackbar :key="snackbar ?? undefined" v-model="snackbarVisible">{{ snackbar }}</v-snackbar>
   <div class="floating-btns">
     <v-btn v-show="loaded && workList.length > 0" class="btn" icon="mdi-check" @click="handelPush" />
     <v-btn v-show="loaded" class="btn" icon="mdi-plus" @click="handelAddApp" />

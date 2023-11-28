@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 interface ImportMetaEnv extends Readonly<Record<string, string>> {
   VITE_HOST_WEB: string
   VITE_HOST_SERVER: string

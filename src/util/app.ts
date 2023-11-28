@@ -1,4 +1,5 @@
-import { WebviewWindow, WindowOptions, getCurrent } from '@tauri-apps/api/window'
+import type { WindowOptions } from '@tauri-apps/api/window'
+import { WebviewWindow } from '@tauri-apps/api/window'
 import { writeText } from '@tauri-apps/api/clipboard'
 import { getName } from '@tauri-apps/api/app'
 
@@ -7,7 +8,7 @@ const WEBVIEW_OPTIONS_DEFAULT: WindowOptions = {
   width: 960,
   height: 600,
   minWidth: 320,
-  minHeight: 480
+  minHeight: 480,
 }
 
 /**
@@ -35,10 +36,11 @@ export function isRedirectApiHost(): boolean {
  */
 export async function openNewWindow(url: string) {
   if (isTauri) {
-    new WebviewWindow(`window-${Date.now()}`, {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const window = new WebviewWindow(`window-${Date.now()}`, {
       title: await getName(),
       ...WEBVIEW_OPTIONS_DEFAULT,
-      url
+      url,
     })
   } else {
     console.warn('不支持创建新窗口')
@@ -57,7 +59,7 @@ export function copyText(text: string, callback: (state: CopyTextState) => void)
   }
 }
 
-/*export function closeWindow() {
+/* export function closeWindow() {
   if (isTauri()) {
     getCurrent().close()
   } else window.close()

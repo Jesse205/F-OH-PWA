@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed, inject, ref, unref, watchEffect } from 'vue'
+import { inject, ref, unref, watchEffect } from 'vue'
 import { useDisplay } from 'vuetify'
 import AppMain from '@/components/AppMain.vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import { useTitle } from '@/events/title'
 import { URL_UPLOAD } from '@/data/constants'
 import { useHomeNavigation } from '@/events/navigation'
@@ -89,4 +89,4 @@ const onInstallBtnClick = inject<() => void>('onInstallBtnClick')
   </v-bottom-navigation>
 </template>
 
-<style scoped></style>
+<!-- <style scoped></style> -->

@@ -1,6 +1,6 @@
 // Utilities
 import { URL_API_ALL_APP_LIST } from '@/data/constants'
-import { AppInfo } from '@/ts/interfaces/app.interfaces'
+import type { AppInfo } from '@/ts/interfaces/app.interfaces'
 import { autoFetchJson } from '@/util/fetch'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
@@ -35,7 +35,7 @@ export const useAppsStore = defineStore('apps', () => {
    * 确保所有 APP 数据已经获取到或者正在获取中
    */
   function ensureData() {
-    if (data.value == null && !loading.value) {
+    if (data.value === null && !loading.value) {
       fetchData()
     }
   }

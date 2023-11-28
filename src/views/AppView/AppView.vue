@@ -21,13 +21,13 @@ const route = useRoute()
 const appsStore = useAppsStore()
 
 // 查找当前应用信息
-const appInfo = computed(() => appsStore.data?.find((item) => item.id === +route.params.id))
+const appInfo = computed(() => appsStore.data?.find((item) => item.id === Number(route.params.id)))
 const loading = computed(() => appsStore.loading)
 
-//分割标签
+// 分割标签
 const appTags = computed(() => appInfo.value && getAppTags(appInfo.value))
 
-//确保数据已经获取到或者正在获取中
+// 确保数据已经获取到或者正在获取中
 onMounted(() => {
   appsStore.ensureData()
 })
@@ -46,7 +46,7 @@ const appNamePositionYBottom = computed(() => {
 // 页面滚动
 const { y: scrollY } = useScroll(mainScrollElement)
 
-//如果标题被遮拦就在应用栏内显示标题
+// 如果标题被遮拦就在应用栏内显示标题
 const isTitleShowName = computed(() => scrollY.value > appNamePositionYBottom.value)
 
 const title = computed(() => (appInfo.value ? `${appInfo.value.name} - ${t('app.view')}` : t('app.view')))
@@ -68,7 +68,7 @@ function getAppShareUrl(): URL {
 function shareApp() {
   share({
     title: document.head.title,
-    url: getAppShareUrl().href
+    url: getAppShareUrl().href,
   })
 }
 </script>
@@ -79,7 +79,7 @@ function shareApp() {
     <!-- 多标题动画展示 -->
     <v-app-bar-title class="title">
       <transition :name="isTitleShowName ? 'scroll-x-reverse-transition' : 'scroll-x-transition'">
-        <span class="title-item" :key="isTitleShowName.toString()">
+        <span :key="isTitleShowName.toString()" class="title-item">
           {{ isTitleShowName ? appInfo?.name : $t('app.view') }}
         </span>
       </transition>
@@ -89,9 +89,9 @@ function shareApp() {
         <v-btn
           :disabled="!appInfo"
           icon="mdi-share-variant-outline"
-          @click="shareApp"
           v-bind="props"
           :aria-label="$t('share.name')"
+          @click="shareApp"
         />
       </template>
       <span>{{ $t('share.name') }}</span>
@@ -103,7 +103,7 @@ function shareApp() {
       <AppOverview ref="AppOverviewElement" :app-info="appInfo" :loading="loading" class="my-4" />
 
       <!-- #region 一句话介绍 -->
-      <div class="my-4" v-show="appInfo?.desc || loading">
+      <div v-show="appInfo?.desc || loading" class="my-4">
         <v-skeleton-loader
           v-if="loading"
           class="summarySkeleton rounded-lg"
@@ -121,7 +121,7 @@ function shareApp() {
       <!-- #region 应用标签 -->
       <v-skeleton-loader v-if="loading" class="tagsSkeleton" type="chip@3" color="transparent" />
       <div v-else-if="appTags?.length" class="tagsGroup">
-        <div class="tagItem" v-for="item in appTags">
+        <div v-for="item in appTags" :key="item" class="tagItem">
           <v-chip variant="text" border>{{ item }}</v-chip>
         </div>
       </div>

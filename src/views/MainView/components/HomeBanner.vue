@@ -5,7 +5,7 @@ import { Pagination } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/pagination'
 
-import { Banners } from '@/ts/interfaces/home.interfaces'
+import type { Banners } from '@/ts/interfaces/home.interfaces'
 import { useDisplay } from 'vuetify'
 
 import * as _ from 'lodash'
@@ -30,7 +30,7 @@ const slidesPerView = computed(() => {
 
 const newBanners = computed(() => {
   const newBannersData = _.cloneDeep(props.banners)
-  newBannersData.data.forEach(item => {
+  newBannersData.data.forEach((item) => {
     if (item.src) {
       item.src = getCompletePath(item.src, props.baseUrl || location.href)
     }
@@ -46,7 +46,7 @@ const newBanners = computed(() => {
       :slides-per-view="slidesPerView"
       :space-between="16"
       :pagination="{
-        clickable: true
+        clickable: true,
       }"
       :modules="[Pagination]"
     >

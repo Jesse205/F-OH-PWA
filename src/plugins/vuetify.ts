@@ -16,7 +16,7 @@ import { md2 } from 'vuetify/blueprints'
 export default createVuetify({
   blueprint: md2,
   display: {
-    mobileBreakpoint: 'md'
+    mobileBreakpoint: 'md',
   },
   theme: {
     themes: {
@@ -24,27 +24,27 @@ export default createVuetify({
         colors: {
           primary: '#007DFF',
           secondary: '#81bd0a',
-          surface: '#FFFFFF'
-        }
+          surface: '#FFFFFF',
+        },
       },
       dark: {
         colors: {
           primary: '#006CDE',
-          secondary: '#81bd0a'
-        }
-      }
-    }
+          secondary: '#81bd0a',
+        },
+      },
+    },
   },
   defaults: {
     VAppBar: {
       flat: true,
-      border: 'b'
+      border: 'b',
     },
     VBottomNavigation: {
       bgColor: 'background',
       VBtn: {
-        variant: 'plain'
-      }
+        variant: 'plain',
+      },
     },
     VMenu: {
       minWidth: 196,
@@ -52,43 +52,43 @@ export default createVuetify({
         bgColor: 'surface',
         border: false,
         rounded: false,
-      }
+      },
     },
     VCheckboxBtn: {
-      color: 'primary'
+      color: 'primary',
     },
     VCard: {
       border: true,
       rounded: 'lg',
-      variant: 'outlined'
+      variant: 'outlined',
     },
     VTooltip: {
-      transition: 'fade-transition'
+      transition: 'fade-transition',
     },
     VListSubheader: {
-      color: 'primary'
+      color: 'primary',
     },
     VProgressCircular: {
-      color: 'primary'
+      color: 'primary',
     },
     VTextField: {
       color: 'primary',
       rounded: false,
-      variant: 'outlined'
+      variant: 'outlined',
     },
     VCombobox: {
-      variant: 'outlined'
+      variant: 'outlined',
     },
     VSelect: {
-      variant: 'outlined'
+      variant: 'outlined',
     },
     VList: {
       bgColor: 'transparent',
       border: true,
-      rounded: 'lg'
+      rounded: 'lg',
     },
     VToolbar: {
-      color: 'background'
+      color: 'background',
     },
     VNavigationDrawer: {
       color: 'background',
@@ -96,16 +96,16 @@ export default createVuetify({
         border: false,
         rounded: false,
         VListItem: {
-          rounded: true
-        }
-      }
+          rounded: true,
+        },
+      },
     },
     VDialog: {
       VCard: {
         color: 'surface',
         variant: 'elevated',
-        border: false
-      }
-    }
-  }
+        border: false,
+      },
+    },
+  },
 })

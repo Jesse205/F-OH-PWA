@@ -1,8 +1,8 @@
-import { ManifestOptions } from 'vite-plugin-pwa'
+import type { ManifestOptions } from 'vite-plugin-pwa'
 
 const base = '/'
 
-export default <Partial<ManifestOptions>>{
+export default {
   name: 'F-OH PWA',
   short_name: 'F-OH',
   description: 'F-OH 的第三方 PWA 版本',
@@ -14,37 +14,37 @@ export default <Partial<ManifestOptions>>{
     {
       src: `${base}icons/android-chrome-192x192.png`,
       sizes: '192x192',
-      type: 'image/png'
+      type: 'image/png',
     },
     {
       src: `${base}icons/android-chrome-512x512.png`,
       sizes: '512x512',
-      type: 'image/png'
+      type: 'image/png',
     },
     {
       src: `${base}icons/maskable_icon_x96.png`,
       sizes: '96x96',
       type: 'image/png',
-      purpose: 'maskable'
+      purpose: 'maskable',
     },
     {
       src: `${base}icons/maskable_icon_x192.png`,
       sizes: '192x192',
       type: 'image/png',
-      purpose: 'maskable'
+      purpose: 'maskable',
     },
     {
       src: `${base}icons/maskable_icon_x512.png`,
       sizes: '512x512',
       type: 'image/png',
-      purpose: 'maskable'
+      purpose: 'maskable',
     },
     {
       src: `${base}icons/maskable_icon.png`,
       sizes: '1024x1024',
       type: 'image/png',
-      purpose: 'maskable'
-    }
+      purpose: 'maskable',
+    },
   ],
   theme_color: '#00a6f9',
   display: 'standalone',
@@ -53,39 +53,39 @@ export default <Partial<ManifestOptions>>{
     {
       src: `${base}screenshots/Snipaste_2023-09-06_21-32-26.webp`,
       sizes: '502x776',
-      type: 'image/webp'
+      type: 'image/webp',
     },
     {
       src: `${base}screenshots/Snipaste_2023-09-06_21-32-39.webp`,
       sizes: '502x776',
-      type: 'image/webp'
+      type: 'image/webp',
     },
     {
       src: `${base}screenshots/Snipaste_2023-09-06_21-32-50.webp`,
       sizes: '502x776',
-      type: 'image/webp'
+      type: 'image/webp',
     },
     {
       src: `${base}screenshots/Snipaste_2023-09-06_21-33-22.webp`,
       sizes: '986x607',
-      type: 'image/webp'
+      type: 'image/webp',
     },
     {
       src: `${base}screenshots/Snipaste_2023-09-06_21-33-28.webp`,
       sizes: '986x607',
-      type: 'image/webp'
+      type: 'image/webp',
     },
     {
       src: `${base}screenshots/Snipaste_2023-09-06_21-33-35.webp`,
       sizes: '986x607',
-      type: 'image/webp'
-    }
+      type: 'image/webp',
+    },
   ],
   related_applications: [
     {
       platform: 'f-oh',
       url: 'https://gitee.com/ohos-dev/f-oh',
-      id: 'org.ohosdev.foh'
-    }
-  ]
-}
+      id: 'org.ohosdev.foh',
+    },
+  ],
+} satisfies Partial<ManifestOptions>

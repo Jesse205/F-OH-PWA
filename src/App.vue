@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { usePreferredDark, useTitle } from '@vueuse/core'
 import { useTheme } from 'vuetify'
-import { watch, ref, computed, provide } from 'vue'
+import { watch, ref, computed, provide, unref } from 'vue'
 import { useRoute } from 'vue-router'
 import { usePwa } from '@/events/pwa'
 import { isTauri } from '@/util/app'
@@ -27,13 +27,13 @@ watch(
     theme.global.name.value = isDark ? 'dark' : 'light'
   },
   {
-    immediate: true
-  }
+    immediate: true,
+  },
 )
 
 const route = useRoute()
 
-//路由名称
+// 路由名称
 const routeName = computed(() => route.path.match('/[^/]+')?.[0] ?? '')
 
 // PWA
@@ -52,14 +52,14 @@ watch(
     locale.value = newLocale
     document.documentElement.setAttribute('lang', newLocale)
   },
-  { immediate: true }
+  { immediate: true },
 )
 
 // 应用标题，动态切换不同标题
 const appName = ref<string>(t('appName'))
 provide('appName', appName)
 
-//监控显示模式变换
+// 监控显示模式变换
 const displayMode = useDisplayMode()
 provide('displayMode', displayMode)
 
@@ -71,7 +71,7 @@ watch(
     if (isPwaDisplayMode(newDisplayMode)) appName.value = APP_NAME_PWA
     else appName.value = APP_NAME_DEFAULT
   },
-  { immediate: true }
+  { immediate: true },
 )
 
 // Tauri 中就用真实的应用名
@@ -85,7 +85,7 @@ if (isTauri) {
 /**
  * 标题，带有后缀
  */
-const title = useTitle(appName.value, { observe: true })
+const title = useTitle(unref(appName), { observe: true })
 
 // 绑定 Tauri 窗口标题
 if (isTauri) {
@@ -94,7 +94,7 @@ if (isTauri) {
     (newTitle) => {
       getCurrent().setTitle(newTitle ?? appName.value)
     },
-    { immediate: true }
+    { immediate: true },
   )
 }
 
@@ -103,7 +103,7 @@ watch(
   (newTitle) => {
     console.debug('NewTitle', newTitle)
   },
-  { immediate: true }
+  { immediate: true },
 )
 
 /**
@@ -128,8 +128,8 @@ function onDragStart(event: DragEvent) {
     <v-main>
       <div class="main">
         <router-view v-slot="{ Component }">
-          <transition :name="route.meta.transition">
-            <v-layout class="layout" :key="routeName">
+          <transition :name="(route.meta.transition as string)">
+            <v-layout :key="routeName" class="layout">
               <component :is="Component" />
             </v-layout>
           </transition>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { URL_API, URL_API_LEGACY } from '@/data/constants'
-import { AppInfo } from '@/ts/interfaces/app.interfaces'
+import type { AppInfo } from '@/ts/interfaces/app.interfaces'
 import { getServerCompletePath } from '@/util/url'
 import { computed, ref } from 'vue'
 import { isRedirectApiHost } from '@/util/app'
@@ -9,7 +9,7 @@ const props = defineProps<{
   appInfo?: AppInfo
 }>()
 
-//绝对路径图标链接
+// 绝对路径图标链接
 const appIconUrl = computed(() => props.appInfo && getServerCompletePath(props.appInfo.icon, URL_API))
 
 // 绝对路径下载链接
@@ -21,7 +21,7 @@ const appDownloadUrl = computed(() => {
 const appNameElement = ref<HTMLElement>()
 
 defineExpose({
-  appNameElement
+  appNameElement,
 })
 </script>
 
@@ -37,7 +37,7 @@ defineExpose({
       <template v-else>
         <div class="app-title">
           <!-- 应用名 -->
-          <h1 class="text-h6" ref="appNameElement" :title="$t('app.name')">{{ appInfo?.name }}</h1>
+          <h1 ref="appNameElement" class="text-h6" :title="$t('app.name')">{{ appInfo?.name }}</h1>
           <span class="text-subtitle-2" :title="$t('version.name')">
             v{{ appInfo ? `${appInfo.version}` : $t('unknown.name') }}
           </span>

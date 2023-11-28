@@ -34,7 +34,7 @@ export interface GogsContentDirectory {
   }
 }
 
-export type GogsContentList = (GogsContentFile | GogsContentDirectory)[]
+export type GogsContentList = Array<GogsContentFile | GogsContentDirectory>
 
 export interface FileChanges {
   [index: number]: string

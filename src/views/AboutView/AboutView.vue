@@ -25,13 +25,13 @@ const developers = computed<DeveloperItem[]>(() => [
   {
     qq: 517858177,
     title: t('developer.westinyang.name'),
-    summary: t('developer.westinyang.description')
+    summary: t('developer.westinyang.description'),
   },
   {
     qq: 2140125724,
     title: t('developer.eddie.name'),
-    summary: t('developer.eddie.description')
-  }
+    summary: t('developer.eddie.description'),
+  },
 ])
 
 const { mdAndUp } = useDisplay()

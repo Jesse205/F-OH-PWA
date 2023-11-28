@@ -6,14 +6,10 @@ export type DisplayModeType = 'fullscreen' | 'standalone' | 'minimal-ui' | 'brow
  */
 export function isPwa(): boolean {
   return ['fullscreen', 'standalone', 'minimal-ui'].some(
-    (displayMode) => window.matchMedia(`(display-mode: ${displayMode})`).matches
+    (displayMode) => window.matchMedia(`(display-mode: ${displayMode})`).matches,
   )
 }
 
 export function isPwaDisplayMode(displayMode: DisplayModeType) {
-  return (
-    displayMode === 'standalone' ||
-    displayMode === 'minimal-ui' ||
-    displayMode === 'window-controls-overlay'
-  )
+  return displayMode === 'standalone' || displayMode === 'minimal-ui' || displayMode === 'window-controls-overlay'
 }

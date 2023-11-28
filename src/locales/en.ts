@@ -1,153 +1,153 @@
 export default {
   appName: 'F-OH',
   settings: {
-    name: 'Settings'
+    name: 'Settings',
   },
   about: {
-    name: 'About'
+    name: 'About',
   },
   home: {
-    name: 'Home'
+    name: 'Home',
   },
   category: {
-    name: 'Category | Categories'
+    name: 'Category | Categories',
   },
   update: {
-    name: 'Update'
+    name: 'Update',
   },
   upload: {
-    app: 'Upload app'
+    app: 'Upload app',
   },
   me: {
-    name: 'Me'
+    name: 'Me',
   },
   app: {
     name: 'Application',
     about: 'About application',
     version: 'App version',
-    view: 'App view'
+    view: 'App view',
   },
   tauri: {
-    version: 'Tauri version'
+    version: 'Tauri version',
   },
   project: {
     showcase: {
       name: 'Project Showcase',
-      platforms: 'The platforms on show'
-    }
+      platforms: 'The platforms on show',
+    },
   },
   develop: {
-    messages: 'Develop messages'
+    messages: 'Develop messages',
   },
   install: {
-    app: 'Install app'
+    app: 'Install app',
   },
   communicate: {
     name: 'Communicate',
-    qqGroup: 'QQ group'
+    qqGroup: 'QQ group',
   },
   download: {
-    name: 'Download'
+    name: 'Download',
   },
   source: {
-    code: 'Source code'
+    code: 'Source code',
   },
   version: {
-    name: 'Version'
+    name: 'Version',
   },
   packageName: {
-    name: 'Package name'
+    name: 'Package name',
   },
   developer: {
     name: 'Developer',
     eddie: {
       name: "{'@'}Eddie",
-      description: 'PWA Application Developer'
+      description: 'PWA Application Developer',
     },
     westinyang: {
       name: "{'@'}westinyang",
-      description: 'F-OH Founder'
+      description: 'F-OH Founder',
     },
     jesse205: {
-      name: "{'@'}Jesse205"
-    }
+      name: "{'@'}Jesse205",
+    },
   },
   release: {
     name: 'Release',
-    date: 'Release date'
+    date: 'Release date',
   },
   id: {
-    name: 'ID'
+    name: 'ID',
   },
   link: {
     related: 'Related links',
     foh: {
       title: 'F-OH',
       description:
-        'F-OH is an application center for FOSS (Free and Open Source Software) on the OpenHarmony platform, with support for download and installation.'
+        'F-OH is an application center for FOSS (Free and Open Source Software) on the OpenHarmony platform, with support for download and installation.',
     },
     organization: {
       title: 'OHOS Dev',
       description:
-        'OpenHarmony Developer Community (unofficial position created for the future of OpenHarmony, Peace & Love)'
-    }
+        'OpenHarmony Developer Community (unofficial position created for the future of OpenHarmony, Peace & Love)',
+    },
   },
   details: {
-    name: 'Details'
+    name: 'Details',
   },
   announcement: {
-    name: 'Announcement'
+    name: 'Announcement',
   },
   unknown: {
-    name: 'Unknown'
+    name: 'Unknown',
   },
   openNewWindow: {
     name: 'Open in new window',
-    linkInBrowser: 'Open link in browser'
+    linkInBrowser: 'Open link in browser',
   },
   copy: {
-    link: 'Copy link'
+    link: 'Copy link',
   },
   locale: {
-    language: 'Language'
+    language: 'Language',
   },
   other: {
-    name: 'Other'
+    name: 'Other',
   },
   game: {
-    name: 'Game'
+    name: 'Game',
   },
   appNames: {
     wechat: 'WeChat',
     qq: 'QQ',
     alipay: 'Alipay',
-    alipay_kickback: 'Alipay Kickback'
+    alipay_kickback: 'Alipay Kickback',
   },
   donate: {
-    name: 'Donate'
+    name: 'Donate',
   },
   manager: {
-    apps: 'Apps manager'
+    apps: 'Apps manager',
   },
   close: {
-    name: 'Close'
+    name: 'Close',
   },
   ok: {
-    name: 'OK'
+    name: 'OK',
   },
   no: {
-    name: 'No'
+    name: 'No',
   },
   token: {
-    name: 'Token'
+    name: 'Token',
   },
   more: {
-    info: 'More info'
+    info: 'More info',
   },
   share: {
-    name: 'Share'
+    name: 'Share',
   },
   back: {
-    name: 'Back'
-  }
+    name: 'Back',
+  },
 }

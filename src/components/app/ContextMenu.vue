@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { copyText, openNewWindow, isTauri } from '@/util/app'
-import { Position } from '@vueuse/core'
+import type { Position } from '@vueuse/core'
 import { nextTick, onBeforeUnmount, onMounted, reactive } from 'vue'
 
 // 右键菜单
@@ -14,12 +14,12 @@ interface ContextMenuConfig {
 const config: ContextMenuConfig = reactive<ContextMenuConfig>({
   position: {
     x: 0,
-    y: 0
+    y: 0,
   },
   url: null,
   externalUrl: null,
   state: false,
-  time: 0
+  time: 0,
 })
 const tauriState = isTauri
 
@@ -59,12 +59,12 @@ onBeforeUnmount(() => document.body.removeEventListener('contextmenu', onContext
 
 <template>
   <v-menu
-    class="menu"
+    :key="config.time"
     v-model="config.state"
+    class="menu"
+    transition="fade-transition"
     @contextmenu.stop.prevent
     @selectstart.prevent
-    transition="fade-transition"
-    :key="config.time"
   >
     <template v-slot:activator="{ props }">
       <div

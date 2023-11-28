@@ -1,6 +1,7 @@
-import { DisplayModeType } from '@/util/pwa'
+import type { DisplayModeType } from '@/util/pwa'
 import { useMediaQuery } from '@vueuse/core'
-import { onBeforeUnmount, onMounted, ref, provide, computed, inject, Ref } from 'vue'
+import type { Ref } from 'vue';
+import { onBeforeUnmount, onMounted, ref, provide, computed, inject } from 'vue'
 
 interface BeforeInstallPrompt extends Event {
   prompt: () => void
@@ -17,7 +18,7 @@ export function usePwa() {
   const installBtnVisible = ref(false)
   let deferredPrompt: BeforeInstallPrompt | null = null
   function onInstallBtnClick() {
-    if (!deferredPrompt) return
+    if (deferredPrompt === null) return
     installBtnVisible.value = false
     deferredPrompt.prompt()
     deferredPrompt.userChoice.then((choiceResult) => {
@@ -70,5 +71,5 @@ export function useDisplayMode() {
  * 获取从 `App.vue` 中提供的显示模式值。
  */
 export function useGlobalDisplayMode() {
-  return inject<Ref<DisplayModeType>>('displayMode')!!
+  return inject<Ref<DisplayModeType>>('displayMode')!
 }

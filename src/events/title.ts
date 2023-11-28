@@ -1,11 +1,16 @@
-import { MaybeRef, Ref, inject, onActivated, onDeactivated, ref, toRef, watchEffect, computed } from 'vue'
+import type { MaybeRef, Ref } from 'vue'
+import { inject, onActivated, onDeactivated, ref, toRef, watchEffect, computed } from 'vue'
 import { useGlobalDisplayMode } from './pwa'
 import { isPwaDisplayMode } from '@/util/pwa'
 
 export function useTitle(title: MaybeRef<string | null>, actived: Ref<boolean> = ref(true)) {
   const wrappedTitle = toRef(title)
-  onActivated(() => (actived.value = true))
-  onDeactivated(() => (actived.value = false))
+  onActivated(() => {
+    actived.value = true
+  })
+  onDeactivated(() => {
+    actived.value = false
+  })
   const appName = useGlobalAppName()
   const clearTitleMode = useClearTitleMode()
   watchEffect(() => {
@@ -21,7 +26,7 @@ export function useTitle(title: MaybeRef<string | null>, actived: Ref<boolean> =
  * 获取在 `App.vue` 中提供的应用名。
  */
 export function useGlobalAppName() {
-  return inject<Ref<string>>('appName')!!
+  return inject<Ref<string>>('appName')!
 }
 
 /**
@@ -33,10 +38,6 @@ function useClearTitleMode() {
   const displayMode = useGlobalDisplayMode()
   const { userAgent } = navigator
   return computed(() => {
-    return !!(
-      userAgent.indexOf('Chrome') !== -1 &&
-      userAgent.indexOf('Windows') !== -1 &&
-      isPwaDisplayMode(displayMode.value)
-    )
+    return !!(userAgent.includes('Chrome') && userAgent.includes('Windows') && isPwaDisplayMode(displayMode.value))
   })
 }

@@ -1,17 +1,13 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 
-const dialogVisible = ref(false)
-const editValue = ref('')
-
 const props = defineProps<{
   modelValue: any
   hint?: string
 }>()
-
-const emits = defineEmits<{
-  (e: 'update:modelValue', modelValue: string): void
-}>()
+const emits = defineEmits<(e: 'update:modelValue', modelValue: string) => void>()
+const dialogVisible = ref(false)
+const editValue = ref('')
 
 watch(dialogVisible, (newValue) => {
   if (newValue) {
@@ -30,13 +26,7 @@ function applyValue() {
     <v-dialog v-model="dialogVisible" width="420" activator="parent" transition="fade-transition">
       <v-card :title="$t('token.name')">
         <v-card-text>
-          <v-text-field
-            v-model="editValue"
-            active
-            :hint="hint"
-            persistent-hint
-            @keyup.enter.native="applyValue"
-          />
+          <v-text-field v-model="editValue" active :hint="hint" persistent-hint @keyup.enter="applyValue" />
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -50,4 +40,4 @@ function applyValue() {
   </v-list-item>
 </template>
 
-<style scoped></style>
+<!-- <style scoped></style> -->

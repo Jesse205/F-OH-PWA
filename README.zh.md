@@ -8,6 +8,7 @@
 
 [![Gitee 仓库](https://img.shields.io/badge/Gitee-仓库-C71D23?logo=gitee)](https://gitee.com/Jesse205/F-OH-PWA)
 [![GitHub 仓库](https://img.shields.io/badge/GitHub-仓库-0969DA?logo=github)](https://github.com/Jesse205/F-OH-PWA)
+
 </div>
 
 > 字体：HarmonyOS Sans
@@ -90,17 +91,18 @@ F-OH PWA 提供 **独立软件** 与 **网页访问** 两种方式供用户选�
 1. 设置 `.env.production` 文件。
 2. 在该项目打开终端，按照以下规则运行命令。
    - 网页与 PWA 应用：
-      1. 运行 `yarn build` 。
-      2. 拉取 [F-OH Data][F-OH-Data] 到 `dist/data` 。
-      3. 部署 `dist/*` 到服务器。
+     1. 运行 `yarn build` 。
+     2. 拉取 [F-OH Data][F-OH-Data] 到 `dist/data` 。
+     3. 部署 `dist/*` 到服务器。
    - Windows Tauri 软件：
-      1. 运行 `yarn build:tauri` 。
-      2. 发布 `src-tauri\target\release\F-OH Tauri.exe` 与 `src-tauri\target\release\bundle\nsis\F-OH Tauri_<version>_x64-setup.exe`
+     1. 运行 `yarn build:tauri` 。
+     2. 发布 `src-tauri\target\release\F-OH Tauri.exe` 与 `src-tauri\target\release\bundle\nsis\F-OH Tauri_<version>_x64-setup.exe`
 
 ### 约束和修复文件
 
 ```bash
-yarn lint
+yarn eslint:fix
+yarn prettier:fix
 ```
 
 ## 贡献项目

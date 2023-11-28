@@ -1,4 +1,4 @@
-import { AppInfo } from '@/ts/interfaces/app.interfaces'
+import type { AppInfo } from '@/ts/interfaces/app.interfaces'
 
 /**
  * 标签分割正则

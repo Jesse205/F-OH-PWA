@@ -1,118 +1,115 @@
 // Composables
 import { nextTick } from 'vue'
-import { HistoryState, RouteRecordRaw, createRouter, createWebHashHistory } from 'vue-router'
+import type { HistoryState as VueRouterHistoryState, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 
 const EL_SCROLL = '.v-main .mainScroll'
 
-declare module 'vue-router' {
-  interface RouteMeta {
-    transition?: string
-    savedPosition: ScrollToOptions
-  }
-  interface HistoryState {
-    forward: string | null
-    back: string | null
-    current: string | null
-    scroll: ScrollToOptions
-    //基于单个元素和路径的滚动配置
-    scroll2: {
-      [index: string]: ScrollToOptions
-    } | null
-    [index: string]: ScrollToOptions
-  }
+interface ScrollToOptions2 {
+  [path: string]: ScrollToOptions
 }
 
-const routes = <Readonly<RouteRecordRaw[]>>[
+interface HistoryState extends VueRouterHistoryState {
+  forward?: string
+  back?: string
+  current?: string
+  scroll?: ScrollToOptions
+  // 基于单个元素和路径的滚动配置
+  scroll2?: ScrollToOptions2
+  [key: string]: any
+}
+
+const routes: Readonly<RouteRecordRaw[]> = [
   {
     path: '/',
-    redirect: { name: 'Home' }
+    redirect: { name: 'Home' },
   },
   {
     path: '/index',
-    component: () => import('@/views/MainView/MainView.vue'),
+    component: async () => await import('@/views/MainView/MainView.vue'),
     children: [
       {
         path: 'home',
         name: 'Home',
-        component: () => import('@/views/MainView/MainHomeView.vue')
+        component: async () => await import('@/views/MainView/MainHomeView.vue'),
       },
       {
         path: 'categories',
         name: 'Categories',
-        component: () => import('@/views/MainView/MainCategoriesView.vue')
+        component: async () => await import('@/views/MainView/MainCategoriesView.vue'),
       },
       {
         path: 'update',
         name: 'Update',
-        component: () => import('@/views/MainView/MainUpdateView.vue')
+        component: async () => await import('@/views/MainView/MainUpdateView.vue'),
       },
       {
         path: 'me',
         name: 'Me',
-        component: () => import('@/views/MainView/MainMeView.vue')
+        component: async () => await import('@/views/MainView/MainMeView.vue'),
       },
       {
         path: ':chapters*',
-        redirect: { name: 'Home' }
-      }
-    ]
+        redirect: { name: 'Home' },
+      },
+    ],
   },
   {
     path: '/app/:id',
     name: 'App',
-    component: () => import('@/views/AppView/AppView.vue')
+    component: async () => await import('@/views/AppView/AppView.vue'),
   },
   {
     path: '/manager',
     name: 'Manager',
-    component: () => import('@/views/ManagerView/ManagerView.vue')
+    component: async () => await import('@/views/ManagerView/ManagerView.vue'),
   },
   {
     path: '/settings',
     name: 'Settings',
-    component: () => import('@/views/SettingsView/SettingsView.vue')
+    component: async () => await import('@/views/SettingsView/SettingsView.vue'),
   },
   {
     path: '/donate',
     name: 'Donate',
-    component: () => import('@/views/DonateView/DonateView.vue')
+    component: async () => await import('@/views/DonateView/DonateView.vue'),
   },
   {
     path: '/about',
     name: 'About',
-    component: () => import('@/views/AboutView/AboutView.vue')
+    component: async () => await import('@/views/AboutView/AboutView.vue'),
   },
   {
     path: '/:chapters*',
-    redirect: { name: 'Home' }
-  }
+    redirect: { name: 'Home' },
+  },
 ]
 
 const history = createWebHashHistory(process.env.BASE_URL)
 const router = createRouter({
   history,
-  routes
+  routes,
 })
 
-const scrollState2 = history.state.scroll2 ?? {}
+const scrollState2: ScrollToOptions2 = (history.state.scroll2 as ScrollToOptions2) ?? {}
 
 router.beforeEach((to, from) => {
   // 用户在主页点击首页时自动返回，防止有重复的历史记录。
   if (to.path === '/index/home' && to.path === history.state.back) {
     history.go(-1)
-    console.warn(`backing to ${to.path} because history.state.back=${history.state.back}, state may lost.`)
+    console.warn(`Backing to ${to.path} because history.state.back=${history.state.back}, state may lost.`)
     return false
   }
   // TODO: 使用更好的方法实现
-  const state = {
+  const state: HistoryState = {
     ...history.state,
-    scroll2: scrollState2
-  } as HistoryState
+    scroll2: scrollState2,
+  }
   // 当前有一个bug，通过导航按钮切换的页面无法监听,因为current可能不等于from。这可能导致滚动状态无法被保存。此处使用内存泄漏掩盖部分bug
-
+  const scrollElement = document.querySelector(EL_SCROLL)
   const scrollData = {
-    top: document.querySelector(EL_SCROLL)?.scrollTop ?? 0,
-    left: document.querySelector(EL_SCROLL)?.scrollLeft ?? 0
+    top: scrollElement?.scrollTop ?? 0,
+    left: scrollElement?.scrollLeft ?? 0,
   }
   scrollState2[from.fullPath] = scrollData
   console.debug('Saving scrollData:', scrollData)
@@ -125,6 +122,7 @@ router.beforeEach((to, from) => {
 })
 
 router.afterEach((to, from) => {
+  // 动画
   if (from.path !== '/') {
     const name = history.state.forward ? 'scroll-x-transition' : 'scroll-x-reverse-transition'
     to.meta.transition = name
@@ -138,7 +136,7 @@ router.afterEach((to, from) => {
   const state = window.history.state as HistoryState
   if (state.scroll2 && state.current) {
     nextTick(() => {
-      //有动画，所以要选择第最后一个元素
+      // 有动画，所以要选择第最后一个元素
       if (state.scroll2 && state.current) {
         const elements = document.querySelectorAll(EL_SCROLL)
         elements[elements.length - 1]?.scrollTo(state.scroll2[state.current])

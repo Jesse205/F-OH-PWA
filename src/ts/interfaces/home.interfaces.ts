@@ -10,7 +10,7 @@ export interface Banners {
   /**
    * 横幅数据
    */
-  data: Array<BannersItem>
+  data: BannersItem[]
   /**
    * 比例
    */

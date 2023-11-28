@@ -3,7 +3,8 @@
  *
  * 框架文档: https://vue-i18n.intlify.dev/
  */
-import { Locale, createI18n } from 'vue-i18n'
+import type { Locale} from 'vue-i18n';
+import { createI18n } from 'vue-i18n'
 
 import EN from '@/locales/en'
 import ZH_CN from '@/locales/zh-CN'
@@ -20,8 +21,8 @@ const i18n = createI18n({
   fallbackLocale: navigator.languages as Locale[],
   messages: {
     en: EN,
-    'zh-CN': ZH_CN
-  }
+    'zh-CN': ZH_CN,
+  },
 })
 
 export default i18n

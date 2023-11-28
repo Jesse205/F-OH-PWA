@@ -22,11 +22,11 @@ const adTabValue = ref<'add' | 'develop'>('add')
   </v-app-bar>
   <app-main>
     <v-container class="container">
-      <v-card class="card" :class="{ loading: persion.error }" v-for="persion in data">
+      <v-card v-for="(persion, index) in data" :key="index" class="card" :class="{ loading: persion.error }">
         <v-tabs v-model="persion.selected" class="border-b">
-          <v-tab v-for="(platform, index) in persion.platforms" :value="index" :color="platform.color">{{
-            platform.name
-          }}</v-tab>
+          <v-tab v-for="(platform, index) in persion.platforms" :key="index" :value="index" :color="platform.color">
+            {{ platform.name }}
+          </v-tab>
         </v-tabs>
         <v-img class="card-image" cover :src="persion.platforms[persion.selected].image">
           <div v-if="persion.error" class="image-ontainer">

@@ -35,3 +35,12 @@
 - [`.env`](./.env)：服务器地址 `VITE_HOST_SERVER`。
 - [`vite.config.ts`](./vite.config.ts)：vite 开发时转发，用于解决跨域问题。
 - [`netlify.toml`](./netlify.toml)：netlify 转发，用于解决跨域问题。
+
+## 代码规范
+
+- JavaScript、TypeScript（`.vue`、`.js`、`.ts`）：
+  - [eslint-config-alloy](https://github.com/AlloyTeam/eslint-config-alloy) ([规范](https://alloyteam.github.io/eslint-config-alloy/))
+- Markdown：
+  - [Markdown lint tool](https://github.com/markdownlint/markdownlint)（[规范](https://github.com/DavidAnson/markdownlint/blob/main/doc/md001.md)）
+
+一些规则已被修改，详见 [`prettier.config.js`](./prettier.config.js)。

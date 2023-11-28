@@ -8,6 +8,7 @@
 
 [![Gitee repository](https://img.shields.io/badge/Gitee-repository-C71D23?logo=gitee)](https://gitee.com/Jesse205/F-OH-PWA)
 [![Github repository](https://img.shields.io/badge/Github-repository-0969DA?logo=github)](https://github.com/Jesse205/F-OH-PWA)
+
 </div>
 
 > Font: HarmonyOS Sans
@@ -90,17 +91,18 @@ Some browsers support installing this website to the desktop by clicking "Instal
 1. Set up the `.env.production` file.
 2. Open a terminal in the project and run commands according to the following rules.
    - Web pages and PWA applications:
-      1. Run `yarn build`.
-      2. Pull [F-OH Data][F-OH-Data] into `dist/data`.
-      3. Deploy `dist/*` to the server.
+     1. Run `yarn build`.
+     2. Pull [F-OH Data][F-OH-Data] into `dist/data`.
+     3. Deploy `dist/*` to the server.
    - Windows Tauri software:
-      1. Run `yarn build:tauri`.
-      2. Release `src-tauri\target\release\F-OH Tauri.exe` and `src-tauri\target\release\bundle\nsis\F-OH Tauri_<version>_x64-setup.exe`.
+     1. Run `yarn build:tauri`.
+     2. Release `src-tauri\target\release\F-OH Tauri.exe` and `src-tauri\target\release\bundle\nsis\F-OH Tauri_<version>_x64-setup.exe`.
 
 ## Lint and Fixing Files
 
 ```bash
-yarn lint
+yarn eslint:fix
+yarn prettier:fix
 ```
 
 ## Support Program

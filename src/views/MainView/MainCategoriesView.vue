@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import { onMounted, computed,  watch, reactive, MaybeRef } from 'vue'
+import type { MaybeRef } from 'vue';
+import { onMounted, computed, watch, reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
 import ProjectItem from '@/components/ProjectItem.vue'
 import { useAppsStore } from '@/store/apps'
-import { AppInfo } from '@/ts/interfaces/app.interfaces'
+import type { AppInfo } from '@/ts/interfaces/app.interfaces'
+import { unref } from 'vue'
 
 const { t } = useI18n()
 
-//Apps
+// Apps
 const appsStore = useAppsStore()
 onMounted(() => {
   appsStore.ensureData()
@@ -31,16 +33,16 @@ const otherApps = reactive<AppInfo[]>([])
 const appTypes = computed<AppTypes[]>(() => [
   {
     title: t('app.name'),
-    apps: apps
+    apps: apps,
   },
   {
     title: t('game.name'),
-    apps: gameApps
+    apps: gameApps,
   },
   {
     title: t('other.name'),
-    apps: otherApps
-  }
+    apps: otherApps,
+  },
 ])
 
 // 将数据插入不同的分类列表中
@@ -67,18 +69,18 @@ watch(
       }
     }
   },
-  { immediate: true }
+  { immediate: true },
 )
 </script>
 
 <template>
   <v-container class="container py-0">
     <!-- Alerts -->
-    <v-alert class="my-4" v-if="errMsg" title="Load error" :text="errMsg" type="error" variant="tonal" />
+    <v-alert v-if="errMsg" class="my-4" title="Load error" :text="errMsg" type="error" variant="tonal" />
     <!-- MainLayout -->
     <template v-if="loaded">
       <template v-for="appType in appTypes">
-        <v-list v-if="appType.apps && appType.apps.length" class="my-4">
+        <v-list v-if="appType.apps && appType.apps.length" :key="unref(appType.title)" class="my-4">
           <v-list-subheader>{{ appType.title }}</v-list-subheader>
           <div class="project-items">
             <ProjectItem
@@ -113,5 +115,4 @@ watch(
     }
   }
 }
-
 </style>

@@ -1,27 +1,27 @@
 // Utilities
 import { defineStore } from 'pinia'
 import { ref, watch } from 'vue'
-import { HomeData } from '@/ts/interfaces/home.interfaces'
+import type { HomeData } from '@/ts/interfaces/home.interfaces'
 import { autoFetchJson } from '@/util/fetch'
 import { URL_API_HOME } from '@/data/constants'
 import showdown from 'showdown'
 
 function newShowdownConverter() {
-  const classMap = <{ [key: string]: string }>{
+  const classMap: { [key: string]: string } = {
     h1: 'text-h6',
     h2: 'text-h6',
     h3: 'text-h6',
     h4: 'text-h6',
     h5: 'text-h6',
-    h6: 'text-h6'
+    h6: 'text-h6',
   }
   const bindings = Object.keys(classMap).map<showdown.ShowdownExtension>((key) => ({
     type: 'output',
     regex: new RegExp(`<${key}(.*)>`, 'g'),
-    replace: `<${key} class="${classMap[key]}" $1>`
+    replace: `<${key} class="${classMap[key]}" $1>`,
   }))
   const converter = new showdown.Converter({
-    extensions: [...bindings]
+    extensions: [...bindings],
   })
   converter.setOption('noHeaderId', true)
   converter.setOption('simplifiedAutoLink', true)
@@ -78,7 +78,7 @@ export const useHomeStore = defineStore('home', () => {
    * 确保所有 APP 数据已经获取到或者正在获取中
    */
   function ensureData() {
-    if (data.value == null && !loading.value) {
+    if (data.value === null && !loading.value) {
       fetchData()
     }
   }

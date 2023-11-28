@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted } from 'vue'
 import HomeBanner from './components/HomeBanner.vue'
-import { Banners } from '@/ts/interfaces/home.interfaces'
+import type { Banners } from '@/ts/interfaces/home.interfaces'
 import { URL_API } from '@/data/constants'
 import IMAGE_BANNER1 from '@/assets/images/main_banner_1.png'
 import IMAGE_BANNER2 from '@/assets/images/main_banner_2.png'
@@ -20,32 +20,34 @@ const errMsg = computed(() => homeStore.errMsg)
 const banners: Banners = {
   data: [
     {
-      image: IMAGE_BANNER1
+      image: IMAGE_BANNER1,
     },
     {
-      image: IMAGE_BANNER2
+      image: IMAGE_BANNER2,
     },
     {
-      image: IMAGE_BANNER3
-    }
+      image: IMAGE_BANNER3,
+    },
   ],
-  ratio: 18 / 9
+  ratio: 18 / 9,
 }
 </script>
 
 <template>
   <v-container class="py-0">
     <!-- Alerts -->
-    <v-alert class="my-4" v-if="errMsg" title="Load error" :text="errMsg" type="error" variant="tonal" />
+    <v-alert v-if="errMsg" class="my-4" title="Load error" :text="errMsg" type="error" variant="tonal" />
   </v-container>
   <!-- MainLayout -->
   <!-- 轮播图 -->
   <HomeBanner class="my-4" :banners="banners" :base-url="URL_API" />
-  <v-container class="py-0" v-if="homeStore.data?.showAnnouncement">
+  <v-container v-if="homeStore.data?.showAnnouncement" class="py-0">
     <v-list class="my-4">
       <!-- 公告 -->
       <v-list-subheader>{{ $t('announcement.name') }}</v-list-subheader>
-      <v-list-item class="announcementContent" v-html="homeStore.announcementHtml"></v-list-item>
+
+      <!-- eslint-disable-next-line vue/no-v-text-v-html-on-component -->
+      <v-list-item class="announcementContent" v-html="homeStore.announcementHtml" />
     </v-list>
   </v-container>
   <!-- Loading -->

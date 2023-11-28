@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { AppInfo } from '@/ts/interfaces/app.interfaces'
+import type { AppInfo } from '@/ts/interfaces/app.interfaces'
 import { URL_API } from '@/data/constants'
 import { getServerCompletePath } from '@/util/url'
-import { computed, watch } from 'vue'
+import { computed } from 'vue'
 
 const props = defineProps<{
   item: AppInfo

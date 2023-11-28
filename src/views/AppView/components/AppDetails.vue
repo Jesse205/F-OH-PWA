@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { AppInfo } from '@/ts/interfaces/app.interfaces'
+import type { AppInfo } from '@/ts/interfaces/app.interfaces'
 
 defineProps<{
   loading: boolean

@@ -2,7 +2,7 @@
 import AppMain from '@/components/AppMain.vue'
 
 import { useTitle } from '@/events/title'
-import { computed, ref, watch } from 'vue'
+import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { isTauri } from '@/util/app'
 import { getVersion } from '@tauri-apps/api/app'
@@ -27,7 +27,7 @@ const selectedLocales = computed({
   get: () => [locale.value],
   set: (newLocales) => {
     savedLocale.value = newLocales[0]
-  }
+  },
 })
 
 const token = useToken()
@@ -56,7 +56,7 @@ const token = useToken()
         >
           <!-- origin="left" 修复小窗时定位错误 -->
           <v-menu activator="parent" scrim="rgba(0,0,0,0)" origin="left">
-            <v-list select-strategy="single-leaf" v-model:selected="selectedLocales" mandatory>
+            <v-list v-model:selected="selectedLocales" select-strategy="single-leaf" mandatory>
               <v-list-item v-for="item in $i18n.availableLocales" :key="item" :title="item" :value="item" />
             </v-list>
           </v-menu>

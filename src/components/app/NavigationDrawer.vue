@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed, unref } from 'vue'
-import { useRoute } from 'vue-router'
 import { useDisplay } from 'vuetify'
 import { useHomeNavigation } from '@/events/navigation'
 import { useTitle } from '@vueuse/core'
@@ -45,16 +44,10 @@ const { xs, smAndDown } = useDisplay()
     </transition>
     <transition name="slide-y-transition">
       <v-list v-if="!isInMainView" density="compact" nav color="primary">
-        <v-list-item
-          prepend-icon="mdi-circle-outline"
-          :key="$route.path"
-          :title="clearTitle ?? ''"
-          active
-          link
-        />
+        <v-list-item :key="$route.path" prepend-icon="mdi-circle-outline" :title="clearTitle ?? ''" active link />
       </v-list>
     </transition>
   </v-navigation-drawer>
 </template>
 
-<style scoped></style>
+<!-- <style scoped></style> -->
