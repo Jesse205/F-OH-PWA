@@ -11,6 +11,7 @@ import { isLegacyApp } from '@/util/app'
 import NavigationDrawer from './components/app/NavigationDrawer.vue'
 import ContextMenu from './components/app/ContextMenu.vue'
 import { useAppStore } from './store/app'
+import { isPwaDisplayMode } from './util/pwa'
 
 // 主题
 const theme = useTheme()
@@ -55,7 +56,11 @@ watch(
 
 // 将store中的标题应用到网页
 watchEffect(() => {
-  document.title = appStore.title ? `${appStore.title} - ${appStore.appName}` : appStore.appName
+  if (isPwaDisplayMode(appStore.displayMode)) {
+    document.title = appStore.title ?? ''
+  } else {
+    document.title = appStore.title ? `${appStore.title} - ${appStore.appName}` : appStore.appName
+  }
 })
 
 /**
