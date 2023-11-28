@@ -2,7 +2,7 @@
 import { isWebHistorySupported } from '@/util/app'
 import { nextTick } from 'vue'
 import type { HistoryState as VueRouterHistoryState, RouteRecordRaw } from 'vue-router'
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 
 const EL_SCROLL = '.v-main .mainScroll'
 
@@ -87,7 +87,7 @@ const routes: Readonly<RouteRecordRaw[]> = [
 ]
 
 const history = isWebHistorySupported()
-  ? createWebHashHistory(process.env.BASE_URL)
+  ? createWebHistory(process.env.BASE_URL)
   : createWebHashHistory(process.env.BASE_URL)
 
 const router = createRouter({
