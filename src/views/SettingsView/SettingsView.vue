@@ -7,8 +7,8 @@ import { useI18n } from 'vue-i18n'
 import { isTauri } from '@/util/app'
 import { getVersion } from '@tauri-apps/api/app'
 import { useLocaleSetting } from '@/events/settings'
-import { useToken } from '../../events/settings'
-import DialogListItem from '@/components/DialogListItem.vue'
+import { useTokenSetting } from '@/events/settings'
+import DialogListItem from '@/components/list/DialogListItem.vue'
 import BackButton from '@/components/BackButton.vue'
 
 const { t, locale } = useI18n()
@@ -30,7 +30,7 @@ const selectedLocales = computed({
   },
 })
 
-const token = useToken()
+const token = useTokenSetting()
 </script>
 
 <template>

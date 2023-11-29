@@ -41,9 +41,9 @@ const { xs, smAndDown } = useDisplay()
         :replace="isInMainView && (activePagePosition !== 0 || isBackOtherPage)"
       />
     </v-list>
-    <transition name="fade-transition">
+    <!--<transition name="fade-transition">
       <v-divider v-if="!isInMainView" />
-    </transition>
+    </transition>-->
     <transition name="slide-y-transition">
       <v-list v-if="!isInMainView" density="compact" nav color="primary">
         <v-list-item :key="$route.path" prepend-icon="mdi-circle-outline" :title="clearTitle ?? ''" active link />

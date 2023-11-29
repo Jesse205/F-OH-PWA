@@ -7,8 +7,8 @@ import { URL_UPLOAD } from '@/data/constants'
 import type { AppInfo } from '@/ts/interfaces/app.interfaces'
 import type { EditFileWork} from '@/ts/interfaces/gogs.interfaces';
 import { Base64 } from 'js-base64'
-import ProjectItem from '@/components/ProjectItem.vue'
-import { useToken } from '@/events/settings'
+import ProjectItem from '@/components/list/ProjectItem.vue'
+import { useTokenSetting } from '@/events/settings'
 import * as gogs from '@/util/gogs'
 
 const { t } = useI18n()
@@ -18,7 +18,7 @@ useTitle(computed(() => t('manager.apps')))
 const snackbarVisible = ref(false)
 const snackbar = ref<string | null>(null)
 
-const token = useToken()
+const token = useTokenSetting()
 const tokenVisible = ref(false)
 const tokenRules = {
   required: (value: string) => !!value || '必须填写此项',

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { MaybeRef } from 'vue';
+import type { MaybeRef } from 'vue'
 import { onMounted, computed, watch, reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
-import ProjectItem from '@/components/ProjectItem.vue'
+import ProjectItem from '@/components/list/ProjectItem.vue'
 import { useAppsStore } from '@/store/apps'
 import type { AppInfo } from '@/ts/interfaces/app.interfaces'
 import { unref } from 'vue'
@@ -11,12 +11,13 @@ const { t } = useI18n()
 
 // Apps
 const appsStore = useAppsStore()
+
 onMounted(() => {
   appsStore.ensureData()
 })
 
 const loading = computed(() => appsStore.loading)
-const loaded = computed(() => !loading.value && appsStore.data)
+const loaded = computed(() => !loading.value && Boolean(appsStore.data))
 
 const errMsg = computed(() => appsStore.errMsg)
 
@@ -30,7 +31,7 @@ const gameApps = reactive<AppInfo[]>([])
 // 未知的应用类型
 const otherApps = reactive<AppInfo[]>([])
 
-const appTypes = computed<AppTypes[]>(() => [
+const appTypes = computed<AppTypes[]>((): AppTypes[] => [
   {
     title: t('app.name'),
     apps: apps,

@@ -30,7 +30,7 @@ function applyValue() {
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn variant="text" @click="dialogVisible = false"> {{ $t('no.name') }} </v-btn>
+          <v-btn variant="text" @click="dialogVisible = false"> {{ $t('cancel.name') }} </v-btn>
           <v-btn variant="text" @click="applyValue">
             {{ $t('ok.name') }}
           </v-btn>

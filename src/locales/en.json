@@ -133,8 +133,8 @@
   "ok": {
     "name": "OK"
   },
-  "no": {
-    "name": "No"
+  "cancel": {
+    "name": "Cancel"
   },
   "token": {
     "name": "Token"

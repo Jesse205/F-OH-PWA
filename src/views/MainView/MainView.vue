@@ -69,11 +69,7 @@ const onInstallBtnClick = inject<() => void>('onInstallBtnClick')
   <!-- 底部导航栏 -->
   <v-bottom-navigation
     v-if="xs"
-    grow
-    color="primary"
-    mandatory
-    border="t"
-    :elevation="0"
+    
     selected-class="noActivatedTransparency"
   >
     <v-btn

@@ -130,7 +130,7 @@
   "ok": {
     "name": "确定"
   },
-  "no": {
+  "cancel": {
     "name": "取消"
   },
   "token": {

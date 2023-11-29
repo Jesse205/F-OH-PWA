@@ -4,6 +4,6 @@ export function useLocaleSetting() {
   return useLocalStorage<string>('locale', navigator.language)
 }
 
-export function useToken() {
+export function useTokenSetting() {
   return useLocalStorage<string>('token', '')
 }

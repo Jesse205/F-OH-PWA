@@ -38,13 +38,15 @@ export default createVuetify({
   defaults: {
     VAppBar: {
       flat: true,
-      border: 'b',
+      // border: 'b',
+      density: 'compact',
     },
     VBottomNavigation: {
-      bgColor: 'background',
       VBtn: {
         variant: 'plain',
       },
+      grow: true,
+      color: 'primary',
     },
     VMenu: {
       minWidth: 196,
@@ -75,12 +77,22 @@ export default createVuetify({
       color: 'primary',
       rounded: false,
       variant: 'outlined',
+      density: 'comfortable',
+      hideDetails: 'auto',
     },
     VCombobox: {
+      color: 'primary',
+      rounded: false,
       variant: 'outlined',
+      density: 'comfortable',
+      hideDetails: 'auto',
     },
     VSelect: {
+      color: 'primary',
+      rounded: false,
       variant: 'outlined',
+      density: 'comfortable',
+      hideDetails: 'auto',
     },
     VList: {
       bgColor: 'transparent',
