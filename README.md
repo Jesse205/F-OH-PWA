@@ -5,9 +5,9 @@
 [![Gitee repository](https://img.shields.io/badge/Gitee-repository-C71D23?logo=gitee)](https://gitee.com/Jesse205/F-OH-PWA)
 [![Github repository](https://img.shields.io/badge/Github-repository-0969DA?logo=github)](https://github.com/Jesse205/F-OH-PWA)
 
-![PWA](https://img.shields.io/badge/PWA-html-%235A0FC8?logo=pwa)
-![Windows](https://img.shields.io/badge/Windows-exe-%232863C5?logo=windows)
-![Linux](https://img.shields.io/badge/Linux-deb-%23FCC624?logo=linux)
+[![PWA](https://img.shields.io/badge/PWA-html-%235A0FC8?logo=pwa)][Website]
+[![Windows](https://img.shields.io/badge/Windows-exe-%232863C5?logo=windows)][ReleaseInGitee]
+[![Linux](https://img.shields.io/badge/Linux-deb-%23FCC624?logo=linux)][ReleaseInGitee]
 
 [中文](./README.zh.md)
 | **English**
@@ -114,7 +114,7 @@ Sponsorship can be contacted by private message or scanning the QR code below (W
 > [!NOTE]\
 > Please note "F-OH" or private message to [@westinyang (Gitee)][@westinyang] for sponsorship fee, so that it can be counted in [Sponsor List][SponsorList].
 
-![QRCode](https://gitee.com/ohos-dev/f-oh/raw/master/screenshot/wx+zfb.png)
+![QRCode](https://gitee.com/westinyang/f-oh/raw/master/screenshot/wx+zfb.png)
 
 For this project, you can go to the [Hello Tool donation page](https://jesse205.github.io/hellotool/donation.html) to support Jesse205.
 
@@ -145,3 +145,5 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 [PWASecureContextRequirement]: https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Making_PWAs_installable#secure_context
 [SponsorList]: https://gitee.com/ohos-dev/f-oh#%E8%B5%9E%E5%8A%A9%E5%88%97%E8%A1%A8
 [@westinyang]: https://gitee.com/westinyang
+[ReleaseInGitee]: https://gitee.com/ohos-dev/F-OH-PWA/releases/latest
+[Website]: https://f-oh-pwa-jesse205.netlify.app/
