@@ -1,4 +1,6 @@
 @import url(./JetBrains-Mono.scss);
+@import url(./overlays.scss);
+
 .noActivatedOverlay {
   --v-activated-opacity: 0 !important; // 活动时透明
 }
