@@ -120,7 +120,7 @@ For this project, you can go to the [Hello Tool donation page](https://jesse205.
 
 ## Contributing
 
-Please read [`CONTRIBUTING.zh.md`] (. /CONTRIBUTING.zh.md).
+Please read [`CONTRIBUTING.zh.md`](./CONTRIBUTING.md).
 
 ## License
 
