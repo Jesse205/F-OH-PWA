@@ -3,6 +3,12 @@
   "version": "1.1.0",
   "private": true,
   "type": "module",
+  "author": {
+    "name": "Jesse205",
+    "email": "2055675594@qq.com",
+    "url": "https://gitee.com/Jesse205"
+  },
+  "license": "GPL-3.0",
   "scripts": {
     "dev": "vite",
     "dev:tauri": "tauri dev",
