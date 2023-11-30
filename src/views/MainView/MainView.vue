@@ -46,7 +46,7 @@ const onInstallBtnClick = inject<() => void>('onInstallBtnClick')
     </v-tooltip>
     <v-menu origin="bottom" width="172" location="top" scrim="transparent">
       <template v-slot:activator="{ props: menu }">
-        <v-btn class="noActivatedOverlay" icon="$more" v-bind="menu" />
+        <v-btn icon="$more" v-bind="menu" />
       </template>
       <v-list>
         <!-- TODO: 使用Upload页面 -->
@@ -67,10 +67,7 @@ const onInstallBtnClick = inject<() => void>('onInstallBtnClick')
   </app-main>
 
   <!-- 底部导航栏 -->
-  <v-bottom-navigation
-    v-if="xs"
-    selected-class="noActivatedTransparency"
-  >
+  <v-bottom-navigation v-if="xs">
     <v-btn
       v-for="item in pages"
       :key="item.name"

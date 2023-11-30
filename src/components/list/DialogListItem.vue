@@ -25,14 +25,8 @@ function applyValue() {
   <v-list-item link>
     <v-dialog v-model="dialogVisible" width="420" activator="parent" transition="fade-transition">
       <v-card :title="$t('token.name')">
-        <v-card-text>
-          <v-text-field
-            v-model="editValue"
-            active
-            :hint="hint"
-            persistent-hint
-            @keyup.enter="applyValue"
-          />
+        <v-card-text class="py-0">
+          <v-text-field v-model="editValue" active :hint="hint" persistent-hint @keyup.enter="applyValue" />
         </v-card-text>
         <v-card-actions>
           <!-- <v-spacer></v-spacer> -->

@@ -46,7 +46,7 @@ export default {
       purpose: 'maskable',
     },
   ],
-  theme_color: '#00a6f9',
+  theme_color: '#0A59F7',
   display: 'standalone',
   display_override: ['standalone', 'minimal-ui', 'browser', 'window-controls-overlay'],
   screenshots: [

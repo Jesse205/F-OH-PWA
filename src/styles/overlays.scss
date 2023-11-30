@@ -84,6 +84,15 @@ html {
 .harmony {
   --v-border-opacity: 0.2;
   --harmony-blur-radius: 20px;
+  &,
+  .v-theme {
+    &--light,
+    &--dark {
+      @media screen and (max-resolution: 2dppx) {
+        --v-border-opacity: 0.1 !important;
+      }
+    }
+  }
 
   .v-toolbar {
     &__content {
@@ -140,7 +149,6 @@ html {
     &:not(&--nav) {
       padding-inline: 12px;
     }
-
     &--rounded {
       border-radius: 14px;
     }
@@ -149,8 +157,21 @@ html {
         border-bottom-width: 0;
       }
     }
-    &:active > .v-list-item__overlay {
-      opacity: calc(var(--v-activated-opacity) * var(--v-theme-overlay-multiplier));
+    // 菜单中--active需要背景
+    &:not(&--active)[aria-haspopup='menu'][aria-expanded='true'] {
+      & > .v-list-item__overlay {
+        opacity: 0;
+      }
+    }
+    &:not(&--active):hover {
+      .v-list-item__overlay {
+        opacity: calc(var(--v-hover-opacity) * var(--v-theme-overlay-multiplier)) !important;
+      }
+    }
+    &:not(&--active):active {
+      & > .v-list-item__overlay {
+        opacity: calc(var(--v-pressed-opacity) * var(--v-theme-overlay-multiplier)) !important;
+      }
     }
   }
 
@@ -197,7 +218,6 @@ html {
         .v-card-actions {
           padding: 4px 12px 12px 12px;
           .v-btn {
-            // --v-btn-height: 40px;
             width: 0;
             flex: 1;
             margin: 4px;
@@ -245,8 +265,21 @@ html {
         color: rgb(var(--v-theme-on-background));
       }
     }
-    &:active > .v-btn__overlay {
-      opacity: calc(var(--v-activated-opacity) * var(--v-theme-overlay-multiplier));
+    // 显示菜单时不显示按钮的背景
+    &[aria-haspopup='menu'][aria-expanded='true'] {
+      & > .v-btn__overlay {
+        opacity: 0;
+      }
+    }
+    &:hover {
+      .v-btn__overlay {
+        opacity: calc(var(--v-hover-opacity) * var(--v-theme-overlay-multiplier)) !important;
+      }
+    }
+    &:active {
+      & > .v-btn__overlay {
+        opacity: calc(var(--v-pressed-opacity) * var(--v-theme-overlay-multiplier)) !important;
+      }
     }
     .v-btn__overlay {
       transition: opacity 0.2s ease-in-out;
@@ -254,5 +287,22 @@ html {
   }
   .v-alert {
     border-radius: 16px;
+  }
+  .v-bottom-navigation {
+    .v-btn {
+      &--variant-text {
+        opacity: 0.62;
+      }
+      &--active {
+        opacity: 1;
+        & > .v-btn__overlay {
+          // 移除激活时的背景
+          opacity: 0;
+        }
+      }
+      &--disabled {
+        opacity: 0.26;
+      }
+    }
   }
 }

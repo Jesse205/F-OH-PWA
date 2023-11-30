@@ -18,10 +18,12 @@ export const harmony: Blueprint = {
           background: '#F1F3F5',
           surface: '#FFFFFF',
           error: '#E84026',
+          info: '#0A59F7',
         },
         variables: {
           'activated-opacity': 0.1,
           'pressed-opacity': 0.1,
+          'border-opacity': 0.2,
         },
       },
       dark: {
@@ -29,10 +31,13 @@ export const harmony: Blueprint = {
           primary: '#317AF7',
           secondary: '#317AF7',
           background: '#000000',
+          error: '#E84026',
+          info: '#317AF7',
         },
         variables: {
           'activated-opacity': 0.15,
           'pressed-opacity': 0.15,
+          'border-opacity': 0.2,
         },
       },
     },
@@ -45,7 +50,7 @@ export const harmony: Blueprint = {
     },
     VAppBar: {
       flat: true,
-      density: 'compact',
+      density: 'comfortable',
     },
     VAutocomplete: {
       variant: 'outlined',
@@ -83,13 +88,16 @@ export const harmony: Blueprint = {
     VToolbar: {
       VBtn: {
         color: null,
+        rounded: 'lg',
       },
       color: 'background',
     },
     VBottomNavigation: {
       bgColor: 'background',
       VBtn: {
-        variant: 'plain',
+        // variant: 'plain',
+        rounded: 'lg',
+        ripple: false,
       },
       grow: true,
       color: 'primary',
@@ -115,7 +123,6 @@ export const harmony: Blueprint = {
     VListSubheader: {
       color: 'primary',
     },
-
     VList: {
       rounded: true,
       class: ['pa-1', 'prependIconNoOpacityItem'],

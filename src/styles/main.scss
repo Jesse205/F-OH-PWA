@@ -1,23 +1,6 @@
 @import url(./JetBrains-Mono.scss);
 @import url(./overlays.scss);
 
-.noActivatedOverlay {
-  --v-activated-opacity: 0 !important; // 活动时透明
-}
-
-.noActivatedTransparency {
-  opacity: 1 !important;
-}
-
-// .prependIconPrimaryItem {
-//   .v-list-item__prepend {
-//     .v-icon {
-//       color: rgb(var(--v-theme-primary));
-//       opacity: 1;
-//     }
-//   }
-// }
-
 .prependIconNoOpacityItem {
   .v-list-item__prepend {
     .v-icon {
@@ -37,3 +20,53 @@
   right: 0;
 }
 
+// 页面切换动画，防鸿蒙
+.page-transition-enter-active,
+.page-transition-leave-active,
+.page-reverse-transition-enter-active,
+.page-reverse-transition-leave-active {
+  transition: 350ms cubic-bezier(0.39, 0.58, 0.57, 1);
+  transition-property: transform, clip-path;
+}
+
+.page-transition-enter-active,
+.page-reverse-transition-leave-active {
+  &::before {
+    transition: 350ms cubic-bezier(0.39, 0.58, 0.57, 1);
+    transition-property: opacity;
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: black;
+    z-index: 999;
+  }
+}
+
+.page-transition-enter-from,
+.page-reverse-transition-leave-to {
+  transform: translateX(-25%);
+  clip-path: inset(0 75% 0 0);
+  &::before {
+    opacity: 0.1;
+  }
+}
+
+.page-transition-enter-to,
+.page-transition-leave-from,
+.page-reverse-transition-enter-to,
+.page-reverse-transition-leave-from {
+  transform: translateX(0);
+  clip-path: inset(0 0 0 0);
+  &::before {
+    opacity: 0;
+  }
+}
+
+.page-transition-leave-to,
+.page-reverse-transition-enter-from {
+  transform: translateX(25%);
+  clip-path: inset(0 0 0 75%);
+}

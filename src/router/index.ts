@@ -128,7 +128,8 @@ router.beforeEach((to, from) => {
 router.afterEach((to, from) => {
   // 动画
   if (from.path !== '/') {
-    const name = history.state.forward ? 'scroll-x-transition' : 'scroll-x-reverse-transition'
+    // const name = history.state.forward ? 'scroll-x-transition' : 'scroll-x-reverse-transition'
+    const name = history.state.forward ? 'page-transition' : 'page-reverse-transition'
     to.meta.transition = name
     from.meta.transition = name
   } else {
