@@ -81,7 +81,7 @@ if (isTauri) {
           :subtitle="item.summary"
         />
         <v-list-item
-          prepend-icon="mdi-gift-outline"
+          prepend-icon="$card"
           :title="$t('donate.name')"
           :to="{ name: 'Donate' }"
           append-icon="$next"
@@ -117,7 +117,7 @@ if (isTauri) {
           append-icon="$openInNew"
         />
         <v-list-item
-          prepend-icon="$app"
+          prepend-icon="$circle"
           :title="$t('link.foh.title')"
           :subtitle="$t('link.foh.description')"
           href="https://gitee.com/ohos-dev/f-oh"

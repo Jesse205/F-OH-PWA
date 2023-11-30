@@ -194,7 +194,7 @@ html {
       > .v-list {
         border-radius: 16px;
         box-shadow: 0px 10px 50px rgba(0, 0, 31, 15%);
-        background-color: rgba(var(--v-theme-surface), 0.9) !important;
+        background-color: rgba(var(--v-theme-surface), 0.85) !important;
         --indent-padding-left: 0px;
       }
     }
@@ -213,7 +213,7 @@ html {
       > .v-card {
         // max-height: 0.8svh;
         border-radius: 24px;
-        background-color: rgba(var(--v-theme-surface), 0.9) !important;
+        background-color: rgba(var(--v-theme-surface), 0.85) !important;
         box-shadow: none;
         .v-card-actions {
           padding: 4px 12px 12px 12px;

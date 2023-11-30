@@ -46,7 +46,7 @@ const { xs, smAndDown } = useDisplay()
     </transition> -->
     <transition name="slide-y-transition">
       <v-list v-if="!isInMainView" density="compact" nav color="primary">
-        <v-list-item :key="$route.path" prepend-icon="mdi-circle-outline" :title="clearTitle ?? ''" active link />
+        <v-list-item :key="$route.path" prepend-icon="$circle" :title="clearTitle ?? ''" active link />
       </v-list>
     </transition>
   </v-navigation-drawer>
