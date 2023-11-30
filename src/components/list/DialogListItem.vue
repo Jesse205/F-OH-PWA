@@ -26,11 +26,17 @@ function applyValue() {
     <v-dialog v-model="dialogVisible" width="420" activator="parent" transition="fade-transition">
       <v-card :title="$t('token.name')">
         <v-card-text>
-          <v-text-field v-model="editValue" active :hint="hint" persistent-hint @keyup.enter="applyValue" />
+          <v-text-field
+            v-model="editValue"
+            active
+            :hint="hint"
+            persistent-hint
+            @keyup.enter="applyValue"
+          />
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn variant="text" @click="dialogVisible = false"> {{ $t('cancel.name') }} </v-btn>
+          <v-btn variant="text" @click="dialogVisible = false"> {{ $t('no.name') }} </v-btn>
           <v-btn variant="text" @click="applyValue">
             {{ $t('ok.name') }}
           </v-btn>

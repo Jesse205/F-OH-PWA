@@ -40,7 +40,7 @@ const token = useTokenSetting()
   </v-app-bar>
   <app-main>
     <v-container class="container">
-      <v-list active-class="noActivatedOverlay" :border="false" :rounded="false">
+      <v-list class="ma-4" active-class="noActivatedOverlay">
         <!-- 项目展示 -->
         <!-- <v-list-subheader>{{ $t('project.showcase.name') }}</v-list-subheader> -->
         <!-- 应用 -->

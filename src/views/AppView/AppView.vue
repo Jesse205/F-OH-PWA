@@ -106,7 +106,7 @@ function shareApp() {
       <div v-show="appInfo?.desc || loading" class="my-4">
         <v-skeleton-loader
           v-if="loading"
-          class="summarySkeleton rounded-lg"
+          class="summarySkeleton"
           :class="{ loading: loading }"
           type="sentences"
           color="rgba(var(--v-theme-on-surface), 0.12)"
@@ -122,7 +122,7 @@ function shareApp() {
       <v-skeleton-loader v-if="loading" class="tagsSkeleton" type="chip@3" color="transparent" />
       <div v-else-if="appTags?.length" class="tagsGroup">
         <div v-for="item in appTags" :key="item" class="tagItem">
-          <v-chip variant="text" border>{{ item }}</v-chip>
+          <v-chip>{{ item }}</v-chip>
         </div>
       </div>
       <!-- #endregion -->
@@ -201,6 +201,7 @@ function shareApp() {
   width: 100%;
   max-width: 600px;
   color: inherit !important;
+  border-radius: 16px;
 }
 
 .summaryCard {

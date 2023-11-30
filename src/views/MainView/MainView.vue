@@ -44,7 +44,7 @@ const onInstallBtnClick = inject<() => void>('onInstallBtnClick')
       </template>
       <span>搜索应用</span>
     </v-tooltip>
-    <v-menu origin="top" width="192" location="top" scrim="transparent">
+    <v-menu origin="bottom" width="172" location="top" scrim="transparent">
       <template v-slot:activator="{ props: menu }">
         <v-btn class="noActivatedOverlay" icon="mdi-dots-vertical" v-bind="menu" />
       </template>
@@ -69,7 +69,6 @@ const onInstallBtnClick = inject<() => void>('onInstallBtnClick')
   <!-- 底部导航栏 -->
   <v-bottom-navigation
     v-if="xs"
-    
     selected-class="noActivatedTransparency"
   >
     <v-btn

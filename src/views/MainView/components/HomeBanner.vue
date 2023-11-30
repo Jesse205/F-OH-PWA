@@ -52,7 +52,7 @@ const newBanners = computed(() => {
     >
       <swiper-slide v-for="item in newBanners?.data" :key="item.image" role="banner">
         <component :is="item.src ? 'a' : 'div'" :href="item.src" target="_blank">
-          <v-img class="rounded-lg border" :aspect-ratio="banners?.ratio" :src="item.image" cover />
+          <v-img class="image bg-surface" :aspect-ratio="banners?.ratio" :src="item.image" cover />
         </component>
       </swiper-slide>
     </swiper>
@@ -67,5 +67,8 @@ const newBanners = computed(() => {
     padding: 0 16px;
     position: relative;
   }
+}
+.image {
+  border-radius: 16px;
 }
 </style>

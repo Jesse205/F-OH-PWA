@@ -67,6 +67,7 @@ const banners: Banners = {
   > :not(:last-child) {
     margin-bottom: 0.5rem;
   }
+
   :deep(ul),
   :deep(ol) {
     padding-left: 1rem;
