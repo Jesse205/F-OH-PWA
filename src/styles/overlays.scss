@@ -157,6 +157,11 @@ html {
         border-bottom-width: 0;
       }
     }
+    &__prepend {
+      .v-icon {
+        opacity: 1;
+      }
+    }
     // 菜单中--active需要背景
     &:not(&--active)[aria-haspopup='menu'][aria-expanded='true'] {
       & > .v-list-item__overlay {

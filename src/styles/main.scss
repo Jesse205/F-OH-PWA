@@ -1,14 +1,6 @@
 @import url(./JetBrains-Mono.scss);
 @import url(./overlays.scss);
 
-.prependIconNoOpacityItem {
-  .v-list-item__prepend {
-    .v-icon {
-      opacity: 1;
-    }
-  }
-}
-
 .centerSpace {
   display: flex;
   justify-content: center;

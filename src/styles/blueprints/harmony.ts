@@ -16,7 +16,9 @@ export const harmony: Blueprint = {
           primary: '#0A59F7',
           secondary: '#0A59F7',
           background: '#F1F3F5',
-          surface: '#FFFFFF',
+          surface: '#ffffff',
+          'surface-variant': '#E5E5E5',
+          'on-surface-variant': '#000000',
           error: '#E84026',
           info: '#0A59F7',
         },
@@ -31,6 +33,8 @@ export const harmony: Blueprint = {
           primary: '#317AF7',
           secondary: '#317AF7',
           background: '#000000',
+          'surface-variant': '#424242',
+          'on-surface-variant': '#fffffff',
           error: '#E84026',
           info: '#317AF7',
         },
@@ -125,7 +129,7 @@ export const harmony: Blueprint = {
     },
     VList: {
       rounded: true,
-      class: ['pa-1', 'prependIconNoOpacityItem'],
+      class: ['pa-1'],
     },
     VListItem: {
       rounded: true,
