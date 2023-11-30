@@ -20,7 +20,7 @@ const isBtnShowing = computed(() => {
         <v-btn
           v-show="isBtnShowing"
           class="btn"
-          icon="mdi-arrow-left"
+          icon="$back"
           v-bind="props"
           :aria-label="$t('back.name')"
           @click.stop="$router.back"

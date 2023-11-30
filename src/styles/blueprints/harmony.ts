@@ -1,4 +1,5 @@
 // Icons
+import { hmi, aliases } from '@/iconsets/hmi'
 import { mdi } from 'vuetify/iconsets/mdi'
 
 // Types
@@ -16,93 +17,108 @@ export const harmony: Blueprint = {
           secondary: '#0A59F7',
           background: '#F1F3F5',
           surface: '#FFFFFF',
-          error: '#E84026'
-        }
+          error: '#E84026',
+        },
+        variables: {
+          'activated-opacity': 0.1,
+          'pressed-opacity': 0.1,
+        },
       },
       dark: {
         colors: {
           primary: '#317AF7',
           secondary: '#317AF7',
-          background: '#000000'
-        }
-      }
-    }
+          background: '#000000',
+        },
+        variables: {
+          'activated-opacity': 0.15,
+          'pressed-opacity': 0.15,
+        },
+      },
+    },
   },
   defaults: {
     ...vuetifyMd2.defaults,
+    global: {
+      ripple: false,
+      rounded: 'md',
+    },
     VAppBar: {
-      flat: true
+      flat: true,
+      density: 'compact',
     },
     VAutocomplete: {
-      variant: 'outlined'
+      variant: 'outlined',
     },
     VBanner: {
-      color: 'primary'
+      color: 'primary',
     },
     VBtn: {
       color: 'primary',
-      rounded: 'pill'
+      rounded: 'pill',
     },
     VCheckbox: {
-      color: 'secondary'
+      color: 'secondary',
     },
     VCombobox: {
-      variant: 'underlined'
+      variant: 'underlined',
     },
     VSelect: {
-      variant: 'underlined'
+      variant: 'underlined',
     },
     VSlider: {
-      color: 'primary'
+      color: 'primary',
     },
     VTabs: {
-      color: 'primary'
+      color: 'primary',
     },
     VTextarea: {
-      variant: 'underlined'
+      variant: 'underlined',
     },
     VTextField: {
       variant: 'underlined',
       // color: 'primary',
-      rounded: false
+      rounded: false,
     },
     VToolbar: {
       VBtn: {
-        color: null
+        color: null,
       },
-      color: 'background'
+      color: 'background',
     },
     VBottomNavigation: {
       bgColor: 'background',
       VBtn: {
-        variant: 'plain'
-      }
+        variant: 'plain',
+      },
+      grow: true,
+      color: 'primary',
+      elevation: 0,
     },
     VMenu: {
       minWidth: 172,
       transition: 'slide-y-transition',
       VList: {
         // bgColor: 'surface'
-      }
+        color: 'primary',
+      },
     },
     VCheckboxBtn: {
-      color: 'primary'
+      color: 'primary',
     },
     VCard: {
-      flat: true
+      flat: true,
     },
     VTooltip: {
-      transition: 'fade-transition'
+      transition: 'fade-transition',
     },
     VListSubheader: {
-      color: 'primary'
+      color: 'primary',
     },
-    VProgressCircular: {
-      color: 'primary'
-    },
+
     VList: {
       rounded: true,
-      class: ['pa-1']
+      class: ['pa-1', 'prependIconNoOpacityItem'],
     },
     VListItem: {
       rounded: true,
@@ -110,17 +126,28 @@ export const harmony: Blueprint = {
     VNavigationDrawer: {
       color: 'background',
       VList: {
-        bgColor: 'background'
-      }
+        bgColor: 'background',
+      },
     },
     VDialog: {
       VCard: {
         color: 'surface',
-        variant: 'elevated'
-      }
+        variant: 'elevated',
+      },
+      VBtn: {
+        size: 'large',
+      },
     },
     VOverlay: {
-      scrim: 'argb(0, 0, 0, 0.3)'
-    }
-  }
+      scrim: 'argb(0, 0, 0, 0.3)',
+    },
+  },
+  icons: {
+    defaultSet: 'mdi',
+    aliases,
+    sets: {
+      hmi,
+      mdi,
+    },
+  },
 }

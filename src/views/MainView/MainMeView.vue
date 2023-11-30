@@ -8,7 +8,7 @@
     <!-- <div class="py-2">
       <v-list-item rounded="lg" lines="two" :title="userStore.nameShow" :subtitle="userStore.email" link
         @click="userStore.loginState ? $router.push({ name: 'User' }) : userStore.login()"
-        append-icon="mdi-chevron-right">
+        append-icon="$next">
         <template v-slot:prepend>
           <v-avatar class="border" size="56">
             <v-img :src="userStore.avatar" />
@@ -19,12 +19,12 @@
 
     <!-- 用户面板 -->
     <v-list class="my-4 prependIconPrimaryItem">
-      <v-list-item title="我的关注" link prepend-icon="mdi-apps" append-icon="mdi-chevron-right" disabled />
+      <v-list-item title="我的关注" link prepend-icon="$apps" append-icon="$next" disabled />
       <v-list-item
         :title="$t('manager.apps')"
         link
-        prepend-icon="mdi-apps"
-        append-icon="mdi-chevron-right"
+        prepend-icon="$apps"
+        append-icon="$next"
         :to="{ name: 'Manager' }"
         disabled
       />
@@ -34,15 +34,15 @@
     <v-list class="my-4 prependIconPrimaryItem">
       <v-list-item
         :title="$t('settings.name')"
-        prepend-icon="mdi-cog-outline"
-        append-icon="mdi-chevron-right"
+        prepend-icon="$settings"
+        append-icon="$next"
         :to="{ name: 'Settings' }"
       />
       <v-list-item
         :title="$t('about.name')"
         link
-        prepend-icon="mdi-information-outline"
-        append-icon="mdi-chevron-right"
+        prepend-icon="$info"
+        append-icon="$next"
         :to="{ name: 'About' }"
       />
     </v-list>

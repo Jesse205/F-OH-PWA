@@ -1,6 +1,3 @@
-// Icons
-import { mdi } from 'vuetify/iconsets/mdi'
-
 // Types
 import type { Blueprint } from 'vuetify'
 
@@ -8,7 +5,8 @@ import { md2 as vuetifyMd2 } from 'vuetify/blueprints'
 
 export const md2: Blueprint = {
   ...vuetifyMd2,
-   theme: {
+
+  theme: {
     themes: {
       light: {
         colors: {
@@ -16,98 +14,98 @@ export const md2: Blueprint = {
           secondary: '#81bd0a',
           surface: '#FFFFFF',
           error: '#B00020',
-        }
+        },
       },
       dark: {
         colors: {
           primary: '#006CDE',
-          secondary: '#81bd0a'
-        }
-      }
-    }
+          secondary: '#81bd0a',
+        },
+      },
+    },
   },
   defaults: {
-    ...vuetifyMd2.defaults,
-    VAutocomplete: {
-      variant: 'outlined',
-    },
-    VBanner: {
-      color: 'primary',
-    },
-    VBtn: {
-      color: 'primary',
-    },
-    VCheckbox: {
-      color: 'secondary',
-    },
-    VCombobox: {
-      variant: 'filled',
-    },
-    VSelect: {
-      variant: 'filled',
-    },
-    VSlider: {
-      color: 'primary',
-    },
-    VTabs: {
-      color: 'primary',
-    },
-    VTextarea: {
-      variant: 'outlined',
-    },
-    VTextField: {
-      variant: 'outlined',
-      color: 'primary',
-      rounded: false
-    },
-    VToolbar: {
-      VBtn: {
-        color: null,
-      },
-      color: 'background'
+    VAppBar: {
+      flat: true,
+      density: 'compact',
     },
     VBottomNavigation: {
-      bgColor: 'background',
       VBtn: {
-        variant: 'plain'
-      }
+        variant: 'plain',
+      },
+      grow: true,
+      color: 'primary',
     },
     VMenu: {
       minWidth: 196,
       VList: {
-        bgColor: 'surface'
-      }
+        bgColor: 'surface',
+        border: false,
+        rounded: false,
+      },
     },
     VCheckboxBtn: {
-      color: 'primary'
+      color: 'primary',
     },
     VCard: {
       border: true,
       rounded: 'lg',
-      variant: 'outlined'
+      variant: 'outlined',
     },
     VTooltip: {
-      transition: 'fade-transition'
+      transition: 'fade-transition',
     },
     VListSubheader: {
-      color: 'primary'
+      color: 'primary',
     },
     VProgressCircular: {
-      color: 'primary'
+      color: 'primary',
+    },
+    VTextField: {
+      color: 'primary',
+      rounded: false,
+      variant: 'outlined',
+      density: 'comfortable',
+      hideDetails: 'auto',
+    },
+    VCombobox: {
+      color: 'primary',
+      rounded: false,
+      variant: 'outlined',
+      density: 'comfortable',
+      hideDetails: 'auto',
+    },
+    VSelect: {
+      color: 'primary',
+      rounded: false,
+      variant: 'outlined',
+      density: 'comfortable',
+      hideDetails: 'auto',
     },
     VList: {
-      bgColor: 'transparent'
+      bgColor: 'transparent',
+      border: true,
+      rounded: 'lg',
+    },
+    VToolbar: {
+      color: 'background',
     },
     VNavigationDrawer: {
-      color: 'background'
+      color: 'background',
+      VList: {
+        border: false,
+        rounded: false,
+        VListItem: {
+          rounded: true,
+        },
+      },
     },
     VDialog: {
       VCard: {
         color: 'surface',
         variant: 'elevated',
         border: false,
-      }
+      },
     },
   },
-
 }

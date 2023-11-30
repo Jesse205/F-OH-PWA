@@ -12,7 +12,7 @@ defineProps<{
     <v-list-subheader>{{ $t('more.info') }}</v-list-subheader>
     <v-skeleton-loader class="skeleton-more" type="list-item-avatar-two-line@2" color="transparent" :loading="loading">
       <v-list-item
-        prepend-icon="mdi-clock-outline"
+        prepend-icon="$clock"
         :title="$t('release.date')"
         :subtitle="appInfo?.releaseTime ?? $t('unknown.name')"
         width="100%"

@@ -49,7 +49,7 @@ defineExpose({
       <div class="buttonGroup" @dragstart.stop>
         <!-- 下载按钮 -->
         <v-btn
-          prepend-icon="mdi-download"
+          prepend-icon="$downloadFilled"
           variant="flat"
           :disabled="!appDownloadUrl"
           :href="appDownloadUrl || undefined"

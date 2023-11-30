@@ -65,14 +65,9 @@ if (isTauri) {
         <!-- 关于应用 -->
         <v-list-subheader>{{ $t('app.about') }}</v-list-subheader>
         <!-- 应用版本 -->
-        <v-list-item prepend-icon="mdi-information-outline" :title="$t('app.version')" :subtitle="appVersion" />
+        <v-list-item prepend-icon="$info" :title="$t('app.version')" :subtitle="appVersion" />
         <!-- Tauri 版本 -->
-        <v-list-item
-          v-if="tauriVersion"
-          prepend-icon="mdi-information-outline"
-          :title="$t('tauri.version')"
-          :subtitle="tauriVersion"
-        />
+        <v-list-item v-if="tauriVersion" prepend-icon="$info" :title="$t('tauri.version')" :subtitle="tauriVersion" />
       </v-list>
       <v-list class="ma-4" lines="two" active-class="noActivatedOverlay">
         <!-- <v-divider></v-divider> -->
@@ -89,7 +84,7 @@ if (isTauri) {
           prepend-icon="mdi-gift-outline"
           :title="$t('donate.name')"
           :to="{ name: 'Donate' }"
-          append-icon="mdi-chevron-right"
+          append-icon="$next"
           lines="one"
         />
       </v-list>
@@ -100,12 +95,12 @@ if (isTauri) {
         <v-list-subheader>{{ $t('communicate.name') }}</v-list-subheader>
         <!-- QQ 群 -->
         <v-list-item
-          prepend-icon="mdi-account-group-outline"
+          prepend-icon="$group"
           :title="$t('communicate.qqGroup')"
           subtitle="752399947"
           href="https://qm.qq.com/q/jWeBdnvPz2"
           target="_blank"
-          append-icon="mdi-open-in-new"
+          append-icon="$openInNew"
         />
       </v-list>
       <v-list class="ma-4" lines="two" active-class="noActivatedOverlay">
@@ -119,23 +114,23 @@ if (isTauri) {
           :subtitle="URL_SOURCE"
           :href="URL_SOURCE"
           target="_blank"
-          append-icon="mdi-open-in-new"
+          append-icon="$openInNew"
         />
         <v-list-item
-          prepend-icon="mdi-application-outline"
+          prepend-icon="$app"
           :title="$t('link.foh.title')"
           :subtitle="$t('link.foh.description')"
           href="https://gitee.com/ohos-dev/f-oh"
           target="_blank"
-          append-icon="mdi-open-in-new"
+          append-icon="$openInNew"
         />
         <v-list-item
-          prepend-icon="mdi-account-group-outline"
+          prepend-icon="$group"
           :title="$t('link.organization.title')"
           :subtitle="$t('link.organization.description')"
           href="https://gitee.com/ohos-dev"
           target="_blank"
-          append-icon="mdi-open-in-new"
+          append-icon="$openInNew"
         />
       </v-list>
     </v-container>

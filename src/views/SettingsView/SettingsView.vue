@@ -47,7 +47,7 @@ const token = useTokenSetting()
         <!-- <v-divider></v-divider> -->
         <v-list-subheader>{{ $t('app.name') }}</v-list-subheader>
         <v-list-item
-          prepend-icon="mdi-translate"
+          prepend-icon="$translate"
           class="noActivatedOverlay"
           :title="$t('locale.language')"
           :subtitle="$i18n.locale"
@@ -73,7 +73,7 @@ const token = useTokenSetting()
 
         <!-- 关于 -->
         <v-list-item
-          prepend-icon="mdi-information-outline"
+          prepend-icon="$info"
           :title="$t('about.name')"
           :subtitle="appVersion"
           :to="{ name: 'About' }"

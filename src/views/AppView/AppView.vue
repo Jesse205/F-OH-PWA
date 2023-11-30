@@ -88,7 +88,7 @@ function shareApp() {
       <template v-slot:activator="{ props }">
         <v-btn
           :disabled="!appInfo"
-          icon="mdi-share-variant-outline"
+          icon="$share"
           v-bind="props"
           :aria-label="$t('share.name')"
           @click="shareApp"
@@ -136,7 +136,7 @@ function shareApp() {
             lines="two"
             :title="appInfo?.vender"
             link
-            append-icon="mdi-chevron-right"
+            append-icon="$next"
             :href="`https://cn.bing.com/search?q=${appInfo?.vender}`"
             target="_blank"
             width="100%"

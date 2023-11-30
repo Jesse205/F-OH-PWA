@@ -20,27 +20,27 @@ export function useHomeNavigation() {
     return [
       {
         title: t('home.name'),
-        icon: 'mdi-home-variant-outline',
-        activeIcon: 'mdi-home-variant',
+        icon: '$home',
+        activeIcon: '$homeFilled',
         name: 'Home',
       },
       {
         title: t('category.name', 2),
-        icon: 'mdi-apps',
-        activeIcon: 'mdi-apps',
+        icon: '$apps',
+        activeIcon: '$appsFilled',
         name: 'Categories',
       },
       {
         title: t('update.name'),
-        icon: 'mdi-update',
-        activeIcon: 'mdi-update',
+        icon: '$update',
+        activeIcon: '$updateFilled',
         name: 'Update',
         disabled: true,
       },
       {
         title: t('me.name'),
-        icon: 'mdi-account-outline',
-        activeIcon: 'mdi-account',
+        icon: '$account',
+        activeIcon: '$accountFilled',
         name: 'Me',
       },
     ]
