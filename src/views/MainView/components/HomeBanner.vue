@@ -64,7 +64,8 @@ const newBanners = computed(() => {
   padding: 0;
 
   > .swiper {
-    padding: 0 16px;
+    // 防止计算误差导致边缘露出图片
+    padding: 0 15.5px;
     position: relative;
   }
 }
