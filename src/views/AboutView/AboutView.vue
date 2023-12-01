@@ -109,7 +109,7 @@ if (isTauri) {
         <v-list-subheader>{{ $t('link.related') }}</v-list-subheader>
         <!-- 源代码 -->
         <v-list-item
-          prepend-icon="mdi-code-tags"
+          prepend-icon="$link"
           :title="$t('source.code')"
           :subtitle="URL_SOURCE"
           :href="URL_SOURCE"

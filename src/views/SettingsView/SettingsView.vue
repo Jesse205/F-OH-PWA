@@ -64,7 +64,7 @@ const token = useTokenSetting()
 
         <dialog-list-item
           v-model="token"
-          prepend-icon="mdi-key-outline"
+          prepend-icon="$lock"
           class="noActivatedOverlay"
           :title="$t('token.name')"
           hint="请进入“用户设置 > 授权应用”获取令牌"

@@ -86,13 +86,7 @@ function shareApp() {
     </v-app-bar-title>
     <v-tooltip v-if="isShareSupported" location="bottom">
       <template v-slot:activator="{ props }">
-        <v-btn
-          :disabled="!appInfo"
-          icon="$share"
-          v-bind="props"
-          :aria-label="$t('share.name')"
-          @click="shareApp"
-        />
+        <v-btn :disabled="!appInfo" icon="$share" v-bind="props" :aria-label="$t('share.name')" @click="shareApp" />
       </template>
       <span>{{ $t('share.name') }}</span>
     </v-tooltip>
@@ -131,8 +125,9 @@ function shareApp() {
       <v-list v-show="appInfo?.vender || loading" class="my-4" @dragstart.stop>
         <v-list-subheader>{{ $t('developer.name') }}</v-list-subheader>
         <v-skeleton-loader type="avatar, text" color="transparent" :loading="loading">
+          <!-- prepend-avatar="@/assets/images/icon.svg" -->
           <v-list-item
-            prepend-avatar="@/assets/images/icon.svg"
+            prepend-icon="$account"
             lines="two"
             :title="appInfo?.vender"
             link

@@ -75,7 +75,7 @@ watch(
 </script>
 
 <template>
-  <v-container class="container py-0">
+  <v-container class="container py-0" fluid>
     <!-- Alerts -->
     <v-alert v-if="errMsg" class="my-4" title="Load error" :text="errMsg" type="error" variant="tonal" />
     <!-- MainLayout -->
@@ -98,7 +98,7 @@ watch(
   </v-container>
   <!-- Loading -->
   <div v-if="loading" class="centerSpace">
-    <v-progress-circular indeterminate :size="40" :width="4" />
+    <v-progress-circular indeterminate />
   </div>
 </template>
 
@@ -110,15 +110,21 @@ watch(
 
   .project-item {
     width: 100%;
-    @media (min-width: 1280px) {
+    @media (min-width: 800px) {
       width: 50%;
       &:nth-last-child(2)::before {
         border-bottom-width: 0;
       }
     }
-    @media (min-width: 1920px) {
+    @media (min-width: 1280px) {
       width: 33%;
       &:nth-last-child(3)::before {
+        border-bottom-width: 0;
+      }
+    }
+    @media (min-width: 1920px) {
+      width: 25%;
+      &:nth-last-child(4)::before {
         border-bottom-width: 0;
       }
     }

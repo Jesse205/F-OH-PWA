@@ -133,11 +133,19 @@ export const harmony: Blueprint = {
     },
     VListItem: {
       rounded: true,
+      VAvatar: {
+        size: '24',
+      },
     },
     VNavigationDrawer: {
       color: 'background',
       VList: {
         bgColor: 'background',
+      },
+      VListItem: {
+        VAvatar: {
+          size: '40',
+        },
       },
     },
     VDialog: {
@@ -151,6 +159,10 @@ export const harmony: Blueprint = {
     },
     VOverlay: {
       scrim: 'argb(0, 0, 0, 0.3)',
+    },
+    VProgressCircular: {
+      width: 3,
+      size: '40',
     },
   },
   icons: {

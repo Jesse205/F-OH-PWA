@@ -114,7 +114,7 @@ html {
 
   // List
   .v-list {
-    --indent-padding-left: 56px;
+    --indent-padding-left: 40px;
     --indent-padding-right: 0px;
     &--rounded {
       border-radius: 16px;
@@ -345,7 +345,15 @@ html {
     --indent-padding-right: 0px;
     border-top: var(--harmony-border);
     opacity: 1;
-    margin-left: calc(12px + var(--indent-padding-left));
-    margin-right: calc(12px + var(--indent-padding-right));
+    margin-left: calc(16px + var(--indent-padding-left));
+    margin-right: calc(16px + var(--indent-padding-right));
+  }
+
+  .v-list-item__prepend {
+    & > .v-badge ~ .v-list-item__spacer,
+    & > .v-icon ~ .v-list-item__spacer,
+    & > .v-tooltip ~ .v-list-item__spacer {
+      width: 16px;
+    }
   }
 }

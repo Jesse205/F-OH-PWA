@@ -52,7 +52,7 @@ const banners: Banners = {
   </v-container>
   <!-- Loading -->
   <div v-if="loading" class="centerSpace">
-    <v-progress-circular indeterminate :size="40" :width="4" />
+    <v-progress-circular indeterminate />
   </div>
 </template>
 
