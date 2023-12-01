@@ -340,6 +340,9 @@ html {
   .border-b {
     border-bottom: var(--harmony-border);
   }
+  .border {
+    border-width: 0.5px !important;
+  }
   .v-divider {
     --indent-padding-left: 0px;
     --indent-padding-right: 0px;

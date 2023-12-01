@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useAppsStore } from '@/store/apps'
-import { onMounted } from 'vue'
 import AppMain from '@/components/AppMain.vue'
 import { useScroll, useShare } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
@@ -13,29 +12,39 @@ import AppDetails from './components/AppDetails.vue'
 import BackButton from '@/components/BackButton.vue'
 import { isLegacyApp } from '@/util/app'
 import { HOST_WEB } from '@/data/constants'
+import { matchUserSpace } from '@/util/url'
+import type { AppInfo } from '@/ts/interfaces/app.interfaces'
 
 const { t } = useI18n()
-
 const route = useRoute()
-
 const appsStore = useAppsStore()
 
 // 查找当前应用信息
-const appInfo = computed(() => appsStore.data?.find((item) => item.id === Number(route.params.id)))
+const appInfo = computed((): AppInfo | undefined => appsStore.data?.find((item) => item.id === Number(route.params.id)))
 const loading = computed(() => appsStore.loading)
 
-// 分割标签
+/**
+ * 分割后的标签列表
+ */
 const appTags = computed(() => appInfo.value && getAppTags(appInfo.value))
+
+/**
+ * 作者主页地址，根据开源地址猜测，数据**可能会获取失败，或者不准确**！
+ */
+const developerSpace = computed(() =>
+  appInfo.value ? matchUserSpace(new URL(appInfo.value.openSourceAddress, location.href)) : null,
+)
 
 // 确保数据已经获取到或者正在获取中
 onMounted(() => {
   appsStore.ensureData()
 })
 
+// 页面滚动，动态展示标题
 const mainElement = ref<InstanceType<typeof AppMain>>()
 const appOverviewElement = ref<InstanceType<typeof AppOverview>>()
 
-const mainScrollElement = computed<HTMLElement | null>(() => mainElement.value?.mainScroll ?? null)
+const mainScrollElement = computed(() => mainElement.value?.mainScroll)
 const appNameElement = computed(() => appOverviewElement.value?.appNameElement)
 
 const appNamePositionYBottom = computed(() => {
@@ -43,11 +52,14 @@ const appNamePositionYBottom = computed(() => {
   return element ? element.offsetTop + element.offsetHeight : 0
 })
 
-// 页面滚动
 const { y: scrollY } = useScroll(mainScrollElement)
 
-// 如果标题被遮拦就在应用栏内显示标题
-const isTitleShowName = computed(() => scrollY.value > appNamePositionYBottom.value)
+/**
+ * 如果应用的标题被遮挡，就在应用栏内显示应用的标题。
+ *
+ * `true` 为已被遮挡，`false` 为未被遮挡。
+ */
+const isTitleObscured = computed(() => scrollY.value > appNamePositionYBottom.value)
 
 const title = computed(() => (appInfo.value ? `${appInfo.value.name} - ${t('app.view')}` : t('app.view')))
 
@@ -78,9 +90,9 @@ function shareApp() {
     <back-button />
     <!-- 多标题动画展示 -->
     <v-app-bar-title class="title">
-      <transition :name="isTitleShowName ? 'scroll-x-reverse-transition' : 'scroll-x-transition'">
-        <span :key="isTitleShowName.toString()" class="title-item">
-          {{ isTitleShowName ? appInfo?.name : $t('app.view') }}
+      <transition :name="isTitleObscured ? 'scroll-x-reverse-transition' : 'scroll-x-transition'">
+        <span :key="isTitleObscured.toString()" class="title-item">
+          {{ isTitleObscured ? appInfo?.name : $t('app.view') }}
         </span>
       </transition>
     </v-app-bar-title>
@@ -128,11 +140,12 @@ function shareApp() {
           <!-- prepend-avatar="@/assets/images/icon.svg" -->
           <v-list-item
             prepend-icon="$account"
-            lines="two"
+            :lines="developerSpace ? 'two' : 'one'"
             :title="appInfo?.vender"
+            :subtitle="developerSpace ?? false"
             link
             append-icon="$next"
-            :href="`https://cn.bing.com/search?q=${appInfo?.vender}`"
+            :href="developerSpace ?? `https://cn.bing.com/search?q=${appInfo?.vender}`"
             target="_blank"
             width="100%"
           />
