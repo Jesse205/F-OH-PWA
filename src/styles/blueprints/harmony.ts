@@ -144,7 +144,7 @@ export const harmony: Blueprint = {
       },
       VListItem: {
         VAvatar: {
-          size: '40',
+          size: 'default',
         },
       },
     },

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inject, ref, unref, watchEffect } from 'vue'
+import { ref, unref, watchEffect } from 'vue'
 import { useDisplay } from 'vuetify'
 import AppMain from '@/components/AppMain.vue'
 import { useRoute } from 'vue-router'
@@ -7,6 +7,7 @@ import { useTitle } from '@/events/title'
 import { URL_UPLOAD } from '@/data/constants'
 import { useHomeNavigation } from '@/events/navigation'
 import BackButton from '@/components/BackButton.vue'
+import { useInjectedInstallBtnVisible, useInjectedOnInstallBtnClick } from '@/events/pwa'
 
 const { pages, activePagePosition, isBackOtherPage, isInMainView } = useHomeNavigation()
 
@@ -27,8 +28,8 @@ watchEffect(() => {
 const { xs } = useDisplay()
 
 // PWA
-const installBtnVisible = inject<boolean>('installBtnVisible')
-const onInstallBtnClick = inject<() => void>('onInstallBtnClick')
+const installBtnVisible = useInjectedInstallBtnVisible()
+const onInstallBtnClick = useInjectedOnInstallBtnClick()
 </script>
 
 <template>
@@ -37,7 +38,6 @@ const onInstallBtnClick = inject<() => void>('onInstallBtnClick')
     <!-- 仅在非手机中显示返回按钮 -->
     <back-button v-if="!xs" />
     <v-app-bar-title>{{ homeTitle }}</v-app-bar-title>
-    <v-spacer />
     <v-tooltip location="bottom">
       <template v-slot:activator="{ props }">
         <v-btn icon="$search" v-bind="props" disabled aria-label="搜索应用" />

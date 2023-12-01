@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { usePreferredDark } from '@vueuse/core'
 import { useTheme } from 'vuetify'
-import { watch, computed, watchEffect } from 'vue'
+import { watch, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { usePwa } from '@/events/pwa'
 import { isTauri } from '@/util/app'
@@ -36,9 +36,9 @@ const routeName = computed(() => route.path.match('/[^/]+')?.[0] ?? '')
 // PWA
 usePwa()
 
-// Tauri
+// APP 模式
 console.debug('isTauri', isTauri)
-console.debug('isLegacyApp', isLegacyApp())
+console.debug('isLegacyApp', isLegacyApp)
 
 const appStore = useAppStore()
 
@@ -55,13 +55,21 @@ watch(
 )
 
 // 将store中的标题应用到网页
-watchEffect(() => {
+const documentTitle = computed(() => {
   if (isPwaDisplayMode(appStore.displayMode)) {
-    document.title = appStore.title ?? ''
+    return appStore.title ?? ''
   } else {
-    document.title = appStore.title ? `${appStore.title} - ${appStore.appName}` : appStore.appName
+    return appStore.title ? `${appStore.title} - ${appStore.appName}` : appStore.appName
   }
 })
+
+watch(
+  documentTitle,
+  (newTitle) => {
+    document.title = newTitle
+  },
+  { immediate: true },
+)
 
 /**
  * 在 Tauri 中阻止拖动，如需允许拖动，请在组件上使用 `@dragstart.stop` 属性

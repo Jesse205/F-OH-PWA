@@ -5,6 +5,8 @@ import type { HistoryState as VueRouterHistoryState, RouteRecordRaw } from 'vue-
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 
 const EL_SCROLL = '.v-main .mainScroll'
+const PATH_HOME = '/index/home'
+const TAG = '[Router]'
 
 interface ScrollToOptions2 {
   [path: string]: ScrollToOptions
@@ -99,9 +101,9 @@ const scrollState2: ScrollToOptions2 = (history.state.scroll2 as ScrollToOptions
 
 router.beforeEach((to, from) => {
   // 用户在主页点击首页时自动返回，防止有重复的历史记录。
-  if (to.path === '/index/home' && to.path === history.state.back) {
+  if (to.path === PATH_HOME && to.path === history.state.back) {
     history.go(-1)
-    console.warn(`Backing to ${to.path} because history.state.back=${history.state.back}, state may lost.`)
+    console.warn(`${TAG} Backing to ${to.path} because history.state.back=${history.state.back}. state may lost!`)
     return false
   }
   // TODO: 使用更好的方法实现
@@ -116,10 +118,14 @@ router.beforeEach((to, from) => {
     left: scrollElement?.scrollLeft ?? 0,
   }
   scrollState2[from.fullPath] = scrollData
-  console.debug('Saving scrollData:', scrollData)
-  console.debug('Saving state', state)
+  if (import.meta.env.DEV) {
+    console.debug(`${TAG} Saving scrollData:`, scrollData)
+    console.debug(`${TAG} Saving state`, state)
+  }
   if (history.state.current !== from.fullPath) {
-    console.warn('history.state.current !== from.fullPath, state maybe not to be saved.')
+    console.warn(
+      `${TAG} history.state.current(${history.state.current}) !== from.fullPath${from.fullPath}, state maybe not to be saved!`,
+    )
   }
   window.history.replaceState(state, document.title)
   return true

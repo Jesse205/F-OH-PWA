@@ -19,9 +19,7 @@ export const isTauri = Boolean((window as any).__TAURI__)
 /**
  * 判断是否以传统 APP 运行
  */
-export function isLegacyApp(): boolean {
-  return isTauri
-}
+export const isLegacyApp = isTauri
 
 /**
  * 判断当前域名是否采用了重定向 API，用于在用户直接访问资源时还原原链接。

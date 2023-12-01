@@ -26,14 +26,15 @@ export const useAppStore = defineStore('app', () => {
    * 显示模式，常用于判断是否处于PWA模式
    */
   const displayMode = useDisplayMode()
-
-  watch(
-    title,
-    (newTitle) => {
-      console.debug('NewTitle', newTitle)
-    },
-    { immediate: true },
-  )
+  if (import.meta.env.DEV) {
+    watch(
+      title,
+      (newTitle) => {
+        console.debug('NewTitle', newTitle)
+      },
+      { immediate: true },
+    )
+  }
 
   // Tauri 中就用真实的应用名
   if (isTauri) {

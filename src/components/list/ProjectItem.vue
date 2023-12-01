@@ -16,7 +16,8 @@ const iconCompletePath = computed(() => getServerCompletePath(props.item.icon, U
   <v-list-item class="project-list-item" lines="two" :to="to === false ? undefined : `/app/${item.id}`">
     <template v-slot:prepend>
       <v-avatar class="icon border" rounded="lg" size="48">
-        <v-img :src="iconCompletePath" />
+        <!-- v-img 大量使用会导致卡顿，所以使用原生的 img 标签 -->
+        <img width="48" :src="iconCompletePath" alt="" />
       </v-avatar>
     </template>
     <v-list-item-title class="title">

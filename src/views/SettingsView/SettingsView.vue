@@ -40,20 +40,13 @@ const token = useTokenSetting()
   </v-app-bar>
   <app-main>
     <v-container class="container">
-      <v-list class="ma-4" active-class="noActivatedOverlay">
+      <v-list class="ma-4">
         <!-- 项目展示 -->
         <!-- <v-list-subheader>{{ $t('project.showcase.name') }}</v-list-subheader> -->
         <!-- 应用 -->
         <!-- <v-divider></v-divider> -->
-        <v-list-subheader>{{ $t('app.name') }}</v-list-subheader>
-        <v-list-item
-          prepend-icon="$translate"
-          class="noActivatedOverlay"
-          :title="$t('locale.language')"
-          :subtitle="$i18n.locale"
-          link
-          lines="two"
-        >
+        <v-list-subheader :title="$t('app.name')" />
+        <v-list-item prepend-icon="$translate" :title="$t('locale.language')" :subtitle="$i18n.locale" link lines="two">
           <!-- origin="left" 修复小窗时定位错误 -->
           <v-menu activator="parent" scrim="rgba(0,0,0,0)" origin="left">
             <v-list v-model:selected="selectedLocales" select-strategy="single-leaf" mandatory>
@@ -65,7 +58,6 @@ const token = useTokenSetting()
         <dialog-list-item
           v-model="token"
           prepend-icon="$lock"
-          class="noActivatedOverlay"
           :title="$t('token.name')"
           hint="请进入“用户设置 > 授权应用”获取令牌"
           lines="one"

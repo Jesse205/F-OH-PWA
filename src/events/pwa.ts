@@ -1,7 +1,7 @@
 import type { DisplayModeType } from '@/util/pwa'
 import { useMediaQuery } from '@vueuse/core'
-import type { ComputedRef } from 'vue'
-import { onBeforeUnmount, onMounted, ref, provide, computed } from 'vue'
+import type { ComputedRef, Ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref, provide, computed, inject } from 'vue'
 
 interface BeforeInstallPrompt extends Event {
   prompt: () => void
@@ -58,11 +58,18 @@ export function useDisplayMode(): ComputedRef<DisplayModeType> {
   const isStandalone = useMediaQuery('(display-mode: standalone)')
   const isMinimalUi = useMediaQuery('(display-mode: minimal-ui)')
   const isWindowControlsOverlay = useMediaQuery('(display-mode: window-controls-overlay)')
-  return computed<DisplayModeType>(() => {
+  return computed((): DisplayModeType => {
     if (isFullscreen.value) return 'fullscreen'
     if (isStandalone.value) return 'standalone'
     if (isMinimalUi.value) return 'minimal-ui'
     if (isWindowControlsOverlay.value) return 'window-controls-overlay'
     return 'browser'
   })
+}
+
+export function useInjectedInstallBtnVisible() {
+  return inject<Ref<boolean>>('installBtnVisible')
+}
+export function useInjectedOnInstallBtnClick() {
+  return inject<() => void>('onInstallBtnClick')
 }

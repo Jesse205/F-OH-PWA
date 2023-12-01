@@ -70,7 +70,7 @@ const { share, isSupported: isShareSupported } = useShare()
 
 function getAppShareUrl(): URL {
   const url = new URL(location.href)
-  if (isLegacyApp()) {
+  if (isLegacyApp) {
     url.hostname = HOST_WEB
     url.protocol = 'https'
     url.port = ''

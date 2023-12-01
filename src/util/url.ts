@@ -1,3 +1,6 @@
+const MACHER_GITHUB_USER = /^https:\/\/(www\.)?github\.com\/[^/]+/
+const MACHER_GITEE_USER = /^https:\/\/(www\.)?gitee\.com\/[^/]+/
+
 /**
  * 获取绝对 url，效果同 `new URL(url, base).href` 。
  *
@@ -32,11 +35,11 @@ export function matchUserSpace(url: URL): string | null {
   switch (url.hostname) {
     case 'www.github.com':
     case 'github.com': {
-      return url.href.match(/^https:\/\/(www\.)?github\.com\/[^/]+/)?.[0] ?? null
+      return url.href.match(MACHER_GITHUB_USER)?.[0] ?? null
     }
     case 'www.gitee.com':
     case 'gitee.com': {
-      return url.href.match(/^https:\/\/(www\.)?gitee\.com\/[^/]+/)?.[0] ?? null
+      return url.href.match(MACHER_GITEE_USER)?.[0] ?? null
     }
   }
   return null

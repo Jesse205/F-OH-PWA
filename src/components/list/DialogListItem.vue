@@ -29,7 +29,6 @@ function applyValue() {
           <v-text-field v-model="editValue" active :hint="hint" persistent-hint @keyup.enter="applyValue" />
         </v-card-text>
         <v-card-actions>
-          <!-- <v-spacer></v-spacer> -->
           <v-btn variant="text" @click="dialogVisible = false"> {{ $t('cancel.name') }} </v-btn>
           <v-btn variant="text" @click="applyValue">
             {{ $t('ok.name') }}

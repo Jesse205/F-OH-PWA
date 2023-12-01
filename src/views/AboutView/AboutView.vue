@@ -61,18 +61,18 @@ if (isTauri) {
   <app-main>
     <v-container class="container">
       <AppCard v-if="!mdAndUp" />
-      <v-list class="ma-4" lines="two" active-class="noActivatedOverlay">
+      <v-list class="ma-4" lines="two">
         <!-- 关于应用 -->
-        <v-list-subheader>{{ $t('app.about') }}</v-list-subheader>
+        <v-list-subheader :title="$t('app.about')" />
         <!-- 应用版本 -->
         <v-list-item prepend-icon="$info" :title="$t('app.version')" :subtitle="appVersion" />
         <!-- Tauri 版本 -->
         <v-list-item v-if="tauriVersion" prepend-icon="$info" :title="$t('tauri.version')" :subtitle="tauriVersion" />
       </v-list>
-      <v-list class="ma-4" lines="two" active-class="noActivatedOverlay">
-        <!-- <v-divider></v-divider> -->
-        <!-- 开发者信息 -->
-        <v-list-subheader>{{ $t('develop.messages') }}</v-list-subheader>
+
+      <!-- 开发者信息 -->
+      <v-list class="ma-4" lines="two">
+        <v-list-subheader :title="$t('develop.messages')"/>
         <v-list-item
           v-for="item in developers"
           :key="item.title"
@@ -88,11 +88,10 @@ if (isTauri) {
           lines="one"
         />
       </v-list>
-      <v-list class="ma-4" lines="two" active-class="noActivatedOverlay">
-        <!-- <v-divider></v-divider> -->
 
-        <!-- 交流讨论 -->
-        <v-list-subheader>{{ $t('communicate.name') }}</v-list-subheader>
+      <!-- 交流讨论 -->
+      <v-list class="ma-4" lines="two">
+        <v-list-subheader :title="$t('communicate.name')"/>
         <!-- QQ 群 -->
         <v-list-item
           prepend-icon="$group"
@@ -103,10 +102,10 @@ if (isTauri) {
           append-icon="$openInNew"
         />
       </v-list>
-      <v-list class="ma-4" lines="two" active-class="noActivatedOverlay">
-        <!-- <v-divider></v-divider> -->
-        <!-- 相关链接 -->
-        <v-list-subheader>{{ $t('link.related') }}</v-list-subheader>
+
+      <!-- 相关链接 -->
+      <v-list class="ma-4" lines="two">
+        <v-list-subheader :title="$t('link.related')"/>
         <!-- 源代码 -->
         <v-list-item
           prepend-icon="$link"
@@ -134,7 +133,6 @@ if (isTauri) {
         />
       </v-list>
     </v-container>
-    <!-- </div> -->
   </app-main>
 </template>
 

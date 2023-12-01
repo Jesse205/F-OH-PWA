@@ -10,7 +10,6 @@ interface FetchOptions {
 /**
  * 根据运行环境自动拉取并解析 json。
  * 如果状态码不为 ok，该方法也会抛出异常
- * @returns
  */
 export async function autoFetchJson<T = any>(url: string, options?: FetchOptions): Promise<T> {
   if (!isTauri) {

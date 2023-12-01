@@ -15,5 +15,5 @@ export function isPwa(): boolean {
  * @returns `true` 为以 PWA 模式运行
  */
 export function isPwaDisplayMode(displayMode: DisplayModeType): boolean {
-  return PWA_DISPLAY_MODES.some((mode) => displayMode === mode)
+  return PWA_DISPLAY_MODES.includes(displayMode)
 }

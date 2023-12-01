@@ -22,8 +22,9 @@ const loaded = computed(() => !loading.value && Boolean(appsStore.data))
 const errMsg = computed(() => appsStore.errMsg)
 
 interface AppTypes {
-  title: MaybeRef<string>
+  title: string
   apps: AppInfo[]
+  key: string
 }
 
 const apps = reactive<AppInfo[]>([])
@@ -35,23 +36,28 @@ const appTypes = computed<AppTypes[]>((): AppTypes[] => [
   {
     title: t('app.name'),
     apps: apps,
+    key: 'apps',
   },
   {
     title: t('game.name'),
     apps: gameApps,
+    key: 'games',
   },
   {
     title: t('other.name'),
     apps: otherApps,
+    key: 'others',
   },
 ])
 
 // 将数据插入不同的分类列表中
 watch(
-  computed(() => appsStore.data),
+  computed((): AppInfo[] | null => appsStore.data),
   (newData) => {
     if (newData) {
       apps.length = 0
+      gameApps.length = 0
+      otherApps.length = 0
       for (const item of newData) {
         switch (item.type) {
           case 'app': {
@@ -81,8 +87,8 @@ watch(
     <!-- MainLayout -->
     <template v-if="loaded">
       <template v-for="appType in appTypes">
-        <v-list v-if="appType.apps && appType.apps.length" :key="unref(appType.title)" class="my-4">
-          <v-list-subheader>{{ appType.title }}</v-list-subheader>
+        <v-list v-if="appType.apps && appType.apps.length" :key="appType.key" class="my-4">
+          <v-list-subheader :title="appType.title" />
           <div class="project-items">
             <ProjectItem
               v-for="item in appType.apps"

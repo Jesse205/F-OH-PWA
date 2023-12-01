@@ -14,7 +14,6 @@ onMounted(() => {
 })
 
 const loading = computed(() => homeStore.loading)
-// const loaded = computed(() => !loading.value && homeStore.data)
 const errMsg = computed(() => homeStore.errMsg)
 
 const banners: Banners = {
