@@ -77,7 +77,7 @@ const token = useTokenSetting()
           :title="$t('about.name')"
           :subtitle="appVersion"
           :to="{ name: 'About' }"
-          append-icon="mdi-chevron-right"
+          append-icon="$next"
           lines="two"
         >
         </v-list-item>

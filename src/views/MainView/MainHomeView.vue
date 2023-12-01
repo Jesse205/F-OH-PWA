@@ -34,13 +34,13 @@ const banners: Banners = {
 </script>
 
 <template>
+  <!-- MainLayout -->
+  <!-- 轮播图 -->
+  <HomeBanner class="my-4" :banners="banners" :base-url="URL_API" />
   <v-container class="py-0">
     <!-- Alerts -->
     <v-alert v-if="errMsg" class="my-4" title="Load error" :text="errMsg" type="error" variant="tonal" />
   </v-container>
-  <!-- MainLayout -->
-  <!-- 轮播图 -->
-  <HomeBanner class="my-4" :banners="banners" :base-url="URL_API" />
   <v-container v-if="homeStore.data?.showAnnouncement" class="py-0">
     <v-list class="my-4">
       <!-- 公告 -->
