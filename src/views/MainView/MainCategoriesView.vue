@@ -106,7 +106,7 @@ watch(
 .project-items {
   display: flex;
   flex-wrap: wrap;
-  --indent-padding-left: 60px;
+  --indent-padding-left: 64px;
 
   .project-item {
     width: 100%;

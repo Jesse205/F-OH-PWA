@@ -40,7 +40,7 @@ const onInstallBtnClick = inject<() => void>('onInstallBtnClick')
     <v-spacer />
     <v-tooltip location="bottom">
       <template v-slot:activator="{ props }">
-        <v-btn icon="mdi-magnify" v-bind="props" disabled aria-label="搜索应用" />
+        <v-btn icon="$search" v-bind="props" disabled aria-label="搜索应用" />
       </template>
       <span>搜索应用</span>
     </v-tooltip>

@@ -12,7 +12,7 @@ useTitle(computed(() => t('donate.name')))
 
 const data = useDonate()
 
-const adTabValue = ref<'add' | 'develop'>('add')
+const adTabValue = ref<'join' | 'develop'>('join')
 </script>
 
 <template>
@@ -22,19 +22,16 @@ const adTabValue = ref<'add' | 'develop'>('add')
   </v-app-bar>
   <app-main>
     <v-container class="container">
-      <v-card v-for="(persion, index) in data" :key="index" class="card" :class="{ loading: persion.error }">
-        <v-tabs v-model="persion.selected" class="border-b">
+      <v-card v-for="(persion, index) in data" :key="index" class="card">
+        <v-tabs v-model="persion.selected">
           <v-tab v-for="(platform, index) in persion.platforms" :key="index" :value="index" :color="platform.color">
             {{ platform.name }}
           </v-tab>
         </v-tabs>
-        <v-img class="card-image" cover :src="persion.platforms[persion.selected].image">
-          <div v-if="persion.error" class="image-ontainer">
-            <v-icon size="large" color="error" icon="mdi-alert" />
-            {{ persion.errorMsg }}
-          </div>
-        </v-img>
-        <v-card-item class="border-t">
+        <v-divider />
+        <v-img class="card-image" cover :src="persion.platforms[persion.selected].image" />
+        <v-divider />
+        <v-card-item>
           <div>
             <div class="text-h6 mb-1">{{ persion.name }}</div>
             <div class="text-caption">{{ persion.summary }}</div>
@@ -44,13 +41,14 @@ const adTabValue = ref<'add' | 'develop'>('add')
 
       <!-- 广告开始 -->
       <v-card class="card">
-        <v-tabs v-model="adTabValue" class="border-b">
-          <v-tab value="add">加入我们</v-tab>
+        <v-tabs v-model="adTabValue">
+          <v-tab value="join">加入我们</v-tab>
           <v-tab value="develop">参与开发</v-tab>
         </v-tabs>
+        <v-divider />
         <!-- 加入我们 -->
         <v-btn
-          v-if="adTabValue === 'add'"
+          v-if="adTabValue === 'join'"
           variant="text"
           class="card-image ad-btn"
           color=""
@@ -88,7 +86,8 @@ const adTabValue = ref<'add' | 'develop'>('add')
             </div>
           </div>
         </v-btn>
-        <v-card-item class="border-t">
+        <v-divider />
+        <v-card-item>
           <div>
             <div class="text-h6 mb-1">参与贡献</div>
             <div class="text-caption">欢迎加入 F-OH 开发！</div>
@@ -123,15 +122,6 @@ const adTabValue = ref<'add' | 'develop'>('add')
         align-items: center;
         height: 100%;
         flex-direction: column;
-      }
-    }
-
-    &.loading {
-      // 加载中，模糊掉图片
-      .card-image {
-        :deep(img) {
-          filter: blur(20px);
-        }
       }
     }
   }

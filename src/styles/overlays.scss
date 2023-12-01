@@ -83,6 +83,8 @@ html {
 
 .harmony {
   --v-border-opacity: 0.2;
+
+  --harmony-border: 0.5px solid rgba(var(--v-border-color), var(--v-border-opacity));
   --harmony-blur-radius: 20px;
   &,
   .v-theme {
@@ -234,7 +236,7 @@ html {
               right: -4.25px;
               width: 0px;
               // 用边框解决0.5px导致的渲染问题
-              border-right: 0.5px solid rgba(var(--v-border-color), var(--v-border-opacity));
+              border-right: var(--harmony-border);
             }
             &:last-child::before {
               border-right-width: 0;
@@ -255,6 +257,7 @@ html {
       border-top-left-radius: 14px;
       border-top-right-radius: 14px;
       padding: 0 12px;
+      min-width: 72px;
     }
   }
   .v-overlay {
@@ -309,5 +312,40 @@ html {
         opacity: 0.26;
       }
     }
+  }
+
+  .v-slide-group {
+    &__next,
+    &__prev {
+      min-width: 24px;
+      flex: 0 1 24px;
+      border-radius: 16px;
+      &:hover {
+        background-color: rgba(
+          var(--v-theme-on-surface),
+          calc(var(--v-hover-opacity) * var(--v-theme-overlay-multiplier))
+        );
+      }
+      &:active {
+        background-color: rgba(
+          var(--v-theme-on-surface),
+          calc(var(--v-pressed-opacity) * var(--v-theme-overlay-multiplier))
+        );
+      }
+    }
+  }
+  .border-t {
+    border-top: var(--harmony-border);
+  }
+  .border-b {
+    border-bottom: var(--harmony-border);
+  }
+  .v-divider {
+    --indent-padding-left: 0px;
+    --indent-padding-right: 0px;
+    border-top: var(--harmony-border);
+    opacity: 1;
+    margin-left: calc(12px + var(--indent-padding-left));
+    margin-right: calc(12px + var(--indent-padding-right));
   }
 }

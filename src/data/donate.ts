@@ -1,13 +1,13 @@
-import type { ComputedRef, Ref} from 'vue';
-import { computed, ref } from 'vue'
+import type { ComputedRef, Ref } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import WESTINYANG_ALIPAY_QRCODE from '@/assets/images/donate/westinyang/alipay.webp'
 import WESTINYANG_WECHAT_QRCODE from '@/assets/images/donate/westinyang/wechat.webp'
 import JESSE205_QQ_QRCODE from '@/assets/images/donate/jesse205/qq.webp'
-// import JESSE205_ALIPAY_QRCODE from '@/assets/images/donate/jesse205/alipay.webp'
+import JESSE205_ALIPAY_QRCODE from '@/assets/images/donate/jesse205/alipay.webp'
 import JESSE205_ALIPAY_KICKBACK_QRCODE from '@/assets/images/donate/jesse205/alipay_kickback.webp'
-// import JESSE205_WECHAT_QRCODE from '@/assets/images/donate/jesse205/wechat.jpg'
+import JESSE205_WECHAT_QRCODE from '@/assets/images/donate/jesse205/wechat.jpg'
 
 // const COLOR_AMBER = '#FFC107'
 const COLOR_BLUE = '#2196F3'
@@ -26,13 +26,11 @@ interface Presion {
   summary: string | ComputedRef<string>
   selected: number
   platforms: Platform[]
-  error?: boolean
-  errorMsg?: string
 }
 
-export function useDonate(): Ref<Presion[]> {
+export function useDonate(): Presion[] {
   const { t } = useI18n()
-  return ref<Presion[]>([
+  return reactive<Presion[]>([
     {
       name: computed(() => t('developer.westinyang.name')),
       summary: computed(() => t('developer.westinyang.description')),
@@ -63,18 +61,18 @@ export function useDonate(): Ref<Presion[]> {
           icon: 'mdi-wechat',
           image: JESSE205_QQ_QRCODE,
         },
-        /* {
+        {
           name: computed(() => t('appNames.wechat')),
           color: COLOR_GREEN,
           icon: 'mdi-wechat',
-          image: JESSE205_WECHAT_QRCODE
-        }, */
-        /* {
+          image: JESSE205_WECHAT_QRCODE,
+        },
+        {
           name: computed(() => t('appNames.alipay')),
           color: COLOR_BLUE,
           icon: 'mdi-wechat',
-          image: JESSE205_ALIPAY_QRCODE
-        }, */
+          image: JESSE205_ALIPAY_QRCODE,
+        },
         {
           name: computed(() => t('appNames.alipay_kickback')),
           color: COLOR_RED,
