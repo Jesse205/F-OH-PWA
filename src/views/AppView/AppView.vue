@@ -129,7 +129,7 @@ function shareApp() {
       />
       <v-card v-else-if="appInfo?.desc" class="summary-card" variant="tonal" flat :border="false" tag="article">
         <v-card-text>{{ appInfo.desc }}</v-card-text>
-        <v-icon class="ummary-card__icon" icon="mdi-format-quote-open" />
+        <v-icon class="summary-card__icon" icon="mdi-format-quote-open" />
       </v-card>
       <!-- #endregion -->
 
