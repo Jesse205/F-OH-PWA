@@ -21,7 +21,17 @@ const route = useRoute()
 const appsStore = useAppsStore()
 
 // 查找当前应用信息
-const appInfo = computed((): AppInfo | undefined => appsStore.data?.find((item) => item.id === Number(route.params.id)))
+const appInfo = computed((): AppInfo | undefined => {
+  const pkg = route.params.pkg
+  const id = Number(route.params.pkg)
+  if (id) {
+    return appsStore.data?.find((item) => item.id === id)
+  } else if (pkg) {
+    return appsStore.data?.find((item) => item.packageName === pkg)
+  } else {
+    return undefined
+  }
+})
 const loading = computed(() => appsStore.loading)
 
 /**
@@ -92,7 +102,7 @@ function shareApp() {
     <!-- 多标题动画展示 -->
     <v-app-bar-title class="title">
       <transition :name="isTitleObscured ? 'scroll-x-reverse-transition' : 'scroll-x-transition'">
-        <span :key="isTitleObscured.toString()" class="title-item">
+        <span :key="isTitleObscured.toString()" class="title__item">
           {{ isTitleObscured ? appInfo?.name : $t('app.view') }}
         </span>
       </transition>
@@ -112,21 +122,21 @@ function shareApp() {
       <!-- #region 一句话介绍 -->
       <v-skeleton-loader
         v-if="loading"
-        class="summarySkeleton"
+        class="summary-skeleton"
         :class="{ loading: loading }"
         type="sentences"
         color="rgba(var(--v-theme-on-surface), 0.12)"
       />
-      <v-card v-else-if="appInfo?.desc" class="summaryCard" variant="tonal" flat :border="false" tag="article">
+      <v-card v-else-if="appInfo?.desc" class="summary-card" variant="tonal" flat :border="false" tag="article">
         <v-card-text>{{ appInfo.desc }}</v-card-text>
-        <v-icon class="icon" icon="mdi-format-quote-open" />
+        <v-icon class="ummary-card__icon" icon="mdi-format-quote-open" />
       </v-card>
       <!-- #endregion -->
 
       <!-- #region 应用标签 -->
-      <v-skeleton-loader v-if="loading" class="tagsSkeleton" type="chip@3" color="transparent" />
-      <div v-else-if="appTags?.length" class="tagsGroup">
-        <div v-for="item in appTags" :key="item" class="tagItem">
+      <v-skeleton-loader v-if="loading" class="tags-skeleton" type="chip@3" color="transparent" />
+      <div v-else-if="appTags?.length" class="tags-group">
+        <div v-for="item in appTags" :key="item" class="tags-group__item">
           <v-chip>{{ item }}</v-chip>
         </div>
       </div>
@@ -163,7 +173,7 @@ function shareApp() {
     bottom: 0;
     height: 100%;
 
-    .title-item {
+    &__item {
       position: absolute;
       left: 0;
       top: 0;
@@ -178,59 +188,61 @@ function shareApp() {
   position: absolute;
   top: initial !important;
 }
+.summary {
+  &-skeleton {
+    margin: 16px 0;
+    margin-bottom: 8px;
+    width: 100%;
+    max-width: 600px;
+    color: inherit !important;
+    border-radius: 16px;
+  }
+
+  &-card {
+    text-align: center;
+    margin: 16px 0;
+    margin-bottom: 8px;
+    :deep(.v-card-text) {
+      font-size: 1rem;
+      min-height: 52px;
+      padding-left: 48px;
+      padding-right: 48px;
+    }
+
+    &__icon {
+      position: absolute;
+      left: 14px;
+      top: 10px;
+      font-size: 32px;
+      opacity: 0.3;
+    }
+
+    @media (min-width: 600px) {
+      width: fit-content;
+    }
+  }
+}
 
 //标签
-.tagsSkeleton {
-  margin: 16px -4px;
-  margin-top: 8px;
+.tags {
+  &-skeleton {
+    margin: 16px -4px;
+    margin-top: 8px;
 
-  :deep(.v-skeleton-loader__chip) {
-    margin: 4px;
-    max-width: 56px;
-    height: 30px;
+    :deep(.v-skeleton-loader__chip) {
+      margin: 4px;
+      max-width: 56px;
+      height: 30px;
+    }
   }
-}
-
-.tagsGroup {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 16px -4px;
-  margin-top: 8px;
-  .tagItem {
-    padding: 4px;
-  }
-}
-
-.summarySkeleton {
-  margin: 16px 0;
-  margin-bottom: 8px;
-  width: 100%;
-  max-width: 600px;
-  color: inherit !important;
-  border-radius: 16px;
-}
-
-.summaryCard {
-  text-align: center;
-  margin: 16px 0;
-  margin-bottom: 8px;
-  :deep(.v-card-text) {
-    font-size: 1rem;
-    min-height: 52px;
-    padding-left: 48px;
-    padding-right: 48px;
-  }
-
-  .icon {
-    position: absolute;
-    left: 14px;
-    top: 10px;
-    font-size: 32px;
-    opacity: 0.3;
-  }
-
-  @media (min-width: 600px) {
-    width: fit-content;
+  &-group {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 16px -4px;
+    margin-top: 8px;
+    &__item {
+      padding: 4px;
+    }
   }
 }
 </style>

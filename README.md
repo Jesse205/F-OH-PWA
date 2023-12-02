@@ -91,7 +91,8 @@ Some browsers support installing this website to the desktop by clicking "Instal
 ### Compiling and Streamlining for Production
 
 1. Set up the `.env.production` file.
-2. Open a terminal in the project and run commands according to the following rules.
+2. Follow the example in [`.env.development.local.example`](. /.env.development.local.example) to configure the data server as shown in the example.
+3. Open a terminal in the project and run commands according to the following rules.
    - Web pages and PWA applications:
      1. Run `yarn build`.
      2. Pull [F-OH Data][F-OH-Data] into `dist/data`.

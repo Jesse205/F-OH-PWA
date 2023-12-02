@@ -4,16 +4,30 @@ import { URL_API } from '@/data/constants'
 import { getServerCompletePath } from '@/util/url'
 import { computed } from 'vue'
 
-const props = defineProps<{
-  item: AppInfo
-  to: boolean | string | object
-}>()
+const props = withDefaults(
+  defineProps<{
+    item: AppInfo
+    to?: boolean | string | object
+  }>(),
+  {
+    to: true,
+  },
+)
+const to = computed((): string | object | undefined => {
+  if (props.to === true) {
+    return `/app/${props.item.packageName}`
+  } else if (props.to) {
+    return to
+  } else {
+    return undefined
+  }
+})
 
 const iconCompletePath = computed(() => getServerCompletePath(props.item.icon, URL_API))
 </script>
 
 <template>
-  <v-list-item class="project-list-item" lines="two" :to="to === false ? undefined : `/app/${item.id}`">
+  <v-list-item class="project-list-item" lines="two" :to="to">
     <template v-slot:prepend>
       <v-avatar class="icon border" rounded="lg" size="48">
         <!-- v-img 大量使用会导致卡顿，所以使用原生的 img 标签 -->

@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import type { MaybeRef } from 'vue'
 import { onMounted, computed, watch, reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
 import ProjectItem from '@/components/list/ProjectItem.vue'
 import { useAppsStore } from '@/store/apps'
 import type { AppInfo } from '@/ts/interfaces/app.interfaces'
-import { unref } from 'vue'
 import TitleList from '@/components/list/TitleList.vue'
 
 const { t } = useI18n()
@@ -95,7 +93,6 @@ watch(
               :key="item.id"
               class="project-item"
               :item="item"
-              :to="`/app/${item.id}`"
             />
           </div>
         </title-list>

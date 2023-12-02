@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, useAttrs } from 'vue'
 import { useRoute } from 'vue-router'
 import { useRouter } from 'vue-router'
 
@@ -11,6 +11,7 @@ const isBtnShowing = computed(() => {
   route.path // 确保路由刷新时重新调用该函数
   return !!router.options.history.state.back
 })
+const attrs = useAttrs()
 </script>
 
 <template>
@@ -21,7 +22,7 @@ const isBtnShowing = computed(() => {
           v-show="isBtnShowing"
           class="btn"
           icon="$back"
-          v-bind="props"
+          v-bind="{ ...attrs, ...props }"
           :aria-label="$t('back.name')"
           @click.stop="$router.back"
         />

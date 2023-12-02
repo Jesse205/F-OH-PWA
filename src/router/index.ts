@@ -58,7 +58,7 @@ const routes: Readonly<RouteRecordRaw[]> = [
     ],
   },
   {
-    path: '/app/:id',
+    path: '/app/:pkg',
     name: 'App',
     component: async () => await import('@/views/AppView/AppView.vue'),
   },
@@ -124,7 +124,7 @@ router.beforeEach((to, from) => {
   }
   if (history.state.current !== from.fullPath) {
     console.warn(
-      `${TAG} history.state.current(${history.state.current}) !== from.fullPath${from.fullPath}, state maybe not to be saved!`,
+      `${TAG} history.state.current (${history.state.current}) !== from.fullPath (${from.fullPath}), state maybe not to be saved!`,
     )
   }
   window.history.replaceState(state, document.title)
