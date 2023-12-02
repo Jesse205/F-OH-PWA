@@ -8,6 +8,7 @@ import { getTauriVersion, getVersion } from '@tauri-apps/api/app'
 import { computed, ref } from 'vue'
 import { isTauri } from '@/util/app'
 import BackButton from '@/components/BackButton.vue'
+import TitleList from '@/components/list/TitleList.vue'
 
 const { t } = useI18n()
 useTitle(computed(() => t('about.name')))
@@ -61,18 +62,16 @@ if (isTauri) {
   <app-main>
     <v-container class="container">
       <AppCard v-if="!mdAndUp" />
-      <v-list class="ma-4" lines="two">
-        <!-- 关于应用 -->
-        <v-list-subheader :title="$t('app.about')" />
+      <!-- 关于应用 -->
+      <title-list class="ma-4" lines="two" tag="ul" :title="$t('app.about')">
         <!-- 应用版本 -->
         <v-list-item prepend-icon="$info" :title="$t('app.version')" :subtitle="appVersion" />
         <!-- Tauri 版本 -->
         <v-list-item v-if="tauriVersion" prepend-icon="$info" :title="$t('tauri.version')" :subtitle="tauriVersion" />
-      </v-list>
+      </title-list>
 
       <!-- 开发者信息 -->
-      <v-list class="ma-4" lines="two">
-        <v-list-subheader :title="$t('develop.messages')"/>
+      <title-list class="ma-4" lines="two" :title="$t('develop.messages')">
         <v-list-item
           v-for="item in developers"
           :key="item.title"
@@ -87,11 +86,10 @@ if (isTauri) {
           append-icon="$next"
           lines="one"
         />
-      </v-list>
+      </title-list>
 
       <!-- 交流讨论 -->
-      <v-list class="ma-4" lines="two">
-        <v-list-subheader :title="$t('communicate.name')"/>
+      <title-list class="ma-4" lines="two" :title="$t('communicate.name')">
         <!-- QQ 群 -->
         <v-list-item
           prepend-icon="$group"
@@ -101,11 +99,10 @@ if (isTauri) {
           target="_blank"
           append-icon="$openInNew"
         />
-      </v-list>
+      </title-list>
 
       <!-- 相关链接 -->
-      <v-list class="ma-4" lines="two">
-        <v-list-subheader :title="$t('link.related')"/>
+      <title-list class="ma-4" lines="two" :title="$t('link.related')">
         <!-- 源代码 -->
         <v-list-item
           prepend-icon="$link"
@@ -131,7 +128,7 @@ if (isTauri) {
           target="_blank"
           append-icon="$openInNew"
         />
-      </v-list>
+      </title-list>
     </v-container>
   </app-main>
 </template>

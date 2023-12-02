@@ -6,6 +6,7 @@ import ProjectItem from '@/components/list/ProjectItem.vue'
 import { useAppsStore } from '@/store/apps'
 import type { AppInfo } from '@/ts/interfaces/app.interfaces'
 import { unref } from 'vue'
+import TitleList from '@/components/list/TitleList.vue'
 
 const { t } = useI18n()
 
@@ -87,8 +88,7 @@ watch(
     <!-- MainLayout -->
     <template v-if="loaded">
       <template v-for="appType in appTypes">
-        <v-list v-if="appType.apps && appType.apps.length" :key="appType.key" class="my-4">
-          <v-list-subheader :title="appType.title" />
+        <title-list v-if="appType.apps && appType.apps.length" :key="appType.key" class="my-4" :title="appType.title">
           <div class="project-items">
             <ProjectItem
               v-for="item in appType.apps"
@@ -98,7 +98,7 @@ watch(
               :to="`/app/${item.id}`"
             />
           </div>
-        </v-list>
+        </title-list>
       </template>
     </template>
   </v-container>

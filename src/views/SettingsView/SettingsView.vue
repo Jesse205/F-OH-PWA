@@ -10,6 +10,7 @@ import { useLocaleSetting } from '@/events/settings'
 import { useTokenSetting } from '@/events/settings'
 import DialogListItem from '@/components/list/DialogListItem.vue'
 import BackButton from '@/components/BackButton.vue'
+import TitleList from '@/components/list/TitleList.vue'
 
 const { t, locale } = useI18n()
 
@@ -40,12 +41,10 @@ const token = useTokenSetting()
   </v-app-bar>
   <app-main>
     <v-container class="container">
-      <v-list class="ma-4">
-        <!-- 项目展示 -->
-        <!-- <v-list-subheader>{{ $t('project.showcase.name') }}</v-list-subheader> -->
-        <!-- 应用 -->
-        <!-- <v-divider></v-divider> -->
-        <v-list-subheader :title="$t('app.name')" />
+      <!-- 项目展示 -->
+      <!-- <v-list-subheader>{{ $t('project.showcase.name') }}</v-list-subheader> -->
+      <!-- 应用 -->
+      <title-list class="ma-4" :title="$t('app.name')">
         <v-list-item prepend-icon="$translate" :title="$t('locale.language')" :subtitle="$i18n.locale" link lines="two">
           <!-- origin="left" 修复小窗时定位错误 -->
           <v-menu activator="parent" scrim="rgba(0,0,0,0)" origin="left">
@@ -73,7 +72,7 @@ const token = useTokenSetting()
           lines="two"
         >
         </v-list-item>
-      </v-list>
+      </title-list>
     </v-container>
   </app-main>
 </template>

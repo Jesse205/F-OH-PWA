@@ -6,8 +6,8 @@ const appStore = useAppStore()
 <template>
   <v-card class="app-card pa-1">
     <div class="app-item">
-      <v-img class="app-icon ma-1" src="@/assets/images/icon.svg" />
-      <span class="text-subtitle-1 ma-1">{{ appStore.appName }}</span>
+      <v-img class="app-icon ma-1" src="@/assets/images/icon.svg" alt="" />
+      <h2 class="text-subtitle-1 ma-1">{{ appStore.appName }}</h2>
     </div>
   </v-card>
 </template>

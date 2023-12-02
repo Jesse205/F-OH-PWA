@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { AppInfo } from '@/ts/interfaces/app.interfaces'
+import TitleList from '@/components/list/TitleList.vue'
 
 defineProps<{
   loading: boolean
@@ -8,24 +9,22 @@ defineProps<{
 </script>
 
 <template>
-  <v-list class="my-4" lines="two">
-    <v-list-subheader>{{ $t('more.info') }}</v-list-subheader>
-    <v-skeleton-loader class="skeleton-more" type="list-item-avatar-two-line@2" color="transparent" :loading="loading">
+  <title-list lass="my-4" lines="two" :title="$t('more.info')">
+    <v-skeleton-loader v-if="loading" class="skeleton-more" type="list-item-avatar-two-line@2" color="transparent" />
+    <template v-else>
       <v-list-item
         prepend-icon="$clock"
         :title="$t('release.date')"
         :subtitle="appInfo?.releaseTime ?? $t('unknown.name')"
-        width="100%"
       />
-      <!-- subtitle 必须为字符串，否则不会添加到对应的元素内 -->
+      <!-- subtitle 必须为字符串，否则如果为0的话不会添加到对应的元素内 -->
       <v-list-item
         prepend-icon="mdi-identifier"
         :title="$t('id.name')"
         :subtitle="`${appInfo?.id ?? $t('unknown.name')}`"
-        width="100%"
       />
-    </v-skeleton-loader>
-  </v-list>
+    </template>
+  </title-list>
 </template>
 
 <style scoped lang="scss">

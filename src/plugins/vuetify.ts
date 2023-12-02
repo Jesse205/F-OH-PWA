@@ -18,4 +18,14 @@ export default createVuetify({
   display: {
     mobileBreakpoint: 'md',
   },
+  defaults: {
+    VList: {
+      VListItem: {
+        tag: 'li',
+      },
+      VListSubheader: {
+        tag: 'h2',
+      },
+    },
+  },
 })

@@ -14,6 +14,7 @@ import { isLegacyApp } from '@/util/app'
 import { HOST_WEB } from '@/data/constants'
 import { matchUserSpace } from '@/util/url'
 import type { AppInfo } from '@/ts/interfaces/app.interfaces'
+import TitleList from '@/components/list/TitleList.vue'
 
 const { t } = useI18n()
 const route = useRoute()
@@ -134,8 +135,7 @@ function shareApp() {
       <!-- #endregion -->
 
       <!-- #region 开发者信息 -->
-      <v-list v-show="appInfo?.vender || loading" class="my-4" @dragstart.stop>
-        <v-list-subheader>{{ $t('developer.name') }}</v-list-subheader>
+      <title-list v-show="appInfo?.vender || loading" class="my-4" :title="$t('developer.name')" @dragstart.stop>
         <v-skeleton-loader type="avatar, text" color="transparent" :loading="loading">
           <!-- prepend-avatar="@/assets/images/icon.svg" -->
           <v-list-item
@@ -150,7 +150,7 @@ function shareApp() {
             width="100%"
           />
         </v-skeleton-loader>
-      </v-list>
+      </title-list>
       <!-- #endregion -->
 
       <!-- 详情信息 -->

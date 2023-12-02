@@ -7,6 +7,7 @@ import IMAGE_BANNER1 from '@/assets/images/main_banner_1.png'
 import IMAGE_BANNER2 from '@/assets/images/main_banner_2.png'
 import IMAGE_BANNER3 from '@/assets/images/main_banner_3.png'
 import { useHomeStore } from '@/store/home'
+import TitleList from '@/components/list/TitleList.vue'
 
 const homeStore = useHomeStore()
 onMounted(() => {
@@ -41,13 +42,11 @@ const banners: Banners = {
     <v-alert v-if="errMsg" class="my-4" title="Load error" :text="errMsg" type="error" variant="tonal" />
   </v-container>
   <v-container v-if="homeStore.data?.showAnnouncement" class="py-0">
-    <v-list class="my-4">
-      <!-- 公告 -->
-      <v-list-subheader>{{ $t('announcement.name') }}</v-list-subheader>
-
+    <!-- 公告 -->
+    <title-list class="my-4" :title="$t('announcement.name')">
       <!-- eslint-disable-next-line vue/no-v-text-v-html-on-component -->
-      <v-list-item class="announcementContent" v-html="homeStore.announcementHtml" />
-    </v-list>
+      <v-list-item class="announcementContent" link v-html="homeStore.announcementHtml"/>
+    </title-list>
   </v-container>
   <!-- Loading -->
   <div v-if="loading" class="centerSpace">
@@ -71,6 +70,7 @@ const banners: Banners = {
   :deep(ol) {
     padding-left: 1rem;
   }
+
   :deep(code) {
     background-color: rgb(var(--v-theme-code));
     color: rgb(var(--v-theme-on-code));
