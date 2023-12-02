@@ -12,6 +12,7 @@ import NavigationDrawer from './components/app/NavigationDrawer.vue'
 import ContextMenu from './components/app/ContextMenu.vue'
 import { useAppStore } from './store/app'
 import { isPwaDisplayMode } from './util/pwa'
+import SystemBar from './components/app/SystemBar.vue'
 
 // 主题
 const theme = useTheme()
@@ -82,14 +83,8 @@ function onDragStart(event: DragEvent) {
 
 <template>
   <v-app class="root" @dragstart="onDragStart">
-    <!--<v-system-bar v-if="tauriState" window color="background">
-      <span>{{ title }}</span>
-      <v-spacer />
-      <v-btn icon="mdi-window-minimize" density="comfortable" variant="text" color="" />
-      <v-btn icon="mdi-window-maximize" density="comfortable" variant="text" color="" />
-      <v-btn icon="mdi-window-close" density="comfortable" variant="text" color="" />
-    </v-system-bar>-->
-    <navigation-drawer />
+    <SystemBar v-if="isTauri" />
+    <NavigationDrawer />
     <v-main>
       <div class="main">
         <router-view v-slot="{ Component }">

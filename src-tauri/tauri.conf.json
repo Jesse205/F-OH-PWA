@@ -64,6 +64,7 @@
     "updater": {
       "active": false
     },
-    "windows": []
+    "windows": [],
+    "macOSPrivateApi": true
   }
 }

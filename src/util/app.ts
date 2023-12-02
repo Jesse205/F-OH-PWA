@@ -2,6 +2,7 @@ import type { WindowOptions } from '@tauri-apps/api/window'
 import { WebviewWindow } from '@tauri-apps/api/window'
 import { writeText } from '@tauri-apps/api/clipboard'
 import { getName } from '@tauri-apps/api/app'
+import { invoke as tauriInvoke } from '@tauri-apps/api'
 
 const WEBVIEW_OPTIONS_DEFAULT: WindowOptions = {
   center: true,
@@ -9,6 +10,8 @@ const WEBVIEW_OPTIONS_DEFAULT: WindowOptions = {
   height: 600,
   minWidth: 320,
   minHeight: 480,
+  transparent: false,
+  decorations: false,
 }
 
 /**
@@ -38,11 +41,14 @@ export function isWebHistorySupported(): boolean {
  */
 export async function openNewWindow(url: string) {
   if (isTauri) {
-    // eslint-disable-next-line no-new
-    new WebviewWindow(`window-${Date.now()}`, {
+    const webView = new WebviewWindow(`window-${Date.now()}`, {
       title: await getName(),
       ...WEBVIEW_OPTIONS_DEFAULT,
       url,
+    })
+    webView.once('tauri://created', () => {
+      tauriInvoke('set_shadow', { label: webView.label })
+      console.log('window created')
     })
   } else {
     console.warn('不支持创建新窗口')
