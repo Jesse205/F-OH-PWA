@@ -85,13 +85,16 @@ function onDragStart(event: DragEvent) {
   <v-app class="root" @dragstart="onDragStart">
     <SystemBar v-if="isTauri" />
     <NavigationDrawer />
-    <v-main>
-      <div class="main">
+    <v-main class="main">
+      <div class="page-container">
         <router-view v-slot="{ Component }">
-          <transition :name="route.meta.transition as string">
-            <v-layout :key="routeName" class="layout">
-              <component :is="Component" />
-            </v-layout>
+          <!-- 不能去除?? ''，否则格式化工具会自动删除括号，导致高亮错误 -->
+          <transition :name="(route.meta.transition as string) ?? ''">
+            <div :key="routeName" class="page">
+              <v-layout class="layout">
+                <component :is="Component" />
+              </v-layout>
+            </div>
           </transition>
         </router-view>
         <transition ame="fade-transition">
@@ -109,9 +112,23 @@ function onDragStart(event: DragEvent) {
 <style lang="scss" scoped>
 //设置绝对位置，方便设置动画，屏蔽了浏览器本身的文档滚动。因此需要在每个页面都添加滚动布局。
 .layout {
-  position: absolute !important;
   width: 100%;
   height: 100%;
+}
+.page {
+  position: absolute;
+  top: 0;
+  padding-top: var(--v-layout-top);
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.page-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 // 防止移动端出现滚动条
@@ -121,9 +138,8 @@ function onDragStart(event: DragEvent) {
   overflow: hidden;
 }
 .main {
-  position: relative;
-  width: 100%;
-  height: 100%;
+  padding-top: 0;
+  overflow: hidden;
 }
 .splash {
   position: absolute;

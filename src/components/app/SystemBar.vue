@@ -9,7 +9,7 @@ useTauriSystemBar()
 </script>
 
 <template>
-  <v-system-bar class="system-bar" color="background" data-tauri-drag-region window>
+  <v-system-bar class="system-bar" color="transparent" data-tauri-drag-region window>
     <span>{{ title }}</span>
     <v-spacer />
     <v-btn icon="$window-minimize" variant="text" color="on-background" @click="minimize()" />
