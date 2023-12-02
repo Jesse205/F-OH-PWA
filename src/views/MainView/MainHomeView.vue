@@ -45,7 +45,7 @@ const banners: Banners = {
     <!-- 公告 -->
     <title-list class="my-4" :title="$t('announcement.name')">
       <!-- eslint-disable-next-line vue/no-v-text-v-html-on-component -->
-      <v-list-item class="announcementContent" link v-html="homeStore.announcementHtml"/>
+      <v-list-item class="announcementContent" v-html="homeStore.announcementHtml"/>
     </title-list>
   </v-container>
   <!-- Loading -->
