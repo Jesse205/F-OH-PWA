@@ -359,4 +359,16 @@ html {
       width: 16px;
     }
   }
+  .v-skeleton-loader {
+    &__avatar {
+      $height: 24px;
+      $width: 24px;
+      max-height: $height;
+      min-height: $height;
+      height: $height;
+      max-width: $width;
+      min-width: $width;
+      width: $width;
+    }
+  }
 }

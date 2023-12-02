@@ -110,19 +110,17 @@ function shareApp() {
       <AppOverview ref="appOverviewElement" :app-info="appInfo" :loading="loading" class="my-4" />
 
       <!-- #region 一句话介绍 -->
-      <div v-show="appInfo?.desc || loading" class="my-4">
-        <v-skeleton-loader
-          v-if="loading"
-          class="summarySkeleton"
-          :class="{ loading: loading }"
-          type="sentences"
-          color="rgba(var(--v-theme-on-surface), 0.12)"
-        />
-        <v-card v-else class="summaryCard" variant="tonal" flat :border="false" tag="article">
-          <v-card-text>{{ appInfo?.desc }}</v-card-text>
-          <v-icon class="icon" icon="mdi-format-quote-open" />
-        </v-card>
-      </div>
+      <v-skeleton-loader
+        v-if="loading"
+        class="summarySkeleton"
+        :class="{ loading: loading }"
+        type="sentences"
+        color="rgba(var(--v-theme-on-surface), 0.12)"
+      />
+      <v-card v-else-if="appInfo?.desc" class="summaryCard" variant="tonal" flat :border="false" tag="article">
+        <v-card-text>{{ appInfo.desc }}</v-card-text>
+        <v-icon class="icon" icon="mdi-format-quote-open" />
+      </v-card>
       <!-- #endregion -->
 
       <!-- #region 应用标签 -->
@@ -136,20 +134,18 @@ function shareApp() {
 
       <!-- #region 开发者信息 -->
       <title-list v-show="appInfo?.vender || loading" class="my-4" :title="$t('developer.name')" @dragstart.stop>
-        <v-skeleton-loader type="avatar, text" color="transparent" :loading="loading">
-          <!-- prepend-avatar="@/assets/images/icon.svg" -->
-          <v-list-item
-            prepend-icon="$account"
-            :lines="developerSpace ? 'two' : 'one'"
-            :title="appInfo?.vender"
-            :subtitle="developerSpace ?? false"
-            link
-            append-icon="$next"
-            :href="developerSpace ?? `https://cn.bing.com/search?q=${appInfo?.vender}`"
-            target="_blank"
-            width="100%"
-          />
-        </v-skeleton-loader>
+        <v-skeleton-loader v-if="loading" type="avatar, text" color="transparent" />
+        <!-- prepend-avatar="@/assets/images/icon.svg" -->
+        <v-list-item
+          v-else
+          prepend-icon="$account"
+          :lines="developerSpace ? 'two' : 'one'"
+          :title="appInfo?.vender"
+          :subtitle="developerSpace ?? false"
+          append-icon="$next"
+          :href="developerSpace ?? `https://cn.bing.com/search?q=${appInfo?.vender}`"
+          target="_blank"
+        />
       </title-list>
       <!-- #endregion -->
 
@@ -185,8 +181,8 @@ function shareApp() {
 
 //标签
 .tagsSkeleton {
-  margin: -4px;
-  margin-top: -12px;
+  margin: 16px -4px;
+  margin-top: 8px;
 
   :deep(.v-skeleton-loader__chip) {
     margin: 4px;
@@ -198,14 +194,16 @@ function shareApp() {
 .tagsGroup {
   display: flex;
   flex-wrap: wrap;
-  margin: -4px;
-  margin-top: -12px;
+  margin: 16px -4px;
+  margin-top: 8px;
   .tagItem {
     padding: 4px;
   }
 }
 
 .summarySkeleton {
+  margin: 16px 0;
+  margin-bottom: 8px;
   width: 100%;
   max-width: 600px;
   color: inherit !important;
@@ -214,7 +212,8 @@ function shareApp() {
 
 .summaryCard {
   text-align: center;
-
+  margin: 16px 0;
+  margin-bottom: 8px;
   :deep(.v-card-text) {
     font-size: 1rem;
     min-height: 52px;
