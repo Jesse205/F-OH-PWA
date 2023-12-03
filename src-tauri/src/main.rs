@@ -28,7 +28,7 @@ fn main() {
             )
             .center()
             .resizable(true)
-            .transparent(true)
+            .transparent(false)
             .decorations(false)
             .title(app.package_info().name.clone())
             .inner_size(960.0, 600.0)
