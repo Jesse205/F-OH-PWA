@@ -22,14 +22,14 @@ const adTabValue = ref<'join' | 'develop'>('join')
   </v-app-bar>
   <app-main>
     <v-container class="container">
-      <v-card v-for="(persion, index) in data" :key="index" class="card">
+      <v-card v-for="(persion, index) in data" :key="index" class="donate-card">
         <v-tabs v-model="persion.selected">
           <v-tab v-for="(platform, index) in persion.platforms" :key="index" :value="index" :color="platform.color">
             {{ platform.name }}
           </v-tab>
         </v-tabs>
         <v-divider />
-        <v-img class="card-image" cover :src="persion.platforms[persion.selected].image" />
+        <v-img class="donate-card__image" cover :src="persion.platforms[persion.selected].image" />
         <v-divider />
         <v-card-item>
           <div>
@@ -40,7 +40,7 @@ const adTabValue = ref<'join' | 'develop'>('join')
       </v-card>
 
       <!-- 广告开始 -->
-      <v-card class="card">
+      <v-card class="donate-card">
         <v-tabs v-model="adTabValue">
           <v-tab value="join">加入我们</v-tab>
           <v-tab value="develop">参与开发</v-tab>
@@ -50,17 +50,17 @@ const adTabValue = ref<'join' | 'develop'>('join')
         <v-btn
           v-if="adTabValue === 'join'"
           variant="text"
-          class="card-image ad-btn"
+          class="donate-card__content-btn"
           color=""
           rounded="0"
           href="https://ohos-dev.github.io/"
           target="_blank"
         >
-          <div class="ad-description">
-            <img :src="ICON" class="icon" />
-            <div class="title text-h6">OHOS Dev</div>
+          <div class="donate-card__content-btn__description">
+            <img :src="ICON" class="donate-card__content-btn__description__icon" />
+            <div class="text-h6">OHOS Dev</div>
             <div class="text-body-1">加入 OHOS Dev，共建 OpenHarmony 生态!</div>
-            <div class="click-hint">
+            <div class="donate-card__content-btn__description__click-hint">
               <v-icon size="large" icon="mdi-cursor-default-outline" />
               点击这里转到组织
             </div>
@@ -70,17 +70,17 @@ const adTabValue = ref<'join' | 'develop'>('join')
         <v-btn
           v-else-if="adTabValue === 'develop'"
           variant="text"
-          class="card-image ad-btn"
+          class="donate-card__content-btn"
           color=""
           rounded="0"
           href="https://ohos-dev.github.io/project/f-oh/"
           target="_blank"
         >
-          <div class="ad-description">
-            <img :src="ICON" class="icon" />
-            <div class="title text-h6">F-OH</div>
+          <div class="donate-card__content-btn__description">
+            <img :src="ICON" class="donate-card__content-btn__description__icon" />
+            <div class="text-h6">F-OH</div>
             <div class="text-body-1">帮助我们开发 F-OH！</div>
-            <div class="click-hint">
+            <div class="donate-card__content-btn__description__click-hint">
               <v-icon size="large" icon="mdi-cursor-default-outline" />
               点击这里转到项目
             </div>
@@ -106,56 +106,57 @@ const adTabValue = ref<'join' | 'develop'>('join')
   flex-wrap: wrap;
   justify-content: center;
   padding: 8px;
+}
 
-  > .card {
-    margin: 8px;
+.donate-card {
+  margin: 8px;
+  width: 100%;
+  max-width: 360px;
+
+  &__image,
+  &__content-btn {
     width: 100%;
-    max-width: 360px;
+    aspect-ratio: 1;
 
-    .card-image {
-      width: 100%;
-      aspect-ratio: 1;
-
-      .image-ontainer {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    // .image-ontainer {
+    //   display: flex;
+    //   justify-content: center;
+    //   align-items: center;
+    //   height: 100%;
+    //   flex-direction: column;
+    // }
+  }
+  &__content-btn {
+    padding: 24px;
+    &.v-btn {
+      height: unset;
+      display: flex;
+      :deep(.v-btn__content) {
+        width: 100%;
         height: 100%;
-        flex-direction: column;
       }
     }
-  }
-}
-.ad-btn {
-  padding: 24px;
-  &.v-btn {
-    height: unset;
-    display: flex;
-    :deep(.v-btn__content) {
+    &__description {
       width: 100%;
-      height: 100%;
-    }
-  }
-}
-.ad-description {
-  width: 100%;
-  white-space: pre-line;
-  text-align: center;
+      white-space: pre-line;
+      text-align: center;
 
-  * {
-    max-width: 100%;
-    overflow-wrap: break-word;
-  }
-  .icon {
-    width: 96px;
-    height: 96px;
-    flex: none;
-  }
-  .click-hint {
-    position: absolute;
-    bottom: 16px;
-    left: 0;
-    right: 0;
+      * {
+        max-width: 100%;
+        overflow-wrap: break-word;
+      }
+      &__icon {
+        width: 96px;
+        height: 96px;
+        flex: none;
+      }
+      &__click-hint {
+        position: absolute;
+        bottom: 16px;
+        left: 0;
+        right: 0;
+      }
+    }
   }
 }
 </style>

@@ -40,11 +40,11 @@ const token = useTokenSetting()
     <v-app-bar-title>{{ $t('settings.name') }}</v-app-bar-title>
   </v-app-bar>
   <app-main>
-    <v-container class="container">
+    <v-container class="py-0">
       <!-- 项目展示 -->
       <!-- <v-list-subheader>{{ $t('project.showcase.name') }}</v-list-subheader> -->
       <!-- 应用 -->
-      <title-list class="ma-4" :title="$t('app.name')">
+      <title-list class="my-4" :title="$t('app.name')">
         <v-list-item prepend-icon="$translate" :title="$t('locale.language')" :subtitle="$i18n.locale" link lines="two">
           <!-- origin="left" 修复小窗时定位错误 -->
           <v-menu activator="parent" scrim="rgba(0,0,0,0)" origin="left">
@@ -77,8 +77,4 @@ const token = useTokenSetting()
   </app-main>
 </template>
 
-<style scoped>
-.container {
-  padding: 0;
-}
-</style>
+<!-- <style scoped></style> -->

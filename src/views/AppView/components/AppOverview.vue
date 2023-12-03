@@ -28,25 +28,30 @@ defineExpose({
 <template>
   <div class="app-overview">
     <!-- 图标 -->
-    <v-skeleton-loader class="app-icon border rounded-lg" :class="{ loading: loading }" type="image" :loading="loading">
+    <v-skeleton-loader
+      class="app-overview__icon border rounded-lg"
+      :class="{ loading: loading }"
+      type="image"
+      :loading="loading"
+    >
       <v-img class="rounded-lg" :src="appIconUrl ?? ''" @dragstart.stop />
     </v-skeleton-loader>
-    <div class="header-right ml-4">
+    <div class="app-overview__right">
       <!-- 应用名和版本 -->
-      <v-skeleton-loader v-if="loading" class="appInfoSkeleton" type="text@2" color="transparent" />
+      <v-skeleton-loader v-if="loading" class="app-overview__right__skeleton" type="text@2" color="transparent" />
       <template v-else>
-        <div class="app-title">
+        <div class="app-overview__right__title">
           <!-- 应用名 -->
-          <h1 ref="appNameElement" class="text-h6" :title="$t('app.name')">{{ appInfo?.name }}</h1>
+          <h2 ref="appNameElement" class="text-h6" :title="$t('app.name')">{{ appInfo?.name }}</h2>
           <span class="text-subtitle-2" :title="$t('version.name')">
             v{{ appInfo ? `${appInfo.version}` : $t('unknown.name') }}
           </span>
         </div>
-        <div class="packageName text-subtitle-2" :title="$t('packageName.name')">
+        <div class="app-overview__right__package-name text-subtitle-2" :title="$t('packageName.name')">
           {{ appInfo?.packageName ?? $t('unknown.name') }}
         </div>
       </template>
-      <div class="buttonGroup" @dragstart.stop>
+      <div class="app-overview__right__button-group" @dragstart.stop>
         <!-- 下载按钮 -->
         <v-btn
           prepend-icon="$downloadFilled"
@@ -75,7 +80,7 @@ defineExpose({
   display: flex;
   width: 100%;
   align-items: flex-start;
-  .app-icon {
+  &__icon {
     width: 96px;
     height: 96px;
     overflow: hidden;
@@ -88,20 +93,20 @@ defineExpose({
     // TODO: 当 F-OH 支持自适应图标后移除这项
     border-radius: 24% !important;
   }
-
-  .header-right {
+  &__right {
     display: flex;
     flex-direction: column;
-    width: max-content;
+    flex-grow: 1;
     flex-wrap: nowrap;
     overflow: hidden;
+    margin-left: 16px;
 
-    .appInfoSkeleton {
+    &__skeleton {
       margin: -2px -16px;
       overflow: hidden;
     }
-    .app-title {
-      > * {
+    &__title {
+      & > * {
         display: inline;
       }
     }
@@ -110,11 +115,13 @@ defineExpose({
       opacity: var(--v-medium-emphasis-opacity);
     }
 
-    .packageName {
+    &__package-name {
       height: 1.75rem;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
 
-    .buttonGroup {
+    &__button-group {
       flex-wrap: wrap;
       margin: -4px;
       display: flex;

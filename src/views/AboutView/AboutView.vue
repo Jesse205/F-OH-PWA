@@ -57,13 +57,13 @@ if (isTauri) {
     <v-app-bar-title>{{ $t('about.name') }}</v-app-bar-title>
   </v-app-bar>
   <v-navigation-drawer v-if="mdAndUp" permanent :width="200 + 32">
-    <AppCard />
+    <AppCard class="ma-4" />
   </v-navigation-drawer>
   <app-main>
-    <v-container class="container">
-      <AppCard v-if="!mdAndUp" />
+    <v-container class="py-0">
+      <AppCard v-if="!mdAndUp" class="my-4" />
       <!-- 关于应用 -->
-      <title-list class="ma-4" lines="two" tag="ul" :title="$t('app.about')">
+      <title-list class="my-4" lines="two" tag="ul" :title="$t('app.about')">
         <!-- 应用版本 -->
         <v-list-item prepend-icon="$info" :title="$t('app.version')" :subtitle="appVersion" />
         <!-- Tauri 版本 -->
@@ -71,7 +71,7 @@ if (isTauri) {
       </title-list>
 
       <!-- 开发者信息 -->
-      <title-list class="ma-4" lines="two" :title="$t('develop.messages')">
+      <title-list class="my-4" lines="two" :title="$t('develop.messages')">
         <v-list-item
           v-for="item in developers"
           :key="item.title"
@@ -89,7 +89,7 @@ if (isTauri) {
       </title-list>
 
       <!-- 交流讨论 -->
-      <title-list class="ma-4" lines="two" :title="$t('communicate.name')">
+      <title-list class="my-4" lines="two" :title="$t('communicate.name')">
         <!-- QQ 群 -->
         <v-list-item
           prepend-icon="$group"
@@ -102,7 +102,7 @@ if (isTauri) {
       </title-list>
 
       <!-- 相关链接 -->
-      <title-list class="ma-4" lines="two" :title="$t('link.related')">
+      <title-list class="my-4" lines="two" :title="$t('link.related')">
         <!-- 源代码 -->
         <v-list-item
           prepend-icon="$link"
@@ -133,8 +133,4 @@ if (isTauri) {
   </app-main>
 </template>
 
-<style scoped>
-.container {
-  padding: 0;
-}
-</style>
+<!-- <style scoped></style> -->

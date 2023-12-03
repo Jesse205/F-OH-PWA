@@ -17,7 +17,6 @@ const appStore = useAppStore()
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 16px;
   transition-duration: 0.2s;
   transition-property: box-shadow, transform, visibility, width, height, left, right, top, bottom;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
