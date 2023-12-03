@@ -12,7 +12,7 @@ import NavigationDrawer from './components/app/NavigationDrawer.vue'
 import ContextMenu from './components/app/ContextMenu.vue'
 import { useAppStore } from './store/app'
 import { isPwaDisplayMode } from './util/pwa'
-import SystemBar from './components/app/SystemBar.vue'
+import TauriSystemBar from './components/app/TauriSystemBar.vue'
 
 // 主题
 const theme = useTheme()
@@ -83,7 +83,7 @@ function onDragStart(event: DragEvent) {
 
 <template>
   <v-app class="root" @dragstart="onDragStart">
-    <SystemBar v-if="isTauri" />
+    <TauriSystemBar v-if="isTauri" />
     <NavigationDrawer />
     <v-main class="main">
       <div class="page-container">
