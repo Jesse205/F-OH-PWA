@@ -160,7 +160,7 @@ function shareApp() {
       <!-- #endregion -->
 
       <!-- 详情信息 -->
-      <AppDetails :loading="loading" :app-info="appInfo" :title-class="['itemTitle']" />
+      <AppDetails class="my-4" :loading="loading" :app-info="appInfo" :title-class="['itemTitle']" />
     </v-container>
   </app-main>
 </template>
