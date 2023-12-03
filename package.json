@@ -25,6 +25,8 @@
     "@mdi/font": "7.3.67",
     "@tauri-apps/api": "^1.5.1",
     "@vueuse/core": "^10.6.1",
+    "axios": "^1.6.2",
+    "axios-tauri-api-adapter": "^0.2.0",
     "core-js": "^3.33.3",
     "js-base64": "^3.7.5",
     "lodash": "^4.17.21",

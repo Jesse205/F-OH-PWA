@@ -2,9 +2,11 @@
 import { defineStore } from 'pinia'
 import { ref, watch } from 'vue'
 import type { HomeData } from '@/ts/interfaces/home.interfaces'
-import { autoFetchJson } from '@/util/fetch'
+import { getAxiosInstance } from '@/util/fetch'
 import { URL_API_HOME } from '@/data/constants'
 import showdown from 'showdown'
+
+const TAG = '[HomeStore]'
 
 function newShowdownConverter() {
   const classMap: { [key: string]: string } = {
@@ -47,25 +49,29 @@ export const useHomeStore = defineStore('home', () => {
   const converter = newShowdownConverter()
 
   /**
-   * 获取主页数据
+   * 拉取主页数据
    */
   function fetchData() {
     loading.value = true
     errMsg.value = null
-    autoFetchJson<HomeData>(URL_API_HOME)
-      .then((newData) => {
-        data.value = newData
-        console.log('fetched home data', newData)
+    getAxiosInstance()
+      .get<HomeData>(URL_API_HOME)
+      .then((response) => {
+        data.value = response.data
+        if (import.meta.env.DEV) {
+          console.debug(TAG, 'fetched home data', response.data)
+        }
         errMsg.value = null
       })
       .catch((reason) => {
-        console.error("Can't load home data:", reason)
+        console.error(TAG, "Can't load home data:", reason)
         errMsg.value = reason.toString()
       })
       .finally(() => {
         loading.value = false
       })
   }
+
   watch(data, (newData) => {
     if (!newData?.announcement) return
     // 原来的文字不是markdown样式，所以应该转为markdown样式。

@@ -2,10 +2,14 @@
 import { useTitle } from '@vueuse/core'
 import { useTauriSystemBar } from '@/events/tauri'
 import { getCurrent } from '@tauri-apps/api/window'
+import { onUnmounted } from 'vue'
 const appWindow = getCurrent()
 const { toggleMaximize, close, minimize } = appWindow
 const title = useTitle(null, { observe: true })
+
 useTauriSystemBar()
+
+
 </script>
 
 <template>

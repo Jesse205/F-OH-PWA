@@ -1,6 +1,6 @@
 import { URL_API_GOGS } from '@/data/constants'
-import { autoFetchJson } from './fetch'
 import type { GogsContentFile } from '@/ts/interfaces/gogs.interfaces'
+import { getAxiosInstance } from './fetch'
 
 export interface ApiConfig {
   token: string
@@ -19,6 +19,6 @@ export async function getFileContent(
     path.startsWith('/') ? path.slice(1) : path
   }?ref=${config.ref ?? 'master'}&token=${config.token}`
 
-  const content = await autoFetchJson<GogsContentFile>(url)
-  return content
+  const content = await getAxiosInstance().get<GogsContentFile>(url)
+  return content.data
 }

@@ -1,9 +1,11 @@
 // Utilities
 import { URL_API_ALL_APP_LIST } from '@/data/constants'
 import type { AppInfo } from '@/ts/interfaces/app.interfaces'
-import { autoFetchJson } from '@/util/fetch'
+import { getAxiosInstance } from '@/util/fetch'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+
+const TAG = '[AppsStore]'
 
 /**
  * 应用市场所有应用数据
@@ -19,14 +21,17 @@ export const useAppsStore = defineStore('apps', () => {
   function fetchData() {
     loading.value = true
     errMsg.value = null
-    autoFetchJson<AppInfo[]>(URL_API_ALL_APP_LIST)
-      .then((newData) => {
-        data.value = newData
-        console.log('fetched apps', newData)
+    getAxiosInstance()
+      .get<AppInfo[]>(URL_API_ALL_APP_LIST)
+      .then((response) => {
+        data.value = response.data
+        if (import.meta.env.DEV) {
+          console.log(TAG, 'fetched apps', response.data)
+        }
         errMsg.value = null
       })
       .catch((reason) => {
-        console.error("Can't load data:", reason)
+        console.error(TAG, "Can't load data:", reason)
         errMsg.value = reason.toString()
       })
       .finally(() => {
