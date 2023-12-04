@@ -147,5 +147,14 @@
   },
   "back": {
     "name": "返回"
+  },
+  "refresh": {
+    "name": "刷新"
+  },
+  "watching": {
+    "my": "我的关注"
+  },
+  "error": {
+    "loading": "加载错误"
   }
 }

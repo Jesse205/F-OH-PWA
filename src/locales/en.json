@@ -147,5 +147,14 @@
   },
   "back": {
     "name": "Back"
+  },
+  "refresh": {
+    "name": "Refresh"
+  },
+  "watching": {
+    "my": "My watchings"
+  },
+  "error": {
+    "loading": "Loading error"
   }
 }

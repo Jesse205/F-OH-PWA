@@ -82,7 +82,7 @@ watch(
 <template>
   <v-container class="container py-0" fluid>
     <!-- Alerts -->
-    <v-alert v-if="errMsg" class="my-4" title="Load error" :text="errMsg" type="error" variant="tonal" />
+    <v-alert v-if="errMsg" class="my-4" :title="$t('error.loading')" :text="errMsg" type="error" variant="tonal" />
     <!-- MainLayout -->
     <template v-if="loaded">
       <template v-for="appType in appTypes">

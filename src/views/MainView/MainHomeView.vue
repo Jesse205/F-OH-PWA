@@ -39,13 +39,13 @@ const banners: Banners = {
   <HomeBanner class="my-4" :banners="banners" :base-url="URL_API" />
   <v-container class="py-0">
     <!-- Alerts -->
-    <v-alert v-if="errMsg" class="my-4" title="Load error" :text="errMsg" type="error" variant="tonal" />
+    <v-alert v-if="errMsg" class="my-4" :title="$t('error.loading')" :text="errMsg" type="error" variant="tonal" />
   </v-container>
   <v-container v-if="homeStore.data?.showAnnouncement" class="py-0">
     <!-- 公告 -->
     <title-list class="my-4" :title="$t('announcement.name')">
       <!-- eslint-disable-next-line vue/no-v-text-v-html-on-component -->
-      <v-list-item class="announcementContent" v-html="homeStore.announcementHtml"/>
+      <v-list-item class="announcementContent" v-html="homeStore.announcementHtml" />
     </title-list>
   </v-container>
   <!-- Loading -->

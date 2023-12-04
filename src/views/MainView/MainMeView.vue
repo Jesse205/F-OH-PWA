@@ -19,7 +19,7 @@
 
     <!-- 用户面板 -->
     <v-list class="my-4 prependIconPrimaryItem">
-      <v-list-item title="我的关注" link prepend-icon="$apps" append-icon="$next" disabled />
+      <v-list-item :title="$t('watching.my')" link prepend-icon="$apps" append-icon="$next" disabled />
       <v-list-item
         :title="$t('manager.apps')"
         link
@@ -38,13 +38,7 @@
         append-icon="$next"
         :to="{ name: 'Settings' }"
       />
-      <v-list-item
-        :title="$t('about.name')"
-        link
-        prepend-icon="$info"
-        append-icon="$next"
-        :to="{ name: 'About' }"
-      />
+      <v-list-item :title="$t('about.name')" link prepend-icon="$info" append-icon="$next" :to="{ name: 'About' }" />
     </v-list>
   </v-container>
 </template>
