@@ -53,6 +53,9 @@ The F-OH PWA offers a choice between **standalone software** and **web access**.
 > [!TIP]\
 > ~~F-OH PWA is temporarily unavailable because the server does not have SSL and has cross-domain issues ([No security context to meet the minimum requirements to be a PWA][PWASecureContextRequirement]), please use F-OH Tauri or F-OH Lite (Web).~~ If you want to use use the PWA, use the development version deployed on Netlify.
 
+> [!NOTE]\
+> This PWA application will not be able to enter the new page after update, some functions may be abnormal, please refresh before use it.
+
 ### PWA Installation
 
 A **progressive web app** (PWA) is an app that's built using web platform technologies, but that provides a user experience like that of a platform-specific app. (From [MDN](https://developer.mozilla.org/zh-CN/docs/Web/Progressive_web_apps))
@@ -63,9 +66,6 @@ Some browsers support installing this website to the desktop by clicking "Instal
 
 > [!TIP]\
 > For more information about using PWAs, see [Use Progressive Web Apps in Microsoft Edge](https://learn.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/ux).
-
-> [!NOTE]\
-> This PWA application will not be able to enter the new page after update, some functions may be abnormal, please refresh before use it.
 
 ## Series of Projects
 
