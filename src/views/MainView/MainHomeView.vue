@@ -9,8 +9,9 @@ import IMAGE_BANNER3 from '@/assets/images/main_banner_3.png'
 import { useHomeStore } from '@/store/home'
 import TitleList from '@/components/list/TitleList.vue'
 import CenterSpace from '@/components/CenterSpace.vue'
-import { useElementBounding } from '@vueuse/core'
+import { useElementBounding, useScroll } from '@vueuse/core'
 import { max } from 'lodash'
+import AppMain from '@/components/AppMain.vue'
 
 const homeStore = useHomeStore()
 onMounted(() => {
@@ -34,20 +35,31 @@ const banners: Banners = {
   ],
   ratio: 18 / 9,
 }
+const mainComponent = ref<InstanceType<typeof AppMain>>()
+const { y: scrollY } = useScroll(computed(() => mainComponent.value?.mainScroll))
 
 const bannersComponent = ref(null)
-const { top: bannersTop, height: bannersHeight } = useElementBounding(bannersComponent)
-console.log(bannersTop, bannersHeight)
+const { height: bannersHeight } = useElementBounding(bannersComponent, { windowScroll: false })
 
+/**
+ * 刷新主页数据
+ */
 function refresh() {
   homeStore.fetchData()
 }
 
 defineExpose({ refresh })
+
+/**
+ * 轮播图高度 + 16
+ */
+const progressMarginTop = computed(() => {
+  return max([-scrollY.value + bannersHeight.value + 16, 0])
+})
 </script>
 
 <template>
-  <app-main>
+  <app-main ref="mainComponent">
     <!-- MainLayout -->
     <!-- 轮播图 -->
     <HomeBanner ref="bannersComponent" class="my-4" :banners="banners" :base-url="URL_API" />
@@ -62,7 +74,7 @@ defineExpose({ refresh })
     </v-container>
     <template v-slot:root>
       <!-- Loading -->
-      <CenterSpace v-if="loading" :top="max([bannersTop + bannersHeight + 16, 0])">
+      <CenterSpace v-if="loading" :top="progressMarginTop">
         <v-progress-circular indeterminate />
       </CenterSpace>
     </template>

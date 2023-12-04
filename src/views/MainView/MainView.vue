@@ -33,13 +33,17 @@ const { xs } = useDisplay()
 const installBtnVisible = useInjectedInstallBtnVisible()
 const onInstallBtnClick = useInjectedOnInstallBtnClick()
 
+type HomeComponent = InstanceType<
+  typeof MainHomeView | typeof MainCategoriesView | typeof MainUpdateView | typeof MainMeView
+>
 const routeComponent = ref<HomeComponent>()
 
-type HomeComponent = typeof MainHomeView | typeof MainCategoriesView | typeof MainUpdateView | typeof MainMeView
-
+/**
+ * 刷新当前页面的数据
+ */
 function refresh() {
   const component = routeComponent.value
-  if (component?.refresh) {
+  if (component && 'refresh' in component) {
     component.refresh()
   }
 }

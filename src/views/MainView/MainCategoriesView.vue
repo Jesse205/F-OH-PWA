@@ -79,6 +79,9 @@ watch(
   { immediate: true },
 )
 
+/**
+ * 刷新应用列表
+ */
 function refresh() {
   appsStore.fetchData()
 }

@@ -39,8 +39,5 @@ defineProps<{
   top: 0;
   bottom: 0;
   pointer-events: none;
-  * {
-    pointer-events: auto;
-  }
 }
 </style>

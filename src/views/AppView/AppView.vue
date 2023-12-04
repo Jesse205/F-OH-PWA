@@ -20,14 +20,17 @@ const { t } = useI18n()
 const route = useRoute()
 const appsStore = useAppsStore()
 
-// 查找当前应用信息
+/**
+ * 查找当前应用信息，自动根据路由查找
+ */
 const appInfo = computed((): AppInfo | undefined => {
+  if (!appsStore.data) return undefined
   const pkg = route.params.pkg
   const id = Number(route.params.pkg)
   if (id) {
-    return appsStore.data?.find((item) => item.id === id)
+    return appsStore.data.find((item) => item.id === id)
   } else if (pkg) {
-    return appsStore.data?.find((item) => item.packageName === pkg)
+    return appsStore.data.find((item) => item.packageName === pkg)
   } else {
     return undefined
   }
@@ -46,8 +49,8 @@ const developerSpace = computed(() =>
   appInfo.value ? matchUserSpace(new URL(appInfo.value.openSourceAddress, location.href)) : null,
 )
 
-// 确保数据已经获取到或者正在获取中
 onMounted(() => {
+  // 确保数据已经获取到或者正在获取中
   appsStore.ensureData()
 })
 
@@ -55,15 +58,12 @@ onMounted(() => {
 const mainElement = ref<InstanceType<typeof AppMain>>()
 const appOverviewElement = ref<InstanceType<typeof AppOverview>>()
 
-const mainScrollElement = computed(() => mainElement.value?.mainScroll)
-const appNameElement = computed(() => appOverviewElement.value?.appNameElement)
-
 const appNamePositionYBottom = computed(() => {
-  const element = appNameElement.value
+  const element = appOverviewElement.value?.appNameElement
   return element ? element.offsetTop + element.offsetHeight : 0
 })
 
-const { y: scrollY } = useScroll(mainScrollElement)
+const { y: scrollY } = useScroll(computed(() => mainElement.value?.mainScroll))
 
 /**
  * 如果应用的标题被遮挡，就在应用栏内显示应用的标题。
@@ -88,6 +88,10 @@ function getAppShareUrl(): URL {
   }
   return url
 }
+
+/**
+ * 使用 Web Share API 分享当前应用。
+ */
 function shareApp() {
   share({
     title: document.head.title,

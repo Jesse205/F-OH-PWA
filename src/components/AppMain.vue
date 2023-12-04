@@ -12,14 +12,21 @@ defineExpose({
 
 <template>
   <v-main>
-    <div ref="mainScroll" class="main-scroll">
-      <slot />
+  <!-- 包裹一个容器，解决绝对定位包括 padding 的问题 -->
+    <div class="main-container">
+      <div ref="mainScroll" class="main-scroll">
+        <slot />
+      </div>
+      <slot name="root" />
     </div>
-    <slot name="root" />
   </v-main>
 </template>
 
 <style scoped lang="scss">
+.main-container{
+  height: 100%;
+  position: relative;
+}
 // 区域滚动
 .main-scroll {
   overflow-y: scroll; // auto 极端情况会导致布局闪烁
