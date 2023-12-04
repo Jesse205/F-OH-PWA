@@ -53,6 +53,9 @@ F-OH PWA 提供 **独立软件** 与 **网页访问** 两种方式供用户选�
 > [!TIP]\
 > ~~因服务器没有 SSL 并且有跨域问题， F-OH PWA 暂时无法使用（[无安全上下文，无法满足成为 PWA 的最低要求][PWASecureContextRequirement]），请使用 F-OH Tauri 或 F-OH Lite (Web)。~~ 如需使用 PWA，请使用部署在 Netlify 上的开发版。
 
+> [!NOTE]\
+> 此 PWA 应用在更新后会无法进入新页面，部分功能可能异常，请刷新后使用。
+
 ### PWA 安装
 
 **渐进式 Web 应用**（Progressive Web App，PWA）是一个使用 web 平台技术构建的应用程序，但它提供的用户体验就像一个特定平台的应用程序。（来自 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/Progressive_web_apps)）

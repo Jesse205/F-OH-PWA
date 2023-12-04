@@ -1,7 +1,8 @@
 {
     "markdownlint.config": {
         "MD033": false,
-        "MD041": false
+        "MD041": false,
+        "MD028": false
     },
     "todo-tree.tree.disableCompactFolders": true,
     "cSpell.words": [

@@ -64,6 +64,9 @@ Some browsers support installing this website to the desktop by clicking "Instal
 > [!TIP]\
 > For more information about using PWAs, see [Use Progressive Web Apps in Microsoft Edge](https://learn.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/ux).
 
+> [!NOTE]\
+> This PWA application will not be able to enter the new page after update, some functions may be abnormal, please refresh before use it.
+
 ## Series of Projects
 
 - [F-OH](https://gitee.com/westinyang/f-oh): F-OH OpenHarmony Mobile
