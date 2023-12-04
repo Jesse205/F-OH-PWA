@@ -5,6 +5,7 @@ import ProjectItem from '@/components/list/ProjectItem.vue'
 import { useAppsStore } from '@/store/apps'
 import type { AppInfo } from '@/ts/interfaces/app.interfaces'
 import TitleList from '@/components/list/TitleList.vue'
+import CenterSpace from '@/components/CenterSpace.vue'
 
 const { t } = useI18n()
 
@@ -77,32 +78,36 @@ watch(
   },
   { immediate: true },
 )
+
+function refresh() {
+  appsStore.fetchData()
+}
+
+defineExpose({ refresh })
 </script>
 
 <template>
-  <v-container class="container py-0" fluid>
-    <!-- Alerts -->
-    <v-alert v-if="errMsg" class="my-4" :title="$t('error.loading')" :text="errMsg" type="error" variant="tonal" />
-    <!-- MainLayout -->
-    <template v-if="loaded">
+  <app-main>
+    <v-container class="container py-0" fluid>
+      <!-- Alerts -->
+      <v-alert v-if="errMsg" class="my-4" :title="$t('error.loading')" :text="errMsg" type="error" />
+      <!-- MainLayout -->
       <template v-for="appType in appTypes">
         <title-list v-if="appType.apps && appType.apps.length" :key="appType.key" class="my-4" :title="appType.title">
           <div class="project-items">
-            <ProjectItem
-              v-for="item in appType.apps"
-              :key="item.id"
-              class="project-item"
-              :item="item"
-            />
+            <ProjectItem v-for="item in appType.apps" :key="item.id" class="project-item" :item="item" />
           </div>
         </title-list>
       </template>
+    </v-container>
+
+    <template v-slot:root>
+      <!-- Loading -->
+      <CenterSpace v-if="loading">
+        <v-progress-circular indeterminate />
+      </CenterSpace>
     </template>
-  </v-container>
-  <!-- Loading -->
-  <div v-if="loading" class="centerSpace">
-    <v-progress-circular indeterminate />
-  </div>
+  </app-main>
 </template>
 
 <style scoped lang="scss">

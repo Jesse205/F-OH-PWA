@@ -165,6 +165,9 @@ export const harmony: Blueprint = {
       width: 3,
       size: '40',
     },
+    VAlert: {
+      variant: 'tonal',
+    },
   },
   icons: {
     defaultSet: 'mdi',

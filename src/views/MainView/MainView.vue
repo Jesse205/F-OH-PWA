@@ -1,35 +1,48 @@
 <script setup lang="ts">
-import { ref, unref, watchEffect } from 'vue'
+import type { Component } from 'vue'
+import { ref, watchEffect, computed } from 'vue'
 import { useDisplay } from 'vuetify'
-import AppMain from '@/components/AppMain.vue'
-import { useRoute } from 'vue-router'
 import { useTitle } from '@/events/title'
 import { URL_UPLOAD } from '@/data/constants'
+import type { NavPage } from '@/events/navigation'
 import { useHomeNavigation } from '@/events/navigation'
 import BackButton from '@/components/BackButton.vue'
 import { useInjectedInstallBtnVisible, useInjectedOnInstallBtnClick } from '@/events/pwa'
+import type MainHomeView from './MainHomeView.vue'
+import type MainCategoriesView from './MainCategoriesView.vue'
+import type MainMeView from './MainMeView.vue'
+import type MainUpdateView from './MainUpdateView.vue'
 
 const { pages, activePagePosition, isBackOtherPage, isInMainView } = useHomeNavigation()
 
-const route = useRoute()
-const homeTitle = ref<string | null>(null)
-
-useTitle(homeTitle)
+const currentPage = ref<NavPage | null>(null)
 
 watchEffect(() => {
-  for (const item of pages.value) {
-    if (item.name === route.name) {
-      homeTitle.value = unref(item.title)
-      break
-    }
+  if (activePagePosition.value !== null) {
+    currentPage.value = pages.value[activePagePosition.value]
+  } else {
+    currentPage.value = null
   }
 })
+
+useTitle(computed(() => currentPage.value?.title ?? ''))
 
 const { xs } = useDisplay()
 
 // PWA
 const installBtnVisible = useInjectedInstallBtnVisible()
 const onInstallBtnClick = useInjectedOnInstallBtnClick()
+
+const routeComponent = ref<HomeComponent>()
+
+type HomeComponent = typeof MainHomeView | typeof MainCategoriesView | typeof MainUpdateView | typeof MainMeView
+
+function refresh() {
+  const component = routeComponent.value
+  if (component?.refresh) {
+    component.refresh()
+  }
+}
 </script>
 
 <template>
@@ -37,7 +50,7 @@ const onInstallBtnClick = useInjectedOnInstallBtnClick()
   <v-app-bar>
     <!-- 仅在非手机中显示返回按钮 -->
     <back-button v-if="!xs" />
-    <v-app-bar-title>{{ homeTitle }}</v-app-bar-title>
+    <v-app-bar-title>{{ currentPage?.title }}</v-app-bar-title>
     <v-tooltip location="bottom">
       <template v-slot:activator="{ props }">
         <v-btn icon="$search" v-bind="props" disabled aria-label="搜索应用" />
@@ -51,6 +64,7 @@ const onInstallBtnClick = useInjectedOnInstallBtnClick()
       <v-list>
         <!-- TODO: 使用Upload页面 -->
         <!-- <v-list-item :title="$t('upload.app')" :to="{ name: 'Upload' }" /> -->
+        <v-list-item v-if="currentPage?.refreshable" :title="$t('refresh.name')" @click="refresh" />
         <v-list-item :title="$t('upload.app')" :href="URL_UPLOAD" target="_blank" />
         <v-list-item v-if="installBtnVisible" :title="$t('install.app')" @click="onInstallBtnClick" />
       </v-list>
@@ -58,13 +72,11 @@ const onInstallBtnClick = useInjectedOnInstallBtnClick()
   </v-app-bar>
 
   <!-- 主视图 -->
-  <app-main>
-    <router-view v-slot="{ Component }">
-      <keep-alive>
-        <component :is="Component" />
-      </keep-alive>
-    </router-view>
-  </app-main>
+  <router-view v-slot="{ Component }">
+    <keep-alive>
+      <component :is="Component" ref="routeComponent" />
+    </keep-alive>
+  </router-view>
 
   <!-- 底部导航栏 -->
   <v-bottom-navigation v-if="xs">

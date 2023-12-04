@@ -19,6 +19,7 @@ export const useAppsStore = defineStore('apps', () => {
    * 获取所有 APP 数据
    */
   function fetchData() {
+    if (loading.value) return
     loading.value = true
     errMsg.value = null
     getAxiosInstance()

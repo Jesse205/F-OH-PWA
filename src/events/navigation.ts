@@ -1,14 +1,14 @@
-import type { MaybeRef} from 'vue';
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
 
-interface NavPage {
-  title: MaybeRef<string>
+export interface NavPage {
+  title: string
   icon: string
   activeIcon: string
   name: string
   disabled?: boolean
+  refreshable?: boolean
 }
 
 export function useHomeNavigation() {
@@ -23,12 +23,14 @@ export function useHomeNavigation() {
         icon: '$home',
         activeIcon: '$homeFilled',
         name: 'Home',
+        refreshable: true,
       },
       {
         title: t('category.name', 2),
         icon: '$apps',
         activeIcon: '$appsFilled',
         name: 'Categories',
+        refreshable: true,
       },
       {
         title: t('update.name'),

@@ -52,6 +52,7 @@ export const useHomeStore = defineStore('home', () => {
    * 拉取主页数据
    */
   function fetchData() {
+    if (loading.value) return
     loading.value = true
     errMsg.value = null
     getAxiosInstance()

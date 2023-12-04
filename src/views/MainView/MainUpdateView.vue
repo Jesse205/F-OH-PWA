@@ -5,7 +5,7 @@
 </script>
 
 <template>
-  <div>
+  <app-main>
     <v-container>
       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo deserunt optio deleniti nesciunt. Molestiae nesciunt
       esse debitis atque quas doloremque assumenda mollitia quaerat iusto voluptatibus fuga repudiandae consequatur hic
@@ -77,7 +77,7 @@
       veritatis quam ex, deserunt pariatur reiciendis aspernatur praesentium perferendis quo! Alias fuga nobis
       eum!</v-container
     >
-  </div>
+  </app-main>
 </template>
 
 <!-- <style scoped></style> -->

@@ -6,6 +6,7 @@
 
 // Components
 import App from './App.vue'
+import AppMain from '@/components/AppMain.vue'
 
 // Composables
 import { createApp } from 'vue'
@@ -19,5 +20,6 @@ import '@/styles/main.scss'
 const app = createApp(App)
 
 registerPlugins(app)
+app.component('AppMain', AppMain)
 
 app.mount('#app')
