@@ -12,7 +12,8 @@ interface BeforeInstallPrompt extends Event {
  * 这个只能在 APP 组件使用，否则 `onBeforeInstallPrompt` 不会执行
  *
  * 该方法提供 `installBtnVisible` 和 `onInstallBtnClick`，可以在其他组件内直接通过 `inject` 动态显示安装按钮与绑定按钮事件。
- * @see inject
+ * @see {@linkcode useInjectedInstallBtnVisible}
+ * @see {@linkcode useInjectedOnInstallBtnClick}
  */
 export function usePwa() {
   const installBtnVisible = ref(false)

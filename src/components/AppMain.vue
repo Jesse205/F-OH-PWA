@@ -3,6 +3,9 @@ import { ref } from 'vue'
 
 const mainScroll = ref<HTMLElement>()
 defineExpose({
+  /**
+   * 滚动区域元素
+   */
   mainScroll,
 })
 </script>

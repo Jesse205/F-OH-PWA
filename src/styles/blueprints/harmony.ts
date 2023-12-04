@@ -34,7 +34,7 @@ export const harmony: Blueprint = {
           secondary: '#317AF7',
           background: '#000000',
           'surface-variant': '#424242',
-          'on-surface-variant': '#fffffff',
+          'on-surface-variant': '#ffffff',
           error: '#E84026',
           info: '#317AF7',
         },
@@ -157,9 +157,6 @@ export const harmony: Blueprint = {
       VBtn: {
         size: 'large',
       },
-    },
-    VOverlay: {
-      scrim: 'argb(0, 0, 0, 0.3)',
     },
     VProgressCircular: {
       width: 3,

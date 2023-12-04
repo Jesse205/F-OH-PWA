@@ -15,28 +15,31 @@ const WEBVIEW_OPTIONS_DEFAULT: WindowOptions = {
 }
 
 /**
- * 判断当前环境是否是 Tauri
+ * 当前环境是否是 Tauri
  */
 export const isTauri = Boolean((window as any).__TAURI__)
 
 /**
- * 判断是否以传统 APP 运行
+ * 是否以传统 APP 运行
  */
 export const isLegacyApp = isTauri
 
 /**
- * 判断当前域名是否采用了重定向 API，用于在用户直接访问资源时还原原链接。
+ * 判断当前域名是否采用了重定向 API，用于在用户直接访问资源时还原原链接，否则会重定向到主页。
  */
 export function isRedirectApiHost(): boolean {
   return location.hostname.endsWith('.netlify.app')
 }
 
+/**
+ * 判断当前域名是否支持 WebHistory 模式，如果支持，则将展示简洁的地址。
+ */
 export function isWebHistorySupported(): boolean {
   return location.hostname.endsWith('.netlify.app')
 }
 
 /**
- * 打开新窗口
+ * 打开新窗口，仅支持 tauri。
  * @param url 要打开的链接
  */
 export async function openNewWindow(url: string) {
@@ -48,7 +51,7 @@ export async function openNewWindow(url: string) {
     })
     webView.once('tauri://created', () => {
       tauriInvoke('set_shadow', { label: webView.label })
-      console.log('window created')
+      console.debug('window created')
     })
   } else {
     console.warn('不支持创建新窗口')

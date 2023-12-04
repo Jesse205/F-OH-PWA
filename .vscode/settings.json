@@ -6,7 +6,10 @@
     "todo-tree.tree.disableCompactFolders": true,
     "cSpell.words": [
         "btns",
+        "Combobox",
         "gogs",
+        "haspopup",
+        "iconsets",
         "ohos",
         "Tauri",
         "vueuse"

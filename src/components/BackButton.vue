@@ -30,9 +30,6 @@ const attrs = useAttrs()
     </template>
     <span>{{ $t('back.name') }}</span>
   </v-tooltip>
-  <!--<transition name="slide-x-transition">
-    <v-btn class="btn" v-show="isBtnShowing" icon="mdi-arrow-left" @click.stop="$router.back" />
-  </transition>-->
 </template>
 
 <style scoped lang="scss">

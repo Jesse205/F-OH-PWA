@@ -3,9 +3,7 @@ import { computed, unref } from 'vue'
 import { useDisplay } from 'vuetify'
 import { useHomeNavigation } from '@/events/navigation'
 import { useTitle } from '@vueuse/core'
-import { useAppStore } from '../../store/app'
-
-// const appName = useGlobalAppName()
+import { useAppStore } from '@/store/app'
 
 const appStore = useAppStore()
 

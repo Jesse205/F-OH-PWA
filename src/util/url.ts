@@ -13,7 +13,7 @@ export function getCompletePath(url: string, base: string) {
 /**
  * 服务器的相对路径为绝对路径。
  *
- * 服务器的的根路径不是域名打头，因此不能使用 `new URL(url, base).href` 。
+ * 服务器的的根路径不是域名打头，因此不能使用 `new URL(url, base).href` 或 {@linkcode getCompletePath}。
  *
  * 如果是绝对路径，该函数会直接返回 `url` 本身。
  *
