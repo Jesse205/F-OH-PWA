@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { URL_API, URL_API_LEGACY } from '@/data/constants'
+import { URL_API } from '@/data/constants'
 import type { AppInfo } from '@/ts/interfaces/app.interfaces'
 import { getServerCompletePath } from '@/util/url'
 import { computed, ref } from 'vue'
-import { isRedirectApiHost } from '@/util/app'
 const props = defineProps<{
   loading: boolean
   appInfo?: AppInfo
@@ -14,7 +13,7 @@ const appIconUrl = computed(() => props.appInfo && getServerCompletePath(props.a
 
 // 绝对路径下载链接
 const appDownloadUrl = computed(() => {
-  if (props.appInfo) return getServerCompletePath(props.appInfo.hapUrl, isRedirectApiHost() ? URL_API_LEGACY : URL_API)
+  if (props.appInfo) return getServerCompletePath(props.appInfo.hapUrl)
   return null
 })
 
@@ -34,7 +33,7 @@ defineExpose({
       type="image"
       :loading="loading"
     >
-      <v-img class="rounded-lg" :src="appIconUrl ?? ''" @dragstart.stop />
+      <v-img class="rounded-lg" :src="appIconUrl ?? ''" data-allow-drag />
     </v-skeleton-loader>
     <div class="app-overview__right">
       <!-- 应用名和版本 -->
@@ -51,7 +50,7 @@ defineExpose({
           {{ appInfo?.packageName ?? $t('unknown.name') }}
         </div>
       </template>
-      <div class="app-overview__right__button-group" @dragstart.stop>
+      <div class="app-overview__right__button-group" data-allow-drag>
         <!-- 下载按钮 -->
         <v-btn
           prepend-icon="$downloadFilled"

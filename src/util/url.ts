@@ -1,3 +1,6 @@
+import { URL_API, URL_API_LEGACY } from '@/data/constants'
+import { isRedirectApiHost } from './app'
+
 const MACHER_GITHUB_USER = /^https:\/\/(www\.)?github\.com\/[^/]+/
 const MACHER_GITEE_USER = /^https:\/\/(www\.)?gitee\.com\/[^/]+/
 
@@ -20,7 +23,7 @@ export function getCompletePath(url: string, base: string) {
  * @param url 相对路径的链接，可以带后缀 `/`
  * @param root 根路径，可以带前缀 `/`
  */
-export function getServerCompletePath(url: string, root: string) {
+export function getServerCompletePath(url: string, root: string = isRedirectApiHost() ? URL_API_LEGACY : URL_API) {
   if (url.search('://') > -1) return url
   return `${root}${root.endsWith('/') ? '' : '/'}${url.startsWith('/') ? url.slice(1) : url}`
 }

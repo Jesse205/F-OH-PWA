@@ -22,19 +22,19 @@ const adTabValue = ref<'join' | 'develop'>('join')
   </v-app-bar>
   <app-main>
     <v-container class="container">
-      <v-card v-for="(persion, index) in data" :key="index" class="donate-card">
-        <v-tabs v-model="persion.selected">
-          <v-tab v-for="(platform, index) in persion.platforms" :key="index" :value="index" :color="platform.color">
+      <v-card v-for="(person, index) in data" :key="index" class="donate-card">
+        <v-tabs v-model="person.selected">
+          <v-tab v-for="(platform, index) in person.platforms" :key="index" :value="index" :color="platform.color">
             {{ platform.name }}
           </v-tab>
         </v-tabs>
         <v-divider />
-        <v-img class="donate-card__image" cover :src="persion.platforms[persion.selected].image" />
+        <v-img class="donate-card__image" cover :src="person.platforms[person.selected].image" data-allow-drag />
         <v-divider />
         <v-card-item>
           <div>
-            <div class="text-h6 mb-1">{{ persion.name }}</div>
-            <div class="text-caption">{{ persion.summary }}</div>
+            <div class="text-h6 mb-1">{{ person.name }}</div>
+            <div class="text-caption">{{ person.summary }}</div>
           </div>
         </v-card-item>
       </v-card>

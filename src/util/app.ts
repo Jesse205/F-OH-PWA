@@ -27,15 +27,15 @@ export const isLegacyApp = isTauri
 /**
  * 判断当前域名是否采用了重定向 API，用于在用户直接访问资源时还原原链接，否则会重定向到主页。
  */
-export function isRedirectApiHost(): boolean {
-  return location.hostname.endsWith('.netlify.app')
+export function isRedirectApiHost(hostname = location.hostname): boolean {
+  return hostname.endsWith('.netlify.app')
 }
 
 /**
  * 判断当前域名是否支持 WebHistory 模式，如果支持，则将展示简洁的地址。
  */
-export function isWebHistorySupported(): boolean {
-  return location.hostname.endsWith('.netlify.app')
+export function isWebHistorySupported(hostname = location.hostname): boolean {
+  return hostname.endsWith('.netlify.app')
 }
 
 /**

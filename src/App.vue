@@ -13,6 +13,7 @@ import ContextMenu from './components/app/ContextMenu.vue'
 import { useAppStore } from './store/app'
 import { isPwaDisplayMode } from './util/pwa'
 import TauriSystemBar from './components/app/TauriSystemBar.vue'
+import { HOST_WEB } from './data/constants'
 
 // 主题
 const theme = useTheme()
@@ -72,12 +73,43 @@ watch(
   { immediate: true },
 )
 
+function canElementDrag(target: EventTarget): boolean {
+  for (let element: {} = target; 'parentElement' in element && element.parentElement; element = element.parentElement) {
+    if (
+      'dataset' in element &&
+      typeof element.dataset === 'object' &&
+      element.dataset !== null &&
+      'allowDrag' in element.dataset
+    ) {
+      console.log('Allow drag by data-allow-drag.')
+      return true
+    }
+    if (
+      'tagName' in element &&
+      element.tagName === 'A' &&
+      'href' in element &&
+      typeof element.href === 'string' &&
+      new URL(element.href, location.href).hostname !== location.hostname
+    ) {
+      console.log('Allow drag by external link.')
+      return true
+    }
+  }
+  return false
+}
+
 /**
- * 在 Tauri 中阻止拖动，如需允许拖动，请在组件上使用 `@dragstart.stop` 属性
+ * 在 Tauri 中阻止拖动。
+ *
+ * 如需允许拖动，请在组件上使用 `data-allow-drag` 属性
  * @param event
  */
 function onDragStart(event: DragEvent) {
-  if (isTauri) event.preventDefault()
+  if (isTauri) {
+    if (!event.target || !canElementDrag(event.target)) {
+      event.preventDefault()
+    }
+  }
 }
 </script>
 

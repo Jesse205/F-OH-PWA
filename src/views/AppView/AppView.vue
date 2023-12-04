@@ -5,7 +5,7 @@ import { useAppsStore } from '@/store/apps'
 import AppMain from '@/components/AppMain.vue'
 import { useScroll, useShare } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
-import { getAppTags } from '@/util/apps'
+import { getAppShareUrl, getAppTags } from '@/util/apps'
 import { useTitle } from '@/events/title'
 import AppOverview from './components/AppOverview.vue'
 import AppDetails from './components/AppDetails.vue'
@@ -79,23 +79,14 @@ useTitle(title)
 // 分享
 const { share, isSupported: isShareSupported } = useShare()
 
-function getAppShareUrl(): URL {
-  const url = new URL(location.href)
-  if (isLegacyApp) {
-    url.hostname = HOST_WEB
-    url.protocol = 'https'
-    url.port = ''
-  }
-  return url
-}
-
 /**
  * 使用 Web Share API 分享当前应用。
  */
 function shareApp() {
+  if (!appInfo.value?.packageName) return
   share({
     title: document.head.title,
-    url: getAppShareUrl().href,
+    url: getAppShareUrl(appInfo.value?.packageName).href,
   })
 }
 </script>
@@ -147,7 +138,7 @@ function shareApp() {
       <!-- #endregion -->
 
       <!-- #region 开发者信息 -->
-      <title-list v-show="appInfo?.vender || loading" class="my-4" :title="$t('developer.name')" @dragstart.stop>
+      <title-list v-show="appInfo?.vender || loading" class="my-4" :title="$t('developer.name')" data-allow-drag>
         <v-skeleton-loader v-if="loading" type="avatar, text" color="transparent" />
         <!-- prepend-avatar="@/assets/images/icon.svg" -->
         <v-list-item

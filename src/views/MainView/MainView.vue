@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { Component } from 'vue'
 import { ref, watchEffect, computed } from 'vue'
 import { useDisplay } from 'vuetify'
 import { useTitle } from '@/events/title'

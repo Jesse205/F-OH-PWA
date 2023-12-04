@@ -6,6 +6,8 @@ import { useAppsStore } from '@/store/apps'
 import type { AppInfo } from '@/ts/interfaces/app.interfaces'
 import TitleList from '@/components/list/TitleList.vue'
 import CenterSpace from '@/components/CenterSpace.vue'
+import { getServerCompletePath } from '@/util/url'
+import { getAppShareUrl } from '@/util/apps'
 
 const { t } = useI18n()
 
@@ -87,6 +89,33 @@ function refresh() {
 }
 
 defineExpose({ refresh })
+
+function onProjectDragStart(event: DragEvent) {
+  console.log(event)
+  const { target, dataTransfer } = event
+  if (
+    target &&
+    'dataset' in target &&
+    typeof target.dataset === 'object' &&
+    target.dataset !== null &&
+    'pkg' in target.dataset &&
+    typeof target.dataset.pkg === 'string' &&
+    dataTransfer
+  ) {
+    const targetElement = target as unknown as HTMLElement
+    const { pkg } = target.dataset
+    const appInfo = appsStore.data?.find((item) => item.packageName === pkg)
+    if (appInfo) {
+      const imageElement = targetElement.querySelector('.v-avatar') ?? targetElement
+      const infoUrl = getAppShareUrl(appInfo.packageName).href
+      dataTransfer.clearData()
+      dataTransfer.setData('text/uri-list', infoUrl)
+      dataTransfer.setData('text/plain', infoUrl)
+      dataTransfer.setDragImage(imageElement, imageElement.clientWidth / 2, 2)
+      dataTransfer.effectAllowed = 'copyLink'
+    }
+  }
+}
 </script>
 
 <template>
@@ -97,8 +126,15 @@ defineExpose({ refresh })
       <!-- MainLayout -->
       <template v-for="appType in appTypes">
         <title-list v-if="appType.apps && appType.apps.length" :key="appType.key" class="my-4" :title="appType.title">
-          <div class="project-items">
-            <ProjectItem v-for="item in appType.apps" :key="item.id" class="project-item" :item="item" />
+          <div class="project-items" @dragstart="onProjectDragStart">
+            <ProjectItem
+              v-for="item in appType.apps"
+              :key="item.id"
+              class="project-item"
+              :item="item"
+              :data-pkg="item.packageName"
+              data-allow-drag
+            />
           </div>
         </title-list>
       </template>
