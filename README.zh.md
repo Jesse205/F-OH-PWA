@@ -30,14 +30,14 @@ F-OH PWA + BrowserCE，通过网页分发开源鸿蒙 hap 应用的最佳实践�
 ## 屏幕截图
 
 <div>
-<img src="./public/screenshots/Snipaste_2023-09-06_21-32-26.webp" width=30% />
-<img src="./public/screenshots/Snipaste_2023-09-06_21-32-39.webp" width=30% />
-<img src="./public/screenshots/Snipaste_2023-09-06_21-32-50.webp" width=30% />
+<img src="./public/screenshots/Snipaste_2023-12-05_05-17-05.webp" width=30% alt="主页"/>
+<img src="./public/screenshots/Snipaste_2023-12-05_05-17-10.webp" width=30% alt="分类"/>
+<img src="./public/screenshots/Snipaste_2023-12-05_05-17-15.webp" width=30% alt="应用详情"/>
 </div>
 <div>
-<img src="./public/screenshots/Snipaste_2023-09-06_21-33-22.webp" width=30% />
-<img src="./public/screenshots/Snipaste_2023-09-06_21-33-28.webp" width=30% />
-<img src="./public/screenshots/Snipaste_2023-09-06_21-33-35.webp" width=30% />
+<img src="./public/screenshots/Snipaste_2023-12-05_05-16-05.webp" width=30% alt="主页"/>
+<img src="./public/screenshots/Snipaste_2023-12-05_05-16-10.webp" width=30% alt="分类"/>
+<img src="./public/screenshots/Snipaste_2023-12-05_05-16-17.webp" width=30% alt="应用详情"/>
 </div>
 
 ## 下载与访问

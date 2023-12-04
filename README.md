@@ -30,14 +30,14 @@ F-OH PWA + BrowserCE, best practices for distributing open source hongmeng hap a
 ## Screenshots
 
 <div>
-<img src="./public/screenshots/Snipaste_2023-09-06_21-32-26.webp" width=30% />
-<img src="./public/screenshots/Snipaste_2023-09-06_21-32-39.webp" width=30% />
-<img src="./public/screenshots/Snipaste_2023-09-06_21-32-50.webp" width=30% />
+<img src="./public/screenshots/Snipaste_2023-12-05_05-17-05.webp" width=30% alt="Home"/>
+<img src="./public/screenshots/Snipaste_2023-12-05_05-17-10.webp" width=30% alt="Categories"/>
+<img src="./public/screenshots/Snipaste_2023-12-05_05-17-15.webp" width=30% alt="App view"/>
 </div>
 <div>
-<img src="./public/screenshots/Snipaste_2023-09-06_21-33-22.webp" width=30% />
-<img src="./public/screenshots/Snipaste_2023-09-06_21-33-28.webp" width=30% />
-<img src="./public/screenshots/Snipaste_2023-09-06_21-33-35.webp" width=30% />
+<img src="./public/screenshots/Snipaste_2023-12-05_05-16-05.webp" width=30% alt="Home"/>
+<img src="./public/screenshots/Snipaste_2023-12-05_05-16-10.webp" width=30% alt="Categories"/>
+<img src="./public/screenshots/Snipaste_2023-12-05_05-16-17.webp" width=30% alt="App view"/>
 </div>
 
 ## Download or Launch

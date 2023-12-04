@@ -57,3 +57,19 @@
 | ---------------------------------- | ------------- |
 | `@typescript-eslint/eslint-plugin` | lint 无法使用 |
 | `@typescript-eslint/parser`        | lint 无法使用 |
+
+## 截图
+
+截图包含竖屏与横屏。他们参数如下：
+
+| 方向 | 边框 | 内容大小 | 实际大小 | 示例        |
+| ---- | ---- | -------- | -------- | ----------- |
+| 竖屏 | 1px  | 500x800  | 502x802  | ![横屏截图] |
+| 横屏 | 1px  | 960x600  | 960x600  | ![竖屏截图] |
+
+[横屏截图]: ./public/screenshots/Snipaste_2023-12-05_05-16-05.webp
+[竖屏截图]: ./public/screenshots/Snipaste_2023-12-05_05-17-05.webp
+
+其中 `1px` 的边框是因为 Sinpase 会自带 `1px` 的边框，所以需要额外加 `2px` 。
+
+所有截屏存放到 [`./public/screenshots`](./public/screenshots/) 目录下，因为需要打包进软件内，并在 PWA 安装前显示。
