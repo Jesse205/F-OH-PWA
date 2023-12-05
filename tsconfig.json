@@ -13,10 +13,20 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "lib": ["esnext", "dom", "webworker"],
-    "types": ["node", "vuetify"],
+    "lib": [
+      "esnext",
+      "dom",
+      "webworker"
+    ],
+    "types": [
+      "node",
+      "vuetify",
+      "vite-plugin-pwa/client"
+    ],
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": [
+        "src/*"
+      ]
     }
   },
   "include": [

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { usePreferredDark } from '@vueuse/core'
 import { useTheme } from 'vuetify'
-import { watch, computed } from 'vue'
+import { watch, computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { usePwa } from '@/events/pwa'
 import { isTauri } from '@/util/app'
@@ -14,6 +14,7 @@ import { useAppStore } from './store/app'
 import { isPwaDisplayMode } from './util/pwa'
 import TauriSystemBar from './components/app/TauriSystemBar.vue'
 import { isElementDraggableInLegacyApp } from './util/drag'
+import { useRegisterSW } from 'virtual:pwa-register/vue'
 
 // 主题
 const theme = useTheme()
@@ -25,9 +26,7 @@ watch(
   (isDark) => {
     theme.global.name.value = isDark ? 'dark' : 'light'
   },
-  {
-    immediate: true,
-  },
+  { immediate: true },
 )
 
 const route = useRoute()
@@ -37,6 +36,17 @@ const routeName = computed(() => route.path.match('/[^/]+')?.[0] ?? '')
 
 // PWA
 usePwa()
+
+const { needRefresh, updateServiceWorker } = useRegisterSW({ immediate: true })
+const reloadDialogVisible = ref(false)
+watch(needRefresh, (newValue) => {
+  if (newValue) reloadDialogVisible.value = true
+})
+
+function updateAndReload() {
+  updateServiceWorker()
+  reloadDialogVisible.value = false
+}
 
 // APP 模式
 console.debug('isTauri', isTauri)
@@ -112,6 +122,17 @@ function onDragStart(event: DragEvent) {
       </div>
     </v-main>
     <ContextMenu />
+    <v-dialog v-model="reloadDialogVisible">
+      <v-card :title="$t('update.name')">
+        <v-card-text> 应用有更新，需要重新加载 </v-card-text>
+        <v-card-actions>
+          <v-btn variant="text" @click="reloadDialogVisible = false"> {{ $t('cancel.name') }} </v-btn>
+          <v-btn variant="text" @click="updateAndReload">
+            {{ $t('ok.name') }}
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-app>
 </template>
 

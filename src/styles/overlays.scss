@@ -243,6 +243,10 @@ html {
             }
           }
         }
+        .v-card-text {
+          padding-top: 4px;
+          padding-bottom: 4px;
+        }
       }
       @media (max-width: 600px) {
         bottom: 0;

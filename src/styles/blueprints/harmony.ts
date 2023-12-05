@@ -150,6 +150,7 @@ export const harmony: Blueprint = {
     },
     VDialog: {
       transition: 'dialog-transition',
+      width: '420',
       VCard: {
         color: 'surface',
         variant: 'elevated',
