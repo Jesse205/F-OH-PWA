@@ -14,6 +14,7 @@
         "iconsets",
         "ohos",
         "Tauri",
+        "unlisten",
         "vueuse"
     ],
     "i18n-ally.localesPaths": [

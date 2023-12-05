@@ -156,5 +156,11 @@
   },
   "error": {
     "loading": "Loading error"
+  },
+  "maximize": {
+    "name": "Maxsize"
+  },
+  "minimize": {
+    "name": "Minimize"
   }
 }

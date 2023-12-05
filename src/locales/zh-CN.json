@@ -156,5 +156,11 @@
   },
   "error": {
     "loading": "加载错误"
+  },
+  "maximize": {
+    "name": "最大化"
+  },
+  "minimize": {
+    "name": "最小化"
   }
 }

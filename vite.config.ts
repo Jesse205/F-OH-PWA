@@ -36,7 +36,7 @@ export default defineConfig({
         cleanupOutdatedCaches: true,
       },
       manifest,
-      disable: isTauri && isProduction,
+      disable: isTauri,
     }),
   ],
   define: {

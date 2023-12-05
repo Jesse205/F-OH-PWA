@@ -4,21 +4,37 @@ import { useTauriSystemBar } from '@/events/tauri'
 import { getCurrent } from '@tauri-apps/api/window'
 
 const appWindow = getCurrent()
-const { toggleMaximize, close, minimize } = appWindow
 const title = useTitle(null, { observe: true })
 
-useTauriSystemBar()
-
-
+const { isMaximized } = useTauriSystemBar()
 </script>
 
 <template>
   <v-system-bar class="system-bar" color="transparent" data-tauri-drag-region window>
     <span>{{ title }}</span>
     <v-spacer />
-    <v-btn icon="$window-minimize" variant="text" color="on-background" @click="minimize()" />
-    <v-btn icon="$window-maxsize" variant="text" color="on-background" @click="toggleMaximize()" />
-    <v-btn class="system-bar__btn_close" icon="$window-close" variant="text" color="on-background" @click="close()" />
+    <v-btn
+      icon="$window-minimize"
+      variant="text"
+      color="on-background"
+      :title="$t('minimize.name')"
+      @click="appWindow.minimize()"
+    />
+    <v-btn
+      :icon="isMaximized ? '$window-restore' : '$window-maximize'"
+      variant="text"
+      color="on-background"
+      :title="$t('maximize.name')"
+      @click="appWindow.toggleMaximize()"
+    />
+    <v-btn
+      class="system-bar__btn_close"
+      icon="$window-close"
+      variant="text"
+      color="on-background"
+      :title="$t('close.name')"
+      @click="appWindow.close()"
+    />
   </v-system-bar>
 </template>
 
