@@ -122,19 +122,17 @@ function onDragStart(event: DragEvent) {
         <router-view v-slot="{ Component }">
           <!-- 不能去除?? ''，否则格式化工具会自动删除括号，导致高亮错误 -->
           <transition :name="(route.meta.transition as string) ?? ''">
-            <div :key="routeName" class="page">
+            <div :key="routeName" class="page" :data-path="route.path">
               <v-layout class="layout">
                 <component :is="Component" />
               </v-layout>
             </div>
           </transition>
         </router-view>
-        <transition ame="fade-transition">
-          <div v-if="!routeName" class="splash">
-            <img class="logo" src="@/assets/images/icon.svg" />
-            <span>{{ appStore.appName }}</span>
-          </div>
-        </transition>
+        <div v-if="!routeName" class="splash">
+          <img class="logo" src="@/assets/images/icon.svg" />
+          <span>{{ appStore.appName }}</span>
+        </div>
       </div>
     </v-main>
     <ContextMenu />

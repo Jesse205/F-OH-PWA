@@ -4,7 +4,7 @@ import { nextTick } from 'vue'
 import type { HistoryState as VueRouterHistoryState, RouteRecordRaw } from 'vue-router'
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 
-const EL_SCROLL = '.v-main .mainScroll'
+const SELECTOR_SCROLL = '.main-container .main-scroll'
 const PATH_HOME = '/index/home'
 const TAG = '[Router]'
 
@@ -112,7 +112,7 @@ router.beforeEach((to, from) => {
     scroll2: scrollState2,
   }
   // 当前有一个bug，通过导航按钮切换的页面无法监听,因为current可能不等于from。这可能导致滚动状态无法被保存。此处使用内存泄漏掩盖部分bug
-  const scrollElement = document.querySelector(EL_SCROLL)
+  const scrollElement = document.querySelector(SELECTOR_SCROLL)
   const scrollData = {
     top: scrollElement?.scrollTop ?? 0,
     left: scrollElement?.scrollLeft ?? 0,
@@ -139,17 +139,19 @@ router.afterEach((to, from) => {
     to.meta.transition = name
     from.meta.transition = name
   } else {
-    const name = 'fade-transition'
-    to.meta.transition = name
-    from.meta.transition = name
+    to.meta.transition = ''
+    from.meta.transition = ''
   }
 
   const state = window.history.state as HistoryState
+
   if (state.scroll2 && state.current) {
     nextTick(() => {
       // 有动画，所以要选择第最后一个元素
       if (state.scroll2 && state.current) {
-        const elements = document.querySelectorAll(EL_SCROLL)
+        const elements = document.querySelectorAll(SELECTOR_SCROLL)
+        console.log(elements)
+
         elements[elements.length - 1]?.scrollTo(state.scroll2[state.current])
       }
     })
