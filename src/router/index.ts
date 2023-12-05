@@ -95,15 +95,32 @@ const history = isWebHistorySupported()
 const router = createRouter({
   history,
   routes,
+  /**
+   * 本方法直接设置滚动位置，并没有按照常规逻辑返回位置信息。
+   */
+  scrollBehavior(to, from, savedPosition) {
+    console.debug(TAG, 'scrollBehavior', to, from, savedPosition)
+    const state = window.history.state as HistoryState
+
+    if (state.scroll2 && state.current) {
+      // 有动画，所以要选择第最后一个元素
+      if (state.scroll2 && state.current) {
+        const element = document.querySelector(`.page[data-path='${to.path}']:last-child ${SELECTOR_SCROLL}`)
+        element?.scrollTo(state.scroll2[state.current])
+      }
+    }
+  },
 })
 
 const scrollState2: ScrollToOptions2 = (history.state.scroll2 as ScrollToOptions2) ?? {}
 
 router.beforeEach((to, from) => {
+  console.debug(TAG, 'beforeEach', to, from)
+
   // 用户在主页点击首页时自动返回，防止有重复的历史记录。
   if (to.path === PATH_HOME && to.path === history.state.back) {
     history.go(-1)
-    console.warn(`${TAG} Backing to ${to.path} because history.state.back=${history.state.back}. state may lost!`)
+    console.warn(TAG, `Backing to ${to.path} because history.state.back=${history.state.back}. state may lost!`)
     return false
   }
   // TODO: 使用更好的方法实现
@@ -124,7 +141,8 @@ router.beforeEach((to, from) => {
   }
   if (history.state.current !== from.fullPath) {
     console.warn(
-      `${TAG} history.state.current (${history.state.current}) !== from.fullPath (${from.fullPath}), state maybe not to be saved!`,
+      TAG,
+      `history.state.current (${history.state.current}) !== from.fullPath (${from.fullPath}), state maybe not to be saved!`,
     )
   }
   window.history.replaceState(state, document.title)
@@ -132,6 +150,8 @@ router.beforeEach((to, from) => {
 })
 
 router.afterEach((to, from) => {
+  console.debug(TAG, 'afterEach', to, from)
+
   // 动画
   if (from.path !== '/') {
     // const name = history.state.forward ? 'scroll-x-transition' : 'scroll-x-reverse-transition'
@@ -141,20 +161,6 @@ router.afterEach((to, from) => {
   } else {
     to.meta.transition = ''
     from.meta.transition = ''
-  }
-
-  const state = window.history.state as HistoryState
-
-  if (state.scroll2 && state.current) {
-    nextTick(() => {
-      // 有动画，所以要选择第最后一个元素
-      if (state.scroll2 && state.current) {
-        const elements = document.querySelectorAll(SELECTOR_SCROLL)
-        console.log(elements)
-
-        elements[elements.length - 1]?.scrollTo(state.scroll2[state.current])
-      }
-    })
   }
 })
 
