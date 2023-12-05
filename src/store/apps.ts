@@ -1,6 +1,7 @@
 // Utilities
 import { URL_API_ALL_APP_LIST } from '@/data/constants'
 import type { AppInfo } from '@/ts/interfaces/app.interfaces'
+import { assert } from '@/util/app'
 import { getAxiosInstance } from '@/util/fetch'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
@@ -25,10 +26,9 @@ export const useAppsStore = defineStore('apps', () => {
     getAxiosInstance()
       .get<AppInfo[]>(URL_API_ALL_APP_LIST)
       .then((response) => {
+        assert(typeof response.data === 'object', "Data isn't object.")
+        console.log(TAG, 'Fetched apps', response.data)
         data.value = response.data
-        if (import.meta.env.DEV) {
-          console.log(TAG, 'fetched apps', response.data)
-        }
         errMsg.value = null
       })
       .catch((reason) => {

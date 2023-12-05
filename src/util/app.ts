@@ -79,3 +79,12 @@ export async function copyText(text: string): Promise<CopyTextState> {
   } else window.close()
 }
 */
+
+/**
+ * 断言并阻止代码运行
+ */
+export function assert(value: boolean, ...messages: string[]) {
+  if (!value) {
+    throw new Error(messages.join('\n'))
+  }
+}
