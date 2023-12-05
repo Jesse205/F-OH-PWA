@@ -37,6 +37,7 @@ export default defineConfig({
   define: {
     'process.env': {},
     __VERSION__: JSON.stringify(process.env.npm_package_version),
+    __IS_TAURI__: !!process.env.TAURI_FAMILY,
   },
   resolve: {
     alias: {

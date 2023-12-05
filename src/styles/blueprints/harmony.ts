@@ -1,6 +1,6 @@
 // Icons
 import { hmi, aliases } from '@/iconsets/hmi'
-import { mdi } from 'vuetify/iconsets/mdi'
+// import { mdi } from 'vuetify/iconsets/mdi'
 
 // Types
 import type { Blueprint } from 'vuetify'
@@ -168,11 +168,10 @@ export const harmony: Blueprint = {
     },
   },
   icons: {
-    defaultSet: 'mdi',
+    defaultSet: 'hmi',
     aliases,
     sets: {
       hmi,
-      mdi,
     },
   },
 }

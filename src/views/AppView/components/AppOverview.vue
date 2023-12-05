@@ -3,6 +3,7 @@ import { URL_API } from '@/data/constants'
 import type { AppInfo } from '@/ts/interfaces/app.interfaces'
 import { getServerCompletePath } from '@/util/url'
 import { computed, ref } from 'vue'
+import { mdiSourceBranch } from '@mdi/js'
 const props = defineProps<{
   loading: boolean
   appInfo?: AppInfo
@@ -63,7 +64,7 @@ defineExpose({
         <!-- 源代码按钮 -->
         <v-btn
           v-if="appInfo?.openSourceAddress"
-          prepend-icon="mdi-source-branch"
+          :prepend-icon="mdiSourceBranch"
           variant="text"
           :href="appInfo.openSourceAddress"
           target="_blank"

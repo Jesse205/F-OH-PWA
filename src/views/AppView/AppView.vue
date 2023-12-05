@@ -10,11 +10,10 @@ import { useTitle } from '@/events/title'
 import AppOverview from './components/AppOverview.vue'
 import AppDetails from './components/AppDetails.vue'
 import BackButton from '@/components/BackButton.vue'
-import { isLegacyApp } from '@/util/app'
-import { HOST_WEB } from '@/data/constants'
 import { matchUserSpace } from '@/util/url'
 import type { AppInfo } from '@/ts/interfaces/app.interfaces'
 import TitleList from '@/components/list/TitleList.vue'
+import { mdiFormatQuoteOpen } from '@mdi/js'
 
 const { t } = useI18n()
 const route = useRoute()
@@ -124,7 +123,7 @@ function shareApp() {
       />
       <v-card v-else-if="appInfo?.desc" class="summary-card" variant="tonal" flat :border="false" tag="article">
         <v-card-text>{{ appInfo.desc }}</v-card-text>
-        <v-icon class="summary-card__icon" icon="mdi-format-quote-open" />
+        <v-icon class="summary-card__icon" :icon="mdiFormatQuoteOpen" />
       </v-card>
       <!-- #endregion -->
 

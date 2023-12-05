@@ -6,6 +6,7 @@ import { useDonate } from '@/data/donate'
 import ICON from '@/assets/images/icon.svg'
 import { useTitle } from '@/events/title'
 import BackButton from '@/components/BackButton.vue'
+import { mdiCursorDefaultOutline } from '@mdi/js'
 
 const { t } = useI18n()
 useTitle(computed(() => t('donate.name')))
@@ -61,7 +62,7 @@ const adTabValue = ref<'join' | 'develop'>('join')
             <div class="text-h6">OHOS Dev</div>
             <div class="text-body-1">加入 OHOS Dev，共建 OpenHarmony 生态!</div>
             <div class="donate-card__content-btn__description__click-hint">
-              <v-icon size="large" icon="mdi-cursor-default-outline" />
+              <v-icon size="large" :icon="mdiCursorDefaultOutline" />
               点击这里转到组织
             </div>
           </div>
@@ -81,7 +82,7 @@ const adTabValue = ref<'join' | 'develop'>('join')
             <div class="text-h6">F-OH</div>
             <div class="text-body-1">帮助我们开发 F-OH！</div>
             <div class="donate-card__content-btn__description__click-hint">
-              <v-icon size="large" icon="mdi-cursor-default-outline" />
+              <v-icon size="large" :icon="mdiCursorDefaultOutline" />
               点击这里转到项目
             </div>
           </div>

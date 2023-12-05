@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@mdi/font": "7.3.67",
+    "@mdi/js": "^7.3.67",
     "@tauri-apps/api": "^1.5.1",
     "@vueuse/core": "^10.6.1",
     "axios": "^1.6.2",

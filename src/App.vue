@@ -97,6 +97,7 @@ function onDragStart(event: DragEvent) {
     }
   }
 }
+console.log(__IS_TAURI__)
 </script>
 
 <template>

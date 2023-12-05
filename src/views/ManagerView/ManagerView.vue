@@ -5,11 +5,13 @@ import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { URL_UPLOAD } from '@/data/constants'
 import type { AppInfo } from '@/ts/interfaces/app.interfaces'
-import type { EditFileWork} from '@/ts/interfaces/gogs.interfaces';
+import type { EditFileWork } from '@/ts/interfaces/gogs.interfaces'
 import { Base64 } from 'js-base64'
 import ProjectItem from '@/components/list/ProjectItem.vue'
 import { useTokenSetting } from '@/events/settings'
 import * as gogs from '@/util/gogs'
+import BackButton from '@/components/BackButton.vue'
+import { mdiEyeOutline, mdiEyeOffOutline, mdiPlus, mdiCheck } from '@mdi/js'
 
 const { t } = useI18n()
 
@@ -89,11 +91,11 @@ function handelPush(event: Event) {
 
 <template>
   <v-app-bar>
-    <v-btn v-if="$router.options.history.state.back" icon="mdi-arrow-left" @click.stop="$router.back" />
+    <BackButton />
     <v-app-bar-title>{{ $t('manager.apps') }}</v-app-bar-title>
-    <v-menu origin="top" width="192" location="top" scrim="transparent">
+    <v-menu origin="top" width="192" location="bottom" scrim="transparent">
       <template v-slot:activator="{ props: menu }">
-        <v-btn icon="mdi-dots-vertical" v-bind="menu" />
+        <v-btn icon="$more" v-bind="menu" />
       </template>
       <v-list>
         <v-list-item title="F-OH Data" :href="URL_UPLOAD" target="_blank" />
@@ -108,8 +110,8 @@ function handelPush(event: Event) {
           class="mt-4"
           :label="$t('token.name')"
           :type="tokenVisible ? 'text' : 'password'"
-          prepend-inner-icon="mdi-key-outline"
-          :append-inner-icon="tokenVisible ? 'mdi-eye-off-outline' : 'mdi-eye-outline'"
+          prepend-inner-icon="$lock"
+          :append-inner-icon="tokenVisible ? mdiEyeOffOutline : mdiEyeOutline"
           active
           :rules="[tokenRules.required]"
           hint="请进入“用户设置 > 授权应用”获取令牌"
@@ -137,8 +139,8 @@ function handelPush(event: Event) {
   </app-main>
   <v-snackbar :key="snackbar ?? undefined" v-model="snackbarVisible">{{ snackbar }}</v-snackbar>
   <div class="floating-btns">
-    <v-btn v-show="loaded && workList.length > 0" class="btn" icon="mdi-check" @click="handelPush" />
-    <v-btn v-show="loaded" class="btn" icon="mdi-plus" @click="handelAddApp" />
+    <v-btn v-show="loaded && workList.length > 0" class="btn" :icon="mdiCheck" @click="handelPush" />
+    <v-btn v-show="loaded" class="btn" :icon="mdiPlus" @click="handelAddApp" />
   </div>
 </template>
 

@@ -4,25 +4,27 @@ import { writeText } from '@tauri-apps/api/clipboard'
 import { getName } from '@tauri-apps/api/app'
 import { invoke as tauriInvoke } from '@tauri-apps/api'
 
-const WEBVIEW_OPTIONS_DEFAULT: WindowOptions = {
-  center: true,
-  width: 960,
-  height: 600,
-  minWidth: 320,
-  minHeight: 480,
-  transparent: false,
-  decorations: false,
-}
-
 /**
- * 当前环境是否是 Tauri
+ * 当前环境是否是 Tauri，开发时使用动态判断，发行时使用常量。
  */
-export const isTauri = Boolean((window as any).__TAURI__)
+export const isTauri = import.meta.env.DEV ? Boolean((window as any).__TAURI__) : __IS_TAURI__
 
 /**
  * 是否以传统 APP 运行
  */
 export const isLegacyApp = isTauri
+
+const WEBVIEW_OPTIONS_DEFAULT: WindowOptions | undefined = isTauri
+  ? {
+      center: true,
+      width: 960,
+      height: 600,
+      minWidth: 320,
+      minHeight: 480,
+      transparent: false,
+      decorations: false,
+    }
+  : undefined
 
 /**
  * 判断当前域名是否采用了重定向 API，用于在用户直接访问资源时还原原链接，否则会重定向到主页。

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { AppInfo } from '@/ts/interfaces/app.interfaces'
 import TitleList from '@/components/list/TitleList.vue'
+import { mdiIdentifier } from '@mdi/js'
 
 defineProps<{
   loading: boolean
@@ -19,7 +20,7 @@ defineProps<{
       />
       <!-- subtitle 必须为字符串，否则如果为0的话不会添加到对应的元素内 -->
       <v-list-item
-        prepend-icon="mdi-identifier"
+        :prepend-icon="mdiIdentifier"
         :title="$t('id.name')"
         :subtitle="`${appInfo?.id ?? $t('unknown.name')}`"
       />
