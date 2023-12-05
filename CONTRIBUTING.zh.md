@@ -70,6 +70,6 @@
 [横屏截图]: ./public/screenshots/Snipaste_2023-12-05_05-16-05.webp
 [竖屏截图]: ./public/screenshots/Snipaste_2023-12-05_05-17-05.webp
 
-其中 `1px` 的边框是因为 Sinpase 会自带 `1px` 的边框，所以需要额外加 `2px` 。
+其中 `1px` 的边框是因为 Snipaste 会自带 `1px` 的边框，所以需要额外加 `2px` 。
 
 所有截屏存放到 [`./public/screenshots`](./public/screenshots/) 目录下，因为需要打包进软件内，并在 PWA 安装前显示。
