@@ -10,6 +10,10 @@ import { fileURLToPath, URL } from 'node:url'
 // Manifest
 import manifest from './manifest'
 
+const isTauri = !!process.env.TAURI_FAMILY
+const isTauriDebug = !!process.env.TAURI_DEBUG
+const isProduction = process.env.NODE_ENV === 'production'
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -32,12 +36,13 @@ export default defineConfig({
         cleanupOutdatedCaches: true,
       },
       manifest,
+      disable: isTauri && isProduction,
     }),
   ],
   define: {
     'process.env': {},
     __VERSION__: JSON.stringify(process.env.npm_package_version),
-    __IS_TAURI__: !!process.env.TAURI_FAMILY,
+    __IS_TAURI__: isTauri,
   },
   resolve: {
     alias: {
@@ -66,8 +71,8 @@ export default defineConfig({
     // Tauri uses Chromium on Windows and WebKit on macOS and Linux
     target: process.env.TAURI_PLATFORM === 'windows' ? 'chrome105' : 'safari13',
     // don't minify for debug builds
-    minify: !process.env.TAURI_DEBUG ? 'esbuild' : false,
+    minify: !isTauriDebug ? 'esbuild' : false,
     // 为调试构建生成源代码映射 (sourcemap)
-    sourcemap: !!process.env.TAURI_DEBUG,
+    sourcemap: isTauriDebug || !isProduction,
   },
 })
