@@ -1,6 +1,7 @@
 <div align="center">
 <img src="./src/assets/images/icon.svg" width=192 height=192 alt="项目图标" title="项目图标" />
-<h1>F-OH PWA</h1>
+
+# F-OH PWA
 
 [![Gitee 仓库](https://img.shields.io/badge/Gitee-仓库-C71D23?logo=gitee)](https://gitee.com/Jesse205/F-OH-PWA)
 [![GitHub 仓库](https://img.shields.io/badge/GitHub-仓库-0969DA?logo=github)](https://github.com/Jesse205/F-OH-PWA)
