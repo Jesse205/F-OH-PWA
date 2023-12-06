@@ -8,7 +8,7 @@
 
 [![PWA](https://img.shields.io/badge/PWA-html-%235A0FC8?logo=pwa)][Website]
 [![Windows](https://img.shields.io/badge/Windows-exe-%232863C5?logo=windows)][ReleaseInGitee]
-[![Linux](https://img.shields.io/badge/Linux-deb-%23FCC624?logo=linux)][ReleaseInGitee]
+[![Linux](https://img.shields.io/badge/Linux-deb-%23FCC624?logo=linux&logoColor=%23ffffff)][ReleaseInGitee]
 
 [中文](./README.zh.md)
 | **English**
