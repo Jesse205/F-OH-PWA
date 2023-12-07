@@ -58,8 +58,7 @@
       }
     },
     "security": {
-      "csp": null,
-      "dangerousDisableAssetCspModification": true
+      "csp": null
     },
     "updater": {
       "active": false

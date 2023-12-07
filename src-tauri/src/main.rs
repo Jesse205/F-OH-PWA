@@ -6,7 +6,6 @@ use window_shadows;
 
 fn main() {
     let context = tauri::generate_context!();
-
     Builder::default()
         .invoke_handler(tauri::generate_handler![set_shadow])
         .setup(move |app| {
@@ -18,7 +17,6 @@ fn main() {
                 .title(app.package_info().name.clone())
                 .inner_size(960.0, 600.0)
                 .min_inner_size(320.0, 480.0)
-                
                 .build()
                 .unwrap();
             set_shadow(app.app_handle(), window.label());

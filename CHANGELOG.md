@@ -5,7 +5,7 @@
 1. 全新 [HarmonyOS Design](https://developer.harmonyos.com/cn/design/) 设计风格，与 HarmonyOS、OpenHarmony 和谐统一。
 2. 应用页支持同时展示更多内容。
 3. 修复轮播图计算误差导致的出现线条的 bug。
-4. 开发版本（f-oh-pwa-jesse205.netlify.app）使用 WebHistory，使地址栏简洁。
+4. 开发版本（`f-oh-pwa-jesse205.netlify.app`）使用 WebHistory，使地址栏简洁。
 5. 应用详情页面使用应用包名作为参数，而非应用 ID，链接看起来更明确。
 6. 开发者地址现在匹配开源地址。目前仅支持 Gitee 与 GitHub。
 7. 应用列表现在使用传统 `img` 标签，避免页面切换过程中的卡顿。
