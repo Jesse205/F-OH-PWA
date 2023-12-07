@@ -20,7 +20,7 @@ F-OH is an application center for FOSS (Free and Open Source Software) on the Op
 
 F-OH PWA is a cross-platform third-party F-OH based on a browser version of the [Sparkling Store V3 Demo](https://gitee.com/sparkling-store/SparklingStoreV3Demo).
 
-F-OH PWA + BrowserCE, best practices for distributing openharmony hap apps via web pages, might be a good choice for teams with internal distribution of test hap apps.
+F-OH PWA + BrowserCE, best practices for distributing OpenHarmony hap apps via web pages, might be a good choice for teams with internal distribution of test hap apps.
 
 [![License](https://img.shields.io/github/license/Jesse205/F-OH-PWA)](./LICENSE)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/953dd570-c06c-4f52-a688-c2789adaa8cb/deploy-status)](https://app.netlify.com/sites/f-oh-pwa-jesse205/deploys)
