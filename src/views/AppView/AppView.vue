@@ -145,7 +145,7 @@ function shareApp() {
           prepend-icon="$account"
           :lines="developerSpace ? 'two' : 'one'"
           :title="appInfo?.vender"
-          :subtitle="developerSpace ?? false"
+          :subtitle="developerSpace ?? undefined"
           append-icon="$next"
           :href="developerSpace ?? `https://cn.bing.com/search?q=${appInfo?.vender}`"
           target="_blank"
