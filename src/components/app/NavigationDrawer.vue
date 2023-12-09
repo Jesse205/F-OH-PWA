@@ -28,7 +28,7 @@ const { xs, smAndDown } = useDisplay()
       <v-list-item prepend-avatar="@/assets/images/icon.svg" :title="appStore.appName" />
     </v-list>
     <!-- <v-divider /> -->
-    <v-list density="compact" nav color="primary">
+    <v-list density="compact" nav>
       <v-list-item
         v-for="(item, index) in pages"
         :key="item.name"
