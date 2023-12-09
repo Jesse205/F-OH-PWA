@@ -88,7 +88,7 @@ F-OH PWA 提供 **独立软件** 与 **网页访问** 两种方式供用户选�
 ### 为开发编译和热加载
 
 1. 克隆 [F-OH Data][F-OH-Data] 并启动一个服务器。
-2. 按照 [`.env.development.local.example`](./.env.development.local.example) 中的示例配置数据服务器。
+2. 将 [`.env.development.local.example`](./.env.development.local.example) 另存为 `.env.development.local`，并配置一些变量。
 3. 在该项目打开终端，按照以下规则运行命令。
    - 网页与 PWA 应用：运行 `yarn dev` 。
    - Windows Tauri 软件：运行 `yarn dev:tauri` 。

@@ -88,7 +88,8 @@ Some browsers support installing this website to the desktop by clicking "Instal
 ### Compiling and Hotloading for Development
 
 1. Clone [F-OH Data][F-OH-Data] and start a server on port `5500`.
-2. Open a terminal in the project and run commands according to the following rules.
+2. Save [ `.env.development.local.example`](. /.env.development.local.example) as `.env.development.local` and configure some variables.
+3. Open a terminal in the project and run commands according to the following rules.
    - Web and PWA applications: run `yarn dev`.
    - Windows Tauri software: run `yarn dev:tauri`.
 
