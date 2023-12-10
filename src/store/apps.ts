@@ -1,5 +1,5 @@
 // Utilities
-import { URL_API_ALL_APP_LIST } from '@/data/constants'
+import { IS_DEV_MODE, URL_API_ALL_APP_LIST } from '@/data/constants'
 import type { AppInfo } from '@/ts/interfaces/app.interfaces'
 import { assert } from '@/util/app'
 import { getAxiosInstance } from '@/util/fetch'
@@ -27,7 +27,7 @@ export const useAppsStore = defineStore('apps', () => {
       .get<AppInfo[]>(URL_API_ALL_APP_LIST)
       .then((response) => {
         assert(typeof response.data === 'object', "Data isn't object.")
-        console.log(TAG, 'Fetched apps', response.data)
+        if (IS_DEV_MODE) console.log(TAG, 'Fetched apps', response.data)
         data.value = response.data
         errMsg.value = null
       })

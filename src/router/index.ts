@@ -1,6 +1,6 @@
 // Composables
+import { IS_DEV_MODE } from '@/data/constants'
 import { isWebHistorySupported } from '@/util/app'
-import { nextTick } from 'vue'
 import type { HistoryState as VueRouterHistoryState, RouteRecordRaw } from 'vue-router'
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 
@@ -99,7 +99,7 @@ const router = createRouter({
    * 本方法直接设置滚动位置，并没有按照常规逻辑返回位置信息。
    */
   scrollBehavior(to, from, savedPosition) {
-    console.debug(TAG, 'scrollBehavior', to, from, savedPosition)
+    if (IS_DEV_MODE) console.debug(TAG, 'scrollBehavior', to, from, savedPosition)
     const state = window.history.state as HistoryState
 
     if (state.scroll2 && state.current) {
@@ -115,12 +115,12 @@ const router = createRouter({
 const scrollState2: ScrollToOptions2 = (history.state.scroll2 as ScrollToOptions2) ?? {}
 
 router.beforeEach((to, from) => {
-  console.debug(TAG, 'beforeEach', to, from)
+  if (IS_DEV_MODE) console.debug(TAG, 'beforeEach', to, from)
 
   // 用户在主页点击首页时自动返回，防止有重复的历史记录。
   if (to.path === PATH_HOME && to.path === history.state.back) {
     history.go(-1)
-    console.warn(TAG, `Backing to ${to.path} because history.state.back=${history.state.back}. state may lost!`)
+    console.warn(TAG, `Backing to '${to.path}' because history.state.back='${history.state.back}'. state may lost!`)
     return false
   }
   // TODO: 使用更好的方法实现
@@ -135,14 +135,14 @@ router.beforeEach((to, from) => {
     left: scrollElement?.scrollLeft ?? 0,
   }
   scrollState2[from.fullPath] = scrollData
-  if (import.meta.env.DEV) {
+  if (IS_DEV_MODE) {
     console.debug(`${TAG} Saving scrollData:`, scrollData)
     console.debug(`${TAG} Saving state`, state)
   }
   if (history.state.current !== from.fullPath) {
     console.warn(
       TAG,
-      `history.state.current (${history.state.current}) !== from.fullPath (${from.fullPath}), state maybe not to be saved!`,
+      `history.state.current ('${history.state.current}') !== from.fullPath ('${from.fullPath}'), state maybe not to be saved!`,
     )
   }
   window.history.replaceState(state, document.title)
@@ -150,7 +150,7 @@ router.beforeEach((to, from) => {
 })
 
 router.afterEach((to, from) => {
-  console.debug(TAG, 'afterEach', to, from)
+  if (IS_DEV_MODE) console.debug(TAG, 'afterEach', to, from)
 
   // 动画
   if (from.path !== '/') {

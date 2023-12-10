@@ -35,3 +35,5 @@ export const URL_API_ALL_APP_LIST = getServerCompletePath('/allAppList.json', UR
  * 应用上传
  */
 export const URL_UPLOAD = VITE_URL_UPLOAD
+
+export const IS_DEV_MODE = import.meta.env.DEV
