@@ -66,17 +66,16 @@ html {
 }
 
 .harmony {
-  --v-border-opacity: 0.2;
-
+  // 用边框解决0.5px导致的渲染问题
+  --harmony-border-width: 0.5px;
+  --harmony-border-margin: 16px;
   --harmony-border: 0.5px solid rgba(var(--v-border-color), var(--v-border-opacity));
   --harmony-blur-radius: 20px;
   &,
-  .v-theme {
-    &--light,
-    &--dark {
-      @media screen and (max-resolution: 2dppx) {
-        --v-border-opacity: 0.1 !important;
-      }
+  .v-theme--light,
+  .v-theme--dark {
+    @media screen and (max-resolution: 2dppx) {
+      --v-border-opacity: 0.1 !important;
     }
   }
 
@@ -117,8 +116,7 @@ html {
       left: calc(12px + var(--indent-padding-left));
       right: calc(12px + var(--indent-padding-right));
       height: 0px;
-      // 用边框解决0.5px导致的渲染问题
-      border-bottom: 0.5px solid rgba(var(--v-border-color), var(--v-border-opacity));
+      border-bottom: var(--harmony-border);
     }
     &:last-child::before {
       border-bottom-width: 0;
@@ -174,6 +172,16 @@ html {
   .v-navigation-drawer {
     &--left {
       border-right-width: 0;
+      &::before {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: var(--harmony-border-margin);
+        bottom: var(--harmony-border-margin);
+        // border-right: var(--harmony-border);
+        border-width: var(--harmony-border-width);
+        z-index: 999;
+      }
     }
   }
 
@@ -202,7 +210,6 @@ html {
       backdrop-filter: blur(var(--harmony-blur-radius));
       border-radius: 24px;
       > .v-card {
-        // max-height: 0.8svh;
         border-radius: 24px;
         background-color: rgba(var(--v-theme-surface), 0.85) !important;
         box-shadow: none;
@@ -329,7 +336,7 @@ html {
     border-bottom: var(--harmony-border);
   }
   .border {
-    border-width: 0.5px !important;
+    border-width: var(--harmony-border-width) !important;
   }
   .v-divider {
     --indent-padding-left: 0px;
