@@ -1,9 +1,8 @@
 <script lang="ts" setup>
 import { usePreferredDark } from '@vueuse/core'
 import { useTheme } from 'vuetify'
-import { watch, computed, ref } from 'vue'
+import { watch, computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { usePwa } from '@/composables/pwa'
 import { isTauri } from '@/util/app'
 import { useI18n } from 'vue-i18n'
 import { useLocaleSetting } from '@/composables/settings'
@@ -83,18 +82,17 @@ function onDragStart(event: DragEvent) {
     }
   }
 }
-console.log(__IS_TAURI__)
 </script>
 
 <template>
-  <v-app class="root" @dragstart="onDragStart">
+  <v-app class="app" @dragstart="onDragStart">
     <TauriSystemBar v-if="isTauri" />
     <NavigationDrawer />
     <v-main class="main">
       <div class="page-container">
         <router-view v-slot="{ Component }">
           <!-- 不能去除?? ''，否则格式化工具会自动删除括号，导致高亮错误 -->
-          <transition :name="(route.meta.transition as string) ?? ''">
+          <transition :name="(route.meta.transition as string) ?? undefined">
             <div :key="routeName" class="page" :data-path="route.path">
               <v-layout class="layout">
                 <component :is="Component" />
@@ -109,19 +107,19 @@ console.log(__IS_TAURI__)
       </div>
     </v-main>
     <ContextMenu />
-
     <PwaComponent />
   </v-app>
 </template>
 
 <style lang="scss" scoped>
-//设置绝对位置，方便设置动画，屏蔽了浏览器本身的文档滚动。因此需要在每个页面都添加滚动布局。
 .layout {
   width: 100%;
   height: 100%;
 }
 .page {
+  //设置绝对位置，方便设置动画，屏蔽了浏览器本身的文档滚动。因此需要在每个页面都添加滚动布局。
   position: absolute;
+  // 使布局位于窗口顶部
   top: 0;
   padding-top: var(--v-layout-top);
   width: 100%;
@@ -136,10 +134,10 @@ console.log(__IS_TAURI__)
   overflow: hidden;
 }
 
-// 防止移动端出现滚动条
-.root {
+.app {
   height: 100%;
   width: 100%;
+  // 防止移动端出现滚动条
   overflow: hidden;
 }
 .main {
