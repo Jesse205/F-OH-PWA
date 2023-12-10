@@ -3,7 +3,7 @@ import { useDisplay } from 'vuetify'
 import AppCard from './components/AppCard.vue'
 import AppMain from '@/components/AppMain.vue'
 import { useI18n } from 'vue-i18n'
-import { useTitle } from '@/events/title'
+import { useTitle } from '@/composables/title'
 import { getTauriVersion, getVersion } from '@tauri-apps/api/app'
 import { computed, ref } from 'vue'
 import { isTauri } from '@/util/app'
@@ -134,3 +134,4 @@ if (isTauri) {
 </template>
 
 <!-- <style scoped></style> -->
+@/composables/title

@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import AppMain from '@/components/AppMain.vue'
 
-import { useTitle } from '@/events/title'
+import { useTitle } from '@/composables/title'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { isTauri } from '@/util/app'
 import { getVersion } from '@tauri-apps/api/app'
-import { useLocaleSetting } from '@/events/settings'
-import { useTokenSetting } from '@/events/settings'
+import { useLocaleSetting } from '@/composables/settings'
+import { useTokenSetting } from '@/composables/settings'
 import DialogListItem from '@/components/list/DialogListItem.vue'
 import BackButton from '@/components/BackButton.vue'
 import TitleList from '@/components/list/TitleList.vue'
@@ -78,3 +78,4 @@ const token = useTokenSetting()
 </template>
 
 <!-- <style scoped></style> -->
+@/composables/title@/composables/settings@/composables/settings

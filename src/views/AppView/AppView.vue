@@ -6,7 +6,7 @@ import AppMain from '@/components/AppMain.vue'
 import { useScroll, useShare } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
 import { getAppShareUrl, getAppTags } from '@/util/apps'
-import { useTitle } from '@/events/title'
+import { useTitle } from '@/composables/title'
 import AppOverview from './components/AppOverview.vue'
 import AppDetails from './components/AppDetails.vue'
 import BackButton from '@/components/BackButton.vue'
@@ -240,3 +240,4 @@ function shareApp() {
   }
 }
 </style>
+@/composables/title

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, unref } from 'vue'
 import { useDisplay } from 'vuetify'
-import { useHomeNavigation } from '@/events/navigation'
+import { useHomeNavigation } from '@/composables/navigation'
 import { useTitle } from '@vueuse/core'
 import { useAppStore } from '@/store/app'
 
@@ -51,3 +51,4 @@ const { xs, smAndDown } = useDisplay()
 </template>
 
 <!-- <style scoped></style> -->
+@/composables/navigation

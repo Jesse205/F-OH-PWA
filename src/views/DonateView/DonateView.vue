@@ -4,7 +4,7 @@ import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useDonate } from '@/data/donate'
 import ICON from '@/assets/images/icon.svg'
-import { useTitle } from '@/events/title'
+import { useTitle } from '@/composables/title'
 import BackButton from '@/components/BackButton.vue'
 import { mdiCursorDefaultOutline } from '@mdi/js'
 
@@ -161,3 +161,4 @@ const adTabValue = ref<'join' | 'develop'>('join')
   }
 }
 </style>
+@/composables/title

@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref, watchEffect, computed } from 'vue'
 import { useDisplay } from 'vuetify'
-import { useTitle } from '@/events/title'
+import { useTitle } from '@/composables/title'
 import { URL_UPLOAD } from '@/data/constants'
-import type { NavPage } from '@/events/navigation'
-import { useHomeNavigation } from '@/events/navigation'
+import type { NavPage } from '@/composables/navigation'
+import { useHomeNavigation } from '@/composables/navigation'
 import BackButton from '@/components/BackButton.vue'
-import { useInjectedInstallBtnVisible, useInjectedOnInstallBtnClick } from '@/events/pwa'
+import { useInjectedInstallBtnVisible, useInjectedOnInstallBtnClick } from '@/composables/pwa'
 import type MainHomeView from './MainHomeView.vue'
 import type MainCategoriesView from './MainCategoriesView.vue'
 import type MainMeView from './MainMeView.vue'
@@ -97,3 +97,4 @@ function refresh() {
 </template>
 
 <!-- <style scoped></style> -->
+@/composables/title@/composables/navigation@/composables/navigation@/composables/pwa

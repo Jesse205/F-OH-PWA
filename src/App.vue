@@ -3,10 +3,10 @@ import { usePreferredDark } from '@vueuse/core'
 import { useTheme } from 'vuetify'
 import { watch, computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { usePwa } from '@/events/pwa'
+import { usePwa } from '@/composables/pwa'
 import { isTauri } from '@/util/app'
 import { useI18n } from 'vue-i18n'
-import { useLocaleSetting } from '@/events/settings'
+import { useLocaleSetting } from '@/composables/settings'
 import { isLegacyApp } from '@/util/app'
 import NavigationDrawer from './components/app/NavigationDrawer.vue'
 import ContextMenu from './components/app/ContextMenu.vue'
@@ -185,3 +185,4 @@ console.log(__IS_TAURI__)
   }
 }
 </style>
+@/composables/pwa@/composables/settings

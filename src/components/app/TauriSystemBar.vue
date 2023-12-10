@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useTitle } from '@vueuse/core'
-import { useTauriSystemBar } from '@/events/tauri'
+import { useTauriSystemBar } from '@/composables/tauri'
 import { getCurrent } from '@tauri-apps/api/window'
 
 const appWindow = getCurrent()
@@ -72,3 +72,4 @@ const { isMaximized } = useTauriSystemBar()
   }
 }
 </style>
+@/composables/tauri
