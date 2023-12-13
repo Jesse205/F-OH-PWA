@@ -5,7 +5,7 @@ import type { HistoryState as VueRouterHistoryState, RouteRecordRaw } from 'vue-
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 
 const SELECTOR_SCROLL = '.main-container .main-scroll'
-const PATH_HOME = '/index/home'
+export const PATH_HOME = '/index/home'
 const TAG = '[Router]'
 
 interface ScrollToOptions2 {

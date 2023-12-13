@@ -18,12 +18,12 @@ const title = useTitle(null, { observe: true })
 const clearTitle = computed(() => title.value?.match(`^(.+) - ${appStore.appName}$`)?.[1] ?? title.value ?? 'Unknown')
 
 const { pages, activePagePosition, isBackOtherPage, isInMainView } = useHomeNavigation()
-const { xs, smAndDown } = useDisplay()
+const { smAndDown } = useDisplay()
 </script>
 
 <template>
   <!-- 侧滑栏 -->
-  <v-navigation-drawer v-if="!xs" permanent :rail="smAndDown">
+  <v-navigation-drawer permanent :rail="smAndDown">
     <v-list class="py-2">
       <v-list-item prepend-avatar="@/assets/images/icon.svg" :title="appStore.appName" />
     </v-list>

@@ -11,6 +11,8 @@ import type MainCategoriesView from './MainCategoriesView.vue'
 import type MainMeView from './MainMeView.vue'
 import type MainUpdateView from './MainUpdateView.vue'
 import { usePwaStore } from '@/store/pwa'
+import { useRouter, useRoute } from 'vue-router'
+import { PATH_HOME } from '@/router'
 
 const { pages, activePagePosition, isBackOtherPage, isInMainView } = useHomeNavigation()
 
@@ -27,12 +29,23 @@ watchEffect(() => {
 useTitle(computed(() => currentPage.value?.title ?? ''))
 
 const { xs } = useDisplay()
+const router = useRouter()
+const route = useRoute()
+
+/**
+ * - 当设备为大屏时，首页隐藏按钮，其他页面显示按钮，这是通用逻辑，所以大屏设备始终为 `true`。
+ * - 当设备为小屏时，始终隐藏按钮。
+ * - 例外情况：首页但是有历史记录，始终显示按钮。
+ */
+const isBackButtonShowing = computed(() => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+  route.path // 确保路由刷新时重新调用该函数
+  const { back } = router.options.history.state
+  return (back && back !== PATH_HOME) || !xs.value
+})
 
 // PWA
 const pwaStore = usePwaStore()
-
-// const installBtnVisible = useInjectedInstallBtnVisible()
-// const onInstallBtnClick = useInjectedOnInstallBtnClick()
 
 type HomeComponent = InstanceType<
   typeof MainHomeView | typeof MainCategoriesView | typeof MainUpdateView | typeof MainMeView
@@ -54,7 +67,7 @@ function refresh() {
   <!-- 应用栏 -->
   <v-app-bar>
     <!-- 仅在非手机中显示返回按钮 -->
-    <back-button v-if="!xs" />
+    <back-button v-if="isBackButtonShowing" />
     <v-app-bar-title>{{ currentPage?.title }}</v-app-bar-title>
     <v-tooltip location="bottom">
       <template v-slot:activator="{ props }">
@@ -99,4 +112,3 @@ function refresh() {
 </template>
 
 <!-- <style scoped></style> -->
-@/composables/title@/composables/navigation@/composables/navigation@/composables/pwa

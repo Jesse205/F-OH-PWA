@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { usePreferredDark } from '@vueuse/core'
-import { useTheme } from 'vuetify'
+import { useDisplay, useTheme } from 'vuetify'
 import { watch, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { isTauri } from '@/util/app'
@@ -82,12 +82,14 @@ function onDragStart(event: DragEvent) {
     }
   }
 }
+
+const { xs } = useDisplay()
 </script>
 
 <template>
   <v-app class="app" @dragstart="onDragStart">
     <TauriSystemBar v-if="isTauri" />
-    <NavigationDrawer />
+    <NavigationDrawer v-if="!xs" />
     <v-main class="main">
       <div class="page-container">
         <router-view v-slot="{ Component }">
