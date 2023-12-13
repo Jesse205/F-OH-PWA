@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { usePwa } from '@/composables/pwa'
 import { usePwaStore } from '@/store/pwa'
 import type { BeforeInstallPrompt } from '@/ts/interfaces/pwa.interfaces'
 import { useRegisterSW } from 'virtual:pwa-register/vue'
@@ -53,7 +52,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('beforeinstallprompt', onBeforeInstallPrompt as EventListener)
 })
-usePwa()
 </script>
 
 <template>
