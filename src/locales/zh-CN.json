@@ -13,7 +13,11 @@
     "name": "分类"
   },
   "update": {
-    "name": "更新"
+    "name": "更新",
+    "app": {
+      "name": "更新应用",
+      "reload_message": "应用有更新，需要重新加载。"
+    }
   },
   "upload": {
     "app": "上传应用"
@@ -137,7 +141,8 @@
     "name": "取消"
   },
   "token": {
-    "name": "令牌"
+    "name": "令牌",
+    "resolve_message": "请进入“用户设置 > 授权应用”获取令牌"
   },
   "more": {
     "info": "更多信息"

@@ -56,8 +56,8 @@ onBeforeUnmount(() => {
 
 <template>
   <v-dialog v-model="reloadDialogVisible">
-    <v-card :title="$t('update.name')">
-      <v-card-text> 应用有更新，需要重新加载。 </v-card-text>
+    <v-card :title="$t('update.app.name')">
+      <v-card-text>{{ $t('update.app.reload_message') }} </v-card-text>
       <v-card-actions>
         <v-btn variant="text" @click="dismissReloadDialog"> {{ $t('cancel.name') }} </v-btn>
         <v-btn variant="text" @click="updateAndReload">

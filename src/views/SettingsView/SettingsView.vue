@@ -58,7 +58,7 @@ const token = useTokenSetting()
           v-model="token"
           prepend-icon="$lock"
           :title="$t('token.name')"
-          hint="请进入“用户设置 > 授权应用”获取令牌"
+          :hint="$t('token.resolve_message')"
           lines="one"
         />
 

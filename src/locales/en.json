@@ -13,7 +13,11 @@
     "name": "Category | Categories"
   },
   "update": {
-    "name": "Update"
+    "name": "Update",
+    "app": {
+      "name": "Update app",
+      "reload_message": "There is an update to the app and it needs to be reloaded."
+    }
   },
   "upload": {
     "app": "Upload app"
@@ -137,7 +141,8 @@
     "name": "Cancel"
   },
   "token": {
-    "name": "Token"
+    "name": "Token",
+    "resolve_message": "Please go to \"User Settings > Authorized Applications\" to get a token."
   },
   "more": {
     "info": "More info"
