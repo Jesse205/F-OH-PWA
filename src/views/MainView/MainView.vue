@@ -6,11 +6,11 @@ import { URL_UPLOAD } from '@/data/constants'
 import type { NavPage } from '@/composables/navigation'
 import { useHomeNavigation } from '@/composables/navigation'
 import BackButton from '@/components/BackButton.vue'
-import { useInjectedInstallBtnVisible, useInjectedOnInstallBtnClick } from '@/composables/pwa'
 import type MainHomeView from './MainHomeView.vue'
 import type MainCategoriesView from './MainCategoriesView.vue'
 import type MainMeView from './MainMeView.vue'
 import type MainUpdateView from './MainUpdateView.vue'
+import { usePwaStore } from '@/store/pwa'
 
 const { pages, activePagePosition, isBackOtherPage, isInMainView } = useHomeNavigation()
 
@@ -29,8 +29,10 @@ useTitle(computed(() => currentPage.value?.title ?? ''))
 const { xs } = useDisplay()
 
 // PWA
-const installBtnVisible = useInjectedInstallBtnVisible()
-const onInstallBtnClick = useInjectedOnInstallBtnClick()
+const pwaStore = usePwaStore()
+
+// const installBtnVisible = useInjectedInstallBtnVisible()
+// const onInstallBtnClick = useInjectedOnInstallBtnClick()
 
 type HomeComponent = InstanceType<
   typeof MainHomeView | typeof MainCategoriesView | typeof MainUpdateView | typeof MainMeView
@@ -69,7 +71,7 @@ function refresh() {
         <!-- <v-list-item :title="$t('upload.app')" :to="{ name: 'Upload' }" /> -->
         <v-list-item v-if="currentPage?.refreshable" :title="$t('refresh.name')" @click="refresh" />
         <v-list-item :title="$t('upload.app')" :href="URL_UPLOAD" target="_blank" />
-        <v-list-item v-if="installBtnVisible" :title="$t('install.app')" @click="onInstallBtnClick" />
+        <v-list-item v-if="pwaStore.installBtnVisible" :title="$t('install.app')" @click="pwaStore.onInstallBtnClick" />
       </v-list>
     </v-menu>
   </v-app-bar>
