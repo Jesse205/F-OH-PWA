@@ -209,6 +209,8 @@ html {
       max-height: 80svh;
       backdrop-filter: blur(var(--harmony-blur-radius));
       border-radius: 24px;
+      margin: 16px;
+      max-width: calc(100% - 32px);
       > .v-card {
         border-radius: 24px;
         background-color: rgba(var(--v-theme-surface), 0.85) !important;

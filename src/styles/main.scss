@@ -80,12 +80,12 @@
 
 .dialog-transition {
   &-enter-active {
-    transition-timing-function: cubic-bezier(0.18, 0.89, 0.75, 1.25) !important;
+    transition-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28) !important;;
     transition-duration: 175ms !important;
   }
   &-leave-active {
     transition-timing-function: ease-in-out !important;
-    transition-duration: 150ms !important;
+    transition-duration: 175ms !important;
   }
   &-enter-active,
   &-leave-active {
