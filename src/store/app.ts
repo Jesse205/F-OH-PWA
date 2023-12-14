@@ -2,7 +2,6 @@ import { useDisplayMode } from '@/composables/pwa'
 import { APP_NAME_DEFAULT, APP_NAME_PWA, APP_NAME_TAURI } from '@/locales'
 import { isTauri } from '@/util/app'
 import { isPwaDisplayMode } from '@/util/pwa'
-import { getName } from '@tauri-apps/api/app'
 import { defineStore } from 'pinia'
 import { ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -39,9 +38,9 @@ export const useAppStore = defineStore('app', () => {
   // Tauri 中就用真实的应用名
   if (isTauri) {
     appName.value = APP_NAME_TAURI
-    getName().then((name) => {
+   /* getName().then((name) => {
       appName.value = name
-    })
+    }) */
   } else {
     watch(
       displayMode,

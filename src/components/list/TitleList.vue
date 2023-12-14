@@ -4,7 +4,6 @@ import { VList } from 'vuetify/components'
 defineProps<{
   title?: string
 }>()
-
 </script>
 
 <template>

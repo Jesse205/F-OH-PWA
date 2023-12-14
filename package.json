@@ -46,7 +46,7 @@
     "@babel/core": "^7.23.6",
     "@babel/eslint-parser": "^7.23.3",
     "@babel/types": "^7.23.6",
-    "@tauri-apps/cli": "^1.5.7",
+    "@tauri-apps/cli": "^1.5.8",
     "@types/lodash": "^4.14.202",
     "@types/node": "^20.10.4",
     "@types/showdown": "^2.0.6",

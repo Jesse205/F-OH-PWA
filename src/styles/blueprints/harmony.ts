@@ -140,7 +140,7 @@ export const harmony: Blueprint = {
     VNavigationDrawer: {
       color: 'background',
       VList: {
-        color:"primary",
+        color: 'primary',
         bgColor: 'background',
       },
       VListItem: {

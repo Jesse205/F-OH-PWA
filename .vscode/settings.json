@@ -1,25 +1,23 @@
 {
-    "markdownlint.config": {
-        "MD033": false,
-        "MD041": false,
-        "MD028": false
-    },
-    "todo-tree.tree.disableCompactFolders": true,
-    "cSpell.words": [
-        "btns",
-        "Combobox",
-        "Composables",
-        "gogs",
-        "haspopup",
-        "iconsets",
-        "ohos",
-        "openharmony",
-        "Tauri",
-        "unlisten",
-        "vueuse"
-    ],
-    "i18n-ally.localesPaths": [
-        "src/locales"
-    ],
-    "i18n-ally.keystyle": "nested"
+  "markdownlint.config": {
+    "MD033": false,
+    "MD041": false,
+    "MD028": false
+  },
+  "todo-tree.tree.disableCompactFolders": true,
+  "cSpell.words": [
+    "btns",
+    "Combobox",
+    "Composables",
+    "gogs",
+    "haspopup",
+    "iconsets",
+    "ohos",
+    "openharmony",
+    "Tauri",
+    "unlisten",
+    "vueuse"
+  ],
+  "i18n-ally.localesPaths": ["src/locales"],
+  "i18n-ally.keystyle": "nested"
 }

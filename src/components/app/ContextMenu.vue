@@ -84,11 +84,7 @@ onBeforeUnmount(() => document.body.removeEventListener('contextmenu', onContext
         target="_blank"
       />
       <!-- 复制链接 -->
-      <v-list-item
-        v-if="config.externalUrl"
-        :title="$t('copy.link')"
-        @click="copyText(config.externalUrl)"
-      />
+      <v-list-item v-if="config.externalUrl" :title="$t('copy.link')" @click="copyText(config.externalUrl)" />
     </v-list>
   </v-menu>
 </template>

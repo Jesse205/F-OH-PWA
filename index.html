@@ -1,44 +1,42 @@
 <!doctype html>
 <html lang="zh-rCN" class="harmony" data-tauri-drag-region>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>F-OH Lite</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" href="/favicon.ico" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>F-OH Lite</title>
+    <meta itemprop="name" content="F-OH Lite" />
+    <meta name="description" content="开源应用商店 F-OH 的第三方 PWA 版本" />
+    <meta name="author" content="Jesse205" />
+    <meta name="keywords" content="F-OH,F-OH Lite,F-OH PWA,OpenHarmony,应用商店,软件商城" />
 
-  <meta itemprop="name" content="F-OH Lite" />
-  <meta name="description" content="开源应用商店 F-OH 的第三方 PWA 版本" />
-  <meta name="author" content="Jesse205" />
-  <meta name="keywords" content="F-OH,F-OH Lite,F-OH PWA,OpenHarmony,应用商店,软件商城" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#00a6f9" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F1F3F5" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000" />
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-  <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#00a6f9" />
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F1F3F5" />
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000" />
-
-  <style>
-    /* 防止加载初级阶段显示白屏 */
-    html {
-      color-scheme: light;
-      background-color: #F1F3F5;
-    }
-
-    @media (prefers-color-scheme: dark) {
+    <style>
+      /* 防止加载初级阶段显示白屏 */
       html {
-        color-scheme: dark;
-        background-color: #000000;
+        color-scheme: light;
+        background-color: #f1f3f5;
       }
-    }
-  </style>
-</head>
 
-<body>
-  <div id="app"></div>
-  <script type="module" src="/src/main.ts"></script>
-</body>
+      @media (prefers-color-scheme: dark) {
+        html {
+          color-scheme: dark;
+          background-color: #000000;
+        }
+      }
+    </style>
+  </head>
 
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>

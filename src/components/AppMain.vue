@@ -12,7 +12,7 @@ defineExpose({
 
 <template>
   <v-main>
-  <!-- 包裹一个容器，解决绝对定位包括 padding 的问题 -->
+    <!-- 包裹一个容器，解决绝对定位包括 padding 的问题 -->
     <div class="main-container">
       <div ref="mainScroll" class="main-scroll">
         <slot />
@@ -23,7 +23,7 @@ defineExpose({
 </template>
 
 <style scoped lang="scss">
-.main-container{
+.main-container {
   height: 100%;
   position: relative;
 }

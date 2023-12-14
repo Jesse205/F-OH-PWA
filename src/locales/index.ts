@@ -3,7 +3,7 @@
  *
  * 框架文档: https://vue-i18n.intlify.dev/
  */
-import type { Locale} from 'vue-i18n';
+import type { Locale } from 'vue-i18n'
 import { createI18n } from 'vue-i18n'
 
 import EN from '@/locales/en.json'

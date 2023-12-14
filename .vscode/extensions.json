@@ -1,9 +1,9 @@
 {
-    "recommendations": [
-        "ms-vscode.vscode-typescript-next",
-        "lokalise.i18n-ally",
-        "esbenp.prettier-vscode",
-        "dbaeumer.vscode-eslint",
-        "vue.vscode-typescript-vue-plugin"
-    ]
+  "recommendations": [
+    "ms-vscode.vscode-typescript-next",
+    "lokalise.i18n-ally",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "vue.vscode-typescript-vue-plugin"
+  ]
 }
