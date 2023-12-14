@@ -102,7 +102,7 @@ function shareApp() {
       </transition>
     </v-app-bar-title>
     <v-tooltip v-if="isShareSupported" location="bottom">
-      <template v-slot:activator="{ props }">
+      <template #activator="{ props }">
         <v-btn :disabled="!appInfo" icon="$share" v-bind="props" :aria-label="$t('share.name')" @click="shareApp" />
       </template>
       <span>{{ $t('share.name') }}</span>

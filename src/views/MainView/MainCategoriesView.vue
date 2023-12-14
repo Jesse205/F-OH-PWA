@@ -140,7 +140,7 @@ function onProjectDragStart(event: DragEvent) {
       </template>
     </v-container>
 
-    <template v-slot:root>
+    <template #root>
       <!-- Loading -->
       <CenterSpace v-if="loading">
         <v-progress-circular indeterminate />

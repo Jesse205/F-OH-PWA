@@ -66,7 +66,7 @@ onBeforeUnmount(() => document.body.removeEventListener('contextmenu', onContext
     @contextmenu.stop.prevent
     @selectstart.prevent
   >
-    <template v-slot:activator="{ props }">
+    <template #activator="{ props }">
       <div
         v-bind="props"
         class="contextMenuActivator"

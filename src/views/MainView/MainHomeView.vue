@@ -72,7 +72,7 @@ const progressMarginTop = computed(() => {
         <v-list-item class="announcementContent" v-html="homeStore.announcementHtml" />
       </title-list>
     </v-container>
-    <template v-slot:root>
+    <template #root>
       <!-- Loading -->
       <CenterSpace v-if="loading" :top="progressMarginTop">
         <v-progress-circular indeterminate />

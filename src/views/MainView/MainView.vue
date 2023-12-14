@@ -70,13 +70,13 @@ function refresh() {
     <back-button v-if="isBackButtonShowing" />
     <v-app-bar-title>{{ currentPage?.title }}</v-app-bar-title>
     <v-tooltip location="bottom">
-      <template v-slot:activator="{ props }">
+      <template #activator="{ props }">
         <v-btn icon="$search" v-bind="props" disabled aria-label="搜索应用" />
       </template>
       <span>搜索应用</span>
     </v-tooltip>
     <v-menu origin="bottom" width="172" location="top" scrim="transparent">
-      <template v-slot:activator="{ props: menu }">
+      <template #activator="{ props: menu }">
         <v-btn icon="$more" v-bind="menu" />
       </template>
       <v-list>
@@ -90,7 +90,7 @@ function refresh() {
   </v-app-bar>
 
   <!-- 主视图 -->
-  <router-view v-slot="{ Component }">
+  <router-view #="{ Component }">
     <keep-alive>
       <component :is="Component" ref="routeComponent" />
     </keep-alive>

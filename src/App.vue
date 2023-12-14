@@ -92,7 +92,7 @@ const { xs } = useDisplay()
     <NavigationDrawer v-if="!xs" />
     <v-main class="main">
       <div class="page-container">
-        <router-view v-slot="{ Component }">
+        <router-view #="{ Component }">
           <!-- 不能去除?? ''，否则格式化工具会自动删除括号，导致高亮错误 -->
           <transition :name="(route.meta.transition as string) ?? undefined">
             <div :key="routeName" class="page" :data-path="route.path">

@@ -10,7 +10,7 @@
       <v-list-item rounded="lg" lines="two" :title="userStore.nameShow" :subtitle="userStore.email" link
         @click="userStore.loginState ? $router.push({ name: 'User' }) : userStore.login()"
         append-icon="$next">
-        <template v-slot:prepend>
+        <template #prepend>
           <v-avatar class="border" size="56">
             <v-img :src="userStore.avatar" />
           </v-avatar>

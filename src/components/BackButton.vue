@@ -40,7 +40,7 @@ function onClick() {
 
 <template>
   <v-tooltip location="bottom">
-    <template v-slot:activator="{ props }">
+    <template #activator="{ props }">
       <transition name="slide-x-transition">
         <v-btn
           v-show="isBtnShowing"

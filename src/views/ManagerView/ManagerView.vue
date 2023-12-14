@@ -94,7 +94,7 @@ function handelPush(event: Event) {
     <BackButton />
     <v-app-bar-title>{{ $t('manager.apps') }}</v-app-bar-title>
     <v-menu origin="top" width="192" location="bottom" scrim="transparent">
-      <template v-slot:activator="{ props: menu }">
+      <template #activator="{ props: menu }">
         <v-btn icon="$more" v-bind="menu" />
       </template>
       <v-list>
@@ -118,7 +118,7 @@ function handelPush(event: Event) {
           persistent-hint
           @click:append-inner="tokenVisible = !tokenVisible"
         >
-          <template v-slot:append="{ isValid }">
+          <template #append="{ isValid }">
             <v-btn :disabled="!isValid.value" @click="handelFetchApps">获取列表</v-btn>
           </template>
         </v-text-field>

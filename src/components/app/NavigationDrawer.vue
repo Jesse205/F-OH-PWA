@@ -29,15 +29,19 @@ const { smAndDown } = useDisplay()
     </v-list>
     <!-- <v-divider /> -->
     <v-list density="compact" nav>
-      <v-list-item
-        v-for="(item, index) in pages"
-        :key="item.name"
-        :to="{ name: item.name }"
-        :prepend-icon="activePagePosition === index ? item.activeIcon : item.icon"
-        :title="unref(item.title)"
-        :disabled="item.disabled"
-        :replace="isInMainView && (activePagePosition !== 0 || isBackOtherPage)"
-      />
+      <v-tooltip v-for="(item, index) in pages" :key="item.name" location="right" disabled>
+        <template #activator="{ props }">
+          <v-list-item
+            v-bind="props"
+            :to="{ name: item.name }"
+            :prepend-icon="activePagePosition === index ? item.activeIcon : item.icon"
+            :title="unref(item.title)"
+            :disabled="item.disabled"
+            :replace="isInMainView && (activePagePosition !== 0 || isBackOtherPage)"
+          />
+        </template>
+        <span>{{ unref(item.title) }}</span>
+      </v-tooltip>
     </v-list>
     <!-- <transition name="fade-transition">
       <v-divider v-if="!isInMainView" />
@@ -51,4 +55,3 @@ const { smAndDown } = useDisplay()
 </template>
 
 <!-- <style scoped></style> -->
-@/composables/navigation
