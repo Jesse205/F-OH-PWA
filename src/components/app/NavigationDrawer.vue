@@ -2,34 +2,34 @@
 import { computed, unref } from 'vue'
 import { useDisplay } from 'vuetify'
 import { useHomeNavigation } from '@/composables/navigation'
-import { useTitle } from '@vueuse/core'
 import { useAppStore } from '@/store/app'
+import { useRoute } from 'vue-router'
 
 const appStore = useAppStore()
-
-/**
- * 标题，带有后缀
- */
-const title = useTitle(null, { observe: true })
+const route = useRoute()
 
 /**
  * 标题，无后缀
  */
-const clearTitle = computed(() => title.value?.match(`^(.+) - ${appStore.appName}$`)?.[1] ?? title.value ?? 'Unknown')
+const title = computed(() => appStore.title ?? undefined)
 
 const { pages, activePagePosition, isBackOtherPage, isInMainView } = useHomeNavigation()
 const { smAndDown } = useDisplay()
+
+const isRail = computed(() => smAndDown.value)
+
+const isOtherPage = computed(() => Boolean(!isInMainView.value && title.value && route.path !== '/'))
 </script>
 
 <template>
   <!-- 侧滑栏 -->
-  <v-navigation-drawer permanent :rail="smAndDown">
+  <v-navigation-drawer permanent :rail="isRail">
     <v-list class="py-2">
       <v-list-item prepend-avatar="@/assets/images/icon.svg" :title="appStore.appName" />
     </v-list>
     <!-- <v-divider /> -->
     <v-list density="compact" nav>
-      <v-tooltip v-for="(item, index) in pages" :key="item.name" location="right" disabled>
+      <v-tooltip v-for="(item, index) in pages" :key="item.name" location="right" :disabled="!isRail">
         <template #activator="{ props }">
           <v-list-item
             v-bind="props"
@@ -47,8 +47,13 @@ const { smAndDown } = useDisplay()
       <v-divider v-if="!isInMainView" />
     </transition> -->
     <transition name="slide-y-transition">
-      <v-list v-if="!isInMainView" density="compact" nav color="primary">
-        <v-list-item :key="$route.path" prepend-icon="$circle" :title="clearTitle ?? ''" active link />
+      <v-list v-if="isOtherPage" density="compact" nav color="primary">
+        <v-tooltip location="right" :disabled="!isRail">
+          <template #activator="{ props }">
+            <v-list-item v-bind="props" :key="$route.path" prepend-icon="$circle" :title="title" active link />
+          </template>
+          <span>{{ title }}</span>
+        </v-tooltip>
       </v-list>
     </transition>
   </v-navigation-drawer>

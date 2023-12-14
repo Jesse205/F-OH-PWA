@@ -48,7 +48,7 @@ export function useHomeNavigation() {
     ]
   })
   const activePagePosition = computed(() =>
-    route.name ? pages.value.findIndex((page) => page.name === route.name) : null,
+    route.name ? pages.value.findIndex((page) => page.name === route.name) : -1,
   )
 
   const isInMainView = computed(() => activePagePosition.value !== -1)
