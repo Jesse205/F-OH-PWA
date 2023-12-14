@@ -71,6 +71,8 @@ html {
   --harmony-border-margin: 16px;
   --harmony-border: 0.5px solid rgba(var(--v-border-color), var(--v-border-opacity));
   --harmony-blur-radius: 20px;
+  --harmony-blur-radius-tooltip: 4px;
+  --harmony-background-transition-duration: 150ms;
   &,
   .v-theme--light,
   .v-theme--dark {
@@ -146,6 +148,9 @@ html {
         opacity: 1;
       }
     }
+    & > .v-list-item__overlay {
+      transition-duration: var(--harmony-background-transition-duration);
+    }
     // 菜单中--active需要背景
     &:not(&--active)[aria-haspopup='menu'][aria-expanded='true'] {
       & > .v-list-item__overlay {
@@ -201,6 +206,13 @@ html {
     .slide-y-transition-enter-active,
     .slide-y-transition-leave-active {
       transition-duration: 0.1s !important;
+    }
+  }
+
+  .v-tooltip {
+    > .v-overlay__content {
+      backdrop-filter: blur(var(--harmony-blur-radius-tooltip));
+      // backdrop-filter: blur(var(--harmony-blur-radius));
     }
   }
 
@@ -287,7 +299,8 @@ html {
       }
     }
     .v-btn__overlay {
-      transition: opacity 0.2s ease-in-out;
+      transition: opacity var(--harmony-background-transition-duration) ease-in-out;
+      // transition-duration: var(--harmony-background-transition-duration) !important;
     }
   }
   .v-alert {
