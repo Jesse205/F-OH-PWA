@@ -145,7 +145,8 @@
     "resolve_message": "Please go to \"User Settings > Authorized Applications\" to get a token."
   },
   "more": {
-    "info": "More info"
+    "info": "More info",
+    "options": "More options"
   },
   "share": {
     "name": "Share"

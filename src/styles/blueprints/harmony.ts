@@ -55,6 +55,9 @@ export const harmony: Blueprint = {
     VAppBar: {
       flat: true,
       density: 'comfortable',
+      VTooltip: {
+        location: 'bottom',
+      },
     },
     VAutocomplete: {
       variant: 'outlined',
@@ -147,6 +150,9 @@ export const harmony: Blueprint = {
         VAvatar: {
           size: 'default',
         },
+      },
+      VTooltip: {
+        location: 'right',
       },
     },
     VDialog: {

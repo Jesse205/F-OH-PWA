@@ -29,7 +29,7 @@ const isOtherPage = computed(() => Boolean(!isInMainView.value && title.value &&
     </v-list>
     <!-- <v-divider /> -->
     <v-list density="compact" nav>
-      <v-tooltip v-for="(item, index) in pages" :key="item.name" location="right" :disabled="!isRail">
+      <v-tooltip v-for="(item, index) in pages" :key="item.name" :disabled="!isRail">
         <template #activator="{ props }">
           <v-list-item
             v-bind="props"
@@ -48,7 +48,7 @@ const isOtherPage = computed(() => Boolean(!isInMainView.value && title.value &&
     </transition> -->
     <transition name="slide-y-transition">
       <v-list v-if="isOtherPage" density="compact" nav color="primary">
-        <v-tooltip location="right" :disabled="!isRail">
+        <v-tooltip :disabled="!isRail">
           <template #activator="{ props }">
             <v-list-item v-bind="props" :key="$route.path" prepend-icon="$circle" :title="title" active link />
           </template>

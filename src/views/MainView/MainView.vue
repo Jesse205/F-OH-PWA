@@ -69,24 +69,33 @@ function refresh() {
     <!-- 仅在非手机中显示返回按钮 -->
     <back-button v-if="isBackButtonShowing" />
     <v-app-bar-title>{{ currentPage?.title }}</v-app-bar-title>
-    <v-tooltip location="bottom">
+    <v-tooltip>
       <template #activator="{ props }">
         <v-btn icon="$search" v-bind="props" disabled aria-label="搜索应用" />
       </template>
       <span>搜索应用</span>
     </v-tooltip>
-    <v-menu origin="bottom" width="172" location="top" scrim="transparent">
-      <template #activator="{ props: menu }">
-        <v-btn icon="$more" v-bind="menu" />
+    <v-tooltip>
+      <template #activator="{ props: tooltipProps }">
+        <v-menu origin="bottom" width="172" location="top" scrim="transparent">
+          <template #activator="{ props: menu }">
+            <v-btn icon="$more" v-bind="{ ...tooltipProps, ...menu }" />
+          </template>
+          <v-list>
+            <!-- TODO: 使用Upload页面 -->
+            <!-- <v-list-item :title="$t('upload.app')" :to="{ name: 'Upload' }" /> -->
+            <v-list-item v-if="currentPage?.refreshable" :title="$t('refresh.name')" @click="refresh" />
+            <v-list-item :title="$t('upload.app')" :href="URL_UPLOAD" target="_blank" />
+            <v-list-item
+              v-if="pwaStore.installBtnVisible"
+              :title="$t('install.app')"
+              @click="pwaStore.onInstallBtnClick"
+            />
+          </v-list>
+        </v-menu>
       </template>
-      <v-list>
-        <!-- TODO: 使用Upload页面 -->
-        <!-- <v-list-item :title="$t('upload.app')" :to="{ name: 'Upload' }" /> -->
-        <v-list-item v-if="currentPage?.refreshable" :title="$t('refresh.name')" @click="refresh" />
-        <v-list-item :title="$t('upload.app')" :href="URL_UPLOAD" target="_blank" />
-        <v-list-item v-if="pwaStore.installBtnVisible" :title="$t('install.app')" @click="pwaStore.onInstallBtnClick" />
-      </v-list>
-    </v-menu>
+      <span>{{ $t('more.options') }}</span>
+    </v-tooltip>
   </v-app-bar>
 
   <!-- 主视图 -->
