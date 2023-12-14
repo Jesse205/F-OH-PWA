@@ -35,7 +35,7 @@ const developers = computed<DeveloperItem[]>(() => [
   },
 ])
 
-const { mdAndUp } = useDisplay()
+const { smAndUp } = useDisplay()
 
 const URL_SOURCE = 'https://gitee.com/ohos-dev/F-OH-PWA'
 
@@ -56,12 +56,12 @@ if (isTauri) {
     <back-button />
     <v-app-bar-title>{{ $t('about.name') }}</v-app-bar-title>
   </v-app-bar>
-  <v-navigation-drawer v-if="mdAndUp" permanent :width="200 + 32">
+  <v-navigation-drawer v-if="smAndUp" permanent :width="200 + 32">
     <AppCard class="ma-4" />
   </v-navigation-drawer>
   <app-main>
     <v-container class="py-0">
-      <AppCard v-if="!mdAndUp" class="my-4" />
+      <AppCard v-if="!smAndUp" class="my-4" />
       <!-- 关于应用 -->
       <title-list class="my-4" lines="two" tag="ul" :title="$t('app.about')">
         <!-- 应用版本 -->
