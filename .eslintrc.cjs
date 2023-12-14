@@ -28,12 +28,6 @@ module.exports = {
   },
   rules: {
     // Customize your rules
-    //
-    // Please keep this rule off because it requiresTypeChecking
-    // https://github.com/vuejs/vue-eslint-parser/issues/104
-    // https://github.com/typescript-eslint/typescript-eslint/pull/5318
-    // '@typescript-eslint/prefer-optional-chain': 'off',
-    // 'no-unused-vars': 'warn',
     '@typescript-eslint/no-unused-vars': 'warn',
     '@typescript-eslint/no-unused-expressions': 'warn',
     'vue/no-empty-component-block': 'warn',
