@@ -1,5 +1,11 @@
 # 更新日志
 
+## 1.2.1
+
+1. 样式优化。
+2. 侧边栏为 Rail 模式时支持 Tooltip。
+3. tauri 客户端使用 http 协议，重新直接访问服务器。
+
 ## 1.2.0
 
 1. 全新 [HarmonyOS Design](https://developer.harmonyos.com/cn/design/) 设计风格，与 HarmonyOS、OpenHarmony 和谐统一。
