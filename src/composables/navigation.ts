@@ -1,3 +1,4 @@
+import { splitPathAndHash } from '@/util/app'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
@@ -56,7 +57,9 @@ export function useHomeNavigation() {
   const isBackOtherPage = computed<boolean>(() => {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     route.path // 确保路由刷新时重新调用该函数
-    return !!(router.options.history.state.back && router.options.history.state.back !== '/index/home')
+    const { back } = router.options.history.state
+    const pureBackUrl = typeof back === 'string' ? splitPathAndHash(back)[0] : undefined
+    return Boolean(pureBackUrl && pureBackUrl !== '/index/home')
   })
   return { pages, activePagePosition, isInMainView, isBackOtherPage }
 }
