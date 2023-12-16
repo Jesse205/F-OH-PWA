@@ -13,6 +13,7 @@ import type MainUpdateView from './MainUpdateView.vue'
 import { usePwaStore } from '@/store/pwa'
 import { useRouter, useRoute } from 'vue-router'
 import { PATH_HOME } from '@/router'
+import { splitPathAndHash } from '../../util/app'
 
 const { pages, activePagePosition, isBackOtherPage, isInMainView } = useHomeNavigation()
 
@@ -41,7 +42,8 @@ const isBackButtonShowing = computed(() => {
   // eslint-disable-next-line @typescript-eslint/no-unused-expressions
   route.path // 确保路由刷新时重新调用该函数
   const { back } = router.options.history.state
-  return (back && back !== PATH_HOME) || !xs.value
+  const pureBackUrl = typeof back === 'string' ? splitPathAndHash(back)[0] : undefined
+  return (pureBackUrl && pureBackUrl !== PATH_HOME) || !xs.value
 })
 
 // PWA
@@ -115,7 +117,7 @@ function refresh() {
       :replace="isInMainView && (activePagePosition !== 0 || isBackOtherPage)"
     >
       <v-icon>{{ $route.name === item.name ? item.activeIcon : item.icon }}</v-icon>
-      {{ item.title }}
+      <span>{{ item.title }}</span>
     </v-btn>
   </v-bottom-navigation>
 </template>

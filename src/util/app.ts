@@ -88,3 +88,7 @@ export function assert(value: boolean, ...messages: string[]) {
     throw new Error(messages.join('\n'))
   }
 }
+
+export function splitPathAndHash(path: string): (string | undefined)[] {
+  return path.includes('#') ? path.split('#') : [path, undefined]
+}

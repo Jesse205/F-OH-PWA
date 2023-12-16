@@ -14,19 +14,24 @@ const { xs } = useDisplay()
 const canBack = computed(() => {
   // eslint-disable-next-line @typescript-eslint/no-unused-expressions
   route.path // 确保路由刷新时重新调用该函数
-  return !!router.options.history.state.back
+  return Boolean(router.options.history.state.back)
 })
 
+/**
+ * 是否为主页按钮
+ *
+ * 当可以返回上一页并且当前路径不是主页时显示按钮。
+ */
 const isHomeButton = computed(() => {
   return !canBack.value && route.path !== PATH_HOME
 })
 
 /**
  * - 如果可以返回，则显示按钮。
- * - 如果该按钮是首页按钮，则显示按钮。
+ * - 如果该按钮是首页按钮，并且屏幕宽度为xs，则显示按钮。
  */
 const isBtnShowing = computed(() => {
-  return canBack.value || xs.value
+  return canBack.value || (xs.value && isHomeButton.value)
 })
 
 function onClick() {
