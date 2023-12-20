@@ -1,7 +1,7 @@
 <div align="center">
 <img src="./src/assets/images/icon.svg" width=192 height=192 alt="Project logo" title="Project logo"/>
 
-# F-OH PWA
+# F-OH PWA ![Third-party](https://img.shields.io/badge/-Third--party-%23ED6F21)
 
 [![Gitee repository](https://img.shields.io/badge/Gitee-repository-C71D23?logo=gitee)](https://gitee.com/Jesse205/F-OH-PWA)
 [![Github repository](https://img.shields.io/badge/Github-repository-0969DA?logo=github)](https://github.com/Jesse205/F-OH-PWA)
@@ -16,9 +16,11 @@
 
 </div>
 
+![Overview](./docs/images/overview.png)
+
 F-OH is an application center for FOSS (Free and Open Source Software) on the OpenHarmony platform with download and installation support.
 
-F-OH PWA is a cross-platform third-party F-OH based on a browser version of the [Sparkling Store V3 Demo](https://gitee.com/sparkling-store/SparklingStoreV3Demo).
+F-OH PWA is a cross-platform **third-party** F-OH based on a browser version of the [Sparkling Store V3 Demo](https://gitee.com/sparkling-store/SparklingStoreV3Demo).
 
 F-OH PWA + BrowserCE, best practices for distributing OpenHarmony hap apps via web pages, might be a good choice for teams with internal distribution of test hap apps.
 
@@ -122,7 +124,7 @@ Sponsorship can be contacted by private message or scanning the QR code below (W
 
 ![QRCode](https://gitee.com/westinyang/f-oh/raw/master/screenshot/wx+zfb.png)
 
-For this project, you can go to the [Hello Tool donation page](https://jesse205.github.io/hellotool/donation.html) to support Jesse205.
+For this project (F-OH PWA), you can go to the [Hello Tool donation page](https://jesse205.github.io/hellotool/donation.html) to support Jesse205.
 
 ## Contributing
 

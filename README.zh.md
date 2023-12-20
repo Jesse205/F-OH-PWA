@@ -1,7 +1,7 @@
 <div align="center">
 <img src="./src/assets/images/icon.svg" width=192 height=192 alt="项目图标" title="项目图标" />
 
-# F-OH PWA
+# F-OH PWA ![第三方](https://img.shields.io/badge/-第三方-%23ED6F21)
 
 [![Gitee 仓库](https://img.shields.io/badge/Gitee-仓库-C71D23?logo=gitee)](https://gitee.com/Jesse205/F-OH-PWA)
 [![GitHub 仓库](https://img.shields.io/badge/GitHub-仓库-0969DA?logo=github)](https://github.com/Jesse205/F-OH-PWA)
@@ -16,9 +16,11 @@
 
 </div>
 
+![概览](./docs/images/overview.png)
+
 F-OH 是一个 OpenHarmony 平台上 FOSS（Free and Open Source Software，自由开源软件）的应用中心，并提供下载安装支持。
 
-F-OH PWA 是基于[粼光商店 V3 Demo](https://gitee.com/sparkling-store/SparklingStoreV3Demo) 的一个浏览器版本的跨平台的第三方 F-OH。
+F-OH PWA 是基于[粼光商店 V3 Demo](https://gitee.com/sparkling-store/SparklingStoreV3Demo) 的一个浏览器版本的跨平台的**第三方** F-OH。
 
 F-OH PWA + BrowserCE，通过网页分发开源鸿蒙 hap 应用的最佳实践，对于有内部分发测试 hap 应用的团队来说，是一个不错的选择。
 
@@ -125,7 +127,7 @@ yarn prettier:fix
 
 ![QRCode](https://gitee.com/westinyang/f-oh/raw/master/screenshot/wx+zfb.png)
 
-对于本项目，您可以进入[哈兔 Box 捐赠页面](https://jesse205.github.io/hellotool/donation.html)支持杰西 205。
+对于本项目（F-OH PWA），您可以进入[哈兔 Box 捐赠页面](https://jesse205.github.io/hellotool/donation.html)支持杰西 205。
 
 ## 许可证
 
