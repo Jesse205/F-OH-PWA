@@ -18,8 +18,8 @@
     "preview": "vite preview",
     "eslint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --ignore-path .gitignore",
     "eslint:fix": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "prettier": "prettier -l \"./**/*\"",
-    "prettier:fix": "prettier --write -l \"./**/*\""
+    "prettier": "prettier -l \"**/*.{js,jsx,vue,cjs,mjs,ts,cts,mts}\"",
+    "prettier:fix": "prettier --write -l \"**/*.{js,jsx,vue,cjs,mjs,ts,cts,mts}\""
   },
   "dependencies": {
     "@mdi/font": "7.3.67",

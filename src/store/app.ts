@@ -38,7 +38,7 @@ export const useAppStore = defineStore('app', () => {
   // Tauri 中就用真实的应用名
   if (isTauri) {
     appName.value = APP_NAME_TAURI
-   /* getName().then((name) => {
+    /* getName().then((name) => {
       appName.value = name
     }) */
   } else {

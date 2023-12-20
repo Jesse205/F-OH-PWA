@@ -28,7 +28,6 @@ useTitle(computed(() => currentPage.value?.title ?? ''))
 
 const { xs } = useDisplay()
 
-
 // PWA
 const pwaStore = usePwaStore()
 

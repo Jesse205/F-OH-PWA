@@ -6,7 +6,6 @@ import { useAppsStore } from '@/store/apps'
 import type { AppInfo } from '@/ts/interfaces/app.interfaces'
 import TitleList from '@/components/list/TitleList.vue'
 import CenterSpace from '@/components/CenterSpace.vue'
-import { getServerCompletePath } from '@/util/url'
 import { getAppShareUrl } from '@/util/apps'
 
 const { t } = useI18n()
@@ -19,7 +18,6 @@ onMounted(() => {
 })
 
 const loading = computed(() => appsStore.loading)
-const loaded = computed(() => !loading.value && Boolean(appsStore.data))
 
 const errMsg = computed(() => appsStore.errMsg)
 
