@@ -10,9 +10,9 @@
 [![Windows](https://img.shields.io/badge/Windows-exe-%232863C5?logo=windows)][ReleaseInGitee]
 [![Linux](https://img.shields.io/badge/Linux-deb-%23FCC624?logo=linux&logoColor=%23ffffff)][ReleaseInGitee]
 
-**中文**
-| [English](./README.md)
-| <small>期待你的翻译！</small>
+**中文** |
+[English](./README.md) |
+<small>期待你的翻译！</small>
 
 </div>
 
@@ -26,9 +26,10 @@ F-OH PWA + BrowserCE，通过网页分发开源鸿蒙 hap 应用的最佳实践�
 
 [![许可证](https://img.shields.io/github/license/Jesse205/F-OH-PWA?label=%E8%AE%B8%E5%8F%AF%E8%AF%81)](./LICENSE)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/953dd570-c06c-4f52-a688-c2789adaa8cb/deploy-status)](https://app.netlify.com/sites/f-oh-pwa-jesse205/deploys)
+[![贡献者公约](https://img.shields.io/badge/贡献者公约-2.1-4baaaa.svg)](./CODE_OF_CONDUCT.zh.md)
 
 [![QQ 群（开鸿派）: 752399947](https://img.shields.io/badge/QQ_群:_开鸿派-752399947-0099FF?logo=tencentqq)](https://qm.qq.com/q/jWeBdnvPz2)
-[![@Jesse205: jesse205@qq.com](https://img.shields.io/badge/@Jesse205-jesse205@qq.com-0099FF)](https://qm.qq.com/q/jWeBdnvPz2)
+[![电子邮件: jesse205@qq.com](https://img.shields.io/badge/电子邮件-jesse205@qq.com-0099FF)](https://qm.qq.com/q/jWeBdnvPz2)
 
 ## 屏幕截图
 

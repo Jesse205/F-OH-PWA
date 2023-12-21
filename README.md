@@ -10,9 +10,9 @@
 [![Windows](https://img.shields.io/badge/Windows-exe-%232863C5?logo=windows)][ReleaseInGitee]
 [![Linux](https://img.shields.io/badge/Linux-deb-%23FCC624?logo=linux&logoColor=%23ffffff)][ReleaseInGitee]
 
-[中文](./README.zh.md)
-| **English**
-| <small>More translations are welcome!</small>
+[中文](./README.zh.md) |
+**English** |
+<small>More translations are welcome!</small>
 
 </div>
 
@@ -26,9 +26,10 @@ F-OH PWA + BrowserCE, best practices for distributing OpenHarmony hap apps via w
 
 [![License](https://img.shields.io/github/license/Jesse205/F-OH-PWA)](./LICENSE)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/953dd570-c06c-4f52-a688-c2789adaa8cb/deploy-status)](https://app.netlify.com/sites/f-oh-pwa-jesse205/deploys)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](./CODE_OF_CONDUCT.md)
 
-[![QQ group (开鸿派): 752399947](https://img.shields.io/badge/QQ_group:_开鸿派-752399947-0099FF?logo=tencentqq)](https://qm.qq.com/q/jWeBdnvPz2)
-[![@Jesse205: jesse205@qq.com](https://img.shields.io/badge/@Jesse205-jesse205@qq.com-0099FF)](https://qm.qq.com/q/jWeBdnvPz2)
+[![QQ group (OHOS Dev): 752399947](https://img.shields.io/badge/QQ_group:_OHOS--Dev-752399947-0099FF?logo=tencentqq)](https://qm.qq.com/q/jWeBdnvPz2)
+[![E-Mail: jesse205@qq.com](https://img.shields.io/badge/E--Mail-jesse205@qq.com-0099FF)](https://qm.qq.com/q/jWeBdnvPz2)
 
 ## Screenshots
 
