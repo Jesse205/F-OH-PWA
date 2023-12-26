@@ -307,19 +307,25 @@ html {
     border-radius: 16px;
   }
   .v-bottom-navigation {
-    .v-btn {
-      &--variant-text {
-        opacity: 0.62;
-      }
-      &--active {
-        opacity: 1;
-        & > .v-btn__overlay {
-          // 移除激活时的背景
-          opacity: 0;
+    &__content {
+      .v-btn {
+        .v-icon {
+          font-size: 24px;
+          margin-bottom: 2px;
         }
-      }
-      &--disabled {
-        opacity: 0.26;
+        &--variant-text {
+          opacity: 0.62;
+        }
+        &--active {
+          opacity: 1;
+          & > .v-btn__overlay {
+            // 移除激活时的背景
+            opacity: 0;
+          }
+        }
+        &--disabled {
+          opacity: 0.26;
+        }
       }
     }
   }
