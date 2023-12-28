@@ -40,12 +40,9 @@
 
 本项目使用 Prettier 与 ESLint 规范代码。
 
-- JavaScript、TypeScript（`.vue`、`.js`、`.ts`）：
-  - [eslint-config-alloy](https://github.com/AlloyTeam/eslint-config-alloy) ([规范](https://alloyteam.github.io/eslint-config-alloy/))
+- JavaScript、TypeScript（`.vue`、`.js`、`.ts`）：详见 [`prettier.config.js`](./prettier.config.js) 与 [`.eslintrc.cjs`](./.eslintrc.cjs)。
 - Markdown：
   - [Markdown lint tool](https://github.com/markdownlint/markdownlint)（[规范](https://github.com/DavidAnson/markdownlint/blob/main/doc/md001.md)）
-
-一些规则已被修改，详见 [`prettier.config.js`](./prettier.config.js) 与 [`.eslintrc.cjs`](./.eslintrc.cjs)。
 
 ## 依赖更新
 

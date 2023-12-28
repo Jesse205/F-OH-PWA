@@ -27,3 +27,4 @@ pnpm-debug.log*
 /src-tauri/target
 
 tsconfig.tsbuildinfo
+tsconfig.*.tsbuildinfo

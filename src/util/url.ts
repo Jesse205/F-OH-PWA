@@ -48,7 +48,6 @@ export function matchUserSpace(url: URL): string | null {
   return null
 }
 
-
 export function splitPathAndHash(path: string): (string | undefined)[] {
   return path.includes('#') ? path.split('#') : [path, undefined]
 }

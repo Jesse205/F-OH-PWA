@@ -89,8 +89,8 @@ const routes: Readonly<RouteRecordRaw[]> = [
 ]
 
 const history = isWebHistorySupported()
-  ? createWebHistory(process.env.BASE_URL)
-  : createWebHashHistory(process.env.BASE_URL)
+  ? createWebHistory(import.meta.env.BASE_URL)
+  : createWebHashHistory(import.meta.env.BASE_URL)
 
 const router = createRouter({
   history,

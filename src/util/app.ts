@@ -88,4 +88,3 @@ export function assert(value: boolean, ...messages: string[]) {
     throw new Error(messages.join('\n'))
   }
 }
-
