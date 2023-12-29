@@ -16,7 +16,7 @@
 
 ## <img src="https://vuejs.org/images/logo.png" width=24/> [Vue](https://cn.vuejs.org/)
 
->🖖 Vue.js is a progressive, incrementally-adoptable JavaScript framework for building UI on the web.
+> 🖖 Vue.js is a progressive, incrementally-adoptable JavaScript framework for building UI on the web.
 
 [MIT license](https://github.com/vuejs/core#MIT-1-ov-file)
 
