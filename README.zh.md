@@ -28,6 +28,8 @@ F-OH PWA + BrowserCE，通过网页分发开源鸿蒙 hap 应用的最佳实践�
 [![Netlify Status](https://api.netlify.com/api/v1/badges/953dd570-c06c-4f52-a688-c2789adaa8cb/deploy-status)](https://app.netlify.com/sites/f-oh-pwa-jesse205/deploys)
 [![贡献者公约](https://img.shields.io/badge/贡献者公约-2.1-4baaaa.svg)](./CODE_OF_CONDUCT.zh.md)
 
+[![开源许可证](https://img.shields.io/badge/开源许可证-1.0.0-0A59F7.svg)](./docs/term/license_v1.0.0.md)
+
 [![QQ 群（开鸿派）: 752399947](https://img.shields.io/badge/QQ_群:_开鸿派-752399947-0099FF?logo=tencentqq)](https://qm.qq.com/q/jWeBdnvPz2)
 [![电子邮件: jesse205@qq.com](https://img.shields.io/badge/电子邮件-jesse205@qq.com-0099FF)](https://qm.qq.com/q/jWeBdnvPz2)
 
@@ -43,6 +45,15 @@ F-OH PWA + BrowserCE，通过网页分发开源鸿蒙 hap 应用的最佳实践�
 <img src="./public/screenshots/Snipaste_2023-12-05_05-16-10.webp" width=30% alt="分类"/>
 <img src="./public/screenshots/Snipaste_2023-12-05_05-16-17.webp" width=30% alt="应用详情"/>
 </div>
+
+## 特点
+
+- 设计：[HarmonyOS Design](https://developer.harmonyos.com/cn/design/)
+- 平台：浏览器、Linux、Windows
+- 广告：无
+- 资费：暂时没有
+- 源代码：开源到 Gitee、GitHub
+- 国际化：基于 Vue I18n 的多语言
 
 ## 下载与访问
 
