@@ -28,7 +28,7 @@ F-OH PWA + BrowserCE，通过网页分发开源鸿蒙 hap 应用的最佳实践�
 [![Netlify Status](https://api.netlify.com/api/v1/badges/953dd570-c06c-4f52-a688-c2789adaa8cb/deploy-status)](https://app.netlify.com/sites/f-oh-pwa-jesse205/deploys)
 [![贡献者公约](https://img.shields.io/badge/贡献者公约-2.1-4baaaa.svg)](./CODE_OF_CONDUCT.zh.md)
 
-[![开源许可证](https://img.shields.io/badge/开源许可证-1.0.0-0A59F7.svg)](./docs/term/license_v1.0.0.md)
+[![开源许可证](https://img.shields.io/badge/开源许可证-1.0.0-0A59F7.svg)](./docs/term/licenses_v1.0.0.md)
 
 [![QQ 群（开鸿派）: 752399947](https://img.shields.io/badge/QQ_群:_开鸿派-752399947-0099FF?logo=tencentqq)](https://qm.qq.com/q/jWeBdnvPz2)
 [![电子邮件: jesse205@qq.com](https://img.shields.io/badge/电子邮件-jesse205@qq.com-0099FF)](https://qm.qq.com/q/jWeBdnvPz2)

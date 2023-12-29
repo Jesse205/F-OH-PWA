@@ -168,5 +168,8 @@
   },
   "minimize": {
     "name": "最小化"
+  },
+  "term": {
+    "licenses": "开源许可"
   }
 }

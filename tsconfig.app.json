@@ -15,8 +15,9 @@
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
     "jsx": "preserve",
+    "noEmit": false,
+    "emitDeclarationOnly": true,
 
     "lib": ["esnext", "dom", "webworker"],
     "types": ["vuetify", "vite-plugin-pwa/client"]

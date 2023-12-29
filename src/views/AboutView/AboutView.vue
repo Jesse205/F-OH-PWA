@@ -38,6 +38,7 @@ const developers = computed<DeveloperItem[]>(() => [
 const { smAndUp } = useDisplay()
 
 const URL_SOURCE = 'https://gitee.com/ohos-dev/F-OH-PWA'
+const URL_TERM_LICENSES = 'https://gitee.com/Jesse205/F-OH-PWA/blob/main/docs/terms/licenses_v1.0.0.md'
 
 const tauriVersion = ref()
 
@@ -68,6 +69,14 @@ if (isTauri) {
         <v-list-item prepend-icon="$info" :title="$t('app.version')" :subtitle="appVersion" />
         <!-- Tauri 版本 -->
         <v-list-item v-if="tauriVersion" prepend-icon="$info" :title="$t('tauri.version')" :subtitle="tauriVersion" />
+        <v-list-item
+          prepend-icon="$privacy"
+          lines="one"
+          :title="$t('term.licenses')"
+          :href="URL_TERM_LICENSES"
+          target="_blank"
+          append-icon="$openInNew"
+        />
       </title-list>
 
       <!-- 开发者信息 -->

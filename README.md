@@ -28,7 +28,7 @@ F-OH PWA + BrowserCE, best practices for distributing OpenHarmony hap apps via w
 [![Netlify Status](https://api.netlify.com/api/v1/badges/953dd570-c06c-4f52-a688-c2789adaa8cb/deploy-status)](https://app.netlify.com/sites/f-oh-pwa-jesse205/deploys)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](./CODE_OF_CONDUCT.md)
 
-[![open source license](https://img.shields.io/badge/open--source--license-1.0.0-0A59F7.svg)](./docs/term/license_v1.0.0.md)
+[![open source license](https://img.shields.io/badge/open--source--license-1.0.0-0A59F7.svg)](./docs/term/licenses_v1.0.0.md)
 
 [![QQ group (OHOS Dev): 752399947](https://img.shields.io/badge/QQ_group:_OHOS--Dev-752399947-0099FF?logo=tencentqq)](https://qm.qq.com/q/jWeBdnvPz2)
 [![E-Mail: jesse205@qq.com](https://img.shields.io/badge/E--Mail-jesse205@qq.com-0099FF)](https://qm.qq.com/q/jWeBdnvPz2)

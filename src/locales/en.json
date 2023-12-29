@@ -168,5 +168,8 @@
   },
   "minimize": {
     "name": "Minimize"
+  },
+  "term": {
+    "licenses": "Open Source Licenses"
   }
 }
