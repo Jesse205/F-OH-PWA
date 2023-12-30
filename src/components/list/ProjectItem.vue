@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { AppInfo } from '@/ts/interfaces/app.interfaces'
-import { URL_API } from '@/data/constants'
 import { getServerCompletePath } from '@/util/url'
 import { computed } from 'vue'
 
@@ -23,7 +22,7 @@ const to = computed((): string | object | undefined => {
   }
 })
 
-const iconCompletePath = computed(() => getServerCompletePath(props.item.icon, URL_API))
+const iconCompletePath = computed(() => getServerCompletePath(props.item.icon))
 </script>
 
 <template>

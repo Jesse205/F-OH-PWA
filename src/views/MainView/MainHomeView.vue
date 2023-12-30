@@ -107,5 +107,15 @@ const progressMarginTop = computed(() => {
     font-weight: normal;
     padding: 0.2em 0.4em;
   }
+  & :deep(a) {
+    color: rgb(var(--v-theme-primary));
+
+    &:hover {
+      color: rgba(var(--v-theme-primary),0.7);
+    }
+    &:active {
+      color: rgba(var(--v-theme-primary),0.9);
+    }
+  }
 }
 </style>

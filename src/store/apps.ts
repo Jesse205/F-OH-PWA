@@ -1,8 +1,9 @@
 // Utilities
-import { IS_DEV_MODE, URL_API_ALL_APP_LIST } from '@/data/constants'
+import { IS_DEV_MODE } from '@/data/constants'
 import type { AppInfo } from '@/ts/interfaces/app.interfaces'
 import { assert } from '@/util/app'
 import { getAxiosInstance } from '@/util/fetch'
+import { getAllAppsListApiUrl } from '@/util/url'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
@@ -24,7 +25,7 @@ export const useAppsStore = defineStore('apps', () => {
     loading.value = true
     errMsg.value = null
     getAxiosInstance()
-      .get<AppInfo[]>(URL_API_ALL_APP_LIST)
+      .get<AppInfo[]>(getAllAppsListApiUrl())
       .then((response) => {
         assert(typeof response.data === 'object', "Data isn't object.")
         if (IS_DEV_MODE) console.log(TAG, 'Fetched apps', response.data)

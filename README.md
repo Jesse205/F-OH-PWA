@@ -18,11 +18,13 @@
 
 ![Overview](./docs/images/overview.png)
 
-F-OH is an application center for FOSS (Free and Open Source Software) on the OpenHarmony platform with download and installation support.
+[F-OH] is an application center for FOSS (Free and Open Source Software) on the OpenHarmony platform with download and installation support.
 
-F-OH PWA is a cross-platform **third-party** F-OH based on a browser version of the [Sparkling Store V3 Demo](https://gitee.com/sparkling-store/SparklingStoreV3Demo).
+F-OH PWA is a cross-platform **third-party** [F-OH] based on a browser version of the [Sparkling Store V3 Demo](https://gitee.com/sparkling-store/SparklingStoreV3Demo).
 
 F-OH PWA + BrowserCE, best practices for distributing OpenHarmony hap apps via web pages, might be a good choice for teams with internal distribution of test hap apps.
+
+> 2023-12-29 [F-OH Suspension Notice](https://gitee.com/westinyang/f-oh/blob/master/ServerStopAnnouncement.md)
 
 [![License](https://img.shields.io/github/license/Jesse205/F-OH-PWA)](./LICENSE)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/953dd570-c06c-4f52-a688-c2789adaa8cb/deploy-status)](https://app.netlify.com/sites/f-oh-pwa-jesse205/deploys)
@@ -85,9 +87,9 @@ Some browsers support installing this website to the desktop by clicking "Instal
 ## Series of Projects
 
 - [F-OH](https://gitee.com/westinyang/f-oh): F-OH OpenHarmony Mobile
-- [F-OH Data][F-OH-Data]: metadata for all F-OH apps, where developers PR submit their apps
-- F-OH Server: F-OH server, providing interface services, platform management, etc. (to be developed)
-- F-OH Website: F-OH website, including documents, blogs, selected applications, etc. (to be developed)
+- [F-OH Data]: metadata for all F-OH apps, where developers PR submit their apps
+- [F-OH Server]: F-OH server, providing interface services, platform management, etc. (to be developed)
+- [F-OH Website]: F-OH website, including documents, blogs, selected applications, etc. (to be developed)
 
 ## Project Setup
 
@@ -101,7 +103,7 @@ Some browsers support installing this website to the desktop by clicking "Instal
 
 ### Compiling and Hotloading for Development
 
-1. Clone [F-OH Data][F-OH-Data] and start a server on port `5500`.
+1. Clone [F-OH Data] and start a server on port `5500`.
 2. Save [ `.env.development.local.example`](. /.env.development.local.example) as `.env.development.local` and configure some variables.
 3. Open a terminal in the project and run commands according to the following rules.
    - Web and PWA applications: run `yarn dev`.
@@ -161,7 +163,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ```
 
-[F-OH-Data]: http://74.48.94.162:3000/ohos-dev/F-OH-Data
+[F-OH]: https://gitee.com/westinyang/f-oh
+[F-OH Server]: https://gitee.com/westinyang/f-oh/blob/master/F-OH-Server.md
+[F-OH Website]: https://gitee.com/westinyang/f-oh/blob/master/F-OH-Web.md
+[F-OH Data]: https://gitee.com/westinyang/f-oh-data
 [PWASecureContextRequirement]: https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Making_PWAs_installable#secure_context
 [SponsorList]: https://gitee.com/ohos-dev/f-oh#%E8%B5%9E%E5%8A%A9%E5%88%97%E8%A1%A8
 [@westinyang]: https://gitee.com/westinyang

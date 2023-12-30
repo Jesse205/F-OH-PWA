@@ -1,7 +1,8 @@
 {
   "appName": "F-OH",
   "settings": {
-    "name": "Settings"
+    "name": "Settings",
+    "changed":"Settings changed"
   },
   "about": {
     "name": "About"
@@ -171,5 +172,9 @@
   },
   "term": {
     "licenses": "Open Source Licenses"
+  },
+  "server": {
+    "name": "Server",
+    "changed": "The server address has changed and the page needs to be reloaded."
   }
 }

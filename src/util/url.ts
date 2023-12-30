@@ -1,5 +1,6 @@
-import { URL_API, URL_API_LEGACY } from '@/data/constants'
+import { URL_API, URL_API_ALL_APP_LIST_RELATIVE, URL_API_HOME_RELATIVE, URL_API_LEGACY } from '@/data/constants'
 import { isRedirectApiHost } from './app'
+import { KEY_SERVER } from '@/composables/settings'
 
 const MACHER_GITHUB_USER = /^https:\/\/(www\.)?github\.com\/[^/]+/
 const MACHER_GITEE_USER = /^https:\/\/(www\.)?gitee\.com\/[^/]+/
@@ -9,7 +10,7 @@ const MACHER_GITEE_USER = /^https:\/\/(www\.)?gitee\.com\/[^/]+/
  *
  * 如果是服务器链接，请使用 {@linkcode getServerCompletePath} 。
  */
-export function getCompletePath(url: string, base: string) {
+export function getCompletePath(url: string, base: string = location.href) {
   return new URL(url, base).href
 }
 
@@ -20,10 +21,13 @@ export function getCompletePath(url: string, base: string) {
  *
  * 如果是绝对路径，该函数会直接返回 `url` 本身。
  *
- * @param url 相对路径的链接，可以带后缀 `/`
- * @param root 根路径，可以带前缀 `/`
+ * @param url 相对路径的链接，可以带前缀 `/`
+ * @param root 根路径，可以带后缀 `/`
  */
-export function getServerCompletePath(url: string, root: string = isRedirectApiHost() ? URL_API_LEGACY : URL_API) {
+export function getServerCompletePath(
+  url: string,
+  root: string = getApiUrl(),
+) {
   if (url.search('://') > -1) return url
   return `${root}${root.endsWith('/') ? '' : '/'}${url.startsWith('/') ? url.slice(1) : url}`
 }
@@ -50,4 +54,30 @@ export function matchUserSpace(url: URL): string | null {
 
 export function splitPathAndHash(path: string): (string | undefined)[] {
   return path.includes('#') ? path.split('#') : [path, undefined]
+}
+
+export function getUserServerSetting() {
+  return localStorage.getItem(KEY_SERVER)?.trim()
+}
+
+export function getApiUrl(acceptRedirect: boolean = true) {
+  const userServerApi = getUserServerSetting()
+  if (userServerApi) {
+    return userServerApi
+  }
+  if (acceptRedirect) {
+    return isRedirectApiHost() ? URL_API_LEGACY : URL_API
+  } else {
+    return URL_API
+  }
+}
+
+// API 链接
+
+export function getHomeApiUrl() {
+  return getServerCompletePath(URL_API_HOME_RELATIVE)
+}
+
+export function getAllAppsListApiUrl() {
+  return getServerCompletePath(URL_API_ALL_APP_LIST_RELATIVE)
 }

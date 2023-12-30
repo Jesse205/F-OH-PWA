@@ -3,9 +3,10 @@ import { defineStore } from 'pinia'
 import { ref, watch } from 'vue'
 import type { HomeData } from '@/ts/interfaces/home.interfaces'
 import { getAxiosInstance } from '@/util/fetch'
-import { IS_DEV_MODE, URL_API_HOME } from '@/data/constants'
+import { IS_DEV_MODE } from '@/data/constants'
 import showdown from 'showdown'
 import { assert } from '@/util/app'
+import { getHomeApiUrl } from '@/util/url'
 
 const TAG = '[HomeStore]'
 
@@ -57,7 +58,7 @@ export const useHomeStore = defineStore('home', () => {
     loading.value = true
     errMsg.value = null
     getAxiosInstance()
-      .get<HomeData>(URL_API_HOME)
+      .get<HomeData>(getHomeApiUrl())
       .then((response) => {
         assert(typeof response.data === 'object', "Data isn't object.")
         if (IS_DEV_MODE) console.debug(TAG, 'fetched home data', response.data)

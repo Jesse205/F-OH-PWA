@@ -309,7 +309,7 @@ html {
   .v-bottom-navigation {
     &__content {
       .v-btn {
-        font-size: .625rem;
+        font-size: 0.625rem;
         .v-icon {
           font-size: 20px;
           margin-bottom: 2px;
@@ -390,5 +390,9 @@ html {
   }
   .v-system-bar .v-icon {
     opacity: 1;
+  }
+  .v-field--variant-filled .v-field__outline::after,
+  .v-field--variant-underlined .v-field__outline::after {
+    content: none;
   }
 }

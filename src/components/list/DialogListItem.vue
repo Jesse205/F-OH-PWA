@@ -4,6 +4,10 @@ import { ref, watch } from 'vue'
 const props = defineProps<{
   modelValue: any
   hint?: string
+  placeholder?: string
+  label?: string
+  type?: string
+  title?: string
 }>()
 const emits = defineEmits<(e: 'update:modelValue', modelValue: string) => void>()
 const dialogVisible = ref(false)
@@ -22,11 +26,22 @@ function applyValue() {
 </script>
 
 <template>
-  <v-list-item link>
+  <v-list-item link :title="title">
     <v-dialog v-model="dialogVisible" activator="parent">
-      <v-card :title="$t('token.name')">
+      <v-card :title="title">
         <v-card-text class="py-0">
-          <v-text-field v-model="editValue" active :hint="hint" persistent-hint @keyup.enter="applyValue" />
+          <v-text-field
+            v-model="editValue"
+            :hint="hint"
+            :persistent-hint="!!hint"
+            :placeholder="placeholder"
+            :label="label"
+            :type="type"
+            hide-details="auto"
+            :density="!label ? 'compact' : undefined"
+            :single-line="!!label"
+            @keyup.enter="applyValue"
+          />
         </v-card-text>
         <v-card-actions>
           <v-btn variant="text" @click="dialogVisible = false"> {{ $t('cancel.name') }} </v-btn>

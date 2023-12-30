@@ -1,4 +1,5 @@
 import { useDisplayMode } from '@/composables/pwa'
+import { IS_DEV_MODE } from '@/data/constants'
 import { APP_NAME_DEFAULT, APP_NAME_PWA, APP_NAME_TAURI } from '@/locales'
 import { isTauri } from '@/util/app'
 import { isPwaDisplayMode } from '@/util/pwa'
@@ -25,7 +26,7 @@ export const useAppStore = defineStore('app', () => {
    * 显示模式，常用于判断是否处于PWA模式
    */
   const displayMode = useDisplayMode()
-  if (import.meta.env.DEV) {
+  if (IS_DEV_MODE) {
     watch(
       title,
       (newTitle) => {

@@ -1,0 +1,4 @@
+{
+    "showAnnouncement": true,
+    "announcement": "## F-OH 停服\n\nF-OH 已于 `2023-12-29` 停服。[F-OH 停服公告](https://gitee.com/westinyang/f-oh/blob/master/ServerStopAnnouncement.md)\n\n请[按照教程部署服务器](https://gitee.com/westinyang/f-oh#%E9%83%A8%E7%BD%B2%E6%95%99%E7%A8%8B)，然后进入 `设置 -> 服务器` 填写服务器地址后使用。\n\n如果没有 `服务器` 选项，请检查版本更新。"
+}

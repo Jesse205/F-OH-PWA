@@ -1,7 +1,8 @@
 {
   "appName": "F-OH",
   "settings": {
-    "name": "设置"
+    "name": "设置",
+    "changed":"设置已更改"
   },
   "about": {
     "name": "关于"
@@ -171,5 +172,9 @@
   },
   "term": {
     "licenses": "开源许可"
+  },
+  "server": {
+    "name": "服务器",
+    "changed_reload": "服务器地址已更改，需要重新加载页面。"
   }
 }

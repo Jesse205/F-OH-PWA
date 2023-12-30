@@ -6,11 +6,12 @@ import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { isTauri } from '@/util/app'
 import { getVersion } from '@tauri-apps/api/app'
-import { useLocaleSetting } from '@/composables/settings'
+import { useLocaleSetting, useServerSetting } from '@/composables/settings'
 import { useTokenSetting } from '@/composables/settings'
 import DialogListItem from '@/components/list/DialogListItem.vue'
 import BackButton from '@/components/BackButton.vue'
 import TitleList from '@/components/list/TitleList.vue'
+import { URL_API } from '@/data/constants'
 
 const { t, locale } = useI18n()
 
@@ -32,6 +33,8 @@ const selectedLocales = computed({
 })
 
 const token = useTokenSetting()
+
+const server = useServerSetting()
 </script>
 
 <template>
@@ -61,6 +64,14 @@ const token = useTokenSetting()
           :hint="$t('token.resolve_message')"
           lines="one"
         />
+        <dialog-list-item
+          v-model="server"
+          prepend-icon="$circle"
+          :title="$t('server.name')"
+          :placeholder="URL_API"
+          :subtitle="server.trim() || URL_API"
+          lines="two"
+        />
 
         <!-- 关于 -->
         <v-list-item
@@ -78,4 +89,3 @@ const token = useTokenSetting()
 </template>
 
 <!-- <style scoped></style> -->
-@/composables/title@/composables/settings@/composables/settings

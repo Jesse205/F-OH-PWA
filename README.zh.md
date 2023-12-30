@@ -18,11 +18,13 @@
 
 ![概览](./docs/images/overview.png)
 
-F-OH 是一个 OpenHarmony 平台上 FOSS（Free and Open Source Software，自由开源软件）的应用中心，并提供下载安装支持。
+[F-OH] 是一个 OpenHarmony 平台上 FOSS（Free and Open Source Software，自由开源软件）的应用中心，并提供下载安装支持。
 
-F-OH PWA 是基于[粼光商店 V3 Demo](https://gitee.com/sparkling-store/SparklingStoreV3Demo) 的一个浏览器版本的跨平台的**第三方** F-OH。
+F-OH PWA 是基于[粼光商店 V3 Demo](https://gitee.com/sparkling-store/SparklingStoreV3Demo) 的一个浏览器版本的跨平台的**第三方** [F-OH]。
 
 F-OH PWA + BrowserCE，通过网页分发开源鸿蒙 hap 应用的最佳实践，对于有内部分发测试 hap 应用的团队来说，是一个不错的选择。
+
+> 2023-12-29 [F-OH 停服公告](https://gitee.com/westinyang/f-oh/blob/master/ServerStopAnnouncement.md)
 
 [![许可证](https://img.shields.io/github/license/Jesse205/F-OH-PWA?label=%E8%AE%B8%E5%8F%AF%E8%AF%81)](./LICENSE)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/953dd570-c06c-4f52-a688-c2789adaa8cb/deploy-status)](https://app.netlify.com/sites/f-oh-pwa-jesse205/deploys)
@@ -84,10 +86,10 @@ F-OH PWA 提供 **独立软件** 与 **网页访问** 两种方式供用户选�
 
 ## 系列项目
 
-- [F-OH](https://gitee.com/westinyang/f-oh)：F-OH OpenHarmony 移动端
-- [F-OH Data][F-OH-Data]：F-OH 所有应用程序的元数据，开发者在这里PR提交自己的应用
-- F-OH Server：F-OH 服务器，提供接口服务、平台管理等（待开发）
-- F-OH Website：F-OH 网站，包含文档、博客、精选应用等（待开发）
+- [F-OH]：F-OH OpenHarmony 移动端
+- [F-OH Data]：F-OH 所有应用程序的元数据，开发者在这里PR提交自己的应用
+- [F-OH Server]：F-OH 服务器，提供接口服务、平台管理等（待开发）
+- [F-OH Website]：F-OH 网站，包含文档、博客、精选应用等（待开发）
 
 ## 项目设置
 
@@ -101,7 +103,7 @@ F-OH PWA 提供 **独立软件** 与 **网页访问** 两种方式供用户选�
 
 ### 为开发编译和热加载
 
-1. 克隆 [F-OH Data][F-OH-Data] 并启动一个服务器。
+1. 克隆 [F-OH Data] 并启动一个服务器。
 2. 将 [`.env.development.local.example`](./.env.development.local.example) 另存为 `.env.development.local`，并配置一些变量。
 3. 在该项目打开终端，按照以下规则运行命令。
    - 网页与 PWA 应用：运行 `yarn dev` 。
@@ -113,7 +115,7 @@ F-OH PWA 提供 **独立软件** 与 **网页访问** 两种方式供用户选�
 2. 在该项目打开终端，按照以下规则运行命令。
    - 网页与 PWA 应用：
      1. 运行 `yarn build` 。
-     2. 拉取 [F-OH Data][F-OH-Data] 到 `dist/data` 。
+     2. 拉取 [F-OH Data] 到 `dist/data` 。
      3. 部署 `dist/*` 到服务器。
    - Windows Tauri 软件：
      1. 运行 `yarn build:tauri` 。
@@ -160,7 +162,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ```
 
-[F-OH-Data]: http://74.48.94.162:3000/ohos-dev/F-OH-Data
+[F-OH]: https://gitee.com/westinyang/f-oh
+[F-OH Server]: https://gitee.com/westinyang/f-oh/blob/master/F-OH-Server.md
+[F-OH Website]: https://gitee.com/westinyang/f-oh/blob/master/F-OH-Web.md
+[F-OH Data]: https://gitee.com/westinyang/f-oh-data
 [PWASecureContextRequirement]: https://developer.mozilla.org/zh-CN/docs/Web/Progressive_web_apps/Guides/Making_PWAs_installable#%E5%AE%89%E5%85%A8%E4%B8%8A%E4%B8%8B%E6%96%87
 [SponsorList]: https://gitee.com/ohos-dev/f-oh#%E8%B5%9E%E5%8A%A9%E5%88%97%E8%A1%A8
 [@westinyang]: https://gitee.com/westinyang

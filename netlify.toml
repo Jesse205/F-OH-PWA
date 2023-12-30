@@ -1,8 +1,9 @@
-[[redirects]]
-from = "/data/*"
-to = "http://74.48.94.162:3000/ohos-dev/F-OH-Data/raw/master/:splat"
-status = 200
-force = true
+# F-OH 已停服
+# [[redirects]]
+# from = "/data/*"
+# to = "http://74.48.94.162:3000/ohos-dev/F-OH-Data/raw/master/:splat"
+# status = 200
+# force = true
 
 [[redirects]]
 from = "/*"
