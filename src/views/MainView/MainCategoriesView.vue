@@ -140,8 +140,9 @@ function onProjectDragStart(event: DragEvent) {
 
     <template #root>
       <!-- Loading -->
-      <CenterSpace v-if="loading">
-        <v-progress-circular indeterminate />
+      <CenterSpace v-if="loading || apps.length === 0">
+        <v-progress-circular v-if="loading" indeterminate style="pointer-events: none" />
+        <span v-else-if="apps.length === 0">{{ $t('empty.apps') }}</span>
       </CenterSpace>
     </template>
   </app-main>

@@ -2,7 +2,7 @@
   "appName": "F-OH",
   "settings": {
     "name": "Settings",
-    "changed":"Settings changed"
+    "changed": "Settings changed"
   },
   "about": {
     "name": "About"
@@ -175,5 +175,8 @@
   },
   "server": {
     "name": "Server"
+  },
+  "empty": {
+    "apps": "No apps found"
   }
 }

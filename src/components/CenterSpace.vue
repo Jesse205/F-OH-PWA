@@ -39,5 +39,8 @@ defineProps<{
   top: 0;
   bottom: 0;
   pointer-events: none;
+  & > :deep(*) {
+    pointer-events: auto;
+  }
 }
 </style>

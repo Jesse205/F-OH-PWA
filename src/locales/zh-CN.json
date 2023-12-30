@@ -2,7 +2,7 @@
   "appName": "F-OH",
   "settings": {
     "name": "设置",
-    "changed":"设置已更改"
+    "changed": "设置已更改"
   },
   "about": {
     "name": "关于"
@@ -175,5 +175,8 @@
   },
   "server": {
     "name": "服务器"
+  },
+  "empty": {
+    "apps": "暂无应用"
   }
 }
