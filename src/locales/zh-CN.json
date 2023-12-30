@@ -174,7 +174,6 @@
     "licenses": "开源许可"
   },
   "server": {
-    "name": "服务器",
-    "changed_reload": "服务器地址已更改，需要重新加载页面。"
+    "name": "服务器"
   }
 }
