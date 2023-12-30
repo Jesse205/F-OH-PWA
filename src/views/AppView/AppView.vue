@@ -52,6 +52,7 @@ onMounted(() => {
   // 确保数据已经获取到或者正在获取中
   appsStore.ensureData()
 })
+appsStore.autoRefresh()
 
 // 页面滚动，动态展示标题
 const mainElement = ref<InstanceType<typeof AppMain>>()

@@ -2,7 +2,6 @@
 import { ref, watchEffect, computed } from 'vue'
 import { useDisplay } from 'vuetify'
 import { useTitle } from '@/composables/title'
-import { URL_UPLOAD } from '@/data/constants'
 import type { NavPage } from '@/composables/navigation'
 import { useHomeNavigation } from '@/composables/navigation'
 import BackButton from '@/components/BackButton.vue'

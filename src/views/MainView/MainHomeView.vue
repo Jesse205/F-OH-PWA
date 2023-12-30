@@ -17,6 +17,7 @@ const homeStore = useHomeStore()
 onMounted(() => {
   homeStore.ensureData()
 })
+homeStore.autoRefresh()
 
 const loading = computed(() => homeStore.loading)
 const errMsg = computed(() => homeStore.errMsg)

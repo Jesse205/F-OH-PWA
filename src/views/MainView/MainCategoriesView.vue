@@ -16,6 +16,7 @@ const appsStore = useAppsStore()
 onMounted(() => {
   appsStore.ensureData()
 })
+appsStore.autoRefresh()
 
 const loading = computed(() => appsStore.loading)
 
@@ -54,10 +55,10 @@ const appTypes = computed<AppTypes[]>((): AppTypes[] => [
 watch(
   computed((): AppInfo[] | null => appsStore.data),
   (newData) => {
+    apps.length = 0
+    gameApps.length = 0
+    otherApps.length = 0
     if (newData) {
-      apps.length = 0
-      gameApps.length = 0
-      otherApps.length = 0
       for (const item of newData) {
         switch (item.type) {
           case 'app': {
