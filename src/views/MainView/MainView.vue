@@ -73,7 +73,7 @@ function refresh() {
             <!-- TODO: 使用Upload页面 -->
             <!-- <v-list-item :title="$t('upload.app')" :to="{ name: 'Upload' }" /> -->
             <v-list-item v-if="currentPage?.refreshable" :title="$t('refresh.name')" @click="refresh" />
-            <v-list-item :title="$t('upload.app')" :href="URL_UPLOAD" target="_blank" />
+            <!-- <v-list-item :title="$t('upload.app')" :href="URL_UPLOAD" target="_blank" /> -->
             <v-list-item
               v-if="pwaStore.installBtnVisible"
               :title="$t('install.app')"
