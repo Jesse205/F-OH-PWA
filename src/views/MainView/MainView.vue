@@ -79,6 +79,7 @@ function refresh() {
               :title="$t('install.app')"
               @click="pwaStore.onInstallBtnClick"
             />
+            <v-list-item :title="$t('about.name')" :to="{ name: 'About' }" />
           </v-list>
         </v-menu>
       </template>

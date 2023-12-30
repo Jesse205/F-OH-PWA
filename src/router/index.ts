@@ -1,7 +1,7 @@
 // Composables
 import { IS_DEV_MODE } from '@/data/constants'
 import { isWebHistorySupported } from '@/util/app'
-import type { HistoryState as VueRouterHistoryState, RouteRecordRaw } from 'vue-router'
+import type { HistoryState, RouteRecordRaw } from 'vue-router'
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 
 const SELECTOR_SCROLL = '.main-container .main-scroll'
@@ -12,14 +12,16 @@ interface ScrollToOptions2 {
   [path: string]: ScrollToOptions
 }
 
-interface HistoryState extends VueRouterHistoryState {
-  forward?: string
-  back?: string
-  current?: string
-  scroll?: ScrollToOptions
-  // 基于单个元素和路径的滚动配置
-  scroll2?: ScrollToOptions2
-  [key: string]: any
+declare module 'vue-router' {
+  export interface HistoryState {
+    forward?: string
+    back?: string
+    current?: string
+    scroll?: ScrollToOptions
+    // 基于单个元素和路径的滚动配置
+    scroll2?: ScrollToOptions2
+    [key: string]: any
+  }
 }
 
 const routes: Readonly<RouteRecordRaw[]> = [
@@ -100,7 +102,7 @@ const router = createRouter({
    */
   scrollBehavior(to, from, savedPosition) {
     if (IS_DEV_MODE) console.debug(TAG, 'scrollBehavior', to, from, savedPosition)
-    const state = window.history.state as HistoryState
+    const state: HistoryState = window.history.state
 
     if (state.scroll2 && state.current) {
       // 有动画，所以要选择第最后一个元素
@@ -124,7 +126,7 @@ router.beforeEach((to, from) => {
     return false
   }
   // TODO: 使用更好的方法实现
-  const state: HistoryState = {
+  const state = {
     ...history.state,
     scroll2: scrollState2,
   }
