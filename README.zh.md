@@ -124,8 +124,8 @@ F-OH PWA 提供 **独立软件** 与 **网页访问** 两种方式供用户选�
 ### 约束和修复文件
 
 ```bash
-yarn eslint:fix
-yarn prettier:fix
+yarn lint:fix
+yarn format:fix
 ```
 
 ## 贡献项目

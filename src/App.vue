@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { usePreferredDark } from '@vueuse/core'
 import { useDisplay, useTheme } from 'vuetify'
-import { watch, computed, ref } from 'vue'
+import { watch, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { isTauri } from '@/util/app'
 import { useI18n } from 'vue-i18n'
@@ -14,7 +14,6 @@ import { isPwaDisplayMode } from '@/util/pwa'
 import TauriSystemBar from '@/components/app/TauriSystemBar.vue'
 import { isElementDraggableInLegacyApp } from '@/util/drag'
 import PwaComponent from './components/app/PwaComponent.vue'
-import { useServerSetting } from './composables/settings'
 
 // 主题
 const theme = useTheme()

@@ -125,8 +125,8 @@ Some browsers support installing this website to the desktop by clicking "Instal
 ## Lint and Fixing Files
 
 ```bash
-yarn eslint:fix
-yarn prettier:fix
+yarn lint:fix
+yarn format:fix
 ```
 
 ## Support Program
