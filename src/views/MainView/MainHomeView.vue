@@ -10,7 +10,7 @@ import { useHomeStore } from '@/store/home'
 import TitleList from '@/components/list/TitleList.vue'
 import CenterSpace from '@/components/CenterSpace.vue'
 import { useElementBounding, useScroll } from '@vueuse/core'
-import { max } from 'lodash'
+import { max } from 'lodash-es'
 import AppMain from '@/components/AppMain.vue'
 
 const homeStore = useHomeStore()

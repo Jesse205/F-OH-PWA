@@ -8,7 +8,7 @@ import 'swiper/css/pagination'
 import type { Banners } from '@/ts/interfaces/home.interfaces'
 import { useDisplay } from 'vuetify'
 
-import * as _ from 'lodash'
+import { cloneDeep } from 'lodash-es'
 import { getCompletePath } from '@/util/url'
 
 const props = defineProps<{
@@ -29,7 +29,7 @@ const slidesPerView = computed(() => {
 })
 
 const newBanners = computed(() => {
-  const newBannersData = _.cloneDeep(props.banners)
+  const newBannersData = cloneDeep(props.banners)
   newBannersData.data.forEach((item) => {
     if (item.src) {
       item.src = getCompletePath(item.src, props.baseUrl || location.href)
