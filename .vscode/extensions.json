@@ -1,9 +1,12 @@
 {
   "recommendations": [
-    "ms-vscode.vscode-typescript-next",
     "lokalise.i18n-ally",
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
-    "vue.vscode-typescript-vue-plugin"
+    "vue.vscode-typescript-vue-plugin",
+    "vue.volar",
+    "serayuzgur.crates",
+    "dustypomerleau.rust-syntax",
+    "rust-lang.rust-analyzer"
   ]
 }

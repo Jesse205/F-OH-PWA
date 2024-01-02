@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "target": "esnext",
     "composite": true,
     "strict": true,
     "sourceMap": false,
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "importHelpers": true
   },
   "files": [],
   "references": [
