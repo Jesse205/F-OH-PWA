@@ -116,7 +116,7 @@ Some browsers support installing this website to the desktop by clicking "Instal
 3. Open a terminal in the project and run commands according to the following rules.
    - Web pages and PWA applications:
      1. Run `yarn build`.
-     2. Pull [F-OH Data][F-OH-Data] into `dist/data`.
+     2. Pull [F-OH Data] into `dist/data`.
      3. Deploy `dist/*` to the server.
    - Windows Tauri software:
      1. Run `yarn build:tauri`.
