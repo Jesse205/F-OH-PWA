@@ -3,6 +3,7 @@
   "version": "1.2.0",
   "private": true,
   "type": "module",
+  "repository": "https://gitee.com/Jesse205/F-OH-PWA",
   "author": {
     "name": "Jesse205",
     "email": "2055675594@qq.com",
