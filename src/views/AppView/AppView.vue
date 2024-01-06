@@ -1,19 +1,20 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
-import { useAppsStore } from '@/store/apps'
 import AppMain from '@/components/AppMain.vue'
-import { useScroll, useShare } from '@vueuse/core'
-import { useI18n } from 'vue-i18n'
-import { getAppShareUrl, getAppTags } from '@/util/apps'
-import { useTitle } from '@/composables/title'
-import AppOverview from './components/AppOverview.vue'
-import AppDetails from './components/AppDetails.vue'
 import BackButton from '@/components/BackButton.vue'
-import { matchUserSpace } from '@/util/url'
-import type { AppInfo } from '@/ts/interfaces/app.interfaces'
 import TitleList from '@/components/list/TitleList.vue'
+import { useTitle } from '@/composables/title'
+import { useAppsStore } from '@/store/apps'
+import type { AppInfo } from '@/ts/interfaces/app.interfaces'
+import { getAppShareUrl, getAppTags } from '@/util/apps'
+import { matchUserSpace } from '@/util/url'
 import { mdiFormatQuoteOpen } from '@mdi/js'
+import { useScroll, useShare } from '@vueuse/core'
+import { computed, onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useRoute } from 'vue-router'
+
+import AppDetails from './components/AppDetails.vue'
+import AppOverview from './components/AppOverview.vue'
 
 const { t } = useI18n()
 const route = useRoute()

@@ -3,11 +3,10 @@
  *
  * 框架文档: https://vue-i18n.intlify.dev/
  */
-import type { Locale } from 'vue-i18n'
-import { createI18n } from 'vue-i18n'
-
 import EN from '@/locales/en.json'
 import ZH_CN from '@/locales/zh-CN.json'
+import type { Locale } from 'vue-i18n'
+import { createI18n } from 'vue-i18n'
 
 export const APP_NAME_DEFAULT = 'F-OH Lite'
 export const APP_NAME_PWA = 'F-OH PWA'

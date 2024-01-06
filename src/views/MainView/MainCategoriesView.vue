@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { onMounted, computed, watch, reactive } from 'vue'
-import { useI18n } from 'vue-i18n'
+import CenterSpace from '@/components/CenterSpace.vue'
 import ProjectItem from '@/components/list/ProjectItem.vue'
+import TitleList from '@/components/list/TitleList.vue'
 import { useAppsStore } from '@/store/apps'
 import type { AppInfo } from '@/ts/interfaces/app.interfaces'
-import TitleList from '@/components/list/TitleList.vue'
-import CenterSpace from '@/components/CenterSpace.vue'
 import { getAppShareUrl } from '@/util/apps'
+import { computed, onMounted, reactive, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 

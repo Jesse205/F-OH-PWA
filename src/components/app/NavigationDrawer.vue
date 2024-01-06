@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { computed, unref } from 'vue'
-import { useDisplay } from 'vuetify'
 import { useHomeNavigation } from '@/composables/navigation'
 import { useAppStore } from '@/store/app'
+import { computed, unref } from 'vue'
 import { useRoute } from 'vue-router'
+import { useDisplay } from 'vuetify'
 
 const appStore = useAppStore()
 const route = useRoute()

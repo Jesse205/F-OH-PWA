@@ -1,8 +1,10 @@
-import type { WindowOptions } from '@tauri-apps/api/window'
-import { WebviewWindow } from '@tauri-apps/api/window'
-import { writeText } from '@tauri-apps/api/clipboard'
-import { getName } from '@tauri-apps/api/app'
 import { invoke as tauriInvoke } from '@tauri-apps/api'
+import { getName } from '@tauri-apps/api/app'
+import { writeText } from '@tauri-apps/api/clipboard'
+import type { WindowOptions } from '@tauri-apps/api/window'
+import { WebviewWindow, getCurrent as getCurrentTauri } from '@tauri-apps/api/window'
+
+const TAG = '[AppUtil]'
 
 /**
  * 当前环境是否是 Tauri，开发时使用动态判断，发行时使用常量。
@@ -53,10 +55,10 @@ export async function openNewWindow(url: string) {
     })
     webView.once('tauri://created', () => {
       tauriInvoke('set_shadow', { label: webView.label })
-      console.debug('window created')
+      console.debug(TAG, 'window created')
     })
   } else {
-    console.warn('不支持创建新窗口')
+    console.warn(TAG, '不支持创建新窗口')
   }
 }
 
@@ -73,12 +75,11 @@ export async function copyText(text: string): Promise<CopyTextState> {
   }
 }
 
-/* export function closeWindow() {
-  if (isTauri()) {
-    getCurrent().close()
+export function closeWindow() {
+  if (isTauri) {
+    getCurrentTauri().close()
   } else window.close()
 }
-*/
 
 /**
  * 断言并阻止代码运行

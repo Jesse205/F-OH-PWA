@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import { useDisplay } from 'vuetify'
-import AppCard from './components/AppCard.vue'
 import AppMain from '@/components/AppMain.vue'
-import { useI18n } from 'vue-i18n'
-import { useTitle } from '@/composables/title'
-import { getTauriVersion, getVersion } from '@tauri-apps/api/app'
-import { computed, ref } from 'vue'
-import { isTauri } from '@/util/app'
 import BackButton from '@/components/BackButton.vue'
 import TitleList from '@/components/list/TitleList.vue'
+import { useTitle } from '@/composables/title'
+import { isTauri } from '@/util/app'
+import { getTauriVersion, getVersion } from '@tauri-apps/api/app'
+import { computed, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useDisplay } from 'vuetify'
+
+import AppCard from './components/AppCard.vue'
 
 const { t } = useI18n()
 useTitle(computed(() => t('about.name')))

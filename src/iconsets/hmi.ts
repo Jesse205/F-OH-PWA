@@ -1,6 +1,7 @@
-import { VSvgIcon } from 'vuetify/components'
 import type { IconAliases, IconSet } from 'vuetify'
+import { VSvgIcon } from 'vuetify/components'
 import { aliases as vuetifyAliases } from 'vuetify/iconsets/mdi'
+
 export const hmi: IconSet = {
   component: VSvgIcon,
 }

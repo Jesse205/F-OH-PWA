@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { copyText, openNewWindow, isTauri } from '@/util/app'
+import { copyText, isTauri, openNewWindow } from '@/util/app'
 import type { Position } from '@vueuse/core'
 import { nextTick, onBeforeUnmount, onMounted, reactive } from 'vue'
 

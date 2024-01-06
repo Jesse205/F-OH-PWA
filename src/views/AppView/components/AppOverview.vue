@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import type { AppInfo } from '@/ts/interfaces/app.interfaces'
 import { getApiUrl, getServerCompletePath } from '@/util/url'
-import { computed, ref } from 'vue'
 import { mdiSourceBranch } from '@mdi/js'
+import { computed, ref } from 'vue'
+
 const props = defineProps<{
   loading: boolean
   appInfo?: AppInfo

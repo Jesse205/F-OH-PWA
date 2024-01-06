@@ -1,15 +1,13 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Pagination } from 'swiper/modules'
+import type { Banners } from '@/ts/interfaces/home.interfaces'
+import { getCompletePath } from '@/util/url'
+import { cloneDeep } from 'lodash-es'
 import 'swiper/css'
 import 'swiper/css/pagination'
-
-import type { Banners } from '@/ts/interfaces/home.interfaces'
+import { Pagination } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { computed } from 'vue'
 import { useDisplay } from 'vuetify'
-
-import { cloneDeep } from 'lodash-es'
-import { getCompletePath } from '@/util/url'
 
 const props = defineProps<{
   banners: Banners

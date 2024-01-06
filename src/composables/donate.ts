@@ -1,13 +1,12 @@
+import JESSE205_ALIPAY_QRCODE from '@/assets/images/donate/jesse205/alipay.webp'
+import JESSE205_ALIPAY_KICKBACK_QRCODE from '@/assets/images/donate/jesse205/alipay_kickback.webp'
+import JESSE205_QQ_QRCODE from '@/assets/images/donate/jesse205/qq.webp'
+import JESSE205_WECHAT_QRCODE from '@/assets/images/donate/jesse205/wechat.jpg'
+import WESTINYANG_ALIPAY_QRCODE from '@/assets/images/donate/westinyang/alipay.webp'
+import WESTINYANG_WECHAT_QRCODE from '@/assets/images/donate/westinyang/wechat.webp'
 import type { ComputedRef } from 'vue'
 import { computed, reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
-
-import WESTINYANG_ALIPAY_QRCODE from '@/assets/images/donate/westinyang/alipay.webp'
-import WESTINYANG_WECHAT_QRCODE from '@/assets/images/donate/westinyang/wechat.webp'
-import JESSE205_QQ_QRCODE from '@/assets/images/donate/jesse205/qq.webp'
-import JESSE205_ALIPAY_QRCODE from '@/assets/images/donate/jesse205/alipay.webp'
-import JESSE205_ALIPAY_KICKBACK_QRCODE from '@/assets/images/donate/jesse205/alipay_kickback.webp'
-import JESSE205_WECHAT_QRCODE from '@/assets/images/donate/jesse205/wechat.jpg'
 
 // const COLOR_AMBER = '#FFC107'
 const COLOR_BLUE = '#2196F3'
@@ -21,16 +20,16 @@ interface Platform {
   image: string
 }
 
-interface Presion {
+interface Person {
   name: string | ComputedRef<string>
   summary: string | ComputedRef<string>
   selected: number
   platforms: Platform[]
 }
 
-export function useDonate(): Presion[] {
+export function useDonate(): Person[] {
   const { t } = useI18n()
-  return reactive<Presion[]>([
+  return reactive<Person[]>([
     {
       name: computed(() => t('developer.westinyang.name')),
       summary: computed(() => t('developer.westinyang.description')),

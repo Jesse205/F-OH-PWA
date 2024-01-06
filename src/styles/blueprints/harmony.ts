@@ -1,10 +1,5 @@
-// Icons
-import { hmi, aliases } from '@/iconsets/hmi'
-// import { mdi } from 'vuetify/iconsets/mdi'
-
-// Types
+import { aliases, hmi } from '@/iconsets/hmi'
 import type { Blueprint } from 'vuetify'
-
 import { md2 as vuetifyMd2 } from 'vuetify/blueprints'
 
 export const harmony: Blueprint = {
@@ -89,7 +84,6 @@ export const harmony: Blueprint = {
     },
     VTextField: {
       variant: 'underlined',
-      // color: 'primary',
       rounded: false,
     },
     VToolbar: {
@@ -102,7 +96,6 @@ export const harmony: Blueprint = {
     VBottomNavigation: {
       bgColor: 'background',
       VBtn: {
-        // variant: 'plain',
         rounded: 'lg',
         ripple: false,
       },
@@ -114,7 +107,6 @@ export const harmony: Blueprint = {
       minWidth: 172,
       transition: 'slide-y-transition',
       VList: {
-        // bgColor: 'surface'
         color: 'primary',
       },
     },

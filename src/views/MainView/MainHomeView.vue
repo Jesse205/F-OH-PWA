@@ -1,17 +1,18 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
-import HomeBanner from './components/HomeBanner.vue'
-import type { Banners } from '@/ts/interfaces/home.interfaces'
-import { URL_API } from '@/data/constants'
 import IMAGE_BANNER1 from '@/assets/images/main_banner_1.png'
 import IMAGE_BANNER2 from '@/assets/images/main_banner_2.png'
 import IMAGE_BANNER3 from '@/assets/images/main_banner_3.png'
-import { useHomeStore } from '@/store/home'
-import TitleList from '@/components/list/TitleList.vue'
+import AppMain from '@/components/AppMain.vue'
 import CenterSpace from '@/components/CenterSpace.vue'
+import TitleList from '@/components/list/TitleList.vue'
+import { URL_API } from '@/constants/urls'
+import { useHomeStore } from '@/store/home'
+import type { Banners } from '@/ts/interfaces/home.interfaces'
 import { useElementBounding, useScroll } from '@vueuse/core'
 import { max } from 'lodash-es'
-import AppMain from '@/components/AppMain.vue'
+import { computed, onMounted, ref } from 'vue'
+
+import HomeBanner from './components/HomeBanner.vue'
 
 const homeStore = useHomeStore()
 onMounted(() => {
@@ -112,11 +113,12 @@ const progressMarginTop = computed(() => {
     color: rgb(var(--v-theme-primary));
 
     &:hover {
-      color: rgba(var(--v-theme-primary),0.7);
+      color: rgba(var(--v-theme-primary), 0.7);
     }
     &:active {
-      color: rgba(var(--v-theme-primary),0.9);
+      color: rgba(var(--v-theme-primary), 0.9);
     }
   }
 }
 </style>
+@/constants/constants

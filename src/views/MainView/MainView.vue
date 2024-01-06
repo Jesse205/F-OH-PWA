@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import { ref, watchEffect, computed } from 'vue'
-import { useDisplay } from 'vuetify'
-import { useTitle } from '@/composables/title'
+import BackButton from '@/components/BackButton.vue'
 import type { NavPage } from '@/composables/navigation'
 import { useHomeNavigation } from '@/composables/navigation'
-import BackButton from '@/components/BackButton.vue'
-import type MainHomeView from './MainHomeView.vue'
+import { useTitle } from '@/composables/title'
+import { usePwaStore } from '@/store/pwa'
+import { computed, ref, watchEffect } from 'vue'
+import { useDisplay } from 'vuetify'
+
 import type MainCategoriesView from './MainCategoriesView.vue'
+import type MainHomeView from './MainHomeView.vue'
 import type MainMeView from './MainMeView.vue'
 import type MainUpdateView from './MainUpdateView.vue'
-import { usePwaStore } from '@/store/pwa'
 
 const { pages, activePagePosition, isBackOtherPage, isInMainView } = useHomeNavigation()
 

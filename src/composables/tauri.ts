@@ -15,8 +15,5 @@ export function useTauriSystemBar() {
   onBeforeUnmount(() => {
     if (unlistenResized) unlistenResized()
   })
-  return {
-    appWindow,
-    isMaximized,
-  }
+  return { appWindow, isMaximized }
 }

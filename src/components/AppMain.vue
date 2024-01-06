@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const mainScroll = ref<HTMLElement>()
+const mainScroll = ref<HTMLDivElement>()
 defineExpose({
   /**
    * 滚动区域元素

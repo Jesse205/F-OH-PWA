@@ -14,9 +14,11 @@
     "iconsets",
     "ohos",
     "openharmony",
+    "QRCODE",
     "Tauri",
     "unlisten",
     "vueuse",
+    "WECHAT",
     "westinyang"
   ],
   "i18n-ally.localesPaths": ["src/locales"],

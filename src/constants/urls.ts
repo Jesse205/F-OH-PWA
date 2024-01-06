@@ -1,8 +1,8 @@
-import { getCompletePath } from '@/util/url'
 import { isLegacyApp } from '@/util/app'
+import { getCompletePath } from '@/util/url'
 
-// env
-const { VITE_URL_API, VITE_URL_API_LEGACY, VITE_URL_UPLOAD, VITE_URL_API_GOGS, VITE_HOST_WEB } = import.meta.env
+const { VITE_URL_API, VITE_URL_API_LEGACY, VITE_URL_UPLOAD, VITE_URL_API_GOGS, VITE_HOST_WEB, VITE_URL_REPOSITORY } =
+  import.meta.env
 
 export const HOST_WEB = VITE_HOST_WEB
 
@@ -36,4 +36,7 @@ export const URL_API_ALL_APP_LIST_RELATIVE = '/allAppList.json'
  */
 export const URL_UPLOAD = VITE_URL_UPLOAD
 
-export const IS_DEV_MODE = import.meta.env.DEV
+/**
+ * 仓库地址
+ */
+export const URL_REPOSITORY = VITE_URL_REPOSITORY

@@ -6,20 +6,20 @@ import { onActivated, onDeactivated, ref, toRef, watchEffect } from 'vue'
  * 当组件挂载时，自动设置标题为 `title`。
  *
  * 注意：当组件停用时，该方法不会还原原先的标题！
- * @param actived 当前激活状态，默认为 `ref(true)`
+ * @param activated 当前激活状态，默认为 `ref(true)`
  */
-export function useTitle(title: MaybeRef<string | null>, actived: Ref<boolean> = ref(true)): Ref<string | null> {
+export function useTitle(title: MaybeRef<string | null>, activated: Ref<boolean> = ref(true)): Ref<string | null> {
   const wrappedTitle: Ref<string | null> = toRef(title)
   const appStore = useAppStore()
   onActivated(() => {
-    actived.value = true
+    activated.value = true
   })
   onDeactivated(() => {
-    actived.value = false
+    activated.value = false
   })
 
   watchEffect(() => {
-    if (actived.value) {
+    if (activated.value) {
       appStore.title = wrappedTitle.value
     }
   })

@@ -1,9 +1,8 @@
-// Utilities
 import { useServerSetting } from '@/composables/settings'
-import { IS_DEV_MODE } from '@/data/constants'
+import { IS_DEV_MODE } from '@/constants'
 import type { AppInfo } from '@/ts/interfaces/app.interfaces'
 import { assert } from '@/util/app'
-import { getAxiosInstance } from '@/util/fetch'
+import { getAxiosInstance } from '@/util/axios'
 import { getAllAppsListApiUrl, getApiUrl } from '@/util/url'
 import { defineStore } from 'pinia'
 import { onActivated, onDeactivated, ref, watch } from 'vue'
@@ -18,7 +17,9 @@ export const useAppsStore = defineStore('apps', () => {
   const data = ref<AppInfo[] | null>(null)
   const errMsg = ref<string | null>(null)
 
-  // 用于判断数据是否过时
+  /**
+   * 上传拉取数据时的服务器地址，用于判断数据是否过时
+   */
   let server: string | undefined
 
   /**
@@ -81,7 +82,7 @@ export const useAppsStore = defineStore('apps', () => {
       if (activated) fetchData()
     })
     onActivated(() => {
-      if (serverRef.value != server) fetchData()
+      if (serverRef.value !== server) fetchData()
       activated = true
     })
     onDeactivated(() => {

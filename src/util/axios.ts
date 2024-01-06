@@ -1,6 +1,7 @@
-import axios from 'axios'
 import type { AxiosAdapter, AxiosInstance } from 'axios'
+import axios from 'axios'
 import axiosTauriApiAdapter from 'axios-tauri-api-adapter'
+
 import { isTauri } from './app'
 
 let axiosInstance: AxiosInstance | null = null

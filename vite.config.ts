@@ -1,13 +1,10 @@
-// Plugins
 import vue from '@vitejs/plugin-vue'
-import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
-import { VitePWA } from 'vite-plugin-pwa'
+import { URL, fileURLToPath } from 'node:url'
 
-// Utilities
 import { defineConfig } from 'vite'
-import { fileURLToPath, URL } from 'node:url'
+import { VitePWA } from 'vite-plugin-pwa'
+import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
-// Manifest
 import manifest from './manifest'
 
 const isTauri = !!process.env.TAURI_FAMILY
@@ -42,6 +39,7 @@ export default defineConfig({
   define: {
     'process.env': {},
     __VERSION__: JSON.stringify(process.env.npm_package_version),
+    __HOMEPAGE__: JSON.stringify(process.env.npm_package_homepage),
     __IS_TAURI__: isTauri,
   },
   resolve: {

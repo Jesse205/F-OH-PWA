@@ -3,6 +3,7 @@ import { usePwaStore } from '@/store/pwa'
 import type { BeforeInstallPrompt } from '@/ts/interfaces/pwa.interfaces'
 import { useRegisterSW } from 'virtual:pwa-register/vue'
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
+
 const pwaStore = usePwaStore()
 const { needRefresh, updateServiceWorker } = useRegisterSW({ immediate: true })
 const reloadDialogVisible = ref(false)

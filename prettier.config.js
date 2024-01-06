@@ -40,4 +40,5 @@ export default {
   embeddedLanguageFormatting: 'auto',
   // html, vue, jsx 中每个属性占一行
   singleAttributePerLine: false,
+  plugins: ['prettier-plugin-organize-imports'],
 }

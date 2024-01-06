@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import AppMain from '@/components/AppMain.vue'
-import { ref, computed } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { useDonate } from '@/data/donate'
 import ICON from '@/assets/images/icon.svg'
-import { useTitle } from '@/composables/title'
+import AppMain from '@/components/AppMain.vue'
 import BackButton from '@/components/BackButton.vue'
+import { useDonate } from '@/composables/donate'
+import { useTitle } from '@/composables/title'
 import { mdiCursorDefaultOutline } from '@mdi/js'
+import { computed, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 useTitle(computed(() => t('donate.name')))
@@ -161,4 +161,4 @@ const adTabValue = ref<'join' | 'develop'>('join')
   }
 }
 </style>
-@/composables/title
+@/composables/title @/composables/donate

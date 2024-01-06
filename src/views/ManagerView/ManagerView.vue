@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import AppMain from '@/components/AppMain.vue'
+import BackButton from '@/components/BackButton.vue'
+import ProjectItem from '@/components/list/ProjectItem.vue'
+import { useTokenSetting } from '@/composables/settings'
 import { useTitle } from '@/composables/title'
-import { computed, ref, watch } from 'vue'
-import { useI18n } from 'vue-i18n'
 import { URL_UPLOAD } from '@/data/constants'
 import type { AppInfo } from '@/ts/interfaces/app.interfaces'
 import type { EditFileWork } from '@/ts/interfaces/gogs.interfaces'
-import { Base64 } from 'js-base64'
-import ProjectItem from '@/components/list/ProjectItem.vue'
-import { useTokenSetting } from '@/composables/settings'
 import * as gogs from '@/util/gogs'
-import BackButton from '@/components/BackButton.vue'
-import { mdiEyeOutline, mdiEyeOffOutline, mdiPlus, mdiCheck } from '@mdi/js'
+import { mdiCheck, mdiEyeOffOutline, mdiEyeOutline, mdiPlus } from '@mdi/js'
+import { Base64 } from 'js-base64'
+import { computed, ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 
@@ -154,4 +154,4 @@ function handelPush(event: Event) {
   }
 }
 </style>
-@/composables/title@/composables/settings
+@/composables/title@/composables/settings @/constants/constants

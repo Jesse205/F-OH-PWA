@@ -1,5 +1,4 @@
-// Composables
-import { IS_DEV_MODE } from '@/data/constants'
+import { IS_DEV_MODE } from '@/constants'
 import { isWebHistorySupported } from '@/util/app'
 import type { HistoryState, RouteRecordRaw } from 'vue-router'
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'

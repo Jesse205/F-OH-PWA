@@ -1,6 +1,7 @@
-import { URL_API, URL_API_ALL_APP_LIST_RELATIVE, URL_API_HOME_RELATIVE, URL_API_LEGACY } from '@/data/constants'
-import { isRedirectApiHost } from './app'
 import { KEY_SERVER } from '@/composables/settings'
+import { URL_API, URL_API_ALL_APP_LIST_RELATIVE, URL_API_HOME_RELATIVE, URL_API_LEGACY } from '@/constants/urls'
+
+import { isRedirectApiHost } from './app'
 
 const MACHER_GITHUB_USER = /^https:\/\/(www\.)?github\.com\/[^/]+/
 const MACHER_GITEE_USER = /^https:\/\/(www\.)?gitee\.com\/[^/]+/
@@ -24,10 +25,7 @@ export function getCompletePath(url: string, base: string = location.href) {
  * @param url 相对路径的链接，可以带前缀 `/`
  * @param root 根路径，可以带后缀 `/`
  */
-export function getServerCompletePath(
-  url: string,
-  root: string = getApiUrl(),
-) {
+export function getServerCompletePath(url: string, root: string = getApiUrl()) {
   if (url.search('://') > -1) return url
   return `${root}${root.endsWith('/') ? '' : '/'}${url.startsWith('/') ? url.slice(1) : url}`
 }

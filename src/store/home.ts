@@ -1,45 +1,14 @@
-// Utilities
+import { useServerSetting } from '@/composables/settings'
+import { IS_DEV_MODE } from '@/constants'
+import type { HomeData } from '@/ts/interfaces/home.interfaces'
+import { assert } from '@/util/app'
+import { getAxiosInstance } from '@/util/axios'
+import { getShowdownConverter } from '@/util/markdown'
+import { getApiUrl, getHomeApiUrl } from '@/util/url'
 import { defineStore } from 'pinia'
 import { computed, onActivated, onDeactivated, ref, watch } from 'vue'
-import type { HomeData } from '@/ts/interfaces/home.interfaces'
-import { getAxiosInstance } from '@/util/fetch'
-import { IS_DEV_MODE } from '@/data/constants'
-import showdown from 'showdown'
-import { assert } from '@/util/app'
-import { getApiUrl, getHomeApiUrl } from '@/util/url'
-import { useServerSetting } from '@/composables/settings'
 
 const TAG = '[HomeStore]'
-
-function newShowdownConverter() {
-  const classMap: { [key: string]: string } = {
-    h1: 'text-h6',
-    h2: 'text-h6',
-    h3: 'text-h6',
-    h4: 'text-h6',
-    h5: 'text-h6',
-    h6: 'text-h6',
-  }
-  const bindings = Object.keys(classMap).map<showdown.ShowdownExtension>((key) => ({
-    type: 'output',
-    regex: new RegExp(`<${key}(.*)>`, 'g'),
-    replace: `<${key} class="${classMap[key]}" $1>`,
-  }))
-  const converter = new showdown.Converter({
-    extensions: [...bindings],
-  })
-  converter.setOption('noHeaderId', true)
-  converter.setOption('simplifiedAutoLink', true)
-  converter.setOption('strikethrough', true)
-  converter.setOption('tables', true)
-  converter.setOption('ghCodeBlocks', true)
-  converter.setOption('tasklists', true)
-  converter.setOption('emoji', true)
-  converter.setOption('underline', true)
-  converter.setOption('ellipsis', true)
-  converter.setOption('moreStyling', true)
-  return converter
-}
 
 /**
  * 首页数据
@@ -48,7 +17,7 @@ export const useHomeStore = defineStore('home', () => {
   const loading = ref(false)
   const data = ref<HomeData | null>(null)
   const errMsg = ref<string | null>(null)
-  const converter = newShowdownConverter()
+  const converter = getShowdownConverter()
   const announcementHtml = computed(() => {
     if (!data.value?.announcement) return undefined
     // 原来的文字不是markdown样式，所以应该转为markdown样式。
@@ -91,6 +60,9 @@ export const useHomeStore = defineStore('home', () => {
       })
   }
 
+  /**
+   * 清空数据 `data` 与 `errMsg`
+   */
   function clearData() {
     data.value = null
     errMsg.value = null
@@ -107,19 +79,23 @@ export const useHomeStore = defineStore('home', () => {
   }
 
   /**
-   * 当服务器链接变化时，自动刷新
+   * 当服务器链接变化时，自动刷新。
    *
    * 需要在组件的 `setup` 内调用。
    */
   function autoRefresh() {
-    // 不能在 store 里面调用 `useServerSetting`，否则路由切换会丢失响应式。也不能注册监听事件，避免不必要的性能损耗。
+    // 不能在 store 里面调用 `useServerSetting`，否则路由切换**会丢失响应式**。也不能注册监听事件，避免不必要的性能损耗。
     const serverRef = useServerSetting()
     let activated = false
     watch(serverRef, () => {
-      if (activated) fetchData()
+      if (serverRef.value !== server && activated) {
+        fetchData()
+      }
     })
     onActivated(() => {
-      if (serverRef.value != server) fetchData()
+      if (serverRef.value !== server) {
+        fetchData()
+      }
       activated = true
     })
     onDeactivated(() => {

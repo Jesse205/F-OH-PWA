@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useTitle } from '@vueuse/core'
 import { useTauriSystemBar } from '@/composables/tauri'
 import { getCurrent } from '@tauri-apps/api/window'
+import { useTitle } from '@vueuse/core'
 
 const appWindow = getCurrent()
 const title = useTitle(null, { observe: true })

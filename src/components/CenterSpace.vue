@@ -1,5 +1,7 @@
 <script setup lang="ts">
-defineProps<{
+import { computed } from 'vue'
+
+const props = defineProps<{
   /**
    * 整体距离顶部的边距
    * @default 0
@@ -21,10 +23,19 @@ defineProps<{
    */
   right?: number
 }>()
+
+const style = computed(() => {
+  return {
+    top: props.top && `${props.top}px`,
+    left: props.left && `${props.left}px`,
+    bottom: props.bottom && `${props.bottom}px`,
+    right: props.right && `${props.right}px`,
+  }
+})
 </script>
 
 <template>
-  <div class="center-space" :style="{ top: `${top}px`, left: `${left}px`, bottom: `${bottom}px`, right: `${right}px` }">
+  <div class="center-space" :style="style">
     <slot />
   </div>
 </template>

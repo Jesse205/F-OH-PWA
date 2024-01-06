@@ -1,6 +1,7 @@
+import { HOST_WEB } from '@/constants/urls'
 import type { AppInfo } from '@/ts/interfaces/app.interfaces'
+
 import { isLegacyApp, isWebHistorySupported } from './app'
-import { HOST_WEB } from '@/data/constants'
 
 /**
  * 标签分割正则

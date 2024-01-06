@@ -1,17 +1,15 @@
 <script setup lang="ts">
 import AppMain from '@/components/AppMain.vue'
-
+import BackButton from '@/components/BackButton.vue'
+import DialogListItem from '@/components/list/DialogListItem.vue'
+import TitleList from '@/components/list/TitleList.vue'
+import { useLocaleSetting, useServerSetting, useTokenSetting } from '@/composables/settings'
 import { useTitle } from '@/composables/title'
-import { computed, ref } from 'vue'
-import { useI18n } from 'vue-i18n'
+import { URL_API } from '@/constants/urls'
 import { isTauri } from '@/util/app'
 import { getVersion } from '@tauri-apps/api/app'
-import { useLocaleSetting, useServerSetting } from '@/composables/settings'
-import { useTokenSetting } from '@/composables/settings'
-import DialogListItem from '@/components/list/DialogListItem.vue'
-import BackButton from '@/components/BackButton.vue'
-import TitleList from '@/components/list/TitleList.vue'
-import { URL_API } from '@/data/constants'
+import { computed, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 const { t, locale } = useI18n()
 
@@ -89,3 +87,4 @@ const server = useServerSetting()
 </template>
 
 <!-- <style scoped></style> -->
+@/constants/constants

@@ -17,7 +17,7 @@ export function useHomeNavigation() {
   const route = useRoute()
   const router = useRouter()
 
-  const pages = computed<NavPage[]>(() => {
+  const pages = computed((): NavPage[] => {
     return [
       {
         title: t('home.name'),

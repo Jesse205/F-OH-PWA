@@ -1,19 +1,19 @@
 <script lang="ts" setup>
-import { usePreferredDark } from '@vueuse/core'
-import { useDisplay, useTheme } from 'vuetify'
-import { watch, computed } from 'vue'
-import { useRoute } from 'vue-router'
-import { isTauri } from '@/util/app'
-import { useI18n } from 'vue-i18n'
-import { useLocaleSetting } from '@/composables/settings'
-import { isLegacyApp } from '@/util/app'
-import NavigationDrawer from '@/components/app/NavigationDrawer.vue'
+import CenterSpace from '@/components/CenterSpace.vue'
 import ContextMenu from '@/components/app/ContextMenu.vue'
-import { useAppStore } from '@/store/app'
-import { isPwaDisplayMode } from '@/util/pwa'
+import NavigationDrawer from '@/components/app/NavigationDrawer.vue'
+import PwaComponent from '@/components/app/PwaComponent.vue'
 import TauriSystemBar from '@/components/app/TauriSystemBar.vue'
+import { useLocaleSetting } from '@/composables/settings'
+import { useAppStore } from '@/store/app'
+import { isLegacyApp, isTauri } from '@/util/app'
 import { isElementDraggableInLegacyApp } from '@/util/drag'
-import PwaComponent from './components/app/PwaComponent.vue'
+import { isPwaDisplayMode } from '@/util/pwa'
+import { usePreferredDark } from '@vueuse/core'
+import { computed, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useRoute } from 'vue-router'
+import { useDisplay, useTheme } from 'vuetify'
 
 // 主题
 const theme = useTheme()
@@ -29,9 +29,10 @@ watch(
 )
 
 const route = useRoute()
+const MACHER_ROUTE_NAME = /\/[^/]+/
 
 // 路由名称
-const routeName = computed(() => route.path.match('/[^/]+')?.[0] ?? '')
+const routeName = computed(() => route.path.match(MACHER_ROUTE_NAME)?.[0] ?? '')
 
 // APP 模式
 console.debug('isTauri', isTauri)
@@ -102,10 +103,10 @@ const { xs } = useDisplay()
             </div>
           </transition>
         </router-view>
-        <div v-if="!routeName" class="splash">
+        <CenterSpace v-if="!routeName" class="splash">
           <img class="logo" src="@/assets/images/icon.svg" />
           <span>{{ appStore.appName }}</span>
-        </div>
+        </CenterSpace>
       </div>
     </v-main>
     <ContextMenu />

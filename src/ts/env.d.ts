@@ -15,4 +15,9 @@ interface ImportMetaEnv extends Readonly<Record<string, string>> {
    */
   VITE_URL_API_GOGS: string
   VITE_URL_UPLOAD: string
+
+  /**
+   * 仓库地址
+   */
+  VITE_URL_REPOSITORY: string
 }

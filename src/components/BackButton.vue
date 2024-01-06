@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { PATH_HOME } from '@/router'
 import { computed, useAttrs } from 'vue'
-import { useRoute } from 'vue-router'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useDisplay } from 'vuetify'
 
 const attrs = useAttrs()

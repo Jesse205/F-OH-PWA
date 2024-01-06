@@ -1,6 +1,7 @@
-import { URL_API_GOGS } from '@/data/constants'
+import { URL_API_GOGS } from '@/constants/urls'
 import type { GogsContentFile } from '@/ts/interfaces/gogs.interfaces'
-import { getAxiosInstance } from './fetch'
+
+import { getAxiosInstance } from './axios'
 
 export interface ApiConfig {
   token: string

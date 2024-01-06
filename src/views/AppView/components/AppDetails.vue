@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { AppInfo } from '@/ts/interfaces/app.interfaces'
 import TitleList from '@/components/list/TitleList.vue'
+import type { AppInfo } from '@/ts/interfaces/app.interfaces'
 import { mdiIdentifier } from '@mdi/js'
 
 defineProps<{
