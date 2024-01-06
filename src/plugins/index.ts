@@ -1,7 +1,7 @@
 /**
  * plugins/index.ts
  *
- * Automatically included in `./src/main.ts`
+ * 自动包含在 `./src/main.ts` 中
  */
 
 import type { App } from 'vue'

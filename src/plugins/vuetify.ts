@@ -1,7 +1,7 @@
 /**
  * plugins/vuetify.ts
  *
- * Framework documentation: https://vuetifyjs.com`
+ * 框架文档: https://vuetifyjs.com
  */
 
 import { harmony } from '@/styles/blueprints'

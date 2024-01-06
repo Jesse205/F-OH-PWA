@@ -20,10 +20,8 @@ export default defineConfig({
     // https://github.com/vuetifyjs/vuetify-loader/tree/next/packages/vite-plugin
     vuetify({
       autoImport: true,
-      /* styles: {
-        configFile: 'src/styles/settings.scss',
-      }, */
     }),
+    // https://vite-pwa-org.netlify.app/
     VitePWA({
       registerType: 'prompt',
       devOptions: {
@@ -50,7 +48,7 @@ export default defineConfig({
   },
   server: {
     port: 3000,
-    // Tauri expects a fixed port, fail if that port is not available
+    // Tauri 期望使用固定端口，如果端口不可用，则会失败
     strictPort: true,
     proxy: {
       '/api/gogs': {
@@ -60,14 +58,12 @@ export default defineConfig({
       },
     },
   },
-  // to make use of `TAURI_PLATFORM`, `TAURI_ARCH`, `TAURI_FAMILY`,
-  // `TAURI_PLATFORM_VERSION`, `TAURI_PLATFORM_TYPE` and `TAURI_DEBUG`
-  // env variables
+  // 使用环境变量`TAURI_PLATFORM`、`TAURI_ARCH`、`TAURI_FAMILY`、
+  // `TAURI_PLATFORM_VERSION`、`TAURI_PLATFORM_TYPE` 和 `TAURI_DEBUG`、
   envPrefix: ['VITE_', 'TAURI_'],
   build: {
-    // Tauri uses Chromium on Windows and WebKit on macOS and Linux
+    // Tauri 在 Windows 上使用 Chromium，在 macOS 和 Linux 上使用 WebKit
     target: process.env.TAURI_PLATFORM === 'windows' ? 'chrome105' : 'safari13',
-    // don't minify for debug builds
     minify: !isTauriDebug ? 'esbuild' : false,
     // 为调试构建生成源代码映射 (sourcemap)
     sourcemap: isTauriDebug || !isProduction,
