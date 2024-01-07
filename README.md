@@ -93,13 +93,12 @@ Some browsers support installing this website to the desktop by clicking "Instal
 
 ## Project Setup
 
-1. Install NodeJS v19
-2. Install Yarn
-3. Set up the Tauri environment according to [Tauri prep](https://tauri.app/v1/guides/getting-started/prerequisites/).
+1. Install NodeJS v21 and [pnpm](https://pnpm.io/installation)
+2. Set up the Tauri environment according to [Tauri prep](https://tauri.app/v1/guides/getting-started/prerequisites/).
    - Windows: Microsoft Visual Studio C++ Builder, WebView2, Rust.
    - macOS: CLang and macOS development dependencies, Rust.
    - Linux: system dependencies, Rust.
-4. Run `yarn install`
+3. Run `yarn install`
 
 ### Compiling and Hotloading for Development
 

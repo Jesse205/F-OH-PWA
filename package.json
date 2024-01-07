@@ -10,6 +10,7 @@
     "url": "https://gitee.com/Jesse205"
   },
   "license": "GPL-3.0",
+  "packageManager": "pnpm@8.14.0",
   "scripts": {
     "dev": "vite",
     "dev:tauri": "tauri dev",
@@ -52,7 +53,6 @@
     "@types/node": "^20.10.6",
     "@types/showdown": "^2.0.6",
     "@vitejs/plugin-vue": "^5.0.2",
-    "@volar/vue-typescript": "^1.6.5",
     "@vue/eslint-config-prettier": "^9.0.0",
     "@vue/eslint-config-typescript": "^12.0.0",
     "@vue/tsconfig": "^0.5.1",

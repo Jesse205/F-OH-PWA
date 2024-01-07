@@ -93,32 +93,31 @@ F-OH PWA 提供 **独立软件** 与 **网页访问** 两种方式供用户选�
 
 ## 项目设置
 
-1. 安装 NodeJS v19
-2. 安装 Yarn
-3. 按照 [Tauri 的预先准备](https://tauri.app/zh-cn/v1/guides/getting-started/prerequisites)设置 Tauri 环境。
+1. 安装 NodeJS v21 和 [pnpm](https://pnpm.io/zh/installation)
+2. 按照 [Tauri 的预先准备](https://tauri.app/zh-cn/v1/guides/getting-started/prerequisites)设置 Tauri 环境。
    - Windows: Microsoft Visual Studio C++ 生成工具、WebView2、Rust。
    - macOS: CLang 和 macOS 开发依赖项、Rust。
    - Linux: 系统依赖、Rust。
-4. 运行 `yarn install`
+3. 运行 `pnpm install`
 
 ### 为开发编译和热加载
 
 1. 克隆 [F-OH Data] 并启动一个服务器。
 2. 将 [`.env.development.local.example`](./.env.development.local.example) 另存为 `.env.development.local`，并配置一些变量。
 3. 在该项目打开终端，按照以下规则运行命令。
-   - 网页与 PWA 应用：运行 `yarn dev` 。
-   - Windows Tauri 软件：运行 `yarn dev:tauri` 。
+   - 网页与 PWA 应用：运行 `pnpm dev` 。
+   - Windows Tauri 软件：运行 `pnpm dev:tauri` 。
 
 ### 为生产编译和精简
 
 1. 设置 `.env.production` 文件。
 2. 在该项目打开终端，按照以下规则运行命令。
    - 网页与 PWA 应用：
-     1. 运行 `yarn build` 。
+     1. 运行 `pnpm build` 。
      2. 拉取 [F-OH Data] 到 `dist/data` 。
      3. 部署 `dist/*` 到服务器。
    - Windows Tauri 软件：
-     1. 运行 `yarn build:tauri` 。
+     1. 运行 `pnpm build:tauri` 。
      2. 发布 `src-tauri\target\release\F-OH Tauri.exe` 与 `src-tauri\target\release\bundle\nsis\F-OH Tauri_<version>_x64-setup.exe`
 
 ### 约束和修复文件
