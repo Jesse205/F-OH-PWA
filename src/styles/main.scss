@@ -17,7 +17,7 @@
 .page-transition-leave-active,
 .page-reverse-transition-enter-active,
 .page-reverse-transition-leave-active {
-  --page-transition: 350ms cubic-bezier(0.39, 0.58, 0.57, 1);
+  --page-transition: 400ms cubic-bezier(0.46, 0.03, 0.52, 0.96);
   & > .layout,
   & {
     transition: var(--page-transition);
@@ -42,14 +42,26 @@
 
 .page-transition-enter-from,
 .page-reverse-transition-leave-to {
-  // -25%
-  transform: translateX(-100%);
-  & > .layout {
-    transform: translateX(75%);
-  }
-  // clip-path: inset(0 75% 0 0);
+  --page-position-x: -25%;
+  --page-mask-position-x: -100%;
   &::before {
-    background-color: rgb(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}
+
+.page-transition-leave-to,
+.page-reverse-transition-enter-from {
+  --page-position-x: 25%;
+  --page-mask-position-x: 100%;
+}
+
+.page-transition-enter-from,
+.page-transition-leave-to,
+.page-reverse-transition-enter-from,
+.page-reverse-transition-leave-to {
+  transform: translateX(var(--page-mask-position-x));
+  & > .layout {
+    transform: translateX(calc(var(--page-position-x) - var(--page-mask-position-x)));
   }
 }
 
@@ -62,20 +74,9 @@
   & > .layout {
     transform: translateX(0);
   }
-  // clip-path: inset(0 0 0 0);
   &::before {
     background-color: transparent;
   }
-}
-
-.page-transition-leave-to,
-.page-reverse-transition-enter-from {
-  // 25%
-  transform: translateX(100%);
-  & > .layout {
-    transform: translateX(-75%);
-  }
-  // clip-path: inset(0 0 0 75%);
 }
 
 .dialog-transition {
