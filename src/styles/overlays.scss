@@ -397,3 +397,20 @@ html {
     content: none;
   }
 }
+
+// 无动画效果
+@media (prefers-reduced-motion) {
+  html {
+    .dialog-transition-enter-active,
+    .dialog-transition-leave-active,
+    .v-overlay__scrim,
+    .slide-y-transition-enter-active,
+    .slide-y-transition-leave-active,
+    * {
+      transition: none !important;
+    }
+    .harmony {
+      --harmony-background-transition-duration: 0s !important;
+    }
+  }
+}
