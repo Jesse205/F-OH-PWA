@@ -14,11 +14,14 @@ dependencies:
   '@tauri-apps/api':
     specifier: ^1.5.3
     version: 1.5.3
+  '@tsconfig/node21':
+    specifier: ^21.0.1
+    version: 21.0.1
   '@vueuse/core':
     specifier: ^10.7.1
     version: 10.7.1(vue@3.4.5)
   axios:
-    specifier: ^1.6.3
+    specifier: ^1.6.5
     version: 1.6.5
   axios-tauri-api-adapter:
     specifier: ^0.2.1
@@ -42,10 +45,10 @@ dependencies:
     specifier: ^9.0.1
     version: 9.0.1
   vue:
-    specifier: ^3.4.3
+    specifier: ^3.4.5
     version: 3.4.5(typescript@5.3.3)
   vue-i18n:
-    specifier: ^9.8.0
+    specifier: ^9.9.0
     version: 9.9.0(vue@3.4.5)
   vue-router:
     specifier: ^4.2.5
@@ -76,15 +79,12 @@ devDependencies:
   '@tauri-apps/cli':
     specifier: ^1.5.9
     version: 1.5.9
-  '@tsconfig/node18':
-    specifier: ^18.2.2
-    version: 18.2.2
   '@types/lodash-es':
     specifier: ^4.17.12
     version: 4.17.12
   '@types/node':
-    specifier: ^20.10.6
-    version: 20.10.6
+    specifier: ^20.10.7
+    version: 20.10.7
   '@types/showdown':
     specifier: ^2.0.6
     version: 2.0.6
@@ -116,14 +116,14 @@ devDependencies:
     specifier: ^3.2.4
     version: 3.2.4(prettier@3.1.1)(typescript@5.3.3)
   sass:
-    specifier: ^1.69.6
+    specifier: ^1.69.7
     version: 1.69.7
   typescript:
     specifier: ^5.3.3
     version: 5.3.3
   vite:
-    specifier: ^5.0.10
-    version: 5.0.11(@types/node@20.10.6)(sass@1.69.7)
+    specifier: ^5.0.11
+    version: 5.0.11(@types/node@20.10.7)(sass@1.69.7)
   vite-plugin-pwa:
     specifier: ^0.17.4
     version: 0.17.4(vite@5.0.11)(workbox-build@7.0.0)(workbox-window@7.0.0)
@@ -1836,9 +1836,9 @@ packages:
       '@tauri-apps/cli-win32-x64-msvc': 1.5.9
     dev: true
 
-  /@tsconfig/node18@18.2.2:
-    resolution: {integrity: sha512-d6McJeGsuoRlwWZmVIeE8CUA27lu6jLjvv1JzqmpsytOYYbVi1tHZEnwCNVOXnj4pyLvneZlFlpXUK+X9wBWyw==, tarball: https://registry.npmmirror.com/@tsconfig/node18/-/node18-18.2.2.tgz}
-    dev: true
+  /@tsconfig/node21@21.0.1:
+    resolution: {integrity: sha512-2Khg79N+z2Qkb9SjLzOi8cz2PSa/oUpHIeQm1YWzmWXkoFcPXFZSHgs+Z8iPCDjIoXFqMNYntiTXxfLYQMcRhw==, tarball: https://registry.npmmirror.com/@tsconfig/node21/-/node21-21.0.1.tgz}
+    dev: false
 
   /@types/estree@0.0.39:
     resolution: {integrity: sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==, tarball: https://registry.npmmirror.com/@types/estree/-/estree-0.0.39.tgz}
@@ -1860,15 +1860,15 @@ packages:
     resolution: {integrity: sha512-OvlIYQK9tNneDlS0VN54LLd5uiPCBOp7gS5Z0f1mjoJYBrtStzgmJBxONW3U6OZqdtNzZPmn9BS/7WI7BFFcFQ==, tarball: https://registry.npmmirror.com/@types/lodash/-/lodash-4.14.202.tgz}
     dev: true
 
-  /@types/node@20.10.6:
-    resolution: {integrity: sha512-Vac8H+NlRNNlAmDfGUP7b5h/KA+AtWIzuXy0E6OyP8f1tCLYAtPvKRRDJjAPqhpCb0t6U2j7/xqAuLEebW2kiw==, tarball: https://registry.npmmirror.com/@types/node/-/node-20.10.6.tgz}
+  /@types/node@20.10.7:
+    resolution: {integrity: sha512-fRbIKb8C/Y2lXxB5eVMj4IU7xpdox0Lh8bUPEdtLysaylsml1hOOx1+STloRs/B9nf7C6kPRmmg/V7aQW7usNg==, tarball: https://registry.npmmirror.com/@types/node/-/node-20.10.7.tgz}
     dependencies:
       undici-types: 5.26.5
 
   /@types/resolve@1.17.1:
     resolution: {integrity: sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==, tarball: https://registry.npmmirror.com/@types/resolve/-/resolve-1.17.1.tgz}
     dependencies:
-      '@types/node': 20.10.6
+      '@types/node': 20.10.7
 
   /@types/semver@7.5.6:
     resolution: {integrity: sha512-dn1l8LaMea/IjDoHNd9J52uBbInB796CDffS6VdIxvqYCPSG0V0DzHp76GpaWnlhg88uYyPbXCDIowa86ybd5A==, tarball: https://registry.npmmirror.com/@types/semver/-/semver-7.5.6.tgz}
@@ -2028,7 +2028,7 @@ packages:
       vite: ^5.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 5.0.11(@types/node@20.10.6)(sass@1.69.7)
+      vite: 5.0.11(@types/node@20.10.7)(sass@1.69.7)
       vue: 3.4.5(typescript@5.3.3)
     dev: true
 
@@ -3315,7 +3315,7 @@ packages:
     resolution: {integrity: sha512-KWYVV1c4i+jbMpaBC+U++4Va0cp8OisU185o73T1vo99hqi7w8tSJfUXYswwqqrjzwxa6KpRK54WhPvwf5w6PQ==, tarball: https://registry.npmmirror.com/jest-worker/-/jest-worker-26.6.2.tgz}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 20.10.6
+      '@types/node': 20.10.7
       merge-stream: 2.0.0
       supports-color: 7.2.0
 
@@ -4235,7 +4235,7 @@ packages:
       debug: 4.3.4
       fast-glob: 3.3.2
       pretty-bytes: 6.1.1
-      vite: 5.0.11(@types/node@20.10.6)(sass@1.69.7)
+      vite: 5.0.11(@types/node@20.10.7)(sass@1.69.7)
       workbox-build: 7.0.0
       workbox-window: 7.0.0
     transitivePeerDependencies:
@@ -4253,13 +4253,13 @@ packages:
       '@vuetify/loader-shared': 2.0.1(vue@3.4.5)(vuetify@3.4.9)
       debug: 4.3.4
       upath: 2.0.1
-      vite: 5.0.11(@types/node@20.10.6)(sass@1.69.7)
+      vite: 5.0.11(@types/node@20.10.7)(sass@1.69.7)
       vue: 3.4.5(typescript@5.3.3)
       vuetify: 3.4.9(typescript@5.3.3)(vite-plugin-vuetify@2.0.1)(vue-i18n@9.9.0)(vue@3.4.5)
     transitivePeerDependencies:
       - supports-color
 
-  /vite@5.0.11(@types/node@20.10.6)(sass@1.69.7):
+  /vite@5.0.11(@types/node@20.10.7)(sass@1.69.7):
     resolution: {integrity: sha512-XBMnDjZcNAw/G1gEiskiM1v6yzM4GE5aMGvhWTlHAYYhxb7S3/V1s3m2LDHa8Vh6yIWYYB0iJwsEaS523c4oYA==, tarball: https://registry.npmmirror.com/vite/-/vite-5.0.11.tgz}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -4287,7 +4287,7 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 20.10.6
+      '@types/node': 20.10.7
       esbuild: 0.19.11
       postcss: 8.4.33
       rollup: 4.9.4
