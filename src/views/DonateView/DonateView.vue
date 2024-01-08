@@ -2,16 +2,15 @@
 import ICON from '@/assets/images/icon.svg'
 import AppMain from '@/components/AppMain.vue'
 import BackButton from '@/components/BackButton.vue'
-import { useDonate } from '@/composables/donate'
+import { donateData } from '@/data/donate'
 import { useTitle } from '@/composables/title'
 import { mdiCursorDefaultOutline } from '@mdi/js'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { parseI18n } from '@/util/i18n'
 
 const { t } = useI18n()
 useTitle(computed(() => t('donate.name')))
-
-const data = useDonate()
 
 const adTabValue = ref<'join' | 'develop'>('join')
 </script>
@@ -23,10 +22,10 @@ const adTabValue = ref<'join' | 'develop'>('join')
   </v-app-bar>
   <app-main>
     <v-container class="container">
-      <v-card v-for="(person, index) in data" :key="index" class="donate-card">
+      <v-card v-for="(person, index) in donateData" :key="index" class="donate-card">
         <v-tabs v-model="person.selected">
           <v-tab v-for="(platform, index) in person.platforms" :key="index" :value="index" :color="platform.color">
-            {{ platform.name }}
+            {{ parseI18n(platform.name, $t) }}
           </v-tab>
         </v-tabs>
         <v-divider />
@@ -34,8 +33,8 @@ const adTabValue = ref<'join' | 'develop'>('join')
         <v-divider />
         <v-card-item>
           <div>
-            <div class="text-h6 mb-1">{{ person.name }}</div>
-            <div class="text-caption">{{ person.summary }}</div>
+            <div class="text-h6 mb-1">{{ parseI18n(person.name, $t) }}</div>
+            <div class="text-caption">{{ parseI18n(person.summary, $t) }}</div>
           </div>
         </v-card-item>
       </v-card>
@@ -118,14 +117,6 @@ const adTabValue = ref<'join' | 'develop'>('join')
   &__content-btn {
     width: 100%;
     aspect-ratio: 1;
-
-    // .image-ontainer {
-    //   display: flex;
-    //   justify-content: center;
-    //   align-items: center;
-    //   height: 100%;
-    //   flex-direction: column;
-    // }
   }
   &__content-btn {
     padding: 24px;

@@ -1,16 +1,13 @@
 <script setup lang="ts">
-import IMAGE_BANNER1 from '@/assets/images/main_banner_1.png'
-import IMAGE_BANNER2 from '@/assets/images/main_banner_2.png'
-import IMAGE_BANNER3 from '@/assets/images/main_banner_3.png'
 import AppMain from '@/components/AppMain.vue'
 import CenterSpace from '@/components/CenterSpace.vue'
 import TitleList from '@/components/list/TitleList.vue'
 import { URL_API } from '@/constants/urls'
 import { useHomeStore } from '@/store/home'
-import type { Banners } from '@/ts/interfaces/home.interfaces'
 import { useElementBounding, useScroll } from '@vueuse/core'
 import { max } from 'lodash-es'
 import { computed, onMounted, ref } from 'vue'
+import { banners } from '@/data/banners'
 
 import HomeBanner from './components/HomeBanner.vue'
 
@@ -23,24 +20,10 @@ homeStore.autoRefresh()
 const loading = computed(() => homeStore.loading)
 const errMsg = computed(() => homeStore.errMsg)
 
-const banners: Banners = {
-  data: [
-    {
-      image: IMAGE_BANNER1,
-    },
-    {
-      image: IMAGE_BANNER2,
-    },
-    {
-      image: IMAGE_BANNER3,
-    },
-  ],
-  ratio: 18 / 9,
-}
 const mainComponent = ref<InstanceType<typeof AppMain>>()
 const { y: scrollY } = useScroll(computed(() => mainComponent.value?.mainScroll))
 
-const bannersComponent = ref(null)
+const bannersComponent = ref<InstanceType<typeof HomeBanner>>()
 const { height: bannersHeight } = useElementBounding(bannersComponent, { windowScroll: false })
 
 /**

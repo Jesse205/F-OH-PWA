@@ -19,5 +19,6 @@ export interface Banners {
 
 export interface BannersItem {
   src?: string
+  alt: string
   image: string
 }
