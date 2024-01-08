@@ -64,7 +64,7 @@ The F-OH PWA offers a choice between **standalone software** and **web access**.
 - **F-OH Tauri** ![SOFTWARE](https://img.shields.io/badge/-SOFTWARE-00a6f9): ~~Deep system integration, near-native experience~~, no automatic updates, available offline, fast loading.
   - [Gitee Releases](https://gitee.com/ohos-dev/F-OH-PWA/releases/latest)
 - **F-OH Lite**、**F-OH PWA** ![WEBSITE](https://img.shields.io/badge/-WEBSITE-81bd0a): Click-and-go, automatic update, no download required.
-  - Release: <http://74.48.94.162:5000/>
+  - Release: ~~<http://74.48.94.162:5000/>~~ (Discontinued)
   - Development: <https://f-oh-pwa-jesse205.netlify.app/>
 
 > [!TIP]\

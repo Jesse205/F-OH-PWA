@@ -64,7 +64,7 @@ F-OH PWA 提供 **独立软件** 与 **网页访问** 两种方式供用户选�
 - **F-OH Tauri** ![独立软件](https://img.shields.io/badge/-独立软件-00a6f9)：~~系统深度集成，近乎原生的体验~~，不会自动更新，离线可用，加载快速。
   - [Gitee 发行版][ReleaseInGitee]
 - **F-OH Lite**、**F-OH PWA** ![网页访问](https://img.shields.io/badge/-网页访问-81bd0a) ：点击即用，自动更新，无需下载。
-  - 正式版：<http://74.48.94.162:5000/>
+  - 正式版：~~<http://74.48.94.162:5000/>~~（已停服）
   - 开发版：<https://f-oh-pwa-jesse205.netlify.app/>
 
 > [!TIP]\
