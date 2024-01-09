@@ -7,7 +7,7 @@ import { useTitle } from '@/composables/title'
 import { mdiCursorDefaultOutline } from '@mdi/js'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { parseI18n } from '@/util/i18n'
+import DonateCard from './components/DonateCard.vue'
 
 const { t } = useI18n()
 useTitle(computed(() => t('donate.name')))
@@ -22,22 +22,13 @@ const adTabValue = ref<'join' | 'develop'>('join')
   </v-app-bar>
   <app-main>
     <v-container class="container">
-      <v-card v-for="(person, index) in donateData" :key="index" class="donate-card">
-        <v-tabs v-model="person.selected">
-          <v-tab v-for="(platform, index) in person.platforms" :key="index" :value="index" :color="platform.color">
-            {{ parseI18n(platform.name, $t) }}
-          </v-tab>
-        </v-tabs>
-        <v-divider />
-        <v-img class="donate-card__image" cover :src="person.platforms[person.selected].image" data-allow-drag />
-        <v-divider />
-        <v-card-item>
-          <div>
-            <div class="text-h6 mb-1">{{ parseI18n(person.name, $t) }}</div>
-            <div class="text-caption">{{ parseI18n(person.summary, $t) }}</div>
-          </div>
-        </v-card-item>
-      </v-card>
+      <DonateCard
+        v-for="person in donateData"
+        :key="person.key"
+        :platforms="person.platforms"
+        :name="person.name"
+        :summary="person.summary"
+      />
 
       <!-- 广告开始 -->
       <v-card class="donate-card">
@@ -152,4 +143,3 @@ const adTabValue = ref<'join' | 'develop'>('join')
   }
 }
 </style>
-@/composables/title @/composables/donate
