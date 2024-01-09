@@ -1,4 +1,4 @@
-name: Build
+name: Build project
 on:
   push:
     tags:
@@ -38,18 +38,15 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 'lts/*'
-          cache: 'pnpm' # Set this to npm, yarn or pnpm.
+          cache: 'pnpm'
 
       - name: Install frontend dependencies
-        # If you don't have `beforeBuildCommand` configured you may want to build your frontend here too.
-        run: pnpm install # Change this to npm, yarn or pnpm.
+        run: pnpm install
 
       - name: Build the app
         uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          releaseId: ${{ needs.create-release.outputs.release_id }}
       - name: Upload F-OH Tauri bundles
         uses: actions/upload-artifact@v3
         with:
