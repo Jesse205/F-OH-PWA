@@ -1,17 +1,22 @@
 <script setup lang="ts">
 import { useTauriSystemBar } from '@/composables/tauri'
-import { getCurrent } from '@tauri-apps/api/window'
-import { useTitle } from '@vueuse/core'
+import { useTitle, useWindowFocus } from '@vueuse/core'
 
-const appWindow = getCurrent()
 const title = useTitle(null, { observe: true })
+const windowFocus = useWindowFocus()
 
-const { isMaximized } = useTauriSystemBar()
+const { appWindow, isMaximized } = useTauriSystemBar()
 </script>
 
 <template>
-  <v-system-bar class="system-bar" color="transparent" data-tauri-drag-region window>
-    <span>{{ title }}</span>
+  <v-system-bar
+    class="SystemBar"
+    :class="{ SystemBar_focused: windowFocus }"
+    color="transparent"
+    data-tauri-drag-region
+    window
+  >
+    <span class="title">{{ title }}</span>
     <v-spacer />
     <v-btn
       icon="$window-minimize"
@@ -28,7 +33,7 @@ const { isMaximized } = useTauriSystemBar()
       @click="appWindow.toggleMaximize()"
     />
     <v-btn
-      class="system-bar__btn_close"
+      class="window-btn_close"
       icon="$window-close"
       variant="text"
       color="on-background"
@@ -39,11 +44,12 @@ const { isMaximized } = useTauriSystemBar()
 </template>
 
 <style scoped lang="scss">
-.system-bar {
+.SystemBar {
   padding-inline-end: 0 !important;
   overflow: hidden;
   user-select: none;
-  & > span {
+  opacity: 0.6;
+  .title {
     // 禁止选择+防止阻止拖动窗口
     pointer-events: none;
   }
@@ -61,7 +67,7 @@ const { isMaximized } = useTauriSystemBar()
     }
   }
   // 关闭按钮需要特别地设置
-  & &__btn_close {
+  .window-btn_close {
     &:hover {
       background-color: rgb(var(--v-theme-error)) !important;
       color: rgb(var(--v-theme-on-error)) !important;
@@ -71,5 +77,7 @@ const { isMaximized } = useTauriSystemBar()
     }
   }
 }
+.SystemBar_focused {
+  opacity: 1;
+}
 </style>
-@/composables/tauri

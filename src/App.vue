@@ -94,7 +94,7 @@ if (isLegacyApp) {
 </script>
 
 <template>
-  <v-app class="app" @dragstart="onDragStart">
+  <v-app class="app" :class="{ border: isTauri }" @dragstart="onDragStart">
     <TauriSystemBar v-if="isTauri" />
     <NavigationDrawer v-if="!xs" />
     <v-main class="main">
@@ -149,6 +149,7 @@ if (isLegacyApp) {
   // 防止移动端出现滚动条
   overflow: hidden;
 }
+
 .main {
   padding-top: 0;
   overflow: hidden;
