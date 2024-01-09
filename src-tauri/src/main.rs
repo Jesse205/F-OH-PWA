@@ -14,12 +14,14 @@ fn main() {
                 .resizable(true)
                 .transparent(false)
                 .decorations(false)
+                .visible(false)
                 .title(app.package_info().name.clone())
                 .inner_size(960.0, 600.0)
                 .min_inner_size(320.0, 480.0)
                 .build()
                 .unwrap();
             set_shadow(app.app_handle(), window.label());
+            window.show();
             Ok(())
         })
         .run(context)

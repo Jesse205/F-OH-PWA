@@ -25,6 +25,7 @@ const WEBVIEW_OPTIONS_DEFAULT: WindowOptions | undefined = isTauri
       minHeight: 480,
       transparent: false,
       decorations: false,
+      visible: false,
     }
   : undefined
 
@@ -48,14 +49,13 @@ export function isWebHistorySupported(hostname = location.hostname): boolean {
  */
 export async function openNewWindow(url: string) {
   if (isTauri) {
-    const webView = new WebviewWindow(`window-${Date.now()}`, {
+    const tauriWindow = new WebviewWindow(`window-${Date.now()}`, {
       title: await getName(),
       ...WEBVIEW_OPTIONS_DEFAULT,
       url,
     })
-    webView.once('tauri://created', () => {
-      tauriInvoke('set_shadow', { label: webView.label })
-      console.debug(TAG, 'window created')
+    await tauriWindow.once('tauri://created', () => {
+      tauriInvoke('set_shadow', { label: tauriWindow.label }).then(() => tauriWindow.show())
     })
   } else {
     console.warn(TAG, '不支持创建新窗口')
