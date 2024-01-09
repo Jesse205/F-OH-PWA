@@ -21,7 +21,7 @@ fn main() {
                 .build()
                 .unwrap();
             set_shadow(app.app_handle(), window.label());
-            window.show();
+            let _ = window.show();
             Ok(())
         })
         .run(context)
