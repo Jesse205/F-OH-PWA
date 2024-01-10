@@ -94,7 +94,7 @@ if (isLegacyApp) {
 </script>
 
 <template>
-  <v-app class="app" :class="{ border: isTauri }" @dragstart="onDragStart">
+  <v-app class="app" @dragstart="onDragStart">
     <TauriSystemBar v-if="isTauri" />
     <NavigationDrawer v-if="!xs" />
     <v-main class="main">
@@ -118,6 +118,9 @@ if (isLegacyApp) {
     <ContextMenu />
     <PwaComponent />
   </v-app>
+  <Teleport v-if="isTauri" to="body">
+    <div class="border window-border"></div>
+  </Teleport>
 </template>
 
 <style lang="scss" scoped>
@@ -168,5 +171,14 @@ if (isLegacyApp) {
     margin-bottom: 16px;
     flex: none;
   }
+}
+.window-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: none;
 }
 </style>
