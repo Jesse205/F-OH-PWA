@@ -1,25 +1,23 @@
 <script setup lang="ts">
 import { copyText, isTauri, openNewWindow } from '@/util/app'
-import type { Position } from '@vueuse/core'
-import { nextTick, onBeforeUnmount, onMounted, reactive } from 'vue'
+import { useWindowFocus } from '@vueuse/core'
+import { onBeforeUnmount, onMounted, reactive } from 'vue'
+
+const windowFocus = useWindowFocus()
 
 // 右键菜单
 interface ContextMenuConfig {
-  position: Position
+  position: [x: number, x: number]
   url: string | null
   externalUrl: string | null
   state: boolean
-  time: number
+  timeoutId?: number
 }
 const config: ContextMenuConfig = reactive<ContextMenuConfig>({
-  position: {
-    x: 0,
-    y: 0,
-  },
+  position: [0, 0],
   url: null,
   externalUrl: null,
   state: false,
-  time: 0,
 })
 const tauriState = isTauri
 
@@ -31,26 +29,45 @@ function onContextMenu(event: MouseEvent) {
   if (tauriState) {
     event.preventDefault()
     console.debug('onContextMenu', `clientX=${event.clientX}, clientY=${event.clientY}`)
-    // 如果上一次没有关闭上下文菜单，就需要关闭一下，防止不会刷新定位
+
+    // 如果上一次没有关闭上下文菜单，就需要关闭一下，以播放完整的动画
+    const previousState = config.state
     config.state = false
-    nextTick(() => {
-      config.state = !!(config.url ?? config.externalUrl)
-    })
-    config.url = null
-    config.externalUrl = null
-    for (let element = event.target as HTMLElement; element.parentElement; element = element.parentElement) {
-      if (element instanceof HTMLAnchorElement && !config.url) {
-        if (!element.target || element.target === '_self') {
-          config.url = element.href
-        } else if (element.target === '_blank') {
-          config.externalUrl = element.href
-        }
+    if (previousState || config.timeoutId !== undefined) {
+      clearTimeout(config.timeoutId)
+      config.timeoutId = setTimeout(() => {
+        config.timeoutId = undefined
+        updateConfigWithEvent(event)
+        config.state = isNeedShowMenu()
+      }, 100)
+    } else {
+      updateConfigWithEvent(event)
+      config.state = isNeedShowMenu()
+    }
+  }
+}
+
+function isNeedShowMenu() {
+  return !!(config.url ?? config.externalUrl)
+}
+
+function updateConfig(element: HTMLElement, position: [x: number, y: number]) {
+  config.url = null
+  config.externalUrl = null
+  for (let current = element; current.parentElement; current = current.parentElement) {
+    if (current instanceof HTMLAnchorElement && !config.url) {
+      if (!current.target || current.target === '_self') {
+        config.url = current.href
+      } else if (current.target === '_blank') {
+        config.externalUrl = current.href
       }
     }
-    config.position.x = event.clientX
-    config.position.y = event.clientY
-    config.time = Date.now()
   }
+  config.position = position
+}
+
+function updateConfigWithEvent(event: MouseEvent) {
+  updateConfig(event.target as HTMLElement, [event.clientX, event.clientY])
 }
 
 onMounted(() => document.body.addEventListener('contextmenu', onContextMenu))
@@ -58,21 +75,8 @@ onBeforeUnmount(() => document.body.removeEventListener('contextmenu', onContext
 </script>
 
 <template>
-  <v-menu
-    :key="config.time"
-    v-model="config.state"
-    class="menu"
-    transition="fade-transition"
-    @contextmenu.stop.prevent
-    @selectstart.prevent
-  >
-    <template #activator="{ props }">
-      <div
-        v-bind="props"
-        class="contextMenuActivator"
-        :style="{ left: config.position.x + 'px', top: config.position.y + 'px' }"
-      ></div>
-    </template>
+  <!-- 不要对 v-menu 使用 :key，否则会导致错位 -->
+  <v-menu v-model="config.state" class="menu" @contextmenu.stop.prevent @selectstart.prevent :target="config.position">
     <v-list>
       <!-- 新窗口中打开 -->
       <v-list-item v-if="config.url" :title="$t('openNewWindow.name')" @click="openNewWindow(config.url)" />
@@ -89,10 +93,4 @@ onBeforeUnmount(() => document.body.removeEventListener('contextmenu', onContext
   </v-menu>
 </template>
 
-<style scoped lang="scss">
-.contextMenuActivator {
-  position: absolute;
-  width: 0;
-  height: 0;
-}
-</style>
+<style scoped lang="scss"></style>
