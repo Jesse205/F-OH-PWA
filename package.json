@@ -49,6 +49,7 @@
     "@babel/types": "^7.23.6",
     "@rushstack/eslint-patch": "^1.6.1",
     "@tauri-apps/cli": "^1.5.9",
+    "@types/eslint": "^8.56.2",
     "@types/lodash-es": "^4.17.12",
     "@types/node": "^20.10.8",
     "@types/showdown": "^2.0.6",
