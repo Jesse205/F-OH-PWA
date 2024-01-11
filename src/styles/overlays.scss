@@ -262,7 +262,8 @@ html {
 
   .v-tabs {
     padding: 4px 4px 0px 4px;
-    .v-tab {
+    // 需要两个.v-tab，因为vuetify实现的就是那样的，否则会被默认样式顶掉
+    .v-tab.v-tab {
       height: 100%;
       border-top-left-radius: 14px;
       border-top-right-radius: 14px;
