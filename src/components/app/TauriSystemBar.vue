@@ -52,6 +52,11 @@ const { appWindow, isMaximized } = useTauriSystemBar()
   .title {
     // 禁止选择+防止阻止拖动窗口
     pointer-events: none;
+    text-align: start;
+    text-overflow: ellipsis;
+    text-overflow: fade;
+    overflow: hidden;
+    white-space: nowrap;
   }
   :deep(.v-btn) {
     height: 32px;
