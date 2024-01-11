@@ -5,6 +5,7 @@ import type { WindowOptions } from '@tauri-apps/api/window'
 import { WebviewWindow, getCurrent as getCurrentTauri } from '@tauri-apps/api/window'
 
 const TAG = '[AppUtil]'
+const SUFFIX_NETLIFY = '.netlify.app'
 
 /**
  * 当前环境是否是 Tauri，开发时使用动态判断，发行时使用常量。
@@ -33,14 +34,14 @@ const WEBVIEW_OPTIONS_DEFAULT: WindowOptions | undefined = isTauri
  * 判断当前域名是否采用了重定向 API，用于在用户直接访问资源时还原原链接，否则会重定向到主页。
  */
 export function isRedirectApiHost(hostname = location.hostname): boolean {
-  return hostname.endsWith('.netlify.app')
+  return hostname.endsWith(SUFFIX_NETLIFY)
 }
 
 /**
  * 判断当前域名是否支持 WebHistory 模式，如果支持，则将展示简洁的地址。
  */
 export function isWebHistorySupported(hostname = location.hostname): boolean {
-  return hostname.endsWith('.netlify.app')
+  return hostname.endsWith(SUFFIX_NETLIFY)
 }
 
 /**

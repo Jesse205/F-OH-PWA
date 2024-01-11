@@ -4,6 +4,7 @@
  * 框架文档: https://vue-i18n.intlify.dev/
  */
 
+import { KEY_LOCALE } from '@/composables/settings'
 import EN from '@/locales/en.json'
 import ZH_CN from '@/locales/zh-CN.json'
 import type { Locale } from 'vue-i18n'
@@ -17,7 +18,7 @@ const i18n = createI18n({
   legacy: false,
   globalInjection: true,
   // 这里使用钩子竟然也行，不知道是怎么跑起来的。
-  locale: localStorage.getItem('locale') ?? navigator.language,
+  locale: localStorage.getItem(KEY_LOCALE) ?? navigator.language,
   fallbackLocale: navigator.languages as Locale[],
   messages: {
     en: EN,

@@ -8,7 +8,6 @@ export interface ApiConfig {
   ref?: string
 }
 
-// eslint-disable-next-line max-params
 export async function getFileContent(
   user: string,
   repository: string,

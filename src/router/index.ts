@@ -1,11 +1,11 @@
-import { IS_DEV_MODE } from '@/constants'
+import { BASE_URL, IS_DEV_MODE } from '@/constants'
 import { isWebHistorySupported } from '@/util/app'
 import type { HistoryState, RouteRecordRaw } from 'vue-router'
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 
+const TAG = '[Router]'
 const SELECTOR_SCROLL = '.main-container .main-scroll'
 export const PATH_HOME = '/index/home'
-const TAG = '[Router]'
 
 interface ScrollToOptions2 {
   [path: string]: ScrollToOptions
@@ -89,9 +89,7 @@ const routes: Readonly<RouteRecordRaw[]> = [
   },
 ]
 
-const history = isWebHistorySupported()
-  ? createWebHistory(import.meta.env.BASE_URL)
-  : createWebHashHistory(import.meta.env.BASE_URL)
+const history = isWebHistorySupported() ? createWebHistory(BASE_URL) : createWebHashHistory(BASE_URL)
 
 const router = createRouter({
   history,
@@ -104,7 +102,7 @@ const router = createRouter({
     const state: HistoryState = window.history.state
 
     if (state.scroll2 && state.current) {
-      // 有动画，所以要选择第最后一个元素
+      // 有动画，所以存在多个页面，需要指定路径
       if (state.scroll2 && state.current) {
         const element = document.querySelector(`.page[data-path='${to.path}']:last-child ${SELECTOR_SCROLL}`)
         element?.scrollTo(state.scroll2[state.current])
@@ -124,6 +122,7 @@ router.beforeEach((to, from) => {
     console.warn(TAG, `Backing to '${to.path}' because history.state.back='${history.state.back}'. state may lost!`)
     return false
   }
+  // 存储滚动位置
   // TODO: 使用更好的方法实现
   const state = {
     ...history.state,

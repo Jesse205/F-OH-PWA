@@ -14,7 +14,6 @@ import { computed, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 import { useDisplay, useTheme } from 'vuetify'
-import { getCurrent as getCurrentTauri } from '@tauri-apps/api/window'
 // 主题
 const theme = useTheme()
 const preferredDark = usePreferredDark()
@@ -85,12 +84,6 @@ function onDragStart(event: DragEvent) {
 }
 
 const { xs } = useDisplay()
-
-// 显示窗口
-if (isLegacyApp) {
-  const webView = getCurrentTauri()
-  webView.show().catch(() => webView.close())
-}
 </script>
 
 <template>
