@@ -10,6 +10,7 @@ import { useI18n } from 'vue-i18n'
 import { useDisplay } from 'vuetify'
 
 import AppCard from './components/AppCard.vue'
+import { URL_REPOSITORY } from '@/constants/urls'
 
 const { t } = useI18n()
 useTitle(computed(() => t('about.name')))
@@ -38,8 +39,7 @@ const developers = computed<DeveloperItem[]>(() => [
 
 const { smAndUp } = useDisplay()
 
-const URL_SOURCE = 'https://gitee.com/ohos-dev/F-OH-PWA'
-const URL_TERM_LICENSES = 'https://gitee.com/Jesse205/F-OH-PWA/blob/main/docs/terms/licenses_v1.0.0.md'
+const URL_TERM_LICENSES = `${URL_REPOSITORY}/blob/main/docs/terms/licenses_v1.0.0.md`
 
 const tauriVersion = ref()
 
@@ -117,8 +117,8 @@ if (isTauri) {
         <v-list-item
           prepend-icon="$link"
           :title="$t('source.code')"
-          :subtitle="URL_SOURCE"
-          :href="URL_SOURCE"
+          :subtitle="URL_REPOSITORY"
+          :href="URL_REPOSITORY"
           target="_blank"
           append-icon="$openInNew"
         />
