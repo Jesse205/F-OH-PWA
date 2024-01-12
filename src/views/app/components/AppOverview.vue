@@ -40,13 +40,13 @@ defineExpose({
       <!-- 应用名和版本 -->
       <v-skeleton-loader v-if="loading" class="app-overview__right__skeleton" type="text@2" color="transparent" />
       <template v-else>
-        <div class="app-overview__right__title">
+        <h2 class="app-overview__right__title text-h6">
           <!-- 应用名 -->
-          <h2 ref="appNameElement" class="text-h6" :title="$t('app.name')">{{ appInfo?.name }}</h2>
+          <span ref="appNameElement" :title="$t('app.name')">{{ appInfo?.name }}</span>
           <span class="text-subtitle-2" :title="$t('version.name')">
             v{{ appInfo ? `${appInfo.version}` : $t('unknown.name') }}
           </span>
-        </div>
+        </h2>
         <div class="app-overview__right__package-name text-subtitle-2" :title="$t('packageName.name')">
           {{ appInfo?.packageName ?? $t('unknown.name') }}
         </div>
@@ -98,7 +98,7 @@ defineExpose({
     flex-direction: column;
     flex-grow: 1;
     flex-wrap: nowrap;
-    overflow: hidden;
+    width: 0;
     margin-left: 16px;
 
     &__skeleton {
@@ -106,9 +106,7 @@ defineExpose({
       overflow: hidden;
     }
     &__title {
-      & > * {
-        display: inline;
-      }
+      overflow: hidden;
     }
 
     .text-subtitle-2 {
@@ -116,6 +114,7 @@ defineExpose({
     }
 
     &__package-name {
+      overflow: hidden;
       height: 1.75rem;
       text-overflow: ellipsis;
       overflow: hidden;

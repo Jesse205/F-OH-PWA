@@ -152,20 +152,52 @@ html {
     & > .v-list-item__overlay {
       transition-duration: var(--harmony-background-transition-duration);
     }
+    // 重写焦点样式
+    @supports selector(:focus-visible) {
+      &::after {
+        border: 2px solid rgb(var(--v-theme-primary));
+        border-radius: inherit;
+      }
+      &:focus-visible {
+        & > .v-list-item__overlay {
+          opacity: 0;
+        }
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+
     // 菜单中--active需要背景
-    &:not(&--active)[aria-haspopup='menu'][aria-expanded='true'] {
+    &:not(&--active)[aria-haspopup='menu'] {
       & > .v-list-item__overlay {
         opacity: 0;
       }
     }
     &:not(&--active):hover {
       .v-list-item__overlay {
-        opacity: calc(var(--v-hover-opacity) * var(--v-theme-overlay-multiplier)) !important;
+        opacity: calc(var(--v-hover-opacity) * var(--v-theme-overlay-multiplier));
       }
     }
     &:not(&--active):active {
       & > .v-list-item__overlay {
-        opacity: calc(var(--v-pressed-opacity) * var(--v-theme-overlay-multiplier)) !important;
+        opacity: calc(var(--v-pressed-opacity) * var(--v-theme-overlay-multiplier));
+      }
+    }
+
+    &.v-list-item--active {
+      & > .v-list-item__overlay {
+        opacity: calc(var(--v-activated-opacity) * var(--v-theme-overlay-multiplier));
+      }
+    }
+    &.v-list-item--active:hover {
+      .v-list-item__overlay {
+        opacity: calc((var(--v-hover-opacity) + var(--v-activated-opacity)) * var(--v-theme-overlay-multiplier));
+      }
+    }
+    &.v-list-item--active:active {
+      & > .v-list-item__overlay {
+        opacity: calc((var(--v-pressed-opacity) + var(--v-activated-opacity)) * var(--v-theme-overlay-multiplier));
       }
     }
   }
@@ -234,6 +266,7 @@ html {
             width: 0;
             flex: 1;
             margin: 4px;
+            // 按钮分割线
             &::before {
               content: '';
               position: absolute;
@@ -278,6 +311,22 @@ html {
   }
   .v-btn {
     transition-property: box-shadow, transform, opacity, background;
+    @supports selector(:focus-visible) {
+      &:focus-visible {
+        & > .v-btn__overlay {
+          opacity: 0;
+        }
+        &::after {
+          opacity: 1;
+        }
+      }
+      &::after {
+        border: none;
+        border-radius: inherit;
+        outline: rgb(var(--v-theme-primary)) solid 2px;
+        outline-offset: 2px;
+      }
+    }
     &--variant-text {
       .v-btn__overlay,
       .v-ripple__container {
@@ -285,7 +334,7 @@ html {
       }
     }
     // 显示菜单时不显示按钮的背景
-    &[aria-haspopup='menu'][aria-expanded='true'] {
+    &[aria-haspopup='menu'] {
       & > .v-btn__overlay {
         opacity: 0;
       }
