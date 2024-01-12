@@ -297,6 +297,11 @@ html {
     padding: 4px 4px 0px 4px;
     // 需要两个.v-tab，因为vuetify实现的就是那样的，否则会被默认样式顶掉
     .v-tab.v-tab {
+      @supports selector(:focus-visible) {
+        &::after {
+          outline-offset: -2px;
+        }
+      }
       height: 100%;
       border-top-left-radius: 14px;
       border-top-right-radius: 14px;

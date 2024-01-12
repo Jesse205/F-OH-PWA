@@ -2,24 +2,29 @@
 import type { DonatePlatform } from '@/ts/interfaces/donate.interfaces'
 import { parseI18n } from '@/util/i18n'
 import { ref } from 'vue'
+
 defineProps<{
   platforms: DonatePlatform[]
   name: string
   summary: string
 }>()
 
-const selected = ref<number>(0)
+const reallySelected = ref<number>(0)
 </script>
 
 <template>
   <v-card class="DonateCard">
-    <v-tabs v-model="selected">
+    <v-tabs v-model="reallySelected">
       <v-tab v-for="(platform, index) in platforms" :key="platform.key" :value="index" :color="platform.color">
         {{ parseI18n(platform.name, $t) }}
       </v-tab>
     </v-tabs>
     <v-divider />
-    <v-img class="donate-card__image" cover :src="platforms[selected].image" data-allow-drag />
+    <div class="DonateCard__content">
+      <slot :selectedKey="platforms[reallySelected].key">
+        <v-img cover :src="platforms[reallySelected].image" data-allow-drag />
+      </slot>
+    </div>
     <v-divider />
     <v-card-item>
       <div>
@@ -36,8 +41,7 @@ const selected = ref<number>(0)
   width: 100%;
   max-width: 360px;
 
-  &__image,
-  &__content-btn {
+  &__content {
     width: 100%;
     aspect-ratio: 1;
   }

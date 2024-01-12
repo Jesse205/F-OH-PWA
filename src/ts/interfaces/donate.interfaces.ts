@@ -1,9 +1,9 @@
 export interface DonatePlatform {
   name: string
-  color: string
+  color?: string
   icon?: string
   key: string
-  image: string
+  image?: string
 }
 
 export interface DonatePerson {
