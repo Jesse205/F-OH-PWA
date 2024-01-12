@@ -5,7 +5,7 @@ import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router
 
 const TAG = '[Router]'
 const SELECTOR_SCROLL = '.main-container .main-scroll'
-export const PATH_HOME = '/index/home'
+export const PATH_HOME = '/main/home'
 
 interface ScrollToOptions2 {
   [path: string]: ScrollToOptions
@@ -29,28 +29,54 @@ const routes: Readonly<RouteRecordRaw[]> = [
     redirect: { name: 'Home' },
   },
   {
-    path: '/index',
-    component: async () => await import('@/views/MainView/MainView.vue'),
+    path: '/main',
+    component: async () => await import('@/views/main/MainView.vue'),
     children: [
       {
         path: 'home',
         name: 'Home',
-        component: async () => await import('@/views/MainView/MainHomeView.vue'),
+        component: async () => await import('@/views/main/MainHomeView.vue'),
       },
       {
         path: 'categories',
         name: 'Categories',
-        component: async () => await import('@/views/MainView/MainCategoriesView.vue'),
+        component: async () => await import('@/views/main/MainCategoriesView.vue'),
       },
       {
         path: 'update',
         name: 'Update',
-        component: async () => await import('@/views/MainView/MainUpdateView.vue'),
+        component: async () => await import('@/views/main/MainUpdateView.vue'),
       },
       {
         path: 'me',
         name: 'Me',
-        component: async () => await import('@/views/MainView/MainMeView.vue'),
+        component: async () => await import('@/views/main/MainMeView.vue'),
+      },
+      {
+        path: ':chapters*',
+        redirect: { name: 'Home' },
+      },
+    ],
+  },
+  // 重定向旧版链接
+  {
+    path: '/index',
+    children: [
+      {
+        path: 'home',
+        redirect: { name: 'Home' },
+      },
+      {
+        path: 'categories',
+        redirect: { name: 'Categories' },
+      },
+      {
+        path: 'update',
+        redirect: { name: 'Update' },
+      },
+      {
+        path: 'me',
+        redirect: { name: 'Me' },
       },
       {
         path: ':chapters*',
@@ -61,27 +87,27 @@ const routes: Readonly<RouteRecordRaw[]> = [
   {
     path: '/app/:pkg',
     name: 'App',
-    component: async () => await import('@/views/AppView/AppView.vue'),
+    component: async () => await import('@/views/app/AppView.vue'),
   },
   {
     path: '/manager',
     name: 'Manager',
-    component: async () => await import('@/views/ManagerView/ManagerView.vue'),
+    component: async () => await import('@/views/manager/ManagerView.vue'),
   },
   {
     path: '/settings',
     name: 'Settings',
-    component: async () => await import('@/views/SettingsView/SettingsView.vue'),
+    component: async () => await import('@/views/settings/SettingsView.vue'),
   },
   {
     path: '/donate',
     name: 'Donate',
-    component: async () => await import('@/views/DonateView/DonateView.vue'),
+    component: async () => await import('@/views/donate/DonateView.vue'),
   },
   {
     path: '/about',
     name: 'About',
-    component: async () => await import('@/views/AboutView/AboutView.vue'),
+    component: async () => await import('@/views/about/AboutView.vue'),
   },
   {
     path: '/:chapters*',

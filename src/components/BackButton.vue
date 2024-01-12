@@ -22,7 +22,7 @@ const canBack = computed(() => {
  * 当可以返回上一页并且当前路径不是主页时显示按钮。
  */
 const isHomeButton = computed(() => {
-  return !canBack.value && route.path !== PATH_HOME
+  return Boolean(!canBack.value && route.path !== PATH_HOME)
 })
 
 /**
@@ -30,7 +30,7 @@ const isHomeButton = computed(() => {
  * - 如果该按钮是首页按钮，并且屏幕宽度为xs，则显示按钮。
  */
 const isBtnShowing = computed(() => {
-  return canBack.value || (xs.value && isHomeButton.value)
+  return Boolean(canBack.value || (xs.value && isHomeButton.value))
 })
 
 function onClick() {

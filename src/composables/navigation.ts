@@ -1,7 +1,10 @@
+import { PATH_HOME } from '@/router'
 import { splitPathAndHash } from '@/util/url'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, useRouter } from 'vue-router'
+
+const INDEX_NOT_FOUND = -1
 
 export interface NavPage {
   title: string
@@ -49,17 +52,17 @@ export function useHomeNavigation() {
     ]
   })
   const activePagePosition = computed(() =>
-    route.name ? pages.value.findIndex((page) => page.name === route.name) : -1,
+    route.name ? pages.value.findIndex((page) => page.name === route.name) : INDEX_NOT_FOUND,
   )
 
-  const isInMainView = computed(() => activePagePosition.value !== -1)
+  const isInMainView = computed(() => activePagePosition.value !== INDEX_NOT_FOUND)
 
   const isBackOtherPage = computed<boolean>(() => {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     route.path // 确保路由刷新时重新调用该函数
     const { back } = router.options.history.state
     const pureBackUrl = typeof back === 'string' ? splitPathAndHash(back)[0] : undefined
-    return Boolean(pureBackUrl && pureBackUrl !== '/index/home')
+    return Boolean(pureBackUrl && pureBackUrl !== PATH_HOME)
   })
   return { pages, activePagePosition, isInMainView, isBackOtherPage }
 }
