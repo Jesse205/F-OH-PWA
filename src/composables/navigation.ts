@@ -61,7 +61,7 @@ export function useHomeNavigation() {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     route.path // 确保路由刷新时重新调用该函数
     const { back } = router.options.history.state
-    const pureBackUrl = typeof back === 'string' ? splitPathAndHash(back)[0] : undefined
+    const pureBackUrl = back ? splitPathAndHash(back)[0] : undefined
     return Boolean(pureBackUrl && pureBackUrl !== PATH_HOME)
   })
   return { pages, activePagePosition, isInMainView, isBackOtherPage }
