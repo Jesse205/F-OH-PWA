@@ -67,10 +67,12 @@ The F-OH PWA offers a choice between **standalone software** and **web access**.
   - Release: ~~<http://74.48.94.162:5000/>~~ (Discontinued)
   - Development: <https://f-oh-pwa-jesse205.netlify.app/>
 
-> [!TIP]\
+> [!TIP]
+>
 > ~~F-OH PWA is temporarily unavailable because the server does not have SSL and has cross-domain issues ([No security context to meet the minimum requirements to be a PWA][PWASecureContextRequirement]), please use F-OH Tauri or F-OH Lite (Web).~~ If you want to use use the PWA, use the development version deployed on Netlify.
 
-> [!NOTE]\
+> [!NOTE]
+>
 > This PWA application will not be able to enter the new page after update, some functions may be abnormal, please refresh before use it.
 
 ### PWA Installation

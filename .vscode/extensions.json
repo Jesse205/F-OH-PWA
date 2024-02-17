@@ -6,7 +6,6 @@
     "vue.vscode-typescript-vue-plugin",
     "vue.volar",
     "serayuzgur.crates",
-    "dustypomerleau.rust-syntax",
-    "rust-lang.rust-analyzer"
+    "dustypomerleau.rust-syntax"
   ]
 }
