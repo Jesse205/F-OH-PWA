@@ -1,70 +1,66 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/schema.json",
+  "app": {
+    "macOSPrivateApi": true,
+    "security": {
+      "csp": null
+    },
+    "windows": [
+      {
+        "resizable": true,
+        "center": true,
+        "width": 960,
+        "height": 600,
+        "minHeight": 480,
+        "minWidth": 320,
+        "transparent": false,
+        "decorations": false,
+        "shadow": true
+      }
+    ]
+  },
   "build": {
     "beforeBuildCommand": "pnpm build",
     "beforeDevCommand": "pnpm dev",
-    "devPath": "http://localhost:3000",
-    "distDir": "../dist"
+    "devUrl": "http://localhost:3000",
+    "frontendDist": "../dist"
   },
-  "package": {
-    "productName": "F-OH Tauri",
-    "version": "1.3.1"
-  },
-  "tauri": {
-    "allowlist": {
-      "http": {
-        "scope": ["http://**", "https://**"]
-      },
-      "all": true
-    },
-    "bundle": {
-      "active": true,
-      "category": "Utility",
-      "copyright": "Copyright (C) 2023 Jesse205",
+  "bundle": {
+    "active": false,
+    "category": "Utility",
+    "copyright": "Copyright (C) 2023 Jesse205",
+    "externalBin": [],
+    "icon": ["icons/32x32.png", "icons/128x128.png", "icons/128x128@2x.png", "icons/icon.icns", "icons/icon.ico"],
+    "licenseFile": "../LICENSE",
+    "linux": {
       "deb": {
         "depends": []
-      },
-      "externalBin": [],
-      "icon": ["icons/32x32.png", "icons/128x128.png", "icons/128x128@2x.png", "icons/icon.icns", "icons/icon.ico"],
-      "identifier": "org.ohosdev.foh.tauri",
-      "longDescription": "F-OH PWA version packaged with Tauri",
-      "macOS": {
-        "entitlements": null,
-        "exceptionDomain": "",
-        "frameworks": [],
-        "providerShortName": null,
-        "signingIdentity": null
-      },
-      "resources": [],
-      "shortDescription": "",
-      "targets": ["deb", "nsis"],
-      "windows": {
-        "certificateThumbprint": null,
-        "digestAlgorithm": "sha256",
-        "timestampUrl": "",
-        "webviewInstallMode": {
-          "type": "downloadBootstrapper"
-        },
-        "wix": {
-          "language": ["zh-CN", "en-US"]
-        },
-        "nsis": {
-          "languages": ["SimpChinese", "English"],
-          "displayLanguageSelector": true,
-          "license": "../LICENSE",
-          "installMode": "both",
-          "installerIcon": "./icons/icon.ico"
-        }
       }
     },
-    "security": {
-      "csp": null,
-      "dangerousUseHttpScheme": true
-    },
-    "updater": {
-      "active": false
-    },
-    "windows": [],
-    "macOSPrivateApi": true
-  }
+    "longDescription": "F-OH PWA version packaged with Tauri.",
+    "resources": [],
+    "shortDescription": "A F-OH Client.",
+    "targets": ["deb", "nsis"],
+    "windows": {
+      "certificateThumbprint": null,
+      "digestAlgorithm": "sha256",
+      "nsis": {
+        "displayLanguageSelector": true,
+        "installMode": "both",
+        "installerIcon": "./icons/icon.ico",
+        "languages": ["SimpChinese", "English"]
+      },
+      "timestampUrl": "",
+      "webviewInstallMode": {
+        "type": "downloadBootstrapper"
+      },
+      "wix": {
+        "language": ["zh-CN", "en-US"]
+      }
+    }
+  },
+  "identifier": "org.ohosdev.foh.tauri",
+  "plugins": {},
+  "productName": "F-OH Tauri",
+  "version": "1.3.1"
 }

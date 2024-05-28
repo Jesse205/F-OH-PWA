@@ -1,33 +1,36 @@
 [package]
-name = "app"
+name = "f-oh-tauri"
 version = "0.1.0"
 description = "F-OH PWA version packaged with Tarui"
 authors = ["Jesse205"]
 license = "GPL-3.0"
 repository = "https://gitee.com/Jesse205/F-OH-PWA"
-default-run = "app"
+default-run = "f-oh-tauri"
 edition = "2021"
 rust-version = "1.60"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[lib]
+name = "app_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
 [build-dependencies]
-tauri-build = { version = "1.5.0", features = [] }
+tauri-build = { version = "2.0.0-beta", features = [] }
 
 [dependencies]
-serde_json = "1.0.108"
-serde = { version = "1.0.193", features = ["derive"] }
-tauri = { version = "1.5.3", features = [
+serde_json = "1.0.117"
+serde = { version = "1.0.203", features = ["derive"] }
+tauri = { version = "2.0.0-beta.20", features = [
     "macos-private-api",
-    "api-all",
     "devtools",
 ] }
-# tauri-plugin-localhost = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v1" }
-portpicker = "0.1.1" # used in the example to pick a random free port
-window-shadows = "0.2.2"
+tauri-plugin-clipboard-manager = "2.0.0-beta.0"
+tauri-plugin-http = "2.0.0-beta.7"
 
 [features]
 # this feature is used for production builds or when `devPath` points to the filesystem and the built-in dev server is disabled.
 # If you use cargo directly instead of tauri's cli you can use this feature flag to switch between tauri's `dev` and `build` modes.
 # DO NOT REMOVE!!
 custom-protocol = ["tauri/custom-protocol"]
+

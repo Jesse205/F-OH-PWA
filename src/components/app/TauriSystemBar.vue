@@ -9,15 +9,10 @@ const { appWindow, isMaximized } = useTauriSystemBar()
 </script>
 
 <template>
-  <v-system-bar
-    class="SystemBar"
-    :class="{ SystemBar_focused: windowFocus }"
-    color="transparent"
-    data-tauri-drag-region
-    window
-  >
-    <span class="title">{{ title }}</span>
-    <v-spacer />
+  <v-system-bar class="SystemBar" :class="{ 'SystemBar--focused': windowFocus }" color="transparent" window>
+    <div data-tauri-drag-region class="drag-region">
+      <span class="title">{{ title }}</span>
+    </div>
     <v-btn
       icon="$window-minimize"
       variant="text"
@@ -33,7 +28,7 @@ const { appWindow, isMaximized } = useTauriSystemBar()
       @click="appWindow.toggleMaximize()"
     />
     <v-btn
-      class="window-btn_close"
+      class="close"
       icon="$window-close"
       variant="text"
       color="on-background"
@@ -49,15 +44,6 @@ const { appWindow, isMaximized } = useTauriSystemBar()
   overflow: hidden;
   user-select: none;
   opacity: 0.6;
-  .title {
-    // 禁止选择+防止阻止拖动窗口
-    pointer-events: none;
-    text-align: start;
-    text-overflow: ellipsis;
-    text-overflow: fade;
-    overflow: hidden;
-    white-space: nowrap;
-  }
   :deep(.v-btn) {
     height: 32px;
     width: 40px;
@@ -70,19 +56,30 @@ const { appWindow, isMaximized } = useTauriSystemBar()
       height: 16px;
       width: 16px;
     }
+    // 关闭按钮需要特别地设置
+    &.close {
+      &:hover {
+        background-color: rgb(var(--v-theme-error)) !important;
+        color: rgb(var(--v-theme-on-error)) !important;
+      }
+      :deep(.v-btn__overlay) {
+        color: currentColor;
+      }
+    }
   }
-  // 关闭按钮需要特别地设置
-  .window-btn_close {
-    &:hover {
-      background-color: rgb(var(--v-theme-error)) !important;
-      color: rgb(var(--v-theme-on-error)) !important;
-    }
-    :deep(.v-btn__overlay) {
-      color: currentColor;
-    }
+  &--focused {
+    opacity: 1;
   }
 }
-.SystemBar_focused {
-  opacity: 1;
+
+.drag-region {
+  // 禁止选择+防止阻止拖动窗口
+  flex-grow: 1;
+  text-align: start;
+  pointer-events: none;
+  text-align: start;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 </style>

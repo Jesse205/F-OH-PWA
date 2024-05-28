@@ -84,6 +84,9 @@ function onDragStart(event: DragEvent) {
 }
 
 const { xs } = useDisplay()
+
+// 删除全屏区域的拖拽，放置软件无法操作
+delete document.documentElement.dataset.tauriDragRegion
 </script>
 
 <template>

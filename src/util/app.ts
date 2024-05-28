@@ -1,8 +1,9 @@
-import { invoke as tauriInvoke } from '@tauri-apps/api'
-import { getName } from '@tauri-apps/api/app'
-import { writeText } from '@tauri-apps/api/clipboard'
+import { invoke as tauriInvoke } from '@tauri-apps/api/core'
+import { writeText } from '@tauri-apps/plugin-clipboard-manager'
 import type { WindowOptions } from '@tauri-apps/api/window'
-import { WebviewWindow, getCurrent as getCurrentTauri } from '@tauri-apps/api/window'
+import { getCurrent as getCurrentTauri } from '@tauri-apps/api/webview'
+import { WebviewWindow } from '@tauri-apps/api/webviewWindow'
+import { getName } from '@tauri-apps/api/app'
 
 const TAG = '[AppUtil]'
 const SUFFIX_NETLIFY = '.netlify.app'
@@ -10,7 +11,7 @@ const SUFFIX_NETLIFY = '.netlify.app'
 /**
  * 当前环境是否是 Tauri，开发时使用动态判断，发行时使用常量。
  */
-export const isTauri = import.meta.env.DEV ? Boolean((window as any).__TAURI__) : __IS_TAURI__
+export const isTauri = import.meta.env.DEV ? Boolean((window as any).__TAURI_INTERNALS__) : false
 
 /**
  * 是否以传统 APP 运行
