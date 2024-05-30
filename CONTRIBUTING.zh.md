@@ -40,7 +40,7 @@
 
 本项目使用 Prettier 与 ESLint 规范代码。
 
-- JavaScript、TypeScript（`.vue`、`.js`、`.ts`）：详见 [`prettier.config.js`](./prettier.config.js) 与 [`.eslintrc.cjs`](./.eslintrc.cjs)。
+- JavaScript、TypeScript（`.vue`、`.js`、`.ts`）：详见 [`prettier.config.js`](./prettier.config.js) 与 [`eslint.config.js`](./eslint.config.js)。
 - Markdown：
   - [Markdown lint tool](https://github.com/markdownlint/markdownlint)（[规范](https://github.com/DavidAnson/markdownlint/blob/main/doc/md001.md)）
 
