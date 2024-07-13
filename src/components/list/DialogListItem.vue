@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, useSlots, watch } from 'vue'
 
 const props = defineProps<{
   hint?: string
@@ -10,6 +10,7 @@ const props = defineProps<{
 }>()
 
 const model = defineModel<any>()
+const slots = useSlots()
 // const emits = defineEmits<(e: 'update:modelValue', modelValue: string) => void>()
 
 const dialogVisible = ref(false)
@@ -29,6 +30,12 @@ function emitValue() {
 
 <template>
   <v-list-item link :title="title">
+    <template v-if="slots.title" #title>
+      <slot name="title" />
+    </template>
+    <template v-if="slots.subtitle" #subtitle>
+      <slot name="subtitle" />
+    </template>
     <v-dialog v-model="dialogVisible" activator="parent">
       <v-card :title="title">
         <v-card-text class="py-0">

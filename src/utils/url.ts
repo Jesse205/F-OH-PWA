@@ -6,6 +6,7 @@ import {
   URL_API_WEB,
   URL_API_WEB_ORIGIN,
 } from '@/constants/urls'
+import router from '@/router'
 import { getPreferredServerUrl } from '@/utils/settings'
 import { isClientApp } from './app'
 
@@ -62,6 +63,10 @@ export function splitPathAndHash(path: string): (string | undefined)[] {
 }
 
 export function getApiUrl(useOriginUrl: boolean = false) {
+  const overrideServerUrl = getOverrideApiUrl()
+  if (overrideServerUrl) {
+    return overrideServerUrl
+  }
   const preferredServerUrl = getPreferredServerUrl()
   if (preferredServerUrl) {
     return preferredServerUrl
@@ -71,6 +76,11 @@ export function getApiUrl(useOriginUrl: boolean = false) {
   } else {
     return isClientApp ? URL_API_WEB : URL_API_CLIENT
   }
+}
+
+export function getOverrideApiUrl(): string | undefined {
+  const { apiUrl } = router.currentRoute.value.query
+  return typeof apiUrl === 'string' ? completeUrl(apiUrl) : undefined
 }
 
 // API 链接

@@ -12,6 +12,7 @@ import {
 import { useTitle } from '@/composables/title'
 import { designLanguageCodes, designLanguages, languages } from '@/data/settings'
 import { useAppStore } from '@/store/app'
+import { getOverrideApiUrl } from '@/utils/url'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -50,6 +51,7 @@ const isDesignChanged = computed(
 const server = usePreferredServerUrl()
 
 const pageTransitionEnabled = usePageTransition()
+const overrideApiUrl = getOverrideApiUrl()
 </script>
 
 <template>
@@ -103,12 +105,12 @@ const pageTransitionEnabled = usePageTransition()
 
       <!-- 应用 -->
       <title-list class="my-4" :title="$t('app.title')">
-        <dialog-list-item
-          v-model="server"
-          prepend-icon="$circle"
-          :title="$t('server')"
-          :subtitle="server.trim() || $t('notSet')"
-        />
+        <dialog-list-item v-model="server" prepend-icon="$circle" :title="$t('server')">
+          <template #subtitle>
+            {{ server.trim() || $t('notSet') }}
+            <p v-if="overrideApiUrl">当前 API 地址已被覆盖为 {{ overrideApiUrl }}</p>
+          </template>
+        </dialog-list-item>
         <!-- 关于 -->
         <v-list-item
           prepend-icon="$info"

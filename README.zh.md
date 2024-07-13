@@ -60,7 +60,7 @@ F-OH PWA + BrowserCE，通过网页分发开源鸿蒙 hap 应用的最佳实践�
 - 源代码：开源到 Gitee、GitHub
 - 国际化：基于 Vue I18n 的多语言
 
-## 下载与访问
+## 下载与使用
 
 F-OH PWA 提供 **独立软件** 与 **网页访问** 两种方式供用户选择。
 
@@ -89,6 +89,14 @@ F-OH PWA 提供 **独立软件** 与 **网页访问** 两种方式供用户选�
 > [!NOTE]
 >
 > 有关使用 PWA 的更多信息，请参见[在 Microsoft Edge 中使用渐进式 Web 应用](https://learn.microsoft.com/zh-cn/microsoft-edge/progressive-web-apps-chromium/ux)。
+
+### 替换 API 地址
+
+默认的 API 地址为 `/api`，您可以通过三种方式替换该地址。
+
+1. 修改 `.env`，将 `FOHPWA_URL_API_WEB`、`FOHPWA_URL_API_WEB_ORIGIN`、`FOHPWA_URL_API_CLIENT`、`FOHPWA_URL_API_CLIENT_ORIGIN` 替换为您自己的 API 地址后打包并发布。
+2. 直接在应用的“设置”中修改 API 地址。
+3. 在应用的链接中添加 `?apiUrl=<你的API地址>`，临时覆盖 API 地址。
 
 ## 系列项目
 

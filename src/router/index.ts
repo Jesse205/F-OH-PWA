@@ -1,7 +1,7 @@
 import { BASE_URL, IS_DEV_MODE } from '@/constants'
 import { isWebHistorySupported } from '@/utils/app'
 import { isPageTransitionEnabled } from '@/utils/settings'
-import type { HistoryState, RouteRecordRaw } from 'vue-router'
+import type { RouteRecordRaw } from 'vue-router'
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 
 const TAG = '[Router]'
@@ -175,6 +175,13 @@ const scrollState2: ScrollToOptions2 = (history.state.scroll2 as ScrollToOptions
   window.history.replaceState(state, document.title)
   return true
 }) */
+
+router.beforeEach((to, from) => {
+  if (!to.query.apiUrl && from.query.apiUrl) {
+    to.query.apiUrl = from.query.apiUrl
+    return to
+  }
+})
 
 router.afterEach((to, from) => {
   if (IS_DEV_MODE) {

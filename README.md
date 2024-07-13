@@ -60,7 +60,7 @@ F-OH PWA + BrowserCE, best practices for distributing OpenHarmony hap apps via w
 - Source code: Open sourced to Gitee and GitHub
 - Internationalization: Multilingual based on Vue I18n
 
-## Download or Launch
+## Download & Use
 
 The F-OH PWA offers a choice between **standalone software** and **web access**.
 
