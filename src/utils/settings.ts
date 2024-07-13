@@ -26,5 +26,5 @@ export function setPreferredDesignLanguage(code: DesignLanguageCode) {
 }
 
 export function isPageTransitionEnabled(): boolean {
-  return localStorage.getItem(KEY_PAGE_TRANSITION) === 'true'
+  return (localStorage.getItem(KEY_PAGE_TRANSITION) ?? 'true') === 'true'
 }
