@@ -89,8 +89,8 @@ if (isTauriApp) {
         <v-list-item
           prepend-icon="$group"
           :title="$t('app.qqGroup')"
-          subtitle="752399947"
-          href="https://qm.qq.com/q/jWeBdnvPz2"
+          subtitle="528608689"
+          href="https://qm.qq.com/q/CDSFf6DvVK"
           target="_blank"
           append-icon="$openInNew"
         />
