@@ -1,0 +1,112 @@
+@use '../settings/motions' as *;
+
+@mixin page-transition($enter: true) {
+  &-enter-active,
+  &-leave-active {
+    background-color: rgb(var(--v-theme-background));
+    & > .layout,
+    & {
+      transition: $page-property $page-durning $page-function;
+      @media (prefers-reduced-motion) {
+        transition: none;
+      }
+    }
+  }
+
+  // 偏移状态
+  // &-leave-to
+  &-enter-from {
+    transform: translateX(var(--page-mask-position-x));
+    & > .layout {
+      transform: translateX(calc(var(--page-position-x) - var(--page-mask-position-x)));
+    }
+  }
+  &-leave-to {
+    transform: translateX(var(--page-position-x));
+  }
+
+  // 正常状态
+  &-enter-to,
+  &-leave-from {
+    transform: translateX(0);
+    & > .layout {
+      transform: translateX(0);
+    }
+    &::before {
+      background-color: transparent;
+    }
+  }
+
+  &-#{if(not $enter, 'enter-active', 'leave-active')} {
+    &::before {
+      transition: background-color $page-durning $page-function;
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 999;
+      @media (prefers-reduced-motion) {
+        transition: none;
+      }
+    }
+  }
+
+  // 左侧带有scrim页面
+  &-#{if(not $enter, 'enter-from', 'leave-to')} {
+    --page-position-x: -#{$page-below-offset};
+    --page-mask-position-x: -100%;
+    &::before {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &-#{if($enter, 'enter-from', 'leave-to')} {
+    --page-position-x: #{$page-above-offset};
+    --page-mask-position-x: 100%;
+  }
+}
+
+.harmony1 {
+  .page-enter-transition {
+    @include page-transition($enter: true);
+  }
+  .page-leave-transition {
+    @include page-transition($enter: false);
+  }
+
+  .dialog-transition {
+    &-enter-active {
+      transition-timing-function: $dialog-enter-function !important;
+    }
+    &-leave-active {
+      transition: $dialog-leave-function !important;
+    }
+
+    &-enter-active,
+    &-leave-active {
+      transition-duration: $dialog-duration !important;
+      transition-property: $dialog-property !important;
+    }
+
+    &-enter-from,
+    &-leave-to {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+  }
+
+
+  // 无动画效果
+  @media (prefers-reduced-motion) {
+    .dialog-transition-enter-active,
+    .dialog-transition-leave-active,
+    .v-overlay__scrim,
+    .slide-y-transition-enter-active,
+    .slide-y-transition-leave-active,
+    * {
+      transition: none !important;
+    }
+  }
+}

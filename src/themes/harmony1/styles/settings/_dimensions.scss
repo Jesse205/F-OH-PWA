@@ -1,0 +1,73 @@
+/// 系统蒙黑透明度
+/// @link https://developer.huawei.com/consumer/cn/doc/design-guides-V1/color-0000001156818443-V1#section128mcpsimp
+
+$opacity-scrim-thin-light: 0.2;
+$opacity-scrim-thin-dark: 0.4;
+$opacity-scrim-thin-translucent: 0.2;
+
+$opacity-scrim-light-light: 0.4;
+$opacity-scrim-light-dark: 0.6;
+$opacity-scrim-light-translucent: 0.4;
+
+$opacity-scrim-regular-light: 0.6;
+$opacity-scrim-regular-dark: 0.7;
+$opacity-scrim-regular-translucent: 0.6;
+
+$opacity-scrim-thick-light: 0.8;
+$opacity-scrim-thick-dark: 0.9;
+$opacity-scrim-thick-translucent: 0.8;
+
+// 系统透明度
+$opacity-level1-light: 0.9;
+$opacity-level1-dark: 0.86;
+$opacity-level1-translucent: 1;
+$opacity-level2-light: 0.6;
+$opacity-level2-dark: 0.6;
+$opacity-level2-translucent: 0.6;
+$opacity-level3-light: 0.4;
+$opacity-level3-dark: 0.4;
+$opacity-level3-translucent: 0.4;
+$opacity-level4-light: 0.2;
+$opacity-level4-dark: 0.2;
+$opacity-level4-translucent: 0.2;
+$opacity-disabled-light: 0.4;
+$opacity-disabled-dark: 0.4;
+$opacity-disabled-translucent: 0.4;
+
+$opacity-selected-disabled-light: 0.2;
+$opacity-selected-disabled-dark: 0.4;
+$opacity-selected-disabled-translucent: 0.4;
+
+/// 通用圆角场景
+/// @link https://developer.huawei.com/consumer/cn/doc/design-guides-V1/rounded-corner-0000001156978413-V1
+$radius-xs: 4px;
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+$radius-xl: 24px;
+
+// 控件圆角场景
+$radius-progress-bar: 2px;
+$radius-tab: 4px;
+$radius-clicking: 8px;
+$radius-checkbox: 4px;
+$radius-grid: 12px;
+$radius-menu: 20px;
+$radius-banner: 12px;
+$radius-icon: 8px;
+$radius-switch: 10px;
+$radius-card: 16px;
+$radius-dialog: 16px;
+$radius-dialog-custom: 24px;
+$radius-button-large: 20px;
+$radius-button-small: 14px;
+$radius-search-box: 18px;
+$radius-instant-tip: 18px;
+$radius-panel: 20px;
+
+
+// ------------------
+// 猜出来的
+$radius-blur: 20px;
+$radius-blur-tooltip: 4px;
+

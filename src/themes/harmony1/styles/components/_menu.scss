@@ -1,0 +1,22 @@
+@use '../settings/dimensions';
+@use '../settings/shadows';
+
+.harmony1 {
+  .v-menu {
+    > .v-overlay__content {
+      border-radius: 20px;
+      backdrop-filter: blur(dimensions.$radius-blur);
+      > .v-list {
+        border-radius: 16px;
+        box-shadow: shadows.$shadow-md;
+        background-color: rgba(var(--v-theme-surface), 0.85) !important;
+        --border-margin-left: 0px;
+      }
+    }
+
+    .slide-y-transition-enter-active,
+    .slide-y-transition-leave-active {
+      transition-duration: 0.1s !important;
+    }
+  }
+}

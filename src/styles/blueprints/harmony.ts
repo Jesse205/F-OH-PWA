@@ -1,7 +1,10 @@
-import { aliases, hmi } from '@/iconsets/hmi'
+import { aliases, hmi } from '@/themes/harmony1/iconset'
 import type { Blueprint } from 'vuetify'
 import { md2 as vuetifyMd2 } from 'vuetify/blueprints'
 
+/**
+ * @deprecated
+ */
 export const harmony: Blueprint = {
   ...vuetifyMd2,
   theme: {

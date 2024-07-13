@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { AppInfo } from '@/ts/interfaces/app.interfaces'
-import { getServerCompletePath } from '@/util/url'
+import type { AppInfo } from '@/utils/apps'
+import { completeServerUrl } from '@/utils/url'
 import { computed } from 'vue'
 
 const props = withDefaults(
@@ -22,19 +22,17 @@ const to = computed((): string | object | undefined => {
   }
 })
 
-const iconCompletePath = computed(() => getServerCompletePath(props.item.icon))
+const iconCompletePath = computed(() => completeServerUrl(props.item.icon))
 </script>
 
 <template>
   <v-list-item class="project-list-item" lines="two" :to="to">
     <template #prepend>
-      <v-avatar class="icon border" rounded="lg" size="48" draggable="false">
-        <!-- v-img 大量使用会导致卡顿，所以使用原生的 img 标签 -->
-        <img width="48" :src="iconCompletePath" alt="" />
-      </v-avatar>
+      <!-- v-img 大量使用会导致卡顿，所以使用原生的 img 标签 -->
+      <img class="ohos-app-icon border" width="48" height="48" :src="iconCompletePath" alt="" draggable="false" />
     </template>
     <v-list-item-title class="title">
-      {{ item.name }} <span class="text-caption">v{{ item.version }}</span>
+      {{ item.name }} <span class="text-body-2 version">v{{ item.version }}</span>
     </v-list-item-title>
     <v-list-item-subtitle>{{ item.desc }}</v-list-item-subtitle>
     <slot />
@@ -43,16 +41,15 @@ const iconCompletePath = computed(() => getServerCompletePath(props.item.icon))
 
 <style scoped lang="scss">
 .project-list-item {
-  --list-item-padding-left: 80px;
+  --border-margin-left: #{48px + 16px};
 
   .title {
-    .text-caption {
+    .version {
       opacity: var(--v-medium-emphasis-opacity);
     }
   }
-  .icon {
-    // TODO: 当 F-OH 支持自适应图标后移除这项
-    border-radius: 24% !important;
-  }
+}
+:deep(.v-list-item__spacer) {
+  width: 16px;
 }
 </style>

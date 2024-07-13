@@ -1,0 +1,135 @@
+/// @link https://developer.huawei.com/consumer/cn/doc/design-guides-V1/list-0000001110467124-V1
+
+@use '../settings/motions';
+@use '../settings/dimensions';
+
+@use './border';
+
+.harmony1 {
+  .v-list {
+    --border-margin-left: 40px;
+    --border-margin-right: 0px;
+    &--rounded {
+      border-radius: dimensions.$radius-card;
+    }
+    &--nav {
+      padding-inline: 8px !important;
+    }
+  }
+
+  .v-list-subheader {
+    padding-inline-start: 12px !important;
+    padding-inline-end: 12px;
+  }
+
+  .v-list-item {
+    position: relative;
+
+    // 分割线
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: -0.25px;
+      left: calc(12px + var(--border-margin-left));
+      right: calc(12px + var(--border-margin-right));
+      height: 0px;
+      border-bottom: border.$border;
+    }
+    &:last-child::before {
+      content: none;
+    }
+
+    &--rounded {
+      border-radius: dimensions.$radius-card - 2px;
+    }
+    &:not(&--nav) {
+      padding-inline: 12px;
+    }
+    &--nav {
+      &::before {
+        border-bottom-width: 0;
+      }
+    }
+
+    /// 文档中的规格
+    /// 当列表为单行文本，且没有左侧元素时，列表高度默认为 48vp
+    /// 当列表为单行文本，左侧有元素且小于 40vp 时，列表高度默认为 56vp
+    /// 当列表为单行文本，左侧有元素且左侧元素为 40vp 时，列表高度默认为 72vp
+    /// 当列表为双行文本，且没有左侧元素时，列表高度默认为 64vp
+    /// 当列表为双行文本，左侧有元素时，列表高度默认为 72vp
+    /// 当列表为三行文本，列表默认高度为 96vp
+    ///
+    /// 根据规格推算出，图片的上下边距为 16px，文字的上下边距为12px，且每行之间有8px的间隔，除了第四种情况。
+    &--density-default:not(.v-list-item--one-line, .v-list-item--two-line, .v-list-item--three-line) {
+      padding-top: 0;
+      padding-bottom: 0;
+      .v-list-item__prepend {
+        padding-top: 16px;
+        padding-bottom: 16px;
+      }
+      .v-list-item__content {
+        padding-top: 12px;
+        padding-bottom: 12px;
+      }
+    }
+
+    &__prepend {
+      .v-icon {
+        opacity: 1;
+      }
+    }
+
+    &:not(&--active)[aria-haspopup='menu'] > .v-list-item__overlay,
+    .ignore-active-style > .v-list-item__overlay,
+    &__overlay {
+      transition-duration: motions.$background-duration;
+      opacity: 0;
+    }
+
+    // 重写焦点样式
+    @supports selector(:focus-visible) {
+      &::after {
+        border: 2px solid rgb(var(--v-theme-primary));
+        border-radius: inherit;
+      }
+      &:focus-visible {
+        &::after {
+          opacity: 1;
+        }
+      }
+      // 添加 :not(&--active)，否则下面的 &--active 会因该选择器过大而被覆盖
+      &:not(&--active):focus-visible > .v-list-item__overlay,
+      &.ignore-active-style:focus-visible > .v-list-item__overlay {
+        opacity: 0;
+      }
+    }
+    &:not(&--active),
+    &.ignore-active-style {
+      &:hover > .v-list-item__overlay {
+        opacity: calc(var(--v-hover-opacity) * var(--v-theme-overlay-multiplier));
+      }
+      &:active > .v-list-item__overlay {
+        opacity: calc(var(--v-pressed-opacity) * var(--v-theme-overlay-multiplier));
+      }
+    }
+
+    &--active:not(.ignore-active-style) {
+      & > .v-list-item__overlay {
+        opacity: calc(var(--v-activated-opacity) * var(--v-theme-overlay-multiplier));
+      }
+      &:hover .v-list-item__overlay {
+        opacity: calc((var(--v-hover-opacity) + var(--v-activated-opacity)) * var(--v-theme-overlay-multiplier));
+      }
+      &:active > .v-list-item__overlay {
+        opacity: calc((var(--v-pressed-opacity) + var(--v-activated-opacity)) * var(--v-theme-overlay-multiplier));
+      }
+    }
+    &__prepend {
+      & > .v-badge ~ .v-list-item__spacer,
+      & > .v-icon ~ .v-list-item__spacer,
+      & > .v-tooltip ~ .v-list-item__spacer {
+        width: 16px;
+      }
+    }
+  }
+}

@@ -1,0 +1,110 @@
+<script setup lang="ts">
+import BackButton from '@/components/appbar/BackButton.vue'
+import { useHomeRoutes } from '@/composables/route'
+import { useTitle } from '@/composables/title'
+import { usePwaStore } from '@/store/pwa'
+import { computed, ref, watchEffect } from 'vue'
+import { useDisplay } from 'vuetify'
+
+import type MainCategoriesView from './MainCategoriesView.vue'
+import type MainHomeView from './MainHomeView.vue'
+import type MainMeView from './MainMeView.vue'
+import type MainUpdateView from './MainUpdateView.vue'
+import { homeRouteData, type HomeRouteItemData } from '@/data/home'
+import { parseI18n } from '@/utils/i18n'
+import { useI18n } from 'vue-i18n'
+
+const { activePagePosition, isBackHistoryNotHomeAndUndefined, isInMainView, routeButtonReplace } = useHomeRoutes()
+
+const currentRouteData = computed(() => {
+  if (activePagePosition.value !== null) {
+    return homeRouteData[activePagePosition.value]
+  } else {
+    return homeRouteData[0]
+  }
+})
+
+const { t } = useI18n()
+
+useTitle(
+  computed(() => {
+    if (currentRouteData.value) {
+      return parseI18n(currentRouteData.value.title, t)
+    }
+    return null
+  }),
+)
+
+const { xs } = useDisplay()
+
+// PWA
+const pwaStore = usePwaStore()
+
+type HomeComponent = InstanceType<
+  typeof MainHomeView | typeof MainCategoriesView | typeof MainUpdateView | typeof MainMeView
+>
+const routeComponent = ref<HomeComponent>()
+
+/**
+ * 刷新当前页面的数据
+ */
+function refresh() {
+  const component = routeComponent.value
+  if (component && 'refresh' in component) {
+    component.refresh()
+  }
+}
+</script>
+
+<template>
+  <!-- 应用栏 -->
+  <v-app-bar>
+    <!--
+      - 当设备为大屏时，首页隐藏按钮，其他页面显示按钮，这是通用逻辑。
+      - 当设备为小屏时，始终隐藏按钮。
+      - 例外情况：首页但是有历史记录，始终显示按钮。
+    -->
+    <back-button v-if="isBackHistoryNotHomeAndUndefined || !xs" />
+    <v-app-bar-title>{{ parseI18n(currentRouteData.title, $t) }}</v-app-bar-title>
+    <!-- <v-tooltip>
+      <template #activator="{ props }">
+        <v-btn icon="$search" v-bind="props" disabled aria-label="搜索应用" />
+      </template>
+      <span>搜索应用</span>
+    </v-tooltip> -->
+    <v-menu origin="bottom" width="172" location="top">
+      <template #activator="{ props: menu }">
+        <v-btn v-tooltip="$t('moreOptions')" icon="$more" v-bind="{ ...menu }" />
+      </template>
+      <v-list>
+        <v-list-item v-if="currentRouteData?.refreshable" :title="$t('action.refresh')" @click="refresh" />
+        <v-list-item
+          v-if="pwaStore.installBtnVisible"
+          :title="$t('action.installApp')"
+          @click="pwaStore.onInstallBtnClick"
+        />
+        <v-list-item :title="$t('about')" :to="{ name: 'About' }" />
+      </v-list>
+    </v-menu>
+  </v-app-bar>
+
+  <!-- 主视图 -->
+  <router-view #="{ Component }">
+    <keep-alive>
+      <component :is="Component" ref="routeComponent" />
+    </keep-alive>
+  </router-view>
+
+  <!-- 底部导航栏 -->
+  <v-bottom-navigation v-if="xs">
+    <v-btn
+      v-for="item in homeRouteData"
+      :key="item.name"
+      :to="{ name: item.name, replace: routeButtonReplace }"
+      :disabled="item.disabled"
+    >
+      <v-icon>{{ $route.name === item.name ? item.activeIcon : item.icon }}</v-icon>
+      <span>{{ parseI18n(item.title, $t) }}</span>
+    </v-btn>
+  </v-bottom-navigation>
+</template>

@@ -1,19 +1,19 @@
-import { useLocalStorage, type RemovableRef } from '@vueuse/core'
+import type { DesignLanguageCode, LanguageCode } from '@/data/settings'
+import { KEY_DESIGN, KEY_LOCALE, KEY_PAGE_TRANSITION, KEY_SERVER } from '@/utils/settings'
+import type { RemovableRef } from '@vueuse/core'
+import { useLocalStorage } from '@vueuse/core'
 
-export const KEY_LOCALE = 'locale'
-export const KEY_TOKEN = 'token'
-export const KEY_SERVER = 'server'
-
-// 必须声明返回类型，否则会报错 `ts(2742)`
-
-export function useLocaleSetting(): RemovableRef<string> {
-  return useLocalStorage<string>('locale', navigator.language)
+export function usePreferredLocale(): RemovableRef<LanguageCode | string> {
+  return useLocalStorage<LanguageCode | string>(KEY_LOCALE, navigator.language)
 }
 
-export function useTokenSetting(): RemovableRef<string> {
-  return useLocalStorage<string>('token', '')
-}
-
-export function useServerSetting(): RemovableRef<string> {
+export function usePreferredServerUrl(): RemovableRef<string> {
   return useLocalStorage<string>(KEY_SERVER, '')
+}
+export function usePreferredDesignLanguage(): RemovableRef<DesignLanguageCode> {
+  return useLocalStorage<DesignLanguageCode>(KEY_DESIGN, 'harmony1')
+}
+
+export function usePageTransition(): RemovableRef<boolean> {
+  return useLocalStorage<boolean>(KEY_PAGE_TRANSITION, true)
 }

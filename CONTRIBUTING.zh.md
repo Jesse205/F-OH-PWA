@@ -4,14 +4,16 @@
 
 本项目主要语言为*简体中文*，你可以根据*简体中文*翻译为其他语言。如果你不会*简体中文*，可以参考官方的英文文档。
 
-> [!TIP]\
+> [!TIP]
+>
 > 翻译后请在语言选择器中添加新的语言。
 
 ### 翻译项目介绍
 
 项目介绍包括 README、CONTRIBUTING 等文件。
 
-> [!NOTE]\
+> [!NOTE]
+>
 > 不包括 [`/docs`](./docs/)
 
 默认为英文但以简体中文为主。其他语言文件名为 `<文档名>.<语言>.md`（例如 [`README.zh.md`](./README.zh.md)）。
@@ -40,33 +42,30 @@
 
 本项目使用 Prettier 与 ESLint 规范代码。
 
-- JavaScript、TypeScript（`.vue`、`.js`、`.ts`）：详见 [`prettier.config.js`](./prettier.config.js) 与 [`eslint.config.js`](./eslint.config.js)。
-- Markdown：
-  - [Markdown lint tool](https://github.com/markdownlint/markdownlint)（[规范](https://github.com/DavidAnson/markdownlint/blob/main/doc/md001.md)）
+- JavaScript、TypeScript（`.vue`、`.js`、`.ts`）：详见 [`prettier.config.js`](./prettier.config.js) 与 [`eslint.config.js`](./eslint.config.js)；
+- Markdown：[Markdown lint tool](https://github.com/markdownlint/markdownlint)（[规范](https://github.com/DavidAnson/markdownlint/blob/main/doc/md001.md)）；
+- Css、Scss：BEM 规范 `block-name__element-name--modifier-name`；
 
 ## 依赖更新
 
 一般情况下，依赖需要全部保持最新，除非有特殊情况。
 
-**不要更新的依赖**：
-
-| 依赖                               | 原因          |
-| ---------------------------------- | ------------- |
-| `@typescript-eslint/eslint-plugin` | lint 无法使用 |
-| `@typescript-eslint/parser`        | lint 无法使用 |
-
 ## 截图
+
+### 截图规范
 
 截图包含竖屏与横屏。他们参数如下：
 
-| 方向 | 边框 | 内容大小 | 实际大小 | 示例        |
-| ---- | ---- | -------- | -------- | ----------- |
-| 竖屏 | 1px  | 500x800  | 502x802  | ![横屏截图] |
-| 横屏 | 1px  | 960x600  | 962x602  | ![竖屏截图] |
-
-[横屏截图]: ./public/screenshots/Snipaste_2023-12-05_05-16-05.webp
-[竖屏截图]: ./public/screenshots/Snipaste_2023-12-05_05-17-05.webp
+| 方向 | 边框 | 内容大小 | 实际大小 | 示例                                                                                          |
+| ---- | ---- | -------- | -------- | --------------------------------------------------------------------------------------------- |
+| 竖屏 | 1px  | 500x800  | 502x802  | <img src="./public/screenshots/Snipaste_2023-12-05_05-17-05.webp" width=100 alt="竖屏截图" /> |
+| 横屏 | 1px  | 960x600  | 962x602  | <img src="./public/screenshots/Snipaste_2023-12-05_05-16-05.webp" width=100 alt="横屏截图" /> |
 
 其中 `1px` 的边框是因为 Snipaste 会自带 `1px` 的边框，所以需要额外加 `2px` 。
 
-所有截屏存放到 [`./public/screenshots`](./public/screenshots/) 目录下，因为需要打包进软件内，并在 PWA 安装前显示。
+所有截图需要存放到 [`./public/screenshots`](./public/screenshots/) 目录下。
+
+### 截图展示位置
+
+- README 中
+- PWA 应用安装前

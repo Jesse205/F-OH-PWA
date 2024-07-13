@@ -1,23 +1,18 @@
-/* eslint-disable no-unused-vars */
+/// <reference types="vite/client" />
+/// <reference types="vite-plugin-pwa/info" />
+/// <reference types="vite-plugin-pwa/vue" />
+/// <reference lib="webworker" />
+
 interface ImportMetaEnv extends Readonly<Record<string, string>> {
-  VITE_HOST_WEB: string
-  VITE_HOST_SERVER: string
-  /**
-   * 浏览器环境使用的 F-OH API，用于解决跨域等问题
-   */
-  VITE_URL_API: string
-  /**
-   * 客户端使用的 F-OH API，必须通过私有 http 方法访问数据。
-   */
-  VITE_URL_API_LEGACY: string
-  /**
-   * F-OH 服务器的 GOGS API
-   */
-  VITE_URL_API_GOGS: string
-  VITE_URL_UPLOAD: string
+  FOHPWA_HOST_WEB: string
 
   /**
-   * 仓库地址
+   * 应用源代码地址
    */
-  VITE_URL_REPOSITORY: string
+  FOHPWA_URL_SOURCE: string
+
+  FOHPWA_URL_API_WEB: string
+  FOHPWA_URL_API_WEB_ORIGIN: string
+  FOHPWA_URL_API_CLIENT: string
+  FOHPWA_URL_API_CLIENT_ORIGIN: string
 }

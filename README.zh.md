@@ -50,7 +50,10 @@ F-OH PWA + BrowserCE，通过网页分发开源鸿蒙 hap 应用的最佳实践�
 
 ## 特点
 
-- 设计：[HarmonyOS Design](https://developer.harmonyos.com/cn/design/)
+- 设计：多主题
+  - [HarmonyOS Design](https://developer.huawei.com/consumer/cn/design/)
+  - Material Design 2
+  - Fluent Design 2
 - 平台：浏览器、Linux、Windows
 - 广告：无
 - 资费：暂时没有
@@ -142,7 +145,7 @@ yarn format-fix
 
 ![QRCode](https://gitee.com/westinyang/f-oh/raw/master/screenshot/wx+zfb.png)
 
-对于本项目（F-OH PWA），您可以进入[哈兔 Box 捐赠页面](https://jesse205.github.io/hellotool/donation.html)支持杰西 205。
+对于本项目（F-OH PWA），您可以进入[F-OH PWA 捐赠页面](https://f-oh-pwa-jesse205.netlify.app/donate)支持杰西 205。
 
 ## 许可证
 

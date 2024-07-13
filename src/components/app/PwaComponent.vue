@@ -57,12 +57,12 @@ onBeforeUnmount(() => {
 
 <template>
   <v-dialog v-model="reloadDialogVisible">
-    <v-card :title="$t('update.app.name')">
-      <v-card-text>{{ $t('update.app.reload_message') }} </v-card-text>
+    <v-card :title="$t('updateApp')">
+      <v-card-text>{{ $t('updateAppMessage') }} </v-card-text>
       <v-card-actions>
-        <v-btn variant="text" @click="dismissReloadDialog"> {{ $t('cancel.name') }} </v-btn>
+        <v-btn variant="text" @click="dismissReloadDialog"> {{ $t('action.cancel') }} </v-btn>
         <v-btn variant="text" @click="updateAndReload">
-          {{ $t('ok.name') }}
+          {{ $t('action.ok') }}
         </v-btn>
       </v-card-actions>
     </v-card>

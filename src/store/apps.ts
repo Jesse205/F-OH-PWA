@@ -1,9 +1,9 @@
-import { useServerSetting } from '@/composables/settings'
+import { usePreferredServerUrl } from '@/composables/settings'
 import { IS_DEV_MODE } from '@/constants'
-import type { AppInfo } from '@/ts/interfaces/app.interfaces'
-import { assert } from '@/util/app'
-import { getAxiosInstance } from '@/util/axios'
-import { getAllAppsListApiUrl, getApiUrl } from '@/util/url'
+import { assert } from '@/utils/app'
+import type { AppInfo } from '@/utils/apps'
+import { getAxiosInstance } from '@/utils/http'
+import { getAllAppsApiUrl, getApiUrl } from '@/utils/url'
 import { defineStore } from 'pinia'
 import { onActivated, onDeactivated, ref, watch } from 'vue'
 
@@ -35,7 +35,7 @@ export const useAppsStore = defineStore('apps', () => {
     loading.value = true
     errMsg.value = null
     getAxiosInstance()
-      .get<AppInfo[]>(getAllAppsListApiUrl())
+      .get<AppInfo[]>(getAllAppsApiUrl())
       .then((response) => {
         assert(typeof response.data === 'object', "Data isn't object.")
         if (IS_DEV_MODE) console.debug(TAG, 'Fetched apps', response.data)
@@ -75,8 +75,8 @@ export const useAppsStore = defineStore('apps', () => {
    * 需要在组件的 `setup` 内调用。
    */
   function autoRefresh() {
-    // 不能在 store 里面调用 `useServerSetting`，否则路由切换会丢失响应式。也不能注册监听事件，避免不必要的性能损耗。
-    const serverRef = useServerSetting()
+    // 不能在 store 里面调用 `usePreferredServerUrl`，否则路由切换会丢失响应式。也不能注册监听事件，避免不必要的性能损耗。
+    const serverRef = usePreferredServerUrl()
     let activated = false
     watch(serverRef, () => {
       if (activated) fetchData()

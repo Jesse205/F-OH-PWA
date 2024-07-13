@@ -1,15 +1,7 @@
-/**
- * src/styles/settings.scss
- *
- * Configures SASS variables and Vuetify overwrites
- */
+/// Configures SASS variables and Vuetify overwrites
+///
+/// @link https://vuetifyjs.com/features/sass-variables/`
 
-// https://vuetifyjs.com/features/sass-variables/`
-// @use 'vuetify/settings' with (
-//   $color-pack: false
-// );
 @use 'vuetify/settings' with (
-  //   $button-height: 40px,
-  $list-border-radius: 16px
+  $color-pack: false
 );
-

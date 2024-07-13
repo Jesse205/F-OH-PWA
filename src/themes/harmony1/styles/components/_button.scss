@@ -1,0 +1,48 @@
+@use '../settings/motions';
+
+.harmony1 {
+  .v-btn {
+    transition-property: box-shadow, transform, opacity, background;
+    @supports selector(:focus-visible) {
+      &:focus-visible {
+        & > .v-btn__overlay {
+          opacity: 0;
+        }
+        &::after {
+          opacity: 1;
+        }
+      }
+      &::after {
+        border: none;
+        border-radius: inherit;
+        outline: rgb(var(--v-theme-primary)) solid 2px;
+        outline-offset: 2px;
+      }
+    }
+    &--variant-text {
+      .v-btn__overlay,
+      .v-ripple__container {
+        color: rgb(var(--v-theme-on-background));
+      }
+    }
+    // 显示菜单时不显示按钮的背景
+    &[aria-haspopup='menu'] {
+      & > .v-btn__overlay {
+        opacity: 0;
+      }
+    }
+    &:hover {
+      .v-btn__overlay {
+        opacity: calc(var(--v-hover-opacity) * var(--v-theme-overlay-multiplier)) !important;
+      }
+    }
+    &:active {
+      & > .v-btn__overlay {
+        opacity: calc(var(--v-pressed-opacity) * var(--v-theme-overlay-multiplier)) !important;
+      }
+    }
+    .v-btn__overlay {
+      transition: opacity motions.$background-duration ease-in-out;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import type { DisplayModeType } from '@/util/pwa'
+import type { DisplayModeType } from '@/utils/pwa'
 import { useMediaQuery } from '@vueuse/core'
 import type { ComputedRef } from 'vue'
 import { computed } from 'vue'

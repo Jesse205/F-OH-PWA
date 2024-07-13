@@ -1,0 +1,12 @@
+@use './colors' as *;
+
+:export {
+  accentLight: $accent-light;
+  accentDark: $accent-dark;
+  warningLight: $warning-light;
+  warningDark: $warning-dark;
+  alertLight: $alert-light;
+  alertDark: $alert-dark;
+  backgroundGrayLight: $background-gray-light;
+  backgroundGrayDark: $background-gray-dark;
+}

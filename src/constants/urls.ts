@@ -1,25 +1,38 @@
-import { isLegacyApp } from '@/util/app'
-import { getCompletePath } from '@/util/url'
+import { completeUrl } from '@/utils/url'
 
-const { VITE_URL_API, VITE_URL_API_LEGACY, VITE_URL_UPLOAD, VITE_URL_API_GOGS, VITE_HOST_WEB, VITE_URL_REPOSITORY } =
-  import.meta.env
-
-export const HOST_WEB = VITE_HOST_WEB
-
-/**
- * F-OH 的 API 地址，自动判断当前运行环境和用户设置。
- */
-export const URL_API = getCompletePath(isLegacyApp ? VITE_URL_API_LEGACY : VITE_URL_API)
+const {
+  FOHPWA_URL_API_WEB,
+  FOHPWA_URL_API_WEB_ORIGIN,
+  FOHPWA_URL_API_CLIENT,
+  FOHPWA_URL_API_CLIENT_ORIGIN,
+  FOHPWA_HOST_WEB,
+  FOHPWA_URL_SOURCE,
+} = import.meta.env
 
 /**
- * F-OH 的 API 地址，原始的链接
+ * Web 端域名，用于在客户端内提供网页链接使用
  */
-export const URL_API_LEGACY = getCompletePath(VITE_URL_API_LEGACY)
+export const HOST_WEB = FOHPWA_HOST_WEB
 
 /**
- * F-OH 服务器的 GOGS API
+ * Web 端使用的 API 地址
  */
-export const URL_API_GOGS = VITE_URL_API_GOGS
+export const URL_API_WEB = completeUrl(FOHPWA_URL_API_WEB)
+
+/**
+ * Web 端使用的 API 地址
+ */
+export const URL_API_WEB_ORIGIN = completeUrl(FOHPWA_URL_API_WEB_ORIGIN)
+
+/**
+ * 客户端使用的 API 地址
+ */
+export const URL_API_CLIENT = completeUrl(FOHPWA_URL_API_CLIENT)
+
+/**
+ * 客户端使用的原始 API 地址
+ */
+export const URL_API_CLIENT_ORIGIN = completeUrl(FOHPWA_URL_API_CLIENT_ORIGIN)
 
 /**
  * 首页配置 API，相对路径
@@ -29,14 +42,9 @@ export const URL_API_HOME_RELATIVE = '/homePageData.json'
 /**
  * 所有应用 API，相对路径
  */
-export const URL_API_ALL_APP_LIST_RELATIVE = '/allAppList.json'
+export const URL_API_ALL_APP_RELATIVE = '/allAppList.json'
 
 /**
- * 应用上传
+ * 源代码仓库地址
  */
-export const URL_UPLOAD = VITE_URL_UPLOAD
-
-/**
- * 仓库地址
- */
-export const URL_REPOSITORY = VITE_URL_REPOSITORY
+export const URL_SOURCE = FOHPWA_URL_SOURCE

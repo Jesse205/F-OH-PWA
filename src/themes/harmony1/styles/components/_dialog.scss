@@ -1,0 +1,48 @@
+@use './border';
+@use '../settings/dimensions';
+
+.harmony1 {
+  .v-dialog {
+    & > .v-overlay__content {
+      max-height: 80svh;
+      backdrop-filter: blur(dimensions.$radius-blur);
+      border-radius: dimensions.$radius-dialog-custom;
+      margin: 16px;
+      max-width: calc(100% - 32px);
+      overflow: hidden;
+      > .v-card {
+        background-color: rgba(var(--v-theme-surface), 0.85) !important;
+        box-shadow: none;
+        .v-card-actions {
+          padding: 4px 12px 12px 12px;
+          .v-btn {
+            width: 0;
+            flex: 1;
+            margin: 4px;
+            // 按钮分割线
+            &::before {
+              content: '';
+              position: absolute;
+              bottom: 6px;
+              top: 6px;
+              right: -4.25px;
+              width: 0px;
+              // 用边框解决0.5px导致的渲染问题
+              border-right: border.$border;
+            }
+            &:last-child::before {
+              border-right-width: 0;
+            }
+          }
+        }
+        .v-card-text {
+          padding-top: 4px;
+          padding-bottom: 4px;
+        }
+      }
+      @media (max-width: 600px) {
+        bottom: 0;
+      }
+    }
+  }
+}

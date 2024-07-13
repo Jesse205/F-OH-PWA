@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { copyText, isTauri, openNewWindow } from '@/util/app'
-import { useWindowFocus } from '@vueuse/core'
+import { isTauriApp } from '@/utils/app'
+import { copyText } from '@/utils/clipboard'
+import { openNewWindow } from '@/utils/window'
 import { onBeforeUnmount, onMounted, reactive } from 'vue'
 
-const windowFocus = useWindowFocus()
 
 // 右键菜单
 interface ContextMenuConfig {
@@ -19,14 +19,13 @@ const config: ContextMenuConfig = reactive<ContextMenuConfig>({
   externalUrl: null,
   state: false,
 })
-const tauriState = isTauri
 
 /**
  * 在 Tauri 中使用自定义右键菜单
  * @param event
  */
 function onContextMenu(event: MouseEvent) {
-  if (tauriState) {
+  if (isTauriApp) {
     event.preventDefault()
     console.debug('onContextMenu', `clientX=${event.clientX}, clientY=${event.clientY}`)
 
@@ -79,16 +78,16 @@ onBeforeUnmount(() => document.body.removeEventListener('contextmenu', onContext
   <v-menu v-model="config.state" class="menu" @contextmenu.stop.prevent @selectstart.prevent :target="config.position">
     <v-list>
       <!-- 新窗口中打开 -->
-      <v-list-item v-if="config.url" :title="$t('openNewWindow.name')" @click="openNewWindow(config.url)" />
+      <v-list-item v-if="config.url" :title="$t('action.openNewWindow')" @click="openNewWindow(config.url)" />
       <!-- 浏览器中打开 -->
       <v-list-item
         v-if="config.externalUrl"
-        :title="$t('openNewWindow.linkInBrowser')"
+        :title="$t('action.openLinkInBrowser')"
         :href="config.externalUrl"
         target="_blank"
       />
       <!-- 复制链接 -->
-      <v-list-item v-if="config.externalUrl" :title="$t('copy.link')" @click="copyText(config.externalUrl)" />
+      <v-list-item v-if="config.externalUrl" :title="$t('action.copyLink')" @click="copyText(config.externalUrl)" />
     </v-list>
   </v-menu>
 </template>

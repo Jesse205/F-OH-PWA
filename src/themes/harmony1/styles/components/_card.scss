@@ -1,0 +1,7 @@
+@use '../settings/dimensions';
+
+.harmony1 {
+  .v-card {
+    border-radius: dimensions.$radius-card;
+  }
+}

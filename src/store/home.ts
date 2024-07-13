@@ -1,10 +1,10 @@
-import { useServerSetting } from '@/composables/settings'
+import { usePreferredServerUrl } from '@/composables/settings'
 import { IS_DEV_MODE } from '@/constants'
-import type { HomeData } from '@/ts/interfaces/home.interfaces'
-import { assert } from '@/util/app'
-import { getAxiosInstance } from '@/util/axios'
-import { getShowdownConverter } from '@/util/markdown'
-import { getApiUrl, getHomeApiUrl } from '@/util/url'
+import type { HomeData } from '@/data/home'
+import { assert } from '@/utils/app'
+import { getAxiosInstance } from '@/utils/http'
+import { getShowdownConverter } from '@/utils/markdown'
+import { getApiUrl, getHomeApiUrl } from '@/utils/url'
 import { defineStore } from 'pinia'
 import { computed, onActivated, onDeactivated, ref, watch } from 'vue'
 
@@ -85,7 +85,7 @@ export const useHomeStore = defineStore('home', () => {
    */
   function autoRefresh() {
     // 不能在 store 里面调用 `useServerSetting`，否则路由切换**会丢失响应式**。也不能注册监听事件，避免不必要的性能损耗。
-    const serverRef = useServerSetting()
+    const serverRef = usePreferredServerUrl()
     let activated = false
     watch(serverRef, () => {
       if (serverRef.value !== server && activated) {

@@ -1,0 +1,11 @@
+.ohos-app-icon {
+  // TODO: 当 F-OH 支持自适应图标后移除这项
+  border-radius: 24% !important;
+}
+.skeleton--small-avatar .v-skeleton-loader__avatar {
+  width: 24px;
+  min-width: 24px;
+  height: 24px;
+  min-height: 24px;
+  margin-right: 16px;
+}

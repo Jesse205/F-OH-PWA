@@ -47,7 +47,7 @@ body:
       label: 平台
       description: 你当前正在使用我们软件的哪个平台？
       options:
-        - 浏览器（普通浏览）
+        - 浏览器（直接浏览）
         - PWA
         - Windows Tauri
     validations:

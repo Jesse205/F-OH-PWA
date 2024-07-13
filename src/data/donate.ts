@@ -1,15 +1,29 @@
-import JESSE205_ALIPAY_QRCODE from '@/assets/images/donate/jesse205/alipay.webp'
-import JESSE205_ALIPAY_KICKBACK_QRCODE from '@/assets/images/donate/jesse205/alipay_kickback.webp'
-import JESSE205_QQ_QRCODE from '@/assets/images/donate/jesse205/qq.webp'
-import JESSE205_WECHAT_QRCODE from '@/assets/images/donate/jesse205/wechat.jpg'
-import WESTINYANG_ALIPAY_QRCODE from '@/assets/images/donate/westinyang/alipay.webp'
-import WESTINYANG_WECHAT_QRCODE from '@/assets/images/donate/westinyang/wechat.webp'
-import type { DonatePerson } from '@/ts/interfaces/donate.interfaces'
+import IMAGE_QRCODE_JESSE205_ALIPAY from '@/assets/images/donate/jesse205/alipay.webp'
+import IMAGE_QRCODE_JESSE205_ALIPAY_KICKBACK from '@/assets/images/donate/jesse205/alipay_kickback.webp'
+import IMAGE_QRCODE_JESSE205_QQ from '@/assets/images/donate/jesse205/qq.webp'
+import IMAGE_QRCODE_JESSE205_WECHAT from '@/assets/images/donate/jesse205/wechat.jpg'
+import IMAGE_QRCODE_WESTINYANG_ALIPAY from '@/assets/images/donate/westinyang/alipay.webp'
+import IMAGE_QRCODE_WESTINYANG_WECHAT from '@/assets/images/donate/westinyang/wechat.webp'
 
 // const COLOR_AMBER = '#FFC107'
 const COLOR_BLUE = '#2196F3'
 const COLOR_GREEN = '#4CAF50'
 const COLOR_RED = '#F44336'
+
+export interface DonatePlatform {
+  name: string
+  color?: string
+  icon?: string
+  key: string
+  image?: string
+}
+
+export interface DonatePerson {
+  name: string
+  summary: string
+  key: string
+  platforms: DonatePlatform[]
+}
 
 export const donateData: DonatePerson[] = [
   {
@@ -18,18 +32,18 @@ export const donateData: DonatePerson[] = [
     key: 'westinyang',
     platforms: [
       {
-        name: '$t.appNames.wechat',
+        name: '$t.app.wechat',
         color: COLOR_GREEN,
         icon: 'mdi-wechat',
         key: 'wechat',
-        image: WESTINYANG_WECHAT_QRCODE,
+        image: IMAGE_QRCODE_WESTINYANG_WECHAT,
       },
       {
-        name: '$t.appNames.alipay',
+        name: '$t.app.alipay',
         color: COLOR_BLUE,
         icon: 'mdi-wechat',
         key: 'alipay',
-        image: WESTINYANG_ALIPAY_QRCODE,
+        image: IMAGE_QRCODE_WESTINYANG_ALIPAY,
       },
     ],
   },
@@ -39,32 +53,32 @@ export const donateData: DonatePerson[] = [
     key: 'jesse205',
     platforms: [
       {
-        name: '$t.appNames.qq',
+        name: '$t.app.qq',
         color: COLOR_BLUE,
         icon: 'mdi-wechat',
         key: 'qq',
-        image: JESSE205_QQ_QRCODE,
+        image: IMAGE_QRCODE_JESSE205_QQ,
       },
       {
-        name: '$t.appNames.wechat',
+        name: '$t.app.wechat',
         color: COLOR_GREEN,
         icon: 'mdi-wechat',
         key: 'wechat',
-        image: JESSE205_WECHAT_QRCODE,
+        image: IMAGE_QRCODE_JESSE205_WECHAT,
       },
       {
-        name: '$t.appNames.alipay',
+        name: '$t.app.alipay',
         color: COLOR_BLUE,
         icon: 'mdi-alipay',
         key: 'alipay',
-        image: JESSE205_ALIPAY_QRCODE,
+        image: IMAGE_QRCODE_JESSE205_ALIPAY,
       },
       {
-        name: '$t.appNames.alipay_kickback',
+        name: '$t.app.alipay_kickback',
         color: COLOR_RED,
         icon: 'mdi-alipay',
         key: 'alipay_kickback',
-        image: JESSE205_ALIPAY_KICKBACK_QRCODE,
+        image: IMAGE_QRCODE_JESSE205_ALIPAY_KICKBACK,
       },
     ],
   },

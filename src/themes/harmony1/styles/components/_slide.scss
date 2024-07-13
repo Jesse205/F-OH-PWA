@@ -1,0 +1,18 @@
+/// @link https://developer.huawei.com/consumer/cn/doc/design-guides-V1/navigation-dot-0000001110627008-V1
+
+.harmony1 {
+  --swiper-pagination-bullet-border-radius: 4px;
+  --swiper-pagination-bullet-size: 8px;
+  --swiper-pagination-bullet-inactive-color: rgb(var(--v-theme-on-surface));
+  --swiper-pagination-bullet-inactive-opacity: 0.2;
+
+  .swiper-pagination {
+    &-bullet {
+      transition: 0.3s ease;
+      transition-property: width, background, opacity;
+    }
+    &-bullet-active {
+      --swiper-pagination-bullet-width: 16px;
+    }
+  }
+}

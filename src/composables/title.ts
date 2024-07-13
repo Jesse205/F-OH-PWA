@@ -25,3 +25,22 @@ export function useTitle(title: MaybeRef<string | null>, activated: Ref<boolean>
   })
   return wrappedTitle
 }
+
+export function useAutoTitle(title: MaybeRef<string | null>) {
+  const activated: Ref<boolean> = ref(true)
+  const wrappedTitle: Ref<string | null> = toRef(title)
+  const appStore = useAppStore()
+  onActivated(() => {
+    activated.value = true
+  })
+  onDeactivated(() => {
+    activated.value = false
+  })
+
+  watchEffect(() => {
+    if (activated.value) {
+      appStore.title = wrappedTitle.value
+    }
+  })
+  return wrappedTitle
+}

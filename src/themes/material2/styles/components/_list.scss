@@ -1,0 +1,78 @@
+.material21 {
+  .v-list-item {
+    /// 根据规格推算出，小图片与文字的上下边距为 16px，部分情况除外
+    &--density-default {
+      padding-top: 0;
+      padding-bottom: 0;
+
+      .v-list-item__append,
+      .v-list-item__prepend {
+        padding-top: 16px;
+        padding-bottom: 16px;
+      }
+
+      .v-list-item__content {
+        padding-top: 16px;
+        padding-bottom: 16px;
+      }
+    }
+
+    &__prepend {
+      .v-icon {
+        opacity: 1;
+      }
+    }
+
+    &:not(&--active)[aria-haspopup='menu'] > .v-list-item__overlay,
+    .ignore-active-style > .v-list-item__overlay,
+    &__overlay {
+      opacity: 0;
+    }
+
+    // 重写焦点样式
+    @supports selector(:focus-visible) {
+      &::after {
+        border: 2px solid rgb(var(--v-theme-primary));
+        border-radius: inherit;
+      }
+      &:focus-visible {
+        &::after {
+          opacity: 1;
+        }
+      }
+      // 添加 :not(&--active)，否则下面的 &--active 会因该选择器过大而被覆盖
+      &:not(&--active):focus-visible > .v-list-item__overlay,
+      &.ignore-active-style:focus-visible > .v-list-item__overlay {
+        opacity: 0;
+      }
+    }
+    &:not(&--active),
+    &.ignore-active-style {
+      &:hover > .v-list-item__overlay {
+        opacity: calc(var(--v-hover-opacity) * var(--v-theme-overlay-multiplier));
+      }
+      &:active > .v-list-item__overlay {
+        opacity: calc(var(--v-pressed-opacity) * var(--v-theme-overlay-multiplier));
+      }
+    }
+
+    &--active:not(.ignore-active-style) {
+      & > .v-list-item__overlay {
+        opacity: calc(var(--v-activated-opacity) * var(--v-theme-overlay-multiplier));
+      }
+      &:hover .v-list-item__overlay {
+        opacity: calc((var(--v-hover-opacity) + var(--v-activated-opacity)) * var(--v-theme-overlay-multiplier));
+      }
+      &:active > .v-list-item__overlay {
+        opacity: calc((var(--v-pressed-opacity) + var(--v-activated-opacity)) * var(--v-theme-overlay-multiplier));
+      }
+    }
+    &__prepend {
+      & > .v-badge ~ .v-list-item__spacer,
+      & > .v-icon ~ .v-list-item__spacer,
+      & > .v-tooltip ~ .v-list-item__spacer {
+        width: 16px;
+      }
+    }
+  }
+}

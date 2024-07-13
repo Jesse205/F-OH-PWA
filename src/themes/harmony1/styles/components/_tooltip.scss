@@ -1,0 +1,10 @@
+@use '../settings/dimensions';
+
+.harmony1 {
+  .v-tooltip {
+    > .v-overlay__content {
+      backdrop-filter: blur(dimensions.$radius-blur-tooltip);
+      background: rgba(var(--v-theme-surface-variant), 0.8);
+    }
+  }
+}

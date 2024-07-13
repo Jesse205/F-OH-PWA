@@ -24,7 +24,7 @@ immutable
 '''
 
 [[headers]]
-for = "/data/*"
+for = "/api/*"
 [headers.values]
 cache-control = '''
 max-age=86400,

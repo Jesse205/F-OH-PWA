@@ -1,10 +1,8 @@
 import vue from '@vitejs/plugin-vue'
 import { URL, fileURLToPath } from 'node:url'
-
 import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
-
 import manifest from './manifest'
 
 const isTauri = !!process.env.TAURI_FAMILY
@@ -20,6 +18,9 @@ export default defineConfig({
     // https://github.com/vuetifyjs/vuetify-loader/tree/master/packages/vite-plugin
     vuetify({
       autoImport: true,
+      styles: {
+        configFile: 'src/styles/settings.scss',
+      },
     }),
     // https://vite-pwa-org.netlify.app/
     VitePWA({
@@ -44,23 +45,14 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
-    extensions: ['.js', '.json', '.jsx', '.mjs', '.ts', '.tsx', '.vue'],
+    extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx', '.json', '.vue'],
   },
   server: {
     port: 3000,
     // Tauri 期望使用固定端口，如果端口不可用，则会失败
     strictPort: true,
-    proxy: {
-      '/api/gogs': {
-        target: 'http://74.48.94.162:3000/api',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api\/gogs/, ''),
-      },
-    },
   },
-  // 使用环境变量`TAURI_PLATFORM`、`TAURI_ARCH`、`TAURI_FAMILY`、
-  // `TAURI_PLATFORM_VERSION`、`TAURI_PLATFORM_TYPE` 和 `TAURI_DEBUG`、
-  envPrefix: ['VITE_', 'TAURI_'],
+  envPrefix: ['VITE_', 'TAURI_', 'FOHPWA_'],
   build: {
     // Tauri 在 Windows 上使用 Chromium，在 macOS 和 Linux 上使用 WebKit
     target: process.env.TAURI_PLATFORM === 'windows' ? 'chrome105' : 'safari13',

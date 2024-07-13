@@ -1,22 +1,28 @@
-.DS_Store
-node_modules
-/dist
-/public/api
-/dev-dist
-
-# local env files
-.env.local
-.env.*.local
-
-# Log files
+# Logs
+logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+node_modules
+.DS_Store
+dist
+dist-ssr
+dev-dist
+coverage
+*.local
+
+# local env files
+.env.local
+.env.*.local
+
 # Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
 .idea
-# .vscode
 *.suo
 *.ntvs*
 *.njsproj
@@ -26,5 +32,4 @@ pnpm-debug.log*
 # Tauri
 /src-tauri/target
 
-tsconfig.tsbuildinfo
-tsconfig.*.tsbuildinfo
+*.tsbuildinfo

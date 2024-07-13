@@ -50,7 +50,10 @@ F-OH PWA + BrowserCE, best practices for distributing OpenHarmony hap apps via w
 
 ## Features
 
-- Design: [HarmonyOS Design](https://developer.harmonyos.com/en/design/)
+- Design: Multi-theme
+  - [HarmonyOS Design](https://developer.huawei.com/consumer/cn/design/)
+  - Material Design 2
+  - Fluent Design 2
 - Platform: Browser, Linux, Windows
 - Advertising: None
 - Fees: None for now
@@ -139,7 +142,7 @@ Sponsorship can be contacted by private message or scanning the QR code below (W
 
 ![QRCode](https://gitee.com/westinyang/f-oh/raw/master/screenshot/wx+zfb.png)
 
-For this project (F-OH PWA), you can go to the [Hello Tool donation page](https://jesse205.github.io/hellotool/donation.html) to support Jesse205.
+For this project (F-OH PWA), you can go to the [F-OH PWA donation page](https://f-oh-pwa-jesse205.netlify.app/donate) to support Jesse205.
 
 ## Contributing
 

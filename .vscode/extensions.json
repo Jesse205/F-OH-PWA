@@ -3,9 +3,8 @@
     "lokalise.i18n-ally",
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
-    "vue.vscode-typescript-vue-plugin",
-    "vue.volar",
     "serayuzgur.crates",
-    "dustypomerleau.rust-syntax"
+    "dustypomerleau.rust-syntax",
+    "vue.volar"
   ]
 }

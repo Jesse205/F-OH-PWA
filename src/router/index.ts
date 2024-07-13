@@ -1,10 +1,11 @@
 import { BASE_URL, IS_DEV_MODE } from '@/constants'
-import { isWebHistorySupported } from '@/util/app'
+import { isWebHistorySupported } from '@/utils/app'
+import { isPageTransitionEnabled } from '@/utils/settings'
 import type { HistoryState, RouteRecordRaw } from 'vue-router'
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 
 const TAG = '[Router]'
-const SELECTOR_SCROLL = '.main-container .main-scroll'
+const SELECTOR_SCROLL = '.main-container>.main-scroll'
 export const PATH_HOME = '/main/home'
 
 interface ScrollToOptions2 {
@@ -30,27 +31,27 @@ const routes: Readonly<RouteRecordRaw[]> = [
   },
   {
     path: '/main',
-    component: async () => await import('@/views/main/MainView.vue'),
+    component: async () => await import('@/pages/main/MainView.vue'),
     children: [
       {
         path: 'home',
         name: 'Home',
-        component: async () => await import('@/views/main/MainHomeView.vue'),
+        component: async () => await import('@/pages/main/MainHomeView.vue'),
       },
       {
         path: 'categories',
         name: 'Categories',
-        component: async () => await import('@/views/main/MainCategoriesView.vue'),
+        component: async () => await import('@/pages/main/MainCategoriesView.vue'),
       },
       {
         path: 'update',
         name: 'Update',
-        component: async () => await import('@/views/main/MainUpdateView.vue'),
+        component: async () => await import('@/pages/main/MainUpdateView.vue'),
       },
       {
         path: 'me',
         name: 'Me',
-        component: async () => await import('@/views/main/MainMeView.vue'),
+        component: async () => await import('@/pages/main/MainMeView.vue'),
       },
       {
         path: ':chapters*',
@@ -87,27 +88,22 @@ const routes: Readonly<RouteRecordRaw[]> = [
   {
     path: '/app/:pkg',
     name: 'App',
-    component: async () => await import('@/views/app/AppView.vue'),
-  },
-  {
-    path: '/manager',
-    name: 'Manager',
-    component: async () => await import('@/views/manager/ManagerView.vue'),
+    component: async () => await import('@/pages/app/AppView.vue'),
   },
   {
     path: '/settings',
     name: 'Settings',
-    component: async () => await import('@/views/settings/SettingsView.vue'),
+    component: async () => await import('@/pages/settings/SettingsView.vue'),
   },
   {
     path: '/donate',
     name: 'Donate',
-    component: async () => await import('@/views/donate/DonateView.vue'),
+    component: async () => await import('@/pages/donate/DonateView.vue'),
   },
   {
     path: '/about',
     name: 'About',
-    component: async () => await import('@/views/about/AboutView.vue'),
+    component: async () => await import('@/pages/about/AboutView.vue'),
   },
   {
     path: '/:chapters*',
@@ -117,31 +113,34 @@ const routes: Readonly<RouteRecordRaw[]> = [
 
 const history = isWebHistorySupported() ? createWebHistory(BASE_URL) : createWebHashHistory(BASE_URL)
 
+function getScrollableElementSelector(path: string) {
+  return `.page[data-path='${path}'] .main-container>.main-scroll`
+}
+
 const router = createRouter({
   history,
   routes,
   /**
    * 本方法直接设置滚动位置，并没有按照常规逻辑返回位置信息。
    */
-  scrollBehavior(to, from, savedPosition) {
+  /* scrollBehavior(to, from, savedPosition) {
     if (IS_DEV_MODE) console.debug(TAG, 'scrollBehavior', to, from, savedPosition)
     const state: HistoryState = window.history.state
 
     if (state.scroll2 && state.current) {
       // 有动画，所以存在多个页面，需要指定路径
-      if (state.scroll2 && state.current) {
-        const element = document.querySelector(`.page[data-path='${to.path}']:last-child ${SELECTOR_SCROLL}`)
-        element?.scrollTo(state.scroll2[state.current])
-      }
+
+      const element = document.querySelector(getScrollableElementSelector(to.path))
+      console.log(element)
+      element?.scrollTo(state.scroll2[state.current])
     }
-  },
+  }, */
 })
 
 const scrollState2: ScrollToOptions2 = (history.state.scroll2 as ScrollToOptions2) ?? {}
 
-router.beforeEach((to, from) => {
+/* router.beforeEach((to, from) => {
   if (IS_DEV_MODE) console.debug(TAG, 'beforeEach', to, from)
-
   // 用户在主页点击首页时自动返回，防止有重复的历史记录。
   if (to.path === PATH_HOME && to.path === history.state.back) {
     history.go(-1)
@@ -155,7 +154,9 @@ router.beforeEach((to, from) => {
     scroll2: scrollState2,
   }
   // 当前有一个bug，通过导航按钮切换的页面无法监听,因为current可能不等于from。这可能导致滚动状态无法被保存。此处使用内存泄漏掩盖部分bug
-  const scrollElement = document.querySelector(SELECTOR_SCROLL)
+  const scrollElement = document.querySelector(getScrollableElementSelector(from.path))
+  console.log('beforeEach', scrollElement)
+
   const scrollData = {
     top: scrollElement?.scrollTop ?? 0,
     left: scrollElement?.scrollLeft ?? 0,
@@ -173,15 +174,17 @@ router.beforeEach((to, from) => {
   }
   window.history.replaceState(state, document.title)
   return true
-})
+}) */
 
 router.afterEach((to, from) => {
-  if (IS_DEV_MODE) console.debug(TAG, 'afterEach', to, from)
+  if (IS_DEV_MODE) {
+    console.debug(TAG, 'afterEach', to, from)
+  }
 
   // 动画
-  if (from.path !== '/') {
+  if (from.path !== '/' && isPageTransitionEnabled()) {
     // const name = history.state.forward ? 'scroll-x-transition' : 'scroll-x-reverse-transition'
-    const name = history.state.forward ? 'page-transition' : 'page-reverse-transition'
+    const name = history.state.forward ? 'page-leave-transition' : 'page-enter-transition'
     to.meta.transition = name
     from.meta.transition = name
   } else {

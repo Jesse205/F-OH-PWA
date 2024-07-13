@@ -1,71 +1,38 @@
 <script lang="ts" setup>
 import CenterSpace from '@/components/CenterSpace.vue'
-import ContextMenu from '@/components/app/ContextMenu.vue'
 import NavigationDrawer from '@/components/app/NavigationDrawer.vue'
 import PwaComponent from '@/components/app/PwaComponent.vue'
 import TauriSystemBar from '@/components/app/TauriSystemBar.vue'
-import { useLocaleSetting } from '@/composables/settings'
+import { usePreferredLocale } from '@/composables/settings'
 import { useAppStore } from '@/store/app'
-import { isLegacyApp, isTauri } from '@/util/app'
-import { isElementDraggableInLegacyApp } from '@/util/drag'
-import { isPwaDisplayMode } from '@/util/pwa'
-import { usePreferredDark } from '@vueuse/core'
-import { computed, watch } from 'vue'
-import { useI18n } from 'vue-i18n'
+import { isElementDraggableInClientApp } from '@/utils/drag'
+import { isPwaDisplayMode } from '@/utils/pwa'
+import { usePreferredDark, useTitle as useDocumentTitle } from '@vueuse/core'
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { useDisplay, useTheme } from 'vuetify'
-// 主题
-const theme = useTheme()
-const preferredDark = usePreferredDark()
+import { useDisplay } from 'vuetify'
+import { useAutoLocale, useAutoTheme } from './composables/app'
+import { isTauriApp } from './utils/app'
 
-// 自动设置为浏览器的主题
-watch(
-  preferredDark,
-  (isDark) => {
-    theme.global.name.value = isDark ? 'dark' : 'light'
-  },
-  { immediate: true },
-)
-
+const { smAndUp } = useDisplay()
 const route = useRoute()
-const MACHER_ROUTE_NAME = /\/[^/]+/
-
-// 路由名称
-const routeName = computed(() => route.path.match(MACHER_ROUTE_NAME)?.[0] ?? '')
-
-// APP 模式
-console.debug('isTauri', isTauri)
-console.debug('isLegacyApp', isLegacyApp)
-
 const appStore = useAppStore()
 
-// I18n
-const { locale } = useI18n()
-const savedLocale = useLocaleSetting()
-watch(
-  savedLocale,
-  (newLocale) => {
-    locale.value = newLocale
-    document.documentElement.setAttribute('lang', newLocale)
-  },
-  { immediate: true },
-)
+const REGEX_ROUTE_NAME = /\/[^/]+/
 
-// 将store中的标题应用到网页
-const documentTitle = computed(() => {
-  if (isPwaDisplayMode(appStore.displayMode)) {
-    return appStore.title ?? ''
-  } else {
-    return appStore.title ? `${appStore.title} - ${appStore.appName}` : appStore.appName
-  }
-})
+// 路由名称
+const routeName = computed(() => route.path.match(REGEX_ROUTE_NAME)?.[0] ?? '')
 
-watch(
-  documentTitle,
-  (newTitle) => {
-    document.title = newTitle
-  },
-  { immediate: true },
+useAutoTheme(usePreferredDark())
+useAutoLocale(usePreferredLocale())
+useDocumentTitle(
+  computed(() => {
+    if (isPwaDisplayMode(appStore.displayMode)) {
+      return appStore.title ?? ''
+    } else {
+      return appStore.title ? `${appStore.title} - ${appStore.appName}` : appStore.appName
+    }
+  }),
 )
 
 /**
@@ -76,28 +43,27 @@ watch(
  * @param event
  */
 function onDragStart(event: DragEvent) {
-  if (isTauri) {
-    if (!event.target || !isElementDraggableInLegacyApp(event.target)) {
+  if (isTauriApp) {
+    if (!event.target || !isElementDraggableInClientApp(event.target)) {
       event.preventDefault()
     }
   }
 }
 
-const { xs } = useDisplay()
-
-// 删除全屏区域的拖拽，放置软件无法操作
+// 删除全屏区域的拖拽，否则软件无法操作
 delete document.documentElement.dataset.tauriDragRegion
+
+document.documentElement.classList.add(appStore.design)
 </script>
 
 <template>
   <v-app class="app" @dragstart="onDragStart">
-    <TauriSystemBar v-if="isTauri" />
-    <NavigationDrawer v-if="!xs" />
+    <TauriSystemBar v-if="isTauriApp" />
+    <NavigationDrawer v-if="smAndUp" />
     <v-main class="main">
       <div class="page-container">
         <router-view #="{ Component }">
-          <!-- 不能去除?? ''，否则格式化工具会自动删除括号，导致高亮错误 -->
-          <transition :name="(route.meta.transition as string) ?? undefined">
+          <transition :name="route.meta.transition">
             <div :key="routeName" class="page" :data-path="route.path">
               <v-layout class="layout">
                 <component :is="Component" />
@@ -111,15 +77,23 @@ delete document.documentElement.dataset.tauriDragRegion
         </CenterSpace>
       </div>
     </v-main>
-    <ContextMenu />
+    <!-- <ContextMenu /> -->
     <PwaComponent />
   </v-app>
-  <Teleport v-if="isTauri" to="body">
+  <!-- 窗口边框 -->
+  <Teleport v-if="isTauriApp" to="body">
     <div class="border window-border"></div>
   </Teleport>
 </template>
 
 <style lang="scss" scoped>
+.app {
+  height: 100%;
+  width: 100%;
+  // 防止移动端出现滚动条
+  overflow: hidden;
+}
+
 .layout {
   width: 100%;
   height: 100%;
@@ -139,13 +113,6 @@ delete document.documentElement.dataset.tauriDragRegion
   position: relative;
   width: 100%;
   height: 100%;
-  overflow: hidden;
-}
-
-.app {
-  height: 100%;
-  width: 100%;
-  // 防止移动端出现滚动条
   overflow: hidden;
 }
 

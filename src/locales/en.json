@@ -1,70 +1,103 @@
 {
-  "appName": "F-OH",
-  "settings": {
-    "name": "Settings",
-    "changed": "Settings changed"
+  "appName": {
+    "default": "F-OH",
+    "browser": "F-OH Lite",
+    "pwa": "F-OH PWA",
+    "tauri": "F-OH Tauri",
+    "title": "App name"
   },
-  "about": {
-    "name": "About"
+  "settings": "Settings",
+  "about": "About",
+  "aboutApp": "About app",
+  "appMessages": "App messages",
+  "developInfo": "Develop information",
+  "packageName": "Package name",
+  "viewApp": "View app",
+  "home": "Home",
+  "category": "Category",
+  "me": "Me",
+  "update": "Update",
+  "updateApp": "Update app",
+  "updateAppMessage": "There is an update to the app and it needs to be reloaded.",
+  "sourceCode": "Source",
+  "release": "Release",
+  "releaseDate": "Release date",
+  "id": "ID",
+  "relatedLinks": "Related links",
+  "details": "Details",
+  "announcement": "Announcement",
+  "language": "Language",
+  "other": "Other",
+  "game": "Game",
+  "server": "Server",
+  "moreInfo": "More info",
+  "moreOptions": "More options",
+  "notSet": "Not set",
+  "loading": "Loading",
+  "designLanguage": "Design language",
+  "userInterface": "User interface|User interfaces",
+  "unknown": {
+    "title": "Unknown",
+    "version": "Unknown version",
+    "description": "Unknown description",
+    "author": "Unknown author",
+    "packageName": "Unknown package name"
   },
-  "home": {
-    "name": "Home"
+  "error": {
+    "loading": "Loading error"
   },
-  "category": {
-    "name": "Category | Categories"
+  "term": {
+    "openSourceLicenses": "Open Source Licenses"
   },
-  "update": {
-    "name": "Update",
-    "app": {
-      "name": "Update app",
-      "reload_message": "There is an update to the app and it needs to be reloaded."
+  "empty": {
+    "apps": "Empty apps"
+  },
+  "action": {
+    "install": "Install",
+    "uninstall": "Uninstall",
+    "download": "Download",
+    "share": "Share",
+    "copy": "Copy",
+    "copyLink": "Copy link",
+    "openNewWindow": "Open in new window",
+    "openLinkInBrowser": "Open link in browser",
+    "close": "Close",
+    "ok": "OK",
+    "cancel": "Cancel",
+    "maximize": "Maximize",
+    "minimize": "Minimize",
+    "refresh": "Refresh",
+    "back": "Back",
+    "donate": "Donate",
+    "installApp": "Install app",
+    "communicate": "Communicate"
+  },
+  "link": {
+    "title": "Link",
+    "foh": {
+      "title": "F-OH",
+      "description": "F-OH is an application center for FOSS (Free and Open Source Software) on the OpenHarmony platform, with support for download and installation."
+    },
+    "organization": {
+      "title": "OHOS Dev",
+      "description": "OpenHarmony Developer Community (unofficial position created for the future of OpenHarmony, Peace & Love)"
     }
-  },
-  "upload": {
-    "app": "Upload app"
-  },
-  "me": {
-    "name": "Me"
   },
   "app": {
-    "name": "Application",
-    "about": "About application",
-    "version": "App version",
-    "view": "App view"
-  },
-  "tauri": {
-    "version": "Tauri version"
-  },
-  "project": {
-    "showcase": {
-      "name": "Project Showcase",
-      "platforms": "The platforms on show"
-    }
-  },
-  "develop": {
-    "messages": "Develop messages"
-  },
-  "install": {
-    "app": "Install app"
-  },
-  "communicate": {
-    "name": "Communicate",
-    "qqGroup": "QQ group"
-  },
-  "download": {
-    "name": "Download"
-  },
-  "source": {
-    "code": "Source code"
+    "title": "App",
+    "wechat": "WeChat",
+    "qq": "QQ",
+    "qqGroup": "QQ group",
+    "alipay": "Alipay",
+    "alipay_kickback": "Alipay Kickback"
   },
   "version": {
-    "name": "Version"
-  },
-  "packageName": {
-    "name": "Package name"
+    "title": "Version",
+    "app": "App version",
+    "tauri": "Tauri version"
   },
   "developer": {
-    "name": "Developer",
+    "title": "Developer",
     "eddie": {
       "name": "{'@'}Eddie",
       "description": "PWA Application Developer"
@@ -76,107 +109,5 @@
     "jesse205": {
       "name": "{'@'}Jesse205"
     }
-  },
-  "release": {
-    "name": "Release",
-    "date": "Release date"
-  },
-  "id": {
-    "name": "ID"
-  },
-  "link": {
-    "related": "Related links",
-    "foh": {
-      "title": "F-OH",
-      "description": "F-OH is an application center for FOSS (Free and Open Source Software) on the OpenHarmony platform, with support for download and installation."
-    },
-    "organization": {
-      "title": "OHOS Dev",
-      "description": "OpenHarmony Developer Community (unofficial position created for the future of OpenHarmony, Peace & Love)"
-    }
-  },
-  "details": {
-    "name": "Details"
-  },
-  "announcement": {
-    "name": "Announcement"
-  },
-  "unknown": {
-    "name": "Unknown"
-  },
-  "openNewWindow": {
-    "name": "Open in new window",
-    "linkInBrowser": "Open link in browser"
-  },
-  "copy": {
-    "link": "Copy link"
-  },
-  "locale": {
-    "language": "Language"
-  },
-  "other": {
-    "name": "Other"
-  },
-  "game": {
-    "name": "Game"
-  },
-  "appNames": {
-    "wechat": "WeChat",
-    "qq": "QQ",
-    "alipay": "Alipay",
-    "alipay_kickback": "Alipay Kickback"
-  },
-  "donate": {
-    "name": "Donate"
-  },
-  "manager": {
-    "apps": "Apps manager"
-  },
-  "close": {
-    "name": "Close"
-  },
-  "ok": {
-    "name": "OK"
-  },
-  "cancel": {
-    "name": "Cancel"
-  },
-  "token": {
-    "name": "Token",
-    "resolve_message": "Please go to \"User Settings > Authorized Applications\" to get a token."
-  },
-  "more": {
-    "info": "More info",
-    "options": "More options"
-  },
-  "share": {
-    "name": "Share"
-  },
-  "back": {
-    "name": "Back"
-  },
-  "refresh": {
-    "name": "Refresh"
-  },
-  "watching": {
-    "my": "My watchings"
-  },
-  "error": {
-    "loading": "Loading error"
-  },
-  "maximize": {
-    "name": "Maxsize"
-  },
-  "minimize": {
-    "name": "Minimize"
-  },
-  "term": {
-    "licenses": "Open Source Licenses"
-  },
-  "server": {
-    "name": "Server"
-  },
-  "empty": {
-    "apps": "No apps found"
   }
 }

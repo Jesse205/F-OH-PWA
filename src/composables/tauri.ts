@@ -5,6 +5,9 @@ export function useTauriSystemBar() {
   const appWindow = getCurrent()
   const isMaximized = ref(false)
   let unlistenResized: (() => void) | undefined
+  appWindow.isMaximized().then((maximized) => {
+    isMaximized.value = maximized
+  })
   appWindow
     .onResized(async () => {
       isMaximized.value = await appWindow.isMaximized()
@@ -15,5 +18,11 @@ export function useTauriSystemBar() {
   onBeforeUnmount(() => {
     if (unlistenResized) unlistenResized()
   })
-  return { appWindow, isMaximized }
+  return {
+    isMaximized,
+    minimize: appWindow.minimize,
+    maximize: appWindow.maximize,
+    unmaximize: appWindow.unmaximize,
+    close: appWindow.close,
+  }
 }

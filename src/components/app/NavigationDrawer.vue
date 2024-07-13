@@ -1,60 +1,63 @@
 <script setup lang="ts">
-import { useHomeNavigation } from '@/composables/navigation'
+import { useHomeRoutes } from '@/composables/route'
+import { homeRouteData } from '@/data/home'
 import { useAppStore } from '@/store/app'
-import { computed, unref } from 'vue'
+import { parseI18n } from '@/utils/i18n'
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useDisplay } from 'vuetify'
 
 const appStore = useAppStore()
 const route = useRoute()
-
-/**
- * 标题，无后缀
- */
-const title = computed(() => appStore.title ?? undefined)
-
-const { pages, activePagePosition, isBackOtherPage, isInMainView } = useHomeNavigation()
+const { activePagePosition, routeButtonReplace, isInMainView } = useHomeRoutes()
 const { smAndDown } = useDisplay()
 
 const isRail = computed(() => smAndDown.value)
 
-const isOtherPage = computed(() => Boolean(!isInMainView.value && title.value && route.path !== '/'))
+const isOtherPage = computed(() => Boolean(!isInMainView.value && appStore.title && route.path !== '/'))
 </script>
 
 <template>
   <!-- 侧滑栏 -->
   <v-navigation-drawer permanent :rail="isRail">
-    <v-list class="py-2">
+    <v-list class="header-icon py-2" nav lines="one">
       <v-list-item prepend-avatar="@/assets/images/icon.svg" :title="appStore.appName" />
     </v-list>
     <!-- <v-divider /> -->
     <v-list density="compact" nav>
-      <v-tooltip v-for="(item, index) in pages" :key="item.name" :disabled="!isRail">
+      <v-tooltip v-for="(item, index) in homeRouteData" :key="item.name" :disabled="!isRail">
         <template #activator="{ props }">
           <v-list-item
             v-bind="props"
-            :to="{ name: item.name }"
+            :to="{ name: item.name, replace: routeButtonReplace }"
             :prepend-icon="activePagePosition === index ? item.activeIcon : item.icon"
-            :title="unref(item.title)"
+            :title="parseI18n(item.title, $t)"
             :disabled="item.disabled"
-            :replace="isInMainView && (activePagePosition !== 0 || isBackOtherPage)"
           />
         </template>
-        <span>{{ unref(item.title) }}</span>
+        <span>{{ parseI18n(item.title, $t) }}</span>
       </v-tooltip>
     </v-list>
     <!-- <transition name="fade-transition">
       <v-divider v-if="!isInMainView" />
     </transition> -->
     <transition name="slide-y-transition">
-      <v-list v-if="isOtherPage" density="compact" nav color="primary">
+      <v-list v-if="isOtherPage" density="compact" nav>
         <v-tooltip :disabled="!isRail">
           <template #activator="{ props }">
-            <v-list-item v-bind="props" :key="$route.path" prepend-icon="$circle" :title="title" active link />
+            <v-list-item v-bind="props" :key="$route.path" prepend-icon="$circle" :title="appStore.title" active link />
           </template>
-          <span>{{ title }}</span>
+          <span>{{ appStore.title }}</span>
         </v-tooltip>
       </v-list>
     </transition>
   </v-navigation-drawer>
 </template>
+<style lang="scss">
+.header-icon {
+  // height: 64px;
+  .v-list-item__prepend {
+    padding: 0;
+  }
+}
+</style>

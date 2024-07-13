@@ -6,13 +6,16 @@
     "MD045": false
   },
   "cSpell.words": [
+    "appbar",
     "Bootstrapper",
     "btns",
     "Combobox",
     "Composables",
+    "FOHPWA",
     "gogs",
     "haspopup",
     "icns",
+    "iconset",
     "iconsets",
     "nightwatch",
     "nsis",
@@ -20,16 +23,24 @@
     "ohosdev",
     "openharmony",
     "QRCODE",
+    "refreshable",
     "rushstack",
     "swiper",
     "Tauri",
+    "tsbuildinfo",
     "TSES",
     "unlisten",
+    "unmaximize",
+    "unref",
     "vueuse",
     "WECHAT",
     "westinyang"
   ],
   "i18n-ally.localesPaths": ["src/locales"],
   "i18n-ally.keystyle": "nested",
-  "i18n-ally.sourceLanguage": "zh-CN"
+  "i18n-ally.sourceLanguage": "zh-CN",
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "i18n-ally.regex.usageMatchAppend": [
+    "[^\\w\\d]['\"`]\\$t\\.({key})['\"`]"
+  ],
 }

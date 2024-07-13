@@ -1,70 +1,103 @@
 {
-  "appName": "F-OH",
-  "settings": {
-    "name": "设置",
-    "changed": "设置已更改"
+  "appName": {
+    "default": "F-OH",
+    "browser": "F-OH Lite",
+    "pwa": "F-OH PWA",
+    "tauri": "F-OH Tauri",
+    "title": "应用名称"
   },
-  "about": {
-    "name": "关于"
+  "settings": "设置",
+  "about": "关于",
+  "aboutApp": "关于应用",
+  "appMessages": "应用信息",
+  "developInfo": "开发信息",
+  "packageName": "包名",
+  "viewApp": "浏览应用",
+  "home": "首页",
+  "category": "分类",
+  "me": "我的",
+  "update": "更新",
+  "updateApp": "更新应用",
+  "updateAppMessage": "应用有更新，需要重新加载。",
+  "sourceCode": "源代码",
+  "release": "发行",
+  "releaseDate": "发行日期",
+  "id": "编号",
+  "relatedLinks": "相关链接",
+  "details": "详情信息",
+  "announcement": "公告",
+  "language": "语言",
+  "other": "其他",
+  "game": "游戏",
+  "server": "服务器",
+  "moreInfo": "更多信息",
+  "moreOptions": "更多选项",
+  "notSet": "未设置",
+  "loading": "加载中",
+  "designLanguage": "设计语言",
+  "userInterface": "用户界面",
+  "unknown": {
+    "title": "未知",
+    "version": "未知版本",
+    "description": "未知描述",
+    "author": "未知作者",
+    "packageName": "未知包名"
   },
-  "home": {
-    "name": "首页"
+  "error": {
+    "loading": "加载错误"
   },
-  "category": {
-    "name": "分类"
+  "term": {
+    "openSourceLicenses": "开源许可"
   },
-  "update": {
-    "name": "更新",
-    "app": {
-      "name": "更新应用",
-      "reload_message": "应用有更新，需要重新加载。"
+  "empty": {
+    "apps": "暂无应用"
+  },
+  "action": {
+    "install": "安装",
+    "uninstall": "卸载",
+    "download": "下载",
+    "share": "分享",
+    "copy": "复制",
+    "copyLink": "复制链接",
+    "openNewWindow": "在新窗口中打开",
+    "openLinkInBrowser": "在浏览器中打开链接",
+    "close": "关闭",
+    "ok": "确定",
+    "cancel": "取消",
+    "maximize": "最大化",
+    "minimize": "最小化",
+    "refresh": "刷新",
+    "back": "返回",
+    "donate": "捐赠",
+    "installApp": "安装应用",
+    "communicate": "交流讨论"
+  },
+  "link": {
+    "title": "链接",
+    "foh": {
+      "title": "F-OH",
+      "description": "F-OH 是一个 OpenHarmony 平台上 FOSS（Free and Open Source Software，自由开源软件）的应用中心，并提供下载安装支持"
+    },
+    "organization": {
+      "title": "OHOS Dev",
+      "description": "OpenHarmony 开发者社区（非官方阵地，为OpenHarmony的未来而创建，Peace & Love）"
     }
-  },
-  "upload": {
-    "app": "上传应用"
-  },
-  "me": {
-    "name": "我的"
   },
   "app": {
-    "name": "应用",
-    "about": "关于应用",
-    "version": "应用版本",
-    "view": "应用浏览"
-  },
-  "tauri": {
-    "version": "Tauri 版本"
-  },
-  "project": {
-    "showcase": {
-      "name": "项目展示",
-      "platforms": "展示的平台"
-    }
-  },
-  "develop": {
-    "messages": "开发信息"
-  },
-  "install": {
-    "app": "安装应用"
-  },
-  "communicate": {
-    "name": "交流讨论",
-    "qqGroup": "QQ 群"
-  },
-  "download": {
-    "name": "下载"
-  },
-  "source": {
-    "code": "源代码"
+    "title": "应用",
+    "wechat": "微信",
+    "qq": "QQ",
+    "qqGroup": "QQ 群",
+    "alipay": "支付宝",
+    "alipay_kickback": "支付宝红包"
   },
   "version": {
-    "name": "版本"
-  },
-  "packageName": {
-    "name": "包名"
+    "title": "版本",
+    "app": "应用版本",
+    "tauri": "Tauri 版本"
   },
   "developer": {
-    "name": "开发者",
+    "title": "开发者",
     "eddie": {
       "name": "{'@'}Eddie",
       "description": "PWA 应用开发者"
@@ -76,107 +109,5 @@
     "jesse205": {
       "name": "{'@'}Jesse205"
     }
-  },
-  "release": {
-    "name": "发行",
-    "date": "发行日期"
-  },
-  "id": {
-    "name": "编号"
-  },
-  "link": {
-    "related": "相关链接",
-    "foh": {
-      "title": "F-OH",
-      "description": "F-OH 是一个 OpenHarmony 平台上 FOSS（Free and Open Source Software，自由开源软件）的应用中心，并提供下载安装支持"
-    },
-    "organization": {
-      "title": "OHOS Dev",
-      "description": "OpenHarmony开发者社区（非官方阵地，为OpenHarmony的未来而创建，Peace & Love）"
-    }
-  },
-  "details": {
-    "name": "详情信息"
-  },
-  "announcement": {
-    "name": "公告"
-  },
-  "unknown": {
-    "name": "未知"
-  },
-  "openNewWindow": {
-    "name": "在新窗口中打开",
-    "linkInBrowser": "在浏览器中打开链接"
-  },
-  "copy": {
-    "link": "复制链接"
-  },
-  "locale": {
-    "language": "语言"
-  },
-  "other": {
-    "name": "其他"
-  },
-  "game": {
-    "name": "游戏"
-  },
-  "appNames": {
-    "wechat": "微信",
-    "qq": "QQ",
-    "alipay": "支付宝",
-    "alipay_kickback": "支付宝红包"
-  },
-  "donate": {
-    "name": "捐赠"
-  },
-  "manager": {
-    "apps": "应用管理"
-  },
-  "close": {
-    "name": "关闭"
-  },
-  "ok": {
-    "name": "确定"
-  },
-  "cancel": {
-    "name": "取消"
-  },
-  "token": {
-    "name": "令牌",
-    "resolve_message": "请进入“用户设置 > 授权应用”获取令牌"
-  },
-  "more": {
-    "info": "更多信息",
-    "options": "更多选项"
-  },
-  "share": {
-    "name": "分享"
-  },
-  "back": {
-    "name": "返回"
-  },
-  "refresh": {
-    "name": "刷新"
-  },
-  "watching": {
-    "my": "我的关注"
-  },
-  "error": {
-    "loading": "加载错误"
-  },
-  "maximize": {
-    "name": "最大化"
-  },
-  "minimize": {
-    "name": "最小化"
-  },
-  "term": {
-    "licenses": "开源许可"
-  },
-  "server": {
-    "name": "服务器"
-  },
-  "empty": {
-    "apps": "暂无应用"
   }
 }
