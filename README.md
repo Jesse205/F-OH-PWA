@@ -90,6 +90,14 @@ Some browsers support installing this website to the desktop by clicking "Instal
 >
 > For more information about using PWAs, see [Use Progressive Web Apps in Microsoft Edge](https://learn.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/ux).
 
+### Change the API url
+
+The default API url is `/api`, and you can replace it in three ways.
+
+1. Modify the `.env` file, replacing `FOHPWA_URL_API_WEB`, `FOHPWA_URL_API_WEB_ORIGIN`, `FOHPWA_URL_API_CLIENT`, and `FOHPWA_URL_API_CLIENT_ORIGIN` with your own API url, and then build and publish.
+2. Directly modify the API url in the application settings.
+3. Add `?apiUrl=<Your API url>` to the application link to temporarily override the API url.
+
 ## Series of Projects
 
 - [F-OH](https://gitee.com/westinyang/f-oh): F-OH OpenHarmony Mobile
