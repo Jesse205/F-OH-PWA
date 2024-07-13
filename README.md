@@ -32,8 +32,8 @@ F-OH PWA + BrowserCE, best practices for distributing OpenHarmony hap apps via w
 
 [![open source license](https://img.shields.io/badge/open--source--license-1.0.0-0A59F7.svg)](./docs/terms/licenses_v1.0.0.md)
 
-[![QQ group (OHOS Dev): 752399947](https://img.shields.io/badge/QQ_group:_OHOS--Dev-752399947-0099FF?logo=tencentqq)](https://qm.qq.com/q/jWeBdnvPz2)
-[![E-Mail: jesse205@qq.com](https://img.shields.io/badge/E--Mail-jesse205@qq.com-0099FF)](https://qm.qq.com/q/jWeBdnvPz2)
+[![QQ group (OHOS Dev): 528608689](https://img.shields.io/badge/QQ_group:_OHOS--Dev-528608689-0099FF?logo=tencentqq)](https://qm.qq.com/q/CDSFf6DvVK)
+[![E-Mail: jesse205@qq.com](https://img.shields.io/badge/E--Mail-jesse205@qq.com-0099FF)](mailto://jesse205@qq.com)
 
 ## Screenshots
 
@@ -50,9 +50,9 @@ F-OH PWA + BrowserCE, best practices for distributing OpenHarmony hap apps via w
 
 ## Features
 
-- Design: Multi-theme
+- Design: Multi-design-language
   - [HarmonyOS Design](https://developer.huawei.com/consumer/cn/design/)
-  - Material Design 2
+  - [Material Design 2](https://m2.material.io/)
   - Fluent Design 2
 - Platform: Browser, Linux, Windows
 - Advertising: None
@@ -86,7 +86,8 @@ Some browsers support installing this website to the desktop by clicking "Instal
 
 ![Chrome Installation Diagram](./docs/images/pwa/install_en.png)
 
-> [!TIP]\
+> [!TIP]
+>
 > For more information about using PWAs, see [Use Progressive Web Apps in Microsoft Edge](https://learn.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/ux).
 
 ## Series of Projects
@@ -137,7 +138,8 @@ yarn format-fix
 
 Sponsorship can be contacted by private message or scanning the QR code below (WeChat, Alipay)
 
-> [!NOTE]\
+> [!NOTE]
+>
 > Please note "F-OH" or private message to [@westinyang (Gitee)][@westinyang] for sponsorship fee, so that it can be counted in [Sponsor List][SponsorList].
 
 ![QRCode](https://gitee.com/westinyang/f-oh/raw/master/screenshot/wx+zfb.png)

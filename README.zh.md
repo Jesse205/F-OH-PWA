@@ -32,8 +32,8 @@ F-OH PWA + BrowserCE，通过网页分发开源鸿蒙 hap 应用的最佳实践�
 
 [![开源许可证](https://img.shields.io/badge/开源许可证-1.0.0-0A59F7.svg)](./docs/terms/licenses_v1.0.0.md)
 
-[![QQ 群（开鸿派）: 752399947](https://img.shields.io/badge/QQ_群:_开鸿派-752399947-0099FF?logo=tencentqq)](https://qm.qq.com/q/jWeBdnvPz2)
-[![电子邮件: jesse205@qq.com](https://img.shields.io/badge/电子邮件-jesse205@qq.com-0099FF)](https://qm.qq.com/q/jWeBdnvPz2)
+[![QQ 群（开鸿派）: 528608689](https://img.shields.io/badge/QQ_群:_开鸿派-528608689-0099FF?logo=tencentqq)](https://qm.qq.com/q/CDSFf6DvVK)
+[![电子邮件: jesse205@qq.com](https://img.shields.io/badge/电子邮件-jesse205@qq.com-0099FF)](mailto://jesse205@qq.com)
 
 ## 屏幕截图
 
@@ -50,9 +50,9 @@ F-OH PWA + BrowserCE，通过网页分发开源鸿蒙 hap 应用的最佳实践�
 
 ## 特点
 
-- 设计：多主题
+- 设计：多设计语言
   - [HarmonyOS Design](https://developer.huawei.com/consumer/cn/design/)
-  - Material Design 2
+  - [Material Design 2](https://m2.material.io/)
   - Fluent Design 2
 - 平台：浏览器、Linux、Windows
 - 广告：无
@@ -82,11 +82,12 @@ F-OH PWA 提供 **独立软件** 与 **网页访问** 两种方式供用户选�
 
 **渐进式 Web 应用**（Progressive Web App，PWA）是一个使用 web 平台技术构建的应用程序，但它提供的用户体验就像一个特定平台的应用程序。（来自 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/Progressive_web_apps)）
 
-部分浏览器支持安装该网站到桌面，只需点击“安装应用”。安装后应用名会由 `F-OH Lite` 变为 `F-OH PWA`。
+部分浏览器支持安装该网站到桌面，只需点击“安装应用”。安装后应用名会从 `F-OH Lite` 变为 `F-OH PWA`。
 
 ![Chrome 安装应用示意图](./docs/images/pwa/install.png)
 
-> [!NOTE]\
+> [!NOTE]
+>
 > 有关使用 PWA 的更多信息，请参见[在 Microsoft Edge 中使用渐进式 Web 应用](https://learn.microsoft.com/zh-cn/microsoft-edge/progressive-web-apps-chromium/ux)。
 
 ## 系列项目
@@ -140,7 +141,8 @@ yarn format-fix
 
 赞助可私信联系[@westinyang]或扫描下方二维码（微信、支付宝）
 
-> [!TIP]\
+> [!TIP]
+>
 > 赞助费用请备注“F-OH”或私信告诉[@westinyang]，方便统计到[赞助列表][SponsorList]中。
 
 ![QRCode](https://gitee.com/westinyang/f-oh/raw/master/screenshot/wx+zfb.png)
