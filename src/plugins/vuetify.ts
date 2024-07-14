@@ -35,7 +35,7 @@ export default createVuetify({
       },
       VListItem: {
         tag: 'li',
-      }
+      },
     },
 
     VMenu: {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { AppInfo } from '@/utils/apps'
-import { getApiUrl, completeServerUrl } from '@/utils/url'
+import { completeServerUrl, getApiUrl } from '@/utils/url'
 import { mdiSourceBranch } from '@mdi/js'
 import { computed, ref } from 'vue'
 

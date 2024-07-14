@@ -4,7 +4,6 @@ import { copyText } from '@/utils/clipboard'
 import { openNewWindow } from '@/utils/window'
 import { onBeforeUnmount, onMounted, reactive } from 'vue'
 
-
 // 右键菜单
 interface ContextMenuConfig {
   position: [x: number, x: number]

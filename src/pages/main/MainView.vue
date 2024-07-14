@@ -3,16 +3,16 @@ import BackButton from '@/components/appbar/BackButton.vue'
 import { useHomeRoutes } from '@/composables/route'
 import { useTitle } from '@/composables/title'
 import { usePwaStore } from '@/store/pwa'
-import { computed, ref, watchEffect } from 'vue'
+import { computed, ref } from 'vue'
 import { useDisplay } from 'vuetify'
 
+import { homeRouteData } from '@/data/home'
+import { parseI18n } from '@/utils/i18n'
+import { useI18n } from 'vue-i18n'
 import type MainCategoriesView from './MainCategoriesView.vue'
 import type MainHomeView from './MainHomeView.vue'
 import type MainMeView from './MainMeView.vue'
 import type MainUpdateView from './MainUpdateView.vue'
-import { homeRouteData, type HomeRouteItemData } from '@/data/home'
-import { parseI18n } from '@/utils/i18n'
-import { useI18n } from 'vue-i18n'
 
 const { activePagePosition, isBackHistoryNotHomeAndUndefined, isInMainView, routeButtonReplace } = useHomeRoutes()
 

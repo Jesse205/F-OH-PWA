@@ -9,11 +9,11 @@ import { computed, ref, type Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useDisplay } from 'vuetify'
 
-import AppCard from './components/AppCard.vue'
 import { URL_SOURCE } from '@/constants/urls'
-import { getAvatarUrl } from '@/utils/qq'
 import { developers } from '@/data/developers'
 import { parseI18n } from '@/utils/i18n'
+import { getAvatarUrl } from '@/utils/qq'
+import AppCard from './components/AppCard.vue'
 
 const { t } = useI18n()
 useTitle(computed(() => t('about')))
@@ -74,12 +74,7 @@ if (isTauriApp) {
           :title="parseI18n(item.title, $t)"
           :subtitle="parseI18n(item.summary, $t)"
         />
-        <v-list-item
-          prepend-icon="$card"
-          :title="$t('action.donate')"
-          :to="{ name: 'Donate' }"
-          append-icon="$next"
-        />
+        <v-list-item prepend-icon="$card" :title="$t('action.donate')" :to="{ name: 'Donate' }" append-icon="$next" />
       </title-list>
 
       <!-- 交流讨论 -->

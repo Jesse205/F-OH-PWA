@@ -2,11 +2,11 @@
 import AppMain from '@/components/AppMain.vue'
 import CenterSpace from '@/components/CenterSpace.vue'
 import TitleList from '@/components/list/TitleList.vue'
+import { bannersData } from '@/data/home'
 import { useHomeStore } from '@/store/home'
 import { useElementBounding, useScroll } from '@vueuse/core'
 import { max } from 'lodash-es'
 import { computed, onMounted, ref } from 'vue'
-import { bannersData } from '@/data/home'
 
 import HomeBanner from './components/HomeBanner.vue'
 
@@ -46,12 +46,7 @@ const progressMarginTop = computed(() => {
   <app-main ref="mainComponent">
     <!-- MainLayout -->
     <!-- 轮播图 -->
-    <HomeBanner
-      ref="bannersComponent"
-      class="my-4"
-      :banners="bannersData.data"
-      :ratio="bannersData.ratio"
-    />
+    <HomeBanner ref="bannersComponent" class="my-4" :banners="bannersData.data" :ratio="bannersData.ratio" />
     <v-container class="py-0">
       <!-- Alerts -->
       <v-alert v-if="errMsg" class="my-4" :title="$t('error.loading')" :text="errMsg" type="error" />
