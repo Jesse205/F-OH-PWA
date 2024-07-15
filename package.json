@@ -19,8 +19,8 @@
     "preview": "vite preview",
     "lint": "eslint",
     "lint-fix": "eslint --fix",
-    "format": "prettier -l \"**/*.{js,jsx,vue,cjs,mjs,ts,cts,mts}\"",
-    "format-fix": "prettier --write -l \"**/*.{js,jsx,vue,cjs,mjs,ts,cts,mts}\""
+    "format": "prettier . --check",
+    "format-fix": "prettier . --write"
   },
   "dependencies": {
     "@mdi/font": "7.4.47",

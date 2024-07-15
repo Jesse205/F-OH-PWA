@@ -53,7 +53,9 @@ function emitValue() {
           />
         </v-card-text>
         <v-card-actions>
-          <v-btn variant="text" @click="dialogVisible = false"> {{ $t('action.cancel') }} </v-btn>
+          <v-btn variant="text" @click="dialogVisible = false">
+            {{ $t('action.cancel') }}
+          </v-btn>
           <v-btn variant="text" @click="emitValue">
             {{ $t('action.ok') }}
           </v-btn>

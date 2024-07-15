@@ -54,6 +54,7 @@ function onDragStart(event: DragEvent) {
 delete document.documentElement.dataset.tauriDragRegion
 
 document.documentElement.classList.add(appStore.design)
+
 </script>
 
 <template>

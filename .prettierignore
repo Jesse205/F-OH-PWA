@@ -1,10 +1,23 @@
-# Ignore artifacts:
-build
-/dist
-/dev-dist
+dist
+dev-dist
 coverage
-/src-tauri/target
 
-node_modules
-/public/api
+# Tauri
+/src-tauri/target
+/src-tauri/gen/schemas
+
+# Editor directories and files
+.vscode
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+/public
 yarn.lock
+pnpm-lock.yaml
+
+/CODE_OF_CONDUCT.md
+/CODE_OF_CONDUCT.zh.md

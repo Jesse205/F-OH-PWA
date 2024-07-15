@@ -60,7 +60,9 @@ onBeforeUnmount(() => {
     <v-card :title="$t('updateApp')">
       <v-card-text>{{ $t('updateAppMessage') }} </v-card-text>
       <v-card-actions>
-        <v-btn variant="text" @click="dismissReloadDialog"> {{ $t('action.cancel') }} </v-btn>
+        <v-btn variant="text" @click="dismissReloadDialog">
+          {{ $t('action.cancel') }}
+        </v-btn>
         <v-btn variant="text" @click="updateAndReload">
           {{ $t('action.ok') }}
         </v-btn>

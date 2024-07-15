@@ -16,7 +16,7 @@ const configVueTs = {
     'no-undef': 'off',
     '@typescript-eslint/no-unused-vars': 'warn',
   },
-  extends: [...pluginVue.configs['flat/essential'], ...tsEslint.configs.recommended],
+  extends: [...pluginVue.configs['flat/recommended'], ...tsEslint.configs.recommended],
   languageOptions: {
     parser: vueParser,
     parserOptions: {
