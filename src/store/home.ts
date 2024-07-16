@@ -85,15 +85,15 @@ export const useHomeStore = defineStore('home', () => {
    */
   function autoRefresh() {
     // 不能在 store 里面调用 `useServerSetting`，否则路由切换**会丢失响应式**。也不能注册监听事件，避免不必要的性能损耗。
-    const serverRef = usePreferredApiUrl()
+    const preferredApiUrl = usePreferredApiUrl()
     let activated = false
-    watch(serverRef, () => {
-      if (serverRef.value !== server && activated) {
+    watch(preferredApiUrl, () => {
+      if (preferredApiUrl.value !== server && activated) {
         fetchData()
       }
     })
     onActivated(() => {
-      if (serverRef.value !== server) {
+      if (preferredApiUrl.value !== server) {
         fetchData()
       }
       activated = true

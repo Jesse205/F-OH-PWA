@@ -7,7 +7,7 @@ import {
   URL_API_WEB_ORIGIN,
 } from '@/constants/urls'
 import router from '@/router'
-import { getPreferredServerUrl } from '@/utils/settings'
+import { getPreferredApiUrl } from '@/utils/settings'
 import { isClientApp } from './app'
 
 const REGEX_GITHUB_USER = /^https:\/\/(www\.)?github\.com\/[^/]+/
@@ -62,25 +62,25 @@ export function splitPathAndHash(path: string): (string | undefined)[] {
   return path.includes('#') ? path.split('#') : [path, undefined]
 }
 
+export function getOverrideApiUrl(): string | undefined {
+  const { apiUrl } = router.currentRoute.value.query
+  return typeof apiUrl === 'string' ? completeUrl(apiUrl) : undefined
+}
+
 export function getApiUrl(useOriginUrl: boolean = false) {
-  const overrideServerUrl = getOverrideApiUrl()
-  if (overrideServerUrl) {
-    return overrideServerUrl
+  const overrideApiUrl = getOverrideApiUrl()
+  if (overrideApiUrl) {
+    return overrideApiUrl
   }
-  const preferredServerUrl = getPreferredServerUrl()
-  if (preferredServerUrl) {
-    return preferredServerUrl
+  const preferredApiUrl = getPreferredApiUrl()
+  if (preferredApiUrl) {
+    return preferredApiUrl
   }
   if (useOriginUrl) {
     return isClientApp ? URL_API_WEB_ORIGIN : URL_API_CLIENT_ORIGIN
   } else {
     return isClientApp ? URL_API_WEB : URL_API_CLIENT
   }
-}
-
-export function getOverrideApiUrl(): string | undefined {
-  const { apiUrl } = router.currentRoute.value.query
-  return typeof apiUrl === 'string' ? completeUrl(apiUrl) : undefined
 }
 
 // API 链接

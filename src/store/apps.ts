@@ -76,13 +76,13 @@ export const useAppsStore = defineStore('apps', () => {
    */
   function autoRefresh() {
     // 不能在 store 里面调用 `usePreferredServerUrl`，否则路由切换会丢失响应式。也不能注册监听事件，避免不必要的性能损耗。
-    const serverRef = usePreferredApiUrl()
+    const preferredApiUrl = usePreferredApiUrl()
     let activated = false
-    watch(serverRef, () => {
+    watch(preferredApiUrl, () => {
       if (activated) fetchData()
     })
     onActivated(() => {
-      if (serverRef.value !== server) fetchData()
+      if (preferredApiUrl.value !== server) fetchData()
       activated = true
     })
     onDeactivated(() => {

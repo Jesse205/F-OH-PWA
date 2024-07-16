@@ -1,7 +1,7 @@
 import { designLanguageCodes, type DesignLanguageCode } from '@/data/settings'
 
 export const KEY_LOCALE = 'locale'
-export const KEY_SERVER = 'server'
+const KEY_SERVER = 'server'
 export const KEY_API_URL = 'api-url'
 export const KEY_DESIGN = 'design'
 export const KEY_PAGE_TRANSITION = 'page-transition'
