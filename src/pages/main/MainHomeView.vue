@@ -53,7 +53,7 @@ const progressMarginTop = computed(() => {
       <!-- 公告 -->
       <title-list v-if="homeStore.data?.showAnnouncement" class="my-4" :title="$t('announcement')">
         <!-- eslint-disable-next-line vue/no-v-html vue/no-v-text-v-html-on-component -->
-        <v-list-item class="announcementContent" v-html="homeStore.announcementHtml" />
+        <v-list-item class="announcement-content" v-html="homeStore.announcementHtml" />
       </title-list>
     </v-container>
     <template #root>
@@ -66,7 +66,7 @@ const progressMarginTop = computed(() => {
 </template>
 
 <style scoped lang="scss">
-.announcementContent {
+.announcement-content {
   display: block;
 
   & > :not(:first-child) {
@@ -102,4 +102,3 @@ const progressMarginTop = computed(() => {
   }
 }
 </style>
-@/data/home

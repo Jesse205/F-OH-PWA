@@ -5,9 +5,9 @@ import DialogListItem from '@/components/list/DialogListItem.vue'
 import TitleList from '@/components/list/TitleList.vue'
 import {
   usePageTransition,
+  usePreferredApiUrl,
   usePreferredDesignLanguage,
   usePreferredLocale,
-  usePreferredServerUrl,
 } from '@/composables/settings'
 import { useTitle } from '@/composables/title'
 import { designLanguageCodes, designLanguages, languages } from '@/data/settings'
@@ -30,7 +30,7 @@ const selectedLocales = computed({
     preferredLocale.value = newLocales[0]
   },
 })
-const displayLanguage = computed(() => {
+const languageName = computed(() => {
   return languages.find((item) => item.code === locale.value)?.name || locale.value
 })
 
@@ -41,17 +41,17 @@ const selectedDesigns = computed({
     preferredDesign.value = newDesigns[0]
   },
 })
-const displayDesign = computed(() => {
+const designName = computed(() => {
   return designLanguages.find((item) => item.code === preferredDesign.value)?.name || preferredDesign.value
 })
 const isDesignChanged = computed(
   () => appStore.design !== preferredDesign.value && designLanguageCodes.includes(preferredDesign.value),
 )
 
-const server = usePreferredServerUrl()
+const apiUrl = usePreferredApiUrl()
+const overrideApiUrl = getOverrideApiUrl()
 
 const pageTransitionEnabled = usePageTransition()
-const overrideApiUrl = getOverrideApiUrl()
 </script>
 
 <template>
@@ -69,6 +69,7 @@ const overrideApiUrl = getOverrideApiUrl()
             <v-list v-model:selected="selectedDesigns" select-strategy="single-leaf" mandatory>
               <v-list-item
                 v-for="item in designLanguages"
+                v-bind="item"
                 :key="item.code"
                 :title="item.name"
                 :value="item.code"
@@ -77,12 +78,12 @@ const overrideApiUrl = getOverrideApiUrl()
             </v-list>
           </v-menu>
           <template #subtitle>
-            {{ displayDesign }}
+            {{ designName }}
             <p v-if="isDesignChanged" class="color-warning">* The new design language will take effect after reload.</p>
           </template>
         </v-list-item>
 
-        <v-list-item prepend-icon="$translate" :title="$t('language')" :subtitle="displayLanguage" link>
+        <v-list-item prepend-icon="$translate" :title="$t('language')" :subtitle="languageName" link>
           <!-- origin="left" 修复小窗时定位错误 -->
           <v-menu activator="parent" origin="left">
             <v-list v-model:selected="selectedLocales" select-strategy="single-leaf" mandatory>
@@ -105,9 +106,9 @@ const overrideApiUrl = getOverrideApiUrl()
 
       <!-- 应用 -->
       <title-list class="my-4" :title="$t('app.title')">
-        <dialog-list-item v-model="server" prepend-icon="$circle" :title="$t('server')">
+        <dialog-list-item v-model="apiUrl" prepend-icon="$circle" :title="$t('server')">
           <template #subtitle>
-            {{ server.trim() || $t('notSet') }}
+            {{ apiUrl.trim() || $t('notSet') }}
             <p v-if="overrideApiUrl">当前 API 地址已被覆盖为 {{ overrideApiUrl }}</p>
           </template>
         </dialog-list-item>

@@ -13,7 +13,7 @@ const i18n = createI18n({
   legacy: false,
   globalInjection: true,
   locale: getPreferredLocale(),
-  fallbackLocale: [...navigator.languages],
+  fallbackLocale: Array.from(navigator.languages),
   messages: {
     en: EN,
     'zh-CN': ZH_CN,

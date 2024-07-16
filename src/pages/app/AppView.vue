@@ -55,22 +55,22 @@ onMounted(() => {
 appsStore.autoRefresh()
 
 // 页面滚动，动态展示标题
-const mainElement = ref<InstanceType<typeof AppMain>>()
-const appOverviewElement = ref<InstanceType<typeof AppOverview>>()
+const mainComponent = ref<InstanceType<typeof AppMain>>()
+const appOverviewComponent = ref<InstanceType<typeof AppOverview>>()
 
-const appNamePositionYBottom = computed(() => {
-  const element = appOverviewElement.value?.appNameElement
+const appNameBottomY = computed(() => {
+  const element = appOverviewComponent.value?.appNameElement
   return element ? element.offsetTop + element.offsetHeight : 0
 })
 
-const { y: scrollY } = useScroll(computed(() => mainElement.value?.mainScroll))
+const { y: scrollY } = useScroll(computed(() => mainComponent.value?.mainScroll))
 
 /**
  * 如果应用的标题被遮挡，就在应用栏内显示应用的标题。
  *
  * `true` 为已被遮挡，`false` 为未被遮挡。
  */
-const isTitleObscured = computed(() => scrollY.value > appNamePositionYBottom.value)
+const isTitleObscured = computed(() => scrollY.value > appNameBottomY.value)
 
 const title = computed(() => (appInfo.value ? `${appInfo.value.name} - ${t('viewApp')}` : t('viewApp')))
 
