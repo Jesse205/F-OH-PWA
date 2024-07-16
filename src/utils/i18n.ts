@@ -17,9 +17,9 @@ export type TranslateParameters =
  * @returns
  */
 export function parseI18n(originContent: TranslateParameters | string, t: (...values: unknown[]) => string): string {
-  const translateParams: TranslateParameters = typeof originContent === 'string' ? [originContent] : originContent
+  const translateParams: TranslateParameters = typeof originContent === 'string' ? [originContent] : [...originContent]
 
-  if (typeof translateParams[0] === 'string' && translateParams[0].startsWith(PREFIX_I18N_TEXT)) {
+  if (translateParams[0].startsWith(PREFIX_I18N_TEXT)) {
     translateParams[0] = translateParams[0].substring(LENGTH_PREFIX_I18N_TEXT)
     return t(...translateParams)
   } else {
