@@ -92,76 +92,78 @@ function shareApp() {
 </script>
 
 <template>
-  <v-app-bar class="app-bar">
-    <back-button />
-    <!-- 多标题动画展示 -->
-    <v-app-bar-title class="title">
-      <transition :name="isTitleObscured ? 'scroll-x-reverse-transition' : 'scroll-x-transition'">
-        <span :key="isTitleObscured.toString()" class="title__item">
-          {{ isTitleObscured ? appInfo?.name : $t('viewApp') }}
-        </span>
-      </transition>
-    </v-app-bar-title>
-    <v-tooltip v-if="isShareSupported">
-      <template #activator="{ props }">
-        <v-btn :disabled="!appInfo" icon="$share" v-bind="props" :aria-label="$t('action.share')" @click="shareApp" />
-      </template>
-      <span>{{ $t('action.share') }}</span>
-    </v-tooltip>
-  </v-app-bar>
-  <app-main ref="mainElement">
-    <v-progress-linear v-show="appsStore.loading" color="primary" class="progress" indeterminate />
-    <v-container class="container py-0">
-      <AppOverview ref="appOverviewElement" :app-info="appInfo" :loading="loading" class="my-4" />
+  <v-layout>
+    <v-app-bar class="app-bar">
+      <back-button />
+      <!-- 多标题动画展示 -->
+      <v-app-bar-title class="title">
+        <transition :name="isTitleObscured ? 'scroll-x-reverse-transition' : 'scroll-x-transition'">
+          <span :key="isTitleObscured.toString()" class="title__item">
+            {{ isTitleObscured ? appInfo?.name : $t('viewApp') }}
+          </span>
+        </transition>
+      </v-app-bar-title>
+      <v-tooltip v-if="isShareSupported">
+        <template #activator="{ props }">
+          <v-btn :disabled="!appInfo" icon="$share" v-bind="props" :aria-label="$t('action.share')" @click="shareApp" />
+        </template>
+        <span>{{ $t('action.share') }}</span>
+      </v-tooltip>
+    </v-app-bar>
+    <app-main ref="mainElement">
+      <v-progress-linear v-show="appsStore.loading" color="primary" class="progress" indeterminate />
+      <v-container class="container py-0">
+        <AppOverview ref="appOverviewElement" :app-info="appInfo" :loading="loading" class="my-4" />
 
-      <!-- #region 一句话介绍 -->
-      <v-skeleton-loader
-        v-if="loading"
-        class="summary-skeleton"
-        :class="{ loading: loading }"
-        type="sentences"
-        color="rgba(var(--v-theme-on-surface), 0.12)"
-      />
-      <v-card v-else-if="appInfo?.desc" class="summary-card" variant="tonal" flat :border="false" tag="article">
-        <v-card-text>{{ appInfo.desc }}</v-card-text>
-        <v-icon class="summary-card__icon" :icon="mdiFormatQuoteOpen" />
-      </v-card>
-      <!-- #endregion -->
-
-      <!-- #region 应用标签 -->
-      <v-skeleton-loader v-if="loading" class="tags-skeleton" type="chip@3" color="transparent" />
-      <div v-else-if="appTags?.length" class="tags-group">
-        <div v-for="item in appTags" :key="item" class="tags-group__item">
-          <v-chip>{{ item }}</v-chip>
-        </div>
-      </div>
-      <!-- #endregion -->
-
-      <!-- #region 开发者信息 -->
-      <title-list v-show="appInfo?.vender || loading" class="my-4" :title="$t('developer.title')" data-allow-drag>
+        <!-- #region 一句话介绍 -->
         <v-skeleton-loader
           v-if="loading"
-          class="skeleton--small-avatar"
-          type="list-item-avatar-two-line"
-          color="transparent"
+          class="summary-skeleton"
+          :class="{ loading: loading }"
+          type="sentences"
+          color="rgba(var(--v-theme-on-surface), 0.12)"
         />
-        <v-list-item
-          v-else
-          prepend-icon="$account"
-          :lines="developerSpace ? 'two' : 'one'"
-          :title="appInfo?.vender"
-          :subtitle="developerSpace ?? undefined"
-          append-icon="$next"
-          :href="developerSpace ?? `https://cn.bing.com/search?q=${appInfo?.vender}`"
-          target="_blank"
-        />
-      </title-list>
-      <!-- #endregion -->
+        <v-card v-else-if="appInfo?.desc" class="summary-card" variant="tonal" flat :border="false" tag="article">
+          <v-card-text>{{ appInfo.desc }}</v-card-text>
+          <v-icon class="summary-card__icon" :icon="mdiFormatQuoteOpen" />
+        </v-card>
+        <!-- #endregion -->
 
-      <!-- 详情信息 -->
-      <AppDetails class="my-4" :loading="loading" :app-info="appInfo" :title-class="['itemTitle']" />
-    </v-container>
-  </app-main>
+        <!-- #region 应用标签 -->
+        <v-skeleton-loader v-if="loading" class="tags-skeleton" type="chip@3" color="transparent" />
+        <div v-else-if="appTags?.length" class="tags-group">
+          <div v-for="item in appTags" :key="item" class="tags-group__item">
+            <v-chip>{{ item }}</v-chip>
+          </div>
+        </div>
+        <!-- #endregion -->
+
+        <!-- #region 开发者信息 -->
+        <title-list v-show="appInfo?.vender || loading" class="my-4" :title="$t('developer.title')" data-allow-drag>
+          <v-skeleton-loader
+            v-if="loading"
+            class="skeleton--small-avatar"
+            type="list-item-avatar-two-line"
+            color="transparent"
+          />
+          <v-list-item
+            v-else
+            prepend-icon="$account"
+            :lines="developerSpace ? 'two' : 'one'"
+            :title="appInfo?.vender"
+            :subtitle="developerSpace ?? undefined"
+            append-icon="$next"
+            :href="developerSpace ?? `https://cn.bing.com/search?q=${appInfo?.vender}`"
+            target="_blank"
+          />
+        </title-list>
+        <!-- #endregion -->
+
+        <!-- 详情信息 -->
+        <AppDetails class="my-4" :loading="loading" :app-info="appInfo" :title-class="['itemTitle']" />
+      </v-container>
+    </app-main>
+  </v-layout>
 </template>
 
 <style scoped lang="scss">

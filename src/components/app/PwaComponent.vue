@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { usePwaStore } from '@/store/pwa'
-import type { BeforeInstallPrompt } from '@/ts/interfaces/pwa.interfaces'
 import { useRegisterSW } from 'virtual:pwa-register/vue'
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
@@ -21,29 +20,11 @@ function dismissReloadDialog() {
   reloadDialogVisible.value = false
 }
 
-// Install button
-let deferredPrompt: BeforeInstallPrompt | null = null
-function onInstallBtnClick() {
-  if (deferredPrompt === null) return
-  pwaStore.installBtnVisible = false
-  deferredPrompt.prompt()
-  deferredPrompt.userChoice.then((choiceResult) => {
-    if (choiceResult.outcome === 'accepted') {
-      console.log('User accepted the A2HS prompt')
-      pwaStore.installBtnVisible = false
-    } else {
-      console.log('User dismissed the A2HS prompt')
-      pwaStore.installBtnVisible = true
-    }
-  })
-}
-pwaStore.onInstallBtnClick = onInstallBtnClick
-
-function onBeforeInstallPrompt(prompt: BeforeInstallPrompt) {
+function onBeforeInstallPrompt(event: BeforeInstallPromptEvent) {
   // Prevent Chrome 67 and earlier from automatically showing the prompt
-  prompt.preventDefault()
+  event.preventDefault()
   pwaStore.installBtnVisible = true
-  deferredPrompt = prompt
+  pwaStore.promptEvent = event
 }
 
 onMounted(() => {

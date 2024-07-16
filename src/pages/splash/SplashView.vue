@@ -5,10 +5,10 @@ const appStore = useAppStore()
 </script>
 
 <template>
-  <CenterSpace class="SplashView">
+  <div class="SplashView">
     <img class="logo" src="@/assets/images/icon.svg" />
     <span>{{ appStore.appName }}</span>
-  </CenterSpace>
+  </div>
 </template>
 
 <style lang="scss" scoped>

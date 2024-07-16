@@ -65,9 +65,9 @@ document.documentElement.classList.add(appStore.design)
         <router-view #="{ Component }">
           <transition :name="route.meta.transition">
             <div :key="routeName" class="page" :data-path="route.path">
-              <v-layout class="layout">
+              <!-- <v-layout class="layout"> -->
                 <component :is="Component" />
-              </v-layout>
+              <!-- </v-layout> -->
             </div>
           </transition>
         </router-view>
@@ -91,7 +91,7 @@ document.documentElement.classList.add(appStore.design)
   overflow: hidden;
 }
 
-.layout {
+:deep(.v-layout) {
   width: 100%;
   height: 100%;
 }

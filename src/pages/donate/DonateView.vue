@@ -25,62 +25,64 @@ const donateAds: DonatePlatform[] = [
 </script>
 
 <template>
-  <v-app-bar>
-    <back-button />
-    <v-app-bar-title>{{ $t('action.donate') }}</v-app-bar-title>
-  </v-app-bar>
-  <app-main>
-    <v-container class="container">
-      <DonateCard
-        v-for="person in donateData"
-        :key="person.key"
-        :platforms="person.platforms"
-        :name="person.name"
-        :summary="person.summary"
-      />
-      <!-- 广告 -->
-      <DonateCard :platforms="donateAds" name="参与贡献" summary="欢迎加入 F-OH 开发！" #="{ selectedKey }">
-        <v-btn
-          v-if="selectedKey === 'join'"
-          class="donate-content-btn"
-          variant="text"
-          color=""
-          rounded="0"
-          href="https://ohos-dev.github.io/"
-          target="_blank"
-        >
-          <div class="description">
-            <img :src="ICON" class="description__icon" />
-            <div class="text-h6">OHOS Dev</div>
-            <div class="text-body-1">加入 OHOS Dev，共建 OpenHarmony 生态!</div>
-            <div class="description__hint">
-              <v-icon size="large" :icon="mdiCursorDefaultOutline" />
-              点击这里转到组织
+  <v-layout>
+    <v-app-bar>
+      <back-button />
+      <v-app-bar-title>{{ $t('action.donate') }}</v-app-bar-title>
+    </v-app-bar>
+    <app-main>
+      <v-container class="container">
+        <DonateCard
+          v-for="person in donateData"
+          :key="person.key"
+          :platforms="person.platforms"
+          :name="person.name"
+          :summary="person.summary"
+        />
+        <!-- 广告 -->
+        <DonateCard :platforms="donateAds" name="参与贡献" summary="欢迎加入 F-OH 开发！" #="{ selectedKey }">
+          <v-btn
+            v-if="selectedKey === 'join'"
+            class="donate-content-btn"
+            variant="text"
+            color=""
+            rounded="0"
+            href="https://ohos-dev.github.io/"
+            target="_blank"
+          >
+            <div class="description">
+              <img :src="ICON" class="description__icon" />
+              <div class="text-h6">OHOS Dev</div>
+              <div class="text-body-1">加入 OHOS Dev，共建 OpenHarmony 生态!</div>
+              <div class="description__hint">
+                <v-icon size="large" :icon="mdiCursorDefaultOutline" />
+                点击这里转到组织
+              </div>
             </div>
-          </div>
-        </v-btn>
-        <v-btn
-          v-else-if="selectedKey === 'develop'"
-          class="donate-content-btn"
-          variant="text"
-          color=""
-          rounded="0"
-          href="https://ohos-dev.github.io/project/f-oh/"
-          target="_blank"
-        >
-          <div class="description">
-            <img :src="ICON" class="description__icon" />
-            <div class="text-h6">F-OH</div>
-            <div class="text-body-1">帮助我们开发 F-OH！</div>
-            <div class="description__hint">
-              <v-icon size="large" :icon="mdiCursorDefaultOutline" />
-              点击这里转到项目
+          </v-btn>
+          <v-btn
+            v-else-if="selectedKey === 'develop'"
+            class="donate-content-btn"
+            variant="text"
+            color=""
+            rounded="0"
+            href="https://ohos-dev.github.io/project/f-oh/"
+            target="_blank"
+          >
+            <div class="description">
+              <img :src="ICON" class="description__icon" />
+              <div class="text-h6">F-OH</div>
+              <div class="text-body-1">帮助我们开发 F-OH！</div>
+              <div class="description__hint">
+                <v-icon size="large" :icon="mdiCursorDefaultOutline" />
+                点击这里转到项目
+              </div>
             </div>
-          </div>
-        </v-btn>
-      </DonateCard>
-    </v-container>
-  </app-main>
+          </v-btn>
+        </DonateCard>
+      </v-container>
+    </app-main>
+  </v-layout>
 </template>
 
 <style scoped lang="scss">

@@ -4,7 +4,7 @@
   &-enter-active,
   &-leave-active {
     background-color: rgb(var(--v-theme-background));
-    & > .layout,
+    & > .v-layout,
     & {
       transition: $page-property $page-durning $page-function;
       @media (prefers-reduced-motion) {
@@ -17,7 +17,7 @@
   // &-leave-to
   &-enter-from {
     transform: translateX(var(--page-mask-position-x));
-    & > .layout {
+    & > .v-layout {
       transform: translateX(calc(var(--page-position-x) - var(--page-mask-position-x)));
     }
   }
@@ -29,7 +29,7 @@
   &-enter-to,
   &-leave-from {
     transform: translateX(0);
-    & > .layout {
+    & > .v-layout {
       transform: translateX(0);
     }
     &::before {
