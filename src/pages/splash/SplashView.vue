@@ -1,0 +1,30 @@
+<script lang="ts" setup>
+import { useAppStore } from '@/store/app'
+
+const appStore = useAppStore()
+</script>
+
+<template>
+  <CenterSpace class="SplashView">
+    <img class="logo" src="@/assets/images/icon.svg" />
+    <span>{{ appStore.appName }}</span>
+  </CenterSpace>
+</template>
+
+<style lang="scss" scoped>
+.SplashView {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  .logo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 16px;
+    flex: none;
+  }
+}
+</style>

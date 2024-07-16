@@ -94,7 +94,7 @@ const pageTransitionEnabled = usePageTransition()
         <v-list-item
           :active="pageTransitionEnabled"
           prepend-icon="$info"
-          title="Page transition"
+          :title="$t('pageHierarchyTransition')"
           active-class="ignore-active-style"
           @click="pageTransitionEnabled = !pageTransitionEnabled"
         >
@@ -106,10 +106,10 @@ const pageTransitionEnabled = usePageTransition()
 
       <!-- 应用 -->
       <title-list class="my-4" :title="$t('app.title')">
-        <dialog-list-item v-model="apiUrl" prepend-icon="$circle" :title="$t('server')">
+        <dialog-list-item v-model="apiUrl" prepend-icon="$circle" :title="$t('apiUrl')">
           <template #subtitle>
             {{ apiUrl.trim() || $t('notSet') }}
-            <p v-if="overrideApiUrl">当前 API 地址已被覆盖为 {{ overrideApiUrl }}</p>
+            <p v-if="overrideApiUrl">{{ $t('apiUrlOverrideMessage', { overrideApiUrl }) }}</p>
           </template>
         </dialog-list-item>
         <!-- 关于 -->

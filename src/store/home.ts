@@ -1,4 +1,4 @@
-import { usePreferredServerUrl } from '@/composables/settings'
+import { usePreferredApiUrl } from '@/composables/settings'
 import { IS_DEV_MODE } from '@/constants'
 import type { HomeData } from '@/data/home'
 import { assert } from '@/utils/app'
@@ -85,7 +85,7 @@ export const useHomeStore = defineStore('home', () => {
    */
   function autoRefresh() {
     // 不能在 store 里面调用 `useServerSetting`，否则路由切换**会丢失响应式**。也不能注册监听事件，避免不必要的性能损耗。
-    const serverRef = usePreferredServerUrl()
+    const serverRef = usePreferredApiUrl()
     let activated = false
     watch(serverRef, () => {
       if (serverRef.value !== server && activated) {

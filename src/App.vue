@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import CenterSpace from '@/components/CenterSpace.vue'
 import NavigationDrawer from '@/components/app/NavigationDrawer.vue'
 import PwaComponent from '@/components/app/PwaComponent.vue'
 import TauriSystemBar from '@/components/app/TauriSystemBar.vue'
@@ -12,6 +11,7 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useDisplay } from 'vuetify'
 import { useAutoLocale, useAutoTheme } from './composables/app'
+import SplashView from './pages/splash/SplashView.vue'
 import { isTauriApp } from './utils/app'
 
 const { smAndUp } = useDisplay()
@@ -54,14 +54,13 @@ function onDragStart(event: DragEvent) {
 delete document.documentElement.dataset.tauriDragRegion
 
 document.documentElement.classList.add(appStore.design)
-
 </script>
 
 <template>
   <v-app class="app" @dragstart="onDragStart">
     <TauriSystemBar v-if="isTauriApp" />
-    <NavigationDrawer v-if="smAndUp" />
-    <v-main class="main">
+    <NavigationDrawer v-if="routeName && smAndUp" />
+    <v-main v-if="routeName" class="main">
       <div class="page-container">
         <router-view #="{ Component }">
           <transition :name="route.meta.transition">
@@ -72,12 +71,9 @@ document.documentElement.classList.add(appStore.design)
             </div>
           </transition>
         </router-view>
-        <CenterSpace v-if="!routeName" class="splash">
-          <img class="logo" src="@/assets/images/icon.svg" />
-          <span>{{ appStore.appName }}</span>
-        </CenterSpace>
       </div>
     </v-main>
+    <SplashView v-if="!routeName" />
     <!-- <ContextMenu /> -->
     <PwaComponent />
   </v-app>
@@ -120,21 +116,6 @@ document.documentElement.classList.add(appStore.design)
 .main {
   padding-top: 0;
   overflow: hidden;
-}
-.splash {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  .logo {
-    width: 72px;
-    height: 72px;
-    margin-bottom: 16px;
-    flex: none;
-  }
 }
 .window-border {
   position: absolute;
