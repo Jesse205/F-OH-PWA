@@ -1,0 +1,6 @@
+@use '../settings/dimensions';
+.harmony1 {
+  .v-alert {
+    border-radius: #{dimensions.$radius-card};
+  }
+}
