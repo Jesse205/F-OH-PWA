@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AppMain from '@/components/AppMain.vue'
 import CenterSpace from '@/components/CenterSpace.vue'
-import TitleList from '@/components/list/TitleList.vue'
+import TitleList from '@/components/list/AppList.vue'
 import { bannersData } from '@/data/home'
 import { useHomeStore } from '@/store/home'
 import { useElementBounding, useScroll } from '@vueuse/core'

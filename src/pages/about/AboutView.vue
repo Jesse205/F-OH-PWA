@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AppMain from '@/components/AppMain.vue'
 import BackButton from '@/components/appbar/BackButton.vue'
-import TitleList from '@/components/list/TitleList.vue'
+import TitleList from '@/components/list/AppList.vue'
 import { useTitle } from '@/composables/title'
 import { isTauriApp } from '@/utils/app'
 import { getTauriVersion } from '@tauri-apps/api/app'

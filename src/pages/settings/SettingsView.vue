@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import AppMain from '@/components/AppMain.vue'
 import BackButton from '@/components/appbar/BackButton.vue'
-import DialogListItem from '@/components/list/DialogListItem.vue'
-import TitleList from '@/components/list/TitleList.vue'
+import TitleList from '@/components/list/AppList.vue'
+import AppListItemDialog from '@/components/list/AppListItemDialog.vue'
+import { useSingleSelected } from '@/composables/converts'
 import {
   usePageTransition,
   usePreferredApiUrl,
@@ -24,25 +25,15 @@ useTitle(computed(() => t('settings')))
 const appVersion = __VERSION__
 
 const preferredLocale = usePreferredLocale()
-const selectedLocales = computed({
-  get: () => [locale.value],
-  set: (newLocales) => {
-    preferredLocale.value = newLocales[0]
-  },
-})
+const selectedLocales = useSingleSelected(locale, preferredLocale)
 const languageName = computed(() => {
-  return languages.find((item) => item.code === locale.value)?.name || locale.value
+  return languages.find((item) => item.code === locale.value)?.name ?? locale.value
 })
 
 const preferredDesign = usePreferredDesignLanguage()
-const selectedDesigns = computed({
-  get: () => [preferredDesign.value],
-  set: (newDesigns) => {
-    preferredDesign.value = newDesigns[0]
-  },
-})
+const selectedDesigns = useSingleSelected(preferredDesign)
 const designName = computed(() => {
-  return designLanguages.find((item) => item.code === preferredDesign.value)?.name || preferredDesign.value
+  return designLanguages.find((item) => item.code === preferredDesign.value)?.name ?? preferredDesign.value
 })
 const isDesignChanged = computed(
   () => appStore.design !== preferredDesign.value && designLanguageCodes.includes(preferredDesign.value),
@@ -92,7 +83,6 @@ const pageTransitionEnabled = usePageTransition()
           </v-menu>
         </v-list-item>
         <v-list-item
-          :active="pageTransitionEnabled"
           prepend-icon="$info"
           :title="$t('pageHierarchyTransition')"
           active-class="ignore-active-style"
@@ -106,12 +96,12 @@ const pageTransitionEnabled = usePageTransition()
 
       <!-- 应用 -->
       <title-list class="my-4" :title="$t('app.title')">
-        <dialog-list-item v-model="apiUrl" prepend-icon="$circle" :title="$t('apiUrl')">
+        <AppListItemDialog v-model="apiUrl" prepend-icon="$circle" :title="$t('apiUrl')">
           <template #subtitle>
             {{ apiUrl.trim() || $t('notSet') }}
             <p v-if="overrideApiUrl">{{ $t('apiUrlOverrideMessage', { overrideApiUrl }) }}</p>
           </template>
-        </dialog-list-item>
+        </AppListItemDialog>
         <!-- 关于 -->
         <v-list-item
           prepend-icon="$info"

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import CenterSpace from '@/components/CenterSpace.vue'
-import ProjectItem from '@/components/list/ProjectItem.vue'
-import TitleList from '@/components/list/TitleList.vue'
+import ProjectItem from '@/components/list/AppListItemProject.vue'
+import AppList from '@/components/list/AppList.vue'
 import { useAppsStore } from '@/store/apps'
 import { getAppShareUrl, type AppInfo } from '@/utils/apps'
 import { computed, onMounted, reactive, watch } from 'vue'
@@ -120,7 +120,7 @@ function onProjectDragStart(event: DragEvent) {
       <v-alert v-if="errMsg" class="my-4" :title="$t('error.loading')" :text="errMsg" type="error" />
       <!-- MainLayout -->
       <template v-for="appType in appTypes">
-        <title-list v-if="appType.apps && appType.apps.length" :key="appType.key" class="my-4" :title="appType.title">
+        <app-list v-if="appType.apps && appType.apps.length" :key="appType.key" class="my-4" :title="appType.title">
           <div class="project-items" @dragstart="onProjectDragStart">
             <ProjectItem
               v-for="item in appType.apps"
@@ -131,7 +131,7 @@ function onProjectDragStart(event: DragEvent) {
               data-allow-drag
             />
           </div>
-        </title-list>
+        </app-list>
       </template>
     </v-container>
 

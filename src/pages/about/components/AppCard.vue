@@ -5,10 +5,10 @@ const appStore = useAppStore()
 </script>
 
 <template>
-  <v-card class="AppCard pa-1">
+  <v-card class="AppCard">
     <div class="app-item">
-      <v-img class="app-icon ma-1" src="@/assets/images/icon.svg" alt="" />
-      <h2 class="text-subtitle-1 ma-1">{{ appStore.appName }}</h2>
+      <v-img class="app-icon" src="@/assets/images/icon.svg" alt="" />
+      <h2 class="app-name text-subtitle-1">{{ appStore.appName }}</h2>
     </div>
   </v-card>
 </template>
@@ -21,7 +21,7 @@ const appStore = useAppStore()
   transition-duration: 0.2s;
   transition-property: box-shadow, transform, visibility, width, height, left, right, top, bottom;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform;
+  padding: 16px;
 }
 
 .app-item {
@@ -33,9 +33,13 @@ const appStore = useAppStore()
 }
 
 .app-icon {
-  width: 70px;
+  width: 72px;
   height: 72px;
-  padding: 4px;
   font-size: 0;
+}
+
+.app-name {
+  margin-top: 8px;
+  vertical-align: baseline;
 }
 </style>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TitleList from '@/components/list/TitleList.vue'
+import TitleList from '@/components/list/AppList.vue'
 import type { AppInfo } from '@/utils/apps'
 import { mdiIdentifier } from '@mdi/js'
 
