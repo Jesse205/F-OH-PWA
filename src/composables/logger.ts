@@ -1,6 +1,6 @@
 import { watch, type Ref } from 'vue'
 
-export function useLogDebug(TAG: string, message: string, obj: Ref<any>) {
+export function useLogDebug<T>(TAG: string, message: string, obj: Ref<T>) {
   watch(
     obj,
     (newTitle) => {

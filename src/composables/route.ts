@@ -23,7 +23,7 @@ export function useHomeRoutes() {
    * 返回链接不为首页
    */
   const isBackHistoryNotHomeAndUndefined = computed<boolean>(() => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+     
     route.path // 确保路由刷新时重新调用该函数
     const { back } = router.options.history.state
     const pureBackUrl = back ? splitPathAndHash(back)[0] : undefined

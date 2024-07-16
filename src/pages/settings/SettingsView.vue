@@ -78,7 +78,7 @@ const overrideApiUrl = getOverrideApiUrl()
           </v-menu>
           <template #subtitle>
             {{ displayDesign }}
-            <p class="color-warning" v-if="isDesignChanged">* The new design language will take effect after reload.</p>
+            <p v-if="isDesignChanged" class="color-warning">* The new design language will take effect after reload.</p>
           </template>
         </v-list-item>
 

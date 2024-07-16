@@ -11,7 +11,11 @@ import { isClientApp } from './app'
  */
 export function isElementDraggableInClientApp(target: EventTarget): boolean | undefined {
   if (!isClientApp) return undefined
-  for (let element: {} = target; 'parentElement' in element && element.parentElement; element = element.parentElement) {
+  for (
+    let element: object = target;
+    'parentElement' in element && element.parentElement;
+    element = element.parentElement
+  ) {
     if (
       'dataset' in element &&
       typeof element.dataset === 'object' &&

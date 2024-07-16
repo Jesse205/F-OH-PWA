@@ -14,7 +14,7 @@ import type MainHomeView from './MainHomeView.vue'
 import type MainMeView from './MainMeView.vue'
 import type MainUpdateView from './MainUpdateView.vue'
 
-const { activePagePosition, isBackHistoryNotHomeAndUndefined, isInMainView, routeButtonReplace } = useHomeRoutes()
+const { activePagePosition, isBackHistoryNotHomeAndUndefined, routeButtonReplace } = useHomeRoutes()
 
 const currentRouteData = computed(() => {
   if (activePagePosition.value !== null) {

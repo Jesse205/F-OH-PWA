@@ -74,7 +74,7 @@ onBeforeUnmount(() => document.body.removeEventListener('contextmenu', onContext
 
 <template>
   <!-- 不要对 v-menu 使用 :key，否则会导致错位 -->
-  <v-menu v-model="config.state" class="menu" @contextmenu.stop.prevent @selectstart.prevent :target="config.position">
+  <v-menu v-model="config.state" class="menu" :target="config.position" @contextmenu.stop.prevent @selectstart.prevent>
     <v-list>
       <!-- 新窗口中打开 -->
       <v-list-item v-if="config.url" :title="$t('action.openNewWindow')" @click="openNewWindow(config.url)" />

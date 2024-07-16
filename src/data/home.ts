@@ -1,6 +1,7 @@
 import IMAGE_BANNER_2 from '@/assets/images/banners/banner2.png'
 import IMAGE_BANNER_3 from '@/assets/images/banners/banner3.png'
 import IMAGE_BANNER_FOH from '@/assets/images/banners/foh.png'
+import type { TranslateParameters } from '@/utils/i18n'
 
 export interface HomeData {
   announcement?: string
@@ -46,7 +47,7 @@ export const bannersData: BannersData = {
 }
 
 export interface RouteItemData {
-  title: string | [string, ...any]
+  title: TranslateParameters| string
   icon: string
   activeIcon: string
   name: string

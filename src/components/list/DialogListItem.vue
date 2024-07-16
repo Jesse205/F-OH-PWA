@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, useSlots, watch } from 'vue'
 
-const props = defineProps<{
+defineProps<{
   hint?: string
   placeholder?: string
   label?: string
@@ -9,15 +9,15 @@ const props = defineProps<{
   title?: string
 }>()
 
-const model = defineModel<any>()
+const model = defineModel<string>()
 const slots = useSlots()
 // const emits = defineEmits<(e: 'update:modelValue', modelValue: string) => void>()
 
 const dialogVisible = ref(false)
 const editValue = ref('')
 
-watch(dialogVisible, (newValue) => {
-  if (newValue) {
+watch(dialogVisible, (newDialogVisible) => {
+  if (newDialogVisible) {
     editValue.value = model.value ?? ''
   }
 })

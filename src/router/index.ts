@@ -20,7 +20,6 @@ declare module 'vue-router' {
     scroll?: ScrollToOptions
     // 基于单个元素和路径的滚动配置
     scroll2?: ScrollToOptions2
-    [key: string]: any
   }
 }
 

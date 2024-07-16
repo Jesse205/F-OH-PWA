@@ -42,7 +42,7 @@ defineExpose({
       <template v-else>
         <h2 class="app-title text-h6">
           <!-- 应用名 -->
-          <span class="app-name" ref="appNameElement" :title="$t('appName.title')">{{ appInfo?.name }}</span>
+          <span ref="appNameElement" class="app-name" :title="$t('appName.title')">{{ appInfo?.name }}</span>
           <span class="version text-subtitle-2" :title="$t('version.app')">
             {{ appInfo ? `v${appInfo.version}` : $t('unknown.version') }}
           </span>

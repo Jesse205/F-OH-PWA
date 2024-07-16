@@ -6,7 +6,7 @@ import tsEslint from 'typescript-eslint'
 import vueParser from 'vue-eslint-parser'
 
 const configVueTs = {
-  files: ['*.ts', '*.cts', '*.mts', '*.tsx', '*.vue'],
+  files: ['**/*.ts', '**/*.cts', '**/*.mts', '**/*.tsx', '**/*.vue'],
   rules: {
     // The core 'no-unused-vars' rules (in the eslint:recommeded ruleset)
     // does not work with type definitions

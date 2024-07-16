@@ -52,6 +52,7 @@ const progressMarginTop = computed(() => {
       <v-alert v-if="errMsg" class="my-4" :title="$t('error.loading')" :text="errMsg" type="error" />
       <!-- 公告 -->
       <title-list v-if="homeStore.data?.showAnnouncement" class="my-4" :title="$t('announcement')">
+        <!-- eslint-disable-next-line vue/no-v-html vue/no-v-text-v-html-on-component -->
         <v-list-item class="announcementContent" v-html="homeStore.announcementHtml" />
       </title-list>
     </v-container>

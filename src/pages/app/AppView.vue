@@ -140,8 +140,8 @@ function shareApp() {
       <!-- #region 开发者信息 -->
       <title-list v-show="appInfo?.vender || loading" class="my-4" :title="$t('developer.title')" data-allow-drag>
         <v-skeleton-loader
-          class="skeleton--small-avatar"
           v-if="loading"
+          class="skeleton--small-avatar"
           type="list-item-avatar-two-line"
           color="transparent"
         />

@@ -21,7 +21,7 @@ const reallySelected = ref<number>(0)
     </v-tabs>
     <v-divider />
     <div class="content">
-      <slot :selectedKey="platforms[reallySelected].key">
+      <slot :selected-key="platforms[reallySelected].key">
         <v-img cover :src="platforms[reallySelected].image" data-allow-drag />
       </slot>
     </div>

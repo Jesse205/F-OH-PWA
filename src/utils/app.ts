@@ -1,13 +1,12 @@
 import { IS_DEV_MODE } from '@/constants'
 
-const TAG = '[AppUtil]'
 const SUFFIX_NETLIFY = '.netlify.app'
 
 /**
  * 当前环境是否是 Tauri，开发时使用动态判断，发行时使用常量。
  */
 //TODO: 非开发模式使用环境变量判断
-export const isTauriApp = IS_DEV_MODE ? Boolean((window as any).__TAURI_INTERNALS__) : false
+export const isTauriApp = IS_DEV_MODE ? '__TAURI_INTERNALS__' in window : false
 
 /**
  * 是否以客户端方式运行
