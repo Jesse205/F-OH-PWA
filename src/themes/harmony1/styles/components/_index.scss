@@ -9,6 +9,7 @@
 @use './overlay';
 @use './slide';
 @use './switch';
+@use './tabs';
 @use './toolbar';
 @use './tooltip';
 
@@ -24,6 +25,7 @@
   @include overlay.style;
   @include slide.style;
   @include switch.style;
+  @include tabs.style;
   @include toolbar.style;
   @include tooltip.style;
 }

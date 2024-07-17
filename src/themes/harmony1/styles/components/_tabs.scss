@@ -1,0 +1,47 @@
+@use '../settings/dimensions';
+
+@mixin style {
+  .v-tabs {
+    height: initial;
+    &--density-default {
+      --v-tabs-height: 40px;
+    }
+    .v-slide-group__container {
+      padding: 4px;
+    }
+
+    // 需要两个.v-tab，因为vuetify实现的就是那样的，否则会被默认样式顶掉
+    .v-tab.v-tab {
+      @supports selector(:focus-visible) {
+        &::after {
+          outline-offset: -2px;
+        }
+      }
+      padding: 0 12px;
+      min-width: 72px;
+      .v-tab__slider {
+        bottom: -4px;
+      }
+    }
+    .v-slide-group {
+      &__next,
+      &__prev {
+        min-width: 24px;
+        flex: 0 1 24px;
+        border-radius: dimensions.$radius-md;
+        &:hover {
+          background-color: rgba(
+            var(--v-theme-on-surface),
+            calc(var(--v-hover-opacity) * var(--v-theme-overlay-multiplier))
+          );
+        }
+        &:active {
+          background-color: rgba(
+            var(--v-theme-on-surface),
+            calc(var(--v-pressed-opacity) * var(--v-theme-overlay-multiplier))
+          );
+        }
+      }
+    }
+  }
+}

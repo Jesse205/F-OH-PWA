@@ -84,6 +84,9 @@ export const blueprint: Blueprint = {
     },
     VTabs: {
       color: 'primary',
+      VBtn: {
+        rounded: 'md',
+      },
     },
     VToolbar: {
       VBtn: {
