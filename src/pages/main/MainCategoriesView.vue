@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import CenterSpace from '@/components/CenterSpace.vue'
 import AppList from '@/components/list/AppList.vue'
-import ProjectItem from '@/components/list/AppListItemProject.vue'
+import AppListProjectItem from '@/components/list/AppListProjectItem.vue'
 import { useAppsStore } from '@/store/apps'
 import { getAppShareUrl, type AppInfo } from '@/utils/apps'
 import { watchImmediate } from '@vueuse/core'
@@ -121,7 +121,7 @@ onMounted(() => {
       <template v-for="appType in appTypes">
         <app-list v-if="appType.apps && appType.apps.length" :key="appType.key" class="my-4" :title="appType.title">
           <div class="project-items" @dragstart="onProjectDragStart">
-            <ProjectItem
+            <app-list-project-item
               v-for="item in appType.apps"
               :key="item.id"
               class="project-item"

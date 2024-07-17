@@ -2,7 +2,7 @@
 import AppMain from '@/components/AppMain.vue'
 import BackButton from '@/components/appbar/BackButton.vue'
 import TitleList from '@/components/list/AppList.vue'
-import AppListItemDialog from '@/components/list/AppListItemDialog.vue'
+import AppListDialogItem from '@/components/list/AppListDialogItem.vue'
 import { useSingleSelected } from '@/composables/converts'
 import {
   usePageTransition,
@@ -98,12 +98,12 @@ const pageTransitionEnabled = usePageTransition()
 
         <!-- 应用 -->
         <title-list class="my-4" :title="$t('app.title')">
-          <AppListItemDialog v-model="apiUrl" prepend-icon="$circle" :title="$t('apiUrl')">
+          <app-list-dialog-item v-model="apiUrl" prepend-icon="$circle" :title="$t('apiUrl')">
             <template #subtitle>
               {{ apiUrl.trim() || $t('notSet') }}
               <p v-if="overrideApiUrl">{{ $t('apiUrlOverrideMessage', { overrideApiUrl }) }}</p>
             </template>
-          </AppListItemDialog>
+          </app-list-dialog-item>
           <!-- 关于 -->
           <v-list-item
             prepend-icon="$info"
