@@ -1,6 +1,6 @@
 /// @link https://developer.huawei.com/consumer/cn/doc/design-guides-V1/bottom-tab-0000001110467118-V1
 
-.harmony1 {
+@mixin style {
   .v-bottom-navigation {
     &__content {
       .v-btn {

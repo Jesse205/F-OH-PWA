@@ -1,5 +1,6 @@
 @use '../settings/dimensions';
-.harmony1 {
+
+@mixin style {
   .v-alert {
     border-radius: #{dimensions.$radius-card};
   }

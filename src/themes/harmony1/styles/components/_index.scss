@@ -1,12 +1,29 @@
-@forward './button';
-@forward './dialog';
-@forward './menu';
-@forward './bottom-navigation';
-@forward './list';
-@forward './overlay';
-@forward './border';
-@forward './card';
-@forward './toolbar';
-@forward './switch';
-@forward './tooltip';
-@forward './slide';
+@use './alert';
+@use './border';
+@use './bottom-navigation';
+@use './button';
+@use './card';
+@use './dialog';
+@use './list';
+@use './menu';
+@use './overlay';
+@use './slide';
+@use './switch';
+@use './toolbar';
+@use './tooltip';
+
+@mixin style {
+  @include alert.style;
+  @include border.style;
+  @include bottom-navigation.style;
+  @include button.style;
+  @include card.style;
+  @include dialog.style;
+  @include list.style;
+  @include menu.style;
+  @include overlay.style;
+  @include slide.style;
+  @include switch.style;
+  @include toolbar.style;
+  @include tooltip.style;
+}

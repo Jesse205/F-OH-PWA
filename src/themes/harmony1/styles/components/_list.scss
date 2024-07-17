@@ -5,7 +5,7 @@
 
 @use './border';
 
-.harmony1 {
+@mixin style {
   .v-list {
     --border-margin-left: 40px;
     --border-margin-right: 0px;

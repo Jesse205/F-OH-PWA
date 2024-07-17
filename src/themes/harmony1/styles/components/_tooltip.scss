@@ -1,6 +1,6 @@
 @use '../settings/dimensions';
 
-.harmony1 {
+@mixin style {
   .v-tooltip {
     > .v-overlay__content {
       backdrop-filter: blur(dimensions.$radius-blur-tooltip);

@@ -1,6 +1,6 @@
 @use '../settings/motions';
 
-.harmony1 {
+@mixin style {
   .v-btn {
     transition-property: box-shadow, transform, opacity, background;
     @supports selector(:focus-visible) {

@@ -1,6 +1,6 @@
 /// @link https://developer.huawei.com/consumer/cn/doc/design-guides-V1/navigation-dot-0000001110627008-V1
 
-.harmony1 {
+@mixin style {
   --swiper-pagination-bullet-border-radius: 4px;
   --swiper-pagination-bullet-size: 8px;
   --swiper-pagination-bullet-inactive-color: rgb(var(--v-theme-on-surface));

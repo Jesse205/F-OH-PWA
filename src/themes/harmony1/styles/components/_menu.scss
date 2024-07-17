@@ -1,7 +1,7 @@
 @use '../settings/dimensions';
 @use '../settings/shadows';
 
-.harmony1 {
+@mixin style {
   .v-menu {
     > .v-overlay__content {
       border-radius: 20px;

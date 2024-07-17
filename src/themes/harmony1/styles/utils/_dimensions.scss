@@ -1,6 +1,6 @@
 @use '../settings/dimensions' as *;
 
-.harmony1 {
+@mixin style {
   --radius-card: #{$radius-card};
   &,
   .v-theme--light,

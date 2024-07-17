@@ -68,7 +68,7 @@
   }
 }
 
-.harmony1 {
+@mixin style {
   .page-enter-transition {
     @include page-transition($enter: true);
   }
