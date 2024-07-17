@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { AppInfo } from '@/utils/apps'
-import { completeServerUrl, getApiUrl } from '@/utils/url'
+import { completeApiUrl, currentOriginApiUrl } from '@/utils/url'
 import { mdiSourceBranch } from '@mdi/js'
 import { computed, ref } from 'vue'
 
@@ -10,11 +10,11 @@ const props = defineProps<{
 }>()
 
 // 绝对路径图标链接
-const appIconUrl = computed(() => props.appInfo && completeServerUrl(props.appInfo.icon))
+const appIconUrl = computed(() => props.appInfo && completeApiUrl(props.appInfo.icon))
 
 // 绝对路径下载链接
 const appDownloadUrl = computed(() => {
-  if (props.appInfo) return completeServerUrl(props.appInfo.hapUrl, getApiUrl(true))
+  if (props.appInfo) return completeApiUrl(props.appInfo.hapUrl, currentOriginApiUrl)
   return null
 })
 

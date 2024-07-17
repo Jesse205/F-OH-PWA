@@ -34,7 +34,7 @@ const appInfo = computed((): AppInfo | undefined => {
     return undefined
   }
 })
-const loading = computed(() => appsStore.loading)
+const isLoading = computed(() => appsStore.isLoading)
 
 /**
  * 分割后的标签列表
@@ -52,7 +52,6 @@ onMounted(() => {
   // 确保数据已经获取到或者正在获取中
   appsStore.ensureData()
 })
-appsStore.autoRefresh()
 
 // 页面滚动，动态展示标题
 const mainComponent = ref<InstanceType<typeof AppMain>>()
@@ -111,15 +110,15 @@ function shareApp() {
       </v-tooltip>
     </v-app-bar>
     <app-main ref="mainElement">
-      <v-progress-linear v-show="appsStore.loading" color="primary" class="progress" indeterminate />
+      <v-progress-linear v-show="isLoading" color="primary" class="progress" indeterminate />
       <v-container class="container py-0">
-        <AppOverview ref="appOverviewElement" :app-info="appInfo" :loading="loading" class="my-4" />
+        <AppOverview ref="appOverviewElement" :app-info="appInfo" :loading="isLoading" class="my-4" />
 
         <!-- #region 一句话介绍 -->
         <v-skeleton-loader
-          v-if="loading"
+          v-if="isLoading"
           class="summary-skeleton"
-          :class="{ loading: loading }"
+          :class="{ loading: isLoading }"
           type="sentences"
           color="rgba(var(--v-theme-on-surface), 0.12)"
         />
@@ -130,7 +129,7 @@ function shareApp() {
         <!-- #endregion -->
 
         <!-- #region 应用标签 -->
-        <v-skeleton-loader v-if="loading" class="tags-skeleton" type="chip@3" color="transparent" />
+        <v-skeleton-loader v-if="isLoading" class="tags-skeleton" type="chip@3" color="transparent" />
         <div v-else-if="appTags?.length" class="tags-group">
           <div v-for="item in appTags" :key="item" class="tags-group__item">
             <v-chip>{{ item }}</v-chip>
@@ -139,9 +138,9 @@ function shareApp() {
         <!-- #endregion -->
 
         <!-- #region 开发者信息 -->
-        <title-list v-show="appInfo?.vender || loading" class="my-4" :title="$t('developer.title')" data-allow-drag>
+        <title-list v-show="appInfo?.vender || isLoading" class="my-4" :title="$t('developer.title')" data-allow-drag>
           <v-skeleton-loader
-            v-if="loading"
+            v-if="isLoading"
             class="skeleton--small-avatar"
             type="list-item-avatar-two-line"
             color="transparent"
@@ -160,7 +159,7 @@ function shareApp() {
         <!-- #endregion -->
 
         <!-- 详情信息 -->
-        <AppDetails class="my-4" :loading="loading" :app-info="appInfo" :title-class="['itemTitle']" />
+        <AppDetails class="my-4" :loading="isLoading" :app-info="appInfo" :title-class="['itemTitle']" />
       </v-container>
     </app-main>
   </v-layout>

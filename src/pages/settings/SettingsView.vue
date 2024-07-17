@@ -13,7 +13,7 @@ import {
 import { useTitle } from '@/composables/title'
 import { designLanguageCodes, designLanguages, languages } from '@/data/settings'
 import { useAppStore } from '@/store/app'
-import { getOverrideApiUrl } from '@/utils/url'
+import { overrideApiUrl } from '@/utils/url'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -40,7 +40,6 @@ const isDesignChanged = computed(
 )
 
 const apiUrl = usePreferredApiUrl()
-const overrideApiUrl = getOverrideApiUrl()
 
 const pageTransitionEnabled = usePageTransition()
 </script>

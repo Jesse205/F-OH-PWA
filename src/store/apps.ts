@@ -1,11 +1,8 @@
-import { usePreferredApiUrl } from '@/composables/settings'
-import { IS_DEV_MODE } from '@/constants'
-import { assert } from '@/utils/app'
+import { PATH_API_ALL_APP } from '@/constants/urls'
 import type { AppInfo } from '@/utils/apps'
-import { getAxiosInstance } from '@/utils/http'
-import { getAllAppsApiUrl, getApiUrl } from '@/utils/url'
+import { apiAxios } from '@/utils/http'
+import { useAxios } from '@vueuse/integrations/useAxios'
 import { defineStore } from 'pinia'
-import { onActivated, onDeactivated, ref, watch } from 'vue'
 
 const TAG = '[AppsStore]'
 
@@ -13,25 +10,25 @@ const TAG = '[AppsStore]'
  * 应用市场所有应用数据
  */
 export const useAppsStore = defineStore('apps', () => {
-  const loading = ref(false)
-  const data = ref<AppInfo[] | null>(null)
-  const errMsg = ref<string | null>(null)
+  const { data, isFinished, isLoading, error, execute } = useAxios<AppInfo[]>(PATH_API_ALL_APP, apiAxios, {})
+
+  function refreshData() {
+    execute()
+  }
+  function ensureData() {
+    execute()
+  }
 
   /**
    * 上传拉取数据时的服务器地址，用于判断数据是否过时
    */
-  let server: string | undefined
+  // let apiUrl = getApiUrl()
 
   /**
    * 获取所有 APP 数据
    */
-  function fetchData() {
+  /* function fetchData() {
     if (loading.value) return
-    const newServer = getApiUrl()
-    if (server !== newServer) {
-      clearData()
-    }
-    server = newServer
     loading.value = true
     errMsg.value = null
     getAxiosInstance()
@@ -49,32 +46,32 @@ export const useAppsStore = defineStore('apps', () => {
       .finally(() => {
         loading.value = false
       })
-  }
+  } */
 
-  function clearData() {
+  /* function clearData() {
     data.value = null
     errMsg.value = null
-  }
+  } */
 
   /**
    * 确保所有 APP 数据已经获取到或者正在获取中
    */
-  function ensureData() {
+  /* function ensureData() {
     const newServer = getApiUrl()
-    if ((server !== newServer || data.value === null) && !loading.value) {
-      if (server !== newServer) {
+    if ((apiUrl !== newServer || data.value === null) && !loading.value) {
+      if (apiUrl !== newServer) {
         clearData()
       }
       fetchData()
     }
-  }
+  } */
 
   /**
    * 当服务器链接变化时，自动刷新
    *
    * 需要在组件的 `setup` 内调用。
    */
-  function autoRefresh() {
+  /* function autoRefresh() {
     // 不能在 store 里面调用 `usePreferredServerUrl`，否则路由切换会丢失响应式。也不能注册监听事件，避免不必要的性能损耗。
     const preferredApiUrl = usePreferredApiUrl()
     let activated = false
@@ -88,7 +85,7 @@ export const useAppsStore = defineStore('apps', () => {
     onDeactivated(() => {
       activated = false
     })
-  }
+  } */
 
-  return { loading, data, errMsg, fetchData, ensureData, clearData, autoRefresh }
+  return { data, isFinished, isLoading, error, ensureData, refreshData }
 })

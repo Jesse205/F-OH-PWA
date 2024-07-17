@@ -1,10 +1,9 @@
-import type { AxiosAdapter, AxiosInstance, InternalAxiosRequestConfig } from 'axios'
+import type { AxiosAdapter, InternalAxiosRequestConfig } from 'axios'
 import axios from 'axios'
 import tauriHttpAdapter from 'axios-tauri-api-adapter'
 
 import { isTauriApp } from './app'
-
-let axiosInstance: AxiosInstance | null = null
+import { currentApiUrl } from './url'
 const xhrAdapter = axios.getAdapter('xhr')
 
 /**
@@ -20,9 +19,4 @@ const adaptiveAdapter: AxiosAdapter = (config: InternalAxiosRequestConfig) => {
   }
 }
 
-export function getAxiosInstance() {
-  if (!axiosInstance) {
-    axiosInstance = axios.create({ adapter: adaptiveAdapter })
-  }
-  return axiosInstance
-}
+export const apiAxios = axios.create({ adapter: adaptiveAdapter, baseURL: currentApiUrl })

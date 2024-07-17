@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import CenterSpace from '@/components/CenterSpace.vue'
-import ProjectItem from '@/components/list/AppListItemProject.vue'
 import AppList from '@/components/list/AppList.vue'
+import ProjectItem from '@/components/list/AppListItemProject.vue'
 import { useAppsStore } from '@/store/apps'
 import { getAppShareUrl, type AppInfo } from '@/utils/apps'
-import { computed, onMounted, reactive, watch } from 'vue'
+import { watchImmediate } from '@vueuse/core'
+import { computed, onMounted, reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
@@ -12,14 +13,9 @@ const { t } = useI18n()
 // Apps
 const appsStore = useAppsStore()
 
-onMounted(() => {
-  appsStore.ensureData()
-})
-appsStore.autoRefresh()
+const isLoading = computed(() => appsStore.isLoading)
 
-const loading = computed(() => appsStore.loading)
-
-const errMsg = computed(() => appsStore.errMsg)
+const errMsg = computed(() => appsStore.error)
 
 interface AppTypes {
   title: string
@@ -51,8 +47,8 @@ const appTypes = computed<AppTypes[]>((): AppTypes[] => [
 ])
 
 // 将数据插入不同的分类列表中
-watch(
-  computed((): AppInfo[] | null => appsStore.data),
+watchImmediate(
+  computed((): AppInfo[] | undefined => appsStore.data),
   (newData) => {
     apps.length = 0
     gameApps.length = 0
@@ -76,14 +72,13 @@ watch(
       }
     }
   },
-  { immediate: true },
 )
 
 /**
  * 刷新应用列表
  */
 function refresh() {
-  appsStore.fetchData()
+  appsStore.refreshData()
 }
 
 defineExpose({ refresh })
@@ -111,6 +106,10 @@ function onProjectDragStart(event: DragEvent) {
     }
   }
 }
+
+onMounted(() => {
+  appsStore.ensureData()
+})
 </script>
 
 <template>
@@ -137,8 +136,8 @@ function onProjectDragStart(event: DragEvent) {
 
     <template #root>
       <!-- Loading -->
-      <CenterSpace v-if="loading || apps.length === 0">
-        <v-progress-circular v-if="loading" indeterminate style="pointer-events: none" />
+      <CenterSpace v-if="isLoading || apps.length === 0">
+        <v-progress-circular v-if="isLoading" indeterminate style="pointer-events: none" />
         <span v-else-if="apps.length === 0">{{ $t('empty.apps') }}</span>
       </CenterSpace>
     </template>

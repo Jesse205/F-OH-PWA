@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { AppInfo } from '@/utils/apps'
-import { completeServerUrl } from '@/utils/url'
+import { completeApiUrl } from '@/utils/url'
 import { computed } from 'vue'
 
 const props = withDefaults(
@@ -22,7 +22,7 @@ const to = computed((): string | object | undefined => {
   }
 })
 
-const iconCompletePath = computed(() => completeServerUrl(props.item.icon))
+const iconCompletePath = computed(() => completeApiUrl(props.item.icon))
 </script>
 
 <template>

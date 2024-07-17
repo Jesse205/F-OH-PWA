@@ -14,10 +14,9 @@ const homeStore = useHomeStore()
 onMounted(() => {
   homeStore.ensureData()
 })
-homeStore.autoRefresh()
 
-const loading = computed(() => homeStore.loading)
-const errMsg = computed(() => homeStore.errMsg)
+const isLoading = computed(() => homeStore.isLoading)
+const errMsg = computed(() => homeStore.error)
 
 const mainComponent = ref<InstanceType<typeof AppMain>>()
 const { y: scrollY } = useScroll(computed(() => mainComponent.value?.mainScroll))
@@ -29,7 +28,7 @@ const { height: bannersHeight } = useElementBounding(bannersComponent, { windowS
  * 刷新主页数据
  */
 function refresh() {
-  homeStore.fetchData()
+  homeStore.refreshData()
 }
 
 defineExpose({ refresh })
@@ -58,7 +57,7 @@ const progressMarginTop = computed(() => {
     </v-container>
     <template #root>
       <!-- Loading -->
-      <CenterSpace v-if="loading" :top="progressMarginTop">
+      <CenterSpace v-if="isLoading" :top="progressMarginTop">
         <v-progress-circular indeterminate />
       </CenterSpace>
     </template>

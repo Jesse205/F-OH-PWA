@@ -1,11 +1,4 @@
-import {
-  URL_API_ALL_APP_RELATIVE,
-  URL_API_CLIENT,
-  URL_API_CLIENT_ORIGIN,
-  URL_API_HOME_RELATIVE,
-  URL_API_WEB,
-  URL_API_WEB_ORIGIN,
-} from '@/constants/urls'
+import { URL_API_CLIENT, URL_API_CLIENT_ORIGIN, URL_API_WEB, URL_API_WEB_ORIGIN } from '@/constants/urls'
 import router from '@/router'
 import { getPreferredApiUrl } from '@/utils/settings'
 import { isClientApp } from './app'
@@ -29,7 +22,7 @@ export function completeUrl(url: string, base: string = location.href, keepBaseP
   return new URL(url, base).href
 }
 
-export function completeServerUrl(url: string, base: string = getApiUrl()) {
+export function completeApiUrl(url: string, base: string = currentApiUrl) {
   return completeUrl(url, base, true)
 }
 
@@ -62,33 +55,26 @@ export function splitPathAndHash(path: string): (string | undefined)[] {
   return path.includes('#') ? path.split('#') : [path, undefined]
 }
 
-export function getOverrideApiUrl(): string | undefined {
+function getOverrideApiUrl(): string | undefined {
   const { apiUrl } = router.currentRoute.value.query
   return typeof apiUrl === 'string' ? completeUrl(apiUrl) : undefined
 }
 
-export function getApiUrl(useOriginUrl: boolean = false) {
-  const overrideApiUrl = getOverrideApiUrl()
+function getApiUrl(overrideApiUrl?: string, preferredApiUrl?: string, useOriginUrl: boolean = false) {
+  let rawUrl: string
   if (overrideApiUrl) {
-    return overrideApiUrl
-  }
-  const preferredApiUrl = getPreferredApiUrl()
-  if (preferredApiUrl) {
-    return preferredApiUrl
-  }
-  if (useOriginUrl) {
-    return isClientApp ? URL_API_WEB_ORIGIN : URL_API_CLIENT_ORIGIN
+    rawUrl = overrideApiUrl
+  } else if (preferredApiUrl) {
+    rawUrl = preferredApiUrl
+  } else if (useOriginUrl) {
+    rawUrl = isClientApp ? URL_API_WEB_ORIGIN : URL_API_CLIENT_ORIGIN
   } else {
-    return isClientApp ? URL_API_WEB : URL_API_CLIENT
+    rawUrl = isClientApp ? URL_API_WEB : URL_API_CLIENT
   }
+  return completeApiUrl(rawUrl, location.href)
 }
 
-// API 链接
-
-export function getHomeApiUrl() {
-  return completeServerUrl(URL_API_HOME_RELATIVE)
-}
-
-export function getAllAppsApiUrl() {
-  return completeServerUrl(URL_API_ALL_APP_RELATIVE)
-}
+export const overrideApiUrl = getOverrideApiUrl()
+export const preferredApiUrl = getPreferredApiUrl()
+export const currentApiUrl = getApiUrl(overrideApiUrl, preferredApiUrl ?? undefined)
+export const currentOriginApiUrl = getApiUrl(overrideApiUrl, preferredApiUrl ?? undefined)
