@@ -20,9 +20,10 @@ const isOtherPage = computed(() => Boolean(!isInMainView.value && appStore.title
 <template>
   <!-- 侧滑栏 -->
   <v-navigation-drawer permanent :rail="isRail">
-    <v-list class="header-icon py-2" nav lines="one">
+    <v-list class="header-icon" lines="one">
       <v-list-item prepend-avatar="@/assets/images/icon.svg" :title="appStore.appName" />
     </v-list>
+
     <!-- <v-divider /> -->
     <v-list density="compact" nav>
       <v-tooltip v-for="(item, index) in homeRouteData" :key="item.name" :disabled="!isRail">
@@ -53,11 +54,3 @@ const isOtherPage = computed(() => Boolean(!isInMainView.value && appStore.title
     </transition>
   </v-navigation-drawer>
 </template>
-<style lang="scss">
-.header-icon {
-  // height: 64px;
-  .v-list-item__prepend {
-    padding: 0;
-  }
-}
-</style>
