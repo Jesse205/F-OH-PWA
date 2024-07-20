@@ -176,7 +176,11 @@ const scrollState2: ScrollToOptions2 = (history.state.scroll2 as ScrollToOptions
 }) */
 
 router.beforeEach((to, from) => {
-  if (to.path === PATH_HOME && to.path === history.state.back) {
+  if (
+    to.path === PATH_HOME &&
+    history.state.back &&
+    new URL(history.state.back, location.href).pathname === PATH_HOME
+  ) {
     history.go(-1)
     console.info(TAG, `Backing to '${to.path}' because history.state.back='${history.state.back}'. state may lost!`)
     return false

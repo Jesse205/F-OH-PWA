@@ -1,6 +1,5 @@
 import { homeRouteData } from '@/data/home'
 import { PATH_HOME } from '@/router'
-import { splitPathAndHash } from '@/utils/url'
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
@@ -23,11 +22,11 @@ export function useHomeRoutes() {
    * 返回链接不为首页
    */
   const isBackHistoryNotHomeAndUndefined = computed<boolean>(() => {
-     
     route.path // 确保路由刷新时重新调用该函数
-    const { back } = router.options.history.state
-    const pureBackUrl = back ? splitPathAndHash(back)[0] : undefined
-    return Boolean(pureBackUrl && pureBackUrl !== PATH_HOME)
+    const { back: backFullPath } = router.options.history.state
+    const backPath = backFullPath && new URL(backFullPath, location.href).pathname
+    if (!backPath) return false
+    return backPath !== PATH_HOME
   })
 
   const routeButtonReplace = computed(() => {

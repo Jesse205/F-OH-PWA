@@ -143,6 +143,5 @@ function refresh() {
   flex-direction: column;
   justify-content: center;
 }
-.rail-list {
-}
+
 </style>
