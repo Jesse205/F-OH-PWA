@@ -6,6 +6,7 @@ import { usePwaStore } from '@/store/pwa'
 import { computed, ref } from 'vue'
 import { useDisplay } from 'vuetify'
 
+import { useLandscapeLayout } from '@/composables/layout'
 import { homeRouteData } from '@/data/home'
 import { parseI18n } from '@/utils/i18n'
 import { useI18n } from 'vue-i18n'
@@ -35,7 +36,18 @@ useTitle(
   }),
 )
 
-const { xs } = useDisplay()
+const { smAndDown } = useDisplay()
+const { isLandscapeNeeded } = useLandscapeLayout()
+
+const navigationBarType = computed(() => {
+  if (isLandscapeNeeded.value && smAndDown.value) {
+    return 'rail'
+  } else if (smAndDown.value) {
+    return 'bottom'
+  } else {
+    return null
+  }
+})
 
 // PWA
 const pwaStore = usePwaStore()
@@ -58,6 +70,20 @@ function refresh() {
 
 <template>
   <v-layout>
+    <v-navigation-drawer v-if="navigationBarType === 'rail'" permanent rail>
+      <div class="rail-list-container">
+        <v-list class="rail-list" density="compact" nav active-class="">
+          <v-list-item
+            v-for="(item, index) in homeRouteData"
+            :key="item.name"
+            :to="{ name: item.name, replace: routeButtonReplace }"
+            :prepend-icon="activePagePosition === index ? item.activeIcon : item.icon"
+            :title="parseI18n(item.title, $t)"
+            :disabled="item.disabled"
+          />
+        </v-list>
+      </div>
+    </v-navigation-drawer>
     <!-- 应用栏 -->
     <v-app-bar>
       <!--
@@ -65,7 +91,7 @@ function refresh() {
       - 当设备为小屏时，始终隐藏按钮。
       - 例外情况：首页但是有历史记录，始终显示按钮。
     -->
-      <back-button v-if="isBackHistoryNotHomeAndUndefined || !xs" />
+      <back-button v-if="isBackHistoryNotHomeAndUndefined || !smAndDown" />
       <v-app-bar-title>{{ parseI18n(currentRouteData.title, $t) }}</v-app-bar-title>
       <!-- <v-tooltip>
       <template #activator="{ props }">
@@ -97,7 +123,7 @@ function refresh() {
     </router-view>
 
     <!-- 底部导航栏 -->
-    <v-bottom-navigation v-if="xs">
+    <v-bottom-navigation v-if="navigationBarType === 'bottom'">
       <v-btn
         v-for="item in homeRouteData"
         :key="item.name"
@@ -110,3 +136,13 @@ function refresh() {
     </v-bottom-navigation>
   </v-layout>
 </template>
+<style lang="scss">
+.rail-list-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.rail-list {
+}
+</style>

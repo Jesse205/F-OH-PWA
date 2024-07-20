@@ -14,7 +14,7 @@ import { useAutoLocale, useAutoTheme } from './composables/app'
 import SplashView from './pages/splash/SplashView.vue'
 import { isTauriApp } from './utils/app'
 
-const { smAndUp } = useDisplay()
+const { mdAndUp } = useDisplay()
 const route = useRoute()
 const appStore = useAppStore()
 
@@ -59,14 +59,14 @@ document.documentElement.classList.add(appStore.design)
 <template>
   <v-app class="app" @dragstart="onDragStart">
     <TauriSystemBar v-if="isTauriApp" />
-    <NavigationDrawer v-if="routeName && smAndUp" />
+    <NavigationDrawer v-if="routeName && mdAndUp" />
     <v-main v-if="routeName" class="main">
       <div class="page-container">
         <router-view #="{ Component }">
           <transition :name="route.meta.transition">
             <div :key="routeName" class="page" :data-path="route.path">
               <!-- <v-layout class="layout"> -->
-                <component :is="Component" />
+              <component :is="Component" />
               <!-- </v-layout> -->
             </div>
           </transition>

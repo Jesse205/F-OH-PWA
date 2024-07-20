@@ -8,10 +8,9 @@ const attrs = useAttrs()
 
 const router = useRouter()
 const route = useRoute()
-const { xs } = useDisplay()
+const { mdAndDown } = useDisplay()
 
 const canBack = computed(() => {
-   
   route.path // 确保路由刷新时重新调用该函数
   return Boolean(router.options.history.state.back)
 })
@@ -27,10 +26,10 @@ const isHomeButton = computed(() => {
 
 /**
  * - 如果可以返回，则显示按钮。
- * - 如果该按钮是首页按钮，并且屏幕宽度为xs，则显示按钮。
+ * - 如果该按钮是首页按钮，并且屏幕宽度为mdAndDown，则显示按钮。
  */
 const isBtnShowing = computed(() => {
-  return Boolean(canBack.value || (xs.value && isHomeButton.value))
+  return Boolean(canBack.value || (mdAndDown.value && isHomeButton.value))
 })
 
 function onClick() {

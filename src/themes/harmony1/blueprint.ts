@@ -127,7 +127,6 @@ export const blueprint: Blueprint = {
     VList: {
       lines: false,
       rounded: true,
-      class: ['pa-1'],
     },
     VListItem: {
       rounded: true,
@@ -138,6 +137,7 @@ export const blueprint: Blueprint = {
     VNavigationDrawer: {
       color: 'background',
       width: parseInt(dimensions.widthSidebarPrimary),
+      railWidth: 96,
       VList: {
         color: 'primary',
         activeClass: 'v-list-item--active-background',

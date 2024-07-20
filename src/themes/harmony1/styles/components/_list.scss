@@ -9,11 +9,12 @@
   .v-list {
     --border-margin-left: 40px;
     --border-margin-right: 0px;
+    padding: 4px;
     &--rounded {
       border-radius: dimensions.$radius-card;
     }
     &--nav {
-      padding-inline: 8px !important;
+      padding-inline: 8px;
     }
   }
 

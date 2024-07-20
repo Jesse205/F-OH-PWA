@@ -1,0 +1,25 @@
+@mixin style {
+  .v-navigation-drawer {
+    &--rail {
+      border-right-width: 0;
+      .v-list--nav {
+        width: 96px;
+        padding: 0;
+        padding-inline: 0;
+        .v-list-item {
+          height: 72px;
+          grid-template-columns: 1fr;
+          grid-template-areas: 'prepend' ' content';
+          align-content: center;
+          text-align: center;
+          .v-list-item__spacer {
+            display: none;
+          }
+          .v-list-item__prepend {
+            justify-content: center;
+          }
+        }
+      }
+    }
+  }
+}

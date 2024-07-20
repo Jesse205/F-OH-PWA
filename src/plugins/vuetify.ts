@@ -25,7 +25,7 @@ switch (getPreferredDesignLanguage()) {
 export default createVuetify({
   blueprint,
   display: {
-    mobileBreakpoint: 'md',
+    mobileBreakpoint: 'lg',
   },
   defaults: {
     VList: {
