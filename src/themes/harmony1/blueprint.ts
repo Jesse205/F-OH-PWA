@@ -1,6 +1,7 @@
 import type { Blueprint } from 'vuetify'
 import { aliases, hmi } from './iconset'
 import colors from './styles/settings/_colors.module.scss'
+import dimensions from './styles/settings/_dimensions.module.scss'
 
 export const blueprint: Blueprint = {
   theme: {
@@ -135,6 +136,7 @@ export const blueprint: Blueprint = {
     },
     VNavigationDrawer: {
       color: 'background',
+      width: parseInt(dimensions.widthSidebarPrimary),
       VList: {
         color: 'primary',
         lines: 'one',

@@ -1,0 +1,7 @@
+@use './dimensions' as *;
+
+:export {
+  widthSidebarPrimary: $width-sidebar-primary;
+  widthSidebarSecondary: $width-sidebar-secondary;
+  widthSidebarTertiary: $width-sidebar-tertiary;
+}
