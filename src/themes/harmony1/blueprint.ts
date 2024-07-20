@@ -109,6 +109,7 @@ export const blueprint: Blueprint = {
       transition: 'slide-y-transition',
       VList: {
         color: 'primary',
+        activeClass: 'v-list-item--active-background',
       },
     },
     VCheckboxBtn: {
@@ -139,6 +140,7 @@ export const blueprint: Blueprint = {
       width: parseInt(dimensions.widthSidebarPrimary),
       VList: {
         color: 'primary',
+        activeClass: 'v-list-item--active-background',
         lines: 'one',
         bgColor: 'background',
       },
