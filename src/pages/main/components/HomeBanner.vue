@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import type { Banner } from '@/data/home'
 import { completeUrl } from '@/utils/url'
+import { Pagination } from 'swiper/modules'
 import 'swiper/scss'
 import 'swiper/scss/pagination'
-import { Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { computed } from 'vue'
 import { useDisplay } from 'vuetify'
@@ -55,7 +55,6 @@ const banners = computed((): Banner[] => {
 </template>
 
 <style scoped lang="scss">
-
 .container {
   padding: 0;
 

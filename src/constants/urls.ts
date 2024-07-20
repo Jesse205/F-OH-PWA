@@ -17,5 +17,4 @@ export const PATH_API_HOME = '/homePageData.json'
  */
 export const PATH_API_ALL_APP = '/allAppList.json'
 
-
 export const PATH_MAIN = '/main'

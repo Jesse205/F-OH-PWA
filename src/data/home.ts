@@ -47,7 +47,7 @@ export const bannersData: BannersData = {
 }
 
 export interface RouteItemData {
-  title: TranslateParameters| string
+  title: TranslateParameters | string
   icon: string
   activeIcon: string
   name: string
