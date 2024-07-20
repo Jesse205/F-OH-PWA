@@ -1,5 +1,4 @@
 import { URL_API_CLIENT, URL_API_CLIENT_ORIGIN, URL_API_WEB, URL_API_WEB_ORIGIN } from '@/constants/urls'
-import router from '@/router'
 import { getPreferredApiUrl } from '@/utils/settings'
 import { isClientApp } from './app'
 
@@ -56,7 +55,8 @@ export function splitPathAndHash(path: string): (string | undefined)[] {
 }
 
 function getOverrideApiUrl(): string | undefined {
-  const { apiUrl } = router.currentRoute.value.query
+  const params = new URLSearchParams(location.search)
+  const apiUrl = params.get('apiUrl')
   return typeof apiUrl === 'string' ? completeUrl(apiUrl) : undefined
 }
 
