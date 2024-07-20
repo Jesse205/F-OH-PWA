@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PATH_HOME } from '@/router'
+import { PATH_MAIN } from '@/constants/urls'
 import { computed, useAttrs } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useDisplay } from 'vuetify'
@@ -8,7 +8,7 @@ const attrs = useAttrs()
 
 const router = useRouter()
 const route = useRoute()
-const { mdAndDown } = useDisplay()
+const { smAndDown } = useDisplay()
 
 const canBack = computed(() => {
   route.path // 确保路由刷新时重新调用该函数
@@ -21,7 +21,7 @@ const canBack = computed(() => {
  * 当不可以返回上一页并且当前路径不是主页时显示按钮。
  */
 const isHomeButton = computed(() => {
-  return Boolean(!canBack.value && route.path !== PATH_HOME)
+  return Boolean(!canBack.value && !route.path.startsWith(PATH_MAIN))
 })
 
 /**
@@ -29,7 +29,7 @@ const isHomeButton = computed(() => {
  * - 如果该按钮是首页按钮，并且屏幕宽度为mdAndDown，则显示按钮。
  */
 const isBtnShowing = computed(() => {
-  return Boolean(canBack.value || (mdAndDown.value && isHomeButton.value))
+  return Boolean(canBack.value || (smAndDown.value && isHomeButton.value))
 })
 
 function onClick() {

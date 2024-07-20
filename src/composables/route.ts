@@ -1,5 +1,5 @@
+import { PATH_MAIN } from '@/constants/urls'
 import { homeRouteData } from '@/data/home'
-import { PATH_HOME } from '@/router'
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
@@ -21,16 +21,15 @@ export function useHomeRoutes() {
   /**
    * 返回链接不为首页
    */
-  const isBackHistoryNotHomeAndUndefined = computed<boolean>(() => {
+  const isBackHistoryMain = computed<boolean>(() => {
     route.path // 确保路由刷新时重新调用该函数
     const { back: backFullPath } = router.options.history.state
     const backPath = backFullPath && new URL(backFullPath, location.href).pathname
-    if (!backPath) return false
-    return backPath !== PATH_HOME
+    return backPath?.startsWith(PATH_MAIN) ?? false
   })
 
   const routeButtonReplace = computed(() => {
-    return isInMainView.value && (activePagePosition.value !== 0 || isBackHistoryNotHomeAndUndefined.value)
+    return isInMainView.value && isBackHistoryMain.value
   })
-  return { activePagePosition, isInMainView, isBackHistoryNotHomeAndUndefined, routeButtonReplace }
+  return { activePagePosition, isInMainView, isBackHistoryMain, routeButtonReplace }
 }

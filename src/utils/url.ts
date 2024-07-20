@@ -4,7 +4,6 @@ import { isClientApp } from './app'
 
 const REGEX_GITHUB_USER = /^https:\/\/(www\.)?github\.com\/[^/]+/
 const REGEX_GITEE_USER = /^https:\/\/(www\.)?gitee\.com\/[^/]+/
-
 /**
  * 获取绝对路径，如果 `keepBasePath` 为 `true` 时，无论 `url` 是否以 `/` 开头，都会保留 `base` 的路径。
  */

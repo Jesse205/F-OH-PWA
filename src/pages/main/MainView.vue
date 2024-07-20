@@ -7,15 +7,19 @@ import { computed, ref } from 'vue'
 import { useDisplay } from 'vuetify'
 
 import { useLandscapeLayout } from '@/composables/layout'
+import { PATH_MAIN } from '@/constants/urls'
 import { homeRouteData } from '@/data/home'
 import { parseI18n } from '@/utils/i18n'
 import { useI18n } from 'vue-i18n'
+import { onBeforeRouteUpdate, useRouter } from 'vue-router'
 import type MainCategoriesView from './MainCategoriesView.vue'
 import type MainHomeView from './MainHomeView.vue'
 import type MainMeView from './MainMeView.vue'
 import type MainUpdateView from './MainUpdateView.vue'
 
-const { activePagePosition, isBackHistoryNotHomeAndUndefined, routeButtonReplace } = useHomeRoutes()
+const TAG = 'MainView'
+
+const { activePagePosition, routeButtonReplace, isBackHistoryMain } = useHomeRoutes()
 
 const currentRouteData = computed(() => {
   if (activePagePosition.value !== null) {
@@ -66,6 +70,17 @@ function refresh() {
     component.refresh()
   }
 }
+
+const router = useRouter()
+
+onBeforeRouteUpdate((to) => {
+  const { back: backFullPath } = router.options.history.state
+  if (to.path?.startsWith(PATH_MAIN) && backFullPath && new URL(backFullPath, location.href).pathname === to.path) {
+    history.go(-1)
+    console.info(TAG, `Backing to '${to.path}' because history.state.back='${backFullPath}'. state may lost!`)
+    return false
+  }
+})
 </script>
 
 <template>
@@ -91,7 +106,7 @@ function refresh() {
       - 当设备为小屏时，始终隐藏按钮。
       - 例外情况：首页但是有历史记录，始终显示按钮。
     -->
-      <back-button v-if="isBackHistoryNotHomeAndUndefined || !smAndDown" />
+      <back-button v-if="!smAndDown" />
       <v-app-bar-title>{{ parseI18n(currentRouteData.title, $t) }}</v-app-bar-title>
       <!-- <v-tooltip>
       <template #activator="{ props }">
@@ -143,5 +158,4 @@ function refresh() {
   flex-direction: column;
   justify-content: center;
 }
-
 </style>

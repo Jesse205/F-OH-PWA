@@ -6,7 +6,7 @@ import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router
 
 const TAG = '[Router]'
 const SELECTOR_SCROLL = '.main-container>.main-scroll'
-export const PATH_HOME = '/main/home'
+
 
 interface ScrollToOptions2 {
   [path: string]: ScrollToOptions
@@ -176,15 +176,6 @@ const scrollState2: ScrollToOptions2 = (history.state.scroll2 as ScrollToOptions
 }) */
 
 router.beforeEach((to, from) => {
-  if (
-    to.path === PATH_HOME &&
-    history.state.back &&
-    new URL(history.state.back, location.href).pathname === PATH_HOME
-  ) {
-    history.go(-1)
-    console.info(TAG, `Backing to '${to.path}' because history.state.back='${history.state.back}'. state may lost!`)
-    return false
-  }
   if (!to.query.apiUrl && from.query.apiUrl) {
     to.query.apiUrl = from.query.apiUrl
     return to

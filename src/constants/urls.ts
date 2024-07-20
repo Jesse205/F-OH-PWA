@@ -16,3 +16,6 @@ export const PATH_API_HOME = '/homePageData.json'
  * 所有应用 API 路径
  */
 export const PATH_API_ALL_APP = '/allAppList.json'
+
+
+export const PATH_MAIN = '/main'
