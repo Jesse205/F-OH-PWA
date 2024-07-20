@@ -15,7 +15,7 @@ onMounted(() => {
 })
 
 const isLoading = computed(() => homeStore.isLoading)
-const errMsg = computed(() => homeStore.error)
+const errMsg = computed(() => (homeStore.error ? String(homeStore.error) : undefined))
 
 const mainComponent = ref<InstanceType<typeof AppMain>>()
 const { y: scrollY } = useScroll(computed(() => mainComponent.value?.mainScroll))

@@ -15,7 +15,7 @@ const appsStore = useAppsStore()
 
 const isLoading = computed(() => appsStore.isLoading)
 
-const errMsg = computed(() => appsStore.error)
+const errMsg = computed(() => (appsStore.error ? String(appsStore.error) : undefined))
 
 interface AppTypes {
   title: string
