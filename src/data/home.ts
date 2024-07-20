@@ -43,7 +43,7 @@ export const bannersData: BannersData = {
       alt: '',
     },
   ],
-  ratio: 18 / 9,
+  ratio: 21 / 9,
 }
 
 export interface RouteItemData {
