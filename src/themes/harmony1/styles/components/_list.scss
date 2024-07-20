@@ -79,15 +79,18 @@
       }
     }
 
+    & > .v-list-item__overlay,
     &:not(&--active)[aria-haspopup='menu'] > .v-list-item__overlay,
-    .ignore-active-style > .v-list-item__overlay,
-    &__overlay {
+    &.ignore-active-style > .v-list-item__overlay {
       transition-duration: motions.$background-duration;
       opacity: 0;
     }
 
     // 重写焦点样式
     @supports selector(:focus-visible) {
+      &:focus-visible > .v-list-item__overlay {
+        opacity: 0;
+      }
       &::after {
         border: 2px solid rgb(var(--v-theme-primary));
         border-radius: inherit;
@@ -97,27 +100,21 @@
           opacity: 1;
         }
       }
-      // 添加 :not(&--active)，否则下面的 &--active 会因该选择器过大而被覆盖
-      &:not(&--active):focus-visible > .v-list-item__overlay,
-      &.ignore-active-style:focus-visible > .v-list-item__overlay {
-        opacity: 0;
-      }
-    }
-    &:not(&--active),
-    &.ignore-active-style {
-      &:hover > .v-list-item__overlay {
-        opacity: calc(var(--v-hover-opacity) * var(--v-theme-overlay-multiplier));
-      }
-      &:active > .v-list-item__overlay {
-        opacity: calc(var(--v-pressed-opacity) * var(--v-theme-overlay-multiplier));
-      }
     }
 
-    &--active:not(.ignore-active-style) {
+    &:hover > .v-list-item__overlay {
+      opacity: calc(var(--v-hover-opacity) * var(--v-theme-overlay-multiplier));
+    }
+    &:active > .v-list-item__overlay {
+      opacity: calc(var(--v-pressed-opacity) * var(--v-theme-overlay-multiplier));
+    }
+    
+    // &.v-list-item--active用于增强选择器特定值
+    &.v-list-item--active:not(.ignore-active-style) {
       & > .v-list-item__overlay {
         opacity: calc(var(--v-activated-opacity) * var(--v-theme-overlay-multiplier));
       }
-      &:hover .v-list-item__overlay {
+      &:hover > .v-list-item__overlay {
         opacity: calc((var(--v-hover-opacity) + var(--v-activated-opacity)) * var(--v-theme-overlay-multiplier));
       }
       &:active > .v-list-item__overlay {
