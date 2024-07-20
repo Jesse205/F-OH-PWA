@@ -21,7 +21,6 @@ export const blueprint: Blueprint = {
         variables: {
           'activated-opacity': 0.1,
           'pressed-opacity': 0.1,
-          'border-opacity': 0.2,
         },
       },
       dark: {
@@ -38,7 +37,6 @@ export const blueprint: Blueprint = {
         variables: {
           'activated-opacity': 0.15,
           'pressed-opacity': 0.15,
-          'border-opacity': 0.2,
         },
       },
     },

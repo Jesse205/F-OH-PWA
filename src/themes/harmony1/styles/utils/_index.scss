@@ -1,7 +1,9 @@
+@use './border';
 @use './dimensions';
 @use './motions';
 
 @mixin style {
+  @include border.style;
   @include dimensions.style;
   @include motions.style;
 }

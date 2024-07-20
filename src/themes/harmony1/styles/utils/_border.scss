@@ -1,0 +1,22 @@
+$border-width: 0.5px;
+$border-margin: 16px;
+$border: #{$border-width} solid rgba(var(--v-border-color), var(--v-border-opacity));
+
+@mixin style {
+  &,
+  .v-theme--light,
+  .v-theme--dark {
+    @media screen and (max-resolution: 2dppx) {
+      --v-border-opacity: 0.1 !important;
+    }
+  }
+  .border-t {
+    border-top: $border;
+  }
+  .border-b {
+    border-bottom: $border;
+  }
+  .border {
+    border-width: $border-width !important;
+  }
+}

@@ -1,22 +1,10 @@
-$border-width: 0.5px;
-$border-margin: 16px;
-$border: 0.5px solid rgba(var(--v-border-color), var(--v-border-opacity));
+@use '../utils/border';
 
 @mixin style {
-  .border-t {
-    border-top: $border;
-  }
-  .border-b {
-    border-bottom: $border;
-  }
-  .border {
-    border-width: $border-width !important;
-  }
-
   .v-divider {
     --border-padding-left: 0px;
     --border-padding-right: 0px;
-    border-top: $border;
+    border-top: border.$border;
     opacity: 1;
     margin-left: calc(12px + var(--border-padding-left));
     margin-right: calc(12px + var(--border-padding-right));

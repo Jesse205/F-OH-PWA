@@ -1,4 +1,4 @@
-@use './border';
+@use '../utils/border';
 @use '../settings/dimensions';
 
 @mixin style {

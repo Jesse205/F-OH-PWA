@@ -3,7 +3,7 @@
 @use '../settings/motions';
 @use '../settings/dimensions';
 
-@use './border';
+@use '../utils/border';
 
 @mixin style {
   .v-list {
