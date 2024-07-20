@@ -1,17 +1,16 @@
 <script setup lang="ts">
 import BackButton from '@/components/appbar/BackButton.vue'
+import { useLandscapeLayout } from '@/composables/layout'
 import { useHomeRoutes } from '@/composables/route'
 import { useTitle } from '@/composables/title'
-import { usePwaStore } from '@/store/pwa'
-import { computed, ref } from 'vue'
-import { useDisplay } from 'vuetify'
-
-import { useLandscapeLayout } from '@/composables/layout'
 import { PATH_MAIN } from '@/constants/urls'
 import { homeRouteData } from '@/data/home'
+import { usePwaStore } from '@/store/pwa'
 import { parseI18n } from '@/utils/i18n'
+import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { onBeforeRouteUpdate, useRouter } from 'vue-router'
+import { useDisplay } from 'vuetify'
 import type MainCategoriesView from './MainCategoriesView.vue'
 import type MainHomeView from './MainHomeView.vue'
 import type MainMeView from './MainMeView.vue'
@@ -19,7 +18,7 @@ import type MainUpdateView from './MainUpdateView.vue'
 
 const TAG = 'MainView'
 
-const { activePagePosition, routeButtonReplace, isBackHistoryMain } = useHomeRoutes()
+const { activePagePosition, routeButtonReplace } = useHomeRoutes()
 
 const currentRouteData = computed(() => {
   if (activePagePosition.value !== null) {
@@ -105,15 +104,9 @@ onBeforeRouteUpdate((to) => {
       - 当设备为大屏时，首页隐藏按钮，其他页面显示按钮，这是通用逻辑。
       - 当设备为小屏时，始终隐藏按钮。
       - 例外情况：首页但是有历史记录，始终显示按钮。
-    -->
+      -->
       <back-button v-if="!smAndDown" />
       <v-app-bar-title>{{ parseI18n(currentRouteData.title, $t) }}</v-app-bar-title>
-      <!-- <v-tooltip>
-      <template #activator="{ props }">
-        <v-btn icon="$search" v-bind="props" disabled aria-label="搜索应用" />
-      </template>
-      <span>搜索应用</span>
-    </v-tooltip> -->
       <v-menu origin="bottom" width="172" location="top">
         <template #activator="{ props: menu }">
           <v-btn v-tooltip="$t('moreOptions')" icon="$more" v-bind="{ ...menu }" />

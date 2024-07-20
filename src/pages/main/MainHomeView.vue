@@ -7,7 +7,6 @@ import { useHomeStore } from '@/store/home'
 import { useElementBounding, useScroll } from '@vueuse/core'
 import { max } from 'lodash-es'
 import { computed, onMounted, ref } from 'vue'
-
 import HomeBanner from './components/HomeBanner.vue'
 
 const homeStore = useHomeStore()
