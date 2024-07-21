@@ -71,7 +71,7 @@ if (isTauriApp) {
           <v-list-item
             v-for="item in developers"
             :key="item.title"
-            :prepend-avatar="item.avatar || (item.qq && getAvatarUrl(item.qq))"
+            :prepend-avatar="item.avatar || (item.qq ? getAvatarUrl(item.qq) : undefined)"
             :title="parseI18n(item.title, $t)"
             :subtitle="parseI18n(item.summary, $t)"
           />
