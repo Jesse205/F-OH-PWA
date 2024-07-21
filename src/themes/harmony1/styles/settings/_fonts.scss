@@ -1,0 +1,83 @@
+/// @link https://developer.huawei.com/consumer/cn/doc/design-guides-V1/font-0000001110498550-V1
+
+$family:
+  HarmonyOS Sans SC,
+  HarmonyOS Sans;
+
+$weight-thin: 200;
+$weight-light: 300;
+$weight-regular: 400;
+$weight-medium: 500;
+$weight-bold: 600;
+
+// 展示类数据文本
+$headline1-size: 6rem; // 16px
+$headline1-weight: $weight-light;
+
+// 展示类数据文本
+$headline2-size: 4.5rem; // 72px
+$headline2-weight: $weight-light;
+
+// 展示类数据文本
+$headline3-size: 3.75rem; // 60px
+$headline3-weight: $weight-light;
+
+// 展示类数据文本
+$headline4-size: 3rem; // 48px
+$headline4-weight: $weight-regular;
+
+// 展示类数据文本
+$headline5-size: 2.375rem; // 38px
+$headline5-weight: $weight-regular;
+
+// 大标题/强调型文本
+$headline6-size: 1.875rem; // 30px
+$headline6-weight: $weight-medium;
+
+// 二级标题/强调型文本
+$headline7-size: 1.5rem; // 24px
+$headline7-weight: $weight-medium;
+
+// 页签标题
+$headline8-size: 1.25rem; // 20px
+$headline8-weight: $weight-medium;
+
+// 分组大标题
+$subtitle1-size: 1.125rem; // 18px
+$subtitle1-weight: $weight-medium;
+
+// 分组标题
+$subtitle2-size: 1rem; // 16px
+$subtitle2-weight: $weight-medium;
+
+// 分组小标题
+$subtitle3-size: 0.875rem; // 14px
+$subtitle3-weight: $weight-medium;
+
+// 列表正文文本/段落文本
+$body1-size: 1rem; // 16px
+$body1-weight: $weight-regular;
+
+// 列表辅助文本/段落文本
+$body2-size: 0.875rem; // 14px;
+$body2-weight: $weight-regular;
+
+// 列表辅助文本/图文说明
+$body3-size: 0.75rem; // 12px
+$body3-weight: $weight-regular;
+
+// 大按钮文本
+$button1-size: 1rem; // 16px
+$button1-weight: $weight-medium;
+
+// 小按钮文本
+$button2-size: 0.875rem; // 14px;
+$button2-weight: $weight-medium;
+
+// 隐私说明文本
+$caption-size: 0.625rem; // 10px
+$caption-weight: $weight-regular;
+
+// 大标题辅助说明文本
+$overline-size: 0.875rem; // 14px;
+$overline-weight: $weight-regular;

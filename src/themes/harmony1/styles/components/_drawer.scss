@@ -1,3 +1,5 @@
+@use '../settings/fonts';
+
 @mixin style {
   .v-navigation-drawer {
     &--rail {
@@ -20,6 +22,10 @@
           }
           &__overlay {
             color: rgb(var(--v-theme-on-background));
+          }
+          .v-list-item-title {
+            font-size: fonts.$caption-size;
+            font-weight: fonts.$caption-weight;
           }
         }
       }

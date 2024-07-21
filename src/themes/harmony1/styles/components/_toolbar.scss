@@ -1,3 +1,5 @@
+@use '../settings/fonts';
+
 @mixin style {
   .v-toolbar {
     &__content {
@@ -13,5 +15,11 @@
         }
       }
     }
+  }
+  .v-toolbar-title {
+    font-size: fonts.$headline8-size;
+    font-weight: fonts.$headline8-weight;
+    letter-spacing: 0;
+    line-height: initial;
   }
 }
