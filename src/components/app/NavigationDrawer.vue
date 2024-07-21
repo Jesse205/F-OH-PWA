@@ -15,7 +15,7 @@ const isOtherPage = computed(() => Boolean(!isInMainView.value && appStore.title
 
 <template>
   <!-- 侧滑栏 -->
-  <v-navigation-drawer permanent>
+  <v-navigation-drawer permanent touchless>
     <v-list class="header-icon" lines="one">
       <v-list-item prepend-avatar="@/assets/images/icon.svg" :title="appStore.appName" />
     </v-list>

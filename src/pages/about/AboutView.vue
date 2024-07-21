@@ -40,7 +40,7 @@ if (isTauriApp) {
       <back-button />
       <v-app-bar-title>{{ $t('about') }}</v-app-bar-title>
     </v-app-bar>
-    <v-navigation-drawer v-if="smAndUp" permanent :width="200 + 32">
+    <v-navigation-drawer v-if="smAndUp" permanent :width="200 + 32" touchless>
       <AppCard class="ma-4" />
     </v-navigation-drawer>
     <app-main>
