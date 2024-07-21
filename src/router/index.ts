@@ -130,9 +130,11 @@ router.afterEach((to, from) => {
   // 动画
   if (from.path !== '/' && isPageTransitionEnabled()) {
     // const name = history.state.forward ? 'scroll-x-transition' : 'scroll-x-reverse-transition'
-    const name = history.state.forward ? 'page-leave-transition' : 'page-enter-transition'
+    // const name = history.state.forward ? 'page-leave-transition' : 'page-enter-transition'
+    const name = history.state.forward ? 'page-leave-animation' : 'page-enter-animation'
     to.meta.transition = name
     from.meta.transition = name
+
   } else {
     to.meta.transition = ''
     from.meta.transition = ''

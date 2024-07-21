@@ -1,6 +1,23 @@
 @use '../settings/motions' as *;
 
 @mixin page-transition($enter: true) {
+  // 偏移状态
+  &-enter-to,
+  &-leave-from,
+  &-enter-from {
+    transform: translateX(var(--page-mask-position-x));
+    & > .v-layout {
+      transform: translateX(calc(var(--page-position-x) - var(--page-mask-position-x)));
+    }
+  }
+
+  &-leave-to {
+    transform: translateX(var(--page-position-x));
+    & > .v-layout {
+      transform: translateX(0);
+    }
+  }
+
   &-enter-active,
   &-leave-active {
     background-color: rgb(var(--v-theme-background));
@@ -13,27 +30,11 @@
     }
   }
 
-  // 偏移状态
-  // &-leave-to
+  &-leave-from,
   &-enter-from {
-    transform: translateX(var(--page-mask-position-x));
-    & > .v-layout {
-      transform: translateX(calc(var(--page-position-x) - var(--page-mask-position-x)));
-    }
-  }
-  &-leave-to {
-    transform: translateX(var(--page-position-x));
-  }
-
-  // 正常状态
-  &-enter-to,
-  &-leave-from {
-    transform: translateX(0);
-    & > .v-layout {
-      transform: translateX(0);
-    }
-    &::before {
-      background-color: transparent;
+    & > .v-layout,
+    & {
+      transition: none;
     }
   }
 
@@ -66,6 +67,80 @@
     --page-position-x: #{$page-above-offset};
     --page-mask-position-x: 100%;
   }
+
+  // 正常状态
+  &-enter-to,
+  &-leave-from {
+    --page-position-x: 0;
+    --page-mask-position-x: 0;
+    &::before {
+      background-color: transparent;
+    }
+  }
+}
+
+@mixin translate-x-keyframes($name, $from, $to) {
+  @keyframes #{$name} {
+    0% {
+      transform: translateX($from);
+    }
+    100% {
+      transform: translateX($to);
+    }
+  }
+}
+@include translate-x-keyframes('page-enter-enter-page-animation', 100%, 0);
+@include translate-x-keyframes('page-enter-enter-layout-animation', -75%, 0);
+@include translate-x-keyframes('page-enter-leave-page-animation', 0, -25%);
+
+@include translate-x-keyframes('page-leave-enter-page-animation', -100%, 0);
+@include translate-x-keyframes('page-leave-enter-layout-animation', 75%, 0);
+@include translate-x-keyframes('page-leave-leave-page-animation', 0, 25%);
+@keyframes page-scrim-animation {
+  0% {
+    background-color: transparent;
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}
+
+@mixin page-animation($enter, $enter-page-animation, $enter-layout-animation, $leave-page-animation) {
+  &-enter-active,
+  &-enter-active > .v-layout,
+  &-leave-active,
+  &-#{if($enter,'leave-active','enter-active')}::before {
+    animation-duration: $page-durning;
+    animation-timing-function: $page-function;
+    @media (prefers-reduced-motion) {
+      animation: none;
+    }
+  }
+
+  &-enter-active {
+    animation-name: #{$enter-page-animation};
+    background-color: rgb(var(--v-theme-background));
+    & > .v-layout {
+      animation-name: #{$enter-layout-animation};
+    }
+  }
+  &-leave-active {
+    animation-name: #{$leave-page-animation};
+    background-color: rgb(var(--v-theme-background));
+  }
+  &-#{if($enter,'leave-active','enter-active')} {
+    &::before {
+      content: '';
+      animation-name: page-scrim-animation;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 999;
+      animation-direction: #{if($enter, normal, reverse)};
+    }
+  }
 }
 
 @mixin style {
@@ -74,6 +149,24 @@
   }
   .page-leave-transition {
     @include page-transition($enter: false);
+  }
+
+  .page-enter-animation {
+    @include page-animation(
+      true,
+      'page-enter-enter-page-animation',
+      'page-enter-enter-layout-animation',
+      'page-enter-leave-page-animation'
+    );
+  }
+
+  .page-leave-animation {
+    @include page-animation(
+      false,
+      'page-leave-enter-page-animation',
+      'page-leave-enter-layout-animation',
+      'page-leave-leave-page-animation'
+    );
   }
 
   .dialog-transition {
