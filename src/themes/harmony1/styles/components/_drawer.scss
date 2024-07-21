@@ -12,11 +12,14 @@
           grid-template-areas: 'prepend' ' content';
           align-content: center;
           text-align: center;
-          .v-list-item__spacer {
+          &__spacer {
             display: none;
           }
-          .v-list-item__prepend {
+          &__prepend {
             justify-content: center;
+          }
+          &__overlay {
+            color: rgb(var(--v-theme-on-background));
           }
         }
       }
