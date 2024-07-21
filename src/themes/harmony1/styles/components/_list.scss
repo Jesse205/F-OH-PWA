@@ -80,8 +80,11 @@
       }
     }
 
+    // vuetify 会添加很多无关的选择器，因此需要重置 .v-list-item__overlay 的透明度为 0
     & > .v-list-item__overlay,
-    &[aria-haspopup='menu'] > .v-list-item__overlay {
+    &[aria-haspopup='menu'][aria-expanded='true'] > .v-list-item__overlay,
+    &--active:hover > .v-list-item__overlay,
+    &[aria-haspopup='menu'][aria-expanded='true']:hover > .v-list-item__overlay {
       transition-duration: motions.$background-duration;
       opacity: 0;
     }
@@ -101,16 +104,19 @@
         }
       }
     }
-
-    &:hover > .v-list-item__overlay {
-      opacity: calc(var(--v-hover-opacity) * var(--v-theme-overlay-multiplier));
+    &.v-list-item.v-list-item.v-list-item {
+      @media (hover: hover) {
+        &:hover > .v-list-item__overlay {
+          opacity: calc(var(--v-hover-opacity) * var(--v-theme-overlay-multiplier));
+        }
+      }
+      &:active > .v-list-item__overlay {
+        opacity: calc(var(--v-pressed-opacity) * var(--v-theme-overlay-multiplier));
+      }
     }
-    &:active > .v-list-item__overlay {
-      opacity: calc(var(--v-pressed-opacity) * var(--v-theme-overlay-multiplier));
-    }
 
-    // &.v-list-item--active-background用于增强选择器特定值
-    &.v-list-item--active-background {
+    // 以下重复的键用于增强选择器特定值，因为上面用于重置的选择器太强了
+    &--active-background.v-list-item.v-list-item.v-list-item {
       & > .v-list-item__overlay {
         opacity: calc(var(--v-activated-opacity) * var(--v-theme-overlay-multiplier));
       }

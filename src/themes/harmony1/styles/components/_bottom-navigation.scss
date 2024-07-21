@@ -18,12 +18,6 @@
         &--active {
           opacity: 1;
         }
-        &:not(:hover):not(:active).v-btn--active {
-          & > .v-btn__overlay {
-            // 移除激活时的背景
-            opacity: 0;
-          }
-        }
         &--disabled {
           opacity: 0.26;
         }

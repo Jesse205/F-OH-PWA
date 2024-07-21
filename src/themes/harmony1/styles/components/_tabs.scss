@@ -29,11 +29,13 @@
         min-width: 24px;
         flex: 0 1 24px;
         border-radius: dimensions.$radius-md;
-        &:hover {
-          background-color: rgba(
-            var(--v-theme-on-surface),
-            calc(var(--v-hover-opacity) * var(--v-theme-overlay-multiplier))
-          );
+        @media (hover: hover) {
+          &:hover {
+            background-color: rgba(
+              var(--v-theme-on-surface),
+              calc(var(--v-hover-opacity) * var(--v-theme-overlay-multiplier))
+            );
+          }
         }
         &:active {
           background-color: rgba(

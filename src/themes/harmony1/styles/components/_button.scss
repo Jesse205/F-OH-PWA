@@ -30,9 +30,11 @@
         }
       }
     }
-    &:hover {
-      & > .v-btn__overlay {
-        opacity: calc(var(--v-hover-opacity) * var(--v-theme-overlay-multiplier)) !important;
+    @media (hover: hover) {
+      &:hover {
+        & > .v-btn__overlay {
+          opacity: calc(var(--v-hover-opacity) * var(--v-theme-overlay-multiplier)) !important;
+        }
       }
     }
     &:active {
