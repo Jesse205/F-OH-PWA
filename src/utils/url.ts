@@ -70,7 +70,7 @@ function getApiUrl(overrideApiUrl?: string, preferredApiUrl?: string, useOriginU
   } else {
     rawUrl = isClientApp ? URL_API_WEB : URL_API_CLIENT
   }
-  return completeApiUrl(rawUrl, location.href)
+  return completeUrl(rawUrl, location.href)
 }
 
 export const overrideApiUrl = getOverrideApiUrl()
