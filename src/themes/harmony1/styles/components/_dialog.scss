@@ -10,12 +10,22 @@
       margin: 16px;
       max-width: calc(100% - 32px);
       overflow: hidden;
-      > .v-card {
+
+      > .v-card,
+      & > form > .v-card {
         background-color: rgba(var(--v-theme-surface), 0.85) !important;
         box-shadow: none;
-        .v-card-actions {
+        & > .v-card-item {
+          padding: 0 24px;
+          height: 64px;
+        }
+        & > .v-card-text {
+          padding: 0 24px;
+        }
+        & > .v-card-actions {
           padding: 4px 12px 12px 12px;
           .v-btn {
+            height: 40px;
             width: 0;
             flex: 1;
             margin: 4px;
@@ -34,10 +44,6 @@
               border-right-width: 0;
             }
           }
-        }
-        .v-card-text {
-          padding-top: 4px;
-          padding-bottom: 4px;
         }
       }
       @media (max-width: 600px) {

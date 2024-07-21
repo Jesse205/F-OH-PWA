@@ -1,0 +1,24 @@
+@use '../settings/motions';
+@use '../settings/dimensions';
+
+@mixin style {
+  .v-field {
+    &__input {
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+    &__overlay {
+      transition-duration: motions.$background-duration;
+      opacity: 0;
+      background: rgb(var(--v-theme-on-background));
+      border-radius: dimensions.$radius-sm;
+    }
+    &:active > .v-field__overlay {
+      opacity: calc(var(--v-pressed-opacity) * var(--v-theme-overlay-multiplier));
+    }
+    &--variant-filled .v-field__outline::after,
+    &--variant-underlined .v-field__outline::after {
+      content: none;
+    }
+  }
+}

@@ -5,6 +5,7 @@
 @use './card';
 @use './dialog';
 @use './drawer';
+@use './field';
 @use './list';
 @use './menu';
 @use './overlay';
@@ -22,6 +23,7 @@
   @include card.style;
   @include dialog.style;
   @include drawer.style;
+  @include field.style;
   @include list.style;
   @include menu.style;
   @include overlay.style;
