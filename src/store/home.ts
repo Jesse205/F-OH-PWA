@@ -29,6 +29,7 @@ export const useHomeStore = defineStore('home', () => {
     execute()
   }
   function ensureData() {
+    if (data.value) return
     execute()
   }
 
