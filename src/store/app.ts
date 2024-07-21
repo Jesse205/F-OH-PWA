@@ -18,7 +18,7 @@ export const useAppStore = defineStore('app', () => {
   /**
    * 应用标题，不带后缀
    */
-  const title = ref<string | null>(null)
+  const title = ref<string>()
 
   /**
    * 显示模式，常用于判断是否处于PWA模式
