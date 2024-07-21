@@ -1,9 +1,26 @@
 @use '../settings/fonts';
+@use '../utils/border';
 
 @mixin style {
   .v-navigation-drawer {
+    border: unset;
+    &--left:not(.v-navigation-drawer--rail) {
+      &::after {
+        content: '';
+        position: absolute;
+        top: border.$border-margin;
+        right: 0;
+        bottom: border.$border-margin;
+        border-color: rgba(var(--v-border-color), var(--v-border-opacity));
+        border-style: solid;
+        border-width: 0;
+        border-right-width: border.$border-width;
+      }
+    }
     &--rail {
-      border-right-width: 0;
+      &::after {
+        content: none;
+      }
       .v-list--nav {
         width: 96px;
         padding: 0;
