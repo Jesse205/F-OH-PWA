@@ -11,7 +11,6 @@ defineProps<{
 
 const model = defineModel<string>()
 const slots = useSlots()
-// const emits = defineEmits<(e: 'update:modelValue', modelValue: string) => void>()
 
 const dialogVisible = ref(false)
 const editValue = ref('')

@@ -3,7 +3,8 @@ import AppMain from '@/components/AppMain.vue'
 import BackButton from '@/components/appbar/BackButton.vue'
 import TitleList from '@/components/list/AppList.vue'
 import AppListDialogItem from '@/components/list/AppListDialogItem.vue'
-import { useSingleSelectedUi } from '@/composables/converts'
+import AppListSingleSelectItem from '@/components/list/AppListSingleSelectItem.vue'
+import { refTransformer } from '@/composables/converts'
 import {
   usePageTransition,
   usePreferredApiUrl,
@@ -24,28 +25,12 @@ useTitle(computed(() => t('settings')))
 
 const appVersion = __VERSION__
 
-const { selectedValues: selectedLocales, selectedName: languageName } = useSingleSelectedUi(
-  languages,
-  locale,
-  usePreferredLocale(),
-  (item) => item.code,
-  (item) => item.name,
-)
-
-const {
-  selectedValues: selectedDesigns,
-  selectedName: designName,
-  selectedValue: preferredDesign,
-} = useSingleSelectedUi(
-  designLanguages,
-  usePreferredDesignLanguage(),
-  undefined,
-  (item) => item.code,
-  (item) => item.name,
-)
+const language = refTransformer(locale, usePreferredLocale())
+const preferredDesignLanguage = usePreferredDesignLanguage()
 
 const isDesignChanged = computed(
-  () => appStore.design !== preferredDesign.value && designLanguageCodes.includes(preferredDesign.value),
+  () =>
+    appStore.design !== preferredDesignLanguage.value && designLanguageCodes.includes(preferredDesignLanguage.value),
 )
 
 const preferredApiUrl = usePreferredApiUrl()
@@ -63,35 +48,26 @@ const pageTransitionEnabled = usePageTransition()
     <app-main>
       <v-container class="py-0">
         <title-list class="my-4" :title="$t('userInterface', 2)">
-          <v-list-item prepend-icon="$translate" :title="$t('designLanguage')" link>
-            <!-- origin="left" 修复小窗时定位错误 -->
-
-            <v-menu activator="parent" origin="left">
-              <v-list v-model:selected="selectedDesigns" select-strategy="single-leaf" mandatory>
-                <v-list-item
-                  v-for="item in designLanguages"
-                  v-bind="item"
-                  :key="item.code"
-                  :title="item.name"
-                  :value="item.code"
-                  :disabled="item.disabled"
-                />
-              </v-list>
-            </v-menu>
-            <template #subtitle>
-              {{ designName }}
+          <app-list-single-select-item
+            v-model="preferredDesignLanguage"
+            :title="$t('designLanguage')"
+            :items="designLanguages"
+            :value-getter="(item) => item.code"
+            :disabled-getter="(item) => item.disabled ?? false"
+            :name-getter="(item) => item.name"
+          >
+            <template #subtitle="{ displayName }">
+              {{ displayName }}
               <p v-if="isDesignChanged" class="color-warning">{{ $t('designLanguageTakeEffectMessage') }}</p>
             </template>
-          </v-list-item>
-
-          <v-list-item prepend-icon="$translate" :title="$t('language')" :subtitle="languageName" link>
-            <!-- origin="left" 修复小窗时定位错误 -->
-            <v-menu activator="parent" origin="left">
-              <v-list v-model:selected="selectedLocales" select-strategy="single-leaf" mandatory>
-                <v-list-item v-for="item in languages" :key="item.code" :title="item.name" :value="item.code" />
-              </v-list>
-            </v-menu>
-          </v-list-item>
+          </app-list-single-select-item>
+          <app-list-single-select-item
+            v-model="language"
+            :title="$t('language')"
+            :items="languages"
+            :value-getter="(item) => item.code"
+            :name-getter="(item) => item.name"
+          />
           <v-list-item
             prepend-icon="$info"
             :title="$t('pageHierarchyTransition')"
@@ -99,7 +75,7 @@ const pageTransitionEnabled = usePageTransition()
             @click="pageTransitionEnabled = !pageTransitionEnabled"
           >
             <template #append>
-              <v-switch v-model="pageTransitionEnabled" />
+              <v-switch v-model="pageTransitionEnabled" tabindex="-1" />
             </template>
           </v-list-item>
         </title-list>
