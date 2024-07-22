@@ -31,11 +31,13 @@
   "game": "游戏",
   "apiUrl": "API 地址",
   "apiUrlOverrideMessage": "当前 API 地址已被覆盖为 {overrideApiUrl}。",
+  "apiUrlTakeEffectMessage": "* 新的 API 地址将在重新加载后生效。",
   "moreInfo": "更多信息",
   "moreOptions": "更多选项",
   "notSet": "未设置",
   "loading": "加载中",
   "designLanguage": "设计语言",
+  "designLanguageTakeEffectMessage": "* 新的设计语言将在重新加载后生效。",
   "userInterface": "用户界面",
   "pageHierarchyTransition": "页面层级动效",
   "unknown": {

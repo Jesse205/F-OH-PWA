@@ -31,11 +31,13 @@
   "game": "Game",
   "apiUrl": "API url",
   "apiUrlOverrideMessage": "The current API address has been overridden to {overrideApiUrl}.",
+  "apiUrlTakeEffectMessage": "* The new API address will take effect after the reload.",
   "moreInfo": "More info",
   "moreOptions": "More options",
   "notSet": "Not set",
   "loading": "Loading",
   "designLanguage": "Design language",
+  "designLanguageTakeEffectMessage": "* The new design language will take effect after reload.",
   "userInterface": "User interface|User interfaces",
   "pageHierarchyTransition": "Page hierarchy transition",
   "unknown": {

@@ -3,7 +3,7 @@ import AppMain from '@/components/AppMain.vue'
 import BackButton from '@/components/appbar/BackButton.vue'
 import TitleList from '@/components/list/AppList.vue'
 import AppListDialogItem from '@/components/list/AppListDialogItem.vue'
-import { useSingleSelected } from '@/composables/converts'
+import { useSingleSelectedUi } from '@/composables/converts'
 import {
   usePageTransition,
   usePreferredApiUrl,
@@ -13,7 +13,7 @@ import {
 import { useTitle } from '@/composables/title'
 import { designLanguageCodes, designLanguages, languages } from '@/data/settings'
 import { useAppStore } from '@/store/app'
-import { overrideApiUrl } from '@/utils/url'
+import { preferredApiUrl as currentPreferredApiUrl, overrideApiUrl } from '@/utils/url'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -24,22 +24,32 @@ useTitle(computed(() => t('settings')))
 
 const appVersion = __VERSION__
 
-const preferredLocale = usePreferredLocale()
-const selectedLocales = useSingleSelected(locale, preferredLocale)
-const languageName = computed(() => {
-  return languages.find((item) => item.code === locale.value)?.name ?? locale.value
-})
+const { selectedValues: selectedLocales, selectedName: languageName } = useSingleSelectedUi(
+  languages,
+  locale,
+  usePreferredLocale(),
+  (item) => item.code,
+  (item) => item.name,
+)
 
-const preferredDesign = usePreferredDesignLanguage()
-const selectedDesigns = useSingleSelected(preferredDesign)
-const designName = computed(() => {
-  return designLanguages.find((item) => item.code === preferredDesign.value)?.name ?? preferredDesign.value
-})
+const {
+  selectedValues: selectedDesigns,
+  selectedName: designName,
+  selectedValue: preferredDesign,
+} = useSingleSelectedUi(
+  designLanguages,
+  usePreferredDesignLanguage(),
+  undefined,
+  (item) => item.code,
+  (item) => item.name,
+)
+
 const isDesignChanged = computed(
   () => appStore.design !== preferredDesign.value && designLanguageCodes.includes(preferredDesign.value),
 )
 
-const apiUrl = usePreferredApiUrl()
+const preferredApiUrl = usePreferredApiUrl()
+const isPreferredApiUrlChanged = computed(() => currentPreferredApiUrl !== preferredApiUrl.value)
 
 const pageTransitionEnabled = usePageTransition()
 </script>
@@ -70,9 +80,7 @@ const pageTransitionEnabled = usePageTransition()
             </v-menu>
             <template #subtitle>
               {{ designName }}
-              <p v-if="isDesignChanged" class="color-warning">
-                * The new design language will take effect after reload.
-              </p>
+              <p v-if="isDesignChanged" class="color-warning">{{ $t('designLanguageTakeEffectMessage') }}</p>
             </template>
           </v-list-item>
 
@@ -98,10 +106,11 @@ const pageTransitionEnabled = usePageTransition()
 
         <!-- 应用 -->
         <title-list class="my-4" :title="$t('app.title')">
-          <app-list-dialog-item v-model="apiUrl" prepend-icon="$circle" :title="$t('apiUrl')">
+          <app-list-dialog-item v-model="preferredApiUrl" prepend-icon="$circle" :title="$t('apiUrl')">
             <template #subtitle>
-              {{ apiUrl.trim() || $t('notSet') }}
+              {{ preferredApiUrl.trim() || $t('notSet') }}
               <p v-if="overrideApiUrl">{{ $t('apiUrlOverrideMessage', { overrideApiUrl }) }}</p>
+              <p v-if="isPreferredApiUrlChanged" class="color-warning">{{ $t('apiUrlTakeEffectMessage') }}</p>
             </template>
           </app-list-dialog-item>
           <!-- 关于 -->
