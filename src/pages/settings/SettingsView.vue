@@ -71,7 +71,6 @@ const pageTransitionEnabled = usePageTransition()
           <v-list-item
             prepend-icon="$info"
             :title="$t('pageHierarchyTransition')"
-            active-class="ignore-active-style"
             @click="pageTransitionEnabled = !pageTransitionEnabled"
           >
             <template #append>
