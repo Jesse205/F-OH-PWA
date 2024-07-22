@@ -36,6 +36,7 @@ const displayName = computed(() => {
     <template v-if="slots.subtitle" #subtitle>
       <slot name="subtitle" :display-name="displayName" />
     </template>
+    <slot />
   </v-list-item>
 </template>
 

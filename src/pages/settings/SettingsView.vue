@@ -56,10 +56,9 @@ const pageTransitionEnabled = usePageTransition()
             :disabled-getter="(item) => item.disabled ?? false"
             :name-getter="(item) => item.name"
           >
-            <template #subtitle="{ displayName }">
-              {{ displayName }}
-              <p v-if="isDesignChanged" class="color-warning">{{ $t('designLanguageTakeEffectMessage') }}</p>
-            </template>
+            <v-list-item-subtitle v-if="isDesignChanged" class="color-warning">
+              {{ $t('designLanguageTakeEffectMessage') }}
+            </v-list-item-subtitle>
           </app-list-single-select-item>
           <app-list-single-select-item
             v-model="language"
@@ -81,12 +80,18 @@ const pageTransitionEnabled = usePageTransition()
 
         <!-- 应用 -->
         <title-list class="my-4" :title="$t('app.title')">
-          <app-list-dialog-item v-model="preferredApiUrl" prepend-icon="$circle" :title="$t('apiUrl')">
-            <template #subtitle>
-              {{ preferredApiUrl.trim() || $t('notSet') }}
-              <p v-if="overrideApiUrl">{{ $t('apiUrlOverrideMessage', { overrideApiUrl }) }}</p>
-              <p v-if="isPreferredApiUrlChanged" class="color-warning">{{ $t('apiUrlTakeEffectMessage') }}</p>
-            </template>
+          <app-list-dialog-item
+            v-model="preferredApiUrl"
+            prepend-icon="$circle"
+            :title="$t('apiUrl')"
+            :subtitle="preferredApiUrl.trim() || $t('notSet')"
+          >
+            <v-list-item-subtitle v-if="overrideApiUrl" class="color-warning">
+              {{ $t('apiUrlOverrideMessage', { overrideApiUrl }) }}
+            </v-list-item-subtitle>
+            <v-list-item-subtitle v-if="isPreferredApiUrlChanged" class="color-warning">
+              {{ $t('apiUrlTakeEffectMessage') }}
+            </v-list-item-subtitle>
           </app-list-dialog-item>
           <!-- 关于 -->
           <v-list-item

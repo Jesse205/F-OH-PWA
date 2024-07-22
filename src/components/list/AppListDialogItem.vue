@@ -61,5 +61,6 @@ function emitValue() {
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <slot />
   </v-list-item>
 </template>
