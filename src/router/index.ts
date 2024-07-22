@@ -6,21 +6,6 @@ import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router
 
 const TAG = '[Router]'
 
-interface ScrollToOptions2 {
-  [path: string]: ScrollToOptions
-}
-
-declare module 'vue-router' {
-  export interface HistoryState {
-    forward?: string
-    back?: string
-    current?: string
-    scroll?: ScrollToOptions
-    // 基于单个元素和路径的滚动配置
-    scroll2?: ScrollToOptions2
-  }
-}
-
 const routes: Readonly<RouteRecordRaw[]> = [
   {
     path: '/',
@@ -116,25 +101,35 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from) => {
+  if (IS_DEV_MODE) {
+    console.log(TAG, 'beforeEach', to, from)
+  }
   if (!to.query.apiUrl && from.query.apiUrl) {
     to.query.apiUrl = from.query.apiUrl
     return to
   }
 })
 
+// 当前页面索引，用于判断路由切换时是前进还是后退
+let previousPosition = 0
 router.afterEach((to, from) => {
   if (IS_DEV_MODE) {
     console.debug(TAG, 'afterEach', to, from)
   }
+  const currentPosition = history.state.position
+  const isForward = currentPosition >= previousPosition
+  if (IS_DEV_MODE) {
+    console.debug(TAG, `currentPosition=${currentPosition}, previousPosition=${previousPosition}`)
+  }
+  previousPosition = currentPosition ?? 0
 
   // 动画
   if (from.path !== '/' && isPageTransitionEnabled()) {
     // const name = history.state.forward ? 'scroll-x-transition' : 'scroll-x-reverse-transition'
     // const name = history.state.forward ? 'page-leave-transition' : 'page-enter-transition'
-    const name = history.state.forward ? 'page-leave-animation' : 'page-enter-animation'
+    const name = !isForward ? 'page-leave-animation' : 'page-enter-animation'
     to.meta.transition = name
     from.meta.transition = name
-
   } else {
     to.meta.transition = ''
     from.meta.transition = ''
