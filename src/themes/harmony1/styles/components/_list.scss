@@ -60,7 +60,7 @@
     /// 当列表为双行文本，左侧有元素时，列表高度默认为 72vp
     /// 当列表为三行文本，列表默认高度为 96vp
     ///
-    /// 根据规格推算出，图片的上下边距为 16px，文字的上下边距为12px，且每行之间有8px的间隔，除了第四种情况。
+    /// 根据规格推算出，图片的上下边距为 16px，文字的上下边距为12px，且每行之间有8px的间隔，除了第5和6种情况。
     &--density-default:not(.v-list-item--one-line, .v-list-item--two-line, .v-list-item--three-line) {
       padding-top: 0;
       padding-bottom: 0;
@@ -71,6 +71,18 @@
       .v-list-item__content {
         padding-top: 12px;
         padding-bottom: 12px;
+      }
+    }
+
+    &--auto-height {
+      &--one-lines {
+        min-height: 48px;
+      }
+      &--two-lines {
+        min-height: 64px;
+      }
+      &--three-lines {
+        min-height: 96px;
       }
     }
 
@@ -135,4 +147,7 @@
       }
     }
   }
+  /* .v-list-item-subtitle {
+    line-height: 1.5em;
+  } */
 }
