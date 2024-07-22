@@ -31,6 +31,7 @@ export const blueprint: Blueprint = {
           background: colors.backgroundGrayDark,
           'surface-variant': '#424242',
           'on-surface-variant': '#ffffff',
+          'surface-bright': '#ffffff',
           warning: colors.alertDark,
           error: colors.warningDark,
           info: colors.accentDark,
