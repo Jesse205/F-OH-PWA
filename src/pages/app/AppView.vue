@@ -120,7 +120,7 @@ function shareApp() {
           class="summary-skeleton"
           :class="{ loading: isLoading }"
           type="sentences"
-          color="rgba(var(--v-theme-on-surface), 0.12)"
+          color="rgba(var(--v-theme-on-surface), var(--v-activated-opacity))"
         />
         <v-card v-else-if="appInfo?.desc" class="summary-card" variant="tonal" flat :border="false" tag="article">
           <v-card-text>{{ appInfo.desc }}</v-card-text>
