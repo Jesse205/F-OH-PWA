@@ -22,6 +22,8 @@ export const blueprint: Blueprint = {
         variables: {
           'activated-opacity': 0.1,
           'pressed-opacity': 0.1,
+          'high-emphasis-opacity': dimensions.opacityLevel1Light,
+          'medium-emphasis-opacity': dimensions.opacityLevel2Light,
         },
       },
       dark: {
@@ -39,6 +41,8 @@ export const blueprint: Blueprint = {
         variables: {
           'activated-opacity': 0.15,
           'pressed-opacity': 0.15,
+          'high-emphasis-opacity': dimensions.opacityLevel1Dark,
+          'medium-emphasis-opacity': dimensions.opacityLevel2Dark,
         },
       },
     },
@@ -122,12 +126,14 @@ export const blueprint: Blueprint = {
     VTooltip: {
       transition: 'fade-transition',
     },
-    VListSubheader: {
-      color: 'primary',
-    },
     VList: {
       lines: false,
       rounded: true,
+    },
+    AppCategoryList: {
+      lines: false,
+      rounded: true,
+      class: ['app-category-list'],
     },
     VListItem: {
       rounded: true,
@@ -143,11 +149,11 @@ export const blueprint: Blueprint = {
         color: 'primary',
         activeClass: 'v-list-item--active-background',
         lines: 'one',
-        bgColor: 'background',
       },
       VListItem: {
         VAvatar: {
           size: 'default',
+          bgColor: 'background',
         },
       },
       VTooltip: {

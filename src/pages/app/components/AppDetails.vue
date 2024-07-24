@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TitleList from '@/components/list/AppList.vue'
+import AppListCategory from '@/components/list/AppListCategory.vue'
 import type { AppInfo } from '@/utils/apps'
 import { mdiIdentifier } from '@mdi/js'
 
@@ -10,7 +10,7 @@ defineProps<{
 </script>
 
 <template>
-  <title-list lass="my-4" lines="two" :title="$t('moreInfo')">
+  <app-list-category :subheader="$t('moreInfo')">
     <v-skeleton-loader
       v-if="loading"
       class="skeleton--small-avatar"
@@ -30,5 +30,5 @@ defineProps<{
         :subtitle="`${appInfo?.id ?? $t('unknown.title')}`"
       />
     </template>
-  </title-list>
+  </app-list-category>
 </template>

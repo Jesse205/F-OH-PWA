@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import CenterSpace from '@/components/CenterSpace.vue'
-import AppList from '@/components/list/AppList.vue'
+import AppListCategory from '@/components/list/AppListCategory.vue'
 import AppListProjectItem from '@/components/list/AppListProjectItem.vue'
 import { useAppsStore } from '@/store/apps'
 import { getAppShareUrl, type AppInfo } from '@/utils/apps'
@@ -118,20 +118,22 @@ onMounted(() => {
       <!-- Alerts -->
       <v-alert v-if="errMsg" class="my-4" :title="$t('error.loading')" :text="errMsg" type="error" />
       <!-- MainLayout -->
-      <template v-for="appType in appTypes">
-        <app-list v-if="appType.apps && appType.apps.length" :key="appType.key" class="my-4" :title="appType.title">
-          <div class="project-items" @dragstart="onProjectDragStart">
-            <app-list-project-item
-              v-for="item in appType.apps"
-              :key="item.id"
-              class="project-item"
-              :item="item"
-              :data-pkg="item.packageName"
-              data-allow-drag
-            />
-          </div>
-        </app-list>
-      </template>
+      <app-category-list class="my-4">
+        <template v-for="appType in appTypes">
+          <app-list-category v-if="appType.apps && appType.apps.length" :key="appType.key" :subheader="appType.title">
+            <div class="project-items" @dragstart="onProjectDragStart">
+              <app-list-project-item
+                v-for="item in appType.apps"
+                :key="item.id"
+                class="project-item"
+                :item="item"
+                :data-pkg="item.packageName"
+                data-allow-drag
+              />
+            </div>
+          </app-list-category>
+        </template>
+      </app-category-list>
     </v-container>
 
     <template #root>

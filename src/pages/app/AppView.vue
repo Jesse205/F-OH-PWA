@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import AppMain from '@/components/AppMain.vue'
 import BackButton from '@/components/appbar/BackButton.vue'
-import TitleList from '@/components/list/AppList.vue'
 import { useTitle } from '@/composables/title'
 import { useAppsStore } from '@/store/apps'
 import { getAppShareUrl, getAppTags, type AppInfo } from '@/utils/apps'
@@ -12,6 +11,7 @@ import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 
+import AppListCategory from '@/components/list/AppListCategory.vue'
 import AppDetails from './components/AppDetails.vue'
 import AppOverview from './components/AppOverview.vue'
 
@@ -136,30 +136,31 @@ function shareApp() {
           </div>
         </div>
         <!-- #endregion -->
+        <app-category-list class="my-4">
+          <!-- #region 开发者信息 -->
+          <app-list-category v-show="appInfo?.vender || isLoading" :subheader="$t('developer.title')" data-allow-drag>
+            <v-skeleton-loader
+              v-if="isLoading"
+              class="skeleton--small-avatar"
+              type="list-item-avatar-two-line"
+              color="transparent"
+            />
+            <v-list-item
+              v-else
+              prepend-icon="$account"
+              :lines="developerSpace ? 'two' : 'one'"
+              :title="appInfo?.vender"
+              :subtitle="developerSpace ?? undefined"
+              append-icon="$next"
+              :href="developerSpace ?? `https://cn.bing.com/search?q=${appInfo?.vender}`"
+              target="_blank"
+            />
+          </app-list-category>
+          <!-- #endregion -->
 
-        <!-- #region 开发者信息 -->
-        <title-list v-show="appInfo?.vender || isLoading" class="my-4" :title="$t('developer.title')" data-allow-drag>
-          <v-skeleton-loader
-            v-if="isLoading"
-            class="skeleton--small-avatar"
-            type="list-item-avatar-two-line"
-            color="transparent"
-          />
-          <v-list-item
-            v-else
-            prepend-icon="$account"
-            :lines="developerSpace ? 'two' : 'one'"
-            :title="appInfo?.vender"
-            :subtitle="developerSpace ?? undefined"
-            append-icon="$next"
-            :href="developerSpace ?? `https://cn.bing.com/search?q=${appInfo?.vender}`"
-            target="_blank"
-          />
-        </title-list>
-        <!-- #endregion -->
-
-        <!-- 详情信息 -->
-        <AppDetails class="my-4" :loading="isLoading" :app-info="appInfo" :title-class="['itemTitle']" />
+          <!-- 详情信息 -->
+          <AppDetails :loading="isLoading" :app-info="appInfo" :title-class="['itemTitle']" />
+        </app-category-list>
       </v-container>
     </app-main>
   </v-layout>

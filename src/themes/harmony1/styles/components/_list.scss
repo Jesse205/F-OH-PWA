@@ -6,21 +6,49 @@
 @use '../utils/border';
 
 @mixin style {
+  .app-list-category {
+    overflow: hidden;
+    & + .app-list-category {
+      margin-top: 16px;
+    }
+    &__item-container {
+      padding: 4px;
+      background-color: rgba(var(--v-theme-surface));
+    }
+    .v-list-subheader {
+      margin-top: -8px;
+      color: rgba(var(--v-theme-on-surface), var(--v-medium-emphasis-opacity));
+    }
+  }
+
   .v-list {
     --border-margin-left: 40px;
     --border-margin-right: 0px;
     padding: 4px;
     &--rounded {
       border-radius: dimensions.$radius-card;
+      .app-list-category__item-container {
+        border-radius: dimensions.$radius-card;
+      }
     }
     &--nav {
       padding-inline: 8px;
+    }
+  }
+  .app-category-list {
+    padding: 0;
+    background-color: transparent;
+    &--rounded {
+      .app-list-category__item-container {
+        border-radius: dimensions.$radius-card;
+      }
     }
   }
 
   .v-list-subheader {
     padding-inline-start: 12px !important;
     padding-inline-end: 12px;
+    color: rgb(var(--v-theme-primary));
   }
 
   .v-list-item {
@@ -47,6 +75,7 @@
       padding-inline: 12px;
     }
     &--nav {
+      background: transparent;
       &::before {
         border-bottom-width: 0;
       }
@@ -146,8 +175,12 @@
         width: 16px;
       }
     }
+    &__append {
+      & > .v-badge ~ .v-list-item__spacer,
+      & > .v-icon ~ .v-list-item__spacer,
+      & > .v-tooltip ~ .v-list-item__spacer {
+        width: 4px;
+      }
+    }
   }
-  /* .v-list-item-subtitle {
-    line-height: 1.5em;
-  } */
 }

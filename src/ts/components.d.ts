@@ -6,5 +6,6 @@ declare module 'vue' {
   export interface GlobalComponents {
     AppMain: typeof AppMain
     RouterView: RouterView
+    AppCategoryList: typeof VList
   }
 }

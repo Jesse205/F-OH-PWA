@@ -8,6 +8,7 @@ import { blueprint as harmonyBlueprint } from '@/themes/harmony1'
 import { blueprint as material2Blueprint } from '@/themes/material2'
 import { getPreferredDesignLanguage } from '@/utils/settings'
 import { createVuetify, type Blueprint } from 'vuetify'
+import { VList } from 'vuetify/components'
 
 let blueprint: Blueprint
 switch (getPreferredDesignLanguage()) {
@@ -26,6 +27,9 @@ export default createVuetify({
   blueprint,
   display: {
     mobileBreakpoint: 'lg',
+  },
+  aliases: {
+    AppCategoryList: VList,
   },
   defaults: {
     VList: {
