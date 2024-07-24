@@ -29,7 +29,7 @@ defineExpose({
   <div class="app-overview">
     <!-- 图标 -->
     <v-skeleton-loader
-      class="ohos-app-icon app-icon border rounded-lg"
+      class="ohos-app-icon app-icon border"
       :class="{ loading: loading }"
       type="image"
       :loading="loading"
