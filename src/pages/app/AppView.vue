@@ -151,7 +151,7 @@ function shareApp() {
               :lines="developerSpace ? 'two' : 'one'"
               :title="appInfo?.vender"
               :subtitle="developerSpace ?? undefined"
-              append-icon="$next"
+              append-icon="$openInNew"
               :href="developerSpace ?? `https://cn.bing.com/search?q=${appInfo?.vender}`"
               target="_blank"
             />
