@@ -105,7 +105,7 @@ onBeforeRouteUpdate((to) => {
       - 当设备为小屏时，始终隐藏按钮。
       - 例外情况：首页但是有历史记录，始终显示按钮。
       -->
-      <back-button v-if="!smAndDown || !isBackHistoryMain" />
+      <back-button v-if="!smAndDown" />
       <v-app-bar-title>{{ parseI18n(currentRouteData.title, $t) }}</v-app-bar-title>
       <v-menu origin="bottom" width="172" location="top">
         <template #activator="{ props: menu }">
