@@ -44,7 +44,7 @@ function onClick() {
 <template>
   <transition name="slide-x-transition">
     <v-btn
-      v-show="isBtnShowing"
+      v-if="isBtnShowing"
       v-tooltip="isHomeButton ? $t('home') : $t('action.back')"
       v-bind="attrs"
       class="btn"
