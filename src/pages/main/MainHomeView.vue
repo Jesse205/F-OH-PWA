@@ -51,7 +51,7 @@ const progressMarginTop = computed(() => {
       <UnsafeBypassAlert v-if="errMsg && homeStore.data === undefined" />
 
       <!-- 公告 -->
-      <title-list v-if="homeStore.data?.showAnnouncement" class="my-4" :title="$t('announcement')">
+      <title-list v-if="homeStore.isShowAnnouncement" class="my-4" :title="$t('announcement')">
         <!-- eslint-disable-next-line vue/no-v-html vue/no-v-text-v-html-on-component -->
         <v-list-item class="announcement-content" v-html="homeStore.announcementHtml" />
       </title-list>

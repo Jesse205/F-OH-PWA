@@ -12,7 +12,9 @@ const TAG = '[HomeStore]'
  * 首页数据
  */
 export const useHomeStore = defineStore('home', () => {
-  const { data, isFinished, isLoading, error, execute } = useAxios<HomeData>(PATH_API_HOME, apiAxios, {})
+  const { data, isFinished, isLoading, error, execute } = useAxios<HomeData>(PATH_API_HOME, apiAxios)
+  const isLoaded = computed(() => data.value !== undefined)
+  const isShowAnnouncement = computed(() => data.value?.showAnnouncement ?? false)
   const converter = getShowdownConverter()
   const announcementHtml = computed(() => {
     if (!data.value?.announcement) return undefined
@@ -29,9 +31,9 @@ export const useHomeStore = defineStore('home', () => {
     execute()
   }
   function ensureData() {
-    if (data.value) return
+    if (isLoaded.value) return
     execute()
   }
 
-  return { data, isFinished, isLoading, error, announcementHtml, ensureData, refreshData }
+  return { data, isFinished, isLoading, isLoaded, error, isShowAnnouncement, announcementHtml, ensureData, refreshData }
 })
