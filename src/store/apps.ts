@@ -18,7 +18,7 @@ export const useAppsStore = defineStore('apps', () => {
     execute()
   }
   function ensureData() {
-    if (isLoaded.value) return
+    if (isLoaded.value || isLoading.value) return
     execute()
   }
 
