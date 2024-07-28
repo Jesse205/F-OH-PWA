@@ -1,6 +1,6 @@
 import { URL_API_CLIENT, URL_API_CLIENT_ORIGIN, URL_API_WEB, URL_API_WEB_ORIGIN } from '@/constants/urls'
 import { getPreferredApiUrl } from '@/utils/settings'
-import { isClientApp } from './app'
+import { isClientApp, isTauriApp } from './app'
 
 const REGEX_GITHUB_USER = /^https:\/\/(www\.)?github\.com\/[^/]+/
 const REGEX_GITEE_USER = /^https:\/\/(www\.)?gitee\.com\/[^/]+/
@@ -77,3 +77,18 @@ export const overrideApiUrl = getOverrideApiUrl()
 export const preferredApiUrl = getPreferredApiUrl()
 export const currentApiUrl = getApiUrl(overrideApiUrl, preferredApiUrl ?? undefined)
 export const currentOriginApiUrl = getApiUrl(overrideApiUrl, preferredApiUrl ?? undefined)
+
+function isUnsafeUrl(url: string) {
+  const urlObj = new URL(url)
+  return urlObj.protocol === 'http:'
+}
+
+export function isBypassUnsafeUrlByChromeFlagsNeeded(apiUrl: string) {
+  if (isTauriApp) {
+    return false
+  }
+  if (location.protocol === 'https:' && isSecureContext) {
+    return isUnsafeUrl(apiUrl)
+  }
+  return false
+}

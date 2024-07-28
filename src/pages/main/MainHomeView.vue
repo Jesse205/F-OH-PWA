@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import UnsafeBypassAlert from '@/components/alert/UnsafeBypassAlert.vue'
 import AppMain from '@/components/AppMain.vue'
 import CenterSpace from '@/components/CenterSpace.vue'
 import TitleList from '@/components/list/AppList.vue'
@@ -8,7 +9,6 @@ import { useElementBounding, useScroll } from '@vueuse/core'
 import { max } from 'lodash-es'
 import { computed, onMounted, ref } from 'vue'
 import HomeBanner from './components/HomeBanner.vue'
-
 const homeStore = useHomeStore()
 onMounted(() => {
   homeStore.ensureData()
@@ -48,6 +48,8 @@ const progressMarginTop = computed(() => {
     <v-container class="py-0">
       <!-- Alerts -->
       <v-alert v-if="errMsg" class="my-4" :title="$t('error.loading')" :text="errMsg" type="error" />
+      <UnsafeBypassAlert v-if="errMsg && homeStore.data === undefined" />
+
       <!-- 公告 -->
       <title-list v-if="homeStore.data?.showAnnouncement" class="my-4" :title="$t('announcement')">
         <!-- eslint-disable-next-line vue/no-v-html vue/no-v-text-v-html-on-component -->

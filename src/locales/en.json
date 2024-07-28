@@ -74,7 +74,8 @@
     "back": "Back",
     "donate": "Donate",
     "installApp": "Install app",
-    "communicate": "Communicate"
+    "communicate": "Communicate",
+    "viewGuide": "View Guide"
   },
   "link": {
     "title": "Link",
@@ -113,5 +114,8 @@
     "jesse205": {
       "name": "{'@'}Jesse205"
     }
+  },
+  "alert": {
+    "unsafeApiAndMaybeBlockedByChromeMessage": "The current API url is not secure and your browser may be blocking the request, which you can try to resolve in Chrome Experiments."
   }
 }

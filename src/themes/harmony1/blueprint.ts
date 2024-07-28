@@ -24,6 +24,7 @@ export const blueprint: Blueprint = {
           'pressed-opacity': 0.1,
           'high-emphasis-opacity': dimensions.opacityLevel1Light,
           'medium-emphasis-opacity': dimensions.opacityLevel2Light,
+          'theme-code': '#E5E5E5',
         },
       },
       dark: {
@@ -162,7 +163,6 @@ export const blueprint: Blueprint = {
     },
     VDialog: {
       transition: 'dialog-transition',
-      width: '420',
       VCard: {
         color: 'surface',
         variant: 'flat',
@@ -177,6 +177,13 @@ export const blueprint: Blueprint = {
     },
     VAlert: {
       variant: 'tonal',
+      VBtn: {
+        size: 'default',
+        variant: 'text',
+        rounded: 'sm',
+        density: 'compact',
+        slim: true,
+      },
     },
     VSwitch: {
       color: 'primary',

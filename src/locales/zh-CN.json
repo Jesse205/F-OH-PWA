@@ -74,7 +74,8 @@
     "back": "返回",
     "donate": "捐赠",
     "installApp": "安装应用",
-    "communicate": "交流讨论"
+    "communicate": "交流讨论",
+    "viewGuide": "查看指南"
   },
   "link": {
     "title": "链接",
@@ -113,5 +114,8 @@
     "jesse205": {
       "name": "{'@'}Jesse205"
     }
+  },
+  "alert": {
+    "unsafeApiAndMaybeBlockedByChromeMessage": "当前 API 地址不安全，您的浏览器可能拦截了该请求，您可以在 Chrome Experiments 中尝试解决。"
   }
 }
