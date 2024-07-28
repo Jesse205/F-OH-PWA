@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import UnsafeBypassAlert from '@/components/alert/UnsafeBypassAlert.vue'
 import CenterSpace from '@/components/CenterSpace.vue'
 import AppListCategory from '@/components/list/AppListCategory.vue'
 import AppListProjectItem from '@/components/list/AppListProjectItem.vue'
@@ -117,6 +118,8 @@ onMounted(() => {
     <v-container class="container py-0" fluid>
       <!-- Alerts -->
       <v-alert v-if="errMsg" class="my-4" :title="$t('error.loading')" :text="errMsg" type="error" />
+      <UnsafeBypassAlert v-if="errMsg && appsStore.data === undefined" />
+
       <!-- MainLayout -->
       <app-category-list class="my-4">
         <template v-for="appType in appTypes">
