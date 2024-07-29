@@ -51,6 +51,10 @@
     color: rgb(var(--v-theme-primary));
   }
 
+  .v-list-item-subtitle {
+    line-height: inherit;
+  }
+
   .v-list-item {
     position: relative;
 
@@ -81,15 +85,13 @@
       }
     }
 
-    /// 文档中的规格
+    /// 文档中的规格（鸿蒙设计v2的参数，v1太麻烦了）
     /// 当列表为单行文本，且没有左侧元素时，列表高度默认为 48vp
     /// 当列表为单行文本，左侧有元素且小于 40vp 时，列表高度默认为 56vp
-    /// 当列表为单行文本，左侧有元素且左侧元素为 40vp 时，列表高度默认为 72vp
-    /// 当列表为双行文本，且没有左侧元素时，列表高度默认为 64vp
-    /// 当列表为双行文本，左侧有元素时，列表高度默认为 72vp
+    /// 当列表为双行文本，列表高度默认为 64vp
     /// 当列表为三行文本，列表默认高度为 96vp
     ///
-    /// 根据规格推算出，图片的上下边距为 16px，文字的上下边距为12px，且每行之间有8px的间隔，除了第5和6种情况。
+    /// 根据规格推算出，图片的上下边距为 16px，文字的上下边距为12px，可以符合第1种和第2种情况，剩下的不管了。
     &--density-default:not(.v-list-item--one-line, .v-list-item--two-line, .v-list-item--three-line) {
       padding-top: 0;
       padding-bottom: 0;
@@ -100,18 +102,6 @@
       .v-list-item__content {
         padding-top: 12px;
         padding-bottom: 12px;
-      }
-    }
-
-    &--auto-height {
-      &--one-lines {
-        min-height: 48px;
-      }
-      &--two-lines {
-        min-height: 64px;
-      }
-      &--three-lines {
-        min-height: 96px;
       }
     }
 
@@ -179,7 +169,7 @@
       & > .v-badge ~ .v-list-item__spacer,
       & > .v-icon ~ .v-list-item__spacer,
       & > .v-tooltip ~ .v-list-item__spacer {
-        width: 4px;
+        width: 12px;
       }
     }
   }
