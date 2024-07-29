@@ -6,7 +6,7 @@ import { useAppsStore } from '@/store/apps'
 import { getAppShareUrl, getAppTags, type AppInfo } from '@/utils/apps'
 import { matchUserSpace } from '@/utils/url'
 import { mdiFormatQuoteOpen } from '@mdi/js'
-import { useScroll, useShare } from '@vueuse/core'
+import { useElementBounding, useScroll, useShare } from '@vueuse/core'
 import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
@@ -57,11 +57,7 @@ onMounted(() => {
 const mainComponent = ref<InstanceType<typeof AppMain>>()
 const appOverviewComponent = ref<InstanceType<typeof AppOverview>>()
 
-const appNameBottomY = computed(() => {
-  const element = appOverviewComponent.value?.appNameElement
-  return element ? element.offsetTop + element.offsetHeight : 0
-})
-
+const { bottom: appNameBottomY } = useElementBounding(computed(() => appOverviewComponent.value?.appNameElement))
 const { y: scrollY } = useScroll(computed(() => mainComponent.value?.mainScroll))
 
 /**
@@ -112,7 +108,7 @@ function shareApp() {
     <app-main ref="mainElement">
       <v-progress-linear v-show="isLoading" color="primary" class="progress" indeterminate />
       <v-container class="container py-0">
-        <AppOverview ref="appOverviewElement" :app-info="appInfo" :loading="isLoading" class="my-4" />
+        <AppOverview ref="appOverviewComponent" :app-info="appInfo" :loading="isLoading" class="my-4" />
 
         <!-- #region 一句话介绍 -->
         <v-skeleton-loader
