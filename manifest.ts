@@ -9,6 +9,7 @@ export default {
   // orientation: 'natural',
   prefer_related_applications: true,
   id: 'org.ohosdev.foh.pwa',
+  lang: 'zh-CN',
   start_url: base,
   icons: [
     {
@@ -46,7 +47,7 @@ export default {
       purpose: 'maskable',
     },
   ],
-  theme_color: '#0A59F7',
+  background_color: '#ffffff',
   display: 'standalone',
   display_override: ['standalone', 'minimal-ui', 'browser', 'window-controls-overlay'],
   screenshots: [

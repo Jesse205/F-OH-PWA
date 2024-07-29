@@ -11,6 +11,7 @@ export const blueprint: Blueprint = {
         colors: {
           primary: colors.accentLight,
           secondary: colors.accentLight,
+
           background: colors.backgroundGrayLight,
           surface: '#ffffff',
           'surface-variant': '#E5E5E5',
@@ -18,6 +19,8 @@ export const blueprint: Blueprint = {
           warning: colors.alertLight,
           error: colors.warningLight,
           info: colors.accentLight,
+
+          'status-bar': colors.backgroundGrayLight,
         },
         variables: {
           'activated-opacity': 0.1,
@@ -31,6 +34,7 @@ export const blueprint: Blueprint = {
         colors: {
           primary: colors.accentDark,
           secondary: colors.accentDark,
+
           background: colors.backgroundGrayDark,
           'surface-variant': '#424242',
           'on-surface-variant': '#ffffff',
@@ -38,6 +42,8 @@ export const blueprint: Blueprint = {
           warning: colors.alertDark,
           error: colors.warningDark,
           info: colors.accentDark,
+
+          'status-bar': colors.backgroundGrayDark,
         },
         variables: {
           'activated-opacity': 0.15,

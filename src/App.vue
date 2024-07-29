@@ -6,10 +6,10 @@ import { usePreferredLocale } from '@/composables/settings'
 import { useAppStore } from '@/store/app'
 import { isElementDraggableInClientApp } from '@/utils/drag'
 import { isPwaDisplayMode } from '@/utils/pwa'
-import { useTitle as useDocumentTitle, usePreferredDark } from '@vueuse/core'
-import { computed } from 'vue'
+import { useTitle as useDocumentTitle, useEventListener, usePreferredDark, watchImmediate } from '@vueuse/core'
+import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { useDisplay } from 'vuetify'
+import { useDisplay, useTheme } from 'vuetify'
 import { useAutoLocale, useAutoTheme } from './composables/app'
 import SplashView from './pages/splash/SplashView.vue'
 import { isTauriApp } from './utils/app'
@@ -23,6 +23,7 @@ const REGEX_ROUTE_NAME = /\/[^/]+/
 // 路由名称
 const routeName = computed(() => route.path.match(REGEX_ROUTE_NAME)?.[0] ?? '')
 
+const theme = useTheme()
 useAutoTheme(usePreferredDark())
 useAutoLocale(usePreferredLocale())
 useDocumentTitle(
@@ -34,6 +35,23 @@ useDocumentTitle(
     }
   }),
 )
+
+// 直接修改主题颜色不会标题栏颜色修改，需要添加一个玄学的延迟
+const isThemeColorApplied = ref(false)
+useEventListener(document, 'DOMContentLoaded', () => {
+  isThemeColorApplied.value = true
+})
+
+watchImmediate(theme.current, (currentTheme) => {
+  let metaTag = document.head.querySelector<HTMLMetaElement>('meta[name="theme-color"]')
+  if (!metaTag) {
+    metaTag = document.createElement('meta')
+    metaTag.name = 'theme-color'
+    document.head.appendChild(metaTag)
+  }
+  const { 'status-bar': statusBarColor, background: backgroundColor } = currentTheme.colors
+  metaTag.content = statusBarColor ?? backgroundColor
+})
 
 /**
  * 在 Tauri 中阻止拖动。
