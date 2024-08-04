@@ -51,6 +51,7 @@ const pageTransitionEnabled = usePageTransition()
           <app-list-category :subheader="$t('userInterface', 2)">
             <app-list-single-select-item
               v-model="preferredDesignLanguage"
+              prepend-icon="$theme"
               :title="$t('designLanguage')"
               :items="designLanguages"
               :value-getter="(item) => item.code"
@@ -63,6 +64,7 @@ const pageTransitionEnabled = usePageTransition()
             </app-list-single-select-item>
             <app-list-single-select-item
               v-model="language"
+              prepend-icon="$translate"
               :title="$t('language')"
               :items="languages"
               :value-getter="(item) => item.code"

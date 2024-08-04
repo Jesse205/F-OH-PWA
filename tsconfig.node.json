@@ -6,7 +6,8 @@
     "cypress.config.*",
     "nightwatch.conf.*",
     "playwright.config.*",
-    "manifest.ts"
+    "manifest.ts",
+    "./plugins/**/*"
   ],
   "compilerOptions": {
     "composite": true,

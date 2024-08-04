@@ -18,7 +18,7 @@ const displayName = computed(() => {
 </script>
 
 <template>
-  <v-list-item prepend-icon="$translate" link :subtitle="displayName">
+  <v-list-item link :subtitle="displayName">
     <!-- origin="left" 修复小窗时定位错误 -->
 
     <v-menu activator="parent" origin="left">

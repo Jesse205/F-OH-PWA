@@ -4,6 +4,7 @@ import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 import manifest from './manifest'
+import svgLoader from './plugins/svgLoader'
 
 const isTauri = !!process.env.TAURI_FAMILY
 const isTauriDebug = !!process.env.TAURI_DEBUG
@@ -33,6 +34,11 @@ export default defineConfig({
       },
       manifest,
       disable: isTauri,
+    }),
+    svgLoader({
+      svgoConfig: {
+        multipass: true,
+      },
     }),
   ],
   define: {

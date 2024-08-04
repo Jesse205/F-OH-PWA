@@ -1,5 +1,5 @@
 import type { Blueprint } from 'vuetify'
-import { aliases, hmi } from './iconset'
+import { aliases, hmi } from './icons'
 import colors from './styles/settings/_colors.module.scss'
 import dimensions from './styles/settings/_dimensions.module.scss'
 

@@ -2,7 +2,11 @@
 /// <reference types="vite-plugin-pwa/info" />
 /// <reference types="vite-plugin-pwa/vue" />
 /// <reference lib="webworker" />
-import 'vue-router'
+
+declare module '*.svg?vuetify' {
+  const src: string[]
+  export default src
+}
 
 interface ImportMetaEnv extends Readonly<Record<string, string>> {
   /**
@@ -30,16 +34,4 @@ interface ImportMetaEnv extends Readonly<Record<string, string>> {
    *  客户端使用的原始 API 地址，供直接访问使用
    */
   FOHPWA_URL_API_CLIENT_ORIGIN: string
-}
-
-declare module 'vue-router' {
-  export interface HistoryState {
-    position: number
-    forward?: string
-    back?: string
-    current?: string
-    scroll?: ScrollToOptions
-    // 基于单个元素和路径的滚动配置
-    scroll2?: ScrollToOptions2
-  }
 }
