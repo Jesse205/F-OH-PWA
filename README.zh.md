@@ -53,7 +53,7 @@ F-OH PWA + BrowserCE，通过网页分发开源鸿蒙 hap 应用的最佳实践�
 - 设计：多设计语言
   - [HarmonyOS Design](https://developer.huawei.com/consumer/cn/design/)
   - [Material Design 2](https://m2.material.io/)
-  - Fluent Design 2
+  - Fluent Design 2（暂未实现）
 - 平台：浏览器、Linux、Windows
 - 广告：无
 - 资费：暂时没有
@@ -74,17 +74,13 @@ F-OH PWA 提供 **独立软件** 与 **网页访问** 两种方式供用户选�
 >
 > ~~因服务器没有 SSL 并且有跨域问题， F-OH PWA 暂时无法使用（[无安全上下文，无法满足成为 PWA 的最低要求][PWASecureContextRequirement]），请使用 F-OH Tauri 或 F-OH Lite (Web)。~~ 如需使用 PWA，请使用部署在 Netlify 上的开发版。
 
-> [!NOTE]
->
-> 此 PWA 应用在更新后会无法进入新页面，部分功能可能异常，请刷新后使用。
-
 ### PWA 安装
 
 **渐进式 Web 应用**（Progressive Web App，PWA）是一个使用 web 平台技术构建的应用程序，但它提供的用户体验就像一个特定平台的应用程序。（来自 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/Progressive_web_apps)）
 
 部分浏览器支持安装该网站到桌面，只需点击“安装应用”。安装后应用名会从 `F-OH Lite` 变为 `F-OH PWA`。
 
-![Chrome 安装应用示意图](./docs/images/pwa/install.png)
+![Chrome 安装应用示意图](./docs/images/pwa/install.zh.png)
 
 > [!NOTE]
 >
@@ -145,6 +141,10 @@ yarn format-fix
 
 请阅读 [`CONTRIBUTING.zh.md`](./CONTRIBUTING.zh.md)。
 
+> [!WARNING]
+>
+> 请务必遵守[贡献者公约](./CODE_OF_CONDUCT.zh.md)。
+
 ## 支持项目
 
 赞助可私信联系[@westinyang]或扫描下方二维码（微信、支付宝）
@@ -158,6 +158,8 @@ yarn format-fix
 对于本项目（F-OH PWA），您可以进入[F-OH PWA 捐赠页面](https://f-oh-pwa-jesse205.netlify.app/donate)支持杰西 205。
 
 ## 许可证
+
+本项目使用 GPL-3.0 许可证，详情请参考 [LICENSE](./LICENSE) 文件。
 
 ```txt
 Copyright (C) 2023 Jesse205

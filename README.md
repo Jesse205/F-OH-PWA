@@ -53,7 +53,7 @@ F-OH PWA + BrowserCE, best practices for distributing OpenHarmony hap apps via w
 - Design: Multi-design-language
   - [HarmonyOS Design](https://developer.huawei.com/consumer/cn/design/)
   - [Material Design 2](https://m2.material.io/)
-  - Fluent Design 2
+  - Fluent Design 2 (not yet realized)
 - Platform: Browser, Linux, Windows
 - Advertising: None
 - Fees: None for now
@@ -74,17 +74,13 @@ The F-OH PWA offers a choice between **standalone software** and **web access**.
 >
 > ~~F-OH PWA is temporarily unavailable because the server does not have SSL and has cross-domain issues ([No security context to meet the minimum requirements to be a PWA][PWASecureContextRequirement]), please use F-OH Tauri or F-OH Lite (Web).~~ If you want to use use the PWA, use the development version deployed on Netlify.
 
-> [!NOTE]
->
-> This PWA application will not be able to enter the new page after update, some functions may be abnormal, please refresh before use it.
-
 ### PWA Installation
 
 A **progressive web app** (PWA) is an app that's built using web platform technologies, but that provides a user experience like that of a platform-specific app. (From [MDN](https://developer.mozilla.org/zh-CN/docs/Web/Progressive_web_apps))
 
 Some browsers support installing this website to the desktop by clicking "Install Application". After installation, the application name will change from `F-OH Lite` to `F-OH PWA`.
 
-![Chrome Installation Diagram](./docs/images/pwa/install_en.png)
+![Chrome Installation Diagram](./docs/images/pwa/install.png)
 
 > [!TIP]
 >
@@ -135,12 +131,20 @@ The default API url is `/api`, and you can replace it in three ways.
      1. Run `yarn build:tauri`.
      2. Release `src-tauri\target\release\F-OH Tauri.exe` and `src-tauri\target\release\bundle\nsis\F-OH Tauri_<version>_x64-setup.exe`.
 
-## Lint and Fixing Files
+### Lint and Fixing Files
 
 ```bash
 yarn lint-fix
 yarn format-fix
 ```
+
+## Contributing
+
+Please read [`CONTRIBUTING.md`](./CONTRIBUTING.md).
+
+> [!WARNING]
+>
+> Please be sure to follow the [Contributor Covenant Code of Conduct](./CODE_OF_CONDUCT.md).
 
 ## Support Program
 
@@ -154,11 +158,9 @@ Sponsorship can be contacted by private message or scanning the QR code below (W
 
 For this project (F-OH PWA), you can go to the [F-OH PWA donation page](https://f-oh-pwa-jesse205.netlify.app/donate) to support Jesse205.
 
-## Contributing
-
-Please read [`CONTRIBUTING.zh.md`](./CONTRIBUTING.md).
-
 ## License
+
+This project uses the GPL-3.0 license, see the [LICENSE](./LICENSE) file for details.
 
 ```txt
 Copyright (C) 2023 Jesse205

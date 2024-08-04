@@ -1,71 +1,55 @@
 # 贡献指南
 
+在贡献之前，请阅读[贡献者公约](./CODE_OF_CONDUCT.zh.md)与本文件。
+
 ## 翻译
 
-本项目主要语言为*简体中文*，你可以根据*简体中文*翻译为其他语言。如果你不会*简体中文*，可以参考官方的英文文档。
+本项目主要语言为*简体中文*，你可以根据*简体中文*翻译为其他语言。
 
-> [!TIP]
->
-> 翻译后请在语言选择器中添加新的语言。
+当然了如果你不会*简体中文*，也可以参考官方的*英文*文档。
 
 ### 翻译项目介绍
 
-项目介绍包括 README、CONTRIBUTING 等文件。
+项目介绍包括 README、CONTRIBUTING 等文件（不包括 [`/docs`](./docs/) 目录下的文件）。
+
+默认为英文，但以简体中文为主。其他语言文件名为 `<文档名>.<语言>.md`（例如 [`README.zh.md`](./README.zh.md)）。
+
+| 语言     | 文件名               |
+| -------- | -------------------- |
+| 英语     | `<文档名>.md`        |
+| 简体中文 | `<文档名>.zh.md`     |
+| 其他语言 | `<文档名>.<语言>.md` |
 
 > [!NOTE]
 >
-> 不包括 [`/docs`](./docs/)
+> 目前，本项目不接受简体中文以外的贡献指南（CONTRIBUTING）。
 
-默认为英文但以简体中文为主。其他语言文件名为 `<文档名>.<语言>.md`（例如 [`README.zh.md`](./README.zh.md)）。
+### 翻译文档
 
-### 翻译说明文档
+文档是指 [`/docs`](./docs/) 下的文件。
 
-说明文档是指 [`/docs`](./docs/) 下的文件。
+默认为英文，但以简体中文为主。其他语言文件名为 `<文档名>.<语言>.md`（例如 [`README.zh.md`](./docs/README.zh.md)）。
 
-以简体中文为主。其他语言（**包括英语**）文件名为 `<文档名>.<语言>.md`。
+| 语言     | 文件名               |
+| -------- | -------------------- |
+| 英语     | `<文档名>.md`        |
+| 简体中文 | `<文档名>.zh.md`     |
+| 其他语言 | `<文档名>.<语言>.md` |
 
-### 翻译网站
+> [!NOTE]
+>
+> 目前，本项目不接受简体中文以外的任何文档。
 
-网站内所有翻译存放在 [`/src/locales/`](./src/locales/) 目录下，内容请以简体中文（[`zh-CN.ts`](./src/locales/zh-CN.ts)）为主。
+### 翻译应用
 
-一旦新增一门语言后，须在 [`index.ts`](./src/locales/index.ts) 中注册该语言。
+应用内所有翻译存放在 [`/src/locales/`](./src/locales/) 目录下，内容请以简体中文（[`zh-CN.json`](./src/locales/zh-CN.json)）为主。
 
-## 更换服务器
+一旦新增一门语言后，必须在 [`locales/index.ts`](./src/locales/index.ts) 中导入该语言文件，并在[应用设置数据文件（settings.ts）](./src/data/settings.ts)的 `language` 中添加该语言名称以及代码。
 
-服务器链接写死在以下文件，更换时需要**全部替换**。
+> [!TIP]
+>
+> 可以使用 [i18n Ally](https://marketplace.visualstudio.com/items?itemName=lokalise.i18n-ally) 辅助您翻译。
 
-- [`.env`](./.env)：服务器地址 `VITE_HOST_SERVER`。
-- [`vite.config.ts`](./vite.config.ts)：vite 开发时转发，用于解决跨域问题。
-- [`netlify.toml`](./netlify.toml)：netlify 转发，用于解决跨域问题。
+## 提交代码
 
-## 代码规范
-
-本项目使用 Prettier 与 ESLint 规范代码。
-
-- JavaScript、TypeScript（`.vue`、`.js`、`.ts`）：详见 [`prettier.config.js`](./prettier.config.js) 与 [`eslint.config.js`](./eslint.config.js)；
-- Markdown：[Markdown lint tool](https://github.com/markdownlint/markdownlint)（[规范](https://github.com/DavidAnson/markdownlint/blob/main/doc/md001.md)）；
-- Css、Scss：BEM 规范 `block-name__element-name--modifier-name`；
-
-## 依赖更新
-
-一般情况下，依赖需要全部保持最新，除非有特殊情况。
-
-## 截图
-
-### 截图规范
-
-截图包含竖屏与横屏。他们参数如下：
-
-| 方向 | 边框 | 内容大小 | 实际大小 | 示例                                                                                          |
-| ---- | ---- | -------- | -------- | --------------------------------------------------------------------------------------------- |
-| 竖屏 | 1px  | 500x800  | 502x802  | <img src="./public/screenshots/Snipaste_2023-12-05_05-17-05.webp" width=100 alt="竖屏截图" /> |
-| 横屏 | 1px  | 960x600  | 962x602  | <img src="./public/screenshots/Snipaste_2023-12-05_05-16-05.webp" width=100 alt="横屏截图" /> |
-
-其中 `1px` 的边框是因为 Snipaste 会自带 `1px` 的边框，所以需要额外加 `2px` 。
-
-所有截图需要存放到 [`./public/screenshots`](./public/screenshots/) 目录下。
-
-### 截图展示位置
-
-- README 中
-- PWA 应用安装前
+您可以参考[开发文档](./docs/develop/README.zh.md)。
