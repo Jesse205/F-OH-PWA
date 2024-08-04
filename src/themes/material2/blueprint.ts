@@ -139,6 +139,7 @@ export const blueprint: Blueprint = {
     },
     VSwitch: {
       color: 'primary',
+      hideDetails: 'auto',
     },
   },
   icons: {
