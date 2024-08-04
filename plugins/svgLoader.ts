@@ -70,8 +70,6 @@ export default function svgLoader(
 
       if (importType === 'vuetify') {
         const svgJson = xml2js(svg) as Element
-        console.log(JSON.stringify(findPaths(svgJson)))
-
         return `export default ${JSON.stringify(findPaths(svgJson))}`
       }
 

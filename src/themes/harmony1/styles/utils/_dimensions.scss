@@ -1,7 +1,9 @@
 @use '../settings/dimensions' as *;
 
 @mixin style {
-  --radius-card: #{$radius-card};
+  & {
+    --radius-card: #{$radius-card};
+  }
   &,
   .v-theme--light,
   .v-theme--dark {
