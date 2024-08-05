@@ -3,11 +3,6 @@
 /// <reference types="vite-plugin-pwa/vue" />
 /// <reference lib="webworker" />
 
-declare module '*.svg?vuetify' {
-  const src: string[]
-  export default src
-}
-
 interface ImportMetaEnv extends Readonly<Record<string, string>> {
   /**
    * Web 端域名，用于在客户端内提供网页链接使用

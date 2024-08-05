@@ -1,10 +1,19 @@
+/**
+ * SVG 加载器
+ * 可以加载为：
+ * - `raw`：SVG 内容
+ * - `component`：Vue 组件
+ * - `vuetify`：Vuetify 的 `VSvgIcon` 的 `icon` 属性可以接受的值
+ *
+ * 改自 https://github.com/jpkleemans/vite-svg-loader/blob/main/index.js
+ */
 import fs from 'fs'
 import { Config, optimize } from 'svgo'
 import { PluginOption } from 'vite'
 import { compileTemplate } from 'vue/compiler-sfc'
 import { Element, xml2js } from 'xml-js'
 
-type ImportType = 'url' | 'raw' | 'component' | 'vuetify'
+type ImportType = 'raw' | 'component' | 'vuetify'
 
 function findAndPushPaths(rootElement: Element, paths: string[]): string[] {
   if (!rootElement.elements) {
@@ -26,12 +35,10 @@ function findPaths(rootElement: Element): string[] {
   return paths
 }
 
-export default function svgLoader(
-  options: { svgoConfig?: Config; svgo?: boolean; defaultImport?: ImportType } = {},
-): PluginOption {
-  const { svgoConfig, svgo, defaultImport } = options
+export default function svgLoader(options: { svgoConfig?: Config; svgo?: boolean } = {}): PluginOption {
+  const { svgoConfig, svgo } = options
 
-  const svgRegex = /\.svg(\?(raw|component|vuetify))?$/
+  const svgRegex = /\.svg\?(raw|component|vuetify)$/
 
   return {
     name: 'svg-loader',
@@ -44,19 +51,11 @@ export default function svgLoader(
 
       const [path, query] = id.split('?', 2)
 
-      const importType: ImportType | undefined = (query || defaultImport) as ImportType | undefined
-
-      if (importType === 'url' || importType === undefined) {
-        return // Use default svg loader
-      }
+      const importType: ImportType | undefined = query as ImportType | undefined
 
       let svg
-      try {
-        svg = fs.readFileSync(path, 'utf-8')
-      } catch (ex) {
-        // debug('\n', `${id} couldn't be loaded by vite-svg-loader, fallback to default loader`)
-        return
-      }
+      svg = fs.readFileSync(path, 'utf-8')
+
       if (svgo !== false) {
         svg = optimize(svg, {
           ...svgoConfig,
