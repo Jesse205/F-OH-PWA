@@ -25,7 +25,7 @@ export interface DonatePerson {
   platforms: DonatePlatform[]
 }
 
-export const donateData: DonatePerson[] = [
+export const donatePersons: DonatePerson[] = [
   {
     name: '$t.developer.westinyang.name',
     summary: '$t.developer.westinyang.description',

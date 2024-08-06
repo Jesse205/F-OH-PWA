@@ -3,7 +3,7 @@ import ICON from '@/assets/images/icon.svg'
 import AppMain from '@/components/AppMain.vue'
 import BackButton from '@/components/appbar/BackButton.vue'
 import { useTitle } from '@/composables/title'
-import { donateData, type DonatePlatform } from '@/data/donate'
+import { donatePersons, type DonatePlatform } from '@/data/donate'
 import { mdiCursorDefaultOutline } from '@mdi/js'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -33,7 +33,7 @@ const donateAds: DonatePlatform[] = [
     <app-main>
       <v-container class="container">
         <DonateCard
-          v-for="person in donateData"
+          v-for="person in donatePersons"
           :key="person.key"
           :platforms="person.platforms"
           :name="person.name"
