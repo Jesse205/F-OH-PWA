@@ -115,7 +115,7 @@ onMounted(() => {
 
 <template>
   <app-main>
-    <v-container class="container py-0" fluid>
+    <v-container class="py-0">
       <!-- Alerts -->
       <v-alert v-if="errMsg" class="my-4" :title="$t('error.loading')" :text="errMsg" type="error" />
       <UnsafeBypassAlert v-if="errMsg && appsStore.data === undefined" />
@@ -151,26 +151,32 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .project-items {
-  display: flex;
-  flex-wrap: wrap;
+  --columns: 1;
   --indent-padding-left: 64px;
-
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  @media (min-width: 800px) {
+    --columns: 2;
+  }
+  @media (min-width: 1280px) {
+    --columns: 3;
+  }
+  @media (min-width: 1920px) {
+    --columns: 4;
+  }
   .project-item {
     width: 100%;
     @media (min-width: 800px) {
-      width: 50%;
       &:nth-last-child(2)::before {
         border-bottom-width: 0;
       }
     }
     @media (min-width: 1280px) {
-      width: 33%;
       &:nth-last-child(3)::before {
         border-bottom-width: 0;
       }
     }
     @media (min-width: 1920px) {
-      width: 25%;
       &:nth-last-child(4)::before {
         border-bottom-width: 0;
       }
