@@ -13,7 +13,7 @@ const reallySelected = ref<number>(0)
 </script>
 
 <template>
-  <v-card class="DonateCard">
+  <v-card class="donate-card">
     <v-tabs v-model="reallySelected">
       <v-tab v-for="(platform, index) in platforms" :key="platform.key" :value="index" :color="platform.color">
         {{ parseI18n(platform.name, $t) }}
@@ -36,7 +36,7 @@ const reallySelected = ref<number>(0)
 </template>
 
 <style lang="scss" scoped>
-.DonateCard {
+.donate-card {
   margin: 8px;
   width: 100%;
   max-width: 360px;

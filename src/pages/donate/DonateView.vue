@@ -31,10 +31,11 @@ const donateAds: DonatePlatform[] = [
       <v-app-bar-title>{{ $t('action.donate') }}</v-app-bar-title>
     </v-app-bar>
     <app-main>
-      <v-container class="container">
+      <div class="container">
         <DonateCard
           v-for="person in donatePersons"
           :key="person.key"
+          class="person-item"
           :platforms="person.platforms"
           :name="person.name"
           :summary="person.summary"
@@ -80,7 +81,7 @@ const donateAds: DonatePlatform[] = [
             </div>
           </v-btn>
         </DonateCard>
-      </v-container>
+      </div>
     </app-main>
   </v-layout>
 </template>
@@ -90,7 +91,7 @@ const donateAds: DonatePlatform[] = [
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
   padding: 8px;
 }
 
