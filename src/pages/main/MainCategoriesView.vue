@@ -115,29 +115,27 @@ onMounted(() => {
 
 <template>
   <app-main>
-    <v-container class="py-0">
-      <!-- Alerts -->
-      <v-alert v-if="errMsg" class="my-4" :title="$t('error.loading')" :text="errMsg" type="error" />
-      <UnsafeBypassAlert v-if="errMsg && appsStore.data === undefined" />
+    <!-- Alerts -->
+    <v-alert v-if="errMsg" class="my-4 mx-4" :title="$t('error.loading')" :text="errMsg" type="error" />
+    <UnsafeBypassAlert v-if="errMsg && appsStore.data === undefined" />
 
-      <!-- MainLayout -->
-      <app-category-list class="my-4">
-        <template v-for="appType in appTypes">
-          <app-list-category v-if="appType.apps && appType.apps.length" :key="appType.key" :subheader="appType.title">
-            <div class="project-items" @dragstart="onProjectDragStart">
-              <app-list-project-item
-                v-for="item in appType.apps"
-                :key="item.id"
-                class="project-item"
-                :item="item"
-                :data-pkg="item.packageName"
-                data-allow-drag
-              />
-            </div>
-          </app-list-category>
-        </template>
-      </app-category-list>
-    </v-container>
+    <!-- MainLayout -->
+    <app-category-list class="my-4 mx-4">
+      <template v-for="appType in appTypes">
+        <app-list-category v-if="appType.apps && appType.apps.length" :key="appType.key" :subheader="appType.title">
+          <div class="project-items" @dragstart="onProjectDragStart">
+            <app-list-project-item
+              v-for="item in appType.apps"
+              :key="item.id"
+              class="project-item"
+              :item="item"
+              :data-pkg="item.packageName"
+              data-allow-drag
+            />
+          </div>
+        </app-list-category>
+      </template>
+    </app-category-list>
 
     <template #root>
       <!-- Loading -->
@@ -155,32 +153,28 @@ onMounted(() => {
   --indent-padding-left: 64px;
   display: grid;
   grid-template-columns: repeat(var(--columns), 1fr);
-  @media (min-width: 800px) {
-    --columns: 2;
+}
+
+.project-item {
+  width: 100%;
+}
+
+@mixin column($count: number) {
+  .project-items {
+    --columns: #{$count};
   }
-  @media (min-width: 1280px) {
-    --columns: 3;
+  .project-item:nth-last-child(#{$count})::before {
+    border-bottom-width: 0;
   }
-  @media (min-width: 1920px) {
-    --columns: 4;
-  }
-  .project-item {
-    width: 100%;
-    @media (min-width: 800px) {
-      &:nth-last-child(2)::before {
-        border-bottom-width: 0;
-      }
-    }
-    @media (min-width: 1280px) {
-      &:nth-last-child(3)::before {
-        border-bottom-width: 0;
-      }
-    }
-    @media (min-width: 1920px) {
-      &:nth-last-child(4)::before {
-        border-bottom-width: 0;
-      }
-    }
-  }
+}
+
+@media (min-width: 800px) {
+  @include column(2);
+}
+@media (min-width: 1280px) {
+  @include column(3);
+}
+@media (min-width: 1920px) {
+  @include column(4);
 }
 </style>
