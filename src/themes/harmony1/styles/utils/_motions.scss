@@ -79,23 +79,26 @@
   }
 }
 
-@mixin translate-x-keyframes($name, $from, $to) {
+@mixin translate-x-keyframes($name, $from, $to, $is-leave: false) {
   @keyframes #{$name} {
     0% {
       transform: translateX($from);
     }
     100% {
       transform: translateX($to);
+      @if ($is-leave) {
+        display: none;
+      }
     }
   }
 }
 @include translate-x-keyframes('page-enter-enter-page-animation', 100%, 0);
 @include translate-x-keyframes('page-enter-enter-layout-animation', -75%, 0);
-@include translate-x-keyframes('page-enter-leave-page-animation', 0, -25%);
+@include translate-x-keyframes('page-enter-leave-page-animation', 0, -25%, true);
 
 @include translate-x-keyframes('page-leave-enter-page-animation', -100%, 0);
 @include translate-x-keyframes('page-leave-enter-layout-animation', 75%, 0);
-@include translate-x-keyframes('page-leave-leave-page-animation', 0, 25%);
+@include translate-x-keyframes('page-leave-leave-page-animation', 0, 25%, true);
 @keyframes page-scrim-animation {
   0% {
     background-color: transparent;
