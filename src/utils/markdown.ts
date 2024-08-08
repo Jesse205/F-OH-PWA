@@ -19,8 +19,14 @@ export function getShowdownConverter() {
     replace: `<${key} class="${classMap[key]}" $1>`,
   }))
 
+  const targetBlankExtension: showdown.ShowdownExtension = {
+    type: 'output',
+    regex: /<a (.+?)>/g,
+    replace: '<a target="_blank" $1>',
+  }
+
   converter = new showdown.Converter({
-    extensions: [...bindings],
+    extensions: [...bindings, targetBlankExtension],
     noHeaderId: true,
     simplifiedAutoLink: true,
     strikethrough: true,
