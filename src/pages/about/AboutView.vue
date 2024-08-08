@@ -58,9 +58,8 @@ if (isTauriApp) {
             <v-list-item
               prepend-icon="$privacy"
               :title="$t('term.openSourceLicenses')"
-              :href="URL_TERM_LICENSES"
-              target="_blank"
-              append-icon="$openInNew"
+              :to="{ name: 'Licenses' }"
+              append-icon="$next"
             />
           </app-list-category>
           <!-- 开发者信息 -->

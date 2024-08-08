@@ -83,6 +83,11 @@ const routes: Readonly<RouteRecordRaw[]> = [
     component: async () => await import('@/pages/donate/DonateView.vue'),
   },
   {
+    path: '/licenses',
+    name: 'Licenses',
+    component: async () => await import('@/pages/licenses/LicensesView.vue'),
+  },
+  {
     path: '/about',
     name: 'About',
     component: async () => await import('@/pages/about/AboutView.vue'),
