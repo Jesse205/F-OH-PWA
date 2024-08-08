@@ -56,7 +56,7 @@ export function splitPathAndHash(path: string): (string | undefined)[] {
 function getOverrideApiUrl(): string | undefined {
   const params = new URLSearchParams(location.search)
   const apiUrl = params.get('apiUrl')
-  return typeof apiUrl === 'string' ? completeUrl(apiUrl) : undefined
+  return apiUrl ? completeUrl(apiUrl) : undefined
 }
 
 function getApiUrl(overrideApiUrl?: string, preferredApiUrl?: string, useOriginUrl: boolean = false) {
@@ -74,9 +74,10 @@ function getApiUrl(overrideApiUrl?: string, preferredApiUrl?: string, useOriginU
 }
 
 export const overrideApiUrl = getOverrideApiUrl()
-export const preferredApiUrl = getPreferredApiUrl()
-export const currentApiUrl = getApiUrl(overrideApiUrl, preferredApiUrl ?? undefined)
-export const currentOriginApiUrl = getApiUrl(overrideApiUrl, preferredApiUrl ?? undefined)
+export const preferredApiUrl = getPreferredApiUrl() || undefined
+
+export const currentApiUrl = getApiUrl(overrideApiUrl, preferredApiUrl)
+export const currentOriginApiUrl = getApiUrl(overrideApiUrl, preferredApiUrl, true)
 
 function isUnsafeUrl(url: string) {
   const urlObj = new URL(url)

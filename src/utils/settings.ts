@@ -22,8 +22,8 @@ export function removePreferredServerUrl() {
   localStorage.removeItem(KEY_SERVER)
 }
 
-export function getPreferredApiUrl(): string | null {
-  return localStorage.getItem(KEY_API_URL)?.trim() ?? null
+export function getPreferredApiUrl(): string {
+  return localStorage.getItem(KEY_API_URL)?.trim() ?? ''
 }
 
 export function setPreferredApiUrl(apiUrl: string) {
