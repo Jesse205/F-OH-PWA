@@ -35,35 +35,31 @@ const banners = computed((): Banner[] => {
 </script>
 
 <template>
-  <v-container class="container" @dragstart.stop>
-    <swiper
-      class="swiper"
-      :slides-per-view="slidesPerView"
-      :space-between="16"
-      :pagination="{
-        clickable: true,
-      }"
-      :modules="[Pagination]"
-    >
-      <swiper-slide v-for="item in banners" :key="item.image" role="banner">
-        <component :is="item.src ? 'a' : 'div'" :href="item.src" :target="item.src ? '_blank' : undefined">
-          <v-img class="image bg-surface" :aspect-ratio="ratio" :src="item.image" cover :alt="item.alt" />
-        </component>
-      </swiper-slide>
-    </swiper>
-  </v-container>
+  <swiper
+    class="swiper"
+    :slides-per-view="slidesPerView"
+    :space-between="16"
+    :pagination="{
+      clickable: true,
+    }"
+    :modules="[Pagination]"
+    @dragstart.stop
+  >
+    <swiper-slide v-for="item in banners" :key="item.image" role="banner">
+      <component :is="item.src ? 'a' : 'div'" :href="item.src" :target="item.src ? '_blank' : undefined">
+        <v-img class="image bg-surface" :aspect-ratio="ratio" :src="item.image" cover :alt="item.alt" />
+      </component>
+    </swiper-slide>
+  </swiper>
 </template>
 
 <style scoped lang="scss">
-.container {
-  padding: 0;
-
-  > .swiper {
-    // 防止计算误差导致边缘露出图片
-    padding: 0 15.5px;
-    position: relative;
-  }
+.swiper {
+  // 防止计算误差导致边缘露出图片
+  padding: 0 15.5px;
+  position: relative;
 }
+
 .image {
   border-radius: var(--radius-card);
 }

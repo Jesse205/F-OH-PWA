@@ -45,17 +45,15 @@ const progressMarginTop = computed(() => {
     <!-- MainLayout -->
     <!-- 轮播图 -->
     <HomeBanner ref="bannersComponent" class="my-4" :banners="bannersData.data" :ratio="bannersData.ratio" />
-    <v-container class="py-0">
-      <!-- Alerts -->
-      <v-alert v-if="errMsg" class="my-4" :title="$t('error.loading')" :text="errMsg" type="error" />
-      <UnsafeBypassAlert v-if="errMsg && homeStore.data === undefined" />
+    <!-- Alerts -->
+    <v-alert v-if="errMsg" class="ma-4" :title="$t('error.loading')" :text="errMsg" type="error" />
+    <UnsafeBypassAlert v-if="errMsg && homeStore.data === undefined" />
 
-      <!-- 公告 -->
-      <title-list v-if="homeStore.isShowAnnouncement" class="my-4" :title="$t('announcement')">
-        <!-- eslint-disable-next-line vue/no-v-html vue/no-v-text-v-html-on-component -->
-        <v-list-item class="announcement-content" v-html="homeStore.announcementHtml" />
-      </title-list>
-    </v-container>
+    <!-- 公告 -->
+    <title-list v-if="homeStore.isShowAnnouncement" class="ma-4" :title="$t('announcement')">
+      <!-- eslint-disable-next-line vue/no-v-html vue/no-v-text-v-html-on-component -->
+      <v-list-item class="announcement-content" v-html="homeStore.announcementHtml" />
+    </title-list>
     <template #root>
       <!-- Loading -->
       <CenterSpace v-if="isLoading" :top="progressMarginTop">

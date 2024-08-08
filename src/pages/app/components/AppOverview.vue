@@ -41,7 +41,7 @@ defineExpose({
             {{ appInfo ? `v${appInfo.version}` : $t('unknown.version') }}
           </span>
         </h2>
-        <div class="app-title__package text-subtitle-2" :title="$t('packageName')">
+        <div class="app-package text-subtitle-2" :title="$t('packageName')">
           {{ appInfo?.packageName ?? $t('unknown.packageName') }}
         </div>
       </template>
@@ -72,7 +72,6 @@ defineExpose({
 <style scoped lang="scss">
 .app-overview {
   display: flex;
-  width: 100%;
   align-items: flex-start;
 
   &__right {
@@ -84,8 +83,18 @@ defineExpose({
     margin-left: 16px;
 
     &__skeleton {
-      margin: -2px -16px;
+      height: 2rem + 1.4rem;
+      max-width: 240px;
       overflow: hidden;
+      :deep(.v-skeleton-loader__text) {
+        margin: 0;
+        &:first-child {
+          max-width: 50%;
+        }
+        &:nth-child(2) {
+          max-width: 100%;
+        }
+      }
     }
 
     .button-group {
@@ -128,16 +137,11 @@ defineExpose({
   &__name {
     overflow: hidden;
   }
-
-  &__version,
-  &__package {
-    overflow: hidden;
-    // height: 1.75rem;
-    text-overflow: ellipsis;
-    opacity: var(--v-medium-emphasis-opacity);
-  }
 }
-.app-name {
+.app-title__version,
+.app-package {
   overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: var(--v-medium-emphasis-opacity);
 }
 </style>

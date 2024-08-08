@@ -43,82 +43,75 @@ if (isTauriApp) {
       <AppCard class="ma-4" />
     </v-navigation-drawer>
     <app-main>
-      <v-container class="py-0">
-        <AppCard v-if="!smAndUp" class="my-4" />
-        <app-category-list class="my-4">
-          <!-- 关于应用 -->
-          <app-list-category :subheader="$t('aboutApp')">
-            <v-list-item prepend-icon="$info" :title="$t('version.app')" :subtitle="appVersion" />
-            <v-list-item
-              v-if="isTauriApp"
-              prepend-icon="$info"
-              :title="$t('version.tauri')"
-              :subtitle="tauriVersion ?? $t('loading')"
-            />
-            <v-list-item
-              prepend-icon="$privacy"
-              :title="$t('term.openSourceLicenses')"
-              :to="{ name: 'Licenses' }"
-              append-icon="$next"
-            />
-          </app-list-category>
-          <!-- 开发者信息 -->
-          <app-list-category :subheader="$t('developInfo')">
-            <v-list-item
-              v-for="item in developers"
-              :key="item.title"
-              :prepend-avatar="item.avatar || (item.qq ? getAvatarUrl(item.qq) : undefined)"
-              :title="parseI18n(item.title, $t)"
-              :subtitle="parseI18n(item.summary, $t)"
-            />
-            <v-list-item
-              prepend-icon="$card"
-              :title="$t('action.donate')"
-              :to="{ name: 'Donate' }"
-              append-icon="$next"
-            />
-          </app-list-category>
-          <!-- 交流讨论 -->
-          <app-list-category :subheader="$t('action.communicate')">
-            <!-- QQ 群 -->
-            <v-list-item
-              prepend-icon="$group"
-              :title="$t('app.qqGroup')"
-              subtitle="528608689"
-              href="https://qm.qq.com/q/CDSFf6DvVK"
-              target="_blank"
-              append-icon="$openInNew"
-            />
-          </app-list-category>
-          <!-- 相关链接 -->
-          <app-list-category :subheader="$t('relatedLinks')">
-            <v-list-item
-              prepend-icon="$link"
-              :title="$t('sourceCode')"
-              :subtitle="URL_SOURCE"
-              :href="URL_SOURCE"
-              target="_blank"
-              append-icon="$openInNew"
-            />
-            <v-list-item
-              prepend-icon="$circle"
-              :title="$t('link.foh.title')"
-              :subtitle="$t('link.foh.description')"
-              href="https://gitee.com/ohos-dev/f-oh"
-              target="_blank"
-              append-icon="$openInNew"
-            />
-            <v-list-item
-              prepend-icon="$group"
-              :title="$t('link.organization.title')"
-              :subtitle="$t('link.organization.description')"
-              href="https://gitee.com/ohos-dev"
-              target="_blank"
-              append-icon="$openInNew"
-            />
-          </app-list-category>
-        </app-category-list>
-      </v-container>
+      <AppCard v-if="!smAndUp" class="ma-4" />
+      <app-category-list class="ma-4">
+        <!-- 关于应用 -->
+        <app-list-category :subheader="$t('aboutApp')">
+          <v-list-item prepend-icon="$info" :title="$t('version.app')" :subtitle="appVersion" />
+          <v-list-item
+            v-if="isTauriApp"
+            prepend-icon="$info"
+            :title="$t('version.tauri')"
+            :subtitle="tauriVersion ?? $t('loading')"
+          />
+          <v-list-item
+            prepend-icon="$privacy"
+            :title="$t('term.openSourceLicenses')"
+            :to="{ name: 'Licenses' }"
+            append-icon="$next"
+          />
+        </app-list-category>
+        <!-- 开发者信息 -->
+        <app-list-category :subheader="$t('developInfo')">
+          <v-list-item
+            v-for="item in developers"
+            :key="item.title"
+            :prepend-avatar="item.avatar || (item.qq ? getAvatarUrl(item.qq) : undefined)"
+            :title="parseI18n(item.title, $t)"
+            :subtitle="parseI18n(item.summary, $t)"
+          />
+          <v-list-item prepend-icon="$card" :title="$t('action.donate')" :to="{ name: 'Donate' }" append-icon="$next" />
+        </app-list-category>
+        <!-- 交流讨论 -->
+        <app-list-category :subheader="$t('action.communicate')">
+          <!-- QQ 群 -->
+          <v-list-item
+            prepend-icon="$group"
+            :title="$t('app.qqGroup')"
+            subtitle="528608689"
+            href="https://qm.qq.com/q/CDSFf6DvVK"
+            target="_blank"
+            append-icon="$openInNew"
+          />
+        </app-list-category>
+        <!-- 相关链接 -->
+        <app-list-category :subheader="$t('relatedLinks')">
+          <v-list-item
+            prepend-icon="$link"
+            :title="$t('sourceCode')"
+            :subtitle="URL_SOURCE"
+            :href="URL_SOURCE"
+            target="_blank"
+            append-icon="$openInNew"
+          />
+          <v-list-item
+            prepend-icon="$circle"
+            :title="$t('link.foh.title')"
+            :subtitle="$t('link.foh.description')"
+            href="https://gitee.com/ohos-dev/f-oh"
+            target="_blank"
+            append-icon="$openInNew"
+          />
+          <v-list-item
+            prepend-icon="$group"
+            :title="$t('link.organization.title')"
+            :subtitle="$t('link.organization.description')"
+            href="https://gitee.com/ohos-dev"
+            target="_blank"
+            append-icon="$openInNew"
+          />
+        </app-list-category>
+      </app-category-list>
     </app-main>
   </v-layout>
 </template>
