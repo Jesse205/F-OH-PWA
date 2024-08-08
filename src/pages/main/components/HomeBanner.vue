@@ -14,15 +14,17 @@ const props = defineProps<{
   baseUrl?: string
 }>()
 
-const { xs, mdAndDown } = useDisplay()
+const { xs, mdAndDown, lgAndDown } = useDisplay()
 
 const slidesPerView = computed(() => {
   if (xs.value) {
     return 1
   } else if (mdAndDown.value) {
     return 2
-  } else {
+  } else if (lgAndDown.value) {
     return 3
+  } else {
+    return 4
   }
 })
 const banners = computed((): Banner[] => {
