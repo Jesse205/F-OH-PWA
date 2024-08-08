@@ -1,3 +1,4 @@
+import { useLandscapeLayout } from '@/composables/layout'
 import { useLogDebug } from '@/composables/logger'
 import { useDisplayMode } from '@/composables/pwa'
 import { IS_DEV_MODE } from '@/constants'
@@ -7,6 +8,7 @@ import { getPreferredDesignLanguage } from '@/utils/settings'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useDisplay } from 'vuetify'
 
 const TAG = '[AppStore]'
 
@@ -48,5 +50,18 @@ export const useAppStore = defineStore('app', () => {
    */
   const design = getPreferredDesignLanguage()
 
-  return { appName, displayMode, title, design }
+  const { smAndDown } = useDisplay()
+  const { isLandscapeNeeded } = useLandscapeLayout()
+
+  const navigationBarType = computed(() => {
+    if (isLandscapeNeeded.value && smAndDown.value) {
+      return 'rail'
+    } else if (smAndDown.value) {
+      return 'bottom'
+    } else {
+      return 'side'
+    }
+  })
+
+  return { appName, displayMode, title, design, navigationBarType }
 })

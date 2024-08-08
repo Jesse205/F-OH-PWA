@@ -9,12 +9,11 @@ import { isPwaDisplayMode } from '@/utils/pwa'
 import { useTitle as useDocumentTitle, useEventListener, usePreferredDark, watchImmediate } from '@vueuse/core'
 import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { useDisplay, useTheme } from 'vuetify'
+import { useTheme } from 'vuetify'
 import { useAutoLocale, useAutoTheme } from './composables/app'
 import SplashView from './pages/splash/SplashView.vue'
 import { isTauriApp } from './utils/app'
 
-const { mdAndUp } = useDisplay()
 const route = useRoute()
 const appStore = useAppStore()
 
@@ -77,7 +76,7 @@ document.documentElement.classList.add(appStore.design)
 <template>
   <v-app class="app" @dragstart="onDragStart">
     <TauriSystemBar v-if="isTauriApp" />
-    <NavigationDrawer v-if="routeName && mdAndUp" />
+    <NavigationDrawer v-if="routeName && appStore.navigationBarType === 'side'" />
     <v-main v-if="routeName" class="main">
       <div class="page-container">
         <router-view #="{ Component }">

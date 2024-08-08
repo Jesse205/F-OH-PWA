@@ -1,16 +1,15 @@
 <script setup lang="ts">
 import BackButton from '@/components/appbar/BackButton.vue'
-import { useLandscapeLayout } from '@/composables/layout'
 import { useHomeRoutes } from '@/composables/route'
 import { useTitle } from '@/composables/title'
 import { PATH_MAIN } from '@/constants/urls'
 import { homeRouteData } from '@/data/home'
+import { useAppStore } from '@/store/app'
 import { usePwaStore } from '@/store/pwa'
 import { parseI18n } from '@/utils/i18n'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { onBeforeRouteUpdate, useRouter } from 'vue-router'
-import { useDisplay } from 'vuetify'
 import type MainCategoriesView from './MainCategoriesView.vue'
 import type MainHomeView from './MainHomeView.vue'
 import type MainMeView from './MainMeView.vue'
@@ -18,7 +17,7 @@ import type MainUpdateView from './MainUpdateView.vue'
 
 const TAG = 'MainView'
 
-const { activePagePosition, routeButtonReplace, isBackHistoryMain } = useHomeRoutes()
+const { activePagePosition, routeButtonReplace } = useHomeRoutes()
 
 const currentRouteData = computed(() => {
   if (activePagePosition.value !== null) {
@@ -39,18 +38,7 @@ useTitle(
   }),
 )
 
-const { smAndDown } = useDisplay()
-const { isLandscapeNeeded } = useLandscapeLayout()
-
-const navigationBarType = computed(() => {
-  if (isLandscapeNeeded.value && smAndDown.value) {
-    return 'rail'
-  } else if (smAndDown.value) {
-    return 'bottom'
-  } else {
-    return null
-  }
-})
+const appStore = useAppStore()
 
 // PWA
 const pwaStore = usePwaStore()
@@ -84,7 +72,7 @@ onBeforeRouteUpdate((to) => {
 
 <template>
   <v-layout>
-    <v-navigation-drawer v-if="navigationBarType === 'rail'" permanent rail>
+    <v-navigation-drawer v-if="appStore.navigationBarType === 'rail'" permanent rail>
       <div class="rail-list-container">
         <v-list class="rail-list" density="compact" nav active-class="">
           <v-list-item
@@ -105,7 +93,7 @@ onBeforeRouteUpdate((to) => {
       - 当设备为小屏时，始终隐藏按钮。
       - 例外情况：首页但是有历史记录，始终显示按钮。
       -->
-      <back-button v-if="!smAndDown" />
+      <back-button v-if="appStore.navigationBarType === 'side'" />
       <v-app-bar-title>{{ parseI18n(currentRouteData.title, $t) }}</v-app-bar-title>
       <v-menu origin="bottom" width="172" location="top">
         <template #activator="{ props: menu }">
@@ -131,14 +119,14 @@ onBeforeRouteUpdate((to) => {
     </router-view>
 
     <!-- 底部导航栏 -->
-    <v-bottom-navigation v-if="navigationBarType === 'bottom'">
+    <v-bottom-navigation v-if="appStore.navigationBarType === 'bottom'">
       <v-btn
-        v-for="item in homeRouteData"
+        v-for="(item, index) in homeRouteData"
         :key="item.name"
         :to="{ name: item.name, replace: routeButtonReplace }"
         :disabled="item.disabled"
       >
-        <v-icon>{{ $route.name === item.name ? item.activeIcon : item.icon }}</v-icon>
+        <v-icon>{{ activePagePosition === index ? item.activeIcon : item.icon }}</v-icon>
         <span>{{ parseI18n(item.title, $t) }}</span>
       </v-btn>
     </v-bottom-navigation>
