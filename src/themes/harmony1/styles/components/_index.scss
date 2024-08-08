@@ -6,6 +6,7 @@
 @use './dialog';
 @use './drawer';
 @use './field';
+@use './grid';
 @use './list';
 @use './menu';
 @use './overlay';
@@ -24,6 +25,7 @@
   @include dialog.style;
   @include drawer.style;
   @include field.style;
+  @include grid.style;
   @include list.style;
   @include menu.style;
   @include overlay.style;
