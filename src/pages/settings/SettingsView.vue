@@ -34,7 +34,7 @@ const isDesignChanged = computed(
 )
 
 const preferredApiUrl = usePreferredApiUrl()
-const isPreferredApiUrlChanged = computed(() => currentPreferredApiUrl ?? '' !== preferredApiUrl.value.trim())
+const isPreferredApiUrlChanged = computed(() => (currentPreferredApiUrl ?? '') !== preferredApiUrl.value.trim())
 
 const pageTransitionEnabled = usePageTransition()
 </script>
