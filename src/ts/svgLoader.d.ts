@@ -3,9 +3,9 @@ declare module '*.svg?raw' {
   export default src
 }
 
-
 declare module '*.svg?component' {
-  const src: string[]
+  import { FunctionalComponent, SVGAttributes } from 'vue'
+  const src: FunctionalComponent<SVGAttributes>
   export default src
 }
 

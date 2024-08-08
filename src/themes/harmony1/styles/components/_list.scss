@@ -171,6 +171,10 @@
       & > .v-tooltip ~ .v-list-item__spacer {
         width: 12px;
       }
+      & > .v-icon {
+        width: auto;
+        min-width: 0;
+      }
     }
   }
 }
