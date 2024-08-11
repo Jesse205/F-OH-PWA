@@ -13,14 +13,12 @@ import {
 } from '@/composables/settings'
 import { useTitle } from '@/composables/title'
 import { designLanguageCodes, designLanguages, languages } from '@/data/settings'
-import { useAppStore } from '@/store/app'
+import { currentDesign } from '@/themes'
 import { preferredApiUrl as currentPreferredApiUrl, overrideApiUrl } from '@/utils/url'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const { t, locale } = useI18n()
-const appStore = useAppStore()
-
 useTitle(computed(() => t('settings')))
 
 const appVersion = __VERSION__
@@ -29,8 +27,7 @@ const language = refTransformer(locale, usePreferredLocale())
 const preferredDesignLanguage = usePreferredDesignLanguage()
 
 const isDesignChanged = computed(
-  () =>
-    appStore.design !== preferredDesignLanguage.value && designLanguageCodes.includes(preferredDesignLanguage.value),
+  () => currentDesign !== preferredDesignLanguage.value && designLanguageCodes.includes(preferredDesignLanguage.value),
 )
 
 const preferredApiUrl = usePreferredApiUrl()

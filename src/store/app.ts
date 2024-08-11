@@ -4,7 +4,6 @@ import { useDisplayMode } from '@/composables/pwa'
 import { IS_DEV_MODE } from '@/constants'
 import { isTauriApp } from '@/utils/app'
 import { isPwaDisplayMode } from '@/utils/pwa'
-import { getPreferredDesignLanguage } from '@/utils/settings'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -45,11 +44,6 @@ export const useAppStore = defineStore('app', () => {
     useLogDebug(TAG, 'New app name:', appName)
   }
 
-  /**
-   * 设计语言不支持动态切换
-   */
-  const design = getPreferredDesignLanguage()
-
   const { smAndDown } = useDisplay()
   const { isLandscapeNeeded } = useLandscapeLayout()
 
@@ -63,5 +57,5 @@ export const useAppStore = defineStore('app', () => {
     }
   })
 
-  return { appName, displayMode, title, design, navigationBarType }
+  return { appName, displayMode, title, navigationBarType }
 })

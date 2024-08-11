@@ -12,6 +12,7 @@ import { useRoute } from 'vue-router'
 import { useTheme } from 'vuetify'
 import { useAutoLocale, useAutoTheme } from './composables/app'
 import SplashView from './pages/splash/SplashView.vue'
+import { currentDesign } from './themes'
 import { isTauriApp } from './utils/app'
 
 const route = useRoute()
@@ -70,7 +71,7 @@ function onDragStart(event: DragEvent) {
 // 删除全屏区域的拖拽，否则软件无法操作
 delete document.documentElement.dataset.tauriDragRegion
 
-document.documentElement.classList.add(appStore.design)
+document.documentElement.classList.add(currentDesign)
 </script>
 
 <template>
