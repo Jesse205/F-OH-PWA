@@ -16,7 +16,7 @@ if (isTauri) {
   // Tauri 在 Windows 上使用 Chromium，在 macOS 和 Linux 上使用 WebKit
   target = process.env.TAURI_PLATFORM === 'windows' ? 'chrome105' : 'safari13'
 } else {
-  target = 'module'
+  target = 'modules'
 }
 
 // https://vitejs.dev/config/
@@ -66,7 +66,7 @@ export default defineConfig({
     devSourcemap: isTauriDebug || isDebug,
   },
   esbuild:{
-    
+
   },
   server: {
     port: 3000,
