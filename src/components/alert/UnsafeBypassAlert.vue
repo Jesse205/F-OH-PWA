@@ -3,16 +3,17 @@ import UnsafeBypassChromeGuide from '@/components/guide/UnsafeBypassChromeGuide.
 import { ref } from 'vue'
 
 const isGuideDialogVisible = ref(false)
+const guide = ref<InstanceType<typeof UnsafeBypassChromeGuide>>()
 </script>
 
 <template>
-  <v-alert icon="$info">
+  <v-alert v-bind="$attrs" icon="$info">
     {{ $t('alert.unsafeApiAndMaybeBlockedByChromeMessage') }}
     <v-btn :text="$t('action.viewGuide')" @click="isGuideDialogVisible = true" />
   </v-alert>
   <v-dialog v-model="isGuideDialogVisible" activator="viewGuideButton">
-    <v-card title="Chrome 解决 API 不安全">
-      <template #text><UnsafeBypassChromeGuide /></template>
+    <v-card :title="guide?.title">
+      <template #text><UnsafeBypassChromeGuide ref="guide" /></template>
       <template #actions>
         <v-btn :text="$t('action.close')" @click="isGuideDialogVisible = false"></v-btn>
       </template>

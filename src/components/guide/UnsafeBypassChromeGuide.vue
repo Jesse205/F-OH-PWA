@@ -6,6 +6,10 @@ import { ref } from 'vue'
 const exampleImgElement = ref<HTMLImageElement>()
 const { width: exampleImageElementWidth } = useElementSize(exampleImgElement)
 const exampleImageWidth = 820
+
+defineExpose({
+  title: 'Chrome 解决 API 不安全',
+})
 </script>
 
 <template>
@@ -40,7 +44,7 @@ img {
   width: 820px;
   max-width: 100%;
   position: relative;
-  &bypass-example__image {
+  &__image {
     display: block;
   }
   &__content {
@@ -52,7 +56,7 @@ img {
     transform: scale(v-bind('exampleImageElementWidth/exampleImageWidth'));
     transform-origin: 0 0;
     font-family: monospace;
-    color:darkgray;
+    color: darkgray;
   }
 }
 </style>
