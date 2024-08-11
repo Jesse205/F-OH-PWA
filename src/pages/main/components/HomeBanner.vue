@@ -40,7 +40,7 @@ const banners = computed((): Banner[] => {
   <swiper
     class="swiper"
     :slides-per-view="slidesPerView"
-    :space-between="16"
+    :space-between="16.5"
     :pagination="{
       clickable: true,
     }"
@@ -58,7 +58,7 @@ const banners = computed((): Banner[] => {
 <style scoped lang="scss">
 .swiper {
   // 防止计算误差导致边缘露出图片
-  padding: 0 15.5px;
+  overflow: visible;
   position: relative;
 }
 

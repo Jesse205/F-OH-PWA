@@ -44,10 +44,10 @@ const progressMarginTop = computed(() => {
   <app-main ref="mainComponent">
     <!-- MainLayout -->
     <!-- 轮播图 -->
-    <HomeBanner ref="bannersComponent" class="my-4" :banners="bannersData.data" :ratio="bannersData.ratio" />
+    <HomeBanner ref="bannersComponent" class="ma-4" :banners="bannersData.data" :ratio="bannersData.ratio" />
     <!-- Alerts -->
     <v-alert v-if="errMsg" class="ma-4" :title="$t('error.loading')" :text="errMsg" type="error" />
-    <UnsafeBypassAlert v-if="errMsg && homeStore.data === undefined" />
+    <UnsafeBypassAlert v-if="errMsg && homeStore.data === undefined" class="ma-4" />
 
     <!-- 公告 -->
     <title-list v-if="homeStore.isShowAnnouncement" class="ma-4" :title="$t('announcement')">

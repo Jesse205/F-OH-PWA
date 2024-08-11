@@ -117,7 +117,7 @@ onMounted(() => {
   <app-main>
     <!-- Alerts -->
     <v-alert v-if="errMsg" class="my-4 mx-4" :title="$t('error.loading')" :text="errMsg" type="error" />
-    <UnsafeBypassAlert v-if="errMsg && appsStore.data === undefined" />
+    <UnsafeBypassAlert v-if="errMsg && appsStore.data === undefined" class="ma-4" />
 
     <!-- MainLayout -->
     <app-category-list class="my-4 mx-4">
