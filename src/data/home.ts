@@ -8,7 +8,7 @@ export interface HomeData {
   showAnnouncement: boolean
 }
 
-export interface Banner {
+export interface CarouselItem {
   src?: string
   alt: string
   image: string
@@ -17,19 +17,19 @@ export interface Banner {
 /**
  * 首页横幅数据
  */
-export interface BannersData {
+export interface Carousel {
   /**
    * 横幅数据
    */
-  data: Banner[]
+  items: CarouselItem[]
   /**
    * 图片比例
    */
   ratio: number
 }
 
-export const bannersData: BannersData = {
-  data: [
+export const carousel: Carousel = {
+  items: [
     {
       image: IMAGE_BANNER_FOH,
       alt: 'F-OH',

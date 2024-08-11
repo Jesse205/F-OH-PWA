@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Banner } from '@/data/home'
+import type { CarouselItem } from '@/data/home'
 import { completeUrl } from '@/utils/url'
 import { Pagination } from 'swiper/modules'
 import 'swiper/scss'
@@ -9,7 +9,7 @@ import { computed } from 'vue'
 import { useDisplay } from 'vuetify'
 
 const props = defineProps<{
-  banners: Banner[]
+  items: CarouselItem[]
   ratio: number
   baseUrl?: string
 }>()
@@ -27,9 +27,10 @@ const slidesPerView = computed(() => {
     return 4
   }
 })
-const banners = computed((): Banner[] => {
+
+const items = computed((): CarouselItem[] => {
   const result = []
-  for (const item of props.banners) {
+  for (const item of props.items) {
     result.push({ ...item, src: item.src ? completeUrl(item.src, props.baseUrl || location.href) : undefined })
   }
   return result
@@ -47,7 +48,7 @@ const banners = computed((): Banner[] => {
     :modules="[Pagination]"
     @dragstart.stop
   >
-    <swiper-slide v-for="item in banners" :key="item.image" role="banner">
+    <swiper-slide v-for="item in items" :key="item.image" role="banner">
       <component :is="item.src ? 'a' : 'div'" :href="item.src" :target="item.src ? '_blank' : undefined">
         <v-img class="image bg-surface" :aspect-ratio="ratio" :src="item.image" cover :alt="item.alt" />
       </component>
