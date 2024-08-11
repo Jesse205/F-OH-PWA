@@ -13,9 +13,10 @@ const isDebug = !isProduction
 
 let target: string
 if (isTauri) {
+  // Tauri 在 Windows 上使用 Chromium，在 macOS 和 Linux 上使用 WebKit
   target = process.env.TAURI_PLATFORM === 'windows' ? 'chrome105' : 'safari13'
 } else {
-  target = 'es2015'
+  target = 'module'
 }
 
 // https://vitejs.dev/config/
@@ -61,6 +62,12 @@ export default defineConfig({
     },
     extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx', '.json', '.vue'],
   },
+  css: {
+    devSourcemap: isTauriDebug || isDebug,
+  },
+  esbuild:{
+    
+  },
   server: {
     port: 3000,
     // Tauri 期望使用固定端口，如果端口不可用，则会失败
@@ -68,10 +75,14 @@ export default defineConfig({
   },
   envPrefix: ['VITE_', 'TAURI_', 'FOHPWA_'],
   build: {
-    // Tauri 在 Windows 上使用 Chromium，在 macOS 和 Linux 上使用 WebKit
-    target: target,
-    minify: 'terser',
+    target,
+    minify: 'esbuild',
     // 为调试构建生成源代码映射 (sourcemap)
     sourcemap: isTauriDebug || isDebug,
+    reportCompressedSize: false,
+    terserOptions: {
+      module: true,
+      toplevel: true,
+    },
   },
 })
