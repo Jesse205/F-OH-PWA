@@ -9,6 +9,14 @@ import svgLoader from './plugins/svgLoader'
 const isTauri = !!process.env.TAURI_FAMILY
 const isTauriDebug = !!process.env.TAURI_DEBUG
 const isProduction = process.env.NODE_ENV === 'production'
+const isDebug = !isProduction
+
+let target: string
+if (isTauri) {
+  target = process.env.TAURI_PLATFORM === 'windows' ? 'chrome105' : 'safari13'
+} else {
+  target = 'es2015'
+}
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -61,9 +69,9 @@ export default defineConfig({
   envPrefix: ['VITE_', 'TAURI_', 'FOHPWA_'],
   build: {
     // Tauri 在 Windows 上使用 Chromium，在 macOS 和 Linux 上使用 WebKit
-    target: process.env.TAURI_PLATFORM === 'windows' ? 'chrome105' : 'safari13',
-    minify: !isTauriDebug ? 'esbuild' : false,
+    target: target,
+    minify: 'terser',
     // 为调试构建生成源代码映射 (sourcemap)
-    sourcemap: isTauriDebug || !isProduction,
+    sourcemap: isTauriDebug || isDebug,
   },
 })
