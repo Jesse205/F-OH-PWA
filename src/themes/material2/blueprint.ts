@@ -21,7 +21,7 @@ export const blueprint: Blueprint = {
   },
   defaults: {
     global: {
-      rounded: 'md',
+      rounded: 'default',
     },
     VAvatar: {
       rounded: 'circle',
@@ -40,14 +40,12 @@ export const blueprint: Blueprint = {
     },
     VCombobox: {
       color: 'primary',
-      rounded: false,
       variant: 'outlined',
       density: 'comfortable',
       hideDetails: 'auto',
     },
     VSelect: {
       color: 'primary',
-      rounded: false,
       variant: 'outlined',
       density: 'comfortable',
       hideDetails: 'auto',
@@ -63,7 +61,6 @@ export const blueprint: Blueprint = {
     },
     VTextField: {
       color: 'primary',
-      rounded: false,
       variant: 'outlined',
       density: 'comfortable',
       hideDetails: 'auto',
@@ -89,9 +86,11 @@ export const blueprint: Blueprint = {
     VMenu: {
       minWidth: 196,
       VList: {
+        color: 'primary',
         bgColor: 'surface',
+        rounded: 'md',
         border: false,
-        rounded: false,
+        activeClass: 'v-list-item--active-background',
       },
     },
     VCheckboxBtn: {
@@ -117,15 +116,24 @@ export const blueprint: Blueprint = {
       border: true,
       rounded: 'lg',
     },
+    AppCategoryList: {
+      bgColor: 'transparent',
+      lines: false,
+      border: true,
+      rounded: 'lg',
+      class: ['app-category-list'],
+    },
     VNavigationDrawer: {
       color: 'background',
       VList: {
         color: 'primary',
+        activeClass: 'v-list-item--active-background',
         border: false,
         rounded: false,
-        VListItem: {
-          rounded: true,
-        },
+        lines: 'one',
+      },
+      VListItem: {
+        rounded: true,
       },
     },
     VDialog: {

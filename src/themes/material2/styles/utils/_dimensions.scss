@@ -1,3 +1,8 @@
-.material2 {
-  --radius-card: 16px;
+@mixin style {
+  & {
+    --radius-card: 8px;
+  }
+  .rounded-md {
+    border-radius: 4px !important;
+  }
 }

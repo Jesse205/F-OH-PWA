@@ -1,2 +1,7 @@
 @use './styles/utils';
 @use './styles/components';
+
+.material2 {
+  @include utils.style;
+  @include components.style;
+}

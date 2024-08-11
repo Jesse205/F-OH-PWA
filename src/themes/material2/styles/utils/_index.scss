@@ -1,1 +1,7 @@
-@forward './dimensions';
+@use './dimensions';
+@use './motions';
+
+@mixin style {
+  @include dimensions.style;
+  @include motions.style;
+}

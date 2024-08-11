@@ -120,7 +120,7 @@ onMounted(() => {
     <UnsafeBypassAlert v-if="errMsg && appsStore.data === undefined" class="ma-4" />
 
     <!-- MainLayout -->
-    <app-category-list class="my-4 mx-4">
+    <app-category-list v-if="appsStore.isLoaded" class="my-4 mx-4">
       <template v-for="appType in appTypes">
         <app-list-category v-if="appType.apps && appType.apps.length" :key="appType.key" :subheader="appType.title">
           <div class="project-items" @dragstart="onProjectDragStart">

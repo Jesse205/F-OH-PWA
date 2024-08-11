@@ -1,0 +1,7 @@
+@mixin style {
+  .v-ripple {
+    &__animation--in {
+      opacity: calc(var(--v-pressed-opacity) * var(--v-theme-overlay-multiplier));
+    }
+  }
+}

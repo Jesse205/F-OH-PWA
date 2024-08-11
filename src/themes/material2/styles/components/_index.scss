@@ -1,1 +1,11 @@
-@forward './list';
+@use './dialog';
+@use './list';
+@use './ripple';
+@use './switch';
+
+@mixin style {
+  @include dialog.style;
+  @include list.style;
+  @include ripple.style;
+  @include switch.style;
+}
