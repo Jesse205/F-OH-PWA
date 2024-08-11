@@ -17,6 +17,7 @@ import publicContactsFilled from './official/ic_public_contacts_filled.svg?vueti
 import publicContactsGroup from './official/ic_public_contacts_group.svg?vuetify'
 import publicDetail from './official/ic_public_detail.svg?vuetify'
 import publicDownloadFilled from './official/ic_public_download_filled.svg?vuetify'
+import publicFail from './official/ic_public_fail.svg?vuetify'
 import publicHome from './official/ic_public_home.svg?vuetify'
 import publicHomeFilled from './official/ic_public_home_filled.svg?vuetify'
 import publicMore from './official/ic_public_more.svg?vuetify'
@@ -63,6 +64,7 @@ export const aliases: IconAliases = {
   privacy: galleryPrivacyStatement,
   card: publicCards,
   theme: publicThemes,
+  error: publicFail,
   complete: undefined,
   cancel: undefined,
   close: undefined,
@@ -70,7 +72,6 @@ export const aliases: IconAliases = {
   clear: undefined,
   success: undefined,
   warning: undefined,
-  error: undefined,
   checkboxOn: undefined,
   checkboxOff: undefined,
   checkboxIndeterminate: undefined,
