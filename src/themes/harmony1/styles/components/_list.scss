@@ -38,11 +38,6 @@
   .app-category-list {
     padding: 0;
     background-color: transparent;
-    &--rounded {
-      .app-list-category__item-container {
-        border-radius: dimensions.$radius-card;
-      }
-    }
   }
 
   .v-list-subheader {
