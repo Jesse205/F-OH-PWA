@@ -11,9 +11,11 @@ import '@/styles/main.scss'
 import { createApp } from 'vue'
 import App from './App.vue'
 import { isClientApp, isTauriApp } from './utils/app'
+import { apply } from './utils/patch/vuetify'
 import { upgrade } from './utils/upgrade'
 
 upgrade()
+apply()
 
 const TAG_TIP = '💡 Tip:'
 
