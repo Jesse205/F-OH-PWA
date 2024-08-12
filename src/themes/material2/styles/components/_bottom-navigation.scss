@@ -15,6 +15,11 @@
         &--disabled {
           opacity: 0.26;
         }
+        .v-ripple {
+          &__container {
+            contain: none;
+          }
+        }
       }
     }
   }
