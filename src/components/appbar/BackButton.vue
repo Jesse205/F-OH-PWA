@@ -1,16 +1,15 @@
 <script setup lang="ts">
 import { PATH_MAIN } from '@/constants/urls'
-import { computed, useAttrs } from 'vue'
+import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useDisplay } from 'vuetify'
-
-const attrs = useAttrs()
 
 const router = useRouter()
 const route = useRoute()
 const { smAndDown } = useDisplay()
 
 const canBack = computed(() => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
   route.path // 确保路由刷新时重新调用该函数
   return Boolean(router.options.history.state.back)
 })
@@ -46,7 +45,7 @@ function onClick() {
     <v-btn
       v-if="isBtnShowing"
       v-tooltip="isHomeButton ? $t('home') : $t('action.back')"
-      v-bind="attrs"
+      v-bind="$attrs"
       class="btn"
       :icon="isHomeButton ? '$home' : '$back'"
       :aria-label="$t('action.back')"
