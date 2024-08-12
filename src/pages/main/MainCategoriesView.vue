@@ -5,6 +5,7 @@ import AppListCategory from '@/components/list/AppListCategory.vue'
 import AppListProjectItem from '@/components/list/AppListProjectItem.vue'
 import { useAppsStore } from '@/store/apps'
 import { getAppShareUrl, type AppInfo } from '@/utils/apps'
+import { isChrome } from '@/utils/browser'
 import { watchImmediate } from '@vueuse/core'
 import { computed, onMounted, reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -117,7 +118,7 @@ onMounted(() => {
   <app-main>
     <!-- Alerts -->
     <v-alert v-if="errMsg" class="my-4 mx-4" :title="$t('error.loading')" :text="errMsg" type="error" />
-    <UnsafeBypassAlert v-if="errMsg && appsStore.data === undefined" class="ma-4" />
+    <UnsafeBypassAlert v-if="errMsg && appsStore.data === undefined && isChrome" class="ma-4" />
 
     <!-- MainLayout -->
     <app-category-list v-if="appsStore.isLoaded" class="my-4 mx-4">

@@ -5,6 +5,7 @@ import CenterSpace from '@/components/CenterSpace.vue'
 import TitleList from '@/components/list/AppList.vue'
 import { carousel } from '@/data/home'
 import { useHomeStore } from '@/store/home'
+import { isChrome } from '@/utils/browser'
 import { useElementBounding, useScroll } from '@vueuse/core'
 import { max } from 'lodash-es'
 import { computed, onMounted, ref } from 'vue'
@@ -47,7 +48,7 @@ const progressMarginTop = computed(() => {
 
     <!-- Alerts -->
     <v-alert v-if="errMsg" class="ma-4" :title="$t('error.loading')" :text="errMsg" type="error" />
-    <UnsafeBypassAlert v-if="errMsg && homeStore.data === undefined" class="ma-4" />
+    <UnsafeBypassAlert v-if="errMsg && homeStore.data === undefined && isChrome" class="ma-4" />
 
     <!-- 公告 -->
     <title-list v-if="homeStore.isShowAnnouncement" class="ma-4" :title="$t('announcement')">

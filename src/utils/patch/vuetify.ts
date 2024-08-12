@@ -1,5 +1,7 @@
+import { isChrome } from '@/utils/browser'
+
 function fixVRippleOnMobile() {
-  if (!('chrome' in window)) {
+  if (!isChrome) {
     return
   }
   const originSetTimeout = setTimeout
