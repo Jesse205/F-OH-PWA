@@ -4,13 +4,13 @@
  * @see https://vuetifyjs.com
  */
 
-import { currentBlueprint } from '@/themes'
+import { currentDesignConfig } from '@/themes'
 import { createVuetify } from 'vuetify'
 import { VList } from 'vuetify/components'
 
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 export default createVuetify({
-  blueprint: currentBlueprint,
+  blueprint: currentDesignConfig.blueprint,
   display: {
     mobileBreakpoint: 'lg',
   },

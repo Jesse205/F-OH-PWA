@@ -1,4 +1,5 @@
 import { BASE_URL, IS_DEV_MODE } from '@/constants'
+import { currentDesignConfig } from '@/themes'
 import { isWebHistorySupported } from '@/utils/app'
 import { isPageTransitionEnabled } from '@/utils/settings'
 import type { RouteRecordRaw } from 'vue-router'
@@ -129,10 +130,9 @@ router.afterEach((to, from) => {
   previousPosition = currentPosition ?? 0
 
   // 动画
-  if (from.path !== '/' && isPageTransitionEnabled()) {
-    // const name = history.state.forward ? 'scroll-x-transition' : 'scroll-x-reverse-transition'
-    // const name = history.state.forward ? 'page-leave-transition' : 'page-enter-transition'
-    const name = !isForward ? 'page-leave-animation' : 'page-enter-animation'
+  if (from.path !== '/' && currentDesignConfig.features.pageTransition && isPageTransitionEnabled()) {
+    const { enter: enterName, leave: leaveName } = currentDesignConfig.features.pageTransition
+    const name = isForward ? enterName : leaveName
     to.meta.transition = name
     from.meta.transition = name
   } else {
