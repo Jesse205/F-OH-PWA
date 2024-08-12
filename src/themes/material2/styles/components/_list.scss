@@ -1,6 +1,28 @@
 /// @link https://m2.material.io/components/lists
 
 @mixin style {
+  .app-list-category {
+    border-radius: inherit;
+    overflow: hidden;
+    border-color: rgba(var(--v-border-color), var(--v-border-opacity));
+    border-style: solid;
+    border-width: thin;
+    padding: 8px 0;
+    & + .app-list-category {
+      margin-top: 16px;
+    }
+
+    /* .v-list-subheader {
+      margin-top: -8px;
+      color: rgba(var(--v-theme-on-surface), var(--v-medium-emphasis-opacity));
+    } */
+  }
+
+  .app-category-list {
+    padding: 0;
+    background-color: transparent;
+  }
+
   .v-list-item {
     /// 根据规格推算出，小图片与文字的上下边距为 16px，部分情况除外
     &--density-default:not(.v-list-item--one-line, .v-list-item--two-line, .v-list-item--three-line) {

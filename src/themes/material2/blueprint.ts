@@ -117,7 +117,7 @@ export const blueprint: Blueprint = {
     AppCategoryList: {
       bgColor: 'transparent',
       lines: false,
-      border: true,
+      border: false,
       rounded: true,
       class: ['app-category-list'],
     },
