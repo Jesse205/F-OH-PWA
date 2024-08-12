@@ -1,9 +1,13 @@
+@use './bottom-navigation';
+@use './button';
 @use './dialog';
 @use './list';
 @use './ripple';
 @use './switch';
 
 @mixin style {
+  @include bottom-navigation.style;
+  @include button.style;
   @include dialog.style;
   @include list.style;
   @include ripple.style;

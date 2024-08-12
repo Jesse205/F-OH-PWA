@@ -73,22 +73,20 @@ export const blueprint: Blueprint = {
     },
     VAppBar: {
       flat: true,
-      // border: 'b',
+      border: 'b',
       density: 'comfortable',
     },
     VBottomNavigation: {
-      VBtn: {
-        variant: 'plain',
-      },
       grow: true,
       color: 'primary',
+      border: 't',
+      elevation: 0,
     },
     VMenu: {
       minWidth: 196,
       VList: {
         color: 'primary',
         bgColor: 'surface',
-        rounded: 'md',
         border: false,
         activeClass: 'v-list-item--active-background',
       },
@@ -107,20 +105,17 @@ export const blueprint: Blueprint = {
     VListSubheader: {
       color: 'primary',
     },
-    VProgressCircular: {
-      color: 'primary',
-    },
     VList: {
       bgColor: 'transparent',
       lines: false,
       border: true,
-      rounded: 'lg',
+      rounded: true,
     },
     AppCategoryList: {
       bgColor: 'transparent',
       lines: false,
       border: true,
-      rounded: 'lg',
+      rounded: true,
       class: ['app-category-list'],
     },
     VNavigationDrawer: {
@@ -143,6 +138,21 @@ export const blueprint: Blueprint = {
         color: 'surface',
         variant: 'elevated',
         border: false,
+      },
+    },
+    VProgressCircular: {
+      color: 'primary',
+      width: 4,
+      size: '48',
+    },
+    VAlert: {
+      variant: 'tonal',
+      VBtn: {
+        size: 'default',
+        variant: 'text',
+        rounded: 'sm',
+        density: 'compact',
+        slim: true,
       },
     },
     VSwitch: {

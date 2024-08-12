@@ -34,15 +34,13 @@ $font-family: ui-sans-serif, sans-serif, system-ui;
       width: 0;
     }
   }
-
-  .v-progress-circular {
-    // 修复进度条转圈太快
-    &--indeterminate .v-progress-circular__overlay {
-      animation:
-        progress-circular-dash 1.5s ease-in-out infinite,
-        progress-circular-rotate 15s linear infinite;
+  // 修复进度条转圈太快
+  .v-progress-circular--indeterminate {
+    & > svg {
+      animation: none;
     }
-
+  }
+  .v-progress-circular {
     &__underlay {
       stroke: none;
     }
