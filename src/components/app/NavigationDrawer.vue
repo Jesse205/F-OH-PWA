@@ -36,7 +36,7 @@ const isOtherPage = computed(() => Boolean(!isInMainView.value && appStore.title
     </transition> -->
     <transition name="slide-y-transition">
       <v-list v-if="isOtherPage" density="compact" nav>
-        <v-list-item :key="$route.path" prepend-icon="$circle" :title="appStore.title" active link />
+        <v-list-item :key="$route.path" prepend-icon="$foh" :title="appStore.title" active link />
       </v-list>
     </transition>
   </v-navigation-drawer>

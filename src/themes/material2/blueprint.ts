@@ -1,5 +1,5 @@
 import type { Blueprint } from 'vuetify'
-import { aliases, mdi } from './iconset'
+import { aliases, mdi } from './icons'
 
 export const blueprint: Blueprint = {
   theme: {

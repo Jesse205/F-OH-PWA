@@ -140,7 +140,7 @@ function shareApp() {
           />
           <v-list-item
             v-else
-            prepend-icon="$account"
+            prepend-icon="$developer"
             :lines="developerSpace ? 'two' : 'one'"
             :title="appInfo?.vender"
             :subtitle="developerSpace ?? undefined"

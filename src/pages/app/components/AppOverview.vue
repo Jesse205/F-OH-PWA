@@ -48,7 +48,7 @@ defineExpose({
       <div class="button-group" data-allow-drag>
         <!-- 下载按钮 -->
         <v-btn
-          prepend-icon="$downloadFilled"
+          prepend-icon="$iconButton_download"
           variant="flat"
           :disabled="!appDownloadUrl"
           :href="appDownloadUrl || undefined"

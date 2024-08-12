@@ -55,7 +55,7 @@ if (isTauriApp) {
             :subtitle="tauriVersion ?? $t('loading')"
           />
           <v-list-item
-            prepend-icon="$privacy"
+            prepend-icon="$about_licenses"
             :title="$t('term.openSourceLicenses')"
             :to="{ name: 'Licenses' }"
             append-icon="$next"
@@ -70,13 +70,13 @@ if (isTauriApp) {
             :title="parseI18n(item.title, $t)"
             :subtitle="parseI18n(item.summary, $t)"
           />
-          <v-list-item prepend-icon="$card" :title="$t('action.donate')" :to="{ name: 'Donate' }" append-icon="$next" />
+          <v-list-item prepend-icon="$about_donate" :title="$t('action.donate')" :to="{ name: 'Donate' }" append-icon="$next" />
         </app-list-category>
         <!-- 交流讨论 -->
         <app-list-category :subheader="$t('action.communicate')">
           <!-- QQ 群 -->
           <v-list-item
-            prepend-icon="$group"
+            prepend-icon="$about_group"
             :title="$t('app.qqGroup')"
             subtitle="528608689"
             href="https://qm.qq.com/q/CDSFf6DvVK"
@@ -95,7 +95,7 @@ if (isTauriApp) {
             append-icon="$openInNew"
           />
           <v-list-item
-            prepend-icon="$circle"
+            prepend-icon="$foh"
             :title="$t('link.foh.title')"
             :subtitle="$t('link.foh.description')"
             href="https://gitee.com/ohos-dev/f-oh"
@@ -103,7 +103,7 @@ if (isTauriApp) {
             append-icon="$openInNew"
           />
           <v-list-item
-            prepend-icon="$group"
+            prepend-icon="$about_group"
             :title="$t('link.organization.title')"
             :subtitle="$t('link.organization.description')"
             href="https://gitee.com/ohos-dev"

@@ -47,7 +47,7 @@ const pageTransitionEnabled = usePageTransition()
         <app-list-category :subheader="$t('userInterface', 2)">
           <app-list-single-select-item
             v-model="preferredDesignLanguage"
-            prepend-icon="$theme"
+            prepend-icon="$setting_design"
             :title="$t('designLanguage')"
             :items="designLanguages"
             :value-getter="(item) => item.code"
@@ -60,14 +60,14 @@ const pageTransitionEnabled = usePageTransition()
           </app-list-single-select-item>
           <app-list-single-select-item
             v-model="language"
-            prepend-icon="$translate"
+            prepend-icon="$setting_language"
             :title="$t('language')"
             :items="languages"
             :value-getter="(item) => item.code"
             :name-getter="(item) => item.name"
           />
           <v-list-item
-            prepend-icon="$info"
+            prepend-icon="$foh"
             :title="$t('pageHierarchyTransition')"
             @click="pageTransitionEnabled = !pageTransitionEnabled"
           >
@@ -79,7 +79,7 @@ const pageTransitionEnabled = usePageTransition()
         <app-list-category :subheader="$t('app.title')">
           <app-list-dialog-item
             v-model="preferredApiUrl"
-            prepend-icon="$circle"
+            prepend-icon="$foh"
             :title="$t('apiUrl')"
             :subtitle="preferredApiUrl.trim() || $t('notSet')"
           >

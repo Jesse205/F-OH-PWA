@@ -2,41 +2,39 @@ import type { IconValue } from 'vuetify'
 
 declare module 'vuetify' {
   export interface IconAliases {
-    back: IconValue
-    settings: IconValue
-    next: IconValue
-    openInNew: IconValue
-    share: IconValue
-    app: IconValue
-    appFilled: IconValue
-    apps: IconValue
-    appsFilled: IconValue
-    home: IconValue
-    homeFilled: IconValue
-    more: IconValue
-    info: IconValue
-    downloadFilled: IconValue
-    clock: IconValue
-    account: IconValue
-    accountFilled: IconValue
-    update: IconValue
-    updateFilled: IconValue
     error: IconValue
-    translate: IconValue
-    group: IconValue
-    circle: IconValue
-    card: IconValue
-    search: IconValue
+    info: IconValue
+
+    back: IconValue
+    next: IconValue
     prev: IconValue
-    lock: IconValue
+    share: IconValue
+    openOthers: IconValue
+
+    settings: IconValue
+    foh: IconValue
+    more: IconValue
     link: IconValue
-    close: IconValue
-    square: IconValue
-    'window-maximize': IconValue
-    'window-close': IconValue
-    'window-minimize': IconValue
-    'window-restore': IconValue
-    privacy: IconValue
-    theme: IconValue
+    clock: IconValue
+    home: IconValue
+    developer: IconValue
+
+    navigation_home: IconValue
+    navigation_home_active: IconValue
+    navigation_apps: IconValue
+    navigation_apps_active: IconValue
+    navigation_update: IconValue
+    navigation_update_active: IconValue
+    navigation_me: IconValue
+    navigation_me_active: IconValue
+
+    iconButton_download: IconValue
+
+    setting_language: IconValue
+    setting_design: IconValue
+
+    about_licenses: IconValue
+    about_donate: IconValue
+    about_group: IconValue
   }
 }

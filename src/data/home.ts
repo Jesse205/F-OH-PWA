@@ -62,29 +62,29 @@ export interface HomeRouteItemData extends RouteItemData {
 export const homeRouteData: HomeRouteItemData[] = [
   {
     title: '$t.home',
-    icon: '$home',
-    activeIcon: '$homeFilled',
+    icon: '$navigation_home',
+    activeIcon: '$navigation_home_active',
     name: 'Home',
     refreshable: true,
   },
   {
     title: ['$t.category', 2],
-    icon: '$apps',
-    activeIcon: '$appsFilled',
+    icon: '$navigation_apps',
+    activeIcon: '$navigation_apps_active',
     name: 'Categories',
     refreshable: true,
   },
   {
     title: '$t.update',
-    icon: '$update',
-    activeIcon: '$updateFilled',
+    icon: '$navigation_update',
+    activeIcon: '$navigation_update_active',
     name: 'Update',
     disabled: true,
   },
   {
     title: '$t.me',
-    icon: '$account',
-    activeIcon: '$accountFilled',
+    icon: '$navigation_me',
+    activeIcon: '$navigation_me_active',
     name: 'Me',
   },
 ]

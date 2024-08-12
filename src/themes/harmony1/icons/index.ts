@@ -1,10 +1,10 @@
 /**
  * @see https://developer.huawei.com/consumer/cn/design/harmonyos-icon/
  */
+
 import type { IconAliases, IconSet } from 'vuetify'
 import { VSvgIcon } from 'vuetify/components'
 import publicConnection from './custom/ic_public_connection.svg?vuetify'
-import galleryPrivacyStatement from './official/ic_gallery_privacy_statement.svg?vuetify'
 import publicGallerySet from './official/ic_gallery_set.svg?vuetify'
 import publicApp from './official/ic_public_app.svg?vuetify'
 import publicAppFilled from './official/ic_public_app_filled.svg?vuetify'
@@ -18,6 +18,7 @@ import publicContactsGroup from './official/ic_public_contacts_group.svg?vuetify
 import publicDetail from './official/ic_public_detail.svg?vuetify'
 import publicDownloadFilled from './official/ic_public_download_filled.svg?vuetify'
 import publicFail from './official/ic_public_fail.svg?vuetify'
+import publicFile from './official/ic_public_file.svg?vuetify'
 import publicHome from './official/ic_public_home.svg?vuetify'
 import publicHomeFilled from './official/ic_public_home_filled.svg?vuetify'
 import publicMore from './official/ic_public_more.svg?vuetify'
@@ -37,41 +38,17 @@ export const hmi: IconSet = {
 }
 
 export const aliases: IconAliases = {
-  app: publicApp,
-  apps: publicApp,
-  appFilled: publicAppFilled,
-  appsFilled: publicAppFilled,
-  prev: publicArrowLeft,
-  next: publicArrowRight,
-  back: publicArrowBack,
-  more: publicMore,
-  home: publicHome,
-  homeFilled: publicHomeFilled,
-  info: publicDetail,
-  account: publicContacts,
-  accountFilled: publicContactsFilled,
-  update: publicUpgrade,
-  updateFilled: publicUpgradeFilled,
-  settings: publicSettings,
-  translate: publicTranslateC2E,
-  group: publicContactsGroup,
-  circle: publicScreenshotCircle, //会多出来个没用的路径
-  link: publicConnection,
-  share: publicShare,
-  clock: publicTime,
-  downloadFilled: publicDownloadFilled,
-  openInNew: publicGallerySet,
-  privacy: galleryPrivacyStatement,
-  card: publicCards,
-  theme: publicThemes,
-  error: publicFail,
   complete: undefined,
   cancel: undefined,
   close: undefined,
   delete: undefined,
   clear: undefined,
   success: undefined,
-  warning: undefined,
+  info: publicDetail,
+  warning: publicFail,
+  error: publicFail,
+  prev: publicArrowLeft,
+  next: publicArrowRight,
   checkboxOn: undefined,
   checkboxOff: undefined,
   checkboxIndeterminate: undefined,
@@ -96,11 +73,28 @@ export const aliases: IconAliases = {
   plus: undefined,
   minus: undefined,
   calendar: undefined,
-  search: undefined,
-  lock: undefined,
-  square: undefined,
-  'window-maximize': undefined,
-  'window-close': undefined,
-  'window-minimize': undefined,
-  'window-restore': undefined,
+  openOthers: publicGallerySet,
+  back: publicArrowBack,
+  settings: publicSettings,
+  foh: publicScreenshotCircle,
+  more: publicMore,
+  share: publicShare,
+  link: publicConnection,
+  clock: publicTime,
+  home: publicHome,
+  developer: publicContacts,
+  navigation_home: publicHome,
+  navigation_home_active: publicHomeFilled,
+  navigation_apps: publicApp,
+  navigation_apps_active: publicAppFilled,
+  navigation_update: publicUpgrade,
+  navigation_update_active: publicUpgradeFilled,
+  navigation_me: publicContacts,
+  navigation_me_active: publicContactsFilled,
+  iconButton_download: publicDownloadFilled,
+  setting_language: publicTranslateC2E,
+  setting_design: publicThemes,
+  about_licenses: publicFile,
+  about_donate: publicCards,
+  about_group: publicContactsGroup,
 }
