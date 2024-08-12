@@ -1,7 +1,9 @@
 @use './dimensions';
+@use './elevations';
 @use './motions';
 
 @mixin style {
+  @include elevations.style;
   @include dimensions.style;
   @include motions.style;
 }

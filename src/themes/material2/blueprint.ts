@@ -15,6 +15,7 @@ export const blueprint: Blueprint = {
         colors: {
           primary: '#42A5F5',
           secondary: '#66BB6A',
+          'surface-bright': '#ffffff',
         },
       },
     },
@@ -77,6 +78,7 @@ export const blueprint: Blueprint = {
       density: 'comfortable',
     },
     VBottomNavigation: {
+      class: ['bg-background'],
       grow: true,
       color: 'primary',
       border: 't',
@@ -85,6 +87,7 @@ export const blueprint: Blueprint = {
     VMenu: {
       minWidth: 196,
       VList: {
+        elevation: '8',
         color: 'primary',
         bgColor: 'surface',
         border: false,
@@ -135,6 +138,7 @@ export const blueprint: Blueprint = {
       width: '560',
       transition: 'dialog-transition',
       VCard: {
+        elevation: '24',
         color: 'surface',
         variant: 'elevated',
         border: false,
