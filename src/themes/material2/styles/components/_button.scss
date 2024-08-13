@@ -3,6 +3,7 @@
     & > .v-btn__overlay,
     &[aria-haspopup='menu'][aria-expanded='true'] > .v-btn__overlay {
       opacity: 0;
+      transition: opacity 0.2s ease-in-out;
     }
     @supports selector(:focus-visible) {
       &:focus-visible > .v-btn__overlay {
@@ -15,7 +16,7 @@
     @media (hover: hover) {
       &:hover {
         & > .v-btn__overlay {
-          opacity: calc(var(--v-hover-opacity) * var(--v-theme-overlay-multiplier)) !important;
+          opacity: calc(var(--v-hover-opacity) * var(--v-theme-overlay-multiplier));
         }
       }
     }
