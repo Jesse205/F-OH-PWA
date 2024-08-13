@@ -66,6 +66,9 @@
     &:last-child::before {
       content: none;
     }
+    &::after {
+      content: none;
+    }
 
     &--rounded {
       border-radius: dimensions.$radius-card - 2px;
@@ -117,16 +120,11 @@
 
     // 重写焦点样式
     @supports selector(:focus-visible) {
-      &:focus-visible > .v-list-item__overlay {
-        opacity: 0;
-      }
-      &::after {
-        border: 2px solid rgb(var(--v-theme-primary));
-        border-radius: inherit;
-      }
       &:focus-visible {
-        &::after {
-          opacity: 1;
+        outline: rgb(var(--v-theme-primary)) solid 2px;
+        outline-offset: -2px;
+        & > .v-list-item__overlay {
+          opacity: 0;
         }
       }
     }

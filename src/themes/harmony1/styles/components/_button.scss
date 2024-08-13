@@ -17,17 +17,13 @@
       transition-property: opacity;
       transition-timing-function: ease-in-out;
     }
+    &::after {
+      content: none;
+    }
     @supports selector(:focus-visible) {
-      &::after {
-        border: none;
-        border-radius: inherit;
+      &:focus-visible {
         outline: rgb(var(--v-theme-primary)) solid 2px;
         outline-offset: 2px;
-      }
-      &:focus-visible {
-        &::after {
-          opacity: 1;
-        }
       }
     }
     @media (hover: hover) {
