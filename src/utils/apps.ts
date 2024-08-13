@@ -1,11 +1,6 @@
 import { HOST_WEB } from '@/constants/urls'
 import { isClientApp, isWebHistorySupported } from './app'
 
-/**
- * 标签分割正则
- */
-const REGEX_SEPARATOR_TAG = /[,，、 ]+/
-
 export interface AppInfo {
   id: number
   name: string
@@ -28,7 +23,7 @@ export type AppType = 'app' | 'game' | string
  */
 export function getAppTags(appInfo: AppInfo): string[] {
   const tags = appInfo.tags.trim()
-  return tags.length > 0 ? tags.split(REGEX_SEPARATOR_TAG) : []
+  return tags.length > 0 ? tags.split(',').map((tag) => tag.trim()) : []
 }
 
 export function getAppShareUrl(packageName: string): URL {
