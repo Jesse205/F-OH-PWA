@@ -49,4 +49,5 @@
   "i18n-ally.regex.usageMatchAppend": [
     "[^\\w\\d]['\"`]\\$t\\.({key})['\"`]"
   ],
+  "GitCommitPlugin.ShowEmoji": false,
 }

@@ -5,6 +5,7 @@
     "dbaeumer.vscode-eslint",
     "serayuzgur.crates",
     "dustypomerleau.rust-syntax",
-    "vue.volar"
+    "vue.volar",
+    "davidanson.vscode-markdownlint"
   ]
 }
