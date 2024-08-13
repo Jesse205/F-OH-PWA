@@ -33,13 +33,13 @@
     @media (hover: hover) {
       &:hover {
         & > .v-btn__overlay {
-          opacity: calc(var(--v-hover-opacity) * var(--v-theme-overlay-multiplier)) !important;
+          opacity: calc(var(--v-hover-opacity) * var(--v-theme-overlay-multiplier));
         }
       }
     }
     &:active {
       & > .v-btn__overlay {
-        opacity: calc(var(--v-pressed-opacity) * var(--v-theme-overlay-multiplier)) !important;
+        opacity: calc(var(--v-pressed-opacity) * var(--v-theme-overlay-multiplier));
       }
     }
   }
