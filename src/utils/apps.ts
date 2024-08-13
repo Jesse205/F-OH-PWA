@@ -1,6 +1,8 @@
 import { HOST_WEB } from '@/constants/urls'
 import { isClientApp, isWebHistorySupported } from './app'
 
+export type AppType = 'app' | 'game' | string
+
 export interface AppInfo {
   id: number
   name: string
@@ -15,8 +17,6 @@ export interface AppInfo {
   openSourceAddress: string
   releaseTime: string
 }
-
-export type AppType = 'app' | 'game' | string
 
 /**
  * 获取应用标签列表，使用正则分割 `appInfo.tags` 并返回.
