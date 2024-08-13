@@ -73,7 +73,7 @@ export const aliases: IconAliases = {
   plus: undefined,
   minus: undefined,
   calendar: undefined,
-  openOthers: publicGallerySet,
+  openInNew: publicGallerySet,
   back: publicArrowBack,
   settings: publicSettings,
   foh: publicScreenshotCircle,

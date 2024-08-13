@@ -9,7 +9,7 @@ declare module 'vuetify' {
     next: IconValue
     prev: IconValue
     share: IconValue
-    openOthers: IconValue
+    openInNew: IconValue
 
     settings: IconValue
     foh: IconValue
