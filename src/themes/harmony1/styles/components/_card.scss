@@ -1,7 +1,33 @@
 @use '../settings/dimensions';
+@use '../settings/motions';
 
 @mixin style {
   .v-card {
     border-radius: dimensions.$radius-card;
+    outline: none;
+    & > .v-card__overlay {
+      opacity: 0;
+      transition-duration: motions.$background-duration;
+      transition-property: opacity;
+      transition-timing-function: ease-in-out;
+    }
+    @supports selector(:focus-visible) {
+      &:focus-visible {
+        outline: rgb(var(--v-theme-primary)) solid 2px;
+        outline-offset: 2px;
+      }
+    }
+    @media (hover: hover) {
+      &:hover {
+        & > .v-card__overlay {
+          opacity: calc(var(--v-hover-opacity) * var(--v-theme-overlay-multiplier));
+        }
+      }
+    }
+    &:active {
+      & > .v-card__overlay {
+        opacity: calc(var(--v-pressed-opacity) * var(--v-theme-overlay-multiplier));
+      }
+    }
   }
 }

@@ -1,5 +1,6 @@
 @use './bottom-navigation';
 @use './button';
+@use './card';
 @use './dialog';
 @use './list';
 @use './ripple';
@@ -8,6 +9,7 @@
 @mixin style {
   @include bottom-navigation.style;
   @include button.style;
+  @include card.style;
   @include dialog.style;
   @include list.style;
   @include ripple.style;
