@@ -8,8 +8,8 @@ import { onActivated, onDeactivated, ref, toRef, watchEffect } from 'vue'
  * 注意：当组件停用时，该方法不会还原原先的标题！
  * @param activated 当前激活状态，默认为 `ref(true)`
  */
-export function useTitle(title: MaybeRef<string | null>, activated: Ref<boolean> = ref(true)): Ref<string | null> {
-  const wrappedTitle: Ref<string | null> = toRef(title)
+export function useTitle(title: MaybeRef<string | undefined>, activated: Ref<boolean> = ref(true)): Ref<string | undefined> {
+  const wrappedTitle: Ref<string | undefined> = toRef(title)
   const appStore = useAppStore()
   onActivated(() => {
     activated.value = true
@@ -26,9 +26,9 @@ export function useTitle(title: MaybeRef<string | null>, activated: Ref<boolean>
   return wrappedTitle
 }
 
-export function useAutoTitle(title: MaybeRef<string | null>) {
+export function useAutoTitle(title: MaybeRef<string | undefined>) {
   const activated: Ref<boolean> = ref(true)
-  const wrappedTitle: Ref<string | null> = toRef(title)
+  const wrappedTitle: Ref<string | undefined> = toRef(title)
   const appStore = useAppStore()
   onActivated(() => {
     activated.value = true
