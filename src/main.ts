@@ -10,7 +10,7 @@ import { registerPlugins } from '@/plugins'
 import '@/styles/main.scss'
 import { createApp } from 'vue'
 import App from './App.vue'
-import { isClientApp, isTauriApp } from './utils/app'
+import { isClientApp, isTauriApp } from './utils/global'
 import { apply } from './utils/patch/vuetify'
 import { upgrade } from './utils/upgrade'
 

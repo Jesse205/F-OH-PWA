@@ -1,4 +1,4 @@
-import { isClientApp } from './app'
+import { isClientApp } from './global'
 
 /**
  * 判断在传统 APP 中 HTML 元素是否可拖动，用于拦截拖动事件

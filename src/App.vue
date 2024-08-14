@@ -3,7 +3,7 @@ import NavigationDrawer from '@/components/app/NavigationDrawer.vue'
 import PwaComponent from '@/components/app/PwaComponent.vue'
 import TauriSystemBar from '@/components/app/TauriSystemBar.vue'
 import { usePreferredLocale } from '@/composables/settings'
-import { useAppStore } from '@/store/app'
+import { useAppStore } from '@/store/global'
 import { isElementDraggableInClientApp } from '@/utils/drag'
 import { isPwaDisplayMode } from '@/utils/pwa'
 import { useTitle as useDocumentTitle, useEventListener, usePreferredDark, watchImmediate } from '@vueuse/core'
@@ -13,7 +13,7 @@ import { useTheme } from 'vuetify'
 import { useAutoLocale, useAutoTheme } from './composables/app'
 import SplashView from './pages/splash/SplashView.vue'
 import { currentDesign } from './themes'
-import { isTauriApp } from './utils/app'
+import { isTauriApp } from './utils/global'
 
 const route = useRoute()
 const appStore = useAppStore()

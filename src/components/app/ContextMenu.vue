@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { isTauriApp } from '@/utils/app'
+import { isTauriApp } from '@/utils/global'
 import { copyText } from '@/utils/clipboard'
 import { openNewWindow } from '@/utils/window'
 import { onBeforeUnmount, onMounted, reactive } from 'vue'

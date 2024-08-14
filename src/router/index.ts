@@ -1,6 +1,6 @@
 import { BASE_URL, IS_DEV_MODE } from '@/constants'
 import { currentDesignConfig } from '@/themes'
-import { isWebHistorySupported } from '@/utils/app'
+import { isWebHistorySupported } from '@/utils/global'
 import { isPageTransitionEnabled } from '@/utils/settings'
 import type { RouteRecordRaw } from 'vue-router'
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'

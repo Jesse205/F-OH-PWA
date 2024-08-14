@@ -1,4 +1,4 @@
-import { useAppStore } from '@/store/app'
+import { useAppStore } from '@/store/global'
 import type { MaybeRef, Ref } from 'vue'
 import { onActivated, onDeactivated, ref, toRef, watchEffect } from 'vue'
 

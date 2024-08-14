@@ -1,5 +1,5 @@
 import { HOST_WEB } from '@/constants/urls'
-import { isClientApp, isWebHistorySupported } from './app'
+import { isClientApp, isWebHistorySupported } from './global'
 
 export type AppType = 'app' | 'game' | string
 

@@ -2,7 +2,7 @@ import type { AxiosAdapter, InternalAxiosRequestConfig } from 'axios'
 import axios from 'axios'
 import tauriHttpAdapter from 'axios-tauri-api-adapter'
 
-import { isTauriApp } from './app'
+import { isTauriApp } from './global'
 import { currentApiUrl } from './url'
 const xhrAdapter = axios.getAdapter('xhr')
 

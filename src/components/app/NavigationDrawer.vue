@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useHomeRoutes } from '@/composables/route'
 import { homeRouteData } from '@/data/home'
-import { useAppStore } from '@/store/app'
+import { useAppStore } from '@/store/global'
 import { parseI18n } from '@/utils/i18n'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'

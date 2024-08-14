@@ -1,6 +1,6 @@
 import { URL_API_CLIENT, URL_API_CLIENT_ORIGIN, URL_API_WEB, URL_API_WEB_ORIGIN } from '@/constants/urls'
 import { getPreferredApiUrl } from '@/utils/settings'
-import { isClientApp, isTauriApp } from './app'
+import { isClientApp, isTauriApp } from './global'
 
 const REGEX_GITHUB_USER = /^https:\/\/(www\.)?github\.com\/[^/]+/
 const REGEX_GITEE_USER = /^https:\/\/(www\.)?gitee\.com\/[^/]+/
