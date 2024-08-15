@@ -4,19 +4,15 @@ import { getPreferredDesignLanguage } from '@/utils/settings'
 import type { Blueprint } from 'vuetify'
 import type { DesignFeatures } from './base'
 
-/**
- * 设计语言不支持动态切换
- */
+// 设计语言不支持动态切换
 export const currentDesign = getPreferredDesignLanguage()
 
 let _currentDesignConfig: { blueprint: Blueprint; features: DesignFeatures }
 switch (currentDesign) {
-  case 'harmony1':
-    _currentDesignConfig = harmony1Config
-    break
   case 'material2':
     _currentDesignConfig = material2Config
     break
+  case 'harmony1':
   default:
     _currentDesignConfig = harmony1Config
 }
