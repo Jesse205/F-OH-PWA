@@ -1,6 +1,6 @@
 @mixin style {
   & {
-    --radius-card: 8px;
+    --radius-card: 4px;
   }
   .rounded-md {
     border-radius: 4px !important;
