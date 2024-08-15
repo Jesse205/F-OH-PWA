@@ -19,7 +19,7 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const { t, locale } = useI18n()
-useTitle(computed(() => t('settings')))
+const title = useTitle(computed(() => t('settings')))
 
 const appVersion = __VERSION__
 
@@ -40,7 +40,7 @@ const pageTransitionEnabled = usePageTransition()
   <v-layout>
     <v-app-bar>
       <back-button />
-      <v-app-bar-title>{{ $t('settings') }}</v-app-bar-title>
+      <v-app-bar-title :text="title" />
     </v-app-bar>
     <app-main>
       <app-category-list class="ma-4">

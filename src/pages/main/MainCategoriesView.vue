@@ -6,8 +6,7 @@ import AppListProjectItem from '@/components/list/AppListProjectItem.vue'
 import { useAppsStore } from '@/store/apps'
 import { getAppShareUrl, type AppInfo } from '@/utils/apps'
 import { isChrome } from '@/utils/browser'
-import { watchImmediate } from '@vueuse/core'
-import { computed, onMounted, reactive } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
@@ -25,62 +24,29 @@ interface AppTypes {
   key: string
 }
 
-const apps = reactive<AppInfo[]>([])
-const gameApps = reactive<AppInfo[]>([])
-// 未知的应用类型
-const otherApps = reactive<AppInfo[]>([])
-
 const appTypes = computed<AppTypes[]>((): AppTypes[] => [
   {
     title: t('app.title'),
-    apps: apps,
+    apps: appsStore.normalApps,
     key: 'apps',
   },
   {
     title: t('game'),
-    apps: gameApps,
+    apps: appsStore.gameApps,
     key: 'games',
   },
   {
     title: t('other'),
-    apps: otherApps,
+    apps: appsStore.othersApps,
     key: 'others',
   },
 ])
-
-// 将数据插入不同的分类列表中
-watchImmediate(
-  computed((): AppInfo[] | undefined => appsStore.data),
-  (newData) => {
-    apps.length = 0
-    gameApps.length = 0
-    otherApps.length = 0
-    if (newData) {
-      for (const item of newData) {
-        switch (item.type) {
-          case 'app': {
-            apps.push(item)
-            break
-          }
-          case 'game': {
-            gameApps.push(item)
-            break
-          }
-          default: {
-            otherApps.push(item)
-            break
-          }
-        }
-      }
-    }
-  },
-)
 
 /**
  * 刷新应用列表
  */
 function refresh() {
-  appsStore.refreshData()
+  appsStore.loadData(true)
 }
 
 defineExpose({ refresh })
@@ -98,7 +64,7 @@ function onProjectDragStart(event: DragEvent) {
     dataTransfer
   ) {
     const { pkg } = target.dataset
-    const appInfo = appsStore.data?.find((item) => item.packageName === pkg)
+    const appInfo = appsStore.apps?.find((item) => item.packageName === pkg)
     if (appInfo) {
       const infoUrl = getAppShareUrl(appInfo.packageName).href
       dataTransfer.clearData()
@@ -118,7 +84,7 @@ onMounted(() => {
   <app-main>
     <!-- Alerts -->
     <v-alert v-if="errMsg" class="my-4 mx-4" :title="$t('error.loading')" :text="errMsg" type="error" />
-    <UnsafeBypassAlert v-if="errMsg && appsStore.data === undefined && isChrome" class="ma-4" />
+    <UnsafeBypassAlert v-if="errMsg && isChrome" class="ma-4" />
 
     <!-- MainLayout -->
     <app-category-list v-if="appsStore.isLoaded" class="my-4 mx-4">
@@ -140,9 +106,9 @@ onMounted(() => {
 
     <template #root>
       <!-- Loading -->
-      <CenterSpace v-if="isLoading || apps.length === 0">
+      <CenterSpace v-if="isLoading || appsStore.apps.length === 0">
         <v-progress-circular v-if="isLoading" indeterminate style="pointer-events: none" />
-        <span v-else-if="apps.length === 0">{{ $t('empty.apps') }}</span>
+        <span v-else-if="appsStore.apps.length === 0">{{ $t('empty.apps') }}</span>
       </CenterSpace>
     </template>
   </app-main>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import BackButton from '@/components/appbar/BackButton.vue'
-import { useHomeRoutes } from '@/composables/route'
+import { INDEX_NOT_FOUND, useHomeRoutes } from '@/composables/route'
 import { useTitle } from '@/composables/title'
 import { PATH_MAIN } from '@/constants/urls'
 import { homeRouteData } from '@/data/home'
@@ -20,7 +20,7 @@ const TAG = 'MainView'
 const { activePagePosition, routeButtonReplace } = useHomeRoutes()
 
 const currentRouteData = computed(() => {
-  if (activePagePosition.value !== null) {
+  if (activePagePosition.value !== INDEX_NOT_FOUND) {
     return homeRouteData[activePagePosition.value]
   } else {
     return homeRouteData[0]
@@ -29,14 +29,7 @@ const currentRouteData = computed(() => {
 
 const { t } = useI18n()
 
-useTitle(
-  computed(() => {
-    if (currentRouteData.value) {
-      return parseI18n(currentRouteData.value.title, t)
-    }
-    return null
-  }),
-)
+const title = useTitle(computed(() => parseI18n(currentRouteData.value.title, t)))
 
 const appStore = useAppStore()
 
@@ -94,7 +87,7 @@ onBeforeRouteUpdate((to) => {
       - 例外情况：首页但是有历史记录，始终显示按钮。
       -->
       <back-button v-if="appStore.navigationBarType === 'side'" />
-      <v-app-bar-title>{{ parseI18n(currentRouteData.title, $t) }}</v-app-bar-title>
+      <v-app-bar-title :text="title" />
       <v-menu origin="bottom" width="172" location="top">
         <template #activator="{ props: menu }">
           <v-btn v-tooltip="$t('moreOptions')" icon="$more" v-bind="{ ...menu }" />

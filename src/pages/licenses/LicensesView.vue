@@ -1,14 +1,19 @@
 <script lang="ts" setup>
 import BackButton from '@/components/appbar/BackButton.vue'
 import AppMain from '@/components/AppMain.vue'
+import { useTitle } from '@/composables/title'
 import { projects } from '@/data/licenses'
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
+const title = useTitle(computed(() => t('term.openSourceLicenses')))
 </script>
 
 <template>
   <v-layout>
     <v-app-bar>
       <back-button />
-      <v-app-bar-title>{{ $t('term.openSourceLicenses') }}</v-app-bar-title>
+      <v-app-bar-title :text="title" />
     </v-app-bar>
     <app-main>
       <div class="container">

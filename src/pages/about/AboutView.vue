@@ -15,7 +15,7 @@ import { useDisplay } from 'vuetify'
 import AppCard from './components/AppCard.vue'
 
 const { t } = useI18n()
-useTitle(computed(() => t('about')))
+const title = useTitle(computed(() => t('about')))
 
 const appVersion = ref(__VERSION__)
 
@@ -37,7 +37,7 @@ if (isTauriApp) {
   <v-layout>
     <v-app-bar>
       <back-button />
-      <v-app-bar-title>{{ $t('about') }}</v-app-bar-title>
+      <v-app-bar-title :text="title" />
     </v-app-bar>
     <v-navigation-drawer v-if="smAndUp" permanent :width="200 + 32" touchless>
       <AppCard class="ma-4" />
@@ -70,7 +70,12 @@ if (isTauriApp) {
             :title="parseI18n(item.title, $t)"
             :subtitle="parseI18n(item.summary, $t)"
           />
-          <v-list-item prepend-icon="$about_donate" :title="$t('action.donate')" :to="{ name: 'Donate' }" append-icon="$next" />
+          <v-list-item
+            prepend-icon="$about_donate"
+            :title="$t('action.donate')"
+            :to="{ name: 'Donate' }"
+            append-icon="$next"
+          />
         </app-list-category>
         <!-- 交流讨论 -->
         <app-list-category :subheader="$t('action.communicate')">

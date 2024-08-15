@@ -10,7 +10,7 @@ import { useI18n } from 'vue-i18n'
 import DonateCard from './components/DonateCard.vue'
 
 const { t } = useI18n()
-useTitle(computed(() => t('action.donate')))
+const title = useTitle(computed(() => t('action.donate')))
 
 const donateAds: DonatePlatform[] = [
   {
@@ -28,7 +28,7 @@ const donateAds: DonatePlatform[] = [
   <v-layout>
     <v-app-bar>
       <back-button />
-      <v-app-bar-title>{{ $t('action.donate') }}</v-app-bar-title>
+      <v-app-bar-title :text="title" />
     </v-app-bar>
     <app-main>
       <div class="container">
