@@ -1,5 +1,5 @@
 import { PATH_API_ALL_APP } from '@/constants/urls'
-import { getAppTags } from '@/utils/apps'
+import { splitAppTags } from '@/utils/apps'
 import { apiAxios } from '@/utils/http'
 import { completeApiUrl } from '@/utils/url'
 import { getItem } from 'localforage'
@@ -32,7 +32,7 @@ export interface AppInfo {
   readonly version: string
   readonly hapUrl: string
   readonly type: AppType
-  readonly tags: string[]
+  readonly tags: readonly string[]
   readonly openSourceAddress: string
   readonly releaseTime: string
 }
@@ -63,10 +63,6 @@ export async function fetchOnlineApps({
     type: item.type,
     openSourceAddress: item.openSourceAddress,
     releaseTime: item.releaseTime,
-    get tags() {
-      // console.log(getAppTags(item))
-      // console.trace()
-      return getAppTags(item)
-    },
+    tags: splitAppTags(item.tags),
   }))
 }

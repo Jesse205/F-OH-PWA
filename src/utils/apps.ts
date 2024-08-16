@@ -3,29 +3,15 @@ import { isClientApp, isWebHistorySupported } from './global'
 
 const REGEX_SPLIT_TAGS = /[,，]/
 
-export type AppType = 'app' | 'game' | string
-
-export interface AppInfo {
-  id: number
-  name: string
-  desc: string
-  icon: string
-  vender: string
-  packageName: string
-  version: string
-  hapUrl: string
-  type: AppType
-  tags: string
-  openSourceAddress: string
-  releaseTime: string
-}
-
 /**
  * 获取应用标签列表，使用正则分割 `appInfo.tags` 并返回.
  */
-export function getAppTags(appInfo: AppInfo): string[] {
-  const tags = appInfo.tags.trim()
-  return tags.length > 0 ? tags.split(REGEX_SPLIT_TAGS).map((tag) => tag.trim()) : []
+export function splitAppTags(tags: string): readonly string[] {
+  const trimmedTags = tags.trim()
+  if (trimmedTags.length > 0) {
+    return Object.freeze(trimmedTags.split(REGEX_SPLIT_TAGS).map((tag) => tag.trim()))
+  }
+  return Object.freeze([])
 }
 
 export function getAppShareUrl(packageName: string): URL {
