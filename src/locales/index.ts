@@ -6,7 +6,7 @@
 
 import EN from '@/locales/en.json'
 import ZH_CN from '@/locales/zh-CN.json'
-import { getPreferredLocale } from '@/utils/settings'
+import { getPreferredLocale } from '@/preferences/ui'
 import { createI18n } from 'vue-i18n'
 
 const i18n = createI18n({

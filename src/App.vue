@@ -2,7 +2,7 @@
 import NavigationDrawer from '@/components/app/NavigationDrawer.vue'
 import PwaComponent from '@/components/app/PwaComponent.vue'
 import TauriSystemBar from '@/components/app/TauriSystemBar.vue'
-import { usePreferredLocale } from '@/composables/settings'
+import { usePreferredLocale } from '@/preferences/ui'
 import { useAppStore } from '@/store/global'
 import { isElementDraggableInClientApp } from '@/utils/drag'
 import { isPwaDisplayMode } from '@/utils/pwa'
