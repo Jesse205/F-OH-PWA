@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import AppListCategory from '@/components/list/AppListCategory.vue'
-import type { AppInfo } from '@/utils/apps'
+import type { AppInfo } from '@/data/apps'
 import { mdiIdentifier } from '@mdi/js'
 
 defineProps<{

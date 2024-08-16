@@ -2,19 +2,13 @@
 import AppMain from '@/components/AppMain.vue'
 import BackButton from '@/components/appbar/BackButton.vue'
 import AppListCategory from '@/components/list/AppListCategory.vue'
-import AppListDialogItem from '@/components/list/AppListDialogItem.vue'
 import AppListSingleSelectItem from '@/components/list/AppListSingleSelectItem.vue'
 import { refTransformer } from '@/composables/converts'
-import {
-  usePageTransition,
-  usePreferredApiUrl,
-  usePreferredDesignLanguage,
-  usePreferredLocale,
-} from '@/composables/settings'
+// import { usePageTransition, usePreferredDesignLanguage, usePreferredLocale } from '@/composables/settings'
 import { useTitle } from '@/composables/title'
 import { designLanguageCodes, designLanguages, languages } from '@/data/settings'
+import { usePageTransition, usePreferredDesignLanguage, usePreferredLocale } from '@/preferences/ui'
 import { currentDesign } from '@/themes'
-import { preferredApiUrl as currentPreferredApiUrl, overrideApiUrl } from '@/utils/url'
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -27,11 +21,10 @@ const language = refTransformer(locale, usePreferredLocale())
 const preferredDesignLanguage = usePreferredDesignLanguage()
 
 const isDesignChanged = computed(
+  // preferredDesignLanguage可能会包含不支持的值，但currentDesign会在出现不支持的值的时候跳回默认。
+  // 所以需要判断preferredDesignLanguage是否属于支持的值，否则一律视作没有更改设计语言。
   () => currentDesign !== preferredDesignLanguage.value && designLanguageCodes.includes(preferredDesignLanguage.value),
 )
-
-const preferredApiUrl = usePreferredApiUrl()
-const isPreferredApiUrlChanged = computed(() => (currentPreferredApiUrl ?? '') !== preferredApiUrl.value.trim())
 
 const pageTransitionEnabled = usePageTransition()
 </script>
@@ -77,7 +70,8 @@ const pageTransitionEnabled = usePageTransition()
           </v-list-item>
         </app-list-category>
         <app-list-category :subheader="$t('app.title')">
-          <app-list-dialog-item
+          <v-list-item prepend-icon="$foh" title="Metadata Manager" :to="{ name: 'Metadata' }" append-icon="$next" />
+          <!-- <app-list-dialog-item
             v-model="preferredApiUrl"
             prepend-icon="$foh"
             :title="$t('apiUrl')"
@@ -89,7 +83,7 @@ const pageTransitionEnabled = usePageTransition()
             <v-list-item-subtitle v-if="isPreferredApiUrlChanged" class="color-warning">
               {{ $t('apiUrlTakeEffectMessage') }}
             </v-list-item-subtitle>
-          </app-list-dialog-item>
+          </app-list-dialog-item> -->
           <!-- 关于 -->
           <v-list-item
             prepend-icon="$info"

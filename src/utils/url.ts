@@ -1,5 +1,4 @@
 import { URL_API_CLIENT, URL_API_CLIENT_ORIGIN, URL_API_WEB, URL_API_WEB_ORIGIN } from '@/constants/urls'
-import { getPreferredApiUrl } from '@/utils/settings'
 import { isClientApp, isTauriApp } from './global'
 
 const REGEX_GITHUB_USER = /^https:\/\/(www\.)?github\.com\/[^/]+/
@@ -74,7 +73,7 @@ function getApiUrl(overrideApiUrl?: string, preferredApiUrl?: string, useOriginU
 }
 
 export const overrideApiUrl = getOverrideApiUrl()
-export const preferredApiUrl = getPreferredApiUrl() || undefined
+export const preferredApiUrl = undefined
 
 export const currentApiUrl = getApiUrl(overrideApiUrl, preferredApiUrl)
 export const currentOriginApiUrl = getApiUrl(overrideApiUrl, preferredApiUrl, true)

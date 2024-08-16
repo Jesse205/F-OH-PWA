@@ -3,7 +3,7 @@ import AppMain from '@/components/AppMain.vue'
 import BackButton from '@/components/appbar/BackButton.vue'
 import { useTitle } from '@/composables/title'
 import { useAppsStore } from '@/store/apps'
-import { getAppShareUrl, getAppTags, type AppInfo } from '@/utils/apps'
+import { getAppShareUrl } from '@/utils/apps'
 import { matchUserSpace } from '@/utils/url'
 import { mdiFormatQuoteOpen } from '@mdi/js'
 import { useElementBounding, useScroll, useShare } from '@vueuse/core'
@@ -12,6 +12,7 @@ import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
 
 import AppListCategory from '@/components/list/AppListCategory.vue'
+import type { AppInfo } from '@/data/apps'
 import AppDetails from './components/AppDetails.vue'
 import AppOverview from './components/AppOverview.vue'
 
@@ -23,23 +24,18 @@ const appsStore = useAppsStore()
  * 查找当前应用信息，自动根据路由查找
  */
 const appInfo = computed((): AppInfo | undefined => {
-  if (!appsStore.data) return undefined
+  if (!appsStore.apps) return undefined
   const pkg = route.params.pkg
   const id = Number(pkg)
   if (id) {
-    return appsStore.data.find((item) => item.id === id)
+    return appsStore.apps.find((item) => item.id === id)
   } else if (pkg) {
-    return appsStore.data.find((item) => item.packageName === pkg)
+    return appsStore.apps.find((item) => item.packageName === pkg)
   } else {
     return undefined
   }
 })
 const isLoading = computed(() => appsStore.isLoading)
-
-/**
- * 分割后的标签列表
- */
-const appTags = computed(() => appInfo.value && getAppTags(appInfo.value))
 
 /**
  * 作者主页地址，根据开源地址猜测，数据**可能会获取失败，或者不准确**！
@@ -125,8 +121,8 @@ function shareApp() {
 
       <!-- #region 应用标签 -->
       <v-skeleton-loader v-if="isLoading" class="tags-skeleton" type="chip@3" color="transparent" />
-      <div v-else-if="appTags?.length" class="tags-group">
-        <v-chip v-for="item in appTags" :key="item" class="tags-group__item">{{ item }}</v-chip>
+      <div v-else-if="appInfo?.tags?.length" class="tags-group">
+        <v-chip v-for="item in appInfo?.tags" :key="item" class="tags-group__item">{{ item }}</v-chip>
       </div>
       <!-- #endregion -->
       <app-category-list class="ma-4">

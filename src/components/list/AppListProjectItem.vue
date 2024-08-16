@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { AppInfo } from '@/utils/apps'
+import type { AppInfo } from '@/data/apps'
 import { completeApiUrl } from '@/utils/url'
 import { computed } from 'vue'
 
 const props = withDefaults(
   defineProps<{
-    item: AppInfo
+    item: Pick<AppInfo, 'name' | 'packageName' | 'icon' | 'version' | 'desc'>
     to?: boolean | string | object
   }>(),
   {

@@ -1,9 +1,21 @@
-import { getPreferredServerUrl, removePreferredServerUrl, setPreferredApiUrl } from './settings'
+import { getPreferredMetadata, setPreferredMetadata } from '@/preferences/app'
+import { completeUrl } from './url'
 
 export function upgrade() {
-  const serverUrl = getPreferredServerUrl()
-  if (serverUrl) {
-    setPreferredApiUrl(serverUrl)
-    removePreferredServerUrl()
+  if (localStorage.getItem('server')) {
+    localStorage.setItem('api-url', localStorage.getItem('server') ?? '')
+    localStorage.removeItem('server')
+  }
+  if (localStorage.getItem('api-url')) {
+    const preferredMetadata = getPreferredMetadata()
+    preferredMetadata.push({
+      name: 'My metadata',
+      api: {
+        base: completeUrl(localStorage.getItem('api-url') ?? ''),
+      },
+      enabled: true,
+    })
+    localStorage.removeItem('api-url')
+    setPreferredMetadata(preferredMetadata)
   }
 }

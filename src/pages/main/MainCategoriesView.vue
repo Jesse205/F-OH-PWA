@@ -3,8 +3,9 @@ import UnsafeBypassAlert from '@/components/alert/UnsafeBypassAlert.vue'
 import CenterSpace from '@/components/CenterSpace.vue'
 import AppListCategory from '@/components/list/AppListCategory.vue'
 import AppListProjectItem from '@/components/list/AppListProjectItem.vue'
+import type { AppInfo } from '@/data/apps'
 import { useAppsStore } from '@/store/apps'
-import { getAppShareUrl, type AppInfo } from '@/utils/apps'
+import { getAppShareUrl } from '@/utils/apps'
 import { isChrome } from '@/utils/browser'
 import { computed, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -20,7 +21,7 @@ const errMsg = computed(() => (appsStore.error ? String(appsStore.error) : undef
 
 interface AppTypes {
   title: string
-  apps: AppInfo[]
+  apps: Pick<AppInfo, 'name' | 'packageName' | 'icon' | 'version' | 'desc' | 'id'>[]
   key: string
 }
 
@@ -87,7 +88,7 @@ onMounted(() => {
     <UnsafeBypassAlert v-if="errMsg && isChrome" class="ma-4" />
 
     <!-- MainLayout -->
-    <app-category-list v-if="appsStore.isLoaded" class="my-4 mx-4">
+    <app-category-list v-if="appsStore.isLoaded" class="ma-4">
       <template v-for="appType in appTypes">
         <app-list-category v-if="appType.apps && appType.apps.length" :key="appType.key" :subheader="appType.title">
           <div class="project-items" @dragstart="onProjectDragStart">
