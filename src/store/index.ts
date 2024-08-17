@@ -1,3 +1,3 @@
-import { createPinia } from 'pinia'
+import { createPinia, type Pinia } from 'pinia'
 
-export default createPinia()
+export default createPinia() as Pinia

@@ -1,4 +1,4 @@
-import 'vue-router'
+export {}
 
 declare module 'vue-router' {
   export interface RouteMeta {
@@ -12,6 +12,7 @@ declare module 'vue-router' {
     current?: string
     scroll?: ScrollToOptions
     // 基于单个元素和路径的滚动配置
-    scroll2?: ScrollToOptions2
+    // scroll2?: ScrollToOptions2
   }
 }
+

@@ -37,7 +37,7 @@ export interface AppInfo {
   readonly releaseTime: string
 }
 
-export async function fetchLocalApps() {
+export async function fetchLocalApps(): Promise<AppInfo[]> {
   const data = await getItem<AppInfo[]>('apps')
   return data ?? []
 }

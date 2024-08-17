@@ -1,11 +1,7 @@
-import type AppMain from '@/components/AppMain.vue'
-import type { RouterView } from 'vue-router'
-import 'vuetify'
+import { VList } from 'vuetify/components'
 
 declare module 'vue' {
   export interface GlobalComponents {
-    AppMain: typeof AppMain
-    RouterView: RouterView
     AppCategoryList: typeof VList
   }
 }

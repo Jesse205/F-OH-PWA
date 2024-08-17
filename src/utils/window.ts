@@ -23,7 +23,7 @@ const TAURI_WINDOW_OPTIONS_DEFAULT: WindowOptions | undefined = isTauriApp
  * 打开新窗口，仅支持 tauri。
  * @param url 要打开的链接
  */
-export async function openNewWindow(url: string) {
+export async function openNewWindow(url: string): Promise<void> {
   if (isTauriApp) {
     const tauriWindow = new WebviewWindow(`window-${Date.now()}`, {
       // title: await getName(),
@@ -38,7 +38,7 @@ export async function openNewWindow(url: string) {
   }
 }
 
-export function closeWindow() {
+export function closeWindow(): void {
   if (isTauriApp) {
     getCurrentTauri().close()
   } else window.close()

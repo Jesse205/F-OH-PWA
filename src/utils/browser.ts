@@ -1,1 +1,1 @@
-export const isChrome = 'chrome' in window
+export const isChrome: boolean = 'chrome' in window

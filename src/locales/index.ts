@@ -9,7 +9,10 @@ import ZH_CN from '@/locales/zh-CN.json'
 import { getPreferredLocale } from '@/preferences/ui'
 import { createI18n } from 'vue-i18n'
 
-const i18n = createI18n({
+type MessageSchema = typeof EN
+export type Locales = 'en' | 'zh-CN'
+
+const i18n = createI18n<[MessageSchema], Locales>({
   legacy: false,
   globalInjection: true,
   locale: getPreferredLocale(),

@@ -6,7 +6,7 @@ const REGEX_GITEE_USER = /^https:\/\/(www\.)?gitee\.com\/[^/]+/
 /**
  * 获取绝对路径，如果 `keepBasePath` 为 `true` 时，无论 `url` 是否以 `/` 开头，都会保留 `base` 的路径。
  */
-export function completeUrl(url: string, base: string = location.href, keepBasePath: boolean = false) {
+export function completeUrl(url: string, base: string = location.href, keepBasePath: boolean = false): string {
   if (url.search('://') > -1) return url
   if (keepBasePath) {
     if (url.startsWith('/')) {
@@ -19,7 +19,7 @@ export function completeUrl(url: string, base: string = location.href, keepBaseP
   return new URL(url, base).href
 }
 
-export function completeApiUrl(url: string, base: string = currentApiUrl) {
+export function completeApiUrl(url: string, base: string = currentApiUrl): string {
   return completeUrl(url, base, true)
 }
 
@@ -72,18 +72,18 @@ function getApiUrl(overrideApiUrl?: string, preferredApiUrl?: string, useOriginU
   return completeUrl(rawUrl, location.href)
 }
 
-export const overrideApiUrl = getOverrideApiUrl()
+export const overrideApiUrl: string | undefined = getOverrideApiUrl()
 export const preferredApiUrl = undefined
 
-export const currentApiUrl = getApiUrl(overrideApiUrl, preferredApiUrl)
-export const currentOriginApiUrl = getApiUrl(overrideApiUrl, preferredApiUrl, true)
+export const currentApiUrl: string = getApiUrl(overrideApiUrl, preferredApiUrl)
+export const currentOriginApiUrl: string = getApiUrl(overrideApiUrl, preferredApiUrl, true)
 
 function isUnsafeUrl(url: string) {
   const urlObj = new URL(url)
   return urlObj.protocol === 'http:'
 }
 
-export function isBypassUnsafeUrlByChromeFlagsNeeded(apiUrl: string) {
+export function isBypassUnsafeUrlByChromeFlagsNeeded(apiUrl: string): boolean {
   if (isTauriApp) {
     return false
   }

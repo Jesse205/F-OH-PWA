@@ -1,7 +1,8 @@
 /// <reference types="vite/client" />
 /// <reference types="vite-plugin-pwa/info" />
 /// <reference types="vite-plugin-pwa/vue" />
-/// <reference lib="webworker" />
+/// <reference types="vue-i18n" />
+/// <reference types="vue-router" />
 
 interface ImportMetaEnv extends Readonly<Record<string, string>> {
   /**

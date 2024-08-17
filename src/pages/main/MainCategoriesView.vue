@@ -46,7 +46,7 @@ const appTypes = computed<AppTypes[]>((): AppTypes[] => [
 /**
  * 刷新应用列表
  */
-function refresh() {
+function refresh(): void {
   appsStore.loadData(true)
 }
 

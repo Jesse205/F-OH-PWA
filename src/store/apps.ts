@@ -1,6 +1,6 @@
 import { IS_DEV_MODE } from '@/constants'
 import { fetchLocalApps, fetchOnlineApps, type AppInfo } from '@/data/apps'
-import { getEnabledMetadataArray, getMetadataArray } from '@/data/metadata'
+import { getEnabledMetadataArray } from '@/data/metadata'
 import { clearArray } from '@/utils/array'
 import { defineStore } from 'pinia'
 import { ref, shallowReactive, watch } from 'vue'

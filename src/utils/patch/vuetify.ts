@@ -19,6 +19,6 @@ function fixVRippleOnMobile() {
   }
 }
 
-export function apply() {
+export function apply(): void {
   fixVRippleOnMobile()
 }

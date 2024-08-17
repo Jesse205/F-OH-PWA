@@ -1,7 +1,7 @@
 import { getPreferredMetadata, setPreferredMetadata } from '@/preferences/app'
 import { completeUrl } from './url'
 
-export function upgrade() {
+export function upgrade(): void {
   if (localStorage.getItem('server')) {
     localStorage.setItem('api-url', localStorage.getItem('server') ?? '')
     localStorage.removeItem('server')

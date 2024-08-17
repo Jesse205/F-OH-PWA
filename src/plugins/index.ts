@@ -11,6 +11,6 @@ import router from '@/router'
 import pinia from '@/store'
 import vuetify from './vuetify'
 
-export function registerPlugins(app: App) {
+export function registerPlugins(app: App): void {
   app.use(vuetify).use(i18n).use(router).use(pinia)
 }

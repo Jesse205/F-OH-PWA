@@ -14,9 +14,10 @@
   "scripts": {
     "dev:web": "vite",
     "dev:tauri": "tauri dev",
-    "build:web": "vue-tsc --noEmit && vite build",
+    "build:web": "vite build",
     "build:tauri": "tauri build",
     "preview": "vite preview",
+    "type-check": "vue-tsc --build --force",
     "lint": "eslint",
     "lint-fix": "eslint --fix",
     "format": "prettier . --check",

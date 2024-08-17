@@ -2,7 +2,7 @@ import { BASE_URL, IS_DEV_MODE } from '@/constants'
 import { isPageTransitionEnabled } from '@/preferences/ui'
 import { currentDesignConfig } from '@/themes'
 import { isWebHistorySupported } from '@/utils/global'
-import type { RouteRecordRaw } from 'vue-router'
+import type { Router, RouteRecordRaw, RouterHistory } from 'vue-router'
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 
 const TAG = '[Router]'
@@ -104,9 +104,9 @@ const routes: Readonly<RouteRecordRaw[]> = [
   },
 ]
 
-const history = isWebHistorySupported() ? createWebHistory(BASE_URL) : createWebHashHistory(BASE_URL)
+const history: RouterHistory = isWebHistorySupported() ? createWebHistory(BASE_URL) : createWebHashHistory(BASE_URL)
 
-const router = createRouter({
+const router: Router = createRouter({
   history,
   routes,
 })
