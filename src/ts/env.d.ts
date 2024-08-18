@@ -31,3 +31,12 @@ interface ImportMetaEnv extends Readonly<Record<string, string>> {
    */
   FOHPWA_URL_API_CLIENT_ORIGIN: string
 }
+
+/**
+ * 版本号
+ */
+declare const __VERSION__: string
+/**
+ * 项目首页
+ */
+declare const __HOMEPAGE__: string

@@ -23,6 +23,9 @@ importers:
       '@tauri-apps/plugin-http':
         specifier: 2.0.0-beta.3
         version: 2.0.0-beta.3
+      '@vue/runtime-core':
+        specifier: ^3.4.38
+        version: 3.4.38
       '@vueuse/core':
         specifier: ^11.0.0
         version: 11.0.0(vue@3.4.38(typescript@5.5.4))
