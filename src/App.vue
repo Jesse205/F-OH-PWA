@@ -68,22 +68,19 @@ document.documentElement.classList.add(currentDesign)
 <template>
   <v-app class="app" @dragstart="onDragStart">
     <TauriSystemBar v-if="isTauriApp" />
-    <NavigationDrawer v-if="routeName && appStore.navigationBarType === 'side'" />
+    <NavigationDrawer v-if="isAppReady && appStore.navigationBarType === 'side'" />
     <v-main v-if="isAppReady" class="main">
       <div class="page-container">
         <router-view #="{ Component }">
           <transition :name="route.meta.transition">
             <div :key="routeName" class="page" :data-path="route.path">
-              <!-- <v-layout class="layout"> -->
               <component :is="Component" />
-              <!-- </v-layout> -->
             </div>
           </transition>
         </router-view>
       </div>
     </v-main>
-    <SplashView v-else />
-    <!-- <ContextMenu /> -->
+    <SplashView v-if="!isAppReady" />
     <PwaComponent />
   </v-app>
   <!-- 窗口边框 -->
