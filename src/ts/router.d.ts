@@ -2,11 +2,13 @@ export {}
 
 declare module 'vue-router' {
   export interface RouteMeta {
+    /**
+     * 页面切换动效，在 App.vue 中使用
+     */
     transition: string
-    [key: string | number | symbol]: unknown
   }
   export interface HistoryState {
-    position: number
+    position?: number
     forward?: string
     back?: string
     current?: string
@@ -15,4 +17,3 @@ declare module 'vue-router' {
     // scroll2?: ScrollToOptions2
   }
 }
-

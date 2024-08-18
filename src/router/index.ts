@@ -2,7 +2,7 @@ import { BASE_URL, IS_DEV_MODE } from '@/constants'
 import { isPageTransitionEnabled } from '@/preferences/ui'
 import { currentDesignConfig } from '@/themes'
 import { isWebHistorySupported } from '@/utils/global'
-import type { Router, RouteRecordRaw, RouterHistory } from 'vue-router'
+import type { RouteLocationNormalizedGeneric, Router, RouteRecordRaw, RouterHistory } from 'vue-router'
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 
 const TAG = '[Router]'
@@ -121,22 +121,15 @@ router.beforeEach((to, from) => {
   }
 })
 
-// 当前页面索引，用于判断路由切换时是前进还是后退
-let previousPosition = 0
-router.afterEach((to, from) => {
-  if (IS_DEV_MODE) {
-    console.debug(TAG, 'afterEach', to, from)
-  }
-  const currentPosition = history.state.position
-  const isForward = currentPosition >= previousPosition
-  if (IS_DEV_MODE) {
-    console.debug(TAG, `currentPosition=${currentPosition}, previousPosition=${previousPosition}`)
-  }
-  previousPosition = currentPosition ?? 0
-
-  // 动画
-  if (from.path !== '/' && currentDesignConfig.features.pageTransition && isPageTransitionEnabled()) {
-    const { enter: enterName, leave: leaveName } = currentDesignConfig.features.pageTransition
+function applyPageTransitionIfNeeded(
+  isForward: boolean,
+  to: RouteLocationNormalizedGeneric,
+  from: RouteLocationNormalizedGeneric,
+) {
+  const { pageTransition } = currentDesignConfig.features
+  // `/` 说明刚刚进入网页，因此不需要动画
+  if (from.path !== '/' && pageTransition && isPageTransitionEnabled()) {
+    const { enter: enterName, leave: leaveName } = pageTransition
     const name = isForward ? enterName : leaveName
     to.meta.transition = name
     from.meta.transition = name
@@ -144,6 +137,23 @@ router.afterEach((to, from) => {
     to.meta.transition = ''
     from.meta.transition = ''
   }
+}
+
+// 当前页面索引，用于判断路由切换时是前进还是后退
+let previousPosition = 0
+router.afterEach((to, from) => {
+  if (IS_DEV_MODE) {
+    console.debug(TAG, 'afterEach', to, from)
+  }
+  const currentPosition = history.state.position ?? 0
+  const isForward = currentPosition >= previousPosition
+  if (IS_DEV_MODE) {
+    console.debug(TAG, `currentPosition=${currentPosition}, previousPosition=${previousPosition}`)
+  }
+
+  applyPageTransitionIfNeeded(isForward, to, from)
+
+  previousPosition = currentPosition
 })
 
 export default router
