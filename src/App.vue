@@ -22,6 +22,7 @@ const REGEX_ROUTE_NAME = /\/[^/]+/
 
 // 路由名称
 const routeName = computed(() => route.path.match(REGEX_ROUTE_NAME)?.[0] ?? '')
+const isAppReady = computed(() => route.path !== '/')
 
 const theme = useTheme()
 useAutoTheme(usePreferredDark())
@@ -68,7 +69,7 @@ document.documentElement.classList.add(currentDesign)
   <v-app class="app" @dragstart="onDragStart">
     <TauriSystemBar v-if="isTauriApp" />
     <NavigationDrawer v-if="routeName && appStore.navigationBarType === 'side'" />
-    <v-main v-if="routeName" class="main">
+    <v-main v-if="isAppReady" class="main">
       <div class="page-container">
         <router-view #="{ Component }">
           <transition :name="route.meta.transition">
@@ -81,7 +82,7 @@ document.documentElement.classList.add(currentDesign)
         </router-view>
       </div>
     </v-main>
-    <SplashView v-if="!routeName" />
+    <SplashView v-else />
     <!-- <ContextMenu /> -->
     <PwaComponent />
   </v-app>
