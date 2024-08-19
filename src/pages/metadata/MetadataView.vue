@@ -35,7 +35,13 @@ const metadataArray = usePreferredMetadata()
           </v-list-item>
         </app-list-category>
         <app-list-category :subheader="'Others'">
-          <v-list-item v-for="item in metadataArray" :key="item.api.base" class="metadata-item" :title="item.name">
+          <v-list-item
+            v-for="item in metadataArray"
+            :key="item.api.base"
+            class="metadata-item"
+            :title="item.name"
+            @click="item.enabled = !item.enabled"
+          >
             <v-list-item-subtitle>{{ item.description }}</v-list-item-subtitle>
             <v-list-item-subtitle>{{ item.api.base }}</v-list-item-subtitle>
             <template #append>
