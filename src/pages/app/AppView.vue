@@ -52,11 +52,15 @@ onMounted(() => {
 // 页面滚动，动态展示标题
 const appBarTitleMode = ref<'page-title' | 'app-title'>('page-title')
 const appOverviewComponent = ref<InstanceType<typeof AppOverview>>()
+const mainComponent = ref<InstanceType<typeof AppMain>>()
 
 useIntersectionObserver(
   computed(() => appOverviewComponent.value?.appNameElement),
   ([{ isIntersecting }]) => {
     appBarTitleMode.value = isIntersecting ? 'page-title' : 'app-title'
+  },
+  {
+    root: computed(() => mainComponent.value?.mainScroll),
   },
 )
 
@@ -98,7 +102,7 @@ function shareApp() {
         @click="shareApp"
       />
     </v-app-bar>
-    <app-main>
+    <app-main ref="mainComponent">
       <v-progress-linear v-if="isLoading" color="primary" class="progress" indeterminate />
       <AppOverview ref="appOverviewComponent" class="ma-4" :app-info="appInfo" :loading="isLoading" />
 
@@ -191,6 +195,7 @@ function shareApp() {
     min-height: 52px;
     padding-left: 48px;
     padding-right: 48px;
+    user-select: text;
   }
 
   &__icon {
@@ -225,6 +230,7 @@ function shareApp() {
   flex-wrap: wrap;
   margin: 16px 12px;
   margin-top: 8px;
+  user-select: text;
   &__item {
     margin: 4px;
   }
