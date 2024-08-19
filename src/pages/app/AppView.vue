@@ -89,12 +89,14 @@ function shareApp() {
           </div>
         </transition>
       </v-app-bar-title>
-      <v-tooltip v-if="isShareSupported">
-        <template #activator="{ props }">
-          <v-btn :disabled="!appInfo" icon="$share" v-bind="props" :aria-label="$t('action.share')" @click="shareApp" />
-        </template>
-        <span>{{ $t('action.share') }}</span>
-      </v-tooltip>
+      <v-btn
+        v-if="isShareSupported"
+        v-tooltip="$t('action.share')"
+        :disabled="!appInfo"
+        icon="$share"
+        :aria-label="$t('action.share')"
+        @click="shareApp"
+      />
     </v-app-bar>
     <app-main>
       <v-progress-linear v-if="isLoading" color="primary" class="progress" indeterminate />
