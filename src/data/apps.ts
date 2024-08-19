@@ -3,7 +3,7 @@ import { splitAppTags } from '@/utils/apps'
 import { apiAxios } from '@/utils/http'
 import { completeApiUrl } from '@/utils/url'
 import { getItem } from 'localforage'
-import { type MetadataApi } from './metadata'
+import { type Metadata } from './metadata'
 
 interface AllAppListResponseData_AppInfo {
   readonly id: number
@@ -19,7 +19,7 @@ interface AllAppListResponseData_AppInfo {
   readonly openSourceAddress: string
   readonly releaseTime: string
 }
-type AllAppListResponseData = AllAppListResponseData_AppInfo[]
+type AllAppListResponseData = readonly AllAppListResponseData_AppInfo[]
 
 export type AppType = 'app' | 'game' | string
 export interface AppInfo {
@@ -35,6 +35,7 @@ export interface AppInfo {
   readonly tags: readonly string[]
   readonly openSourceAddress: string
   readonly releaseTime: string
+  readonly metadataSources: readonly Metadata['key'][]
 }
 
 export async function fetchLocalApps(): Promise<AppInfo[]> {
@@ -43,10 +44,9 @@ export async function fetchLocalApps(): Promise<AppInfo[]> {
 }
 
 export async function fetchOnlineApps({
-  base: baseUrl,
-  apps: appsPath,
-  baseOrigin: baseOriginUrl,
-}: MetadataApi): Promise<AppInfo[]> {
+  api: { base: baseUrl, apps: appsPath, baseOrigin: baseOriginUrl },
+  key,
+}: Metadata): Promise<AppInfo[]> {
   const response = await apiAxios.get<AllAppListResponseData>(appsPath ?? PATH_API_ALL_APP, {
     baseURL: baseUrl,
   })
@@ -64,5 +64,6 @@ export async function fetchOnlineApps({
     openSourceAddress: item.openSourceAddress,
     releaseTime: item.releaseTime,
     tags: splitAppTags(item.tags),
+    metadataSources: [key],
   }))
 }

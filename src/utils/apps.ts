@@ -1,4 +1,5 @@
 import { HOST_WEB } from '@/constants/urls'
+import type { AppInfo } from '@/data/apps'
 import { isClientApp, isWebHistorySupported } from './global'
 
 const REGEX_SPLIT_TAGS = /[,，]/
@@ -29,4 +30,8 @@ export function getAppShareUrl(packageName: string): URL {
     url.hash = `#/app/${packageName}`
   }
   return url
+}
+
+export function isLocalAppsOutdated(apps: readonly AppInfo[]): boolean {
+  return apps.length === 0
 }

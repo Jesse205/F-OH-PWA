@@ -2,17 +2,11 @@
 import BackButton from '@/components/appbar/BackButton.vue'
 import AppListCategory from '@/components/list/AppListCategory.vue'
 import { useTitle } from '@/composables/title'
-import { getInternalMetadataArray } from '@/data/metadata'
-import { usePreferredMetadata } from '@/preferences/app'
+import { useMetadataStore } from '@/store/metadata'
 import { computed } from 'vue'
 
 const title = useTitle(computed(() => 'Metadata Manager'))
-const internalMetadataArray = getInternalMetadataArray()
-const metadataArray = usePreferredMetadata()
-/* repositories.value.push({
-  name: 'F-OH',
-
-}) */
+const metadataStore = useMetadataStore()
 </script>
 
 <template>
@@ -23,20 +17,24 @@ const metadataArray = usePreferredMetadata()
     </v-app-bar>
     <app-main>
       <app-category-list class="metadata-items ma-4">
-        <app-list-category :subheader="'Internal'">
+        <app-list-category v-if="metadataStore.internalMetadataArray" :subheader="'Internal'">
           <v-list-item
-            v-for="item in internalMetadataArray"
+            v-for="item in metadataStore.internalMetadataArray"
             :key="item.api.base"
             class="metadata-item"
             :title="item.name"
+            @click="item.enabled = !item.enabled"
           >
             <v-list-item-subtitle>{{ item.description }}</v-list-item-subtitle>
             <v-list-item-subtitle>{{ item.api.base }}</v-list-item-subtitle>
+            <template #append>
+              <v-switch v-model="item.enabled" tabindex="-1" />
+            </template>
           </v-list-item>
         </app-list-category>
-        <app-list-category :subheader="'Others'">
+        <app-list-category v-if="metadataStore.externalMetadataArray" :subheader="'External'">
           <v-list-item
-            v-for="item in metadataArray"
+            v-for="item in metadataStore.externalMetadataArray"
             :key="item.api.base"
             class="metadata-item"
             :title="item.name"

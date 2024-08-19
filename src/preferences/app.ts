@@ -1,12 +1,19 @@
-import type { MetadataApi } from '@/data/metadata'
+import type { MetadataV1 } from '@/data/metadata'
 import { useLocalStorage, type RemovableRef } from '@vueuse/core'
 
-export interface PreferredMetadata {
+export interface BasePreferredMetadata {
   name: string
   description?: string
-  api: MetadataApi
   enabled: boolean
 }
+
+export interface PreferredMetadataV1 extends BasePreferredMetadata {
+  version: 'v1'
+  api: MetadataV1['api']
+}
+
+export type PreferredMetadata = PreferredMetadataV1
+
 export const KEY_METADATA = 'metadata'
 
 export function getPreferredMetadata(): PreferredMetadata[] {

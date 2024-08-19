@@ -14,6 +14,7 @@ export function upgrade(): void {
         base: completeUrl(localStorage.getItem('api-url') ?? ''),
       },
       enabled: true,
+      version: 'v1',
     })
     localStorage.removeItem('api-url')
     setPreferredMetadata(preferredMetadata)
