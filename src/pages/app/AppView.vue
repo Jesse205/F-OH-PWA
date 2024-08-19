@@ -6,7 +6,7 @@ import { useAppsStore } from '@/store/apps'
 import { getAppShareUrl } from '@/utils/apps'
 import { matchUserSpace } from '@/utils/url'
 import { mdiFormatQuoteOpen } from '@mdi/js'
-import { useElementBounding, useScroll, useShare } from '@vueuse/core'
+import { useIntersectionObserver, useShare } from '@vueuse/core'
 import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
@@ -50,22 +50,17 @@ onMounted(() => {
 })
 
 // 页面滚动，动态展示标题
-const mainComponent = ref<InstanceType<typeof AppMain>>()
+const appBarTitleMode = ref<'page-title' | 'app-title'>('page-title')
 const appOverviewComponent = ref<InstanceType<typeof AppOverview>>()
 
-const { bottom: appNameBottomY } = useElementBounding(computed(() => appOverviewComponent.value?.appNameElement))
-const { y: scrollY } = useScroll(computed(() => mainComponent.value?.mainScroll))
+useIntersectionObserver(
+  computed(() => appOverviewComponent.value?.appNameElement),
+  ([{ isIntersecting }]) => {
+    appBarTitleMode.value = isIntersecting ? 'page-title' : 'app-title'
+  },
+)
 
-/**
- * 如果应用的标题被遮挡，就在应用栏内显示应用的标题。
- *
- * `true` 为已被遮挡，`false` 为未被遮挡。
- */
-const isTitleObscured = computed(() => scrollY.value > appNameBottomY.value)
-
-const title = computed(() => (appInfo.value ? `${appInfo.value.name} - ${t('viewApp')}` : t('viewApp')))
-
-useTitle(title)
+useTitle(computed(() => (appInfo.value ? `${appInfo.value.name} - ${t('viewApp')}` : t('viewApp'))))
 
 // 分享
 const { share, isSupported: isShareSupported } = useShare()
@@ -88,10 +83,10 @@ function shareApp() {
       <back-button />
       <!-- 多标题动画展示 -->
       <v-app-bar-title class="title">
-        <transition :name="isTitleObscured ? 'scroll-x-reverse-transition' : 'scroll-x-transition'">
-          <span :key="isTitleObscured.toString()" class="title__item">
-            {{ isTitleObscured ? appInfo?.name : $t('viewApp') }}
-          </span>
+        <transition :name="appBarTitleMode === 'app-title' ? 'scroll-x-reverse-transition' : 'scroll-x-transition'">
+          <div :key="appBarTitleMode" class="title__item">
+            {{ appBarTitleMode === 'app-title' ? appInfo?.name : $t('viewApp') }}
+          </div>
         </transition>
       </v-app-bar-title>
       <v-tooltip v-if="isShareSupported">
@@ -101,7 +96,7 @@ function shareApp() {
         <span>{{ $t('action.share') }}</span>
       </v-tooltip>
     </v-app-bar>
-    <app-main ref="mainElement">
+    <app-main>
       <v-progress-linear v-if="isLoading" color="primary" class="progress" indeterminate />
       <AppOverview ref="appOverviewComponent" class="ma-4" :app-info="appInfo" :loading="isLoading" />
 
