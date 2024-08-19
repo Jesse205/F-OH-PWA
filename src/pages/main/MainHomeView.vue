@@ -53,7 +53,7 @@ const progressMarginTop = computed(() => {
     <!-- 公告 -->
     <title-list v-if="homeStore.isShowAnnouncement" class="ma-4" :title="$t('announcement')">
       <!-- eslint-disable-next-line vue/no-v-html vue/no-v-text-v-html-on-component -->
-      <v-list-item class="announcement-content" v-html="homeStore.announcementHtml" />
+      <v-list-item class="announcement-content typo-style" v-html="homeStore.announcementHtml" />
     </title-list>
     <template #root>
       <!-- Loading -->
@@ -68,37 +68,5 @@ const progressMarginTop = computed(() => {
 .announcement-content {
   display: block;
   user-select: text;
-
-  & > :not(:first-child) {
-    margin-top: 0.5rem;
-  }
-  & > :not(:last-child) {
-    margin-bottom: 0.5rem;
-  }
-
-  & :deep(ul),
-  & :deep(ol) {
-    padding-left: 1rem;
-  }
-
-  & :deep(code) {
-    background-color: rgb(var(--v-theme-code));
-    color: rgb(var(--v-theme-on-code));
-    border-radius: 4px;
-    line-height: 2;
-    font-size: 0.8em;
-    font-weight: normal;
-    padding: 0.2em 0.4em;
-  }
-  & :deep(a) {
-    color: rgb(var(--v-theme-primary));
-
-    &:hover {
-      color: rgba(var(--v-theme-primary), 0.7);
-    }
-    &:active {
-      color: rgba(var(--v-theme-primary), 0.9);
-    }
-  }
 }
 </style>
