@@ -67,6 +67,7 @@ const progressMarginTop = computed(() => {
 <style scoped lang="scss">
 .announcement-content {
   display: block;
+  user-select: text;
 
   & > :not(:first-child) {
     margin-top: 0.5rem;

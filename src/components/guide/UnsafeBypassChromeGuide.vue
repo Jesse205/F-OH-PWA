@@ -13,7 +13,7 @@ defineExpose({
 </script>
 
 <template>
-  <div class="typo-style">
+  <div class="typo-style select-text">
     <ol>
       <li>
         在浏览器的地址栏内输入<code>chrome://flags/#unsafely-treat-insecure-origin-as-secure</code>，进入 Chrome

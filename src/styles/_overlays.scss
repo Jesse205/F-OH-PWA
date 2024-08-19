@@ -8,12 +8,6 @@ $font-family: ui-sans-serif, sans-serif, system-ui;
   font-family: $font-family;
   user-select: none;
 
-  .v-dialog > .v-overlay__content > .v-card > .v-card-text,
-  .v-dialog > .v-overlay__content > form > .v-card > .v-card-text,
-  .v-alert {
-    user-select: text;
-  }
-
   // 以下代码的 `html`仅用作增加选择器强度
   // 去除一些控件的背景色
   .v-card {

@@ -81,6 +81,7 @@ defineExpose({
     flex-wrap: nowrap;
     width: 0;
     margin-left: 16px;
+    user-select: text;
 
     &__skeleton {
       height: 2rem + 1.4rem;
