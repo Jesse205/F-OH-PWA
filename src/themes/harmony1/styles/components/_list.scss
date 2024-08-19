@@ -21,6 +21,9 @@
     &:first-child {
       margin-top: -8px;
     }
+    &:last-child {
+      margin-bottom: -8px;
+    }
     .v-list-subheader {
       color: rgba(var(--v-theme-on-surface), var(--v-medium-emphasis-opacity));
       background-color: rgb(var(--v-theme-background));
