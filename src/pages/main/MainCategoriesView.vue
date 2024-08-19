@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ErrorAlert from '@/components/alert/ErrorAlert.vue'
 import UnsafeBypassAlert from '@/components/alert/UnsafeBypassAlert.vue'
 import CenterSpace from '@/components/CenterSpace.vue'
 import AppListCategory from '@/components/list/AppListCategory.vue'
@@ -16,8 +17,6 @@ const { t } = useI18n()
 const appsStore = useAppsStore()
 
 const isLoading = computed(() => appsStore.isLoading)
-
-const errMsg = computed(() => (appsStore.error ? String(appsStore.error) : undefined))
 
 interface AppTypes {
   title: string
@@ -84,8 +83,8 @@ onMounted(() => {
 <template>
   <app-main>
     <!-- Alerts -->
-    <v-alert v-if="errMsg" class="my-4 mx-4" :title="$t('error.loading')" :text="errMsg" type="error" />
-    <UnsafeBypassAlert v-if="errMsg && isChrome" class="ma-4" />
+    <ErrorAlert v-if="appsStore.error" class="ma-4" :error="appsStore.error" />
+    <UnsafeBypassAlert v-if="appsStore.error && isChrome" class="ma-4" />
 
     <!-- MainLayout -->
     <app-category-list v-if="appsStore.isLoaded" class="ma-4">

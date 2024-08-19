@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ErrorAlert from '@/components/alert/ErrorAlert.vue'
 import UnsafeBypassAlert from '@/components/alert/UnsafeBypassAlert.vue'
 import AppMain from '@/components/AppMain.vue'
 import CenterSpace from '@/components/CenterSpace.vue'
@@ -8,15 +9,23 @@ import { useHomeStore } from '@/store/home'
 import { isChrome } from '@/utils/browser'
 import { useElementBounding, useScroll } from '@vueuse/core'
 import { max } from 'lodash-es'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import HomeCarousel from './components/HomeCarousel.vue'
+
 const homeStore = useHomeStore()
 onMounted(() => {
   homeStore.ensureData()
 })
 
 const isLoading = computed(() => homeStore.isLoading)
-const errMsg = computed(() => (homeStore.error ? String(homeStore.error) : undefined))
+const error = computed<Error | undefined>(() => {
+  if (homeStore.error instanceof Error) {
+    return homeStore.error
+  } else if (homeStore.error) {
+    return new Error(String(homeStore.error), { cause: homeStore.error })
+  }
+  return undefined
+})
 
 const mainComponent = ref<InstanceType<typeof AppMain>>()
 const { y: scrollY } = useScroll(computed(() => mainComponent.value?.mainScroll))
@@ -39,6 +48,13 @@ defineExpose({ refresh })
 const progressMarginTop = computed(() => {
   return max([-scrollY.value + carouselHeight.value + 16, 0])
 })
+
+watch(
+  computed(() => homeStore.error),
+  () => {
+    console.log(homeStore.error)
+  },
+)
 </script>
 
 <template>
@@ -47,8 +63,8 @@ const progressMarginTop = computed(() => {
     <HomeCarousel ref="carouselComponent" class="ma-4" :items="carousel.items" :ratio="carousel.ratio" />
 
     <!-- Alerts -->
-    <v-alert v-if="errMsg" class="ma-4" :title="$t('error.loading')" :text="errMsg" type="error" />
-    <UnsafeBypassAlert v-if="errMsg && homeStore.data === undefined && isChrome" class="ma-4" />
+    <ErrorAlert v-if="homeStore.error" class="ma-4" :error="homeStore.error" />
+    <UnsafeBypassAlert v-if="error && homeStore.data === undefined && isChrome" class="ma-4" />
 
     <!-- 公告 -->
     <title-list v-if="homeStore.isShowAnnouncement" class="ma-4" :title="$t('announcement')">

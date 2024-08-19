@@ -48,7 +48,9 @@
     "packageName": "未知包名"
   },
   "error": {
-    "loading": "加载错误"
+    "loading": "加载错误",
+    "network": "网络错误",
+    "unknown": "未知错误"
   },
   "term": {
     "openSourceLicenses": "开源许可"

@@ -9,7 +9,9 @@ const guide = ref<InstanceType<typeof UnsafeBypassChromeGuide>>()
 <template>
   <v-alert v-bind="$attrs" icon="$info">
     {{ $t('alert.unsafeApiAndMaybeBlockedByChromeMessage') }}
-    <v-btn :text="$t('action.viewGuide')" @click="isGuideDialogVisible = true" />
+    <template #append>
+      <v-btn :text="$t('action.viewGuide')" @click="isGuideDialogVisible = true" />
+    </template>
   </v-alert>
   <v-dialog v-model="isGuideDialogVisible" activator="viewGuideButton">
     <v-card :title="guide?.title">

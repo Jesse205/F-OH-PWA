@@ -48,7 +48,9 @@
     "packageName": "Unknown package name"
   },
   "error": {
-    "loading": "Loading error"
+    "loading": "Loading error",
+    "network": "Network error",
+    "unknown": "Unknown error"
   },
   "term": {
     "openSourceLicenses": "Open Source Licenses"
