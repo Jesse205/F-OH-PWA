@@ -7,17 +7,30 @@
 
 @mixin style {
   .app-list-category {
-    overflow: hidden;
-    & + .app-list-category {
-      margin-top: 16px;
-    }
     &__item-container {
       padding: 4px;
       background-color: rgba(var(--v-theme-surface));
+      margin-bottom: 8px;
+    }
+    &--header-sticky {
+      .v-list-subheader {
+        position: sticky;
+        top: 0px;
+      }
+    }
+    &:first-child {
+      margin-top: -8px;
     }
     .v-list-subheader {
-      margin-top: -8px;
       color: rgba(var(--v-theme-on-surface), var(--v-medium-emphasis-opacity));
+      background-color: rgb(var(--v-theme-background));
+      z-index: 1;
+    }
+    // 防止margin溢出
+    &::after {
+      content: '';
+      display: block;
+      height: 1px;
     }
   }
 
@@ -38,6 +51,7 @@
   .app-category-list {
     padding: 0;
     background-color: transparent;
+    overflow: visible;
   }
 
   .v-list-subheader {
