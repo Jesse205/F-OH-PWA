@@ -13,7 +13,7 @@ defineExpose({
 </script>
 
 <template>
-  <div class="typo-style select-text">
+  <div class="unsafe-bypass-chrome-guide typo-style">
     <ol>
       <li>
         在浏览器的地址栏内输入<code>chrome://flags/#unsafely-treat-insecure-origin-as-secure</code>，进入 Chrome
@@ -38,6 +38,9 @@ defineExpose({
 </template>
 
 <style lang="scss" scoped>
+.unsafe-bypass-chrome-guide {
+  user-select: text;
+}
 img {
   max-width: 100%;
 }
