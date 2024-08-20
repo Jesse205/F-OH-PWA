@@ -27,12 +27,12 @@
           overflow-y: auto;
         }
         & > .v-card-actions {
-          padding: 4px 12px 12px 12px;
+          gap: 8px;
+          padding: 8px 16px 16px 16px;
           .v-btn {
             height: 40px;
-            width: 0;
-            flex: 1;
-            margin: 4px;
+            flex-basis: 0;
+            flex-grow: 1;
             // 按钮分割线
             &::before {
               content: '';
