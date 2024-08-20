@@ -104,19 +104,19 @@ The default API url is `/api`, and you can replace it in three ways.
 ## Project Setup
 
 1. Install NodeJS v21 and [pnpm](https://pnpm.io/installation)
-2. Set up the Tauri environment according to [Tauri prep](https://tauri.app/v1/guides/getting-started/prerequisites/).
+2. (Optional, only required if a Tauri application needs to be developed) Set up the Tauri environment according to [Tauri prep](https://tauri.app/v1/guides/getting-started/prerequisites/).
    - Windows: Microsoft Visual Studio C++ Builder, WebView2, Rust.
    - macOS: CLang and macOS development dependencies, Rust.
    - Linux: system dependencies, Rust.
-3. Run `yarn install`
+3. Run `pnpm install`.
 
 ### Compiling and Hotloading for Development
 
-1. Clone [F-OH Data] and start a server on port `5500`.
-2. Save [ `.env.development.local.example`](. /.env.development.local.example) as `.env.development.local` and configure some variables.
+1. Clone [F-OH Data] and start a server.
+2. (Optional) Save [ `.env.development.local.example`](. /.env.development.local.example) as `.env.development.local` and configure some variables.
 3. Open a terminal in the project and run commands according to the following rules.
-   - Web and PWA applications: run `yarn dev`.
-   - Windows Tauri software: run `yarn dev:tauri`.
+   - Web and PWA applications: run `pnpm dev:web`.
+   - Windows Tauri software: run `pnpm dev:tauri`.
 
 ### Compiling and Streamlining for Production
 
@@ -124,18 +124,18 @@ The default API url is `/api`, and you can replace it in three ways.
 2. Follow the example in [`.env.development.local.example`](. /.env.development.local.example) to configure the data server as shown in the example.
 3. Open a terminal in the project and run commands according to the following rules.
    - Web pages and PWA applications:
-     1. Run `yarn build`.
-     2. Pull [F-OH Data] into `dist/data`.
+     1. Run `pnpm build:web`.
+     2. (Optional) Pull [F-OH Data] into `dist/data`.
      3. Deploy `dist/*` to the server.
    - Windows Tauri software:
-     1. Run `yarn build:tauri`.
+     1. Run `pnpm build:tauri`.
      2. Release `src-tauri\target\release\F-OH Tauri.exe` and `src-tauri\target\release\bundle\nsis\F-OH Tauri_<version>_x64-setup.exe`.
 
 ### Lint and Fixing Files
 
 ```bash
-yarn lint-fix
-yarn format-fix
+pnpm lint-fix
+pnpm format-fix
 ```
 
 ## Contributing
