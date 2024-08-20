@@ -3,6 +3,7 @@
 @use './button';
 @use './card';
 @use './dialog';
+@use './field';
 @use './list';
 @use './ripple';
 @use './switch';
@@ -13,6 +14,7 @@
   @include button.style;
   @include card.style;
   @include dialog.style;
+  @include field.style;
   @include list.style;
   @include ripple.style;
   @include switch.style;

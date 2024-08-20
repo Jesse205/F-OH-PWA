@@ -1,6 +1,7 @@
 $border-width: 0.5px;
 $border-margin: 16px;
-$border: #{$border-width} solid rgba(var(--v-border-color), var(--v-border-opacity));
+$border-color: rgba(var(--v-border-color), var(--v-border-opacity));
+$border: #{$border-width} solid #{$border-color};
 
 @mixin style {
   &,

@@ -4,7 +4,7 @@
 @mixin style {
   .v-menu {
     > .v-overlay__content {
-      border-radius: 20px;
+      border-radius: 16px;
       backdrop-filter: blur(dimensions.$radius-blur);
       > .v-list {
         border-radius: 16px;

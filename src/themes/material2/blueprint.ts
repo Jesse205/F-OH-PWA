@@ -163,6 +163,9 @@ export const blueprint: Blueprint = {
       color: 'primary',
       hideDetails: 'auto',
     },
+    VFab: {
+      size: 56,
+    },
   },
   icons: {
     defaultSet: 'mdi',

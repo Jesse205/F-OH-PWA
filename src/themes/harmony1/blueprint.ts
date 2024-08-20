@@ -80,15 +80,22 @@ export const blueprint: Blueprint = {
     },
     VCombobox: {
       variant: 'underlined',
+      hideDetails: 'auto',
+      persistentPlaceholder: true,
     },
     VSelect: {
       variant: 'underlined',
+      hideDetails: 'auto',
+      persistentPlaceholder: true,
+      transition: 'slide-y-transition',
     },
     VTextarea: {
       variant: 'underlined',
     },
     VTextField: {
       variant: 'underlined',
+      hideDetails: 'auto',
+      persistentPlaceholder: true,
     },
     VSlider: {
       color: 'primary',

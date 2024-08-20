@@ -1,12 +1,15 @@
-
 @mixin style {
   .v-dialog {
     & > .v-overlay__content {
       & > .v-card,
       & > form > .v-card {
         overflow-y: hidden;
+        & > .v-card-item {
+          padding-bottom: 8px;
+        }
         & > .v-card-text {
           padding: 0 24px;
+          padding-top: 8px;
           height: 100%;
           overflow-y: auto;
         }

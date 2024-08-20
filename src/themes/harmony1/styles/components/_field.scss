@@ -2,12 +2,21 @@
 @use '../settings/dimensions';
 
 @mixin style {
+  .v-input--density-default {
+    .v-field--variant-underlined {
+      --v-field-padding-top: 12px;
+      --v-field-padding-bottom: 12px;
+    }
+  }
   .v-field {
     &__input {
-      padding-top: 12px;
-      padding-bottom: 12px;
+      /* padding-top: 12px;
+      padding-bottom: 12px; */
     }
     &__overlay {
+      top: var(--v-input-padding-top);
+      height: auto;
+      bottom: 0;
       transition-duration: motions.$background-duration;
       opacity: 0;
       background: rgb(var(--v-theme-on-background));
@@ -20,5 +29,10 @@
     &--variant-underlined .v-field__outline::after {
       content: none;
     }
+    /* &--variant-underlined {
+      .v-label.v-field-label--floating {
+        transform: translateY(-24px);
+      }
+    } */
   }
 }

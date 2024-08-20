@@ -1,0 +1,9 @@
+@mixin style {
+  .v-field {
+    &--variant-outlined {
+      .v-field__outline__start {
+        flex-basis: 12px;
+      }
+    }
+  }
+}

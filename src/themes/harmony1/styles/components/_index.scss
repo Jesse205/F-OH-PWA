@@ -10,6 +10,7 @@
 @use './list';
 @use './menu';
 @use './overlay';
+@use './select';
 @use './slide';
 @use './switch';
 @use './tabs';
@@ -29,6 +30,7 @@
   @include list.style;
   @include menu.style;
   @include overlay.style;
+  @include select.style;
   @include slide.style;
   @include switch.style;
   @include tabs.style;

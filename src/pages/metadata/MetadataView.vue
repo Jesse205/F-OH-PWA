@@ -2,11 +2,28 @@
 import BackButton from '@/components/appbar/BackButton.vue'
 import AppListCategory from '@/components/list/AppListCategory.vue'
 import { useTitle } from '@/composables/title'
+import type { PreferredMetadata } from '@/preferences/app'
 import { useMetadataStore } from '@/store/metadata'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
+import MetadataEditorDialog from './components/MetadataEditorDialog.vue'
 
 const title = useTitle(computed(() => 'Metadata Manager'))
 const metadataStore = useMetadataStore()
+
+const isCreateMetadataDialogVisible = ref(false)
+const currentEditingMetadata = ref<PreferredMetadata>()
+const currentEditorMode = ref<'create' | 'edit'>('create')
+
+function showCreateMetadataDialog() {
+  isCreateMetadataDialogVisible.value = true
+  currentEditorMode.value = 'create'
+  currentEditingMetadata.value = undefined
+}
+function showEditMetadataDialog(metadata: PreferredMetadata) {
+  isCreateMetadataDialogVisible.value = true
+  currentEditorMode.value = 'edit'
+  currentEditingMetadata.value = metadata
+}
 </script>
 
 <template>
@@ -38,19 +55,25 @@ const metadataStore = useMetadataStore()
             :key="item.api.base"
             class="metadata-item"
             :title="item.name"
-            @click="item.enabled = !item.enabled"
+            @click="showEditMetadataDialog(item)"
           >
             <v-list-item-subtitle>{{ item.description }}</v-list-item-subtitle>
             <v-list-item-subtitle>{{ item.api.base }}</v-list-item-subtitle>
             <template #append>
-              <v-switch v-model="item.enabled" tabindex="-1" />
+              <v-divider class="append-divider" vertical />
+              <v-switch v-model="item.enabled" @click.stop />
             </template>
           </v-list-item>
         </app-list-category>
       </app-category-list>
-      <template #root> </template>
+
+      <MetadataEditorDialog
+        v-model="isCreateMetadataDialogVisible"
+        v-model:metadata="currentEditingMetadata"
+        :mode="currentEditorMode"
+      />
     </app-main>
-    <!-- <v-fab class="ms-4 mb-4" location="bottom start" app absolute appear></v-fab> -->
+    <v-fab icon="$plus" absolute app appear location="bottom end" @click="showCreateMetadataDialog"></v-fab>
   </v-layout>
 </template>
 
@@ -62,5 +85,15 @@ const metadataStore = useMetadataStore()
   .metadata-item:nth-last-child(#{$count})::before {
     border-bottom-width: 0;
   }
+}
+.metadata-item {
+  &:deep(.v-list-item__append) {
+    height: 100%;
+  }
+}
+.append-divider {
+  height: 32px;
+  align-self: center;
+  margin-right: 16px;
 }
 </style>

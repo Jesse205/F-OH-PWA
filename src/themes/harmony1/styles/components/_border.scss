@@ -4,9 +4,16 @@
   .v-divider {
     --border-padding-left: 0px;
     --border-padding-right: 0px;
-    border-top: border.$border;
     opacity: 1;
+    border-color: border.$border-color;
+    border-right-width: border.$border-width;
     margin-left: calc(12px + var(--border-padding-left));
     margin-right: calc(12px + var(--border-padding-right));
+    &--vertical {
+      border-top-width: 0;
+      margin-left: -#{border.$border-width};
+      margin-right: 0;
+      border-right-width: border.$border-width;
+    }
   }
 }
