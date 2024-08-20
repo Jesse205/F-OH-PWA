@@ -99,7 +99,6 @@ export const blueprint: Blueprint = {
     },
     VCard: {
       border: true,
-      rounded: 'lg',
       variant: 'outlined',
     },
     VTooltip: {
