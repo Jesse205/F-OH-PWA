@@ -14,27 +14,27 @@ const routes: Readonly<RouteRecordRaw[]> = [
   },
   {
     path: '/main',
-    component: async () => await import('@/pages/main/MainView.vue'),
+    component: () => import('@/pages/main/MainView.vue'),
     children: [
       {
         path: 'home',
         name: 'Home',
-        component: async () => await import('@/pages/main/MainHomeView.vue'),
+        component: () => import('@/pages/main/MainHomeView.vue'),
       },
       {
         path: 'categories',
         name: 'Categories',
-        component: async () => await import('@/pages/main/MainCategoriesView.vue'),
+        component: () => import('@/pages/main/MainCategoriesView.vue'),
       },
       {
         path: 'update',
         name: 'Update',
-        component: async () => await import('@/pages/main/MainUpdateView.vue'),
+        component: () => import('@/pages/main/MainUpdateView.vue'),
       },
       {
         path: 'me',
         name: 'Me',
-        component: async () => await import('@/pages/main/MainMeView.vue'),
+        component: () => import('@/pages/main/MainMeView.vue'),
       },
       {
         path: ':chapters*',
