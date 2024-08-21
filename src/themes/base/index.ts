@@ -3,4 +3,7 @@ export interface DesignFeatures {
     enter: string
     leave: string
   }
+  dialog: {
+    actionsBarMode: 'fill' | 'end'
+  }
 }

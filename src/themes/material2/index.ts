@@ -10,4 +10,7 @@ export const features: DesignFeatures = {
     enter: 'scroll-x-reverse-transition',
     leave: 'scroll-x-transition',
   },
+  dialog: {
+    actionsBarMode: 'end',
+  },
 }

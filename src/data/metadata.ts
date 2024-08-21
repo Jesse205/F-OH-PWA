@@ -1,3 +1,6 @@
+import type { PreferredMetadata } from '@/preferences/app'
+import { readonly } from 'vue'
+
 export interface BaseMetadata {
   name: string
   description?: string
@@ -19,3 +22,13 @@ export interface MetadataV1 extends BaseMetadata {
 export type Metadata = MetadataV1
 
 export type InternalMetadata = Omit<Metadata, 'internal' | 'key'>
+
+export const defaultPreferredMetadata = readonly<PreferredMetadata>({
+  name: '',
+  description: '',
+  api: {
+    base: '',
+  },
+  enabled: true,
+  version: 'v1',
+})

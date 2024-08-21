@@ -78,7 +78,8 @@
     "donate": "捐赠",
     "installApp": "安装应用",
     "communicate": "交流讨论",
-    "viewGuide": "查看指南"
+    "viewGuide": "查看指南",
+    "delete": "删除"
   },
   "link": {
     "title": "链接",

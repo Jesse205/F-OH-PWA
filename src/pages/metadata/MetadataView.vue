@@ -4,7 +4,7 @@ import AppListCategory from '@/components/list/AppListCategory.vue'
 import { useTitle } from '@/composables/title'
 import type { PreferredMetadata } from '@/preferences/app'
 import { useMetadataStore } from '@/store/metadata'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import MetadataEditorDialog from './components/MetadataEditorDialog.vue'
 
@@ -27,6 +27,17 @@ function showEditMetadataDialog(metadata: PreferredMetadata) {
   currentEditorMode.value = 'edit'
   currentEditingMetadata.value = metadata
 }
+
+watch(currentEditingMetadata, (newMetadata, oldMetadata) => {
+  console.log(newMetadata)
+  if (currentEditorMode.value === 'create' && newMetadata) {
+    metadataStore.externalMetadataArray.push(newMetadata)
+  } else if (currentEditorMode.value === 'edit' && newMetadata === undefined && oldMetadata !== undefined) {
+    console.log(metadataStore.externalMetadataArray.indexOf(oldMetadata))
+
+    metadataStore.externalMetadataArray.splice(metadataStore.externalMetadataArray.indexOf(oldMetadata), 1)
+  }
+})
 </script>
 
 <template>

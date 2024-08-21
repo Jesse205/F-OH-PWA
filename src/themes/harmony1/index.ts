@@ -12,4 +12,7 @@ export const features: DesignFeatures = {
     enter: 'page-enter-animation',
     leave: 'page-leave-animation',
   },
+  dialog: {
+    actionsBarMode: 'fill',
+  },
 }

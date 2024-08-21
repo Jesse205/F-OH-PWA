@@ -78,7 +78,8 @@
     "donate": "Donate",
     "installApp": "Install app",
     "communicate": "Communicate",
-    "viewGuide": "View Guide"
+    "viewGuide": "View Guide",
+    "delete": "Delete"
   },
   "link": {
     "title": "Link",
