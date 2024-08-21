@@ -4,6 +4,6 @@ export interface DesignFeatures {
     leave: string
   }
   dialog: {
-    actionsBarMode: 'fill' | 'end'
+    actionsBarMode: 'fill' | 'side'
   }
 }

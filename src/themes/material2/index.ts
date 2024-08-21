@@ -11,6 +11,6 @@ export const features: DesignFeatures = {
     leave: 'scroll-x-transition',
   },
   dialog: {
-    actionsBarMode: 'end',
+    actionsBarMode: 'side',
   },
 }

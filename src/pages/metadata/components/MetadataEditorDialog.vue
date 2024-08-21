@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import DialogActionsTemplate from '@/components/dialog/DialogActionsTemplate.vue'
 import { PATH_API_ALL_APP, PATH_API_HOME } from '@/constants/urls'
 import { defaultPreferredMetadata } from '@/data/metadata'
 import type { PreferredMetadata } from '@/preferences/app'
@@ -6,7 +7,6 @@ import { currentDesignConfig } from '@/themes'
 import { watchImmediate } from '@vueuse/core'
 import { computed, ref } from 'vue'
 
-const { actionsBarMode } = currentDesignConfig.features.dialog
 defineProps<{
   mode: 'create' | 'edit'
 }>()
@@ -66,7 +66,7 @@ const rules = {
 
 <template>
   <v-dialog v-model="dialogVisibleModel">
-    <v-card :title="mode">
+    <v-card :title="mode === 'edit' ? $t('editMetadata') : $t('createMetadata')">
       <v-card-text class="text-fields">
         <v-text-field v-model="metadata.name" :label="$t('field.label.name_required')" :rules="[rules.required]" />
         <v-text-field v-model="metadata.description" :label="$t('field.label.description')" />
@@ -96,17 +96,17 @@ const rules = {
         />
       </v-card-text>
       <template #actions>
-        <template v-if="actionsBarMode === 'fill'">
-          <v-btn :text="$t('action.cancel')" @click="closeDialog" />
-          <v-btn v-if="mode === 'edit'" :text="$t('action.delete')" @click="deleteAndCloseDialog" />
-          <v-btn :text="$t('action.ok')" @click="emitAndCloseDialog" />
-        </template>
-        <template v-else>
-          <v-btn v-if="mode === 'edit'" :text="$t('action.delete')" @click="deleteAndCloseDialog" />
-          <v-spacer v-if="mode === 'edit'" />
-          <v-btn :text="$t('action.cancel')" @click="closeDialog" />
-          <v-btn :text="$t('action.ok')" @click="emitAndCloseDialog" />
-        </template>
+        <DialogActionsTemplate>
+          <template #positive>
+            <v-btn :text="mode === 'edit' ? $t('action.update') : $t('action.create')" @click="emitAndCloseDialog" />
+          </template>
+          <template #negative>
+            <v-btn :text="$t('action.cancel')" @click="closeDialog" />
+          </template>
+          <template #neutral>
+            <v-btn v-if="mode === 'edit'" :text="$t('action.delete')" @click="deleteAndCloseDialog" />
+          </template>
+        </DialogActionsTemplate>
       </template>
     </v-card>
   </v-dialog>

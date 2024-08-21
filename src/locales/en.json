@@ -41,6 +41,8 @@
   "userInterface": "User interface|User interfaces",
   "pageHierarchyTransition": "Page hierarchy transition",
   "metadataManager": "Metadata manager",
+  "editMetadata": "Edit metadata",
+  "createMetadata": "Create metadata",
   "unknown": {
     "title": "Unknown",
     "version": "Unknown version",
@@ -79,7 +81,9 @@
     "installApp": "Install app",
     "communicate": "Communicate",
     "viewGuide": "View Guide",
-    "delete": "Delete"
+    "delete": "Delete",
+    "create": "Create",
+    "update": "Update"
   },
   "link": {
     "title": "Link",

@@ -41,6 +41,8 @@
   "userInterface": "用户界面",
   "pageHierarchyTransition": "页面层级动效",
   "metadataManager": "元数据管理",
+  "editMetadata": "编辑元数据",
+  "createMetadata": "创建元数据",
   "unknown": {
     "title": "未知",
     "version": "未知版本",
@@ -79,7 +81,9 @@
     "installApp": "安装应用",
     "communicate": "交流讨论",
     "viewGuide": "查看指南",
-    "delete": "删除"
+    "delete": "删除",
+    "create": "创建",
+    "update": "更新"
   },
   "link": {
     "title": "链接",
