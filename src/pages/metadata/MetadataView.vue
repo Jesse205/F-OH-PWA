@@ -35,7 +35,7 @@ function showEditMetadataDialog(metadata: PreferredMetadata) {
       <back-button />
       <v-app-bar-title :text="title" />
     </v-app-bar>
-    <app-main>
+    <v-main>
       <app-category-list class="metadata-items ma-4">
         <app-list-category v-if="metadataStore.internalMetadataArray" :subheader="'Internal'">
           <v-list-item
@@ -75,7 +75,7 @@ function showEditMetadataDialog(metadata: PreferredMetadata) {
         v-model:metadata="currentEditingMetadata"
         :mode="currentEditorMode"
       />
-    </app-main>
+    </v-main>
     <v-fab icon="$plus" absolute app appear location="bottom end" @click="showCreateMetadataDialog"></v-fab>
   </v-layout>
 </template>
