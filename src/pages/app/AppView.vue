@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import AppMain from '@/components/AppMain.vue'
 import BackButton from '@/components/appbar/BackButton.vue'
+import AppListCategory from '@/components/list/AppListCategory.vue'
 import { useTitle } from '@/composables/title'
+import type { AppInfo } from '@/data/apps'
 import { useAppsStore } from '@/store/apps'
 import { getAppShareUrl } from '@/utils/apps'
+import { useVMainScroller } from '@/utils/element'
 import { matchUserSpace } from '@/utils/url'
 import { mdiFormatQuoteOpen } from '@mdi/js'
 import { useIntersectionObserver, useShare } from '@vueuse/core'
 import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
-
-import AppListCategory from '@/components/list/AppListCategory.vue'
-import type { AppInfo } from '@/data/apps'
+import type { VMain } from 'vuetify/components'
 import AppDetails from './components/AppDetails.vue'
 import AppOverview from './components/AppOverview.vue'
 
@@ -52,7 +52,7 @@ onMounted(() => {
 // 页面滚动，动态展示标题
 const appBarTitleMode = ref<'page-title' | 'app-title'>('page-title')
 const appOverviewComponent = ref<InstanceType<typeof AppOverview>>()
-const mainComponent = ref<InstanceType<typeof AppMain>>()
+const mainComponent = ref<InstanceType<typeof VMain>>()
 
 useIntersectionObserver(
   computed(() => appOverviewComponent.value?.appNameElement),
@@ -60,7 +60,7 @@ useIntersectionObserver(
     appBarTitleMode.value = isIntersecting ? 'page-title' : 'app-title'
   },
   {
-    root: computed(() => mainComponent.value?.mainScroll),
+    root: useVMainScroller(mainComponent),
   },
 )
 
@@ -102,7 +102,7 @@ function shareApp() {
         @click="shareApp"
       />
     </v-app-bar>
-    <app-main ref="mainComponent">
+    <v-main ref="mainComponent">
       <v-progress-linear v-if="isLoading" color="primary" class="progress" indeterminate />
       <AppOverview ref="appOverviewComponent" class="ma-4" :app-info="appInfo" :loading="isLoading" />
 
@@ -151,7 +151,7 @@ function shareApp() {
         <!-- 详情信息 -->
         <AppDetails :loading="isLoading" :app-info="appInfo" :title-class="['itemTitle']" />
       </app-category-list>
-    </app-main>
+    </v-main>
   </v-layout>
 </template>
 

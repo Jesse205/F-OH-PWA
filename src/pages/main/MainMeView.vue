@@ -3,7 +3,7 @@ import AppListCategory from '@/components/list/AppListCategory.vue'
 </script>
 
 <template>
-  <app-main>
+  <v-main>
     <!-- 软件面板 -->
     <app-category-list class="ma-4">
       <app-list-category>
@@ -11,5 +11,5 @@ import AppListCategory from '@/components/list/AppListCategory.vue'
         <v-list-item :title="$t('about')" link prepend-icon="$info" append-icon="$next" :to="{ name: 'About' }" />
       </app-list-category>
     </app-category-list>
-  </app-main>
+  </v-main>
 </template>

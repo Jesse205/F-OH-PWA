@@ -3,9 +3,9 @@ import CenterSpace from '@/components/CenterSpace.vue'
 </script>
 
 <template>
-  <app-main>
+  <v-main>
     <v-container>
       <CenterSpace>敬请期待</CenterSpace>
     </v-container>
-  </app-main>
+  </v-main>
 </template>

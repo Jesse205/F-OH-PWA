@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import AppMain from '@/components/AppMain.vue'
 import BackButton from '@/components/appbar/BackButton.vue'
 import AppListCategory from '@/components/list/AppListCategory.vue'
 import AppListSingleSelectItem from '@/components/list/AppListSingleSelectItem.vue'
@@ -35,7 +34,7 @@ const pageTransitionEnabled = usePageTransition()
       <back-button />
       <v-app-bar-title :text="title" />
     </v-app-bar>
-    <app-main>
+    <v-main>
       <app-category-list class="ma-4">
         <app-list-category :subheader="$t('userInterface', 2)">
           <app-list-single-select-item
@@ -99,6 +98,6 @@ const pageTransitionEnabled = usePageTransition()
           />
         </app-list-category>
       </app-category-list>
-    </app-main>
+    </v-main>
   </v-layout>
 </template>

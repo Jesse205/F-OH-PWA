@@ -4,7 +4,6 @@
  * Bootstraps Vuetify and other plugins then mounts the App`
  */
 
-import AppMain from '@/components/AppMain.vue'
 import { URL_SOURCE } from '@/constants/urls'
 import { registerPlugins } from '@/plugins'
 import '@/styles/main.scss'
@@ -28,8 +27,5 @@ console.debug('isClientApp', isClientApp)
 const app = createApp(App)
 
 registerPlugins(app)
-
-// 全局组件
-app.component('AppMain', AppMain)
 
 app.mount('#app')

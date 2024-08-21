@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import AppMain from '@/components/AppMain.vue'
 import BackButton from '@/components/appbar/BackButton.vue'
 import AppListCategory from '@/components/list/AppListCategory.vue'
 import { useTitle } from '@/composables/title'
@@ -42,7 +41,7 @@ if (isTauriApp) {
     <v-navigation-drawer v-if="smAndUp" permanent :width="200 + 32" touchless>
       <AppCard class="ma-4" />
     </v-navigation-drawer>
-    <app-main>
+    <v-main>
       <AppCard v-if="!smAndUp" class="ma-4" />
       <app-category-list class="ma-4">
         <!-- 关于应用 -->
@@ -117,6 +116,6 @@ if (isTauriApp) {
           />
         </app-list-category>
       </app-category-list>
-    </app-main>
+    </v-main>
   </v-layout>
 </template>

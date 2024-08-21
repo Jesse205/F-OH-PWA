@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import ErrorAlert from '@/components/alert/ErrorAlert.vue'
 import UnsafeBypassAlert from '@/components/alert/UnsafeBypassAlert.vue'
-import AppMain from '@/components/AppMain.vue'
 import CenterSpace from '@/components/CenterSpace.vue'
 import TitleList from '@/components/list/AppList.vue'
 import { carousel } from '@/data/home'
 import { useHomeStore } from '@/store/home'
 import { isChrome } from '@/utils/browser'
+import { useVMainScroller } from '@/utils/element'
 import { useElementBounding, useScroll } from '@vueuse/core'
 import { max } from 'lodash-es'
 import { computed, onMounted, ref, watch } from 'vue'
+import type { VMain } from 'vuetify/components'
 import HomeCarousel from './components/HomeCarousel.vue'
 
 const homeStore = useHomeStore()
@@ -27,8 +28,8 @@ const error = computed<Error | undefined>(() => {
   return undefined
 })
 
-const mainComponent = ref<InstanceType<typeof AppMain>>()
-const { y: scrollY } = useScroll(computed(() => mainComponent.value?.mainScroll))
+const mainComponent = ref<InstanceType<typeof VMain>>()
+const { y: scrollY } = useScroll(useVMainScroller(mainComponent))
 
 const carouselComponent = ref<InstanceType<typeof HomeCarousel>>()
 const { height: carouselHeight } = useElementBounding(carouselComponent, { windowScroll: false })
@@ -58,7 +59,7 @@ watch(
 </script>
 
 <template>
-  <app-main ref="mainComponent">
+  <v-main ref="mainComponent">
     <!-- 轮播图 -->
     <HomeCarousel ref="carouselComponent" class="ma-4" :items="carousel.items" :ratio="carousel.ratio" />
 
@@ -77,7 +78,7 @@ watch(
         <v-progress-circular indeterminate />
       </CenterSpace>
     </template>
-  </app-main>
+  </v-main>
 </template>
 
 <style scoped lang="scss">

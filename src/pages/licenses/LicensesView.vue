@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import BackButton from '@/components/appbar/BackButton.vue'
-import AppMain from '@/components/AppMain.vue'
 import { useTitle } from '@/composables/title'
 import { projects } from '@/data/licenses'
 import { computed } from 'vue'
@@ -15,7 +14,7 @@ const title = useTitle(computed(() => t('term.openSourceLicenses')))
       <back-button />
       <v-app-bar-title :text="title" />
     </v-app-bar>
-    <app-main>
+    <v-main>
       <div class="container">
         <v-card v-for="item in projects" :key="item.key" class="project-item" :href="item.url" target="_blank">
           <v-card-item>
@@ -31,7 +30,7 @@ const title = useTitle(computed(() => t('term.openSourceLicenses')))
           </div>
         </v-card>
       </div>
-    </app-main>
+    </v-main>
   </v-layout>
 </template>
 

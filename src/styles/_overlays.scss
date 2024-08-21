@@ -40,8 +40,13 @@ $font-family: ui-sans-serif, sans-serif, system-ui;
     }
   }
 
-  .v-main{
+  .v-main {
+    // 解决加载时可能会播放下沉动画
     transition: none;
+  }
+
+  .v-main__scroller {
+    overflow-x: hidden;
   }
 
   code,

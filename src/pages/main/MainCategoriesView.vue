@@ -81,7 +81,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <app-main>
+  <v-main>
     <!-- Alerts -->
     <ErrorAlert v-if="appsStore.error" class="ma-4" :error="appsStore.error" />
     <UnsafeBypassAlert v-if="appsStore.error && isChrome" class="ma-4" />
@@ -111,7 +111,7 @@ onMounted(() => {
         <span v-else-if="appsStore.apps.length === 0">{{ $t('empty.apps') }}</span>
       </CenterSpace>
     </template>
-  </app-main>
+  </v-main>
 </template>
 
 <style scoped lang="scss">

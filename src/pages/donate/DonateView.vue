@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import ICON from '@/assets/images/icon.svg'
-import AppMain from '@/components/AppMain.vue'
 import BackButton from '@/components/appbar/BackButton.vue'
 import { useTitle } from '@/composables/title'
 import { donatePersons, type DonatePlatform } from '@/data/donate'
@@ -30,7 +29,7 @@ const donateAds: DonatePlatform[] = [
       <back-button />
       <v-app-bar-title :text="title" />
     </v-app-bar>
-    <app-main>
+    <v-main>
       <div class="container">
         <DonateCard
           v-for="person in donatePersons"
@@ -82,7 +81,7 @@ const donateAds: DonatePlatform[] = [
           </v-btn>
         </DonateCard>
       </div>
-    </app-main>
+    </v-main>
   </v-layout>
 </template>
 
