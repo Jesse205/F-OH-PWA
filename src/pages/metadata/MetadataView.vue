@@ -48,7 +48,7 @@ watch(currentEditingMetadata, (newMetadata, oldMetadata) => {
     </v-app-bar>
     <v-main>
       <app-category-list class="metadata-items ma-4">
-        <app-list-category v-if="metadataStore.internalMetadataArray" :subheader="$t('internal')">
+        <app-list-category v-if="metadataStore.internalMetadataArray.length > 0" :subheader="$t('internal')">
           <v-list-item
             v-for="item in metadataStore.internalMetadataArray"
             :key="item.api.base"
@@ -63,7 +63,7 @@ watch(currentEditingMetadata, (newMetadata, oldMetadata) => {
             </template>
           </v-list-item>
         </app-list-category>
-        <app-list-category v-if="metadataStore.externalMetadataArray" :subheader="$t('external')">
+        <app-list-category v-if="metadataStore.externalMetadataArray.length > 0" :subheader="$t('external')">
           <v-list-item
             v-for="item in metadataStore.externalMetadataArray"
             :key="item.api.base"
