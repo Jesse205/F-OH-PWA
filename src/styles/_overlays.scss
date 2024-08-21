@@ -43,6 +43,8 @@ $font-family: ui-sans-serif, sans-serif, system-ui;
   .v-main {
     // 解决加载时可能会播放下沉动画
     transition: none;
+    // position:fixed 固定此容器
+    transform: translateZ(0);
   }
 
   .v-main__scroller {

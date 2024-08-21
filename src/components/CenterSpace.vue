@@ -41,7 +41,7 @@ const style = computed(() => {
 </template>
 <style scoped lang="scss">
 .center-space {
-  position: absolute;
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;

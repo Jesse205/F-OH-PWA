@@ -72,12 +72,9 @@ watch(
       <!-- eslint-disable-next-line vue/no-v-html vue/no-v-text-v-html-on-component -->
       <v-list-item class="announcement-content typo-style" v-html="homeStore.announcementHtml" />
     </title-list>
-    <template #root>
-      <!-- Loading -->
-      <CenterSpace v-if="isLoading" :top="progressMarginTop">
-        <v-progress-circular indeterminate />
-      </CenterSpace>
-    </template>
+    <CenterSpace v-if="isLoading" :top="progressMarginTop">
+      <v-progress-circular indeterminate />
+    </CenterSpace>
   </v-main>
 </template>
 

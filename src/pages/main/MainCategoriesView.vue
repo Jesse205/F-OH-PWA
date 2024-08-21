@@ -104,13 +104,10 @@ onMounted(() => {
       </template>
     </app-category-list>
 
-    <template #root>
-      <!-- Loading -->
-      <CenterSpace v-if="isLoading || appsStore.apps.length === 0">
-        <v-progress-circular v-if="isLoading" indeterminate style="pointer-events: none" />
-        <span v-else-if="appsStore.apps.length === 0">{{ $t('empty.apps') }}</span>
-      </CenterSpace>
-    </template>
+    <CenterSpace v-if="isLoading || appsStore.apps.length === 0">
+      <v-progress-circular v-if="isLoading" indeterminate style="pointer-events: none" />
+      <span v-else-if="appsStore.apps.length === 0">{{ $t('empty.apps') }}</span>
+    </CenterSpace>
   </v-main>
 </template>
 
