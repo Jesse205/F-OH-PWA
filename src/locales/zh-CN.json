@@ -43,6 +43,8 @@
   "metadataManager": "元数据管理",
   "editMetadata": "编辑元数据",
   "createMetadata": "创建元数据",
+  "internal": "内部",
+  "external": "外部",
   "unknown": {
     "title": "未知",
     "version": "未知版本",

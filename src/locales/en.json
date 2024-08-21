@@ -43,6 +43,8 @@
   "metadataManager": "Metadata manager",
   "editMetadata": "Edit metadata",
   "createMetadata": "Create metadata",
+  "internal": "Internal",
+  "external": "External",
   "unknown": {
     "title": "Unknown",
     "version": "Unknown version",
