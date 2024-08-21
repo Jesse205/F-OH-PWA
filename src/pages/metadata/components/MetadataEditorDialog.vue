@@ -3,6 +3,7 @@ import DialogActionsTemplate from '@/components/dialog/DialogActionsTemplate.vue
 import { PATH_API_ALL_APP, PATH_API_HOME } from '@/constants/urls'
 import { defaultPreferredMetadata } from '@/data/metadata'
 import type { PreferredMetadata } from '@/preferences/app'
+import { useRequired } from '@/utils/rules'
 import { watchImmediate } from '@vueuse/core'
 import { computed, ref } from 'vue'
 import type { SubmitEventPromise } from 'vuetify'
@@ -65,7 +66,7 @@ function deleteAndCloseDialog() {
 }
 
 const rules = {
-  required: (value: string) => Boolean(value) || 'Field is required',
+  required: useRequired(),
 }
 </script>
 
@@ -90,13 +91,13 @@ const rules = {
           />
           <v-text-field
             v-model="metadata.api.home"
-            :label="'Home path'"
+            :label="$t('field.label.homeDataPath')"
             :placeholder="PATH_API_HOME"
             persistent-placeholder
           />
           <v-text-field
             v-model="metadata.api.apps"
-            :label="'Apps path'"
+            :label="$t('field.label.appsDataPath')"
             :placeholder="PATH_API_ALL_APP"
             persistent-placeholder
           />

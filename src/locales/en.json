@@ -140,6 +140,9 @@
     },
     "hint": {
       "originApiUrl": "Scenarios for downloading HAPs and other scenarios where users have direct access to APIs"
+    },
+    "error": {
+      "required": "This field is required"
     }
   }
 }
