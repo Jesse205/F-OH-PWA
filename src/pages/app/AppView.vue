@@ -184,7 +184,7 @@ function shareApp() {
   margin-bottom: 8px;
   max-width: 600px;
   color: inherit !important;
-  border-radius: 16px;
+  border-radius: var(--radius-card);
 }
 
 .summary-card {
