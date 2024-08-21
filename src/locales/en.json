@@ -139,7 +139,7 @@
       "appsDataPath": "Apps data path"
     },
     "hint": {
-      "originApiUrl": "Scenarios for downloading HAPs and other scenarios where users have direct access to APIs"
+      "originApiUrl": "For direct API access scenarios such as downloading files"
     },
     "error": {
       "required": "This field is required"

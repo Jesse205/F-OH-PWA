@@ -139,7 +139,7 @@
       "appsDataPath": "应用数据路径"
     },
     "hint": {
-      "originApiUrl": "用于下载 HAP 等用户直接访问 API 的场景"
+      "originApiUrl": "用于下载文件等直接访问 API 的场景"
     },
     "error": {
       "required": "该字段必填"
