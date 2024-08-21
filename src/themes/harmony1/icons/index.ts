@@ -4,8 +4,10 @@
 
 import type { IconAliases, IconSet } from 'vuetify'
 import { VSvgIcon } from 'vuetify/components'
+import publicArrowDown0 from './custom/ic_public_arrow_down_0.svg?vuetify'
 import publicConnection from './custom/ic_public_connection.svg?vuetify'
 import publicGallerySet from './official/ic_gallery_set.svg?vuetify'
+import publicAddFilled from './official/ic_public_add_filled.svg?vuetify'
 import publicApp from './official/ic_public_app.svg?vuetify'
 import publicAppFilled from './official/ic_public_app_filled.svg?vuetify'
 import publicArrowLeft from './official/ic_public_arrow_left.svg?component'
@@ -58,7 +60,7 @@ export const aliases: IconAliases = {
   expand: undefined,
   menu: undefined,
   subgroup: undefined,
-  dropdown: undefined,
+  dropdown: publicArrowDown0,
   radioOn: undefined,
   radioOff: undefined,
   edit: undefined,
@@ -97,4 +99,5 @@ export const aliases: IconAliases = {
   about_licenses: publicFile,
   about_donate: publicCards,
   about_group: publicContactsGroup,
+  floating_add: publicAddFilled,
 }

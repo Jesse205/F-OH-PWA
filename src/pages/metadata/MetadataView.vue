@@ -76,7 +76,7 @@ function showEditMetadataDialog(metadata: PreferredMetadata) {
         :mode="currentEditorMode"
       />
     </v-main>
-    <v-fab icon="$plus" absolute app appear location="bottom end" @click="showCreateMetadataDialog"></v-fab>
+    <v-fab icon="$floating_add" absolute app appear location="bottom end" @click="showCreateMetadataDialog"></v-fab>
   </v-layout>
 </template>
 

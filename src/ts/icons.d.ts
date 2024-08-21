@@ -36,5 +36,7 @@ declare module 'vuetify' {
     about_licenses: IconValue
     about_donate: IconValue
     about_group: IconValue
+
+    floating_add: IconValue
   }
 }
