@@ -40,6 +40,7 @@
   "designLanguageTakeEffectMessage": "* 新的设计语言将在重新加载后生效。",
   "userInterface": "用户界面",
   "pageHierarchyTransition": "页面层级动效",
+  "metadataManager": "元数据管理",
   "unknown": {
     "title": "未知",
     "version": "未知版本",
@@ -119,5 +120,19 @@
   },
   "alert": {
     "unsafeApiAndMaybeBlockedByChromeMessage": "当前 API 地址不安全，您的浏览器可能拦截了该请求，您可以在 Chrome Experiments 中尝试解决。"
+  },
+  "field": {
+    "label": {
+      "name_required": "* 名称",
+      "description": "描述",
+      "version": "版本",
+      "apiUrl_required": "* API 地址",
+      "originApiUrl": "API 地址（原始）",
+      "homeDataPath": "主页数据路径",
+      "appsDataPath": "应用数据路径"
+    },
+    "hint": {
+      "originApiUrl": "用于下载 HAP 等用户直接访问 API 的场景"
+    }
   }
 }

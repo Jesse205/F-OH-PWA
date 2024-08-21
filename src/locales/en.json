@@ -40,6 +40,7 @@
   "designLanguageTakeEffectMessage": "* The new design language will take effect after reload.",
   "userInterface": "User interface|User interfaces",
   "pageHierarchyTransition": "Page hierarchy transition",
+  "metadataManager": "Metadata manager",
   "unknown": {
     "title": "Unknown",
     "version": "Unknown version",
@@ -119,5 +120,19 @@
   },
   "alert": {
     "unsafeApiAndMaybeBlockedByChromeMessage": "The current API url is not secure and your browser may be blocking the request, which you can try to resolve in Chrome Experiments."
+  },
+  "field": {
+    "label": {
+      "name_required": "* Name",
+      "description": "Description",
+      "version": "Version",
+      "apiUrl_required": "* API url",
+      "originApiUrl": "API address (original)",
+      "homeDataPath": "Home data path",
+      "appsDataPath": "Apps data path"
+    },
+    "hint": {
+      "originApiUrl": "Scenarios for downloading HAPs and other scenarios where users have direct access to APIs"
+    }
   }
 }

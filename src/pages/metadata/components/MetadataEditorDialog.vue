@@ -67,11 +67,20 @@ const rules = {
   <v-dialog v-model="dialogVisibleModel">
     <v-card :title="mode">
       <v-card-text class="text-fields">
-        <v-text-field v-model="metadata.name" :label="'* Name'" :rules="[rules.required]" />
-        <v-text-field v-model="metadata.description" :label="'Description'" />
-        <v-select v-model="metadataVersion" label="Version" :items="['v1']" />
-        <v-text-field v-model="metadata.api.base" :label="'* ' + $t('apiUrl')" :rules="[rules.required]" />
-        <v-text-field v-model="metadata.api.baseOrigin" :label="$t('apiUrl') + '(Origin)'" />
+        <v-text-field v-model="metadata.name" :label="$t('field.label.name_required')" :rules="[rules.required]" />
+        <v-text-field v-model="metadata.description" :label="$t('field.label.description')" />
+        <v-select v-model="metadataVersion" :label="$t('field.label.version')" :items="['v1']" />
+        <v-text-field
+          v-model="metadata.api.base"
+          :label="$t('field.label.apiUrl_required')"
+          :rules="[rules.required]"
+        />
+        <v-text-field
+          v-model="metadata.api.baseOrigin"
+          :label="$t('field.label.originApiUrl')"
+          :hint="$t('field.hint.originApiUrl')"
+          persistent-hint
+        />
         <v-text-field
           v-model="metadata.api.home"
           :label="'Home path'"

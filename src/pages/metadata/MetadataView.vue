@@ -5,9 +5,12 @@ import { useTitle } from '@/composables/title'
 import type { PreferredMetadata } from '@/preferences/app'
 import { useMetadataStore } from '@/store/metadata'
 import { computed, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import MetadataEditorDialog from './components/MetadataEditorDialog.vue'
 
-const title = useTitle(computed(() => 'Metadata Manager'))
+const { t } = useI18n()
+
+const title = useTitle(computed(() => t('metadataManager')))
 const metadataStore = useMetadataStore()
 
 const isCreateMetadataDialogVisible = ref(false)
