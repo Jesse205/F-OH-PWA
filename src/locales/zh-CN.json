@@ -40,9 +40,9 @@
   "designLanguageTakeEffectMessage": "* 新的设计语言将在重新加载后生效。",
   "userInterface": "用户界面",
   "pageHierarchyTransition": "页面层级动效",
-  "metadataManager": "元数据管理",
-  "editMetadata": "编辑元数据",
-  "createMetadata": "创建元数据",
+  "metadataSourceManager": "元数据源管理",
+  "editMetadataSource": "编辑元数据源",
+  "createMetadataSource": "创建元数据源",
   "internal": "内部",
   "external": "外部",
   "unknown": {

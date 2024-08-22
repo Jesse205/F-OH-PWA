@@ -71,8 +71,8 @@ const pageTransitionEnabled = usePageTransition()
         <app-list-category :subheader="$t('app.title')">
           <v-list-item
             prepend-icon="$foh"
-            :title="$t('metadataManager')"
-            :to="{ name: 'Metadata' }"
+            :title="$t('metadataSourceManager')"
+            :to="{ name: 'MetadataSource' }"
             append-icon="$next"
           />
           <!-- <app-list-dialog-item

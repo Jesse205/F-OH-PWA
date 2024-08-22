@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import DialogActionsTemplate from '@/components/dialog/DialogActionsTemplate.vue'
 import { PATH_API_ALL_APP, PATH_API_HOME } from '@/constants/urls'
-import { defaultPreferredMetadata } from '@/data/metadata'
-import type { PreferredMetadata } from '@/preferences/app'
+import { defaultPreferredMetadataSource } from '@/data/metadataSource'
+import type { PreferredMetadataSource } from '@/preferences/app'
 import { useRequired } from '@/utils/rules'
 import { watchImmediate } from '@vueuse/core'
 import { computed, ref } from 'vue'
@@ -14,12 +14,12 @@ defineProps<{
 }>()
 
 const dialogVisibleModel = defineModel<boolean>()
-const metadataModel = defineModel<PreferredMetadata | undefined>('metadata')
-const metadata = ref<PreferredMetadata>(defaultPreferredMetadata)
+const sourceModel = defineModel<PreferredMetadataSource | undefined>('source')
+const metadata = ref<PreferredMetadataSource>(defaultPreferredMetadataSource)
 
 watchImmediate(dialogVisibleModel, (isDialogVisible) => {
   if (isDialogVisible) {
-    const originMetadata = metadataModel.value ?? defaultPreferredMetadata
+    const originMetadata = sourceModel.value ?? defaultPreferredMetadataSource
     metadata.value = {
       name: originMetadata.name,
       description: originMetadata.description,
@@ -52,16 +52,16 @@ async function emitAndCloseDialog(event: SubmitEventPromise) {
   if (!validationResult.valid) {
     return
   }
-  if (metadataModel.value) {
-    Object.assign(metadataModel.value, metadata.value)
+  if (sourceModel.value) {
+    Object.assign(sourceModel.value, metadata.value)
   } else {
-    metadataModel.value = metadata.value
+    sourceModel.value = metadata.value
   }
   closeDialog()
 }
 
 function deleteAndCloseDialog() {
-  metadataModel.value = undefined
+  sourceModel.value = undefined
   closeDialog()
 }
 
@@ -73,7 +73,7 @@ const rules = {
 <template>
   <v-dialog v-model="dialogVisibleModel">
     <v-form @submit.prevent="emitAndCloseDialog">
-      <v-card :title="mode === 'edit' ? $t('editMetadata') : $t('createMetadata')">
+      <v-card :title="mode === 'edit' ? $t('editMetadataSource') : $t('createMetadataSource')">
         <v-card-text class="text-fields">
           <v-text-field v-model="metadata.name" :label="$t('field.label.name_required')" :rules="[rules.required]" />
           <v-text-field v-model="metadata.description" :label="$t('field.label.description')" />

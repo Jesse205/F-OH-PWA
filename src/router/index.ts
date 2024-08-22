@@ -94,9 +94,9 @@ const routes: Readonly<RouteRecordRaw[]> = [
     component: async () => await import('@/pages/about/AboutView.vue'),
   },
   {
-    path: '/metadata',
-    name: 'Metadata',
-    component: async () => await import('@/pages/metadata/MetadataView.vue'),
+    path: '/metadata-source',
+    name: 'MetadataSource',
+    component: async () => await import('@/pages/metadata-source/MetadataSourceView.vue'),
   },
   {
     path: '/:chapters*',

@@ -3,7 +3,7 @@ import { splitAppTags } from '@/utils/apps'
 import { apiAxios } from '@/utils/http'
 import { completeApiUrl } from '@/utils/url'
 import { getItem } from 'localforage'
-import { type Metadata } from './metadata'
+import { type MetadataSource } from './metadataSource'
 
 interface AllAppListResponseData_AppInfo {
   readonly id: number
@@ -35,7 +35,7 @@ export interface AppInfo {
   readonly tags: readonly string[]
   readonly openSourceAddress: string
   readonly releaseTime: string
-  readonly metadataSources: readonly Metadata['key'][]
+  readonly metadataSources: readonly MetadataSource['key'][]
 }
 
 export async function fetchLocalApps(): Promise<AppInfo[]> {
@@ -46,7 +46,7 @@ export async function fetchLocalApps(): Promise<AppInfo[]> {
 export async function fetchOnlineApps({
   api: { base: baseUrl, apps: appsPath, baseOrigin: baseOriginUrl },
   key,
-}: Metadata): Promise<AppInfo[]> {
+}: MetadataSource): Promise<AppInfo[]> {
   const response = await apiAxios.get<AllAppListResponseData>(appsPath ?? PATH_API_ALL_APP, {
     baseURL: baseUrl,
   })

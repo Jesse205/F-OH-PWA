@@ -4,14 +4,14 @@ import { isLocalAppsOutdated } from '@/utils/apps'
 import { clearArray } from '@/utils/array'
 import { defineStore } from 'pinia'
 import { ref, shallowReactive, watch } from 'vue'
-import { useMetadataStore } from './metadata'
+import { useMetadataSourceStore } from './metadataSource'
 const TAG = '[AppsStore]'
 
 /**
  * 应用市场所有应用数据
  */
 export const useAppsStore = defineStore('apps', () => {
-  const metadataStore = useMetadataStore()
+  const metadataSourceStore = useMetadataSourceStore()
   const apps = shallowReactive<AppInfo[]>([])
   const normalApps = shallowReactive<AppInfo[]>([])
   const gameApps = shallowReactive<AppInfo[]>([])
@@ -39,7 +39,7 @@ export const useAppsStore = defineStore('apps', () => {
   async function loadOnlineApps(array: AppInfo[] = apps) {
     // 仅当有数据加载时清空先前数据
     let clearedPreviousApps = false
-    const promises = metadataStore.enabledMetadataArray
+    const promises = metadataSourceStore.enabledMetadataArray
       .map((metadata) => fetchOnlineApps(metadata))
       .map((promise) =>
         promise.then(async (newApps) => {

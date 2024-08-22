@@ -40,9 +40,9 @@
   "designLanguageTakeEffectMessage": "* The new design language will take effect after reload.",
   "userInterface": "User interface|User interfaces",
   "pageHierarchyTransition": "Page hierarchy transition",
-  "metadataManager": "Metadata manager",
-  "editMetadata": "Edit metadata",
-  "createMetadata": "Create metadata",
+  "metadataSourceManager": "Metadata source manager",
+  "editMetadataSource": "Edit metadata source",
+  "createMetadataSource": "Create metadata source",
   "internal": "Internal",
   "external": "External",
   "unknown": {

@@ -2,40 +2,40 @@
 import BackButton from '@/components/appbar/BackButton.vue'
 import AppListCategory from '@/components/list/AppListCategory.vue'
 import { useTitle } from '@/composables/title'
-import type { PreferredMetadata } from '@/preferences/app'
-import { useMetadataStore } from '@/store/metadata'
+import type { PreferredMetadataSource } from '@/preferences/app'
+import { useMetadataSourceStore } from '@/store/metadataSource'
 import { computed, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import MetadataEditorDialog from './components/MetadataEditorDialog.vue'
+import MetadataSourceEditorDialog from './components/MetadataSourceEditorDialog.vue'
 
 const { t } = useI18n()
 
-const title = useTitle(computed(() => t('metadataManager')))
-const metadataStore = useMetadataStore()
+const title = useTitle(computed(() => t('metadataSourceManager')))
+const metadataSourceStore = useMetadataSourceStore()
 
 const isCreateMetadataDialogVisible = ref(false)
-const currentEditingMetadata = ref<PreferredMetadata>()
+const currentEditingSource = ref<PreferredMetadataSource>()
 const currentEditorMode = ref<'create' | 'edit'>('create')
 
-function showCreateMetadataDialog() {
+function showCreateMetadataSourceDialog() {
   isCreateMetadataDialogVisible.value = true
   currentEditorMode.value = 'create'
-  currentEditingMetadata.value = undefined
+  currentEditingSource.value = undefined
 }
-function showEditMetadataDialog(metadata: PreferredMetadata) {
+function showEditMetadataSourceDialog(metadata: PreferredMetadataSource) {
   isCreateMetadataDialogVisible.value = true
   currentEditorMode.value = 'edit'
-  currentEditingMetadata.value = metadata
+  currentEditingSource.value = metadata
 }
 
-watch(currentEditingMetadata, (newMetadata, oldMetadata) => {
+watch(currentEditingSource, (newMetadata, oldMetadata) => {
   console.log(newMetadata)
   if (currentEditorMode.value === 'create' && newMetadata) {
-    metadataStore.externalMetadataArray.push(newMetadata)
+    metadataSourceStore.externalMetadataArray.push(newMetadata)
   } else if (currentEditorMode.value === 'edit' && newMetadata === undefined && oldMetadata !== undefined) {
-    console.log(metadataStore.externalMetadataArray.indexOf(oldMetadata))
+    console.log(metadataSourceStore.externalMetadataArray.indexOf(oldMetadata))
 
-    metadataStore.externalMetadataArray.splice(metadataStore.externalMetadataArray.indexOf(oldMetadata), 1)
+    metadataSourceStore.externalMetadataArray.splice(metadataSourceStore.externalMetadataArray.indexOf(oldMetadata), 1)
   }
 })
 </script>
@@ -48,9 +48,9 @@ watch(currentEditingMetadata, (newMetadata, oldMetadata) => {
     </v-app-bar>
     <v-main>
       <app-category-list class="metadata-items ma-4">
-        <app-list-category v-if="metadataStore.internalMetadataArray.length > 0" :subheader="$t('internal')">
+        <app-list-category v-if="metadataSourceStore.internalMetadataArray.length > 0" :subheader="$t('internal')">
           <v-list-item
-            v-for="item in metadataStore.internalMetadataArray"
+            v-for="item in metadataSourceStore.internalMetadataArray"
             :key="item.api.base"
             class="metadata-item"
             :title="item.name"
@@ -63,13 +63,13 @@ watch(currentEditingMetadata, (newMetadata, oldMetadata) => {
             </template>
           </v-list-item>
         </app-list-category>
-        <app-list-category v-if="metadataStore.externalMetadataArray.length > 0" :subheader="$t('external')">
+        <app-list-category v-if="metadataSourceStore.externalMetadataArray.length > 0" :subheader="$t('external')">
           <v-list-item
-            v-for="item in metadataStore.externalMetadataArray"
+            v-for="item in metadataSourceStore.externalMetadataArray"
             :key="item.api.base"
             class="metadata-item"
             :title="item.name"
-            @click="showEditMetadataDialog(item)"
+            @click="showEditMetadataSourceDialog(item)"
           >
             <v-list-item-subtitle>{{ item.description }}</v-list-item-subtitle>
             <v-list-item-subtitle>{{ item.api.base }}</v-list-item-subtitle>
@@ -81,13 +81,13 @@ watch(currentEditingMetadata, (newMetadata, oldMetadata) => {
         </app-list-category>
       </app-category-list>
 
-      <MetadataEditorDialog
+      <MetadataSourceEditorDialog
         v-model="isCreateMetadataDialogVisible"
-        v-model:metadata="currentEditingMetadata"
+        v-model:source="currentEditingSource"
         :mode="currentEditorMode"
       />
     </v-main>
-    <v-fab icon="$floating_add" absolute app appear location="bottom end" @click="showCreateMetadataDialog"></v-fab>
+    <v-fab icon="$floating_add" absolute app appear location="bottom end" @click="showCreateMetadataSourceDialog"></v-fab>
   </v-layout>
 </template>
 
