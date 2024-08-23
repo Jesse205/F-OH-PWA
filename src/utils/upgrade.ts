@@ -1,4 +1,4 @@
-import { getPreferredMetadataSource, setPreferredMetadataSource } from '@/preferences/app'
+import { getPreferredMetadataSources, setPreferredMetadataSources } from '@/preferences/app'
 import { completeUrl } from './url'
 
 export function upgrade(): void {
@@ -7,7 +7,7 @@ export function upgrade(): void {
     localStorage.removeItem('server')
   }
   if (localStorage.getItem('api-url')) {
-    const preferredMetadata = getPreferredMetadataSource()
+    const preferredMetadata = getPreferredMetadataSources()
     preferredMetadata.push({
       name: 'My metadata',
       api: {
@@ -17,6 +17,6 @@ export function upgrade(): void {
       version: 'v1',
     })
     localStorage.removeItem('api-url')
-    setPreferredMetadataSource(preferredMetadata)
+    setPreferredMetadataSources(preferredMetadata)
   }
 }

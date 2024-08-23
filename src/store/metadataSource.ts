@@ -1,12 +1,12 @@
 import { MetadataSource, useInternalMetadataSourceArray, type MetadataSourceData } from '@/data/metadataSource'
-import { usePreferredMetadataSource } from '@/preferences/app'
+import { usePreferredMetadataSources } from '@/preferences/app'
 import { useArrayFilter } from '@vueuse/core'
 import { defineStore } from 'pinia'
 import { computed, type ComputedRef } from 'vue'
 
 export const useMetadataSourceStore = defineStore('metadata-source', () => {
   const internalSourceDataArray = useInternalMetadataSourceArray()
-  const externalSourceDataArray = usePreferredMetadataSource()
+  const externalSourceDataArray = usePreferredMetadataSources()
   const hasInternalSourceData = computed(() => internalSourceDataArray.value.length > 0)
   const hasExternalSourceData = computed(() => externalSourceDataArray.value.length > 0)
 
