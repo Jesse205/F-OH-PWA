@@ -68,8 +68,8 @@ export const useAppsStore = defineStore('apps', () => {
     )
     // 全部加载失败时不删除原数据
     const result = await Promise.allSettled(promises)
-    const allRejected = result.every((result) => result.status === 'rejected')
-    if (!clearedPreviousApps && !allRejected) {
+    const isAllRejected = result.every((result) => result.status === 'rejected')
+    if (!clearedPreviousApps && !isAllRejected) {
       clearArray(apps)
       clearedPreviousApps = true
     }

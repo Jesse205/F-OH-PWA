@@ -1,39 +1,95 @@
-import { PATH_API_HOME } from '@/constants/urls'
-import type { HomeResponseData } from '@/data/home'
-import { apiAxios } from '@/utils/http'
-import { getShowdownConverter } from '@/utils/markdown'
-import { useAxios } from '@vueuse/integrations/useAxios.mjs'
+import { clearArray } from '@/utils/array'
+import { renderAnnouncement } from '@/utils/markdown'
 import { defineStore } from 'pinia'
-import { computed } from 'vue'
+import { computed, reactive, ref } from 'vue'
+import { useMetadataSourceStore } from './metadataSource'
 
 const TAG = '[HomeStore]'
+
+interface Announcement {
+  sourceName: string
+  content: string
+  contentHtml: string
+}
+
+interface HomeData {
+  sourceName: string
+  announcement?: string
+  showAnnouncement: boolean
+}
 
 /**
  * 首页数据
  */
 export const useHomeStore = defineStore('home', () => {
-  const { data, isFinished, isLoading, error, execute } = useAxios<HomeResponseData>(PATH_API_HOME, apiAxios)
-  const isLoaded = computed(() => data.value !== undefined)
-  const isShowAnnouncement = computed(() => data.value?.showAnnouncement ?? false)
-  const converter = getShowdownConverter()
-  const announcementHtml = computed(() => {
-    if (!data.value?.announcement) return undefined
-    // 原来的文字不是markdown样式，所以应该转为markdown样式。
-    let markdown = data.value.announcement.replaceAll(/@(.+)/g, '#### $1')
-    // 替换日期
-    markdown = markdown.replaceAll(/(\d{4}-\d{2}-\d{2})/g, '`$1`')
-    // 替换版本
-    markdown = markdown.replaceAll(/\b(v[.\d]+)\b/g, '`$1`')
-    return converter.makeHtml(markdown)
-  })
+  const metadataSourceStore = useMetadataSourceStore()
 
-  function refreshData() {
-    execute()
+  const isLoading = ref(false)
+  const isLoaded = ref(false)
+  const dataArray = reactive<HomeData[]>([])
+
+  const errorArray = reactive<Error[]>([])
+  const hasErrors = computed(() => errorArray.length > 0)
+
+  const announcements = computed<Announcement[]>(() =>
+    dataArray
+      .filter((item: HomeData) => item.showAnnouncement && Boolean(item.announcement))
+      .map((item: HomeData) => ({
+        sourceName: item.sourceName,
+        content: item.announcement!,
+        contentHtml: renderAnnouncement(item.announcement!),
+      })),
+  )
+  const hasAnnouncements = computed(() => announcements.value.length > 0)
+
+  async function loadDataOnline() {
+    // 仅当有数据加载时清空先前数据
+    let clearedPreviousApps = false
+    const promises = metadataSourceStore.enabledSourceArray.map((source) =>
+      source
+        .fetchHome()
+        .then(async (data) => {
+          if (!clearedPreviousApps) {
+            clearArray(dataArray)
+            clearedPreviousApps = true
+          }
+          dataArray.push({
+            showAnnouncement: data.showAnnouncement,
+            sourceName: source.name,
+            announcement: data.announcement,
+          })
+        })
+        .catch((reason) => {
+          errorArray.push(reason)
+          console.log(`${TAG} ${source.key} fetchHome error:`, reason)
+        }),
+    )
+
+    const result = await Promise.allSettled(promises)
+    const isAllRejected = result.every((result) => result.status === 'rejected')
+    if (!clearedPreviousApps && !isAllRejected) {
+      clearArray(dataArray)
+      clearedPreviousApps = true
+    }
   }
+
+  async function loadData() {
+    if (isLoading.value) {
+      return
+    }
+    isLoading.value = true
+    clearArray(errorArray)
+    await loadDataOnline()
+    isLoading.value = false
+    isLoaded.value = true
+  }
+
   function ensureData() {
-    if (isLoaded.value || isLoading.value) return
-    execute()
+    if (isLoaded.value || isLoading.value) {
+      return
+    }
+    loadData()
   }
 
-  return { data, isFinished, isLoading, isLoaded, error, isShowAnnouncement, announcementHtml, ensureData, refreshData }
+  return { isLoading, isLoaded, errorArray, hasErrors, announcements, hasAnnouncements, ensureData, loadData }
 })

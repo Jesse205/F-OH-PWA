@@ -2,14 +2,14 @@
 import ErrorAlert from '@/components/alert/ErrorAlert.vue'
 import UnsafeBypassAlert from '@/components/alert/UnsafeBypassAlert.vue'
 import CenterSpace from '@/components/CenterSpace.vue'
-import TitleList from '@/components/list/AppList.vue'
+import AppListCategory from '@/components/list/AppListCategory.vue'
 import { carousel } from '@/data/home'
 import { useHomeStore } from '@/store/home'
 import { isChrome } from '@/utils/browser'
 import { useVMainScroller } from '@/utils/element'
 import { useElementBounding, useScroll } from '@vueuse/core'
 import { max } from 'lodash-es'
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import type { VMain } from 'vuetify/components'
 import HomeCarousel from './components/HomeCarousel.vue'
 
@@ -19,14 +19,6 @@ onMounted(() => {
 })
 
 const isLoading = computed(() => homeStore.isLoading)
-const error = computed<Error | undefined>(() => {
-  if (homeStore.error instanceof Error) {
-    return homeStore.error
-  } else if (homeStore.error) {
-    return new Error(String(homeStore.error), { cause: homeStore.error })
-  }
-  return undefined
-})
 
 const mainComponent = ref<InstanceType<typeof VMain>>()
 const { y: scrollY } = useScroll(useVMainScroller(mainComponent))
@@ -38,7 +30,7 @@ const { height: carouselHeight } = useElementBounding(carouselComponent, { windo
  * 刷新主页数据
  */
 function refresh() {
-  homeStore.refreshData()
+  homeStore.loadData()
 }
 
 defineExpose({ refresh })
@@ -49,13 +41,6 @@ defineExpose({ refresh })
 const progressMarginTop = computed(() => {
   return max([-scrollY.value + carouselHeight.value + 16, 0])
 })
-
-watch(
-  computed(() => homeStore.error),
-  () => {
-    console.log(homeStore.error)
-  },
-)
 </script>
 
 <template>
@@ -64,14 +49,20 @@ watch(
     <HomeCarousel ref="carouselComponent" class="ma-4" :items="carousel.items" :ratio="carousel.ratio" />
 
     <!-- Alerts -->
-    <ErrorAlert v-if="homeStore.error" class="ma-4" :error="homeStore.error" />
-    <UnsafeBypassAlert v-if="error && homeStore.data === undefined && isChrome" class="ma-4" />
+    <ErrorAlert v-if="homeStore.hasErrors" class="ma-4" :error="homeStore.errorArray" />
+    <UnsafeBypassAlert v-if="homeStore.hasErrors && isChrome" class="ma-4" />
 
     <!-- 公告 -->
-    <title-list v-if="homeStore.isShowAnnouncement" class="ma-4" :title="$t('announcement')">
-      <!-- eslint-disable-next-line vue/no-v-html vue/no-v-text-v-html-on-component -->
-      <v-list-item class="announcement-content typo-style" v-html="homeStore.announcementHtml" />
-    </title-list>
+    <app-category-list v-if="homeStore.hasAnnouncements" class="ma-4">
+      <app-list-category
+        v-for="(announcement, index) in homeStore.announcements"
+        :key="index"
+        :subheader="announcement.sourceName"
+      >
+        <!-- eslint-disable-next-line vue/no-v-html vue/no-v-text-v-html-on-component -->
+        <v-list-item class="announcement-content typo-style" v-html="announcement.contentHtml" />
+      </app-list-category>
+    </app-category-list>
     <CenterSpace v-if="isLoading" :top="progressMarginTop">
       <v-progress-circular indeterminate />
     </CenterSpace>
@@ -82,5 +73,6 @@ watch(
 .announcement-content {
   display: block;
   user-select: text;
+  min-height: 0;
 }
 </style>
