@@ -13,7 +13,7 @@ import MetadataSourceItem from './components/list/MetadataSourceItem.vue'
 
 const { t } = useI18n()
 
-const title = useTitle(computed(() => t('metadataSourceManager')))
+const title = useTitle(computed(() => t('metadataSourcesManager')))
 
 const sourceStore = useMetadataSourceStore()
 const { internalSourceDataArray, externalSourceDataArray } = toRefs(
