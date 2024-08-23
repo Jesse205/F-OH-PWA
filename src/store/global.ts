@@ -14,7 +14,7 @@ const TAG = '[AppStore]'
 /**
  * 应用全局数据
  */
-export const useAppStore = defineStore('app', () => {
+export const useGlobalStore = defineStore('global', () => {
   const { t } = useI18n()
   /**
    * 应用标题，不带后缀

@@ -1,4 +1,4 @@
-import { useAppStore } from '@/store/global'
+import { useGlobalStore } from '@/store/global'
 import type { MaybeRef, Ref } from 'vue'
 import { onActivated, onDeactivated, ref, toRef, watchEffect } from 'vue'
 
@@ -13,7 +13,7 @@ export function useTitle(
   activated: Ref<boolean> = ref(true),
 ): Ref<string | undefined> {
   const wrappedTitle: Ref<string | undefined> = toRef(title)
-  const appStore = useAppStore()
+  const globalStore = useGlobalStore()
   onActivated(() => {
     activated.value = true
   })
@@ -23,7 +23,7 @@ export function useTitle(
 
   watchEffect(() => {
     if (activated.value) {
-      appStore.title = wrappedTitle.value
+      globalStore.title = wrappedTitle.value
     }
   })
   return wrappedTitle

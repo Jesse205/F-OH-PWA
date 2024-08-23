@@ -3,7 +3,7 @@ import NavigationDrawer from '@/components/app/NavigationDrawer.vue'
 import PwaComponent from '@/components/app/PwaComponent.vue'
 import TauriSystemBar from '@/components/app/TauriSystemBar.vue'
 import { usePreferredLocale } from '@/preferences/ui'
-import { useAppStore } from '@/store/global'
+import { useGlobalStore } from '@/store/global'
 import { isElementDraggableInClientApp } from '@/utils/drag'
 import { isPwaDisplayMode } from '@/utils/pwa'
 import { useTitle as useDocumentTitle, usePreferredDark } from '@vueuse/core'
@@ -16,7 +16,7 @@ import { currentDesign } from './themes'
 import { isTauriApp } from './utils/global'
 
 const route = useRoute()
-const appStore = useAppStore()
+const globalStore = useGlobalStore()
 
 const REGEX_ROUTE_NAME = /\/[^/]+/
 
@@ -29,10 +29,10 @@ useAutoTheme(usePreferredDark())
 useAutoLocale(usePreferredLocale())
 useDocumentTitle(
   computed(() => {
-    if (isPwaDisplayMode(appStore.displayMode)) {
-      return appStore.title ?? ''
+    if (isPwaDisplayMode(globalStore.displayMode)) {
+      return globalStore.title ?? ''
     } else {
-      return appStore.title ? `${appStore.title} - ${appStore.appName}` : appStore.appName
+      return globalStore.title ? `${globalStore.title} - ${globalStore.appName}` : globalStore.appName
     }
   }),
 )
@@ -68,7 +68,7 @@ document.documentElement.classList.add(currentDesign)
 <template>
   <v-app class="app" @dragstart="onDragStart">
     <TauriSystemBar v-if="isTauriApp" />
-    <NavigationDrawer v-if="isAppReady && appStore.navigationBarType === 'side'" />
+    <NavigationDrawer v-if="isAppReady && globalStore.navigationBarType === 'side'" />
     <v-main v-if="isAppReady" class="main">
       <div class="page-container">
         <router-view #="{ Component }">

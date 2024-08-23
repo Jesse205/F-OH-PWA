@@ -1,23 +1,23 @@
 <script setup lang="ts">
 import { useHomeRoutes } from '@/composables/route'
 import { homeRouteData } from '@/data/home'
-import { useAppStore } from '@/store/global'
+import { useGlobalStore } from '@/store/global'
 import { parseI18n } from '@/utils/i18n'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
-const appStore = useAppStore()
+const globalStore = useGlobalStore()
 const route = useRoute()
 const { activePagePosition, routeButtonReplace, isInMainView } = useHomeRoutes()
 
-const isOtherPage = computed(() => Boolean(!isInMainView.value && appStore.title && route.path !== '/'))
+const isOtherPage = computed(() => Boolean(!isInMainView.value && globalStore.title && route.path !== '/'))
 </script>
 
 <template>
   <!-- 侧滑栏 -->
   <v-navigation-drawer permanent touchless>
     <v-list class="header-icon" lines="one">
-      <v-list-item prepend-avatar="@/assets/images/icon.svg" :title="appStore.appName" />
+      <v-list-item prepend-avatar="@/assets/images/icon.svg" :title="globalStore.appName" />
     </v-list>
 
     <!-- <v-divider /> -->
@@ -36,7 +36,7 @@ const isOtherPage = computed(() => Boolean(!isInMainView.value && appStore.title
     </transition> -->
     <transition name="slide-y-transition">
       <v-list v-if="isOtherPage" density="compact" nav>
-        <v-list-item :key="$route.path" prepend-icon="$foh" :title="appStore.title" active link />
+        <v-list-item :key="$route.path" prepend-icon="$foh" :title="globalStore.title" active link />
       </v-list>
     </transition>
   </v-navigation-drawer>

@@ -4,7 +4,7 @@ import { INDEX_NOT_FOUND, useHomeRoutes } from '@/composables/route'
 import { useTitle } from '@/composables/title'
 import { PATH_MAIN } from '@/constants/urls'
 import { homeRouteData } from '@/data/home'
-import { useAppStore } from '@/store/global'
+import { useGlobalStore } from '@/store/global'
 import { usePwaStore } from '@/store/pwa'
 import { parseI18n } from '@/utils/i18n'
 import { computed, ref } from 'vue'
@@ -31,7 +31,7 @@ const { t } = useI18n()
 
 const title = useTitle(computed(() => parseI18n(currentRouteData.value.title, t)))
 
-const appStore = useAppStore()
+const globalStore = useGlobalStore()
 
 // PWA
 const pwaStore = usePwaStore()
@@ -65,7 +65,7 @@ onBeforeRouteUpdate((to) => {
 
 <template>
   <v-layout>
-    <v-navigation-drawer v-if="appStore.navigationBarType === 'rail'" permanent rail>
+    <v-navigation-drawer v-if="globalStore.navigationBarType === 'rail'" permanent rail>
       <div class="rail-list-container">
         <v-list class="rail-list" density="compact" nav active-class="">
           <v-list-item
@@ -86,7 +86,7 @@ onBeforeRouteUpdate((to) => {
       - 当设备为小屏时，始终隐藏按钮。
       - 例外情况：首页但是有历史记录，始终显示按钮。
       -->
-      <back-button v-if="appStore.navigationBarType === 'side'" />
+      <back-button v-if="globalStore.navigationBarType === 'side'" />
       <v-app-bar-title :text="title" />
       <v-menu origin="bottom" width="172" location="top">
         <template #activator="{ props: menu }">
@@ -112,7 +112,7 @@ onBeforeRouteUpdate((to) => {
     </router-view>
 
     <!-- 底部导航栏 -->
-    <v-bottom-navigation v-if="appStore.navigationBarType === 'bottom'">
+    <v-bottom-navigation v-if="globalStore.navigationBarType === 'bottom'">
       <v-btn
         v-for="(item, index) in homeRouteData"
         :key="item.name"

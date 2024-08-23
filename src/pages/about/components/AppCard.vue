@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { useAppStore } from '@/store/global'
+import { useGlobalStore } from '@/store/global'
 
-const appStore = useAppStore()
+const globalStore = useGlobalStore()
 </script>
 
 <template>
   <v-card class="AppCard">
     <div class="app-item">
       <v-img class="app-icon" src="@/assets/images/icon.svg" alt="" />
-      <h2 class="app-name text-subtitle-1">{{ appStore.appName }}</h2>
+      <h2 class="app-name text-subtitle-1">{{ globalStore.appName }}</h2>
     </div>
   </v-card>
 </template>

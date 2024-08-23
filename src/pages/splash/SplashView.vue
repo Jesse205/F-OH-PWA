@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import { useAppStore } from '@/store/global'
+import { useGlobalStore } from '@/store/global'
 
-const appStore = useAppStore()
+const globalStore = useGlobalStore()
 </script>
 
 <template>
   <div class="SplashView">
     <img class="logo" src="@/assets/images/icon.svg" />
-    <span>{{ appStore.appName }}</span>
+    <span>{{ globalStore.appName }}</span>
   </div>
 </template>
 
