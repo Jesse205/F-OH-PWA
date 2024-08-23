@@ -4,46 +4,30 @@ import { PATH_API_ALL_APP, PATH_API_HOME } from '@/constants/urls'
 import { defaultPreferredMetadataSource, type MetadataSourceData } from '@/data/metadataSource'
 import { useRequired } from '@/utils/rules'
 import { watchImmediate } from '@vueuse/core'
-import { computed, ref } from 'vue'
+import { cloneDeep } from 'lodash-es'
+import { ref } from 'vue'
 import type { SubmitEventPromise } from 'vuetify'
 import type { VTextField } from 'vuetify/components'
 
 defineProps<{
   mode: 'create' | 'edit'
 }>()
+const emits = defineEmits<{
+  delete: []
+}>()
 
-const dialogVisibleModel = defineModel<boolean>()
-const sourceModel = defineModel<MetadataSourceData | undefined>('source')
-const metadata = ref<MetadataSourceData>(defaultPreferredMetadataSource)
+const isDialogVisible = defineModel<boolean>()
+const originSource = defineModel<MetadataSourceData | undefined>('source')
+const editingSource = ref<MetadataSourceData>(defaultPreferredMetadataSource)
 
-watchImmediate(dialogVisibleModel, (isDialogVisible) => {
+watchImmediate(isDialogVisible, (isDialogVisible) => {
   if (isDialogVisible) {
-    const originMetadata = sourceModel.value ?? defaultPreferredMetadataSource
-    metadata.value = {
-      name: originMetadata.name,
-      description: originMetadata.description,
-      api: {
-        base: originMetadata.api.base,
-        baseOrigin: originMetadata.api.baseOrigin,
-        home: originMetadata.api.home,
-        apps: originMetadata.api.apps,
-      },
-      enabled: originMetadata.enabled,
-      version: originMetadata.version,
-    }
+    editingSource.value = cloneDeep(originSource.value ?? defaultPreferredMetadataSource)
   }
-})
-const metadataVersion = computed({
-  get() {
-    return metadata.value.version
-  },
-  set(value) {
-    metadata.value.version = value
-  },
 })
 
 function closeDialog() {
-  dialogVisibleModel.value = false
+  isDialogVisible.value = false
 }
 
 async function emitAndCloseDialog(event: SubmitEventPromise) {
@@ -51,16 +35,17 @@ async function emitAndCloseDialog(event: SubmitEventPromise) {
   if (!validationResult.valid) {
     return
   }
-  if (sourceModel.value) {
-    Object.assign(sourceModel.value, metadata.value)
+  const clonedSource = cloneDeep(editingSource.value)
+  if (originSource.value) {
+    Object.assign(originSource.value, clonedSource)
   } else {
-    sourceModel.value = metadata.value
+    originSource.value = clonedSource
   }
   closeDialog()
 }
 
 function deleteAndCloseDialog() {
-  sourceModel.value = undefined
+  emits('delete')
   closeDialog()
 }
 
@@ -70,32 +55,36 @@ const rules = {
 </script>
 
 <template>
-  <v-dialog v-model="dialogVisibleModel">
+  <v-dialog v-model="isDialogVisible">
     <v-form @submit.prevent="emitAndCloseDialog">
       <v-card :title="mode === 'edit' ? $t('editMetadataSource') : $t('createMetadataSource')">
         <v-card-text class="text-fields">
-          <v-text-field v-model="metadata.name" :label="$t('field.label.name_required')" :rules="[rules.required]" />
-          <v-text-field v-model="metadata.description" :label="$t('field.label.description')" />
-          <v-select v-model="metadataVersion" :label="$t('field.label.version')" :items="['v1']" />
           <v-text-field
-            v-model="metadata.api.base"
+            v-model="editingSource.name"
+            :label="$t('field.label.name_required')"
+            :rules="[rules.required]"
+          />
+          <v-text-field v-model="editingSource.description" :label="$t('field.label.description')" />
+          <v-select v-model="editingSource.version" :label="$t('field.label.version')" :items="['v1']" />
+          <v-text-field
+            v-model="editingSource.api.base"
             :label="$t('field.label.apiUrl_required')"
             :rules="[rules.required]"
           />
           <v-text-field
-            v-model="metadata.api.baseOrigin"
+            v-model="editingSource.api.baseOrigin"
             :label="$t('field.label.originApiUrl')"
             :hint="$t('field.hint.originApiUrl')"
             persistent-hint
           />
           <v-text-field
-            v-model="metadata.api.home"
+            v-model="editingSource.api.home"
             :label="$t('field.label.homeDataPath')"
             :placeholder="PATH_API_HOME"
             persistent-placeholder
           />
           <v-text-field
-            v-model="metadata.api.apps"
+            v-model="editingSource.api.apps"
             :label="$t('field.label.appsDataPath')"
             :placeholder="PATH_API_ALL_APP"
             persistent-placeholder

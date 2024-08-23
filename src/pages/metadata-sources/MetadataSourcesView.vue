@@ -20,28 +20,35 @@ const { internalSourceDataArray, externalSourceDataArray } = toRefs(
   reactivePick(sourceStore, 'internalSourceDataArray', 'externalSourceDataArray'),
 )
 
-const isMetadataSourceEditorVisible = ref(false)
-const currentEditingSource = ref<MetadataSourceData>()
-const currentEditorMode = ref<'create' | 'edit'>('create')
+const isEditorVisible = ref(false)
+const editingSource = ref<MetadataSourceData>()
+const editorMode = ref<'create' | 'edit'>('create')
 
-function showCreateMetadataSourceDialog() {
-  isMetadataSourceEditorVisible.value = true
-  currentEditorMode.value = 'create'
-  currentEditingSource.value = undefined
+function showCreateSourceDialog() {
+  isEditorVisible.value = true
+  editorMode.value = 'create'
+  editingSource.value = undefined
 }
 
-function showEditMetadataSourceDialog(metadata: MetadataSourceData) {
-  isMetadataSourceEditorVisible.value = true
-  currentEditorMode.value = 'edit'
-  currentEditingSource.value = metadata
+function showEditSourceDialog(metadata: MetadataSourceData) {
+  isEditorVisible.value = true
+  editorMode.value = 'edit'
+  editingSource.value = metadata
 }
 
-watch(currentEditingSource, (newSource, oldSource) => {
-  if (currentEditorMode.value === 'create' && newSource !== undefined) {
-    sourceStore.externalSourceDataArray.push(newSource)
-  } else if (currentEditorMode.value === 'edit' && newSource === undefined && oldSource !== undefined) {
-    // 编辑模式下，如果 newSource 变为 undefined，表示删除该元数据源
-    removeElementFromArray(sourceStore.externalSourceDataArray, oldSource)
+function deleteSource(metadataSource: MetadataSourceData) {
+  removeElementFromArray(sourceStore.externalSourceDataArray, metadataSource)
+}
+
+function updateSource(newSource?: MetadataSourceData) {
+  if (newSource && editorMode.value === 'create') {
+    externalSourceDataArray.value.push(newSource)
+  }
+}
+
+watch(isEditorVisible, (isEditorVisible) => {
+  if (!isEditorVisible) {
+    editingSource.value = undefined
   }
 })
 </script>
@@ -74,18 +81,20 @@ watch(currentEditingSource, (newSource, oldSource) => {
             :description="item.description"
             :api-url="item.api.base"
             :editable="true"
-            @edit="showEditMetadataSourceDialog(item)"
+            @edit="showEditSourceDialog(item)"
           />
         </app-list-category>
       </app-category-list>
 
       <MetadataSourceEditorDialog
-        v-model="isMetadataSourceEditorVisible"
-        v-model:source="currentEditingSource"
-        :mode="currentEditorMode"
+        v-model="isEditorVisible"
+        :source="editingSource"
+        :mode="editorMode"
+        @delete="editingSource && deleteSource(editingSource)"
+        @update:source="updateSource"
       />
     </v-main>
-    <v-fab icon="$floating_add" absolute app appear location="bottom end" @click="showCreateMetadataSourceDialog" />
+    <v-fab icon="$floating_add" absolute app location="bottom end" @click="showCreateSourceDialog" />
   </v-layout>
 </template>
 
