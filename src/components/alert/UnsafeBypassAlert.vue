@@ -13,7 +13,7 @@ const guide = ref<InstanceType<typeof UnsafeBypassChromeGuide>>()
       <v-btn :text="$t('action.viewGuide')" @click="isGuideDialogVisible = true" />
     </template>
   </v-alert>
-  <v-dialog v-model="isGuideDialogVisible" activator="viewGuideButton">
+  <v-dialog v-model="isGuideDialogVisible">
     <v-card :title="guide?.title">
       <template #text><UnsafeBypassChromeGuide ref="guide" /></template>
       <template #actions>
