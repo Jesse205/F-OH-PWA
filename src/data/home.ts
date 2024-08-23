@@ -3,7 +3,7 @@ import IMAGE_BANNER_3 from '@/assets/images/banners/banner3.png'
 import IMAGE_BANNER_FOH from '@/assets/images/banners/foh.png'
 import type { TranslateParameters } from '@/utils/i18n'
 
-export interface HomeData {
+export interface HomeResponseData {
   announcement?: string
   showAnnouncement: boolean
 }

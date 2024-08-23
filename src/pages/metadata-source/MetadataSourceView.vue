@@ -2,40 +2,46 @@
 import BackButton from '@/components/appbar/BackButton.vue'
 import AppListCategory from '@/components/list/AppListCategory.vue'
 import { useTitle } from '@/composables/title'
-import type { PreferredMetadataSource } from '@/preferences/app'
+import type { MetadataSourceData } from '@/data/metadataSource'
 import { useMetadataSourceStore } from '@/store/metadataSource'
-import { computed, ref, watch } from 'vue'
+import { removeElementFromArray } from '@/utils/array'
+import { reactivePick } from '@vueuse/core'
+import { computed, ref, toRefs, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import MetadataSourceEditorDialog from './components/MetadataSourceEditorDialog.vue'
+import MetadataSourceItem from './components/list/MetadataSourceItem.vue'
 
 const { t } = useI18n()
 
 const title = useTitle(computed(() => t('metadataSourceManager')))
-const metadataSourceStore = useMetadataSourceStore()
 
-const isCreateMetadataDialogVisible = ref(false)
-const currentEditingSource = ref<PreferredMetadataSource>()
+const sourceStore = useMetadataSourceStore()
+const { internalSourceDataArray, externalSourceDataArray } = toRefs(
+  reactivePick(sourceStore, 'internalSourceDataArray', 'externalSourceDataArray'),
+)
+
+const isMetadataSourceEditorVisible = ref(false)
+const currentEditingSource = ref<MetadataSourceData>()
 const currentEditorMode = ref<'create' | 'edit'>('create')
 
 function showCreateMetadataSourceDialog() {
-  isCreateMetadataDialogVisible.value = true
+  isMetadataSourceEditorVisible.value = true
   currentEditorMode.value = 'create'
   currentEditingSource.value = undefined
 }
-function showEditMetadataSourceDialog(metadata: PreferredMetadataSource) {
-  isCreateMetadataDialogVisible.value = true
+
+function showEditMetadataSourceDialog(metadata: MetadataSourceData) {
+  isMetadataSourceEditorVisible.value = true
   currentEditorMode.value = 'edit'
   currentEditingSource.value = metadata
 }
 
-watch(currentEditingSource, (newMetadata, oldMetadata) => {
-  console.log(newMetadata)
-  if (currentEditorMode.value === 'create' && newMetadata) {
-    metadataSourceStore.externalMetadataArray.push(newMetadata)
-  } else if (currentEditorMode.value === 'edit' && newMetadata === undefined && oldMetadata !== undefined) {
-    console.log(metadataSourceStore.externalMetadataArray.indexOf(oldMetadata))
-
-    metadataSourceStore.externalMetadataArray.splice(metadataSourceStore.externalMetadataArray.indexOf(oldMetadata), 1)
+watch(currentEditingSource, (newSource, oldSource) => {
+  if (currentEditorMode.value === 'create' && newSource !== undefined) {
+    sourceStore.externalSourceDataArray.push(newSource)
+  } else if (currentEditorMode.value === 'edit' && newSource === undefined && oldSource !== undefined) {
+    // 编辑模式下，如果 newSource 变为 undefined，表示删除该元数据源
+    removeElementFromArray(sourceStore.externalSourceDataArray, oldSource)
   }
 })
 </script>
@@ -48,66 +54,39 @@ watch(currentEditingSource, (newMetadata, oldMetadata) => {
     </v-app-bar>
     <v-main>
       <app-category-list class="metadata-items ma-4">
-        <app-list-category v-if="metadataSourceStore.internalMetadataArray.length > 0" :subheader="$t('internal')">
-          <v-list-item
-            v-for="item in metadataSourceStore.internalMetadataArray"
+        <app-list-category :subheader="$t('internal')">
+          <MetadataSourceItem
+            v-for="item in internalSourceDataArray"
             :key="item.api.base"
-            class="metadata-item"
-            :title="item.name"
-            @click="item.enabled = !item.enabled"
-          >
-            <v-list-item-subtitle>{{ item.description }}</v-list-item-subtitle>
-            <v-list-item-subtitle>{{ item.api.base }}</v-list-item-subtitle>
-            <template #append>
-              <v-switch v-model="item.enabled" tabindex="-1" />
-            </template>
-          </v-list-item>
+            v-model:enabled="item.enabled"
+            :name="item.name"
+            :description="item.description"
+            :api-url="item.api.base"
+            :editable="false"
+          />
         </app-list-category>
-        <app-list-category v-if="metadataSourceStore.externalMetadataArray.length > 0" :subheader="$t('external')">
-          <v-list-item
-            v-for="item in metadataSourceStore.externalMetadataArray"
+        <app-list-category :subheader="$t('external')">
+          <MetadataSourceItem
+            v-for="item in externalSourceDataArray"
             :key="item.api.base"
-            class="metadata-item"
-            :title="item.name"
-            @click="showEditMetadataSourceDialog(item)"
-          >
-            <v-list-item-subtitle>{{ item.description }}</v-list-item-subtitle>
-            <v-list-item-subtitle>{{ item.api.base }}</v-list-item-subtitle>
-            <template #append>
-              <v-divider class="append-divider" vertical />
-              <v-switch v-model="item.enabled" @click.stop />
-            </template>
-          </v-list-item>
+            v-model:enabled="item.enabled"
+            :name="item.name"
+            :description="item.description"
+            :api-url="item.api.base"
+            :editable="true"
+            @edit="showEditMetadataSourceDialog(item)"
+          />
         </app-list-category>
       </app-category-list>
 
       <MetadataSourceEditorDialog
-        v-model="isCreateMetadataDialogVisible"
+        v-model="isMetadataSourceEditorVisible"
         v-model:source="currentEditingSource"
         :mode="currentEditorMode"
       />
     </v-main>
-    <v-fab icon="$floating_add" absolute app appear location="bottom end" @click="showCreateMetadataSourceDialog"></v-fab>
+    <v-fab icon="$floating_add" absolute app appear location="bottom end" @click="showCreateMetadataSourceDialog" />
   </v-layout>
 </template>
 
-<style lang="scss" scoped>
-@mixin column($count: number) {
-  .metadata-items {
-    --columns: #{$count};
-  }
-  .metadata-item:nth-last-child(#{$count})::before {
-    border-bottom-width: 0;
-  }
-}
-.metadata-item {
-  &:deep(.v-list-item__append) {
-    height: 100%;
-  }
-}
-.append-divider {
-  height: 32px;
-  align-self: center;
-  margin-right: 16px;
-}
-</style>
+<style lang="scss" scoped></style>

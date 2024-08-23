@@ -5,7 +5,7 @@ import { completeApiUrl } from '@/utils/url'
 import { getItem } from 'localforage'
 import { type MetadataSource } from './metadataSource'
 
-interface AllAppListResponseData_AppInfo {
+export interface AllAppListResponseData_AppInfo {
   readonly id: number
   readonly name: string
   readonly desc: string
@@ -19,7 +19,7 @@ interface AllAppListResponseData_AppInfo {
   readonly openSourceAddress: string
   readonly releaseTime: string
 }
-type AllAppListResponseData = readonly AllAppListResponseData_AppInfo[]
+export type AllAppListResponseData = readonly AllAppListResponseData_AppInfo[]
 
 export type AppType = 'app' | 'game' | string
 export interface AppInfo {

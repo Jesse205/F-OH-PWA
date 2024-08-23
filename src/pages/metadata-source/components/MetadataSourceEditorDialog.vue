@@ -1,8 +1,7 @@
 <script lang="ts" setup>
 import DialogActionsTemplate from '@/components/dialog/DialogActionsTemplate.vue'
 import { PATH_API_ALL_APP, PATH_API_HOME } from '@/constants/urls'
-import { defaultPreferredMetadataSource } from '@/data/metadataSource'
-import type { PreferredMetadataSource } from '@/preferences/app'
+import { defaultPreferredMetadataSource, type MetadataSourceData } from '@/data/metadataSource'
 import { useRequired } from '@/utils/rules'
 import { watchImmediate } from '@vueuse/core'
 import { computed, ref } from 'vue'
@@ -14,8 +13,8 @@ defineProps<{
 }>()
 
 const dialogVisibleModel = defineModel<boolean>()
-const sourceModel = defineModel<PreferredMetadataSource | undefined>('source')
-const metadata = ref<PreferredMetadataSource>(defaultPreferredMetadataSource)
+const sourceModel = defineModel<MetadataSourceData | undefined>('source')
+const metadata = ref<MetadataSourceData>(defaultPreferredMetadataSource)
 
 watchImmediate(dialogVisibleModel, (isDialogVisible) => {
   if (isDialogVisible) {

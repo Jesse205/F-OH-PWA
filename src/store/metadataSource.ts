@@ -1,34 +1,35 @@
-import { URL_API_CLIENT, URL_API_CLIENT_ORIGIN, URL_API_WEB, URL_API_WEB_ORIGIN } from '@/constants/urls'
-import type { InternalMetadataSource, MetadataSource } from '@/data/metadataSource'
+import { MetadataSource, useInternalMetadataSourceArray, type MetadataSourceData } from '@/data/metadataSource'
 import { usePreferredMetadataSource } from '@/preferences/app'
-import { isClientApp } from '@/utils/global'
-import { transformInternalSource2MetadataSource, transformPreferredMetadataSource2MetadataSource } from '@/utils/metadataSource'
-import { completeUrl } from '@/utils/url'
+import { useArrayFilter } from '@vueuse/core'
 import { defineStore } from 'pinia'
-import { computed, reactive, readonly, ref, type ComputedRef, type DeepReadonly } from 'vue'
+import { computed, type ComputedRef } from 'vue'
 
 export const useMetadataSourceStore = defineStore('metadata-source', () => {
-  const internalMetadataSourceArray: InternalMetadataSource[] = reactive([
-    {
-      name: 'F-OH PWA',
-      description: 'F-OH PWA Default Metadata',
-      version: 'v1',
-      api: {
-        base: completeUrl(isClientApp ? URL_API_CLIENT : URL_API_WEB),
-        baseOrigin: completeUrl(isClientApp ? URL_API_CLIENT_ORIGIN : URL_API_WEB_ORIGIN),
-      },
-      enabled: ref(true),
-    },
-  ])
-  const externalMetadataSourceArray = usePreferredMetadataSource()
+  const internalSourceDataArray = useInternalMetadataSourceArray()
+  const externalSourceDataArray = usePreferredMetadataSource()
+  const hasInternalSourceData = computed(() => internalSourceDataArray.value.length > 0)
+  const hasExternalSourceData = computed(() => externalSourceDataArray.value.length > 0)
 
-  const allMetadataSourceArray: ComputedRef<DeepReadonly<MetadataSource[]>> = computed(() => {
-    return readonly([
-      ...internalMetadataSourceArray.map(transformInternalSource2MetadataSource),
-      ...externalMetadataSourceArray.value.map(transformPreferredMetadataSource2MetadataSource),
-    ])
+  function getInternalSource(data: MetadataSourceData): MetadataSource {
+    return new MetadataSource(data, true)
+  }
+  function getExternalSource(data: MetadataSourceData): MetadataSource {
+    return new MetadataSource(data, false)
+  }
+
+  const allSourceArray: ComputedRef<MetadataSource[]> = computed(() => {
+    return [
+      ...internalSourceDataArray.value.map(getInternalSource),
+      ...externalSourceDataArray.value.map(getExternalSource),
+    ]
   })
-  const enabledMetadataArray = computed(() => allMetadataSourceArray.value.filter((metadata) => metadata.enabled))
+  const enabledSourceArray = useArrayFilter(allSourceArray, (metadata) => metadata.enabled)
 
-  return { internalMetadataArray: internalMetadataSourceArray, externalMetadataArray: externalMetadataSourceArray, enabledMetadataArray }
+  return {
+    internalSourceDataArray,
+    externalSourceDataArray,
+    hasInternalSourceData,
+    hasExternalSourceData,
+    enabledSourceArray,
+  }
 })

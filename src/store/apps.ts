@@ -1,9 +1,7 @@
-import { IS_DEV_MODE } from '@/constants'
-import { fetchLocalApps, fetchOnlineApps, type AppInfo } from '@/data/apps'
-import { isLocalAppsOutdated } from '@/utils/apps'
+import { fetchLocalApps, type AppInfo } from '@/data/apps'
 import { clearArray } from '@/utils/array'
 import { defineStore } from 'pinia'
-import { ref, shallowReactive, watch } from 'vue'
+import { computed, reactive, ref, shallowReactive, watch } from 'vue'
 import { useMetadataSourceStore } from './metadataSource'
 const TAG = '[AppsStore]'
 
@@ -12,15 +10,18 @@ const TAG = '[AppsStore]'
  */
 export const useAppsStore = defineStore('apps', () => {
   const metadataSourceStore = useMetadataSourceStore()
+
   const apps = shallowReactive<AppInfo[]>([])
   const normalApps = shallowReactive<AppInfo[]>([])
   const gameApps = shallowReactive<AppInfo[]>([])
   const othersApps = shallowReactive<AppInfo[]>([])
+  const hasApps = computed(() => apps.length > 0)
 
   //分类apps
   watch(apps, (newApps) => {
-    normalApps.splice(0, normalApps.length)
-    gameApps.splice(0, gameApps.length)
+    clearArray(normalApps)
+    clearArray(gameApps)
+    clearArray(othersApps)
     newApps.forEach((app) => {
       if (app.type === 'app') {
         normalApps.push(app)
@@ -34,75 +35,83 @@ export const useAppsStore = defineStore('apps', () => {
 
   const isLoading = ref(false)
   const isLoaded = ref(false)
-  const error = ref()
+  const errorArray = reactive([])
+  const hasError = computed(() => errorArray.length > 0)
 
-  async function loadOnlineApps(array: AppInfo[] = apps) {
+  async function loadAppsLocally() {
+    const newData = await fetchLocalApps()
+    clearArray(apps)
+    apps.push(...newData)
+  }
+
+  async function loadAppsOnline() {
     // 仅当有数据加载时清空先前数据
     let clearedPreviousApps = false
-    const promises = metadataSourceStore.enabledMetadataArray
-      .map((metadata) => fetchOnlineApps(metadata))
-      .map((promise) =>
-        promise.then(async (newApps) => {
+    const promises = metadataSourceStore.enabledSourceArray.map((source) =>
+      source
+        .fetchApps()
+        .then(async (newApps) => {
           if (newApps.length === 0) {
             return
           }
           if (!clearedPreviousApps) {
-            clearArray(array)
+            clearArray(apps)
             clearedPreviousApps = true
           }
-          array.push(...newApps)
+          apps.push(...newApps)
+        })
+        .catch((reason) => {
+          console.log(`${TAG} ${source.key} fetchApps error:`, reason)
         }),
-      )
+    )
+
     await Promise.all(promises)
     if (!clearedPreviousApps) {
-      clearArray(array)
+      clearArray(apps)
       clearedPreviousApps = true
     }
   }
 
-  async function loadLocalApps(array: AppInfo[] = apps) {
-    clearArray(array)
-    array.push(...(await fetchLocalApps()))
-  }
-
+  /**
+   * 加载数据，如果本地数据不为空、不过期，则使用本地数据
+   * @param forceFromOnline 强制从网络中加载，如果为true，则无论本地是否有缓存，都会强制从网络中加载
+   */
   async function loadData(forceFromOnline = false) {
     if (isLoading.value) {
       return
     }
     isLoading.value = true
-    try {
-      let fromOnline = forceFromOnline
-      if (!forceFromOnline) {
-        const newApps: AppInfo[] = []
-        await loadLocalApps(newApps)
-        if (isLocalAppsOutdated(newApps)) {
-          fromOnline = true
-          if (IS_DEV_MODE) {
-            console.log(TAG, '未从本地获取到任何数据，正在从网络获取数据')
-          }
-        } else {
-          clearArray(apps)
-          apps.push(...newApps)
-        }
-      }
-
-      if (fromOnline) {
-        await loadOnlineApps()
-      }
-      error.value = undefined
-    } catch (e) {
-      error.value = e
-      console.error(e)
+    clearArray(errorArray)
+    let fromOnline = forceFromOnline
+    if (!fromOnline) {
+      await loadAppsLocally()
+      fromOnline = apps.length === 0
+    }
+    if (forceFromOnline || fromOnline) {
+      await loadAppsOnline()
     }
     isLoading.value = false
     isLoaded.value = true
   }
 
-  async function ensureData() {
+  function ensureData() {
     if (isLoaded.value || isLoading.value) {
       return
     }
-    await loadData()
+    loadData()
   }
-  return { apps, normalApps, gameApps, othersApps, isLoading, isLoaded, error, loadData, ensureData }
+
+  return {
+    apps,
+    normalApps,
+    gameApps,
+    othersApps,
+    hasApps,
+    isLoading,
+    isLoaded,
+    errorArray,
+    hasError,
+    loadData,
+    ensureData,
+  }
 })

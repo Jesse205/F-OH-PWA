@@ -1,5 +1,5 @@
 import { PATH_API_HOME } from '@/constants/urls'
-import type { HomeData } from '@/data/home'
+import type { HomeResponseData } from '@/data/home'
 import { apiAxios } from '@/utils/http'
 import { getShowdownConverter } from '@/utils/markdown'
 import { useAxios } from '@vueuse/integrations/useAxios.mjs'
@@ -12,7 +12,7 @@ const TAG = '[HomeStore]'
  * 首页数据
  */
 export const useHomeStore = defineStore('home', () => {
-  const { data, isFinished, isLoading, error, execute } = useAxios<HomeData>(PATH_API_HOME, apiAxios)
+  const { data, isFinished, isLoading, error, execute } = useAxios<HomeResponseData>(PATH_API_HOME, apiAxios)
   const isLoaded = computed(() => data.value !== undefined)
   const isShowAnnouncement = computed(() => data.value?.showAnnouncement ?? false)
   const converter = getShowdownConverter()

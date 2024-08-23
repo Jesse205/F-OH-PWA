@@ -83,13 +83,13 @@ onMounted(() => {
 <template>
   <v-main>
     <!-- Alerts -->
-    <ErrorAlert v-if="appsStore.error" class="ma-4" :error="appsStore.error" />
-    <UnsafeBypassAlert v-if="appsStore.error && isChrome" class="ma-4" />
+    <ErrorAlert v-if="appsStore.hasError" class="ma-4" :error="appsStore.errorArray" />
+    <UnsafeBypassAlert v-if="appsStore.hasError && isChrome" class="ma-4" />
 
     <!-- MainLayout -->
-    <app-category-list v-if="appsStore.isLoaded" class="ma-4">
+    <app-category-list v-if="appsStore.hasApps" class="ma-4">
       <template v-for="appType in appTypes">
-        <app-list-category v-if="appType.apps && appType.apps.length" :key="appType.key" :subheader="appType.title">
+        <app-list-category v-if="appType.apps && appType.apps.length > 0" :key="appType.key" :subheader="appType.title">
           <div class="project-items" @dragstart="onProjectDragStart">
             <app-list-project-item
               v-for="item in appType.apps"
@@ -104,9 +104,9 @@ onMounted(() => {
       </template>
     </app-category-list>
 
-    <CenterSpace v-if="isLoading || appsStore.apps.length === 0">
+    <CenterSpace v-if="isLoading || !appsStore.hasApps">
       <v-progress-circular v-if="isLoading" indeterminate style="pointer-events: none" />
-      <span v-else-if="appsStore.apps.length === 0">{{ $t('empty.apps') }}</span>
+      <span v-else-if="!appsStore.hasApps">{{ $t('empty.apps') }}</span>
     </CenterSpace>
   </v-main>
 </template>
