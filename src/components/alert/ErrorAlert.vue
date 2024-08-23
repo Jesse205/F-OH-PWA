@@ -40,7 +40,7 @@ function getItemSubtitle(item: unknown) {
   </v-alert>
   <v-dialog v-model="isDetailsDialogVisible">
     <v-card :title="$t('errorDetails.title')">
-      <dialog-content-list>
+      <dialog-content-list :lines="false" class="content">
         <v-list-item
           v-for="(item, index) in errors"
           :key="index"
@@ -48,11 +48,9 @@ function getItemSubtitle(item: unknown) {
           :subtitle="getItemSubtitle(item)"
         />
       </dialog-content-list>
-      <v-card-text class="no-scroll-y py-0">
-        <div class="dialog-tip text-medium-emphasis">
-          <v-icon icon="$info" />
-          <span>{{ $t('errorDetails.tip') }}</span>
-        </div>
+      <v-card-text class="no-scroll-y py-0 dialog-tip text-medium-emphasis">
+        <v-icon icon="$info" />
+        <span>{{ $t('errorDetails.tip') }}</span>
       </v-card-text>
       <template #actions>
         <v-btn :text="$t('action.close')" @click="isDetailsDialogVisible = false" />
@@ -62,9 +60,11 @@ function getItemSubtitle(item: unknown) {
 </template>
 
 <style lang="scss" scoped>
+.content {
+  user-select: text;
+}
 .dialog-tip {
   margin-top: 8px;
-  margin-bottom: 8px;
   display: flex;
   gap: 8px;
   font-size: 14px;

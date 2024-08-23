@@ -1,3 +1,4 @@
+/// @link https://developer.huawei.com/consumer/cn/doc/design-guides-V1/dialog-0000001156786991-V1
 @use '../utils/border';
 @use '../settings/dimensions';
 
@@ -18,8 +19,11 @@
         box-shadow: none;
         overflow-y: hidden;
         & > .v-card-item {
-          padding: 0 24px;
-          height: 64px;
+          // 根据设计规范，这里应该是56px，但是这会导致很多场景下间距很难看，所以元素底部使用8px
+          padding-inline: 24px;
+          padding-block-start: 12px;
+          padding-block-end: 8px;
+          // height: 56px;
         }
         & > .v-card-text {
           padding: 0 24px;
