@@ -126,7 +126,7 @@ function shareApp() {
         <v-chip v-for="item in appInfo?.tags" :key="item" class="tags-group__item">{{ item }}</v-chip>
       </div>
       <!-- #endregion -->
-      <app-category-list class="ma-4">
+      <app-category-list class="ma-4 v-list--with-prepend-icon">
         <!-- #region 开发者信息 -->
         <app-list-category v-show="appInfo?.vender || isLoading" :subheader="$t('developer.title')" data-allow-drag>
           <v-skeleton-loader

@@ -41,7 +41,7 @@ const iconCompletePath = computed(() => completeApiUrl(props.item.icon))
 
 <style scoped lang="scss">
 .project-list-item {
-  --border-margin-left: #{48px + 16px};
+  --border-margin-left: 80px;
 
   .title {
     .version {

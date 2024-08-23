@@ -43,7 +43,7 @@ if (isTauriApp) {
     </v-navigation-drawer>
     <v-main>
       <AppCard v-if="!smAndUp" class="ma-4" />
-      <app-category-list class="ma-4">
+      <app-category-list class="ma-4 v-list--with-prepend-icon">
         <!-- 关于应用 -->
         <app-list-category :subheader="$t('aboutApp')">
           <v-list-item prepend-icon="$info" :title="$t('version.app')" :subtitle="appVersion" />

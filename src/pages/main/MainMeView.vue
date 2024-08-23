@@ -5,7 +5,7 @@ import AppListCategory from '@/components/list/AppListCategory.vue'
 <template>
   <v-main>
     <!-- 软件面板 -->
-    <app-category-list class="ma-4">
+    <app-category-list class="ma-4 v-list--with-prepend-icon">
       <app-list-category>
         <v-list-item :title="$t('settings')" prepend-icon="$settings" append-icon="$next" :to="{ name: 'Settings' }" />
         <v-list-item :title="$t('about')" link prepend-icon="$info" append-icon="$next" :to="{ name: 'About' }" />

@@ -114,7 +114,6 @@ onMounted(() => {
 <style scoped lang="scss">
 .project-items {
   --columns: 1;
-  --indent-padding-left: 64px;
   display: grid;
   grid-template-columns: repeat(var(--columns), 1fr);
 }

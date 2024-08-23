@@ -35,7 +35,7 @@ const pageTransitionEnabled = usePageTransition()
       <v-app-bar-title :text="title" />
     </v-app-bar>
     <v-main>
-      <app-category-list class="ma-4">
+      <app-category-list class="ma-4 v-list--with-prepend-icon">
         <app-list-category :subheader="$t('userInterface', 2)">
           <app-list-single-select-item
             v-model="preferredDesignLanguage"
