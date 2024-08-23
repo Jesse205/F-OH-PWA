@@ -45,6 +45,10 @@
   "createMetadataSource": "Create metadata source",
   "internal": "Internal",
   "external": "External",
+  "errorDetails": {
+    "title": "Error details",
+    "tip": "You can open the developer tools to see the details."
+  },
   "unknown": {
     "title": "Unknown",
     "version": "Unknown version",
@@ -85,7 +89,8 @@
     "viewGuide": "View Guide",
     "delete": "Delete",
     "create": "Create",
-    "update": "Update"
+    "update": "Update",
+    "viewDetails": "View details"
   },
   "link": {
     "title": "Link",

@@ -16,6 +16,7 @@ export default createVuetify({
   },
   aliases: {
     AppCategoryList: VList,
+    DialogContentList: VList,
   },
   defaults: {
     VList: {

@@ -143,6 +143,9 @@ export const blueprint: Blueprint = {
         border: false,
       },
     },
+    DialogContentList: {
+      class: ['dialog-content-list'],
+    },
     VProgressCircular: {
       color: 'primary',
       width: 4,

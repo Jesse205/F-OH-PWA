@@ -35,8 +35,8 @@ export const useAppsStore = defineStore('apps', () => {
 
   const isLoading = ref(false)
   const isLoaded = ref(false)
-  const errorArray = reactive([])
-  const hasError = computed(() => errorArray.length > 0)
+  const errorArray = reactive<Error[]>([])
+  const hasErrors = computed(() => errorArray.length > 0)
 
   async function loadAppsLocally() {
     const newData = await fetchLocalApps()
@@ -61,12 +61,15 @@ export const useAppsStore = defineStore('apps', () => {
           apps.push(...newApps)
         })
         .catch((reason) => {
-          console.log(`${TAG} ${source.key} fetchApps error:`, reason)
+          errorArray.push(reason)
+          console.error(`${TAG} ${source.key} fetchApps error:`, reason)
+          throw reason
         }),
     )
-
-    await Promise.all(promises)
-    if (!clearedPreviousApps) {
+    // 全部加载失败时不删除原数据
+    const result = await Promise.allSettled(promises)
+    const allRejected = result.every((result) => result.status === 'rejected')
+    if (!clearedPreviousApps && !allRejected) {
       clearArray(apps)
       clearedPreviousApps = true
     }
@@ -110,7 +113,7 @@ export const useAppsStore = defineStore('apps', () => {
     isLoading,
     isLoaded,
     errorArray,
-    hasError,
+    hasErrors,
     loadData,
     ensureData,
   }

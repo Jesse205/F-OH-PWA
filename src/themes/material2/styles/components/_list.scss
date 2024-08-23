@@ -22,6 +22,9 @@
     padding: 0;
     background-color: transparent;
   }
+  .dialog-content-list {
+    padding-block: 0;
+  }
 
   .v-list-item {
     /// 根据规格推算出，小图片与文字的上下边距为 16px，部分情况除外
@@ -75,6 +78,11 @@
       &:active > .v-list-item__overlay {
         opacity: calc((var(--v-pressed-opacity) + var(--v-activated-opacity)) * var(--v-theme-overlay-multiplier));
       }
+    }
+  }
+  .dialog-content-list {
+    .v-list-item {
+      padding-inline: 24px;
     }
   }
 }

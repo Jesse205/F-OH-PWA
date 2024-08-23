@@ -38,7 +38,7 @@
   }
 
   .v-list {
-    --border-margin-left: 40px;
+    --border-margin-left: 0px;
     --border-margin-right: 0px;
     padding: 4px;
     &--rounded {
@@ -50,11 +50,21 @@
     &--nav {
       padding-inline: 8px;
     }
+    &--with-prepend-icon {
+      --border-margin-left: 52px;
+    }
   }
   .app-category-list {
     padding: 0;
     background-color: transparent;
     overflow: visible;
+  }
+
+  .dialog-content-list {
+    --border-margin-left: 24px;
+    --border-margin-right: 24px;
+    background-color: transparent;
+    padding: 0;
   }
 
   .v-list-subheader {
@@ -75,8 +85,8 @@
       content: '';
       position: absolute;
       bottom: -0.25px;
-      left: calc(12px + var(--border-margin-left));
-      right: calc(12px + var(--border-margin-right));
+      left: max(var(--border-margin-left), 12px);
+      right: max(var(--border-margin-right), 12px);
       height: 0px;
       border-bottom: border.$border;
     }
@@ -90,7 +100,7 @@
     &--rounded {
       border-radius: dimensions.$radius-card - 2px;
     }
-    &:not(&--nav) {
+    &:not(v-list-item--nav) {
       padding-inline: 12px;
     }
     &--nav {
@@ -185,6 +195,11 @@
         width: auto;
         min-width: 0;
       }
+    }
+  }
+  .dialog-content-list {
+    .v-list-item {
+      padding-inline: 24px;
     }
   }
 }

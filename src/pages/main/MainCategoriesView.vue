@@ -83,8 +83,8 @@ onMounted(() => {
 <template>
   <v-main>
     <!-- Alerts -->
-    <ErrorAlert v-if="appsStore.hasError" class="ma-4" :error="appsStore.errorArray" />
-    <UnsafeBypassAlert v-if="appsStore.hasError && isChrome" class="ma-4" />
+    <ErrorAlert v-if="appsStore.hasErrors" class="ma-4" :errors="appsStore.errorArray" />
+    <UnsafeBypassAlert v-if="appsStore.hasErrors && isChrome" class="ma-4" />
 
     <!-- MainLayout -->
     <app-category-list v-if="appsStore.hasApps" class="ma-4">
