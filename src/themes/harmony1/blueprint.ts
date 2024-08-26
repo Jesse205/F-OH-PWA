@@ -131,6 +131,15 @@ export const blueprint: Blueprint = {
         activeClass: 'v-list-item--active-background',
       },
     },
+    AppBarOverflowMenu: {
+      minWidth: 172,
+      width: 172,
+      transition: 'slide-y-transition',
+      VList: {
+        color: 'primary',
+        activeClass: 'v-list-item--active-background',
+      },
+    },
     VCheckboxBtn: {
       color: 'primary',
     },

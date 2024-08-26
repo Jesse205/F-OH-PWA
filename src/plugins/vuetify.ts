@@ -6,7 +6,7 @@
 
 import { currentDesignConfig } from '@/themes'
 import { createVuetify } from 'vuetify'
-import { VList } from 'vuetify/components'
+import { VList, VMenu } from 'vuetify/components'
 
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 export default createVuetify({
@@ -17,6 +17,7 @@ export default createVuetify({
   aliases: {
     AppCategoryList: VList,
     DialogContentList: VList,
+    AppBarOverflowMenu: VMenu,
   },
   defaults: {
     VList: {

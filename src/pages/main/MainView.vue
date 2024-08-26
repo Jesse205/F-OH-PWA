@@ -88,7 +88,7 @@ onBeforeRouteUpdate((to) => {
       -->
       <back-button v-if="globalStore.navigationBarType === 'side'" />
       <v-app-bar-title :text="title" />
-      <v-menu origin="bottom" width="172" location="top">
+      <app-bar-overflow-menu>
         <template #activator="{ props: menu }">
           <v-btn v-tooltip="$t('moreOptions')" icon="$more" v-bind="{ ...menu }" />
         </template>
@@ -101,7 +101,7 @@ onBeforeRouteUpdate((to) => {
           />
           <v-list-item :title="$t('about')" :to="{ name: 'About' }" />
         </v-list>
-      </v-menu>
+      </app-bar-overflow-menu>
     </v-app-bar>
 
     <!-- 主视图 -->
