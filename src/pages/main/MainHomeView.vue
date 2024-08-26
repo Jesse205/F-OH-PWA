@@ -5,8 +5,10 @@ import CenterSpace from '@/components/CenterSpace.vue'
 import AppListCategory from '@/components/list/AppListCategory.vue'
 import { carousel } from '@/data/home'
 import { useHomeStore } from '@/store/home'
+import { useCachedArrayMap } from '@/utils/array'
 import { isChrome } from '@/utils/browser'
 import { useVMainScroller } from '@/utils/element'
+import { renderAnnouncement } from '@/utils/markdown'
 import { useElementBounding, useScroll } from '@vueuse/core'
 import { max } from 'lodash-es'
 import { computed, onMounted, ref } from 'vue'
@@ -41,6 +43,15 @@ defineExpose({ refresh })
 const progressMarginTop = computed(() => {
   return max([-scrollY.value + carouselHeight.value + 16, 0])
 })
+
+const { cachedArray: renderedAnnouncements } = useCachedArrayMap(
+  computed(() => homeStore.announcements),
+  (item) => ({
+    ...item,
+    content: renderAnnouncement(item.content),
+  }),
+  (item) => `${item.timestamp} ${item.key}`,
+)
 </script>
 
 <template>
@@ -55,12 +66,12 @@ const progressMarginTop = computed(() => {
     <!-- 公告 -->
     <app-category-list v-if="homeStore.hasAnnouncements" class="ma-4">
       <app-list-category
-        v-for="(announcement, index) in homeStore.announcements"
+        v-for="(announcement, index) in renderedAnnouncements"
         :key="index"
         :subheader="announcement.sourceName"
       >
         <!-- eslint-disable-next-line vue/no-v-html vue/no-v-text-v-html-on-component -->
-        <v-list-item class="announcement-content typo-style" v-html="announcement.contentHtml" />
+        <v-list-item class="announcement-content typo-style" v-html="announcement.content" />
       </app-list-category>
     </app-category-list>
     <CenterSpace v-if="isLoading" :top="progressMarginTop">

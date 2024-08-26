@@ -42,6 +42,8 @@ export function getShowdownConverter() {
 }
 
 export function renderAnnouncement(content: string) {
+  console.log(content);
+
   const converter = getShowdownConverter()
   let markdown = content.replaceAll(/@(.+)/g, '#### $1')
   // 替换日期
