@@ -29,7 +29,7 @@ defineExpose({
       <v-img
         ref="exampleImgElement"
         class="bypass-example__image border rounded-md"
-        src="@/assets/images/guide/unsafe-bypass/chrome-flags-insecure-origins.svg"
+        src="@/assets/images/guide/unsafe-bypass/chrome-flags-insecure-origins.webp"
         :aspect-ratio="1.277258566978193"
       />
       <span class="bypass-example__content">{{ currentApiUrl }}</span>

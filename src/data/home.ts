@@ -1,6 +1,6 @@
-import IMAGE_BANNER_2 from '@/assets/images/banners/banner2.png'
-import IMAGE_BANNER_3 from '@/assets/images/banners/banner3.png'
-import IMAGE_BANNER_FOH from '@/assets/images/banners/foh.png'
+import IMAGE_BANNER_2 from '@/assets/images/banners/banner2.webp'
+import IMAGE_BANNER_3 from '@/assets/images/banners/banner3.webp'
+import IMAGE_BANNER_FOH from '@/assets/images/banners/foh.webp'
 import type { TranslateParameters } from '@/utils/i18n'
 
 export interface HomeResponseData {
