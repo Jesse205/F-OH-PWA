@@ -62,13 +62,13 @@ export const blueprint: Blueprint = {
       border: 't',
     },
     VMenu: {
+      ...baseBlueprint.defaults.VMenu,
       minWidth: 196,
       VList: {
+        ...baseBlueprint.defaults.VMenu.VList,
         elevation: '8',
-        color: 'primary',
         bgColor: 'surface',
         border: false,
-        activeClass: 'v-list-item--active-background',
       },
     },
     VCard: {
