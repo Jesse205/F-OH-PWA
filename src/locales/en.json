@@ -131,7 +131,7 @@
     }
   },
   "alert": {
-    "unsafeApiAndMaybeBlockedByChromeMessage": "The current API url is not secure and your browser may be blocking the request, which you can try to resolve in Chrome Experiments."
+    "unsafeApiAndMaybeBlockedByChromeMessage": "The current API url may be insecure and your browser may be blocking the request. You can try to fix this in Chrome Experiments."
   },
   "field": {
     "label": {

@@ -78,7 +78,7 @@ export const preferredApiUrl = undefined
 export const currentApiUrl: string = getApiUrl(overrideApiUrl, preferredApiUrl)
 export const currentOriginApiUrl: string = getApiUrl(overrideApiUrl, preferredApiUrl, true)
 
-function isUnsafeUrl(url: string) {
+export function isUnsafeUrl(url: string) {
   const urlObj = new URL(url)
   return urlObj.protocol === 'http:'
 }

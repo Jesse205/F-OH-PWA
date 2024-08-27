@@ -131,7 +131,7 @@
     }
   },
   "alert": {
-    "unsafeApiAndMaybeBlockedByChromeMessage": "当前 API 地址不安全，您的浏览器可能拦截了该请求，您可以在 Chrome Experiments 中尝试解决。"
+    "unsafeApiAndMaybeBlockedByChromeMessage": "当前 API 地址可能不安全，您的浏览器可能拦截了该请求。您可以在 Chrome Experiments 中尝试解决。"
   },
   "field": {
     "label": {
