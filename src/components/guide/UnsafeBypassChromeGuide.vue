@@ -77,7 +77,7 @@ img {
   &__content {
     display: block;
     position: absolute;
-    padding: 0 8px;
+    padding: 8px;
     left: 7.3%;
     top: 62.6%;
     width: 542px;
@@ -90,6 +90,7 @@ img {
     font-family: monospace;
     color: darkgray;
     resize: none;
+    line-height: normal
   }
   &__tip {
     text-align: center;
