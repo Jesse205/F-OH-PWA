@@ -1,0 +1,8 @@
+@mixin style {
+  .v-fab {
+    .v-btn--variant-elevated {
+      &:active {
+      }
+    }
+  }
+}

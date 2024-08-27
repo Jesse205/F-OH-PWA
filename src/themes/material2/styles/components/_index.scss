@@ -3,6 +3,7 @@
 @use './button';
 @use './card';
 @use './dialog';
+@use './fab';
 @use './field';
 @use './list';
 @use './ripple';
@@ -14,6 +15,7 @@
   @include button.style;
   @include card.style;
   @include dialog.style;
+  @include fab.style;
   @include field.style;
   @include list.style;
   @include ripple.style;

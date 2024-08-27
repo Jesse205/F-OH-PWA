@@ -1,0 +1,10 @@
+@use '../settings/shadows';
+@mixin style {
+  .v-fab {
+    .v-btn--variant-elevated {
+      --v-shadow-key-umbra-opacity: rgba(var(--v-theme-primary), 0.2);
+      --v-shadow-key-penumbra-opacity: rgba(var(--v-theme-primary), 0.14);
+      --v-shadow-key-ambient-opacity: rgba(var(--v-theme-primary), 0.12);
+    }
+  }
+}

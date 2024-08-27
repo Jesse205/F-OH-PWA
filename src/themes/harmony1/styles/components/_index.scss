@@ -5,6 +5,7 @@
 @use './card';
 @use './dialog';
 @use './drawer';
+@use './fab';
 @use './field';
 @use './grid';
 @use './list';
@@ -25,6 +26,7 @@
   @include card.style;
   @include dialog.style;
   @include drawer.style;
+  @include fab.style;
   @include field.style;
   @include grid.style;
   @include list.style;
