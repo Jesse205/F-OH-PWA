@@ -67,7 +67,6 @@ export const blueprint: Blueprint = {
       VList: {
         ...baseBlueprint.defaults.VMenu.VList,
         elevation: '8',
-        bgColor: 'surface',
         border: false,
       },
     },
@@ -103,13 +102,12 @@ export const blueprint: Blueprint = {
       },
     },
     VDialog: {
+      ...baseBlueprint.defaults.VDialog,
       width: '560',
-      transition: 'dialog-transition',
       VCard: {
+        ...baseBlueprint.defaults.VDialog.VCard,
         elevation: '24',
-        color: 'surface',
         variant: 'elevated',
-        border: false,
       },
     },
     VAlert: {

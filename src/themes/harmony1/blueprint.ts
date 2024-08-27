@@ -143,9 +143,9 @@ export const blueprint: Blueprint = {
       },
     },
     VDialog: {
-      transition: 'dialog-transition',
+      ...baseBlueprint.defaults.VDialog,
       VCard: {
-        color: 'surface',
+        ...baseBlueprint.defaults.VDialog.VCard,
         variant: 'flat',
       },
       VBtn: {

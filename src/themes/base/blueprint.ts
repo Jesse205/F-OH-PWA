@@ -34,6 +34,7 @@ export const blueprint = {
       opacity: 0,
       VList: {
         color: 'primary',
+        bgColor: 'surface',
         activeClass: 'v-list-item--active-background',
       },
     },
@@ -45,6 +46,13 @@ export const blueprint = {
     },
     VTooltip: {
       transition: 'fade-transition',
+    },
+    VDialog: {
+      transition: 'dialog-transition',
+      VCard: {
+        color: 'surface',
+        border: false,
+      },
     },
     DialogContentList: {
       class: ['dialog-content-list'],
