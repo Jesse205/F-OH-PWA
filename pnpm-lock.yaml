@@ -38,9 +38,6 @@ importers:
       axios-tauri-api-adapter:
         specifier: ^0.2.2
         version: 0.2.2
-      js-base64:
-        specifier: ^3.7.7
-        version: 3.7.7
       localforage:
         specifier: ^1.10.0
         version: 1.10.0
@@ -53,9 +50,6 @@ importers:
       showdown:
         specifier: ^2.1.0
         version: 2.1.0
-      svgo:
-        specifier: ^3.3.2
-        version: 3.3.2
       swiper:
         specifier: ^11.1.9
         version: 11.1.9
@@ -147,6 +141,9 @@ importers:
       sass:
         specifier: ^1.77.8
         version: 1.77.8
+      svgo:
+        specifier: ^3.3.2
+        version: 3.3.2
       terser:
         specifier: ^5.31.6
         version: 5.31.6
@@ -2310,9 +2307,6 @@ packages:
     resolution: {integrity: sha512-2P4SQ0HrLQ+fw6llpLnOaGAvN2Zu6778SJMrCUwns4fOoG9ayrTiZk3VV8sCPkVZF8ab0zksVpS8FDY5pRCNBA==}
     engines: {node: '>=10'}
     hasBin: true
-
-  js-base64@3.7.7:
-    resolution: {integrity: sha512-7rCnleh0z2CkXhH67J8K1Ytz0b2Y+yxTPL+/KOJoa20hfnVQ/3/T6W/KflYI4bRHRagNeXeU2bkNGI3v1oS/lw==}
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -5578,8 +5572,6 @@ snapshots:
       chalk: 4.1.2
       filelist: 1.0.4
       minimatch: 3.1.2
-
-  js-base64@3.7.7: {}
 
   js-tokens@4.0.0: {}
 
