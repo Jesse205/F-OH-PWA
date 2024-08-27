@@ -1,3 +1,4 @@
+import legacy from '@vitejs/plugin-legacy'
 import vue from '@vitejs/plugin-vue'
 import { URL, fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
@@ -11,12 +12,12 @@ const isTauriDebug = !!process.env.TAURI_DEBUG
 const isProduction = process.env.NODE_ENV === 'production'
 const isDebug = !isProduction
 
-let target: string
+let target: string | undefined
 if (isTauri) {
   // Tauri 在 Windows 上使用 Chromium，在 macOS 和 Linux 上使用 WebKit
   target = process.env.TAURI_PLATFORM === 'windows' ? 'chrome105' : 'safari13'
 } else {
-  target = 'modules'
+  target = undefined
 }
 
 // https://vitejs.dev/config/
@@ -49,6 +50,7 @@ export default defineConfig({
         multipass: true,
       },
     }),
+    legacy({}),
   ],
   define: {
     'process.env': {},
@@ -65,9 +67,7 @@ export default defineConfig({
   css: {
     devSourcemap: isTauriDebug || isDebug,
   },
-  esbuild:{
-
-  },
+  esbuild: {},
   server: {
     port: 3000,
     // Tauri 期望使用固定端口，如果端口不可用，则会失败
@@ -76,7 +76,7 @@ export default defineConfig({
   envPrefix: ['VITE_', 'TAURI_', 'FOHPWA_'],
   build: {
     target,
-    minify: 'esbuild',
+    minify: 'terser',
     // 为调试构建生成源代码映射 (sourcemap)
     sourcemap: isTauriDebug || isDebug,
     reportCompressedSize: false,

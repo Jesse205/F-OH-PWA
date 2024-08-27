@@ -6,6 +6,7 @@
     "serayuzgur.crates",
     "dustypomerleau.rust-syntax",
     "vue.volar",
-    "davidanson.vscode-markdownlint"
+    "davidanson.vscode-markdownlint",
+    "webben.browserslist"
   ]
 }
