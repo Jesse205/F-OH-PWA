@@ -60,7 +60,7 @@ const { cachedArray: renderedAnnouncements } = useCachedArrayMap(
     <HomeCarousel ref="carouselComponent" class="ma-4" :items="carousel.items" :ratio="carousel.ratio" />
 
     <!-- Alerts -->
-    <ErrorAlert v-if="homeStore.hasErrors" class="ma-4" :error="homeStore.errorArray" />
+    <ErrorAlert v-if="homeStore.hasErrors" class="ma-4" :errors="homeStore.errorArray" />
     <UnsafeBypassAlert v-if="homeStore.hasErrors && isChrome" class="ma-4" />
 
     <!-- 公告 -->

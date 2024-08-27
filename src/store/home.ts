@@ -58,5 +58,5 @@ export const useHomeStore = defineStore('home', () => {
     loadData()
   }
 
-  return { isLoading, isLoaded, errorArray, hasErrors, announcements, hasAnnouncements, ensureData, loadData }
+  return { isLoading, isLoaded, errorArray, hasErrors, announcements, hasAnnouncements, ensureData, loadData ,stateArray}
 })

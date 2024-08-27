@@ -1,4 +1,3 @@
-import { useArraySome } from '@vueuse/core'
 import { computed, ref, shallowReactive, unref, type MaybeRef, type ShallowReactive } from 'vue'
 import { clearArray } from './array'
 
@@ -19,7 +18,7 @@ export function useMultiSourceData<S extends Source<D>, D, E extends Error>(sour
   const isLoaded = ref(false)
   const stateArray: ShallowReactive<SourceState<S, D, E>[]> = shallowReactive([])
   const errorArray = computed(() => stateArray.map((state) => state.error).filter((error) => error !== undefined))
-  const hasErrors = useArraySome(stateArray, (state) => state.error)
+  const hasErrors = computed(() => errorArray.value.length > 0)
   async function loadData() {
     const sourcesValue = unref(sources)
     if (sourcesValue.length === 0) {
@@ -27,6 +26,7 @@ export function useMultiSourceData<S extends Source<D>, D, E extends Error>(sour
       // 如果直接复用else分支中的逻辑，isAllRejected会得到false，不会清空数组
       clearArray(stateArray)
     } else {
+      const errorArray: SourceState<S, D, E>[] = []
       let clearedPreviousStates = false
       const promises = sourcesValue.map((source) =>
         source
@@ -34,6 +34,7 @@ export function useMultiSourceData<S extends Source<D>, D, E extends Error>(sour
           .then((data) => {
             if (!clearedPreviousStates) {
               clearArray(stateArray)
+              stateArray.push(...errorArray)
               clearedPreviousStates = true
             }
             stateArray.push({
@@ -43,18 +44,18 @@ export function useMultiSourceData<S extends Source<D>, D, E extends Error>(sour
             })
           })
           .catch((reason) => {
-            stateArray.push({
+            console.error('Load data failed:', reason)
+            const errorState: SourceState<S, D, E> = {
               source,
               error: reason,
               timestamp: Date.now(),
-            })
+            }
+            stateArray.push(errorState)
+            errorArray.push(errorState)
           }),
       )
-      const result = await Promise.allSettled(promises)
-      const isAllRejected = result.every((result) => result.status === 'rejected')
-      if (!clearedPreviousStates && !isAllRejected) {
-        clearArray(stateArray)
-      }
+      await Promise.allSettled(promises)
+      // 全部出错时，不清空原始数据
     }
   }
 
