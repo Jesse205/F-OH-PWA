@@ -26,6 +26,7 @@
   "relatedLinks": "Related links",
   "details": "Details",
   "announcement": "Announcement",
+  "announcement_withName": "{name} announcement",
   "language": "Language",
   "other": "Other",
   "game": "Game",

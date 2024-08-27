@@ -26,6 +26,7 @@
   "relatedLinks": "相关链接",
   "details": "详情信息",
   "announcement": "公告",
+  "announcement_withName": "{name} 公告",
   "language": "语言",
   "other": "其他",
   "game": "游戏",

@@ -68,7 +68,7 @@ const { cachedArray: renderedAnnouncements } = useCachedArrayMap(
       <app-list-category
         v-for="(announcement, index) in renderedAnnouncements"
         :key="index"
-        :subheader="announcement.sourceName"
+        :subheader="$t('announcement_withName', { name: announcement.sourceName })"
       >
         <!-- eslint-disable-next-line vue/no-v-html vue/no-v-text-v-html-on-component -->
         <v-list-item class="announcement-content typo-style" v-html="announcement.content" />
