@@ -1,8 +1,8 @@
 import type { Blueprint } from 'vuetify'
+import { blueprint as baseBlueprint } from '../base/blueprint'
 import { aliases, hmi } from './icons'
 import colors from './styles/settings/_colors.module.scss'
 import dimensions from './styles/settings/_dimensions.module.scss'
-
 export const blueprint: Blueprint = {
   theme: {
     themes: {
@@ -55,28 +55,19 @@ export const blueprint: Blueprint = {
     },
   },
   defaults: {
+    ...baseBlueprint.defaults,
     global: {
       ripple: false,
     },
     VAppBar: {
-      flat: true,
-      density: 'comfortable',
-      VTooltip: {
-        location: 'bottom',
+      ...baseBlueprint.defaults.VAppBar,
+      VMenu: {
+        width: 172,
       },
     },
-    VAutocomplete: {
-      variant: 'outlined',
-    },
-    VBanner: {
-      color: 'primary',
-    },
     VBtn: {
-      color: 'primary',
+      ...baseBlueprint.defaults.VBtn,
       rounded: 'pill',
-    },
-    VCheckbox: {
-      color: 'secondary',
     },
     VCombobox: {
       variant: 'underlined',
@@ -97,66 +88,42 @@ export const blueprint: Blueprint = {
       hideDetails: 'auto',
       persistentPlaceholder: true,
     },
-    VSlider: {
-      color: 'primary',
-    },
     VTabs: {
-      color: 'primary',
+      ...baseBlueprint.defaults.VTabs,
       VBtn: {
         rounded: 'md',
       },
     },
     VToolbar: {
+      ...baseBlueprint.defaults.VToolbar,
       VBtn: {
-        color: null,
+        ...baseBlueprint.defaults.VToolbar.VBtn,
         rounded: 'sm',
       },
-      color: 'background',
     },
     VBottomNavigation: {
-      bgColor: 'background',
+      ...baseBlueprint.defaults.VBottomNavigation,
       VBtn: {
         rounded: 'sm',
         ripple: false,
       },
-      grow: true,
-      color: 'primary',
-      elevation: 0,
     },
     VMenu: {
+      ...baseBlueprint.defaults.VMenu,
       minWidth: 172,
       transition: 'slide-y-transition',
-      VList: {
-        color: 'primary',
-        activeClass: 'v-list-item--active-background',
-      },
-    },
-    AppBarOverflowMenu: {
-      minWidth: 172,
-      width: 172,
-      transition: 'slide-y-transition',
-      VList: {
-        color: 'primary',
-        activeClass: 'v-list-item--active-background',
-      },
-    },
-    VCheckboxBtn: {
-      color: 'primary',
     },
     VCard: {
       flat: true,
-    },
-    VTooltip: {
-      transition: 'fade-transition',
     },
     VList: {
       lines: false,
       rounded: true,
     },
     AppCategoryList: {
+      ...baseBlueprint.defaults.AppCategoryList,
       lines: false,
       rounded: true,
-      class: ['app-category-list'],
     },
     VListItem: {
       rounded: true,
@@ -165,22 +132,14 @@ export const blueprint: Blueprint = {
       },
     },
     VNavigationDrawer: {
-      color: 'background',
+      ...baseBlueprint.defaults.VNavigationDrawer,
       width: parseInt(dimensions.widthSidebarPrimary),
       railWidth: 96,
-      VList: {
-        color: 'primary',
-        activeClass: 'v-list-item--active-background',
-        lines: 'one',
-      },
       VListItem: {
         VAvatar: {
           size: 'default',
           bgColor: 'background',
         },
-      },
-      VTooltip: {
-        location: 'right',
       },
     },
     VDialog: {
@@ -193,12 +152,10 @@ export const blueprint: Blueprint = {
         size: 'large',
       },
     },
-    DialogContentList: {
-      class: ['dialog-content-list'],
-    },
     VProgressCircular: {
+      ...baseBlueprint.defaults.VProgressCircular,
+      color: undefined,
       width: 3,
-      size: '40',
     },
     VAlert: {
       variant: 'tonal',
@@ -211,9 +168,11 @@ export const blueprint: Blueprint = {
       },
     },
     VSwitch: {
-      color: 'primary',
+      ...baseBlueprint.defaults.VSwitch,
       inset: true,
-      hideDetails: 'auto',
+    },
+    VOverlay: {
+      opacity: 0.2,
     },
   },
   icons: {

@@ -29,9 +29,7 @@ export default createVuetify({
         tag: 'li',
       },
     },
-    VMenu: {
-      scrim: 'transparent',
-    },
+    
     VMain: {
       scrollable: true,
     },

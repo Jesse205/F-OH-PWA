@@ -1,3 +1,4 @@
-@forward './harmony1';
-@forward './material2';
-@forward './fluent2';
+@use './base';
+@use './harmony1';
+@use './material2';
+@use './fluent2';

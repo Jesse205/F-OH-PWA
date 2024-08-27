@@ -1,0 +1,7 @@
+@mixin style {
+  .v-bottom-navigation {
+    &--grow .v-bottom-navigation__content > .v-btn {
+      width: 0;
+    }
+  }
+}

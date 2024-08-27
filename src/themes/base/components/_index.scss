@@ -1,0 +1,11 @@
+@use './bottom-navigation';
+@use './card';
+@use './main';
+@use './progress';
+
+@mixin style {
+  @include bottom-navigation.style;
+  @include main.style;
+  @include card.style;
+  @include progress.style;
+}

@@ -1,0 +1,14 @@
+@mixin style {
+  .v-progress-circular {
+    // 修复进度条转圈太快
+    &--indeterminate {
+      & > svg {
+        animation: none;
+      }
+    }
+    // 去除轨道
+    &__underlay {
+      stroke: none;
+    }
+  }
+}

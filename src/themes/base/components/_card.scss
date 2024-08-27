@@ -1,0 +1,7 @@
+@mixin style {
+  .v-card {
+    &--variant-outlined {
+      border-color: rgba(var(--v-border-color), var(--v-border-opacity));
+    }
+  }
+}
