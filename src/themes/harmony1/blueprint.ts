@@ -135,6 +135,11 @@ export const blueprint: Blueprint = {
       ...baseBlueprint.defaults.VNavigationDrawer,
       width: parseInt(dimensions.widthSidebarPrimary),
       railWidth: 96,
+      VList: {
+        ...baseBlueprint.defaults.VNavigationDrawer.VList,
+        border: false,
+        rounded: false,
+      },
       VListItem: {
         VAvatar: {
           size: 'default',
