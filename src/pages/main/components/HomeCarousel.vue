@@ -50,7 +50,9 @@ const items = computed((): CarouselItem[] => {
   >
     <swiper-slide v-for="item in items" :key="item.image" role="banner">
       <component :is="item.src ? 'a' : 'div'" :href="item.src" :target="item.src ? '_blank' : undefined">
-        <v-img class="image bg-surface" :aspect-ratio="ratio" :src="item.image" cover :alt="item.alt" />
+        <v-card>
+          <v-img class="bg-surface" :aspect-ratio="ratio" :src="item.image" cover :alt="item.alt" />
+        </v-card>
       </component>
     </swiper-slide>
   </swiper>
@@ -63,7 +65,4 @@ const items = computed((): CarouselItem[] => {
   position: relative;
 }
 
-.image {
-  border-radius: var(--radius-card);
-}
 </style>
