@@ -1,9 +1,11 @@
 @use './dimensions';
 @use './elevations';
 @use './motions';
+@use './overlays';
 
 @mixin style {
   @include elevations.style;
   @include dimensions.style;
   @include motions.style;
+  @include overlays.style;
 }

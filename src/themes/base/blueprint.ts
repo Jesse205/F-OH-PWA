@@ -49,8 +49,8 @@ export const blueprint = {
     },
     VDialog: {
       transition: 'dialog-transition',
+      scrollable: true,
       VCard: {
-        color: 'surface',
         border: false,
       },
     },

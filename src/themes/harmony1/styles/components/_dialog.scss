@@ -6,18 +6,18 @@
   .v-dialog {
     & > .v-overlay__content {
       max-height: 80svh;
+      max-width: calc(100% - 32px);
       backdrop-filter: blur(dimensions.$radius-blur);
       border-radius: dimensions.$radius-dialog-custom;
       margin: 16px;
       width: 420px;
-      max-width: calc(100% - 32px);
-      overflow: hidden;
-
       & > .v-card,
       & > form > .v-card {
-        background-color: rgba(var(--v-theme-surface), 0.85) !important;
+        border-radius: dimensions.$radius-dialog-custom;
+        background-color: rgba(var(--v-theme-surface), 0.85);
         box-shadow: none;
         overflow-y: hidden;
+
         & > .v-card-item {
           // 根据设计规范，这里应该是56px，但是这会导致很多场景下间距很难看，所以元素底部使用8px
           padding-inline: 24px;
@@ -27,8 +27,6 @@
         }
         & > .v-card-text {
           padding: 0 24px;
-          height: 100%;
-          overflow-y: auto;
         }
         & > .v-card-actions {
           gap: 8px;
@@ -58,17 +56,21 @@
         bottom: 0;
       }
     }
-    &--fullscreen > .v-overlay__content {
-      border-radius: 0;
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      max-width: 100%;
-      max-height: 100%;
-      overflow-y: auto;
-      top: 0;
-      left: 0;
+    &--fullscreen {
+      & > .v-overlay__content {
+        border-radius: 0;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        max-width: 100%;
+        max-height: 100%;
+        backdrop-filter: unset;
+        & > .v-card,
+        & > form > .v-card {
+          border-radius: 0;
+          background-color: rgb(var(--v-theme-background));
+        }
+      }
     }
   }
 }

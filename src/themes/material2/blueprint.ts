@@ -103,7 +103,6 @@ export const blueprint: Blueprint = {
     },
     VDialog: {
       ...baseBlueprint.defaults.VDialog,
-      width: '560',
       VCard: {
         ...baseBlueprint.defaults.VDialog.VCard,
         elevation: '24',

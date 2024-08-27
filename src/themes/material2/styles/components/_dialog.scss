@@ -1,6 +1,9 @@
+@use '../utils/overlays';
+
 @mixin style {
   .v-dialog {
     & > .v-overlay__content {
+      width: 560px;
       & > .v-card,
       & > form > .v-card {
         overflow-y: hidden;
@@ -10,8 +13,27 @@
         & > .v-card-text {
           padding: 0 24px;
           padding-top: 8px;
-          height: 100%;
-          overflow-y: auto;
+        }
+      }
+    }
+    &--fullscreen {
+      & > .v-overlay__content {
+        width: 100%;
+        height: 100%;
+        & > .v-card,
+        & > form > .v-card {
+          background-color: rgb(var(--v-theme-background));
+        }
+      }
+    }
+  }
+  .v-theme--dark {
+    &.v-dialog,
+    .v-dialog {
+      & > .v-overlay__content {
+        & > .v-card,
+        & > form > .v-card {
+          @include overlays.overlay-surface(overlays.dp2transparency(24));
         }
       }
     }
