@@ -96,6 +96,7 @@ export const aliases: IconAliases = {
   iconButton_download: publicDownloadFilled,
   setting_language: publicTranslateC2E,
   setting_design: publicThemes,
+  settings_animation: publicThemes,
   about_licenses: publicFile,
   about_donate: publicCards,
   about_group: publicContactsGroup,

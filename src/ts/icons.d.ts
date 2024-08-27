@@ -32,6 +32,7 @@ declare module 'vuetify' {
 
     setting_language: IconValue
     setting_design: IconValue
+    settings_animation: IconValue
 
     about_licenses: IconValue
     about_donate: IconValue

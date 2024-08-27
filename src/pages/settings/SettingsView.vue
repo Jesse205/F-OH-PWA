@@ -59,7 +59,7 @@ const pageTransitionEnabled = usePageTransition()
             :name-getter="(item) => item.name"
           />
           <v-list-item
-            prepend-icon="$foh"
+            prepend-icon="$settings_animation"
             :title="$t('pageHierarchyTransition')"
             @click="pageTransitionEnabled = !pageTransitionEnabled"
           >
