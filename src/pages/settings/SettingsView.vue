@@ -75,20 +75,6 @@ const pageTransitionEnabled = usePageTransition()
             :to="{ name: 'MetadataSources' }"
             append-icon="$next"
           />
-          <!-- <app-list-dialog-item
-            v-model="preferredApiUrl"
-            prepend-icon="$foh"
-            :title="$t('apiUrl')"
-            :subtitle="preferredApiUrl.trim() || $t('notSet')"
-          >
-            <v-list-item-subtitle v-if="overrideApiUrl" class="color-warning">
-              {{ $t('apiUrlOverrideMessage', { overrideApiUrl }) }}
-            </v-list-item-subtitle>
-            <v-list-item-subtitle v-if="isPreferredApiUrlChanged" class="color-warning">
-              {{ $t('apiUrlTakeEffectMessage') }}
-            </v-list-item-subtitle>
-          </app-list-dialog-item> -->
-          <!-- 关于 -->
           <v-list-item
             prepend-icon="$info"
             :title="$t('about')"

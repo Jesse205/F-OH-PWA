@@ -16,18 +16,16 @@ import AppCard from './components/AppCard.vue'
 const { t } = useI18n()
 const title = useTitle(computed(() => t('about')))
 
-const appVersion = ref(__VERSION__)
+const appVersion = __VERSION__
 
 const { smAndUp } = useDisplay()
 
-const URL_TERM_LICENSES = `${URL_SOURCE}/blob/main/docs/terms/licenses_v1.0.0.md`
-
-let tauriVersion: Ref<string | undefined>
+let tauriVersion: Ref<string | undefined> | undefined = undefined
 
 if (isTauriApp) {
   tauriVersion = ref<string>()
   getTauriVersion().then((version) => {
-    tauriVersion.value = version
+    tauriVersion!.value = version
   })
 }
 </script>
