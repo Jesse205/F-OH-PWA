@@ -92,7 +92,7 @@ const pageTransitionEnabled = usePageTransition()
           <v-list-item
             prepend-icon="$info"
             :title="$t('about')"
-            :subtitle="appVersion"
+            :subtitle="`v${appVersion}`"
             :to="{ name: 'About' }"
             append-icon="$next"
           />
