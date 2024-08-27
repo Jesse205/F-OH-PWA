@@ -6,7 +6,7 @@ import { useRequired } from '@/utils/rules'
 import { watchImmediate } from '@vueuse/core'
 import { cloneDeep } from 'lodash-es'
 import { ref } from 'vue'
-import type { SubmitEventPromise } from 'vuetify'
+import { useDisplay, type SubmitEventPromise } from 'vuetify'
 import type { VTextField } from 'vuetify/components'
 
 defineProps<{
@@ -15,6 +15,8 @@ defineProps<{
 const emits = defineEmits<{
   delete: []
 }>()
+
+const { xs } = useDisplay()
 
 const isDialogVisible = defineModel<boolean>()
 const originSource = defineModel<MetadataSourceData | undefined>('source')
@@ -55,7 +57,7 @@ const rules = {
 </script>
 
 <template>
-  <v-dialog v-model="isDialogVisible">
+  <v-dialog v-model="isDialogVisible" :fullscreen="xs">
     <v-form @submit.prevent="emitAndCloseDialog">
       <v-card :title="mode === 'edit' ? $t('editMetadataSource') : $t('createMetadataSource')">
         <v-card-text class="text-fields">
@@ -113,5 +115,8 @@ const rules = {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  > * {
+    flex-grow: 0;
+  }
 }
 </style>
