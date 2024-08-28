@@ -84,10 +84,9 @@ export default defineConfig({
     sourcemap: isTauriDebug || isDebug,
     reportCompressedSize: false,
     terserOptions: {
-      module: true,
-      toplevel: true,
       nameCache: {},
       ecma: 2016,
+      /* ecma: 2016,
       compress: {
         ecma: 2016,
         passes: 5,
@@ -100,9 +99,8 @@ export default defineConfig({
         },
       },
       format: {
-        comments: false,
         ecma: 2016,
-      },
+      }, */
     },
   },
 })
