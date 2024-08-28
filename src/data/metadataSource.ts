@@ -40,6 +40,15 @@ export type PreferredMetadataSourceData = ExternalMetadataSourceData
 export interface PreferredInternalMetadataSourceState {
   foh: boolean
 }
+export const defaultPreferredMetadataSource = readonly<PreferredMetadataSourceData>({
+  name: '',
+  description: '',
+  api: {
+    base: '',
+  },
+  enabled: true,
+  version: 'v1',
+})
 
 export class MetadataSource implements MetadataSourceData {
   name: string
@@ -92,16 +101,6 @@ export class MetadataSource implements MetadataSourceData {
     return response.data
   }
 }
-
-export const defaultPreferredMetadataSource = readonly<PreferredMetadataSourceData>({
-  name: '',
-  description: '',
-  api: {
-    base: '',
-  },
-  enabled: true,
-  version: 'v1',
-})
 
 export function useInternalMetadataSourceArray() {
   const { foh } = toRefs(usePreferredInternalMetadataSourceStates().value)
