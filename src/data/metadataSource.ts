@@ -6,12 +6,13 @@ import {
   URL_API_WEB,
   URL_API_WEB_ORIGIN,
 } from '@/constants/urls'
+import { usePreferredInternalMetadataSourceStates } from '@/preferences/app'
 import { splitAppTags } from '@/utils/apps'
 import { isClientApp } from '@/utils/global'
 import { apiAxios } from '@/utils/http'
 import { computeKeyFromMetadataSourceData } from '@/utils/metadataSource'
 import { completeApiUrl, completeUrl } from '@/utils/url'
-import { readonly, ref, type Ref } from 'vue'
+import { readonly, ref, toRefs, type Ref } from 'vue'
 import type { AllAppListResponseData, AppInfo } from './apps'
 import type { HomeResponseData } from './home'
 
@@ -35,6 +36,10 @@ export type MetadataSourceData = MetadataSourceV1Data
 export type InternalMetadataSourceData = MetadataSourceData
 export type ExternalMetadataSourceData = MetadataSourceData
 export type PreferredMetadataSourceData = ExternalMetadataSourceData
+
+export interface PreferredInternalMetadataSourceState {
+  foh: boolean
+}
 
 export class MetadataSource implements MetadataSourceData {
   name: string
@@ -99,16 +104,18 @@ export const defaultPreferredMetadataSource = readonly<PreferredMetadataSourceDa
 })
 
 export function useInternalMetadataSourceArray() {
+  const { foh } = toRefs(usePreferredInternalMetadataSourceStates().value)
+
   const internalMetadataSourceDataArray: Ref<InternalMetadataSourceData[]> = ref([
     {
-      name: 'F-OH PWA',
-      description: 'F-OH PWA Default Metadata',
+      name: 'F-OH',
+      description: 'F-OH 默认源',
       version: 'v1',
       api: {
         base: completeUrl(isClientApp ? URL_API_CLIENT : URL_API_WEB),
         baseOrigin: completeUrl(isClientApp ? URL_API_CLIENT_ORIGIN : URL_API_WEB_ORIGIN),
       },
-      enabled: ref(true),
+      enabled: foh,
     },
   ])
   return internalMetadataSourceDataArray
