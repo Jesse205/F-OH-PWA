@@ -50,7 +50,10 @@ export default defineConfig({
         multipass: true,
       },
     }),
-    legacy({}),
+    legacy({
+      modernPolyfills: true,
+      renderLegacyChunks: false,
+    }),
   ],
   define: {
     'process.env': {},
@@ -83,6 +86,23 @@ export default defineConfig({
     terserOptions: {
       module: true,
       toplevel: true,
+      nameCache: {},
+      ecma: 2016,
+      compress: {
+        ecma: 2016,
+        passes: 5,
+        unsafe_math: true,
+        unsafe_proto: true,
+      },
+      mangle: {
+        properties: {
+          keep_quoted: 'strict',
+        },
+      },
+      format: {
+        comments: false,
+        ecma: 2016,
+      },
     },
   },
 })
