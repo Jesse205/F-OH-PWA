@@ -2,4 +2,123 @@
 ///
 /// @link https://vuetifyjs.com/features/sass-variables/`
 
-@use 'vuetify/settings';
+@forward 'vuetify/settings'
+  with(
+    $utilities: (
+      'white-space': false,
+      'text-align': false,
+      'text-decoration': false,
+      'text-mono': false,
+      'text-opacity': false,
+      'text-overflow': false,
+      'text-transform': false,
+      'order': false,
+      'overflow-wrap': false,
+      'overflow-x': false,
+      'overflow-y': false,
+      'overflow': false,
+      'justify-content': false,
+      'flex-direction': false,
+      'flex-grow': false,
+      'flex-shrink': false,
+      'flex-wrap': false,
+      'flex': false,
+      'float-ltr': false,
+      'float-rtl': false,
+      'float': false,
+      'display': false,
+      'align-content': false,
+      'align-items': false,
+      'align-self': false,
+      'font-italic': false,
+      'font-weight': false,
+      'height': false,
+      'height-screen': false,
+      'width': false,
+      'gap': false,
+      'gap-row': false,
+      'gap-column': false,
+      'margin-bottom': (
+        responsive: false,
+      ),
+      'margin-end': (
+        responsive: false,
+      ),
+      'margin-left': (
+        responsive: false,
+      ),
+      'margin-right': (
+        responsive: false,
+      ),
+      'margin-start': (
+        responsive: false,
+      ),
+      'margin-top': (
+        responsive: false,
+      ),
+      'margin-x': (
+        responsive: false,
+      ),
+      'margin-y': (
+        responsive: false,
+      ),
+      'margin': (
+        responsive: false,
+      ),
+      'negative-margin-bottom': (
+        responsive: false,
+      ),
+      'negative-margin-end': (
+        responsive: false,
+      ),
+      'negative-margin-left': (
+        responsive: false,
+      ),
+      'negative-margin-right': (
+        responsive: false,
+      ),
+      'negative-margin-start': (
+        responsive: false,
+      ),
+      'negative-margin-top': (
+        responsive: false,
+      ),
+      'negative-margin-x': (
+        responsive: false,
+      ),
+      'negative-margin-y': (
+        responsive: false,
+      ),
+      'negative-margin': (
+        responsive: false,
+      ),
+      'padding-bottom': (
+        responsive: false,
+      ),
+      'padding-end': (
+        responsive: false,
+      ),
+      'padding-left': (
+        responsive: false,
+      ),
+      'padding-right': (
+        responsive: false,
+      ),
+      'padding-start': (
+        responsive: false,
+      ),
+      'padding-top': (
+        responsive: false,
+      ),
+      'padding-x': (
+        responsive: false,
+      ),
+      'padding-y': (
+        responsive: false,
+      ),
+      'padding': (
+        responsive: false,
+      ),
+    ),
+    $color-pack: false
+  );

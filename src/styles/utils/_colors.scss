@@ -1,3 +1,18 @@
 .color-warning {
   color: rgb(var(--v-theme-warning));
 }
+
+.bg-black {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+.bg-white {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+.bg-transparent {
+  background-color: transparent !important;
+  color: currentColor !important;
+}
