@@ -6,8 +6,8 @@ export default {
   tabWidth: 2,
   useTabs: false,
   semi: false,
-  singleQuote: true,
   quoteProps: 'as-needed',
+  singleQuote: true,
   jsxSingleQuote: false,
   trailingComma: 'all',
   bracketSpacing: true,
@@ -23,5 +23,13 @@ export default {
   endOfLine: 'lf',
   embeddedLanguageFormatting: 'auto',
   singleAttributePerLine: false,
-  plugins: ['prettier-plugin-organize-imports'],
+  // plugins: ['prettier-plugin-organize-imports'],
+  overrides: [
+    {
+      files: ['*.js', '*.jsx', '*.ts', '*.tsx', '*.vue'],
+      options: {
+        singleQuote: true,
+      },
+    },
+  ],
 }

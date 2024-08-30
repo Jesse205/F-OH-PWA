@@ -7,6 +7,7 @@
     "dustypomerleau.rust-syntax",
     "vue.volar",
     "davidanson.vscode-markdownlint",
-    "webben.browserslist"
+    "webben.browserslist",
+    "stylelint.vscode-stylelint"
   ]
 }
