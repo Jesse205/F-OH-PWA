@@ -5,9 +5,11 @@
 
     // position:fixed 固定此容器
     transform: translateZ(0);
-
-    &__scroller {
-      overflow-x: hidden;
+    &--scrollable {
+      .v-main__scroller {
+        overflow-x: hidden;
+        overflow-y: scroll;
+      }
     }
   }
 }
