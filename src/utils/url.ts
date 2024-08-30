@@ -1,4 +1,5 @@
 import { URL_API_CLIENT, URL_API_CLIENT_ORIGIN, URL_API_WEB, URL_API_WEB_ORIGIN } from '@/constants/urls'
+
 import { isClientApp, isTauriApp } from './global'
 
 const REGEX_GITHUB_USER = /^https:\/\/(www\.)?github\.com\/[^/]+/

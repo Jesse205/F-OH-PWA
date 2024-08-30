@@ -1,6 +1,7 @@
-import { useGlobalStore } from '@/store/global'
 import type { MaybeRef, Ref } from 'vue'
 import { onActivated, onDeactivated, ref, toRef, watchEffect } from 'vue'
+
+import { useGlobalStore } from '@/store/global'
 
 /**
  * 当组件挂载时，自动设置标题为 `title`。

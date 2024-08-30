@@ -6,15 +6,19 @@
       .v-btn {
         min-width: 80px;
         max-width: 168px;
+
         &--variant-text {
           opacity: 0.76;
         }
+
         &--active {
           opacity: 1;
         }
+
         &--disabled {
           opacity: 0.26;
         }
+
         .v-ripple {
           &__container {
             contain: none;

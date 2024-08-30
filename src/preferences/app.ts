@@ -1,5 +1,6 @@
+import { type RemovableRef, useLocalStorage } from '@vueuse/core'
+
 import type { PreferredInternalMetadataSourceState, PreferredMetadataSourceData } from '@/data/metadataSource'
-import { useLocalStorage, type RemovableRef } from '@vueuse/core'
 
 export const KEY_METADATA_SOURCES = 'metadata-sources'
 export const KEY_INTERNAL_METADATA_SOURCE_STATES = 'internal-metadata-source-states'

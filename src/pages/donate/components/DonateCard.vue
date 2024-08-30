@@ -1,7 +1,8 @@
 <script lang="ts" setup>
+import { ref } from 'vue'
+
 import type { DonatePlatform } from '@/data/donate'
 import { parseI18n } from '@/utils/i18n'
-import { ref } from 'vue'
 
 defineProps<{
   platforms: DonatePlatform[]

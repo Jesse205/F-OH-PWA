@@ -1,4 +1,5 @@
 import { writeText } from '@tauri-apps/plugin-clipboard-manager'
+
 import { isTauriApp } from './global'
 
 const TAG = '[ClipboardUtil]'

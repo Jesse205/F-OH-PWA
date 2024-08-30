@@ -1,7 +1,8 @@
-import type { DisplayModeType } from '@/utils/pwa'
 import { useMediaQuery } from '@vueuse/core'
 import type { ComputedRef } from 'vue'
 import { computed } from 'vue'
+
+import type { DisplayModeType } from '@/utils/pwa'
 
 /**
  * 获取显示模式，常用于判断是否处于PWA模式

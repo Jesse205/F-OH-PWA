@@ -1,9 +1,10 @@
 <script lang="ts" setup>
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
 import BackButton from '@/components/appbar/BackButton.vue'
 import { useTitle } from '@/composables/title'
 import { projects } from '@/data/licenses'
-import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const title = useTitle(computed(() => t('term.openSourceLicenses')))
 </script>

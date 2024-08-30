@@ -3,6 +3,7 @@
     &__container {
       overflow: visible;
     }
+
     &__animation--in {
       opacity: calc(var(--v-pressed-opacity) * var(--v-theme-overlay-multiplier));
     }

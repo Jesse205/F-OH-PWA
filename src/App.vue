@@ -1,19 +1,20 @@
 <script lang="ts" setup>
-import NavigationDrawer from '@/components/app/NavigationDrawer.vue'
-import PwaComponent from '@/components/app/PwaComponent.vue'
-import TauriSystemBar from '@/components/app/TauriSystemBar.vue'
-import { usePreferredLocale } from '@/preferences/ui'
-import { useGlobalStore } from '@/store/global'
-import { isElementDraggableInClientApp } from '@/utils/drag'
-import { isPwaDisplayMode } from '@/utils/pwa'
-import { useTitle as useDocumentTitle, usePreferredDark } from '@vueuse/core'
+import { usePreferredDark, useTitle as useDocumentTitle } from '@vueuse/core'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useTheme } from 'vuetify'
-import { useAutoLocale, useAutoTheme, useMetaThemeColor } from './composables/app'
-import SplashView from './pages/splash/SplashView.vue'
-import { currentDesign } from './themes'
-import { isTauriApp } from './utils/global'
+
+import NavigationDrawer from '@/components/app/NavigationDrawer.vue'
+import PwaComponent from '@/components/app/PwaComponent.vue'
+import TauriSystemBar from '@/components/app/TauriSystemBar.vue'
+import { useAutoLocale, useAutoTheme, useMetaThemeColor } from '@/composables/app'
+import SplashView from '@/pages/splash/SplashView.vue'
+import { usePreferredLocale } from '@/preferences/ui'
+import { useGlobalStore } from '@/store/global'
+import { currentDesign } from '@/themes'
+import { isElementDraggableInClientApp } from '@/utils/drag'
+import { isTauriApp } from '@/utils/global'
+import { isPwaDisplayMode } from '@/utils/pwa'
 
 const route = useRoute()
 const globalStore = useGlobalStore()

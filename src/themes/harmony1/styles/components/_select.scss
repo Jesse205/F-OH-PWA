@@ -1,11 +1,14 @@
 @use '../settings/shadows';
+
 @mixin style {
   .v-select {
     &__content {
       box-shadow: shadows.$shadow-md;
+
       .v-list {
         box-shadow: none;
       }
+
       .v-list-item {
         // 虚拟滚动中最后一项是占位，因此需要将倒数第二个元素边框删掉
         &:nth-last-child(2) {

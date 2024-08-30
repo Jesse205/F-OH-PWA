@@ -4,10 +4,11 @@
  * @see https://vue-i18n.intlify.dev/
  */
 
+import { createI18n } from 'vue-i18n'
+
 import EN from '@/locales/en.json'
 import ZH_CN from '@/locales/zh-CN.json'
 import { getPreferredLocale } from '@/preferences/ui'
-import { createI18n } from 'vue-i18n'
 
 type MessageSchema = typeof EN
 export type Locales = 'en' | 'zh-CN'

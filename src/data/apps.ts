@@ -1,8 +1,10 @@
+import { getItem } from 'localforage'
+
 import { PATH_API_ALL_APP } from '@/constants/urls'
 import { splitAppTags } from '@/utils/apps'
 import { apiAxios } from '@/utils/http'
 import { completeApiUrl } from '@/utils/url'
-import { getItem } from 'localforage'
+
 import { type MetadataSource } from './metadataSource'
 
 export interface AllAppListResponseData_AppInfo {

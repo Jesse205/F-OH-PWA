@@ -8,16 +8,20 @@
       .v-btn {
         font-size: fonts.$caption-size;
         font-weight: fonts.$caption-weight;
+
         .v-icon {
           font-size: 20px;
           margin-bottom: 2px;
         }
+
         &--variant-text {
           opacity: 0.62;
         }
+
         &--active {
           opacity: 1;
         }
+
         &--disabled {
           opacity: 0.26;
         }

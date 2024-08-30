@@ -1,7 +1,9 @@
-import { fetchLocalApps, type AppInfo } from '@/data/apps'
-import { clearArray } from '@/utils/array'
 import { defineStore } from 'pinia'
 import { computed, reactive, ref, shallowReactive, watch } from 'vue'
+
+import { type AppInfo, fetchLocalApps } from '@/data/apps'
+import { clearArray } from '@/utils/array'
+
 import { useMetadataSourceStore } from './metadataSource'
 const TAG = '[AppsStore]'
 

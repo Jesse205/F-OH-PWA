@@ -1,10 +1,10 @@
-import type { HomeResponseData } from '@/data/home'
-import { useMultiSourceData, type Source } from '@/utils/data'
 import { defineStore } from 'pinia'
 import { computed } from 'vue'
-import { useMetadataSourceStore } from './metadataSource'
 
-const TAG = '[HomeStore]'
+import type { HomeResponseData } from '@/data/home'
+import { type Source, useMultiSourceData } from '@/utils/data'
+
+import { useMetadataSourceStore } from './metadataSource'
 
 export interface Announcement {
   sourceName: string
@@ -58,5 +58,15 @@ export const useHomeStore = defineStore('home', () => {
     loadData()
   }
 
-  return { isLoading, isLoaded, errorArray, hasErrors, announcements, hasAnnouncements, ensureData, loadData ,stateArray}
+  return {
+    isLoading,
+    isLoaded,
+    errorArray,
+    hasErrors,
+    announcements,
+    hasAnnouncements,
+    ensureData,
+    loadData,
+    stateArray,
+  }
 })

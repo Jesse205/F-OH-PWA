@@ -3,6 +3,7 @@
 @mixin style {
   .v-btn {
     transition-property: box-shadow, transform, opacity, background;
+
     &--variant-text {
       & > .v-btn__overlay,
       & > .v-ripple__container {
@@ -17,15 +18,18 @@
       transition-property: opacity;
       transition-timing-function: ease-in-out;
     }
+
     &::after {
       content: none;
     }
+
     @supports selector(:focus-visible) {
       &:focus-visible {
         outline: rgb(var(--v-theme-primary)) solid 2px;
         outline-offset: 2px;
       }
     }
+
     @media (hover: hover) {
       &:hover {
         & > .v-btn__overlay {
@@ -33,6 +37,7 @@
         }
       }
     }
+
     &:active {
       & > .v-btn__overlay {
         opacity: calc(var(--v-pressed-opacity) * var(--v-theme-overlay-multiplier));

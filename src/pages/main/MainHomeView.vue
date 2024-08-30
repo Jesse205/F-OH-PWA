@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import { useElementBounding, useScroll } from '@vueuse/core'
+import { max } from 'lodash-es'
+import { computed, onMounted, ref } from 'vue'
+import type { VMain } from 'vuetify/components'
+
 import ErrorAlert from '@/components/alert/ErrorAlert.vue'
 import UnsafeBypassAlert from '@/components/alert/UnsafeBypassAlert.vue'
 import CenterSpace from '@/components/CenterSpace.vue'
@@ -9,10 +14,7 @@ import { useCachedArrayMap } from '@/utils/array'
 import { isChrome } from '@/utils/browser'
 import { useVMainScroller } from '@/utils/element'
 import { renderAnnouncement } from '@/utils/markdown'
-import { useElementBounding, useScroll } from '@vueuse/core'
-import { max } from 'lodash-es'
-import { computed, onMounted, ref } from 'vue'
-import type { VMain } from 'vuetify/components'
+
 import HomeCarousel from './components/HomeCarousel.vue'
 
 const homeStore = useHomeStore()

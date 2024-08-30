@@ -1,3 +1,5 @@
+import { readonly, type Ref, ref, toRefs } from 'vue'
+
 import {
   PATH_API_ALL_APP,
   PATH_API_HOME,
@@ -12,7 +14,7 @@ import { isClientApp } from '@/utils/global'
 import { apiAxios } from '@/utils/http'
 import { computeKeyFromMetadataSourceData } from '@/utils/metadataSource'
 import { completeApiUrl, completeUrl } from '@/utils/url'
-import { readonly, ref, toRefs, type Ref } from 'vue'
+
 import type { AllAppListResponseData, AppInfo } from './apps'
 import type { HomeResponseData } from './home'
 

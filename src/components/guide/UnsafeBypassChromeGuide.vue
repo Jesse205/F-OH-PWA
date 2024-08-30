@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import { useMetadataSourceStore } from '@/store/metadataSource'
-import { isUnsafeUrl } from '@/utils/url'
 import { useElementSize } from '@vueuse/core'
 import { computed, ref } from 'vue'
+
+import { useMetadataSourceStore } from '@/store/metadataSource'
+import { isUnsafeUrl } from '@/utils/url'
 
 const exampleImgElement = ref<HTMLImageElement>()
 const { width: exampleImageElementWidth } = useElementSize(exampleImgElement)
@@ -90,7 +91,7 @@ img {
     font-family: monospace;
     color: darkgray;
     resize: none;
-    line-height: normal
+    line-height: normal;
   }
   &__tip {
     text-align: center;

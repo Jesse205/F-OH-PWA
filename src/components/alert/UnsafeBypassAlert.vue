@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import UnsafeBypassChromeGuide from '@/components/guide/UnsafeBypassChromeGuide.vue'
 import { ref } from 'vue'
+
+import UnsafeBypassChromeGuide from '@/components/guide/UnsafeBypassChromeGuide.vue'
 
 const isGuideDialogVisible = ref(false)
 const guide = ref<InstanceType<typeof UnsafeBypassChromeGuide>>()

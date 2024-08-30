@@ -13,6 +13,7 @@
       transition: 0.3s ease;
       transition-property: width, background, opacity;
     }
+
     &-bullet-active {
       --swiper-pagination-bullet-width: 16px;
     }

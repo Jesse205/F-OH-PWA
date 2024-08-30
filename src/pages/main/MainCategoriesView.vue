@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { computed, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
+
 import ErrorAlert from '@/components/alert/ErrorAlert.vue'
 import UnsafeBypassAlert from '@/components/alert/UnsafeBypassAlert.vue'
 import CenterSpace from '@/components/CenterSpace.vue'
@@ -8,8 +11,6 @@ import type { AppInfo } from '@/data/apps'
 import { useAppsStore } from '@/store/apps'
 import { getAppShareUrl } from '@/utils/apps'
 import { isChrome } from '@/utils/browser'
-import { computed, onMounted } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 

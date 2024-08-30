@@ -1,5 +1,6 @@
 import { HOST_WEB } from '@/constants/urls'
 import type { AppInfo } from '@/data/apps'
+
 import { isClientApp, isWebHistorySupported } from './global'
 
 const REGEX_SPLIT_TAGS = /[,，]/

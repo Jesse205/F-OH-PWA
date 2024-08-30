@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { useTauriSystemBar } from '@/composables/tauri'
 import { useTitle, useWindowFocus } from '@vueuse/core'
+
+import { useTauriSystemBar } from '@/composables/tauri'
 
 const title = useTitle(null, { observe: true })
 const windowFocus = useWindowFocus()

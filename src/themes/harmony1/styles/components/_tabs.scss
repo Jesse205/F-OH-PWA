@@ -3,9 +3,11 @@
 @mixin style {
   .v-tabs {
     height: initial;
+
     &--density-default {
       --v-tabs-height: 40px;
     }
+
     .v-slide-group__container {
       padding: 4px;
     }
@@ -18,18 +20,21 @@
       .v-tab__slider {
         bottom: -4px;
       }
+
       @supports selector(:focus-visible) {
         &::after {
           outline-offset: -2px;
         }
       }
     }
+
     .v-slide-group {
       &__next,
       &__prev {
         min-width: 24px;
         flex: 0 1 24px;
         border-radius: dimensions.$radius-md;
+
         @media (hover: hover) {
           &:hover {
             background-color: rgba(
@@ -38,6 +43,7 @@
             );
           }
         }
+
         &:active {
           background-color: rgba(
             var(--v-theme-on-surface),

@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
 import BackButton from '@/components/appbar/BackButton.vue'
 import AppListCategory from '@/components/list/AppListCategory.vue'
 import AppListSingleSelectItem from '@/components/list/AppListSingleSelectItem.vue'
@@ -8,8 +11,6 @@ import { useTitle } from '@/composables/title'
 import { designLanguageCodes, designLanguages, languages } from '@/data/settings'
 import { usePageTransition, usePreferredDesignLanguage, usePreferredLocale } from '@/preferences/ui'
 import { currentDesign } from '@/themes'
-import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 const { t, locale } = useI18n()
 const title = useTitle(computed(() => t('settings')))

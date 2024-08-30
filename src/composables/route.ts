@@ -1,7 +1,8 @@
-import { PATH_MAIN } from '@/constants/urls'
-import { homeRouteData } from '@/data/home'
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+
+import { PATH_MAIN } from '@/constants/urls'
+import { homeRouteData } from '@/data/home'
 
 export const INDEX_NOT_FOUND = -1
 

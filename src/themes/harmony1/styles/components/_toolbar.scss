@@ -6,6 +6,7 @@
     &__content {
       padding-left: 16px;
       padding-right: 16px;
+
       & > .v-btn {
         &:last-child {
           margin-inline-end: -4px;
@@ -15,12 +16,13 @@
           margin-inline-start: -4px;
         }
       }
+
       & > .v-toolbar-title {
-        margin-inline-start: 8px;
-        margin-inline-end: 8px;
+        margin-inline: 8px;
       }
     }
   }
+
   .v-toolbar-title {
     font-size: fonts.$headline8-size;
     font-weight: fonts.$headline8-weight;

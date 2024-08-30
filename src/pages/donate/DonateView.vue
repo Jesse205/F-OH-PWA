@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import { mdiCursorDefaultOutline } from '@mdi/js'
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
 import ICON from '@/assets/images/icon.svg'
 import BackButton from '@/components/appbar/BackButton.vue'
 import { useTitle } from '@/composables/title'
 import { donatePersons, type DonatePlatform } from '@/data/donate'
-import { mdiCursorDefaultOutline } from '@mdi/js'
-import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
+
 import DonateCard from './components/DonateCard.vue'
 
 const { t } = useI18n()

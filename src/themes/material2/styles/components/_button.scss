@@ -5,14 +5,17 @@
       opacity: 0;
       transition: opacity 0.2s ease-in-out;
     }
+
     @supports selector(:focus-visible) {
       &:focus-visible > .v-btn__overlay {
         opacity: calc(var(--v-focus-opacity) * var(--v-theme-overlay-multiplier));
       }
+
       &::after {
         content: none;
       }
     }
+
     @media (hover: hover) {
       &:hover {
         & > .v-btn__overlay {

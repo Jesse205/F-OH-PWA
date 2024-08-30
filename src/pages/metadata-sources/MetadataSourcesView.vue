@@ -1,15 +1,17 @@
 <script lang="ts" setup>
+import { reactivePick } from '@vueuse/core'
+import { computed, ref, toRefs, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
+
 import BackButton from '@/components/appbar/BackButton.vue'
 import AppListCategory from '@/components/list/AppListCategory.vue'
 import { useTitle } from '@/composables/title'
 import type { MetadataSourceData } from '@/data/metadataSource'
 import { useMetadataSourceStore } from '@/store/metadataSource'
 import { removeElementFromArray } from '@/utils/array'
-import { reactivePick } from '@vueuse/core'
-import { computed, ref, toRefs, watch } from 'vue'
-import { useI18n } from 'vue-i18n'
-import MetadataSourceEditorDialog from './components/MetadataSourceEditorDialog.vue'
+
 import MetadataSourceItem from './components/list/MetadataSourceItem.vue'
+import MetadataSourceEditorDialog from './components/MetadataSourceEditorDialog.vue'
 
 const { t } = useI18n()
 

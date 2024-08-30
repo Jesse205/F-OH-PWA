@@ -7,16 +7,19 @@ $border: #{$border-width} solid #{$border-color};
   &,
   .v-theme--light,
   .v-theme--dark {
-    @media screen and (max-resolution: 2dppx) {
+    @media screen and (resolution <= 2dppx) {
       --v-border-opacity: 0.1 !important;
     }
   }
+
   .border-t {
     border-top: $border;
   }
+
   .border-b {
     border-bottom: $border;
   }
+
   .border {
     border-width: $border-width !important;
   }

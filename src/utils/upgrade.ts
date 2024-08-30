@@ -1,4 +1,5 @@
 import { getPreferredMetadataSources, setPreferredMetadataSources } from '@/preferences/app'
+
 import { completeUrl } from './url'
 
 export function upgrade(): void {

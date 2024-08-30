@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { isTauriApp } from '@/utils/global'
-import { copyText } from '@/utils/clipboard'
-import { openNewWindow } from '@/utils/window'
 import { onBeforeUnmount, onMounted, reactive } from 'vue'
+
+import { copyText } from '@/utils/clipboard'
+import { isTauriApp } from '@/utils/global'
+import { openNewWindow } from '@/utils/window'
 
 // 右键菜单
 interface ContextMenuConfig {

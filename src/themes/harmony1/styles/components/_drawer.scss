@@ -4,6 +4,7 @@
 @mixin style {
   .v-navigation-drawer {
     border: unset;
+
     &--left:not(.v-navigation-drawer--rail) {
       &::after {
         content: '';
@@ -17,32 +18,40 @@
         border-right-width: border.$border-width;
       }
     }
+
     &--rail {
       &::after {
         content: none;
       }
+
       .v-list--nav {
         width: 96px;
         padding: 0;
         padding-inline: 0;
+
         .v-list-item {
           height: 72px;
           grid-template-columns: 1fr;
           grid-template-areas: 'prepend' ' content';
           align-content: center;
           text-align: center;
+
           &:last-child {
             margin-bottom: 0;
           }
+
           &__spacer {
             display: none;
           }
+
           &__prepend {
             justify-content: center;
           }
+
           &__overlay {
             color: rgb(var(--v-theme-on-background));
           }
+
           .v-list-item-title {
             font-size: fonts.$caption-size;
             font-weight: fonts.$caption-weight;

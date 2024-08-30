@@ -2,7 +2,6 @@
 
 @use '../settings/motions';
 @use '../settings/dimensions';
-
 @use '../utils/border';
 
 @mixin style {
@@ -12,23 +11,28 @@
       background-color: rgba(var(--v-theme-surface));
       margin-bottom: 8px;
     }
+
     &--header-sticky {
       .v-list-subheader {
         position: sticky;
-        top: 0px;
+        top: 0;
       }
     }
+
     &:first-child {
       margin-top: -8px;
     }
+
     &:last-child {
       margin-bottom: -8px;
     }
+
     .v-list-subheader {
       color: rgba(var(--v-theme-on-surface), var(--v-medium-emphasis-opacity));
       background-color: rgb(var(--v-theme-background));
       z-index: 1;
     }
+
     // 防止margin溢出
     &::after {
       content: '';
@@ -40,20 +44,26 @@
   .v-list {
     --border-margin-left: 0px;
     --border-margin-right: 0px;
+
     padding: 4px;
+
     &--rounded {
       border-radius: dimensions.$radius-card;
+
       .app-list-category__item-container {
         border-radius: dimensions.$radius-card;
       }
     }
+
     &--nav {
       padding-inline: 8px;
     }
+
     &--with-prepend-icon {
       --border-margin-left: 52px;
     }
   }
+
   .app-category-list {
     padding: 0;
     background-color: transparent;
@@ -63,13 +73,13 @@
   .dialog-content-list {
     --border-margin-left: 24px;
     --border-margin-right: 24px;
+
     background-color: transparent;
     padding: 0;
   }
 
   .v-list-subheader {
-    padding-inline-start: 12px !important;
-    padding-inline-end: 12px;
+    padding-inline: 12px !important;
     color: rgb(var(--v-theme-primary));
   }
 
@@ -87,12 +97,14 @@
       bottom: -0.25px;
       left: max(var(--border-margin-left), 12px);
       right: max(var(--border-margin-right), 12px);
-      height: 0px;
+      height: 0;
       border-bottom: border.$border;
     }
+
     &:last-child::before {
       content: none;
     }
+
     &::after {
       content: none;
     }
@@ -100,11 +112,14 @@
     &--rounded {
       border-radius: dimensions.$radius-card - 2px;
     }
+
     &:not(v-list-item--nav) {
       padding-inline: 12px;
     }
+
     &--nav {
       background: transparent;
+
       &::before {
         border-bottom-width: 0;
       }
@@ -120,10 +135,12 @@
     &--density-default:not(.v-list-item--one-line, .v-list-item--two-line, .v-list-item--three-line) {
       padding-top: 0;
       padding-bottom: 0;
+
       .v-list-item__prepend {
         padding-top: 16px;
         padding-bottom: 16px;
       }
+
       .v-list-item__content {
         padding-top: 12px;
         padding-bottom: 12px;
@@ -150,17 +167,20 @@
       &:focus-visible {
         outline: rgb(var(--v-theme-primary)) solid 2px;
         outline-offset: -2px;
+
         & > .v-list-item__overlay {
           opacity: 0;
         }
       }
     }
+
     &.v-list-item.v-list-item.v-list-item {
       @media (hover: hover) {
         &:hover > .v-list-item__overlay {
           opacity: calc(var(--v-hover-opacity) * var(--v-theme-overlay-multiplier));
         }
       }
+
       &:active > .v-list-item__overlay {
         opacity: calc(var(--v-pressed-opacity) * var(--v-theme-overlay-multiplier));
       }
@@ -171,13 +191,16 @@
       & > .v-list-item__overlay {
         opacity: calc(var(--v-activated-opacity) * var(--v-theme-overlay-multiplier));
       }
+
       &:hover > .v-list-item__overlay {
         opacity: calc((var(--v-hover-opacity) + var(--v-activated-opacity)) * var(--v-theme-overlay-multiplier));
       }
+
       &:active > .v-list-item__overlay {
         opacity: calc((var(--v-pressed-opacity) + var(--v-activated-opacity)) * var(--v-theme-overlay-multiplier));
       }
     }
+
     &__prepend {
       & > .v-badge ~ .v-list-item__spacer,
       & > .v-icon ~ .v-list-item__spacer,
@@ -185,18 +208,21 @@
         width: 16px;
       }
     }
+
     &__append {
       & > .v-badge ~ .v-list-item__spacer,
       & > .v-icon ~ .v-list-item__spacer,
       & > .v-tooltip ~ .v-list-item__spacer {
         width: 12px;
       }
+
       & > .v-icon {
         width: auto;
         min-width: 0;
       }
     }
   }
+
   .dialog-content-list {
     .v-list-item {
       padding-inline: 24px;

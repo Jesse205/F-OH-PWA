@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import type { CarouselItem } from '@/data/home'
-import { completeUrl } from '@/utils/url'
-import { Pagination } from 'swiper/modules'
 import 'swiper/scss'
 import 'swiper/scss/pagination'
+
+import { Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { computed } from 'vue'
 import { useDisplay } from 'vuetify'
+
+import type { CarouselItem } from '@/data/home'
+import { completeUrl } from '@/utils/url'
 
 const props = defineProps<{
   items: CarouselItem[]
@@ -64,5 +66,4 @@ const items = computed((): CarouselItem[] => {
   overflow: visible;
   position: relative;
 }
-
 </style>

@@ -1,4 +1,11 @@
 <script setup lang="ts">
+import { mdiFormatQuoteOpen } from '@mdi/js'
+import { useIntersectionObserver, useShare } from '@vueuse/core'
+import { computed, onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useRoute } from 'vue-router'
+import type { VMain } from 'vuetify/components'
+
 import BackButton from '@/components/appbar/BackButton.vue'
 import AppListCategory from '@/components/list/AppListCategory.vue'
 import { useTitle } from '@/composables/title'
@@ -7,12 +14,7 @@ import { useAppsStore } from '@/store/apps'
 import { getAppShareUrl } from '@/utils/apps'
 import { useVMainScroller } from '@/utils/element'
 import { matchUserSpace } from '@/utils/url'
-import { mdiFormatQuoteOpen } from '@mdi/js'
-import { useIntersectionObserver, useShare } from '@vueuse/core'
-import { computed, onMounted, ref } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { useRoute } from 'vue-router'
-import type { VMain } from 'vuetify/components'
+
 import AppDetails from './components/AppDetails.vue'
 import AppOverview from './components/AppOverview.vue'
 

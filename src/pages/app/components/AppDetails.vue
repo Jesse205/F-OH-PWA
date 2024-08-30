@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { mdiIdentifier } from '@mdi/js'
+
 import AppListCategory from '@/components/list/AppListCategory.vue'
 import type { AppInfo } from '@/data/apps'
-import { mdiIdentifier } from '@mdi/js'
 
 defineProps<{
   loading: boolean

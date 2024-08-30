@@ -2,6 +2,7 @@
   // TODO: 当 F-OH 支持自适应图标后移除这项
   border-radius: 24% !important;
 }
+
 .skeleton--small-avatar .v-skeleton-loader__avatar {
   width: 24px;
   min-width: 24px;
@@ -28,12 +29,14 @@
     font-weight: normal;
     padding: 0.2em 0.4em;
   }
+
   & a {
     color: rgb(var(--v-theme-primary));
 
     &:hover {
       color: rgba(var(--v-theme-primary), 0.7);
     }
+
     &:active {
       color: rgba(var(--v-theme-primary), 0.9);
     }

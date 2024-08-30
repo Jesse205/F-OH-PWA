@@ -8,6 +8,7 @@
     "vue.volar",
     "davidanson.vscode-markdownlint",
     "webben.browserslist",
-    "stylelint.vscode-stylelint"
+    "stylelint.vscode-stylelint",
+    "mrmlnc.vscode-scss"
   ]
 }

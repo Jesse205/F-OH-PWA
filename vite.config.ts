@@ -1,9 +1,11 @@
+import { fileURLToPath, URL } from 'node:url'
+
 import legacy from '@vitejs/plugin-legacy'
 import vue from '@vitejs/plugin-vue'
-import { URL, fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
+
 import manifest from './manifest'
 import svgLoader from './plugins/svgLoader'
 

@@ -3,24 +3,24 @@
 
 // 系统色
 // 用于图标或文本颜色一般配合透明度叠加使用
-$foreground-light: #000000;
-$foreground-dark: #ffffff;
-$foreground-translucent: #ffffff;
+$foreground-light: #000;
+$foreground-dark: #fff;
+$foreground-translucent: #fff;
 
 // 用于 Banner 等图片上的图形或文本颜色
-$foreground-contract-light: #ffffff;
+$foreground-contract-light: #fff;
 $foreground-contract-dark: #e5e5e5;
-$foreground-contract-translucent: #ffffff;
+$foreground-contract-translucent: #fff;
 
 // 用于界面背景颜色
-$background-light: #ffffff;
-$background-dark: #000000;
-$background-translucent: #ffffff00;
+$background-light: #fff;
+$background-dark: #000;
+$background-translucent: #fff0;
 
 // 用于带卡片的界面的背景颜色
 $background-gray-light: #f1f3f5;
-$background-gray-dark: #000000;
-$background-gray-translucent: #ffffff00;
+$background-gray-dark: #000;
+$background-gray-translucent: #fff0;
 
 // 用于高亮显示的控件颜色
 $accent-light: #0a59f7;
@@ -43,25 +43,21 @@ $alert-dark: #db6b42;
 $alert-translucent: #ed6f21;
 
 // 用于列表、文本button等的分割线颜色
-$separator-light: #00000033;
-$separator-dark: #ffffff33;
-$separator-translucent: #ffffff33;
+$separator-light: #0003;
+$separator-dark: #fff3;
+$separator-translucent: #fff3;
 
 // 系统蒙黑
-$scrim-thin-light: #00000033;
-$scrim-thin-dark: #00000066;
-$scrim-thin-translucent: #00000033;
-
-$scrim-light-light: #00000066;
-$scrim-light-dark: #00000099;
-$scrim-light-translucent: #00000066;
-
-$scrim-regular-light: #00000099;
+$scrim-thin-light: #0003;
+$scrim-thin-dark: #0006;
+$scrim-thin-translucent: #0003;
+$scrim-light-light: #0006;
+$scrim-light-dark: #0009;
+$scrim-light-translucent: #0006;
+$scrim-regular-light: #0009;
 $scrim-regular-dark: #000000b2;
-$scrim-regular-translucent: #00000099;
-
-$scrim-thick-light: #000000cc;
+$scrim-regular-translucent: #0009;
+$scrim-thick-light: #000c;
 $scrim-thick-dark: #000000e5;
-$scrim-thick-translucent: #000000cc;
-
+$scrim-thick-translucent: #000c;
 $shadow: #00001e;

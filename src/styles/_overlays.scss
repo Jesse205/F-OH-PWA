@@ -1,9 +1,10 @@
 $font-family: ui-sans-serif, sans-serif, system-ui;
+
 :root {
   --swiper-theme-color: rgb(var(--v-theme-primary)) !important; // swiper主题色跟随主题
 
-  height: 100%;
   width: 100%;
+  height: 100%;
   overflow-y: hidden !important;
   font-family: $font-family;
   user-select: none;

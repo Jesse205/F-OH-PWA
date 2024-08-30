@@ -1,13 +1,14 @@
 <script lang="ts" setup>
+import { watchImmediate } from '@vueuse/core'
+import { cloneDeep } from 'lodash-es'
+import { ref } from 'vue'
+import { type SubmitEventPromise, useDisplay } from 'vuetify'
+import type { VTextField } from 'vuetify/components'
+
 import DialogActionsTemplate from '@/components/dialog/DialogActionsTemplate.vue'
 import { PATH_API_ALL_APP, PATH_API_HOME } from '@/constants/urls'
 import { defaultPreferredMetadataSource, type MetadataSourceData } from '@/data/metadataSource'
 import { useRequired } from '@/utils/rules'
-import { watchImmediate } from '@vueuse/core'
-import { cloneDeep } from 'lodash-es'
-import { ref } from 'vue'
-import { useDisplay, type SubmitEventPromise } from 'vuetify'
-import type { VTextField } from 'vuetify/components'
 
 defineProps<{
   mode: 'create' | 'edit'

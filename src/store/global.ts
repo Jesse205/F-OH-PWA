@@ -1,13 +1,14 @@
+import { defineStore } from 'pinia'
+import { computed, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useDisplay } from 'vuetify'
+
 import { useLandscapeLayout } from '@/composables/layout'
 import { useLogDebug } from '@/composables/logger'
 import { useDisplayMode } from '@/composables/pwa'
 import { IS_DEV_MODE } from '@/constants'
 import { isTauriApp } from '@/utils/global'
 import { isPwaDisplayMode } from '@/utils/pwa'
-import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { useDisplay } from 'vuetify'
 
 const TAG = '[AppStore]'
 

@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import { getTauriVersion } from '@tauri-apps/api/app'
+import { computed, type Ref, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useDisplay } from 'vuetify'
+
 import BackButton from '@/components/appbar/BackButton.vue'
 import AppListCategory from '@/components/list/AppListCategory.vue'
 import { useTitle } from '@/composables/title'
@@ -7,10 +12,7 @@ import { developers } from '@/data/developers'
 import { isTauriApp } from '@/utils/global'
 import { parseI18n } from '@/utils/i18n'
 import { getAvatarUrl } from '@/utils/qq'
-import { getTauriVersion } from '@tauri-apps/api/app'
-import { computed, ref, type Ref } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { useDisplay } from 'vuetify'
+
 import AppCard from './components/AppCard.vue'
 
 const { t } = useI18n()

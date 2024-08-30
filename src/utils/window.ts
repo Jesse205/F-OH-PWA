@@ -1,6 +1,7 @@
 import { getCurrent as getCurrentTauri } from '@tauri-apps/api/webview'
 import { WebviewWindow } from '@tauri-apps/api/webviewWindow'
 import type { WindowOptions } from '@tauri-apps/api/window'
+
 import { isTauriApp } from './global'
 
 const TAG = '[WindowUtil]'

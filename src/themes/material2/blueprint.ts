@@ -1,4 +1,5 @@
 import type { Blueprint } from 'vuetify'
+
 import { blueprint as baseBlueprint } from '../base/blueprint'
 import { aliases, mdi } from './icons'
 export const blueprint: Blueprint = {

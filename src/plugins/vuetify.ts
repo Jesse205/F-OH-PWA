@@ -4,9 +4,10 @@
  * @see https://vuetifyjs.com
  */
 
-import { currentDesignConfig } from '@/themes'
 import { createVuetify } from 'vuetify'
 import { VList, VMenu } from 'vuetify/components'
+
+import { currentDesignConfig } from '@/themes'
 
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 export default createVuetify({
@@ -29,7 +30,7 @@ export default createVuetify({
         tag: 'li',
       },
     },
-    
+
     VMain: {
       scrollable: true,
     },

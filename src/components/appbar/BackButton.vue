@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { PATH_MAIN } from '@/constants/urls'
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useDisplay } from 'vuetify'
+
+import { PATH_MAIN } from '@/constants/urls'
 
 const router = useRouter()
 const route = useRoute()

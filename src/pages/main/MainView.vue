@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { computed, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { onBeforeRouteUpdate, useRouter } from 'vue-router'
+
 import BackButton from '@/components/appbar/BackButton.vue'
 import { INDEX_NOT_FOUND, useHomeRoutes } from '@/composables/route'
 import { useTitle } from '@/composables/title'
@@ -7,9 +11,7 @@ import { homeRouteData } from '@/data/home'
 import { useGlobalStore } from '@/store/global'
 import { usePwaStore } from '@/store/pwa'
 import { parseI18n } from '@/utils/i18n'
-import { computed, ref } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { onBeforeRouteUpdate, useRouter } from 'vue-router'
+
 import type MainCategoriesView from './MainCategoriesView.vue'
 import type MainHomeView from './MainHomeView.vue'
 import type MainMeView from './MainMeView.vue'

@@ -1,9 +1,10 @@
+import type { RouteLocationNormalizedGeneric, Router, RouteRecordRaw, RouterHistory } from 'vue-router'
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
+
 import { BASE_URL, IS_DEV_MODE } from '@/constants'
 import { isPageTransitionEnabled } from '@/preferences/ui'
 import { currentDesignConfig } from '@/themes'
 import { isWebHistorySupported } from '@/utils/global'
-import type { RouteLocationNormalizedGeneric, Router, RouteRecordRaw, RouterHistory } from 'vue-router'
-import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 
 const TAG = '[Router]'
 

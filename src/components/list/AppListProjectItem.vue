@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+
 import type { AppInfo } from '@/data/apps'
 import { completeApiUrl } from '@/utils/url'
-import { computed } from 'vue'
 
 const props = withDefaults(
   defineProps<{

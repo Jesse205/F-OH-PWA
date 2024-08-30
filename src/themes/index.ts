@@ -1,8 +1,10 @@
+import type { Blueprint } from 'vuetify'
+
+import { getPreferredDesignLanguage } from '@/preferences/ui'
 import * as harmony1Config from '@/themes/harmony1'
 import * as material2Config from '@/themes/material2'
-import type { Blueprint } from 'vuetify'
+
 import type { DesignFeatures } from './base'
-import { getPreferredDesignLanguage } from '@/preferences/ui'
 
 // 设计语言不支持动态切换
 export const currentDesign = getPreferredDesignLanguage()

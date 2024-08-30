@@ -1,15 +1,18 @@
 @mixin style {
   .v-card {
     outline: none;
+
     & > .v-card__overlay {
       opacity: 0;
       transition: opacity 0.2s ease-in-out;
     }
+
     @supports selector(:focus-visible) {
       &:focus-visible > .v-card__overlay {
         opacity: calc(var(--v-focus-opacity) * var(--v-theme-overlay-multiplier));
       }
     }
+
     @media (hover: hover) {
       &:hover {
         & > .v-card__overlay {

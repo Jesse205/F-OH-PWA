@@ -1,5 +1,6 @@
-import { designLanguageCodes, type DesignLanguageCode, type LanguageCode } from '@/data/settings'
-import { useLocalStorage, type RemovableRef } from '@vueuse/core'
+import { type RemovableRef, useLocalStorage } from '@vueuse/core'
+
+import { type DesignLanguageCode, designLanguageCodes, type LanguageCode } from '@/data/settings'
 
 export const KEY_LOCALE = 'locale'
 export const KEY_DESIGN = 'design'

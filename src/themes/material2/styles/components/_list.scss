@@ -8,6 +8,7 @@
     border-style: solid;
     border-width: thin;
     padding: 8px 0;
+
     & + .app-list-category {
       margin-top: 16px;
     }
@@ -22,6 +23,7 @@
     padding: 0;
     background-color: transparent;
   }
+
   .dialog-content-list {
     padding-block: 0;
   }
@@ -52,10 +54,12 @@
         &:focus-visible > .v-list-item__overlay {
           opacity: calc(var(--v-focus-opacity) * var(--v-theme-overlay-multiplier));
         }
+
         &::after {
           content: none;
         }
       }
+
       @media (hover: hover) {
         &:hover > .v-list-item__overlay {
           opacity: calc(var(--v-hover-opacity) * var(--v-theme-overlay-multiplier));
@@ -72,14 +76,17 @@
       & > .v-list-item__overlay {
         opacity: calc(var(--v-activated-opacity) * var(--v-theme-overlay-multiplier));
       }
+
       &:hover > .v-list-item__overlay {
         opacity: calc((var(--v-hover-opacity) + var(--v-activated-opacity)) * var(--v-theme-overlay-multiplier));
       }
+
       &:active > .v-list-item__overlay {
         opacity: calc((var(--v-pressed-opacity) + var(--v-activated-opacity)) * var(--v-theme-overlay-multiplier));
       }
     }
   }
+
   .dialog-content-list {
     .v-list-item {
       padding-inline: 24px;

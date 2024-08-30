@@ -1,4 +1,5 @@
 import type { Blueprint } from 'vuetify'
+
 import { blueprint as baseBlueprint } from '../base/blueprint'
 import { aliases, hmi } from './icons'
 import colors from './styles/settings/_colors.module.scss'

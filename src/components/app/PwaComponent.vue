@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { usePwaStore } from '@/store/pwa'
 import { useRegisterSW } from 'virtual:pwa-register/vue'
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
+
+import { usePwaStore } from '@/store/pwa'
 
 const pwaStore = usePwaStore()
 const { needRefresh, updateServiceWorker } = useRegisterSW({ immediate: true })

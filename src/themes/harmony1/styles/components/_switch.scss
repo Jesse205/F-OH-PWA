@@ -4,26 +4,32 @@
   .v-switch {
     &--inset {
       --v-input-control-height: 24px;
+
       .v-switch__track {
+        width: 44px;
         height: 24px;
         min-width: 44px;
-        width: 44px;
         opacity: 1;
       }
+
       .v-switch__thumb {
-        transform: none;
-        height: 18px;
         width: 18px;
+        height: 18px;
+        transform: none;
         box-shadow: shadows.$shadow-xs;
       }
+
       .v-selection-control {
         --v-selection-control-size: 24px;
+
         &__input {
           transform: translateX(-10px);
+
           &::before {
             content: none;
           }
         }
+
         &--dirty {
           .v-selection-control__input {
             transform: translateX(10px);

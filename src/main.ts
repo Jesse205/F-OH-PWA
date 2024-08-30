@@ -4,14 +4,16 @@
  * Bootstraps Vuetify and other plugins then mounts the App`
  */
 
+import '@/styles/main.scss'
+
+import { createApp } from 'vue'
+
+import App from '@/App.vue'
 import { URL_SOURCE } from '@/constants/urls'
 import { registerPlugins } from '@/plugins'
-import '@/styles/main.scss'
-import { createApp } from 'vue'
-import App from './App.vue'
-import { isClientApp, isTauriApp } from './utils/global'
-import { apply } from './utils/patch/vuetify'
-import { upgrade } from './utils/upgrade'
+import { isClientApp, isTauriApp } from '@/utils/global'
+import { apply } from '@/utils/patch/vuetify'
+import { upgrade } from '@/utils/upgrade'
 
 upgrade()
 apply()

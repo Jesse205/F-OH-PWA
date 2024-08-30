@@ -4,10 +4,11 @@
   & {
     --radius-card: #{$radius-card};
   }
+
   &,
   .v-theme--light,
   .v-theme--dark {
-    @media screen and (max-resolution: 2dppx) {
+    @media screen and (resolution <= 2dppx) {
       --v-border-opacity: 0.1 !important;
     }
   }
@@ -15,15 +16,19 @@
   .rounded-xs {
     border-radius: $radius-xs !important;
   }
+
   .rounded-sm {
     border-radius: $radius-sm !important;
   }
+
   .rounded-md {
     border-radius: $radius-md !important;
   }
+
   .rounded-lg {
     border-radius: $radius-lg !important;
   }
+
   .rounded-xl {
     border-radius: $radius-xl !important;
   }
