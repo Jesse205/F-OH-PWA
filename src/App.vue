@@ -70,7 +70,7 @@ document.documentElement.classList.add(currentDesign)
   <v-app class="app" @dragstart="onDragStart">
     <TauriSystemBar v-if="isTauriApp" />
     <NavigationDrawer v-if="isAppReady && globalStore.navigationBarType === 'side'" />
-    <v-main v-if="isAppReady" class="main">
+    <v-main v-if="isAppReady" class="main" :scrollable="false">
       <div class="page-container">
         <router-view #="{ Component }">
           <transition :name="route.meta.transition">
