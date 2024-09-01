@@ -1,1 +1,3 @@
-since 2016 and fully supports es6-module
+chrome >= 87
+ios >= 14.1
+firefox >=87
