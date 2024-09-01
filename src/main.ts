@@ -12,11 +12,9 @@ import App from '@/App.vue'
 import { URL_SOURCE } from '@/constants/urls'
 import { registerPlugins } from '@/plugins'
 import { isClientApp, isTauriApp } from '@/utils/global'
-import { apply } from '@/utils/patch/vuetify'
 import { upgrade } from '@/utils/upgrade'
 
 upgrade()
-apply()
 
 const TAG_TIP = '💡 Tip:'
 

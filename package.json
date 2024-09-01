@@ -93,5 +93,10 @@
     "vite-plugin-vuetify": "^2.0.4",
     "vue-tsc": "^2.1.4",
     "xml-js": "^1.6.11"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "vuetify@3.7.1": "patches/vuetify@3.7.1.patch"
+    }
   }
 }

@@ -1,0 +1,23 @@
+diff --git a/lib/directives/ripple/index.mjs b/lib/directives/ripple/index.mjs
+index a060ba93fb9784ae9bd4c4ac4cd3dcf57e4a76f8..7ba99f2d907e7520fac48d286ea22a38b4c7d1b0 100644
+--- a/lib/directives/ripple/index.mjs
++++ b/lib/directives/ripple/index.mjs
+@@ -83,11 +83,13 @@ const ripples = {
+     animation.classList.add('v-ripple__animation--visible');
+     transform(animation, `translate(${x}, ${y}) scale3d(${scale},${scale},${scale})`);
+     animation.dataset.activated = String(performance.now());
+-    setTimeout(() => {
+-      animation.classList.remove('v-ripple__animation--enter');
+-      animation.classList.add('v-ripple__animation--in');
+-      transform(animation, `translate(${centerX}, ${centerY}) scale3d(1,1,1)`);
+-    }, 0);
++    requestAnimationFrame(() => {
++      requestAnimationFrame(() => {
++        animation.classList.remove('v-ripple__animation--enter');
++        animation.classList.add('v-ripple__animation--in');
++        transform(animation, `translate(${centerX}, ${centerY}) scale3d(1,1,1)`);
++      })
++    })
+   },
+   hide(el) {
+     if (!el?._ripple?.enabled) return;
