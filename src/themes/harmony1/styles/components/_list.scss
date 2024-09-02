@@ -154,7 +154,7 @@
     }
 
     // vuetify 会添加很多无关的选择器，因此需要重置 .v-list-item__overlay 的透明度为 0
-    & > .v-list-item__overlay,
+     > .v-list-item__overlay,
     &[aria-haspopup='menu'][aria-expanded='true'] > .v-list-item__overlay,
     &--active:hover > .v-list-item__overlay,
     &[aria-haspopup='menu'][aria-expanded='true']:hover > .v-list-item__overlay {
@@ -168,7 +168,7 @@
         outline: rgb(var(--v-theme-primary)) solid 2px;
         outline-offset: -2px;
 
-        & > .v-list-item__overlay {
+         > .v-list-item__overlay {
           opacity: 0;
         }
       }
@@ -188,7 +188,7 @@
 
     // 以下重复的键用于增强选择器特定值，因为上面用于重置的选择器太强了
     &--active-background.v-list-item.v-list-item.v-list-item {
-      & > .v-list-item__overlay {
+       > .v-list-item__overlay {
         opacity: calc(var(--v-activated-opacity) * var(--v-theme-overlay-multiplier));
       }
 
@@ -202,21 +202,21 @@
     }
 
     &__prepend {
-      & > .v-badge ~ .v-list-item__spacer,
-      & > .v-icon ~ .v-list-item__spacer,
-      & > .v-tooltip ~ .v-list-item__spacer {
+       > .v-badge ~ .v-list-item__spacer,
+       > .v-icon ~ .v-list-item__spacer,
+       > .v-tooltip ~ .v-list-item__spacer {
         width: 16px;
       }
     }
 
     &__append {
-      & > .v-badge ~ .v-list-item__spacer,
-      & > .v-icon ~ .v-list-item__spacer,
-      & > .v-tooltip ~ .v-list-item__spacer {
+       > .v-badge ~ .v-list-item__spacer,
+       > .v-icon ~ .v-list-item__spacer,
+       > .v-tooltip ~ .v-list-item__spacer {
         width: 12px;
       }
 
-      & > .v-icon {
+       > .v-icon {
         width: auto;
         min-width: 0;
       }

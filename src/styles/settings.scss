@@ -120,5 +120,6 @@
         responsive: false,
       ),
     ),
-    $color-pack: false
+    $color-pack: false,
+    $ripple-animation-visible-opacity: calc(var(--v-pressed-opacity) * var(--v-theme-overlay-multiplier)),
   );

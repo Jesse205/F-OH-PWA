@@ -7,7 +7,7 @@
       padding-left: 16px;
       padding-right: 16px;
 
-      & > .v-btn {
+       > .v-btn {
         &:last-child {
           margin-inline-end: -4px;
         }
@@ -17,7 +17,7 @@
         }
       }
 
-      & > .v-toolbar-title {
+       > .v-toolbar-title {
         margin-inline: 8px;
       }
     }

@@ -9,7 +9,7 @@
     border-width: thin;
     padding: 8px 0;
 
-    & + .app-list-category {
+    + .app-list-category {
       margin-top: 16px;
     }
 
@@ -42,7 +42,7 @@
     }
 
     // vuetify 会添加很多无关的选择器，因此需要重置 .v-list-item__overlay 的透明度为 0
-    & > .v-list-item__overlay,
+    > .v-list-item__overlay,
     &[aria-haspopup='menu'][aria-expanded='true'] > .v-list-item__overlay,
     &--active:hover > .v-list-item__overlay,
     &[aria-haspopup='menu'][aria-expanded='true']:hover > .v-list-item__overlay {
@@ -73,7 +73,7 @@
         opacity: 1;
       }
 
-      & > .v-list-item__overlay {
+      > .v-list-item__overlay {
         opacity: calc(var(--v-activated-opacity) * var(--v-theme-overlay-multiplier));
       }
 
