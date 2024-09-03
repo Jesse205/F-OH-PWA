@@ -33,7 +33,7 @@ F-OH PWA + BrowserCE, best practices for distributing OpenHarmony hap apps via w
 [![open source license](https://img.shields.io/badge/open--source--license-1.0.0-0A59F7.svg)](./docs/terms/licenses_v1.0.0.md)
 
 [![QQ group (OHOS Dev): 528608689](https://img.shields.io/badge/QQ_group:_OHOS--Dev-528608689-0099FF?logo=tencentqq)](https://qm.qq.com/q/CDSFf6DvVK)
-[![E-Mail: jesse205@qq.com](https://img.shields.io/badge/E--Mail-jesse205@qq.com-0099FF)](mailto://jesse205@qq.com)
+[![E-Mail: jesse205@qq.com](https://img.shields.io/badge/E--Mail-jesse205@qq.com-0099FF)](mailto:jesse205@qq.com)
 
 ## Screenshots
 

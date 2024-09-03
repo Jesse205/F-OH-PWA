@@ -33,7 +33,7 @@ F-OH PWA + BrowserCE，通过网页分发开源鸿蒙 hap 应用的最佳实践�
 [![开源许可证](https://img.shields.io/badge/开源许可证-1.0.0-0A59F7.svg)](./docs/terms/licenses_v1.0.0.md)
 
 [![QQ 群（开鸿派）: 528608689](https://img.shields.io/badge/QQ_群:_开鸿派-528608689-0099FF?logo=tencentqq)](https://qm.qq.com/q/CDSFf6DvVK)
-[![电子邮件: jesse205@qq.com](https://img.shields.io/badge/电子邮件-jesse205@qq.com-0099FF)](mailto://jesse205@qq.com)
+[![电子邮件: jesse205@qq.com](https://img.shields.io/badge/电子邮件-jesse205@qq.com-0099FF)](mailto:jesse205@qq.com)
 
 ## 屏幕截图
 
