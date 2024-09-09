@@ -21,3 +21,59 @@ index a060ba93fb9784ae9bd4c4ac4cd3dcf57e4a76f8..7ba99f2d907e7520fac48d286ea22a38
    },
    hide(el) {
      if (!el?._ripple?.enabled) return;
+diff --git a/lib/styles/tools/_states.sass b/lib/styles/tools/_states.sass
+index 68558cac9764018d80ec6a4b2ee90b741ea35104..79ebddbeed07b81cce6eac6a51b6069b30e55c08 100644
+--- a/lib/styles/tools/_states.sass
++++ b/lib/styles/tools/_states.sass
+@@ -6,37 +6,31 @@
+   @if string.slice(string.unquote($selector), 1, 1) != '&'
+     $selector: #{'>'} #{$selector}
+ 
+-  &:hover
+-    #{$selector}
+-      opacity: calc(#{map.get(settings.$states, 'hover')} * var(--v-theme-overlay-multiplier))
+-
+-  &:focus-visible
+-    #{$selector}
+-      opacity: calc(#{map.get(settings.$states, 'focus')} * var(--v-theme-overlay-multiplier))
++  @media (hover: hover)
++    &:hover
++      #{$selector}
++        opacity: calc(#{map.get(settings.$states, 'hover')} * var(--v-theme-overlay-multiplier))
+ 
+-  @supports not selector(:focus-visible)
+-    &:focus
++  @supports selector(:focus-visible)
++    &:focus-visible
+       #{$selector}
+         opacity: calc(#{map.get(settings.$states, 'focus')} * var(--v-theme-overlay-multiplier))
+ 
+   @if ($active)
+-    &--active,
+-    &[aria-haspopup="menu"][aria-expanded="true"]
++    &--active
+       @include active-states($selector)
+ 
+ @mixin active-states ($selector, $base: map.get(settings.$states, 'activated'))
+   #{$selector}
+     opacity: calc(#{$base} * var(--v-theme-overlay-multiplier))
+ 
+-  &:hover
+-    #{$selector}
+-      opacity: calc((#{$base} + #{map.get(settings.$states, 'hover')}) * var(--v-theme-overlay-multiplier))
+-
+-  &:focus-visible
+-    #{$selector}
+-      opacity: calc((#{$base} + #{map.get(settings.$states, 'focus')}) * var(--v-theme-overlay-multiplier))
++  @media (hover: hover)
++    &:hover
++      #{$selector}
++        opacity: calc((#{$base} + #{map.get(settings.$states, 'hover')}) * var(--v-theme-overlay-multiplier))
+ 
+-  @supports not selector(:focus-visible)
+-    &:focus
++  @supports selector(:focus-visible)
++    &:focus-visible
+       #{$selector}
+         opacity: calc((#{$base} + #{map.get(settings.$states, 'focus')}) * var(--v-theme-overlay-multiplier))
++
