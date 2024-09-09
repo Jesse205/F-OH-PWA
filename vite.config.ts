@@ -6,8 +6,6 @@ import { StringOptions } from 'sass'
 import { defineConfig, UserConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
-import { browserslistToTargets } from 'lightningcss'
-import browserslist from 'browserslist'
 
 import manifest from './manifest'
 import svgLoader from './plugins/svgLoader'
@@ -17,14 +15,11 @@ const isProduction = process.env.NODE_ENV === 'production'
 const isDevelop = !isProduction
 
 let target: string | undefined
-let cssTarget: string | undefined
 if (isTauri) {
   // Tauri 在 Windows 上使用 Chromium，在 macOS 和 Linux 上使用 WebKit
   target = process.env.TAURI_PLATFORM === 'windows' ? 'chrome105' : 'safari13'
-  cssTarget = undefined
 } else {
-  target = undefined
-  cssTarget = 'chrome61'
+  target = 'chrome87'
 }
 
 interface VitePreprocessorOptionsSass extends StringOptions<'async'> {
@@ -32,7 +27,7 @@ interface VitePreprocessorOptionsSass extends StringOptions<'async'> {
 }
 
 // https://vitejs.dev/config/
-export default defineConfig(({}) => {
+export default defineConfig(() => {
   return {
     plugins: [
       vue({
@@ -80,16 +75,13 @@ export default defineConfig(({}) => {
       extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx', '.json', '.vue'],
     },
     css: {
-      devSourcemap: true,
       preprocessorMaxWorkers: true,
       preprocessorOptions: {
         scss: {
           api: 'modern-compiler',
         } satisfies VitePreprocessorOptionsSass,
       },
-      lightningcss: {
-        // targets: browserslistToTargets(browserslist()),
-      },
+      lightningcss: {},
     },
     esbuild: {},
     server: {
@@ -100,30 +92,9 @@ export default defineConfig(({}) => {
     envPrefix: ['VITE_', 'TAURI_', 'FOHPWA_'],
     build: {
       target,
-      // minify: false,
+      cssTarget: target,
       cssMinify: 'lightningcss',
-      cssTarget,
       sourcemap: isDevelop,
-      reportCompressedSize: false,
-      terserOptions: {
-        nameCache: {},
-        ecma: 2016,
-        /* ecma: 2016,
-      compress: {
-        ecma: 2016,
-        passes: 5,
-        unsafe_math: true,
-        unsafe_proto: true,
-      },
-      mangle: {
-        properties: {
-          keep_quoted: 'strict',
-        },
-      },
-      format: {
-        ecma: 2016,
-      }, */
-      },
     },
   } satisfies UserConfig
 })
