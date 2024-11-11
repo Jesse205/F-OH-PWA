@@ -1,4 +1,4 @@
-import { getCurrent as getCurrentTauri } from '@tauri-apps/api/webview'
+import { getCurrentWebview as getCurrentTauriWebView } from '@tauri-apps/api/webview'
 import { WebviewWindow } from '@tauri-apps/api/webviewWindow'
 import type { WindowOptions } from '@tauri-apps/api/window'
 
@@ -41,6 +41,6 @@ export async function openNewWindow(url: string): Promise<void> {
 
 export function closeWindow(): void {
   if (isTauriApp) {
-    getCurrentTauri().close()
+    getCurrentTauriWebView().close()
   } else window.close()
 }

@@ -80,15 +80,15 @@ $border-radius-root: var(--border-radius-root, 0);
       )
     ),
     // Border
-    $border-width-root: var(--border-width-root, thin),
-    $border-radius-root: $border-radius-root,
-    $rounded: (
+    /* $border-width-root: var(--border-width-root, thin),
+    $border-radius-root: $border-radius-root, */
+    /* $rounded: (
       'sm': var(--border-radius-sm, 0px),
       'md': var(--border-radius-md, 0px),
       'lg': var(--border-radius-lg, 0px),
       'xl': var(--border-radius-xl, 0px),
       'shaped': var(--border-radius-shaped, 0 0)
-    ),
+    ), */
     $divider-inset-margin: var(--divider-inset-margin, 72px),
     // Ripple
     $ripple-animation-visible-opacity: calc(var(--v-pressed-opacity) * var(--v-theme-overlay-multiplier)),

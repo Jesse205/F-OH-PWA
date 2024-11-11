@@ -1,8 +1,8 @@
-import { getCurrent } from '@tauri-apps/api/window'
+import { getCurrentWindow } from '@tauri-apps/api/window'
 import { onBeforeUnmount, ref } from 'vue'
 
 export function useTauriSystemBar() {
-  const appWindow = getCurrent()
+  const appWindow = getCurrentWindow()
   const isMaximized = ref(false)
   let unlistenResized: (() => void) | undefined
   appWindow.isMaximized().then((maximized) => {
