@@ -84,7 +84,7 @@ function shareApp() {
 </script>
 
 <template>
-  <v-layout>
+  <app-page>
     <v-app-bar class="app-bar">
       <back-button />
       <!-- 多标题动画展示 -->
@@ -104,7 +104,7 @@ function shareApp() {
         @click="shareApp"
       />
     </v-app-bar>
-    <v-main ref="mainComponent">
+    <v-main scrollable ref="mainComponent">
       <v-progress-linear v-if="isLoading" color="primary" class="progress" indeterminate />
       <AppOverview ref="appOverviewComponent" class="ma-4" :app-info="appInfo" :loading="isLoading" />
 
@@ -128,7 +128,7 @@ function shareApp() {
         <v-chip v-for="item in appInfo?.tags" :key="item" class="tags-group__item">{{ item }}</v-chip>
       </div>
       <!-- #endregion -->
-      <app-category-list class="ma-4 v-list--with-prepend-icon">
+      <app-category-list class="v-list--with-prepend-icon ma-4">
         <!-- #region 开发者信息 -->
         <app-list-category v-show="appInfo?.vender || isLoading" :subheader="$t('developer.title')" data-allow-drag>
           <v-skeleton-loader
@@ -154,7 +154,7 @@ function shareApp() {
         <AppDetails :loading="isLoading" :app-info="appInfo" :title-class="['itemTitle']" />
       </app-category-list>
     </v-main>
-  </v-layout>
+  </app-page>
 </template>
 
 <style scoped lang="scss">

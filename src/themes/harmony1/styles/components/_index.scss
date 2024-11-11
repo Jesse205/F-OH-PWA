@@ -1,4 +1,3 @@
-@use './alert';
 @use './border';
 @use './bottom-navigation';
 @use './button';
@@ -7,10 +6,8 @@
 @use './drawer';
 @use './fab';
 @use './field';
-@use './grid';
 @use './list';
 @use './menu';
-@use './overlay';
 @use './select';
 @use './slide';
 @use './switch';
@@ -19,7 +16,6 @@
 @use './tooltip';
 
 @mixin style {
-  @include alert.style;
   @include border.style;
   @include bottom-navigation.style;
   @include button.style;
@@ -28,10 +24,8 @@
   @include drawer.style;
   @include fab.style;
   @include field.style;
-  @include grid.style;
   @include list.style;
   @include menu.style;
-  @include overlay.style;
   @include select.style;
   @include slide.style;
   @include switch.style;

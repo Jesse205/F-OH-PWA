@@ -10,35 +10,3 @@
   min-height: 24px;
   margin-right: 16px;
 }
-
-.typo-style {
-  display: block;
-  line-height: 1.8em;
-
-  & ul,
-  & ol {
-    padding-left: 1rem;
-  }
-
-  & code {
-    background-color: rgb(var(--v-theme-code));
-    color: rgb(var(--v-theme-on-code));
-    border-radius: 4px;
-    line-height: 2;
-    font-size: 0.8em;
-    font-weight: normal;
-    padding: 0.2em 0.4em;
-  }
-
-  & a {
-    color: rgb(var(--v-theme-primary));
-
-    &:hover {
-      color: rgba(var(--v-theme-primary), 0.7);
-    }
-
-    &:active {
-      color: rgba(var(--v-theme-primary), 0.9);
-    }
-  }
-}

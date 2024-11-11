@@ -58,57 +58,52 @@ const rules = {
 </script>
 
 <template>
-  <v-dialog v-model="isDialogVisible" :fullscreen="xs">
-    <v-form @submit.prevent="emitAndCloseDialog">
-      <v-card :title="mode === 'edit' ? $t('editMetadataSource') : $t('createMetadataSource')">
-        <v-card-text class="text-fields">
-          <v-text-field
-            v-model="editingSource.name"
-            :label="$t('field.label.name_required')"
-            :rules="[rules.required]"
-          />
-          <v-text-field v-model="editingSource.description" :label="$t('field.label.description')" />
-          <v-select v-model="editingSource.version" :label="$t('field.label.version')" :items="['v1']" />
-          <v-text-field
-            v-model="editingSource.api.base"
-            :label="$t('field.label.apiUrl_required')"
-            :rules="[rules.required]"
-          />
-          <v-text-field
-            v-model="editingSource.api.baseOrigin"
-            :label="$t('field.label.originApiUrl')"
-            :hint="$t('field.hint.originApiUrl')"
-            persistent-hint
-          />
-          <v-text-field
-            v-model="editingSource.api.home"
-            :label="$t('field.label.homeDataPath')"
-            :placeholder="PATH_API_HOME"
-            persistent-placeholder
-          />
-          <v-text-field
-            v-model="editingSource.api.apps"
-            :label="$t('field.label.appsDataPath')"
-            :placeholder="PATH_API_ALL_APP"
-            persistent-placeholder
-          />
-        </v-card-text>
-        <template #actions>
-          <DialogActionsTemplate>
-            <template #positive>
-              <v-btn :text="mode === 'edit' ? $t('action.update') : $t('action.create')" type="submit" />
-            </template>
-            <template #negative>
-              <v-btn :text="$t('action.cancel')" @click="closeDialog" />
-            </template>
-            <template #neutral>
-              <v-btn v-if="mode === 'edit'" :text="$t('action.delete')" @click="deleteAndCloseDialog" />
-            </template>
-          </DialogActionsTemplate>
-        </template>
-      </v-card>
-    </v-form>
-  </v-dialog>
+  <app-dialog
+    v-model="isDialogVisible"
+    :form="true"
+    :fullscreen="xs"
+    :title="mode === 'edit' ? $t('editMetadataSource') : $t('createMetadataSource')"
+    @submit.prevent="emitAndCloseDialog"
+  >
+    <v-card-text class="text-fields">
+      <v-text-field v-model="editingSource.name" :label="$t('field.label.name_required')" :rules="[rules.required]" />
+      <v-text-field v-model="editingSource.description" :label="$t('field.label.description')" />
+      <v-select v-model="editingSource.version" :label="$t('field.label.version')" :items="['v1']" />
+      <v-text-field
+        v-model="editingSource.api.base"
+        :label="$t('field.label.apiUrl_required')"
+        :rules="[rules.required]"
+      />
+      <v-text-field
+        v-model="editingSource.api.baseOrigin"
+        :label="$t('field.label.originApiUrl')"
+        :hint="$t('field.hint.originApiUrl')"
+        persistent-hint
+      />
+      <v-text-field
+        v-model="editingSource.api.home"
+        :label="$t('field.label.homeDataPath')"
+        :placeholder="PATH_API_HOME"
+        persistent-placeholder
+      />
+      <v-text-field
+        v-model="editingSource.api.apps"
+        :label="$t('field.label.appsDataPath')"
+        :placeholder="PATH_API_ALL_APP"
+        persistent-placeholder
+      />
+    </v-card-text>
+
+    <template #positive>
+      <v-btn :text="mode === 'edit' ? $t('action.update') : $t('action.create')" type="submit" />
+    </template>
+    <template #negative>
+      <v-btn :text="$t('action.cancel')" @click="closeDialog" />
+    </template>
+    <template #neutral>
+      <v-btn v-if="mode === 'edit'" :text="$t('action.delete')" @click="deleteAndCloseDialog" />
+    </template>
+  </app-dialog>
 </template>
 
 <style lang="scss" scoped>

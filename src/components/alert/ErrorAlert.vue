@@ -48,7 +48,7 @@ function getItemSubtitle(item: unknown) {
           :subtitle="getItemSubtitle(item)"
         />
       </dialog-content-list>
-      <v-card-text class="no-scroll-y py-0 dialog-tip text-medium-emphasis">
+      <v-card-text class="dialog-tip text-medium-emphasis py-0">
         <v-icon icon="$info" />
         <span>{{ $t('errorDetails.tip') }}</span>
       </v-card-text>
@@ -68,5 +68,6 @@ function getItemSubtitle(item: unknown) {
   display: flex;
   gap: 8px;
   font-size: 14px;
+  overflow-y: visible;
 }
 </style>

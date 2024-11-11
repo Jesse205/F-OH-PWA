@@ -56,27 +56,28 @@ watch(isEditorVisible, (isEditorVisible) => {
 </script>
 
 <template>
-  <v-layout>
+  <app-page>
     <v-app-bar>
       <back-button />
       <v-app-bar-title :text="title" />
     </v-app-bar>
-    <v-main>
-      <app-category-list class="metadata-items ma-4">
+    <v-main scrollable>
+      <app-list un-margin="4">
         <app-list-category :subheader="$t('internal')">
           <MetadataSourceItem
-            v-for="item in internalSourceDataArray"
+            v-for="(item, index) in internalSourceDataArray"
             :key="item.api.base"
             v-model:enabled="item.enabled"
             :name="item.name"
             :description="item.description"
             :api-url="item.api.base"
             :editable="false"
+            :lastInVertical="index >= internalSourceDataArray.length - 1"
           />
         </app-list-category>
         <app-list-category :subheader="$t('external')">
           <MetadataSourceItem
-            v-for="item in externalSourceDataArray"
+            v-for="(item, index) in externalSourceDataArray"
             :key="item.api.base"
             v-model:enabled="item.enabled"
             :name="item.name"
@@ -84,9 +85,10 @@ watch(isEditorVisible, (isEditorVisible) => {
             :api-url="item.api.base"
             :editable="true"
             @edit="showEditSourceDialog(item)"
+            :lastInVertical="index >= externalSourceDataArray.length - 1"
           />
         </app-list-category>
-      </app-category-list>
+      </app-list>
 
       <MetadataSourceEditorDialog
         v-model="isEditorVisible"
@@ -96,8 +98,8 @@ watch(isEditorVisible, (isEditorVisible) => {
         @update:source="updateSource"
       />
     </v-main>
-    <v-fab icon="$floating_add" absolute app location="bottom end" @click="showCreateSourceDialog" />
-  </v-layout>
+    <v-fab icon="$floating_add" app absolute location="bottom end" @click="showCreateSourceDialog" />
+  </app-page>
 </template>
 
 <style lang="scss" scoped></style>

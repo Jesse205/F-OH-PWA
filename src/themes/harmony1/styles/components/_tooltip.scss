@@ -1,10 +1,9 @@
-@use '../settings/dimensions';
+@use '../variables/dimensions';
 
 @mixin style {
   .v-tooltip {
     > .v-overlay__content {
       backdrop-filter: blur(dimensions.$radius-blur-tooltip);
-      background: rgba(var(--v-theme-surface-variant), 0.8);
     }
   }
 }

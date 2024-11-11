@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { usePreferredDark, useTitle as useDocumentTitle } from '@vueuse/core'
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { computed, watch } from 'vue'
+import { onBeforeRouteUpdate, useRoute } from 'vue-router'
 import { useTheme } from 'vuetify'
 
 import NavigationDrawer from '@/components/app/NavigationDrawer.vue'
@@ -9,23 +9,21 @@ import PwaComponent from '@/components/app/PwaComponent.vue'
 import TauriSystemBar from '@/components/app/TauriSystemBar.vue'
 import { useAutoLocale, useAutoTheme, useMetaThemeColor } from '@/composables/app'
 import SplashView from '@/pages/splash/SplashView.vue'
-import { usePreferredLocale } from '@/preferences/ui'
+import { usePageTransition, usePreferredLocale } from '@/preferences/ui'
 import { useGlobalStore } from '@/store/global'
-import { currentDesign } from '@/themes'
+import { currentDesign, currentDesignConfig } from '@/themes'
 import { isElementDraggableInClientApp } from '@/utils/drag'
 import { isTauriApp } from '@/utils/global'
 import { isPwaDisplayMode } from '@/utils/pwa'
+import { useRoutePosition } from './utils/routes'
 
 const route = useRoute()
 const globalStore = useGlobalStore()
 
-const REGEX_ROUTE_NAME = /\/[^/]+/
-
-// 路由名称
-const routeName = computed(() => route.path.match(REGEX_ROUTE_NAME)?.[0] ?? '')
 const isAppReady = computed(() => route.path !== '/')
 
 const theme = useTheme()
+
 useAutoTheme(usePreferredDark())
 useAutoLocale(usePreferredLocale())
 useDocumentTitle(
@@ -44,6 +42,17 @@ useMetaThemeColor(
     return statusBarColor ?? backgroundColor
   }),
 )
+
+const { isForward } = useRoutePosition()
+const isPageTransitionEnabled = usePageTransition()
+
+const pageTransitionName = computed(() => {
+  const { transition } = currentDesignConfig.features.page
+  if (!transition || !isPageTransitionEnabled.value) {
+    return undefined
+  }
+  return isForward.value ? transition.enter : transition.leave
+})
 
 /**
  * 在 Tauri 中阻止拖动。
@@ -70,67 +79,53 @@ document.documentElement.classList.add(currentDesign)
   <v-app class="app" @dragstart="onDragStart">
     <TauriSystemBar v-if="isTauriApp" />
     <NavigationDrawer v-if="isAppReady && globalStore.navigationBarType === 'side'" />
-    <v-main v-if="isAppReady" class="main" :scrollable="false">
-      <div class="page-container">
-        <router-view #="{ Component }">
-          <transition :name="route.meta.transition">
-            <div :key="routeName" class="page" :data-path="route.path">
-              <component :is="Component" />
+    <v-main v-if="isAppReady" class="root-main" :scrollable="false">
+      <router-view #="{ Component }">
+        <div class="pages-container">
+          <transition :name="pageTransitionName">
+            <div :key="$route.matched[0].name" class="page-container" :data-path="route.path">
+              <component :is="Component" class="page" />
             </div>
           </transition>
-        </router-view>
-      </div>
+        </div>
+      </router-view>
     </v-main>
     <SplashView v-if="!isAppReady" />
     <PwaComponent />
   </v-app>
-  <!-- 窗口边框 -->
-  <Teleport v-if="isTauriApp" to="body">
-    <div class="border window-border"></div>
-  </Teleport>
 </template>
 
 <style lang="scss" scoped>
 .app {
-  height: 100%;
-  width: 100%;
   // 防止移动端出现滚动条
   overflow: hidden;
 }
 
-:deep(.v-layout) {
+/* .page {
   width: 100%;
   height: 100%;
-}
-.page {
-  //设置绝对位置，方便设置动画，屏蔽了浏览器本身的文档滚动。因此需要在每个页面都添加滚动布局。
-  position: absolute;
-  // 使布局位于窗口顶部
-  top: 0;
-  padding-top: var(--v-layout-top);
-  width: 100%;
-  height: 100%;
+} */
+
+.root-main {
+  padding-top: 0;
   overflow: hidden;
 }
 
-.page-container {
+.pages-container {
   position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
 }
 
-.main {
-  padding-top: 0;
-  overflow: hidden;
-}
-.window-border {
+.page-container {
+  //设置绝对位置，方便设置动画，屏蔽了浏览器本身的文档滚动。因此需要在每个页面都添加滚动布局。
   position: absolute;
+  // 使页面延申到系统栏
   top: 0;
-  left: 0;
+  padding-top: var(--v-layout-top);
   width: 100%;
   height: 100%;
-  z-index: 9999;
-  pointer-events: none;
+  overflow: hidden;
 }
 </style>

@@ -21,7 +21,7 @@ $page-function: cubic-bezier(0.39, 0.58, 0.57, 1);
 $page-durning: $duration-movement-screen;
 $page-property: transform;
 $page-above-offset: 25%;
-$page-below-offset: 25%;
+$page-below-offset: -25%;
 
 // 对话框过渡
 $dialog-enter-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);

@@ -66,7 +66,7 @@ onBeforeRouteUpdate((to) => {
 </script>
 
 <template>
-  <v-layout>
+  <app-page>
     <v-navigation-drawer v-if="globalStore.navigationBarType === 'rail'" permanent rail>
       <div class="rail-list-container">
         <v-list class="rail-list" density="compact" nav active-class="">
@@ -94,15 +94,15 @@ onBeforeRouteUpdate((to) => {
         <template #activator="{ props: menu }">
           <v-btn v-tooltip="$t('moreOptions')" icon="$more" v-bind="{ ...menu }" />
         </template>
-        <v-list>
-          <v-list-item v-if="currentRouteData?.refreshable" :title="$t('action.refresh')" @click="refresh" />
-          <v-list-item
+        <app-list>
+          <app-list-item v-if="currentRouteData?.refreshable" :title="$t('action.refresh')" @click="refresh" />
+          <app-list-item
             v-if="pwaStore.installBtnVisible"
             :title="$t('action.installApp')"
             @click="pwaStore.onInstallBtnClick"
           />
-          <v-list-item :title="$t('about')" :to="{ name: 'About' }" />
-        </v-list>
+          <app-list-item :title="$t('about')" :to="{ name: 'About' }" last-in-vertical/>
+        </app-list>
       </v-menu>
     </v-app-bar>
 
@@ -125,7 +125,7 @@ onBeforeRouteUpdate((to) => {
         <span>{{ parseI18n(item.title, $t) }}</span>
       </v-btn>
     </v-bottom-navigation>
-  </v-layout>
+  </app-page>
 </template>
 <style lang="scss">
 .rail-list-container {

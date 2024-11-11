@@ -73,22 +73,18 @@ export const blueprint: Blueprint = {
     },
     VCard: {
       border: true,
-      variant: 'outlined',
+      variant: 'flat',
     },
     VListSubheader: {
       color: 'primary',
+    },
+    AppList: {
+      carded: true,
     },
     VList: {
       bgColor: 'transparent',
       lines: false,
       border: true,
-      rounded: true,
-    },
-    AppCategoryList: {
-      ...baseBlueprint.defaults.AppCategoryList,
-      bgColor: 'transparent',
-      lines: false,
-      border: false,
       rounded: true,
     },
     VNavigationDrawer: {

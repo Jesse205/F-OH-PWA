@@ -1,128 +1,42 @@
 /// @link https://developer.huawei.com/consumer/cn/doc/design-guides-V1/list-0000001110467124-V1
 
-@use '../settings/motions';
-@use '../settings/dimensions';
+@use '../variables/motions';
+@use '../variables/dimensions';
 @use '../utils/border';
+@use '../tools';
 
 @mixin style {
   .app-list-category {
-    &__item-container {
-      padding: 4px;
+    border-radius: inherit;
+    &__items {
+      padding-block: 4px;
       background-color: rgba(var(--v-theme-surface));
-      margin-bottom: 8px;
-    }
-
-    &--header-sticky {
-      .v-list-subheader {
-        position: sticky;
-        top: 0;
-      }
-    }
-
-    &:first-child {
-      margin-top: -8px;
-    }
-
-    &:last-child {
-      margin-bottom: -8px;
+      border-radius: inherit;
     }
 
     .v-list-subheader {
-      color: rgba(var(--v-theme-on-surface), var(--v-medium-emphasis-opacity));
       background-color: rgb(var(--v-theme-background));
-      z-index: 1;
-    }
-
-    // 防止margin溢出
-    &::after {
-      content: '';
-      display: block;
-      height: 1px;
     }
   }
 
-  .v-list {
-    --border-margin-left: 0px;
-    --border-margin-right: 0px;
-
-    padding: 4px;
-
-    &--rounded {
-      border-radius: dimensions.$radius-card;
-
-      .app-list-category__item-container {
-        border-radius: dimensions.$radius-card;
+  .app-list {
+    &--carded {
+      .v-list-item {
+        &__overlay {
+          margin-inline: 4px;
+        }
       }
     }
-
-    &--nav {
-      padding-inline: 8px;
-    }
-
-    &--with-prepend-icon {
-      --border-margin-left: 52px;
-    }
-  }
-
-  .app-category-list {
-    padding: 0;
-    background-color: transparent;
-    overflow: visible;
-  }
-
-  .dialog-content-list {
-    --border-margin-left: 24px;
-    --border-margin-right: 24px;
-
-    background-color: transparent;
-    padding: 0;
-  }
-
-  .v-list-subheader {
-    padding-inline: 12px !important;
-    color: rgb(var(--v-theme-primary));
-  }
-
-  .v-list-item-subtitle {
-    line-height: inherit;
   }
 
   .v-list-item {
-    position: relative;
-
-    // 分割线
-    &::before {
-      content: '';
-      position: absolute;
-      bottom: -0.25px;
-      left: max(var(--border-margin-left), 12px);
-      right: max(var(--border-margin-right), 12px);
-      height: 0;
-      border-bottom: border.$border;
-    }
-
-    &:last-child::before {
-      content: none;
-    }
-
-    &::after {
-      content: none;
-    }
-
-    &--rounded {
-      border-radius: dimensions.$radius-card - 2px;
-    }
+    @include tools.states('.v-list-item__overlay', false);
 
     &:not(v-list-item--nav) {
       padding-inline: 12px;
     }
-
-    &--nav {
-      background: transparent;
-
-      &::before {
-        border-bottom-width: 0;
-      }
+    &__overlay {
+      transition-duration: motions.$background-duration;
     }
 
     /// 文档中的规格（鸿蒙设计v2的参数，v1太麻烦了）
@@ -147,85 +61,12 @@
       }
     }
 
-    &__prepend {
-      .v-icon {
-        opacity: 1;
-      }
-    }
-
-    // vuetify 会添加很多无关的选择器，因此需要重置 .v-list-item__overlay 的透明度为 0
-     > .v-list-item__overlay,
-    &[aria-haspopup='menu'][aria-expanded='true'] > .v-list-item__overlay,
-    &--active:hover > .v-list-item__overlay,
-    &[aria-haspopup='menu'][aria-expanded='true']:hover > .v-list-item__overlay {
-      transition-duration: motions.$background-duration;
-      opacity: 0;
-    }
-
-    // 重写焦点样式
-    @supports selector(:focus-visible) {
-      &:focus-visible {
-        outline: rgb(var(--v-theme-primary)) solid 2px;
-        outline-offset: -2px;
-
-         > .v-list-item__overlay {
-          opacity: 0;
-        }
-      }
-    }
-
-    &.v-list-item.v-list-item.v-list-item {
-      @media (hover: hover) {
-        &:hover > .v-list-item__overlay {
-          opacity: calc(var(--v-hover-opacity) * var(--v-theme-overlay-multiplier));
-        }
-      }
-
-      &:active > .v-list-item__overlay {
-        opacity: calc(var(--v-pressed-opacity) * var(--v-theme-overlay-multiplier));
-      }
-    }
-
-    // 以下重复的键用于增强选择器特定值，因为上面用于重置的选择器太强了
-    &--active-background.v-list-item.v-list-item.v-list-item {
-       > .v-list-item__overlay {
-        opacity: calc(var(--v-activated-opacity) * var(--v-theme-overlay-multiplier));
-      }
-
-      &:hover > .v-list-item__overlay {
-        opacity: calc((var(--v-hover-opacity) + var(--v-activated-opacity)) * var(--v-theme-overlay-multiplier));
-      }
-
-      &:active > .v-list-item__overlay {
-        opacity: calc((var(--v-pressed-opacity) + var(--v-activated-opacity)) * var(--v-theme-overlay-multiplier));
-      }
-    }
-
-    &__prepend {
-       > .v-badge ~ .v-list-item__spacer,
-       > .v-icon ~ .v-list-item__spacer,
-       > .v-tooltip ~ .v-list-item__spacer {
-        width: 16px;
-      }
-    }
-
     &__append {
-       > .v-badge ~ .v-list-item__spacer,
-       > .v-icon ~ .v-list-item__spacer,
-       > .v-tooltip ~ .v-list-item__spacer {
-        width: 12px;
-      }
-
-       > .v-icon {
+      // 鸿蒙风格的右箭头较细，宽度比24px小
+      > .v-icon {
         width: auto;
         min-width: 0;
       }
-    }
-  }
-
-  .dialog-content-list {
-    .v-list-item {
-      padding-inline: 24px;
     }
   }
 }

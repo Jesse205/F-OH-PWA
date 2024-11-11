@@ -1,3 +1,66 @@
+diff --git a/lib/components/VBtn/VBtn.sass b/lib/components/VBtn/VBtn.sass
+index 680b2e3336d4e44316d4c1d9f0d93dbc298dfe70..d159da6e45ceb9aa3211e28898031349458db49a 100644
+--- a/lib/components/VBtn/VBtn.sass
++++ b/lib/components/VBtn/VBtn.sass
+@@ -35,21 +35,9 @@
+ 
+     @include tools.border($button-border...)
+     @include tools.position($button-positions)
+-    @include tools.states('.v-btn__overlay')
++    @include tools.states('.v-btn__overlay', false)
+     @include tools.variant($button-variants...)
+ 
+-    @supports selector(:focus-visible)
+-      &::after
+-        pointer-events: none
+-        border: 2px solid currentColor
+-        border-radius: inherit
+-        opacity: 0
+-        transition: opacity .2s ease-in-out
+-        @include tools.absolute(true)
+-
+-      &:focus-visible::after
+-        opacity: calc(.25 * var(--v-theme-overlay-multiplier))
+-
+     &--icon
+       border-radius: $button-icon-border-radius
+       min-width: 0
+@@ -241,7 +229,6 @@
+         @include tools.rounded($button-pagination-rounded-border-radius)
+ 
+     &__overlay
+-      transition: none
+ 
+       .v-pagination__item--is-active &
+         opacity: $button-pagination-active-overlay-opacity
+diff --git a/lib/components/VList/VListItem.sass b/lib/components/VList/VListItem.sass
+index 3dfb6b0b782a6f2d34ced5327920f10fd23d53e9..79367d1640010d538e62512db02b0f77e3ad4492 100644
+--- a/lib/components/VList/VListItem.sass
++++ b/lib/components/VList/VListItem.sass
+@@ -19,22 +19,10 @@
+     text-decoration: none
+ 
+     @include tools.border($list-item-border...)
+-    @include tools.states('.v-list-item__overlay')
++    @include tools.states('.v-list-item__overlay', false)
+     @include tools.rounded($list-item-border-radius)
+     @include tools.variant($list-item-variants...)
+ 
+-    @supports selector(:focus-visible)
+-      &::after
+-        pointer-events: none
+-        border: 2px solid currentColor
+-        border-radius: 4px
+-        opacity: 0
+-        transition: opacity .2s ease-in-out
+-        @include tools.absolute(true)
+-
+-      &:focus-visible::after
+-        opacity: calc(.15 * var(--v-theme-overlay-multiplier))
+-
+     &__prepend,
+     &__append
+       > .v-badge .v-icon,
 diff --git a/lib/directives/ripple/index.mjs b/lib/directives/ripple/index.mjs
 index a060ba93fb9784ae9bd4c4ac4cd3dcf57e4a76f8..7ba99f2d907e7520fac48d286ea22a38b4c7d1b0 100644
 --- a/lib/directives/ripple/index.mjs
@@ -21,6 +84,28 @@ index a060ba93fb9784ae9bd4c4ac4cd3dcf57e4a76f8..7ba99f2d907e7520fac48d286ea22a38
    },
    hide(el) {
      if (!el?._ripple?.enabled) return;
+diff --git a/lib/styles/settings/_variables.scss b/lib/styles/settings/_variables.scss
+index 615e71b0e7721a43b767f58bbb2e42d56de072b5..9310187281cbbc237a8f6a6ae0501fe5af26e70e 100644
+--- a/lib/styles/settings/_variables.scss
++++ b/lib/styles/settings/_variables.scss
+@@ -92,13 +92,13 @@ $rounded: () !default;
+ $rounded: map-deep-merge(
+   (
+     0: 0,
+-    'sm': $border-radius-root * .5,
++    'sm': calc($border-radius-root * .5),
+     null: $border-radius-root,
+-    'lg': $border-radius-root * 2,
+-    'xl': $border-radius-root * 6,
++    'lg': calc($border-radius-root * 2),
++    'xl': calc($border-radius-root * 6),
+     'pill': 9999px,
+     'circle': 50%,
+-    'shaped': $border-radius-root * 6 0
++    'shaped': calc($border-radius-root * 6) 0
+   ),
+   $rounded
+ );
 diff --git a/lib/styles/tools/_states.sass b/lib/styles/tools/_states.sass
 index 68558cac9764018d80ec6a4b2ee90b741ea35104..79ebddbeed07b81cce6eac6a51b6069b30e55c08 100644
 --- a/lib/styles/tools/_states.sass

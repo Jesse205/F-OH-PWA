@@ -1,5 +1,5 @@
-@use '../settings/fonts';
-@use '../settings/motions';
+@use '../variables/fonts';
+@use '../variables/motions';
 
 @mixin style {
   .v-toolbar {
@@ -7,7 +7,7 @@
       padding-left: 16px;
       padding-right: 16px;
 
-       > .v-btn {
+      > .v-btn {
         &:last-child {
           margin-inline-end: -4px;
         }
@@ -17,7 +17,7 @@
         }
       }
 
-       > .v-toolbar-title {
+      > .v-toolbar-title {
         margin-inline: 8px;
       }
     }
@@ -26,10 +26,7 @@
   .v-toolbar-title {
     font-size: fonts.$headline8-size;
     font-weight: fonts.$headline8-weight;
-    letter-spacing: 0;
-    line-height: initial;
     transition-duration: motions.$duration-movement-some;
-    transition-property: margin, padding;
     transition-timing-function: motions.$function-standard;
   }
 }

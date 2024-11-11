@@ -1,12 +1,10 @@
-@use '../settings/dimensions';
+@use '../variables/dimensions';
+@use '../tools';
 
 @mixin style {
   .v-tabs {
     height: initial;
 
-    &--density-default {
-      --v-tabs-height: 40px;
-    }
 
     .v-slide-group__container {
       padding: 4px;
@@ -21,10 +19,8 @@
         bottom: -4px;
       }
 
-      @supports selector(:focus-visible) {
-        &::after {
-          outline-offset: -2px;
-        }
+      & {
+        outline-offset: -2px;
       }
     }
 
@@ -35,21 +31,7 @@
         flex: 0 1 24px;
         border-radius: dimensions.$radius-md;
 
-        @media (hover: hover) {
-          &:hover {
-            background-color: rgba(
-              var(--v-theme-on-surface),
-              calc(var(--v-hover-opacity) * var(--v-theme-overlay-multiplier))
-            );
-          }
-        }
-
-        &:active {
-          background-color: rgba(
-            var(--v-theme-on-surface),
-            calc(var(--v-pressed-opacity) * var(--v-theme-overlay-multiplier))
-          );
-        }
+        // @include tools.states('.v-btn__overlay', false);
       }
     }
   }

@@ -33,7 +33,7 @@ const iconCompletePath = computed(() => completeApiUrl(props.item.icon))
       <img class="ohos-app-icon border" width="48" height="48" :src="iconCompletePath" alt="" draggable="false" />
     </template>
     <v-list-item-title class="title">
-      {{ item.name }} <span class="text-body-2 version">v{{ item.version }}</span>
+      {{ item.name }} <span class="version text-body-2">v{{ item.version }}</span>
     </v-list-item-title>
     <v-list-item-subtitle>{{ item.desc }}</v-list-item-subtitle>
     <slot />

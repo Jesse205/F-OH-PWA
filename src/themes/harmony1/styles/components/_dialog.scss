@@ -1,6 +1,6 @@
 /// @link https://developer.huawei.com/consumer/cn/doc/design-guides-V1/dialog-0000001156786991-V1
 @use '../utils/border';
-@use '../settings/dimensions';
+@use '../variables/dimensions';
 
 @mixin style {
   .v-dialog {

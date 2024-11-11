@@ -1,5 +1,1 @@
-@use './components';
-
-:root {
-  @include components.style;
-}
+@forward './styles';

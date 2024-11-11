@@ -5,7 +5,7 @@
  */
 
 import { createVuetify } from 'vuetify'
-import { VList, VMenu } from 'vuetify/components'
+// import { VList, VMenu } from 'vuetify/components'
 
 import { currentDesignConfig } from '@/themes'
 
@@ -16,9 +16,9 @@ export default createVuetify({
     mobileBreakpoint: 'lg',
   },
   aliases: {
-    AppCategoryList: VList,
+    /* AppCategoryList: VList,
     DialogContentList: VList,
-    AppBarOverflowMenu: VMenu,
+    AppBarOverflowMenu: VMenu, */
   },
   defaults: {
     VList: {
@@ -29,10 +29,6 @@ export default createVuetify({
       VListItem: {
         tag: 'li',
       },
-    },
-
-    VMain: {
-      scrollable: true,
     },
   },
 })

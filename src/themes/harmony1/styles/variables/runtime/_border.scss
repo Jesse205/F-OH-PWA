@@ -1,0 +1,21 @@
+@use '../dimensions';
+
+@mixin style {
+  &,
+  .v-theme--light,
+  .v-theme--dark {
+    @media screen and (resolution <= 2dppx) {
+      // 防止低分辨率屏幕边框过粗
+      --v-border-opacity: 0.1 !important;
+    }
+  }
+
+  & {
+    --border-width-root: 0.5px;
+    --border-radius-root: #{dimensions.$radius-lg};
+    --border-radius-sm: #{dimensions.$radius-sm};
+    --border-radius-md: #{dimensions.$radius-md};
+    --border-radius-lg: #{dimensions.$radius-lg};
+    --border-radius-xl: #{dimensions.$radius-xl};
+  }
+}

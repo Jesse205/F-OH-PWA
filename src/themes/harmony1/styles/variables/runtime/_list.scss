@@ -1,0 +1,10 @@
+@use '../dimensions';
+
+@mixin style {
+  & {
+    --list-item-icon-margin-start: 16px;
+    --list-item-icon-margin-end: 12px;
+    --list-item-icon-opacity: 1;
+    --list-item-rounded-border-radius: #{dimensions.$radius-card - 2px};
+  }
+}

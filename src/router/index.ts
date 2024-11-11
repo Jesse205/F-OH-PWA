@@ -112,49 +112,6 @@ const router: Router = createRouter({
   routes,
 })
 
-router.beforeEach((to, from) => {
-  if (IS_DEV_MODE) {
-    console.log(TAG, 'beforeEach', to, from)
-  }
-  if (!to.query.apiUrl && from.query.apiUrl) {
-    to.query.apiUrl = from.query.apiUrl
-    return to
-  }
-})
 
-function applyPageTransitionIfNeeded(
-  isForward: boolean,
-  to: RouteLocationNormalizedGeneric,
-  from: RouteLocationNormalizedGeneric,
-) {
-  const { pageTransition } = currentDesignConfig.features
-  // `/` 说明刚刚进入网页，因此不需要动画
-  if (from.path !== '/' && pageTransition && isPageTransitionEnabled()) {
-    const { enter: enterName, leave: leaveName } = pageTransition
-    const name = isForward ? enterName : leaveName
-    to.meta.transition = name
-    from.meta.transition = name
-  } else {
-    to.meta.transition = ''
-    from.meta.transition = ''
-  }
-}
-
-// 当前页面索引，用于判断路由切换时是前进还是后退
-let previousPosition = 0
-router.afterEach((to, from) => {
-  if (IS_DEV_MODE) {
-    console.debug(TAG, 'afterEach', to, from)
-  }
-  const currentPosition = history.state.position ?? 0
-  const isForward = currentPosition >= previousPosition
-  if (IS_DEV_MODE) {
-    console.debug(TAG, `currentPosition=${currentPosition}, previousPosition=${previousPosition}`)
-  }
-
-  applyPageTransitionIfNeeded(isForward, to, from)
-
-  previousPosition = currentPosition
-})
 
 export default router

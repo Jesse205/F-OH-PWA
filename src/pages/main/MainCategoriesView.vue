@@ -82,13 +82,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <v-main>
+  <v-main scrollable>
     <!-- Alerts -->
     <ErrorAlert v-if="appsStore.hasErrors" class="ma-4" :errors="appsStore.errorArray" />
     <UnsafeBypassAlert v-if="appsStore.hasErrors && isChrome" class="ma-4" />
 
     <!-- MainLayout -->
-    <app-category-list v-if="appsStore.hasApps" class="ma-4">
+    <app-list v-if="appsStore.hasApps" class="ma-4">
       <template v-for="appType in appTypes">
         <app-list-category v-if="appType.apps && appType.apps.length > 0" :key="appType.key" :subheader="appType.title">
           <div class="project-items" @dragstart="onProjectDragStart">
@@ -103,7 +103,7 @@ onMounted(() => {
           </div>
         </app-list-category>
       </template>
-    </app-category-list>
+    </app-list>
 
     <CenterSpace v-if="isLoading || !appsStore.hasApps">
       <v-progress-circular v-if="isLoading" indeterminate style="pointer-events: none" />

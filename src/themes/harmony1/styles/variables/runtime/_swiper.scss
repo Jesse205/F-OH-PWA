@@ -1,0 +1,7 @@
+@mixin style {
+  & {
+    --swiper-pagination-bullet-border-radius: 4px;
+    --swiper-pagination-bullet-size: 8px;
+    --swiper-pagination-bullet-inactive-opacity: 0.2;
+  }
+}

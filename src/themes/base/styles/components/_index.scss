@@ -1,5 +1,4 @@
 @use './bottom-navigation';
-@use './card';
 @use './dialog';
 @use './main';
 @use './progress';
@@ -7,7 +6,6 @@
 @mixin style {
   @include bottom-navigation.style;
   @include main.style;
-  @include card.style;
   @include dialog.style;
   @include progress.style;
 }

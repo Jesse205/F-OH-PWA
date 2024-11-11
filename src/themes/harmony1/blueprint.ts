@@ -2,8 +2,11 @@ import type { Blueprint } from 'vuetify'
 
 import { blueprint as baseBlueprint } from '../base/blueprint'
 import { aliases, hmi } from './icons'
-import colors from './styles/settings/_colors.module.scss'
-import dimensions from './styles/settings/_dimensions.module.scss'
+import colors from './styles/variables/_colors.module.scss'
+import dimensions from './styles/variables/_dimensions.module.scss'
+
+const { defaults: baseDefaults } = baseBlueprint
+
 export const blueprint: Blueprint = {
   theme: {
     themes: {
@@ -56,18 +59,18 @@ export const blueprint: Blueprint = {
     },
   },
   defaults: {
-    ...baseBlueprint.defaults,
+    ...baseDefaults,
     global: {
       ripple: false,
     },
     VAppBar: {
-      ...baseBlueprint.defaults.VAppBar,
+      ...baseDefaults.VAppBar,
       VMenu: {
         width: 172,
       },
     },
     VBtn: {
-      ...baseBlueprint.defaults.VBtn,
+      ...baseDefaults.VBtn,
       rounded: 'pill',
     },
     VCombobox: {
@@ -90,54 +93,57 @@ export const blueprint: Blueprint = {
       persistentPlaceholder: true,
     },
     VTabs: {
-      ...baseBlueprint.defaults.VTabs,
+      ...baseDefaults.VTabs,
+      density: 'compact',
       VBtn: {
         rounded: 'md',
       },
     },
     VToolbar: {
-      ...baseBlueprint.defaults.VToolbar,
+      ...baseDefaults.VToolbar,
       VBtn: {
-        ...baseBlueprint.defaults.VToolbar.VBtn,
+        ...baseDefaults.VToolbar.VBtn,
         rounded: 'sm',
       },
     },
     VBottomNavigation: {
-      ...baseBlueprint.defaults.VBottomNavigation,
+      ...baseDefaults.VBottomNavigation,
       VBtn: {
         rounded: 'sm',
         ripple: false,
       },
     },
     VMenu: {
-      ...baseBlueprint.defaults.VMenu,
+      ...baseDefaults.VMenu,
       minWidth: 172,
       transition: 'slide-y-transition',
+      AppList: {
+        // carded: false,
+      },
     },
     VCard: {
       flat: true,
     },
-    VList: {
-      lines: false,
-      rounded: true,
+    AppList: {
+      carded: true,
+      divider: true,
     },
-    AppCategoryList: {
-      ...baseBlueprint.defaults.AppCategoryList,
+    VList: {
       lines: false,
       rounded: true,
     },
     VListItem: {
       rounded: true,
       VAvatar: {
-        size: '24',
+        size: 24,
       },
     },
     VNavigationDrawer: {
-      ...baseBlueprint.defaults.VNavigationDrawer,
+      ...baseDefaults.VNavigationDrawer,
       width: parseInt(dimensions.widthSidebarPrimary),
       railWidth: 96,
       VList: {
-        ...baseBlueprint.defaults.VNavigationDrawer.VList,
+        ...baseDefaults.VNavigationDrawer.VList,
         border: false,
         rounded: false,
       },
@@ -148,10 +154,13 @@ export const blueprint: Blueprint = {
         },
       },
     },
+    AppDialog: {
+      actionButtonLayout: 'fill',
+    },
     VDialog: {
-      ...baseBlueprint.defaults.VDialog,
+      ...baseDefaults.VDialog,
       VCard: {
-        ...baseBlueprint.defaults.VDialog.VCard,
+        ...baseDefaults.VDialog.VCard,
         variant: 'flat',
       },
       VBtn: {
@@ -159,7 +168,7 @@ export const blueprint: Blueprint = {
       },
     },
     VProgressCircular: {
-      ...baseBlueprint.defaults.VProgressCircular,
+      ...baseDefaults.VProgressCircular,
       color: undefined,
       width: 3,
     },
@@ -174,7 +183,7 @@ export const blueprint: Blueprint = {
       },
     },
     VSwitch: {
-      ...baseBlueprint.defaults.VSwitch,
+      ...baseDefaults.VSwitch,
       inset: true,
     },
     VOverlay: {

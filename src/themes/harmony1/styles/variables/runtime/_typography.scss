@@ -1,0 +1,7 @@
+@use '../fonts';
+
+@mixin style {
+  & {
+    --typography-caption-size: #{fonts.$caption-size};
+  }
+}

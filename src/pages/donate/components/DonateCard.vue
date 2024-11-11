@@ -23,7 +23,7 @@ const reallySelected = ref<number>(0)
     <v-divider />
     <div class="content">
       <slot :selected-key="platforms[reallySelected].key">
-        <v-img cover :src="platforms[reallySelected].image" data-allow-drag />
+        <v-img  :src="platforms[reallySelected].image"  data-allow-drag cover  />
       </slot>
     </div>
     <v-divider />

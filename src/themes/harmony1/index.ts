@@ -8,11 +8,16 @@ import type { DesignFeatures } from '../base'
 export { blueprint } from './blueprint'
 
 export const features: DesignFeatures = {
-  pageTransition: {
-    enter: 'page-enter-animation',
-    leave: 'page-leave-animation',
+  page: {
+    transition: {
+      enter: 'page-enter-transition',
+      leave: 'page-leave-transition',
+    },
   },
   dialog: {
-    actionsBarMode: 'fill',
+    actionButtonLayout: 'side',
+  },
+  list: {
+    divider: 'items',
   },
 }

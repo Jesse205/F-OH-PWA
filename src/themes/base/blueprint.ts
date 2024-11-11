@@ -41,9 +41,9 @@ export const blueprint = {
     VBtn: {
       color: 'primary',
     },
-    AppCategoryList: {
+    /* AppCategoryList: {
       class: ['app-category-list'],
-    },
+    }, */
     VTooltip: {
       transition: 'fade-transition',
     },
@@ -54,9 +54,9 @@ export const blueprint = {
         border: false,
       },
     },
-    DialogContentList: {
+    /* DialogContentList: {
       class: ['dialog-content-list'],
-    },
+    }, */
     VCheckboxBtn: {
       color: 'primary',
     },

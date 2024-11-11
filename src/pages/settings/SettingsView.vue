@@ -30,13 +30,13 @@ const pageTransitionEnabled = usePageTransition()
 </script>
 
 <template>
-  <v-layout>
+  <app-page>
     <v-app-bar>
       <back-button />
       <v-app-bar-title :text="title" />
     </v-app-bar>
-    <v-main>
-      <app-category-list class="ma-4 v-list--with-prepend-icon">
+    <v-main scrollable>
+      <app-list class="v-list--with-prepend-icon" un-margin="4" divider-inset>
         <app-list-category :subheader="$t('userInterface', 2)">
           <app-list-single-select-item
             v-model="preferredDesignLanguage"
@@ -47,7 +47,7 @@ const pageTransitionEnabled = usePageTransition()
             :disabled-getter="(item) => item.disabled ?? false"
             :name-getter="(item) => item.name"
           >
-            <v-list-item-subtitle v-if="isDesignChanged" class="color-warning">
+            <v-list-item-subtitle v-if="isDesignChanged" un-color="vuetify-warning">
               {{ $t('designLanguageTakeEffectMessage') }}
             </v-list-item-subtitle>
           </app-list-single-select-item>
@@ -59,32 +59,34 @@ const pageTransitionEnabled = usePageTransition()
             :value-getter="(item) => item.code"
             :name-getter="(item) => item.name"
           />
-          <v-list-item
+          <app-list-item
             prepend-icon="$settings_animation"
             :title="$t('pageHierarchyTransition')"
             @click="pageTransitionEnabled = !pageTransitionEnabled"
+            lastInVertical
           >
             <template #append>
               <v-switch v-model="pageTransitionEnabled" tabindex="-1" />
             </template>
-          </v-list-item>
+          </app-list-item>
         </app-list-category>
         <app-list-category :subheader="$t('app.title')">
-          <v-list-item
+          <app-list-item
             prepend-icon="$foh"
             :title="$t('metadataSourcesManager')"
             :to="{ name: 'MetadataSources' }"
             append-icon="$next"
           />
-          <v-list-item
+          <app-list-item
             prepend-icon="$info"
             :title="$t('about')"
             :subtitle="`v${appVersion}`"
             :to="{ name: 'About' }"
             append-icon="$next"
+            lastInVertical
           />
         </app-list-category>
-      </app-category-list>
+      </app-list>
     </v-main>
-  </v-layout>
+  </app-page>
 </template>

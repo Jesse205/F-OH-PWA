@@ -10,12 +10,12 @@ const title = useTitle(computed(() => t('term.openSourceLicenses')))
 </script>
 
 <template>
-  <v-layout>
+  <app-page>
     <v-app-bar>
       <back-button />
       <v-app-bar-title :text="title" />
     </v-app-bar>
-    <v-main>
+    <v-main scrollable>
       <div class="container">
         <v-card v-for="item in projects" :key="item.key" class="project-item" :href="item.url" target="_blank">
           <v-card-item>
@@ -32,21 +32,19 @@ const title = useTitle(computed(() => t('term.openSourceLicenses')))
         </v-card>
       </div>
     </v-main>
-  </v-layout>
+  </app-page>
 </template>
 
 <style lang="scss" scoped>
 .container {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 8px;
+  display: grid;
+  padding: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
 }
 .project-item {
-  margin: 8px;
   display: flex;
   flex-direction: column;
-  flex-basis: 240px;
-  flex-grow: 1;
   &__text {
     padding-bottom: 0;
   }

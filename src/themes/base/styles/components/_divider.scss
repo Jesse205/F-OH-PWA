@@ -1,0 +1,5 @@
+@mixin style {
+  .v-divider {
+    margin: var(--divider-margin, 0);
+  }
+}

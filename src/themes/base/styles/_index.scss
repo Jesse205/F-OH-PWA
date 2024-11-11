@@ -1,0 +1,8 @@
+@use './components';
+@use './utils';
+@use './variables/runtime' as variables;
+
+:root {
+  @include components.style;
+  @include variables.style;
+}

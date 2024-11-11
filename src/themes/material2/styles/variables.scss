@@ -1,0 +1,6 @@
+@mixin style {
+  & {
+    --list-item-icon-margin-start: 32px;
+    --list-item-icon-margin-end: 32px;
+  }
+}

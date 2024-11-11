@@ -19,26 +19,26 @@ const displayName = computed(() => {
 </script>
 
 <template>
-  <v-list-item link :subtitle="displayName">
+  <app-list-item link :subtitle="displayName">
     <!-- origin="left" 修复小窗时定位错误 -->
-
     <v-menu activator="parent" origin="left">
-      <v-list v-model:selected="valueList" select-strategy="single-leaf" mandatory>
-        <v-list-item
-          v-for="item in items"
+      <app-list v-model:selected="valueList" select-strategy="single-leaf" mandatory>
+        <app-list-item
+          v-for="(item, index) in items"
           v-bind="item"
           :key="valueGetter(item)"
           :title="nameGetter ? nameGetter(item) : valueGetter(item)"
           :value="valueGetter(item)"
           :disabled="disabledGetter ? disabledGetter(item) : false"
+          :divider="index >= items.length-1 ? false : undefined"
         />
-      </v-list>
+      </app-list>
     </v-menu>
     <template v-if="slots.subtitle" #subtitle>
       <slot name="subtitle" :display-name="displayName" />
     </template>
     <slot />
-  </v-list-item>
+  </app-list-item>
 </template>
 
 <style lang="scss" scoped></style>

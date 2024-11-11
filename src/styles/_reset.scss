@@ -1,0 +1,27 @@
+@use './settings';
+
+* {
+  outline: none;
+  touch-action: manipulation;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: ui-monospace, monospace, settings.$body-font-family;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  overflow-y: hidden !important;
+  user-select: none;
+}
+
+// 无动画效果
+@media (prefers-reduced-motion) {
+  * {
+    transition: none !important;
+  }
+}

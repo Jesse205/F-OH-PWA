@@ -1,46 +1,21 @@
-@use '../settings/motions';
+@use '../variables/motions';
+@use '../tools';
 
 @mixin style {
   .v-btn {
-    transition-property: box-shadow, transform, opacity, background;
+    // transition-property: box-shadow, transform, opacity, background;
+
+    @include tools.states('.v-btn__overlay', false);
+
+    > .v-btn__overlay {
+      transition-duration: motions.$background-duration;
+    }
 
     &--variant-text {
-       > .v-btn__overlay,
-       > .v-ripple__container {
+      > .v-btn__overlay,
+      > .v-ripple__container {
+        // Text 变种下背景使用普通颜色
         color: rgb(var(--v-theme-on-background));
-      }
-    }
-
-     > .v-btn__overlay,
-    &[aria-haspopup='menu'][aria-expanded='true'] > .v-btn__overlay {
-      opacity: 0;
-      transition-duration: motions.$background-duration;
-      transition-property: opacity;
-      transition-timing-function: ease-in-out;
-    }
-
-    &::after {
-      content: none;
-    }
-
-    @supports selector(:focus-visible) {
-      &:focus-visible {
-        outline: rgb(var(--v-theme-primary)) solid 2px;
-        outline-offset: 2px;
-      }
-    }
-
-    @media (hover: hover) {
-      &:hover {
-         > .v-btn__overlay {
-          opacity: calc(var(--v-hover-opacity) * var(--v-theme-overlay-multiplier));
-        }
-      }
-    }
-
-    &:active {
-       > .v-btn__overlay {
-        opacity: calc(var(--v-pressed-opacity) * var(--v-theme-overlay-multiplier));
       }
     }
   }

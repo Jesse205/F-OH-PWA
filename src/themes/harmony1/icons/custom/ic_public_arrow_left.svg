@@ -8,6 +8,6 @@
         <mask id="mask-2" fill="white">
             <use xlink:href="#path-1"></use>
         </mask>
-        <use id="路径" fill="#000000" fill-rule="nonzero" transform="translate(6.371320, 11.999964) scale(-1, 1) translate(-6.371320, -11.999964) " xlink:href="#path-1"></use>
+        <use id="路径" fill="currentColor" fill-rule="nonzero" transform="translate(6.371320, 11.999964) scale(-1, 1) translate(-6.371320, -11.999964) " xlink:href="#path-1"></use>
     </g>
 </svg>

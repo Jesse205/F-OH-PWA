@@ -1,5 +1,6 @@
 import jsEslint from '@eslint/js'
 import type { TSESLint } from '@typescript-eslint/utils'
+import unoCssConfig from '@unocss/eslint-config/flat'
 import configPrettier from 'eslint-config-prettier'
 import simpleImportSort from 'eslint-plugin-simple-import-sort'
 import pluginVue from 'eslint-plugin-vue'
@@ -34,6 +35,7 @@ export default tsEslint.config(
   ...(pluginVue.configs['flat/recommended'] as TSESLint.FlatConfig.ConfigArray),
   configVueTsParser,
   configPrettier as TSESLint.FlatConfig.Config,
+  unoCssConfig as unknown,
   {
     plugins: {
       'simple-import-sort': simpleImportSort,

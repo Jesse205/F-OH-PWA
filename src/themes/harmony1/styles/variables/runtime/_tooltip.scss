@@ -1,0 +1,5 @@
+@mixin style {
+  & {
+    --tooltip-background-color: rgba(var(--v-theme-surface-variant), 0.8);
+  }
+}

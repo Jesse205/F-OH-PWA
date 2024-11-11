@@ -26,12 +26,12 @@ const donateAds: DonatePlatform[] = [
 </script>
 
 <template>
-  <v-layout>
+  <app-page>
     <v-app-bar>
       <back-button />
       <v-app-bar-title :text="title" />
     </v-app-bar>
-    <v-main>
+    <v-main scrollable>
       <div class="container">
         <DonateCard
           v-for="person in donatePersons"
@@ -84,7 +84,7 @@ const donateAds: DonatePlatform[] = [
         </DonateCard>
       </div>
     </v-main>
-  </v-layout>
+  </app-page>
 </template>
 
 <style scoped lang="scss">

@@ -7,6 +7,7 @@
   },
   "cSpell.words": [
     "appbar",
+    "Attributify",
     "Axios",
     "beforeinstallprompt",
     "Bootstrapper",
@@ -44,6 +45,8 @@
     "unhead",
     "unlisten",
     "unmaximize",
+    "unocss",
+    "unplugin",
     "unref",
     "vueuse",
     "WECHAT",
@@ -57,4 +60,5 @@
     "[^\\w\\d]['\"`]\\$t\\.({key})['\"`]"
   ],
   "GitCommitPlugin.ShowEmoji": false,
+  "files.eol": "\n",
 }

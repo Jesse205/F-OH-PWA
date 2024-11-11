@@ -1,5 +1,5 @@
 .color-warning {
-  color: rgb(var(--v-theme-warning));
+  color: rgb(var(--v-theme-warning)) !important;
 }
 
 .bg-black {
@@ -14,5 +14,4 @@
 
 .bg-transparent {
   background-color: transparent !important;
-  color: currentcolor !important;
 }

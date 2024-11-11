@@ -4,15 +4,15 @@ $border-color: rgba(var(--v-border-color), var(--v-border-opacity));
 $border: #{$border-width} solid #{$border-color};
 
 @mixin style {
-  &,
+  /* &,
   .v-theme--light,
   .v-theme--dark {
     @media screen and (resolution <= 2dppx) {
       --v-border-opacity: 0.1 !important;
     }
-  }
+  } */
 
-  .border-t {
+  /* .border-t {
     border-top: $border;
   }
 
@@ -22,5 +22,5 @@ $border: #{$border-width} solid #{$border-color};
 
   .border {
     border-width: $border-width !important;
-  }
+  } */
 }

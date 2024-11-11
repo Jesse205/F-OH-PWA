@@ -35,14 +35,14 @@ defineExpose({
       <!-- 应用名和版本 -->
       <v-skeleton-loader v-if="loading" class="app-overview__right__skeleton" type="text@2" color="transparent" />
       <template v-else>
-        <h2 class="app-title text-h6">
+        <h2 class="text-h6 app-title">
           <!-- 应用名 -->
           <span ref="appNameElement" class="app-title__name" :title="$t('appName.title')">{{ appInfo?.name }}</span>
           <span class="app-title__version text-subtitle-2" :title="$t('version.app')">
             {{ appInfo ? `v${appInfo.version}` : $t('unknown.version') }}
           </span>
         </h2>
-        <div class="app-package text-subtitle-2" :title="$t('packageName')">
+        <div class="text-subtitle-2 app-package" :title="$t('packageName')">
           {{ appInfo?.packageName ?? $t('unknown.packageName') }}
         </div>
       </template>

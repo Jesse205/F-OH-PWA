@@ -1,0 +1,33 @@
+@use 'sass:map';
+@use 'sass:string';
+@use '../../../../styles/settings';
+
+/// Material 和鸿蒙的状态样式有一些不一样，鸿蒙的状态样式在focus时不使用半透明背景色，所以需要单独地重写样式
+@mixin states($selector: '&::before', $outer-outline: false) {
+  @if string.slice(string.unquote($selector), 1, 1) != '&' {
+    $selector: #{'>'} #{$selector};
+  }
+  #{$selector},
+  &:focus-visible #{$selector} {
+    opacity: 0;
+  }
+
+  &:focus-visible {
+    outline: rgb(var(--v-theme-primary)) solid 2px;
+    outline-offset: if($outer-outline, 2px, -2px);
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      #{$selector} {
+        opacity: calc(#{map.get(settings.$states, 'hover')} * var(--v-theme-overlay-multiplier));
+      }
+    }
+  }
+
+  &:active {
+    #{$selector} {
+      opacity: calc(#{map.get(settings.$states, 'pressed')} * var(--v-theme-overlay-multiplier));
+    }
+  }
+}

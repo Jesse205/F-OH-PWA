@@ -16,12 +16,11 @@ const isOtherPage = computed(() => Boolean(!isInMainView.value && globalStore.ti
 
 <template>
   <!-- 侧滑栏 -->
-  <v-navigation-drawer permanent touchless>
+  <v-navigation-drawer touchless permanent >
     <v-list class="header-icon" lines="one">
       <v-list-item prepend-avatar="@/assets/images/icon.svg" :title="globalStore.appName" />
     </v-list>
 
-    <!-- <v-divider /> -->
     <v-list density="compact" nav>
       <v-list-item
         v-for="(item, index) in homeRouteData"

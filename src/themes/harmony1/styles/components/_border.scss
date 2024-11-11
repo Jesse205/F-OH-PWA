@@ -2,7 +2,7 @@
 
 @mixin style {
   .v-divider {
-    --border-padding-left: 0px;
+    /* --border-padding-left: 0px;
     --border-padding-right: 0px;
 
     opacity: 1;
@@ -16,6 +16,6 @@
       margin-left: -#{border.$border-width};
       margin-right: 0;
       border-right-width: border.$border-width;
-    }
+    } */
   }
 }

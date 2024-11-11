@@ -1,14 +1,12 @@
-@use '../settings/dimensions';
-@use '../settings/shadows';
+@use '../variables/dimensions';
+@use '../variables/shadows';
 
 @mixin style {
   .v-menu {
     > .v-overlay__content {
-      border-radius: 16px;
       backdrop-filter: blur(dimensions.$radius-blur);
 
       > .v-list {
-        border-radius: 16px;
         box-shadow: shadows.$shadow-md;
         background-color: rgba(var(--v-theme-surface), 0.85) !important;
       }

@@ -1,8 +1,9 @@
-@use '../settings/motions';
-@use '../settings/dimensions';
+@use '../variables/motions';
+@use '../variables/dimensions';
 
 @mixin style {
   .v-input--density-default {
+    --v-input-padding-top: 24px;
     .v-field--variant-underlined {
       --v-field-padding-top: 12px;
       --v-field-padding-bottom: 12px;
@@ -10,11 +11,6 @@
   }
 
   .v-field {
-    &__input {
-      /* padding-top: 12px;
-      padding-bottom: 12px; */
-    }
-
     &__overlay {
       top: var(--v-input-padding-top);
       height: auto;
@@ -33,11 +29,9 @@
     &--variant-underlined .v-field__outline::after {
       content: none;
     }
-
-    /* &--variant-underlined {
-      .v-label.v-field-label--floating {
-        transform: translateY(-24px);
-      }
-    } */
+    &--variant-plain .v-label.v-field-label--floating,
+    &--variant-underlined .v-label.v-field-label--floating {
+      transform: translateY(-24px);
+    }
   }
 }

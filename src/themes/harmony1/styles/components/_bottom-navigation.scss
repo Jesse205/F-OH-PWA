@@ -1,14 +1,11 @@
 /// @link https://developer.huawei.com/consumer/cn/doc/design-guides-V1/bottom-tab-0000001110467118-V1
 
-@use '../settings/fonts';
+@use '../variables/fonts';
 
 @mixin style {
   .v-bottom-navigation {
     &__content {
-      .v-btn {
-        font-size: fonts.$caption-size;
-        font-weight: fonts.$caption-weight;
-
+      > .v-btn {
         .v-icon {
           font-size: 20px;
           margin-bottom: 2px;
@@ -23,7 +20,7 @@
         }
 
         &--disabled {
-          opacity: 0.26;
+          opacity: var(--v-disabled-opacity);
         }
       }
     }

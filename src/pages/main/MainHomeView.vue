@@ -7,7 +7,6 @@ import type { VMain } from 'vuetify/components'
 import ErrorAlert from '@/components/alert/ErrorAlert.vue'
 import UnsafeBypassAlert from '@/components/alert/UnsafeBypassAlert.vue'
 import CenterSpace from '@/components/CenterSpace.vue'
-import AppListCategory from '@/components/list/AppListCategory.vue'
 import { carousel } from '@/data/home'
 import { useHomeStore } from '@/store/home'
 import { useCachedArrayMap } from '@/utils/array'
@@ -57,25 +56,25 @@ const { cachedArray: renderedAnnouncements } = useCachedArrayMap(
 </script>
 
 <template>
-  <v-main ref="mainComponent">
+  <v-main scrollable ref="mainComponent">
     <!-- 轮播图 -->
-    <HomeCarousel ref="carouselComponent" class="ma-4" :items="carousel.items" :ratio="carousel.ratio" />
+    <HomeCarousel ref="carouselComponent" un-margin="4" :items="carousel.items" :ratio="carousel.ratio" />
 
     <!-- Alerts -->
-    <ErrorAlert v-if="homeStore.hasErrors" class="ma-4" :errors="homeStore.errorArray" />
-    <UnsafeBypassAlert v-if="homeStore.hasErrors && isChrome" class="ma-4" />
+    <ErrorAlert v-if="homeStore.hasErrors" un-margin="4" :errors="homeStore.errorArray" />
+    <UnsafeBypassAlert v-if="homeStore.hasErrors && isChrome" un-margin="4" />
 
     <!-- 公告 -->
-    <app-category-list v-if="homeStore.hasAnnouncements" class="ma-4">
+    <app-list v-if="homeStore.hasAnnouncements" un-margin="4">
       <app-list-category
         v-for="(announcement, index) in renderedAnnouncements"
         :key="index"
         :subheader="$t('announcement_withName', { name: announcement.sourceName })"
       >
         <!-- eslint-disable-next-line vue/no-v-html vue/no-v-text-v-html-on-component -->
-        <v-list-item class="announcement-content typo-style" v-html="announcement.content" />
+        <v-list-item class="typo-style announcement-content" v-html="announcement.content" />
       </app-list-category>
-    </app-category-list>
+    </app-list>
     <CenterSpace v-if="isLoading" :top="progressMarginTop">
       <v-progress-circular indeterminate />
     </CenterSpace>

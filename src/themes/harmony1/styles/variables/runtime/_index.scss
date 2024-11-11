@@ -1,0 +1,19 @@
+@use './border';
+@use './bottom-navigation';
+@use './divider';
+@use './list';
+@use './swiper';
+@use './tabs';
+@use './tooltip';
+@use './typography';
+
+@mixin style {
+  @include border.style;
+  @include bottom-navigation.style;
+  @include divider.style;
+  @include list.style;
+  @include swiper.style;
+  @include tabs.style;
+  @include tooltip.style;
+  @include typography.style;
+}

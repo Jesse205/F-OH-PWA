@@ -9,6 +9,7 @@
     "davidanson.vscode-markdownlint",
     "webben.browserslist",
     "stylelint.vscode-stylelint",
-    "mrmlnc.vscode-scss"
+    "mrmlnc.vscode-scss",
+    "antfu.unocss"
   ]
 }

@@ -1,8 +1,5 @@
-import { VList } from 'vuetify/components'
+import type { AttributifyAttributes } from '@unocss/preset-attributify'
 
-declare module 'vue' {
-  export interface GlobalComponents {
-    AppCategoryList: typeof VList
-    DialogContentList: typeof VList
-  }
+declare module '@vue/runtime-dom' {
+  interface HTMLAttributes extends AttributifyAttributes {}
 }

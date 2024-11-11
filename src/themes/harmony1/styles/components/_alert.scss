@@ -1,7 +1,0 @@
-@use '../settings/dimensions';
-
-@mixin style {
-  .v-alert {
-    border-radius: #{dimensions.$radius-card};
-  }
-}

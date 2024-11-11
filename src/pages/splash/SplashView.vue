@@ -5,14 +5,14 @@ const globalStore = useGlobalStore()
 </script>
 
 <template>
-  <div class="SplashView">
+  <div class="splash-view">
     <img class="logo" src="@/assets/images/icon.svg" />
-    <span>{{ globalStore.appName }}</span>
+    <span un-mt="4">{{ globalStore.appName }}</span>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.SplashView {
+.splash-view {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -23,7 +23,6 @@ const globalStore = useGlobalStore()
   .logo {
     width: 80px;
     height: 80px;
-    margin-bottom: 16px;
     flex: none;
   }
 }

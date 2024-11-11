@@ -1,0 +1,9 @@
+@use './utils';
+@use './components';
+@use './variables';
+
+.material2 {
+  @include utils.style;
+  @include components.style;
+  @include variables.style;
+}

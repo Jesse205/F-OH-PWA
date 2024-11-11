@@ -3,9 +3,11 @@ import { fileURLToPath, URL } from 'node:url'
 import legacy from '@vitejs/plugin-legacy'
 import vue from '@vitejs/plugin-vue'
 import { StringOptions } from 'sass'
+import UnoCSS from 'unocss/vite'
 import { defineConfig, UserConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
+import Components from 'unplugin-vue-components/vite'
 
 import manifest from './manifest'
 import svgLoader from './plugins/svgLoader'
@@ -60,6 +62,11 @@ export default defineConfig(() => {
       legacy({
         modernPolyfills: true,
         renderLegacyChunks: false,
+      }),
+      // https://unocss.dev/
+      UnoCSS(),
+      Components({
+        dts: 'src/ts/generates/components.d.ts',
       }),
     ],
     define: {

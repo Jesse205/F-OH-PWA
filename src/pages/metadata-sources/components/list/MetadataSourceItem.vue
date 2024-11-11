@@ -20,7 +20,7 @@ function onClick() {
 </script>
 
 <template>
-  <v-list-item class="metadata-source-item" :title="name" @click="onClick">
+  <app-list-item class="metadata-source-item" :title="name" @click="onClick">
     <v-list-item-subtitle v-if="description">{{ description }}</v-list-item-subtitle>
     <v-list-item-subtitle>{{ apiUrl }}</v-list-item-subtitle>
     <template #append>
@@ -32,7 +32,7 @@ function onClick() {
         <v-switch v-model="enabled" tabindex="-1" />
       </template>
     </template>
-  </v-list-item>
+  </app-list-item>
 </template>
 
 <style lang="scss" scoped>
