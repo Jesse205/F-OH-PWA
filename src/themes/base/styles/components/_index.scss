@@ -1,11 +1,9 @@
 @use './bottom-navigation';
-@use './dialog';
 @use './main';
 @use './progress';
 
 @mixin style {
   @include bottom-navigation.style;
   @include main.style;
-  @include dialog.style;
   @include progress.style;
 }

@@ -1,6 +1,0 @@
-@mixin style {
-  & {
-    --swiper-theme-color: rgb(var(--v-theme-primary)); // swiper主题色跟随主题
-    --swiper-pagination-bullet-inactive-color: rgb(var(--v-theme-on-surface));
-  }
-}

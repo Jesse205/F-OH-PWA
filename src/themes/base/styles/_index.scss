@@ -1,8 +1,8 @@
 @use './components';
 @use './utils';
-@use './variables/runtime' as variables;
+@use './tokens';
 
 :root {
   @include components.style;
-  @include variables.style;
+  @include tokens.style;
 }

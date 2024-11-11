@@ -1,9 +1,0 @@
-@mixin style {
-  .v-dialog {
-    & > .v-overlay__content {
-      & > form {
-        flex-grow: 1;
-      }
-    }
-  }
-}

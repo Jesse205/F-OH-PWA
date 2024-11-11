@@ -1,9 +1,9 @@
 @use './utils';
 @use './components';
-@use './variables/runtime' as variables;
+@use './tokens';
 
 .harmony1 {
   @include utils.style;
   @include components.style;
-  @include variables.style;
+  @include tokens.style;
 }

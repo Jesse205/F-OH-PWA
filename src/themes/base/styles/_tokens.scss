@@ -1,0 +1,33 @@
+@mixin style {
+  // Swiper
+  --swiper-theme-color: rgb(var(--v-theme-primary)); // swiper主题色跟随主题
+  --swiper-pagination-bullet-inactive-color: rgb(var(--v-theme-on-surface));
+  // Typography
+  --typography-caption-size: 0.75rem;
+  // Border
+  --border-width-root: thin;
+  --border-radius-root: 4px;
+  --border-radius-sm: calc(var(--border-radius-root) * 0.5);
+  --border-radius-md: var(--border-radius-root);
+  --border-radius-lg: calc(var(--border-radius-root) * 2);
+  --border-radius-xl: calc(var(--border-radius-root) * 6);
+  --border-radius-shaped: calc(var(--border-radius-root) * 6) 0;
+  // Divider
+  --divider-inset-margin: 72px;
+  // List
+  --list-subheader-color: rgba(var(--v-theme-on-surface), var(--v-medium-emphasis-opacity));
+  --list-item-icon-margin-start: 32px;
+  --list-item-icon-margin-end: 32px;
+  --list-item-icon-opacity: 1;
+  --list-item-rounded-border-radius: var(--border-radius-root);
+  // Bottom Navigation
+  --bottom-navigation-icon-font-size: 24px;
+  // Progress
+  --progress-circular-underlay-color: transparent;
+  // Tooltip
+  --tooltip-background-color: rgb(var(--v-theme-surface-variant));
+  // Card
+  --card-border-radius: var(--border-radius-root);
+  // Menu
+  --menu-content-border-radius: var(--border-radius-root);
+}

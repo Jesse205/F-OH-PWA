@@ -2,8 +2,6 @@
 ///
 /// @link https://vuetifyjs.com/features/sass-variables/`
 
-$border-radius-root: var(--border-radius-root, 0);
-
 @forward 'vuetify/settings'
   with(
     // 删除无用工具类
@@ -76,37 +74,41 @@ $border-radius-root: var(--border-radius-root, 0);
     $body-font-family: (ui-sans-serif, sans-serif, system-ui),
     $typography: (
       'caption': (
-        size: var(--typography-caption-size, 0.75rem),
+        size: var(--typography-caption-size),
       )
     ),
     // Border
-    /* $border-width-root: var(--border-width-root, thin),
-    $border-radius-root: $border-radius-root, */
-    /* $rounded: (
-      'sm': var(--border-radius-sm, 0px),
-      'md': var(--border-radius-md, 0px),
-      'lg': var(--border-radius-lg, 0px),
-      'xl': var(--border-radius-xl, 0px),
-      'shaped': var(--border-radius-shaped, 0 0)
-    ), */
-    $divider-inset-margin: var(--divider-inset-margin, 72px),
+    $border-width-root: var(--border-width-root),
+    //$border-radius-root不能修改为var变量，因为vuetify源代码中需要使用这个变量计算其他属性
+    $rounded:
+      (
+        'sm': var(--border-radius-sm),
+        null: var(--border-radius-root),
+        'md': var(--border-radius-md),
+        'lg': var(--border-radius-lg),
+        'xl': var(--border-radius-xl),
+        'shaped': var(--border-radius-shaped)
+      ),
+    $divider-inset-margin: var(--divider-inset-margin),
     // Ripple
     $ripple-animation-visible-opacity: calc(var(--v-pressed-opacity) * var(--v-theme-overlay-multiplier)),
     // List
-    $list-subheader-color:
-      var(--list-subheader-color, rgba(var(--v-theme-on-surface), var(--v-medium-emphasis-opacity))),
-    $list-item-icon-margin-start: var(--list-item-icon-margin-start, 0px),
-    $list-item-icon-margin-end: var(--list-item-icon-margin-end, 0px),
-    $list-item-icon-opacity: var(--list-item-icon-opacity, 1),
-    $list-item-rounded-border-radius: var(--list-item-rounded-border-radius, $border-radius-root),
+    $list-subheader-color: var(--list-subheader-color),
+    $list-item-icon-margin-start: var(--list-item-icon-margin-start),
+    $list-item-icon-margin-end: var(--list-item-icon-margin-end),
+    $list-item-icon-opacity: var(--list-item-icon-opacity),
+    $list-item-rounded-border-radius: var(--list-item-rounded-border-radius),
     // Bottom Navigation
-    $bottom-navigation-icon-font-size: var(--bottom-navigation-icon-font-size, 24px),
+    $bottom-navigation-icon-font-size: var(--bottom-navigation-icon-font-size),
     $bottom-navigation-shift-icon-top: 0,
     // Overlay
     $overlay-scrim-background: black,
     // Progress
-    $progress-circular-underlay-color: var(--progress-circular-underlay-color, transparent),
+    $progress-circular-underlay-color: var(--progress-circular-underlay-color),
     // Tooltip
-    $tooltip-background-color: var(--tooltip-background-color, rgb(var(--v-theme-surface-variant))),
-    // Toolbar
+    $tooltip-background-color: var(--tooltip-background-color),
+    // Card
+    $card-border-radius: var(--card-border-radius),
+    // Menu
+    $menu-content-border-radius: var(--menu-content-border-radius)
   );

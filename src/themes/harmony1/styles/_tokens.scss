@@ -1,0 +1,43 @@
+@use './variables/dimensions';
+@use './variables/fonts';
+
+@mixin style {
+  &,
+  .v-theme--light,
+  .v-theme--dark {
+    @media screen and (resolution <= 2dppx) {
+      // 防止低分辨率屏幕边框过粗
+      --v-border-opacity: 0.1 !important;
+      --border-width-root: 1px !important;
+    }
+  }
+
+  & {
+    // Border
+    --border-width-root: 0.5px;
+    --border-radius-root: #{dimensions.$radius-lg};
+    --border-radius-sm: #{dimensions.$radius-sm};
+    --border-radius-md: #{dimensions.$radius-md};
+    --border-radius-lg: #{dimensions.$radius-lg};
+    --border-radius-xl: #{dimensions.$radius-xl};
+    // Bottom Navigation
+    --bottom-navigation-icon-font-size: 20px;
+    // Divider
+    --divider-inset-margin: 52px;
+    // List
+    --list-item-icon-margin-start: 16px;
+    --list-item-icon-margin-end: 12px;
+    --list-item-icon-opacity: 1;
+    --list-item-rounded-border-radius: #{dimensions.$radius-card - 2px};
+    // Swiper
+    --swiper-pagination-bullet-border-radius: 4px;
+    --swiper-pagination-bullet-size: 8px;
+    --swiper-pagination-bullet-inactive-opacity: 0.2;
+    // Tabs
+    --tabs-height: 40px;
+    // Tooltip
+    --tooltip-background-color: rgba(var(--v-theme-surface-variant), 0.8);
+    // Typography
+    --typography-caption-size: #{fonts.$caption-size};
+  }
+}

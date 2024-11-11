@@ -9,6 +9,7 @@
       > .v-list {
         box-shadow: shadows.$shadow-md;
         background-color: rgba(var(--v-theme-surface), 0.85) !important;
+        padding-block: 4px;
       }
     }
 
